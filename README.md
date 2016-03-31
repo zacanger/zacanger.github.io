@@ -1,4 +1,4 @@
-## NO  
+## NO
 
 
-## [Yes?](http://zacanger.com/me)
+## [Yes?](http://zacanger.com/)
