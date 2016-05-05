@@ -1,8 +1,4 @@
-html,
-body {
-  font-family: "Courier";
-  font-size: 18px;
-}
+html, body { font-family: "Hack", monospace; font-size: 18px; }
 
 body {
   background-color: #38393c;
@@ -13,7 +9,6 @@ a {
   color: #aaaaaa;
   text-decoration: none;
   border-bottom: 1px dashed #888;
-
   -o-transition: .5s;
   -ms-transition: .5s;
   -moz-transition: .5s;
@@ -21,27 +16,21 @@ a {
   transition: .5s;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
   color: #ffffff;
   text-decoration: none;
 }
 
-img {
-  max-width: 100%;
-}
+img { max-width: 100%; }
 
-code,
-pre {
+code, pre {
   background-color: #333333;
   border: none;
   border-radius: 0;
   word-wrap: normal;
 }
 
-code {
-  color: #91c854;
-}
+code { color: #91c854; }
 
 pre code {
   font-size: 16px;
@@ -49,18 +38,11 @@ pre code {
   white-space: pre;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
-div[class*=" col-"] {
-  padding-right: 0;
-}
+div[class*=" col-"] { padding-right: 0; }
 
 #pagination-top .pagination-next,
 #pagination-bottom .pagination-prev {
@@ -72,9 +54,7 @@ div[class*=" col-"] {
   padding-bottom: 20px;
 }
 
-.indentation-container {
-  position: relative;
-}
+.indentation-container { position: relative; }
 
 .indentation {
   position: absolute;
@@ -90,13 +70,10 @@ div[class*=" col-"] {
   margin-right:20px;
 }
 
-.indentation-ellipsis {
-  display: none;
-}
+.indentation-ellipsis { display: none; }
 
 .indentation-toggle {
   color: #ffffff;
-
   -o-transition: .5s;
   -ms-transition: .5s;
   -moz-transition: .5s;
@@ -109,13 +86,10 @@ div[class*=" col-"] {
   cursor: pointer;
 }
 
-.indentation-toggle:hover > .indentation-line {
-  border-color: #ffffff;
-}
+.indentation-toggle:hover > .indentation-line { border-color: #ffffff; }
 
 .indentation-content {
   display: block;
-
   -o-transition: .5s;
   -ms-transition: .5s;
   -moz-transition: .5s;
@@ -123,49 +97,25 @@ div[class*=" col-"] {
   transition: .5s;
 }
 
-.indentation-container.collapsed .indentation-content {
-  display: none;
-}
+.indentation-container.collapsed .indentation-content { display: none; }
 
-.indentation-container.collapsed .indentation-ellipsis {
-  display: inline-block;
-}
+.indentation-container.collapsed .indentation-ellipsis { display: inline-block; }
 
-.array-item:last-child > .control:last-child {
-  display: none;
-}
+.array-item:last-child > .control:last-child { display: none; }
 
 .control {
   color: #ffffff;
   display: block;
 }
 
-.control.inline {
-  display: inline;
-}
+.control.inline { display: inline; }
 
-.attribute {
-  color: #91c854;
-}
+.attribute { color: #91c854; }
 
-.value {
-  color: #aaaaaa;
-}
+.value { color: #aaaaaa; }
 
 
-/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .indentation {
-    display: block;
-  }
+  .indentation { display: block; }
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
