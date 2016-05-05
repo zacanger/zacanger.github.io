@@ -6,7 +6,7 @@ const
 , app     = express()
 
 app
-.use(express.static(__ dirname + '/fin'))
-.use((req, res) => res.sendfile(__dirname + '/fin/404/index.html'))
+.use(express.static(__dirname + '/blog/fin'))
+.use((req, res) => res.sendfile(__dirname + '/blog/404/index.html'))
 .listen(port, () => console.log(`blog on ${port}`))
 

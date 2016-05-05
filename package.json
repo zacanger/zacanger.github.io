@@ -5,7 +5,7 @@
   "private": true,
   "main": "",
   "scripts": {
-    "start": "forever start -a -l f.log -o o.log -e e.log server.js"
+    "start": "forever start -a -l f.log -o o.log -e e.log index.js"
   },
   "repository": {
     "type": "git",
