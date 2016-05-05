@@ -5,7 +5,7 @@
   "private": true,
   "main": "",
   "scripts": {
-    "test": "forever start -l forever.log -o out.log -e err.log my-daemon.js"
+    "start": "forever start -a -l f.log -o o.log -e e.log server.js"
   },
   "repository": {
     "type": "git",
@@ -23,3 +23,4 @@
   },
   "devDependencies": {}
 }
+
