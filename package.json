@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "description": "blog.zacanger.com",
+  "private": true,
+  "main": "",
+  "scripts": {
+    "test": "forever start -l forever.log -o out.log -e err.log my-daemon.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/foo.git"
+  },
+  "author": {
+    "name": "Zac Anger",
+    "email": "zac@zacanger.com",
+    "url": "http://zacanger.com"
+  },
+  "license": "WTFPL",
+  "dependencies": {
+    "express": "^4.13.4",
+    "forever": "^0.15.1"
+  },
+  "devDependencies": {}
+}
