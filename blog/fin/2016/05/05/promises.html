@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>zac anger - angr</title>
+    <meta name="description" content="JS Dev, Nix Hacker, Musician" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/syntax-highlighting.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/05/05/promises.html" />
+  </head>
+
+  <body>
+    <div role="main" class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+          <div class="indentation-container"><span class="control inline">{</span><div class="row indentation-content">
+              <div class="indentation indentation-toggle">
+                <div class="indentation-line"></div>
+              </div>
+              <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 hash">
+                
+
+<div class="array-item indentation-container">
+  <span class="attribute">"post"</span><span class="control inline">:</span>
+  <span class="control inline">{</span><div class="row indentation-content">
+    <div class="indentation indentation-toggle">
+      <div class="indentation-line"></div>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+      <div>
+        <span class="attribute">"title"</span><span class="control inline">:</span>
+        <span class="value">"Promises"</span><span class="control inline">,</span>
+      </div>
+
+      <div>
+        <span class="attribute">"date"</span><span class="control inline">:</span>
+        <span class="value" datetime="2016-05-05">"05 May 2016"</span><span class="control inline">,</span>
+      </div>
+
+      <div class="array-item indentation-container">
+        <span class="attribute">"content"</span><span class="control inline">:</span>
+        <span class="value">"</span><div class="row indentation-content">
+          <div class="indentation indentation-toggle">
+            <div class="indentation-line"></div>
+          </div>
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+            <p>Important things:</p>
+<ul>
+<li>The actual promise is immutable (nothing can change that)</li>
+<li>There&#39;s a guarantee that we&#39;ll get something back</li>
+<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
+<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
+<li>A promise will have one of three states:<ul>
+<li>Pending (until something happens)</li>
+<li>Fulfilled (if the first handler is called)</li>
+<li>Rejected (if the second handler is called)</li>
+</ul>
+</li>
+<li>It can only be &#39;settled&#39; (either resolved or rejected) once.</li>
+<li>Can&#39;t cancel a promise.</li>
+<li>No way to check the status (if pending, fulfilled, or rejected).</li>
+<li>An immediately-resolved promise can be created like <code>Promise.resolve(&#39;something&#39;)</code>.</li>
+<li>An immediately-rejected promise can be created like <code>Promise.reject(&#39;something&#39;)</code>.</li>
+<li>Attach a <code>then()</code> to consume the promise.</li>
+<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
+<li>It can actually take a rejection callback too.</li>
+<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
+<li>You can chain <code>.then()</code>s.</li>
+<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
+<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
+<li><code>throw</code>ing will automatically reject that promise.</li>
+<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<ul>
+<li>Otherwise (if any are rejected) it will reject.</li>
+</ul>
+</li>
+<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
+<li>Don&#39;t program with promises using same patterns as with callbacks.<ul>
+<li>(Don&#39;t do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
+</ul>
+</li>
+<li>Don&#39;t nest promises. Use a <code>.all</code> instead.</li>
+</ul>
+<p>Examples:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
+  <span class="hljs-keyword">if</span> (something) {
+    resolve(value)
+  } <span class="hljs-keyword">else</span> {
+    reject(reason)
+  }
+})
+
+<span class="hljs-keyword">const</span> p = Promise.resolve(<span class="hljs-string">&#39;something&#39;</span>)
+p.then(res =&gt; console.log(res))
+<span class="hljs-keyword">const</span> p2 = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve(<span class="hljs-string">&#39;asdf&#39;</span>), <span class="hljs-number">2000</span>)
+})
+p2.then(res =&gt; {
+  res += <span class="hljs-string">&#39;ghjkl;&#39;</span>
+  console.log(res)
+})
+p2.then(res =&gt; console.log(res)) <span class="hljs-comment">// this is still &#39;asdf&#39;</span>
+
+somePromise.then(
+  val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val)
+, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
+
+pr.then(val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val))
+  .then(<span class="hljs-keyword">null</span>, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
+
+<span class="hljs-keyword">const</span> throwProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; {
+  <span class="hljs-keyword">if</span> (something) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;rejected&#39;</span>)
+  } <span class="hljs-keyword">else</span> {
+  resolve(stuff)
+  }
+})
+throwProm
+.then(val =&gt; val + <span class="hljs-number">8</span>)
+.then(val =&gt; console.log(<span class="hljs-string">&#39;hey&#39;</span>, val))
+.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;err&#39;</span>, err.message))
+
+<span class="hljs-keyword">const</span> fulProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; res(<span class="hljs-number">8</span>))
+fulProm
+.then(val =&gt; val + <span class="hljs-number">8</span>)
+.then(val =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;failure&#39;</span>)})
+.then(val =&gt; console.log(<span class="hljs-string">&#39;yay&#39;</span>, val))
+.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;error&#39;</span>, err.message))
+
+one()
+.then(res =&gt; Promise.all([res, two(res)]))
+  .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
+  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>
+          </div>
+        </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="value">"</span><span class="control inline">,</span>
+      </div>
+
+      <div class="array-item indentation-container">
+        <span class="attribute">"tags"</span><span class="control inline">:</span>
+        <span class="control inline">[</span><div class="row indentation-content">
+          <div class="indentation indentation-toggle">
+            <div class="indentation-line"></div>
+          </div>
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+            <div class="array-item">
+              <span class="value">"<a href="/tag/promises/">promises</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+            <div class="array-item">
+              <span class="value">"<a href="/tag/es6/">es6</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+            <div class="array-item">
+              <span class="value">"<a href="/tag/es2015/">es2015</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+            <div class="array-item">
+              <span class="value">"<a href="/tag/js/">js</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+
+          </div>
+        </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">]</span><span class="control inline">,</span>
+      </div>
+
+      <div class="array-item indentation-container">
+        <span class="attribute">"author"</span><span class="control inline">:</span>
+        <span class="control inline">{</span><div class="row indentation-content">
+          <div class="indentation indentation-toggle">
+            <div class="indentation-line"></div>
+          </div>
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+            <div class="array-item">
+              <span class="attribute">"name"</span><span class="control inline">:</span>
+              <span class="value">"<a href="/author/blog/">zac anger</a>"</span><span class="control inline">,</span>
+            </div>
+
+            <div class="array-item indentation-container">
+              <span class="attribute">"bio"</span>
+              <span class="control inline">:</span>
+              <span class="value">"</span><div class="row indentation-content">
+                <div class="indentation indentation-toggle">
+                  <div class="indentation-line"></div>
+                </div>
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                  JS Dev, Nix Hacker, Musician
+                </div>
+              </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="value">"</span><span class="control inline">,</span>
+            </div>
+          </div>
+        </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">}</span><span class="control inline">,</span>
+      </div>
+
+      <div class="array-item indentation-container">
+        <span class="attribute">"share"</span><span class="control inline">:</span>
+        <span class="control inline">[</span><div class="row indentation-content">
+          <div class="indentation indentation-toggle">
+            <div class="indentation-line"></div>
+          </div>
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+            <div>
+              <span class="value">"<a href="https://twitter.com/share?text=Promises&amp;url=http://blog.zacanger.com/2016/05/05/promises.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">twitter</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+
+            <div>
+              <span class="value">"<a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zacanger.com/2016/05/05/promises.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">facebook</a>"</span>
+              <span class="control inline">,</span>
+            </div>
+
+            <div>
+              <span class="value">"<a href="https://plus.google.com/share?url=http://blog.zacanger.com/2016/05/05/promises.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">google+</a>"</span>
+            </div>
+
+          </div>
+        </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">]</span><span class="control inline">,</span>
+      </div>
+
+    </div>
+  </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">}</span><span class="control inline">,</span>
+</div>
+
+
+
+                <div class="array-item indentation-container">
+                  <span class="attribute">"follow"</span><span class="control inline">:</span>
+                  <span class="control inline">[</span><div class="row indentation-content">
+                    <div class="indentation indentation-toggle">
+                      <div class="indentation-line"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+                      <div>
+                        <span class="value">"<a href="http://blog.zacanger.com/rss/" target="_blank">rss</a>"</span><span class="control inline">,</span>
+                      </div>
+
+                      <div>
+                        <span class="value">"<a href="https://github.com/zacanger" target="_blank">github</a>"</span><span class="control inline">,</span>
+                      </div>
+
+                      <div>
+                        <span class="value">"<a href="https://twitter.com/zacanger" target="_blank">twitter</a>"</span>
+                      </div>
+
+                    </div>
+                  </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">]</span><span class="control inline">,</span>
+                </div>
+
+                <div>
+                  <span class="attribute">"copyright"</span><span class="control inline">:</span>
+                  <span class="value">"<a href="http://blog.zacanger.com">angr</a> &copy; 2016"</span>
+                </div>
+
+              </div>
+            </div><span class="indentation-ellipsis indentation-toggle">...</span><span class="control inline">}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/layout.js"></script>
+
+    <script src="/assets/js/jquery.min.js"></script>
+  </body>
+</html>
+
