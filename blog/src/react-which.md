@@ -1,6 +1,7 @@
 ---
 title: Creating A React Component
 author: zacanger
+published_at: 2016-05-05 12:42:00
 tags: react es6
 ---
 

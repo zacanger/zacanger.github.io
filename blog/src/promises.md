@@ -1,5 +1,6 @@
 ---
 title: Promises
+published_at: 2016-05-05 13:00:00
 tags: promises, es6, es2015, js
 ---
 

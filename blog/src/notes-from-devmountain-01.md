@@ -1,6 +1,7 @@
 ---
 title: NOTES FROM DEVMOUNTAIN
 author: zacanger
+published_at: 2016-05-05 13:30:00
 tags: devmtn notes js css angular
 ---
 

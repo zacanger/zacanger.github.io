@@ -1,5 +1,6 @@
 ---
 title: currying and partial application
+published_at: 2016-05-05 16:00:00
 tags: currying fp partial-application functional-programming js
 ---
 

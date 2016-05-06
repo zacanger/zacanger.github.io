@@ -11,4 +11,3 @@ I'm testing out a little thing called [ghost-render](https://github.com/mixu/gho
 
 I've been needing a new blog engine. Maybe this one will do.
 
-

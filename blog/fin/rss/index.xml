@@ -1,157 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 06 May 2016 00:02:59 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[This is a test]]></title><description><![CDATA[<h1 id="this-is-a-test-">This is a test!</h1>
-<p>I&#39;m testing out a little thing called <a href="https://github.com/mixu/ghost-render">ghost-render</a>.</p>
-<p>I&#39;ve been needing a new blog engine. Maybe this one will do.</p>
-]]></description><link>/2016/05/05/test.html</link><guid isPermaLink="true">/2016/05/05/test.html</guid><category><![CDATA[test]]></category><category><![CDATA[blogging]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
-<p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
-<p>i don&#39;t dislike jsx, i got over that</p>
-<p>pretty sure ryan did, too</p>
-<pre class="hljs"><code><span class="hljs-comment">// JSX</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
-  render() {
-    <span class="hljs-keyword">return</span> (
-      &lt;div className=<span class="hljs-string">&quot;profile-info-container&quot;</span>&gt;
-
-        &lt;div className=<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>&gt;
-          &lt;img className=<span class="hljs-string">&quot;profile-image&quot;</span> src=<span class="hljs-string">&quot;<a href="https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460">https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460</a>&quot;</span> /&gt;
-        &lt;/div&gt;
-
-        &lt;div className=<span class="hljs-string">&quot;name-info-container&quot;</span>&gt;
-          &lt;h2 className=<span class="hljs-string">&quot;display-name&quot;</span>&gt;<span class="hljs-type">Ryan</span> <span class="hljs-type">Walsh</span>&lt;/h2&gt;
-          &lt;h3 className=<span class="hljs-string">&quot;username&quot;</span>&gt;r-walsh&lt;/h3&gt;
-        &lt;/div&gt;
-
-        &lt;table className=<span class="hljs-string">&quot;profile-guide-info&quot;</span>&gt;
-          &lt;tr className=<span class="hljs-string">&quot;number-container&quot;</span>&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">12</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">20</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">47</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-          &lt;/tr&gt;
-
-          &lt;tr&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-pencil&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-heart&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-eye&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-        &lt;/table&gt;
-
-      &lt;/div&gt;
-    )
-  }
-}
-
-<span class="hljs-comment">// Other nonsense</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
-  render() {
-    <span class="hljs-keyword">return</span> (
-      div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info-container&#39;] } ) {
-
-        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>] } ) {
-          img( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-image&#39;], src: <span class="hljs-symbol">&#39;https</span>:<span class="hljs-comment">//avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460&#39; } ) {}</span>
-        }
-
-        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;name</span>-info-container&#39; } ) {
-          h2( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-string">&quot;display-name&quot;</span> } ) { <span class="hljs-type">John</span> <span class="hljs-type">Doe</span> }
-          h3( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;usernam</span>e&#39; } ) { jdoe }
-        }
-
-        table( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info&#39;] } ) {
-          tr( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;number</span>-container&#39;] } ) {
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-          }
-
-          tr() {
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-          }
-        }
-      }
-    )
-  }
-}
-
-<span class="hljs-comment">// why not like this?</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>{</span>
-  render() {
-    <span class="hljs-keyword">return</span> ({
-      div : {
-        <span class="hljs-class"><span class="hljs-keyword">class</span> :</span> [<span class="hljs-symbol">&#39;fo</span>o&#39;, <span class="hljs-symbol">&#39;ba</span>r&#39;]
-      , p : {
-          str : <span class="hljs-symbol">&#39;Bespoke</span> scenester retro bitters <span class="hljs-type">Pitchfork</span> <span class="hljs-number">8</span>-bit mixtape <span class="hljs-type">PBR</span>&amp;<span class="hljs-type">B</span> mlkshk iphone wire-rimmed glasses forage <span class="hljs-type">Helvetica</span> put a bird on it intelligentsia semiotics leggings normcore. <span class="hljs-type">Flexitarian</span> <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> mustache carles kickstarter <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> <span class="hljs-type">Blue</span> <span class="hljs-type">Bottle</span> actually tumblr beard literally tote bag <span class="hljs-type">Pitchfork</span> cray shabby <span class="hljs-type">Portland</span> stumptown asymmetrical.&#39;
-        }
-      }
-    , footer : {
-        span : {
-          str : <code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${datespan} ${company}. &lt;span class=&quot;hljs-type&quot;&gt;All&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Rights&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Reserved&lt;/span&gt;.</code>
-}}})}
-
-<span class="hljs-comment">// or this?</span>
-const n = notJSX
-function notJSXparser(){
-  <span class="hljs-keyword">return</span> n(<span class="hljs-symbol">&#39;bod</span>y&#39;, [
-    n(<span class="hljs-symbol">&#39;h</span>1&#39;, {<span class="hljs-symbol">&#39;this</span> is a website&#39;},
-      n(&#39;p&#39;, {<span class="hljs-symbol">&#39;this</span> is a lot of text! texytext, text. texting. txet.&#39;},
-        n(<span class="hljs-symbol">&#39;foote</span>r&#39;, {<code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${stuff}</code>})
-      )
-    )
-  ])
-}
-
-<span class="hljs-comment">// how they do it in EVE&#39;s UI (<span class="hljs-doctag">note:</span> they use typescript and an in-house custom lib they call &#39;microReact&#39;)</span>
-const page = {
-  t          : <span class="hljs-symbol">&#39;spa</span>n&#39; <span class="hljs-comment">// the tag type; defauts to &#39;div&#39;</span>
-, c          : <span class="hljs-symbol">&#39;col</span>-<span class="hljs-number">12</span>&#39; <span class="hljs-comment">// className</span>
-, text       : <span class="hljs-symbol">&#39;some</span> content&#39;
-, children   : [{
-    <span class="hljs-comment">// array of further nodes</span>
-  }]
-, top        : <span class="hljs-number">10</span>
-, width      : <span class="hljs-number">100</span> <span class="hljs-comment">// more styles can go here, like react&#39;s style object basically</span>
-, click      : someHandler
-, svg        : <span class="hljs-literal">true</span> <span class="hljs-comment">// to add svg properties... why? idk. just &#39;cuz, i guess.</span>
-, cx         : <span class="hljs-number">4</span>
-, cy         : <span class="hljs-number">4</span>
-, postRender : someDomManipulationFunction <span class="hljs-comment">// on insertion and on update</span>
-}
-
-<span class="hljs-comment">// how jsx actually kinda works (reactelement anyway) under the hood:</span>
-let someEl = {
-  <span class="hljs-class"><span class="hljs-keyword">type</span>  :</span> <span class="hljs-symbol">&#39;di</span>v&#39;
-, props : {}
-, ref   : <span class="hljs-literal">null</span>
-, key   : <span class="hljs-literal">null</span>
-}</code></pre>]]></description><link>/2016/05/05/better-jsx.html</link><guid isPermaLink="true">/2016/05/05/better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 06 May 2016 02:14:41 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
 <span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> fn   = <span class="hljs-keyword">this</span>
     , args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)
@@ -514,228 +362,156 @@ squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span
     }
   }
 
-}())</code></pre>]]></description><link>/2016/05/05/currying-and-partial-application.html</link><guid isPermaLink="true">/2016/05/05/currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
-<p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
-<p>Whatever.</p>
-<p>Don&#39;t take it all so seriously. Some of it could be really helpful. This is about half of my collected
-notes <em>that were inside project files</em>. Everything else has already been cleaned up and posted, or is in
-a directory of drafts somewhere. This stuff is totally unedited.</p>
-<hr>
-<h2 id="ng-probs">ng probs</h2>
-<pre class="hljs"><code><span class="hljs-comment">// this is in a <code>.then</code>. NOTE THAT ANGULAR WILL GIVE YOU AN OBJECT EVEN IF YOU HAVE AN ARRAY</span>
-<span class="hljs-comment">// though it will give you your <em>objects</em> in the <em>array</em> that they come in, it&#39;ll still work</span>
-<span class="hljs-comment">// on the front end.</span>
-<span class="hljs-comment">// we were having issues here looping over the array and setting the returned index on scope,</span>
-<span class="hljs-comment">// then trying to return that. this works a lot better.</span>
-.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(stuff)</span></span>{
-  <span class="hljs-variable">$scope</span>.foo = stuff
-  <span class="hljs-variable">$scope</span>.things = stuff.StuffToBringBack
-})</code></pre><hr>
-<h2 id="angular-directives">angular: directives</h2>
-<p>directives are different than controllers and services. directives ALWAYS return an object. when you write a
-ctrl or svc you&#39;re giving some definitions to something that already exists. with directives you&#39;re closer
-to writing routing. you&#39;re writing a set of instructions. they return an object. objects get, obviously,
-key-value pairs.</p>
-<pre class="hljs"><code><span class="hljs-class">.directive</span>(<span class="hljs-string">&#39;myDirective&#39;</span>, <span class="hljs-function">function</span>(){
-  <span class="hljs-tag">return</span> {
-    <span class="hljs-attribute">template</span>: <span class="hljs-string">&#39;Key: Value, key: value&#39;</span>;
+}())</code></pre>]]></description><link>//currying-and-partial-application.html</link><guid isPermaLink="true">//currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
+<p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
+<p>i don&#39;t dislike jsx, i got over that</p>
+<p>pretty sure ryan did, too</p>
+<pre class="hljs"><code><span class="hljs-comment">// JSX</span>
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div className=<span class="hljs-string">&quot;profile-info-container&quot;</span>&gt;
+
+        &lt;div className=<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>&gt;
+          &lt;img className=<span class="hljs-string">&quot;profile-image&quot;</span> src=<span class="hljs-string">&quot;<a href="https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460">https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460</a>&quot;</span> /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=<span class="hljs-string">&quot;name-info-container&quot;</span>&gt;
+          &lt;h2 className=<span class="hljs-string">&quot;display-name&quot;</span>&gt;<span class="hljs-type">Ryan</span> <span class="hljs-type">Walsh</span>&lt;/h2&gt;
+          &lt;h3 className=<span class="hljs-string">&quot;username&quot;</span>&gt;r-walsh&lt;/h3&gt;
+        &lt;/div&gt;
+
+        &lt;table className=<span class="hljs-string">&quot;profile-guide-info&quot;</span>&gt;
+          &lt;tr className=<span class="hljs-string">&quot;number-container&quot;</span>&gt;
+            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">12</span>&lt;/a&gt;&lt;/span&gt;
+            &lt;/th&gt;
+            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">20</span>&lt;/a&gt;&lt;/span&gt;
+            &lt;/th&gt;
+            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">47</span>&lt;/a&gt;&lt;/span&gt;
+            &lt;/th&gt;
+          &lt;/tr&gt;
+
+          &lt;tr&gt;
+            &lt;td&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-pencil&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-heart&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-eye&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+
+      &lt;/div&gt;
+    )
   }
-})</code></pre><p>directive names MUST be camelCase. pascal case will not be recognized. nor snake case?</p>
-<p>i mean, really, it&#39;s all made a lot more complicated than it needs to be. we&#39;re starting out basically
-just making our own little bits. it makes sense. if it works as a template file, or as just regular html,
-it&#39;ll work as a custom directive. just more reusable as a directive.</p>
-<p>we could have a directive with a TYPE. imagine a function that returns a customer with an attribute that&#39;s
-.type... so we&#39;d have a directive called myCustomer, type=&quot;name&quot;, then another, type=&quot;smoking habits&quot;.
-paramaters here are always (element, attribute).</p>
-<p>Restrict as a property: E means element (so you&#39;d do <myDirective> instead of <div myDirective>
-A is attribute, so it&#39;d be <div myDirective>
-can do BOTH so it&#39;d work for either. (restrict: EA)
-C is for class, but let&#39;s not do that! That seems like a really not okay and very bad idea.
-This is basically for semantic enforcement. Element would be good for a custom block, eg</p>
-<p><myDirective>a whole bunch of shit just about this one</myDirective></p>
-<p><mySECONDdirective>another whole bunch</mySECONDdirective> etc
-A would be good for tacking things onto elements that would likely be there anyway, it seems.
-If you need to take in parameters, A would be better.</p>
-<p>custom filters like this!</p>
-<pre class="hljs"><code>&lt;input model=<span class="hljs-string">&quot;whatcha&quot;</span>&gt;
-&lt;span custom=<span class="hljs-string">&quot;format&quot;</span>&gt;
-<span class="hljs-keyword">function</span> link(scope, <span class="hljs-literal">element</span>, attributes){
-var whatever
-stuffings
 }
-<span class="hljs-keyword">return</span> { link: link; }
-scp.<span class="hljs-variable">$watch</span>(<span class="hljs-string">&#39;format&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-keyword">value</span>){
-format=value;
-updateTime();
-});</code></pre><p>link ALWAYS takes in at leaste those three, and alkways in that order!</p>
-<p>inside a directive, feel free to do some jquery-lite.
-if you want to use, say, d3, or three.js, you can go ahead and inject that into angular
-and use it. (we&#39;re talking about other DOM manupilation, not utilities like lodash).</p>
-<p>inside a link whatever, that scp refers to its parent&#39;s scope, it shares parent&#39;s scope
-by default. eg if custom up there is directly below mainCtrl, scp means mainCtrl&#39;s $scope.</p>
-<p>underneath .directive, the scope: { stuff } actually means, like, scope INSTRUCTIONS or
-somesuch.</p>
-<p>SCOPE</p>
-<pre class="hljs"><code><span class="hljs-tag">scope</span>: {
-<span class="hljs-attribute">string</span>: <span class="hljs-string">&#39;@&#39;</span>,
-<span class="hljs-attribute">link</span>: <span class="hljs-string">&#39;=&#39;</span>,
-<span class="hljs-attribute">func</span>: <span class="hljs-string">&#39;&amp;&#39;</span>
-}</code></pre><p>The properties on the scope object represent the attributes on the directive in the html. Our example scope object here would look something like this in the html.
-<code>&lt;example-directive string=&quot;a string&quot; link=&quot;user&quot; func=&quot;updateUser()&quot;&gt;&lt;/example-directive&gt;</code>
-The hard part here is the <code>@</code>, <code>=</code>, and <code>&amp;</code>. They each have very important and distinct meanings.</p>
-<ul>
-<li><code>@</code> says take in my attribute value as a string.</li>
-<li><code>=</code> says take in my attribute value as a two-way bound variable from the parent scope.</li>
-<li><p><code>&amp;</code> says take in my attribute value as a reference to a function on the parent scope.</p>
-</li>
-<li><p>(from another notes snippet):</p>
-<ul>
-<li><code>@</code> : string/text (one-way)</li>
-<li><code>=</code> : two-way</li>
-<li><code>&amp;</code> : binds parent scope&#39;s methods into directive&#39;s scope</li>
-<li><code>&lt;</code> : one-way (outer-to-inner)</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="firebase">firebase</h2>
-<p>firebase with $firebaseObject (or $firebaseArray) and $bindTo just makes all
-the <strong>MAGIC</strong> (that we poor slobs are are too dumb to even vaguely comprehend)
-even MORE magical; with angularfire and firebase and angular doing everything
-for you, we now have, basically, a subpar meteor-like 3-way-binding.</p>
-<p><code>&lt;ng-change=&quot;$scope.save(thingy)&quot;&gt;</code> will propogate back to firebase
-(or <code>&lt;ng-change=&quot;thingy(save)&quot;&gt; // $scope.sav(thingy)</code> if we&#39;re doing things
-modularly).</p>
-<p><code>ng-model-options=&quot;{debounce: {&#39;default&#39;: 5000}}&quot; // debounces. to 5000 ms. wowe.</code></p>
-<hr>
-<h2 id="express">express</h2>
-<ul>
-<li>if chain in express:</li>
-<li>method, url, callback</li>
-<li><code>app.all(&#39;/endpoint&#39;, function(){console.log(&#39;a thing&#39;)})</code></li>
-<li>so it&#39;s one long chain of if statements. like we do manually. that&#39;s all.</li>
-<li>express chain [{method: &#39;all&#39;, endpoint:&#39;/endpoint&#39;, function(){}, {method: &#39;get&#39;, endpoint:&#39;/nextone&#39;}etc etc etc etc}]d</li>
-<li>all endpoints are hit, with exception dependent on response</li>
-<li>req and res are passed to EVERY function by express</li>
-<li>ongoing request and response are passed on down whole if statement chain</li>
-<li>a controller can&#39;t reference arrays from another file.<ul>
-<li>so, your server (or, let&#39;s say, your index) couldn&#39;t have something defined that a ctrl needs to access<ul>
-<li>(assuming your ctrl is set up as a an object, module.exports = {} with your functions(req, res, next) all in there.)</li>
-</ul>
-</li>
-<li>solution?</li>
-<li>move your stuff into the file where you want to access it, i guess.</li>
-<li>module.exports can be an array, too. that makes sense in a db context, okay.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="express-more">express more</h2>
-<h4 id="req-params-vs-req-query">req.params vs req.query</h4>
-<ul>
-<li>Params and Query do the same thing.</li>
-<li>Params is hardcoded into endpoint; query allows some flexibility.</li>
-<li>Query uses <a href="http://url.url/api/endpoint?whatever=something">http://url.url/api/endpoint?whatever=something</a></li>
-<li>Param would be more like <a href="http://url.url/api/endpoint/something">http://url.url/api/endpoint/something</a></li>
-</ul>
-<pre class="hljs"><code>app.get(<span class="hljs-string">&#39;api/hobbies/:type/:fun&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
-  req.params.<span class="hljs-built_in">type</span> // boring
-  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
-    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.params.<span class="hljs-built_in">type</span>) {
-      res.send(hobby)
-    }
-  })
-});
 
-localhost:<span class="hljs-number">8989</span>/api/hobbies/boring/no
+<span class="hljs-comment">// Other nonsense</span>
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info-container&#39;] } ) {
 
-app.get(<span class="hljs-string">&#39;api/hobbies&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
-  req.query.<span class="hljs-built_in">type</span> // boring
-  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
-    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.query.<span class="hljs-built_in">type</span>) {
-      res.send(hobby)
-    }
-  })
-})
+        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>] } ) {
+          img( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-image&#39;], src: <span class="hljs-symbol">&#39;https</span>:<span class="hljs-comment">//avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460&#39; } ) {}</span>
+        }
 
-localhost:<span class="hljs-number">8989</span>/api/hobbies?<span class="hljs-built_in">type</span>=boring&amp;fun=no
+        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;name</span>-info-container&#39; } ) {
+          h2( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-string">&quot;display-name&quot;</span> } ) { <span class="hljs-type">John</span> <span class="hljs-type">Doe</span> }
+          h3( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;usernam</span>e&#39; } ) { jdoe }
+        }
 
-var hobbies = [];</code></pre><h4 id="how-to-not-need-to-use-express-cors-or-whatever-cors-">how to not need to use express-cors (or whatever-cors)</h4>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;express&#39;</span>);
-<span class="hljs-keyword">var</span> request = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;request&#39;</span>);
+        table( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info&#39;] } ) {
+          tr( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;number</span>-container&#39;] } ) {
+            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
+            }
 
-<span class="hljs-keyword">var</span> app = express();
-app.<span class="hljs-keyword">use</span>(<span class="hljs-string">&#39;/&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
-  <span class="hljs-keyword">var</span> url = apiServerHost + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
+            }
 
-app.listen(process.env.PORT || <span class="hljs-number">3000</span>);</code></pre><p>OBVIOUSLY this only applies when everything&#39;s local; this is a proxy server, essentially, sort of.</p>
-<p>also there&#39;s an express builtin: <code>app.use(express.static()</code>, eg <code>app.use(express.static(&#39;public&#39;))</code></p>
-<h4 id="monogooooooooooo-se-">monogooooooooooo(se)</h4>
-<p>Turns out if you send Mongoose anything that&#39;s not in your schema, it&#39;s just like &quot;Oh, okay, I&#39;m not interested&quot; and tosses that bit out, I guess.</p>
-<p>When we&#39;re not doing eg <code>require(&#39;./path&#39;)</code> (but rather <code>require(/path)&#39; with no dot first</code>), it looks in <code>node_modules/</code>. Obvs usually we&#39;ll probably look from cwd instead. Any way to look from project root by default?</p>
-<pre class="hljs"><code>getStuff: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
-  <span class="hljs-transposed_variable">Stuff.</span>find().populate(<span class="hljs-string">&#39;things.whatevers&#39;</span>).exec()
-    .<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data, err)</span></span>
-<span class="hljs-comment">// etc., etc., etc., etc.</span></code></pre><hr>
-<h2 id="ionic">ionic</h2>
-<ul>
-<li>We&#39;re getting a little super-fast (read: unplanned and, I think, unannounced) rundown on Ionic.</li>
-<li>Which is totally fine, but it&#39;s basically Angular, plus Phonegap, which are two things I rather dislike.</li>
-<li>Okay, I&#39;m using the Yeoman generator-ionic-gulp seed.</li>
-<li>Aaaaand this is just like Angular, except with predefined CSS rules, basically.</li>
-<li>The &#39;magic&#39; is all in the bit where it handles compiling/wrapping for you.</li>
-<li>So... on with my personal project, I suppose.</li>
-</ul>
-<hr>
-<h2 id="d3">D3</h2>
-<ul>
-<li>svg starts 0,0 top left, not bottom left.</li>
-<li>svg has no z-index. just renders in order it&#39;s written.</li>
-<li>rotations and transforms on svg will screw with things when it comes to moving stuff!</li>
-<li>d3, chaining methods super common.</li>
-</ul>
-<hr>
-<h2 id="react">react</h2>
-<ul>
-<li>react is reacty. it reacts, sometimes reactively.</li>
-<li>it&#39;s still ugly as hell and i hope it dies, though.</li>
-<li>note that i&#39;m doing all this in vim because:<ul>
-<li>A. lighttable doesn&#39;t like react and</li>
-<li>B. lighttable has my projects loadded up, currently, and i don&#39;t want to add yet another workspace.</li>
-</ul>
-</li>
-<li>so, this will probably all be formatted like shit, because vim doesn&#39;t understand, no matter how many times i tell it, that i don&#39;t want it to turn spaces into tabs, i want the opposite.</li>
-<li>oh well.</li>
-</ul>
-<hr>
-<h2 id="s3">S3</h2>
-<ul>
-<li>Basically, since Mongo can&#39;t store images without doing difficult-ish things involving GridFS,
-the prescription is to use S3 in... basically the same way, actually, which results in more total requests,
-but the hope is that Amazon&#39;s caching or somesuch is good enough to offset the latency.</li>
-<li>Amazon needs your regional server to be passed in during requests. Which is both sensible and silly, since really that should be a part of your keys.</li>
-<li>When Amazon wants a &#39;Key&#39; in your paramss, that&#39;s not a key. That&#39;s the actual thing you&#39;re fuckin&#39; with. so, req.body.img.</li>
-<li>Buffers in node are bytes in python are strings in PHP if they were mutable.</li>
-</ul>
-<hr>
-<h2 id="deployment-while-in-development">deployment while in development</h2>
-<h3 id="heroku">heroku</h3>
-<ul>
-<li>workflow: have a project. have a git repo in it. <code>heroku create</code>, assuming you use/have heroku.</li>
-<li>(same as <code>git remote add heroku https://someurl.herokuapp.com</code>)</li>
-</ul>
-<h3 id="digital-ocean">digital ocean</h3>
-<ul>
-<li>digital ocean: works the same as ever, which is to say, it&#39;s not convenient,
-but it it&#39;s okay. prefer koding if they let me back in, but if not,
-maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev servers.</li>
-</ul>
-<hr>
-<p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
-<p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
-]]></description><link>/2016/05/05/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/05/05/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item><item><title><![CDATA[More DevMountain Notes]]></title><description><![CDATA[<p>This is a bunch more notes from my time going through the course at DevMountain.</p>
+            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
+            }
+          }
+
+          tr() {
+            td() {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
+            }
+
+            td() {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
+            }
+
+            td() {
+              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
+            }
+          }
+        }
+      }
+    )
+  }
+}
+
+<span class="hljs-comment">// why not like this?</span>
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>{</span>
+  render() {
+    <span class="hljs-keyword">return</span> ({
+      div : {
+        <span class="hljs-class"><span class="hljs-keyword">class</span> :</span> [<span class="hljs-symbol">&#39;fo</span>o&#39;, <span class="hljs-symbol">&#39;ba</span>r&#39;]
+      , p : {
+          str : <span class="hljs-symbol">&#39;Bespoke</span> scenester retro bitters <span class="hljs-type">Pitchfork</span> <span class="hljs-number">8</span>-bit mixtape <span class="hljs-type">PBR</span>&amp;<span class="hljs-type">B</span> mlkshk iphone wire-rimmed glasses forage <span class="hljs-type">Helvetica</span> put a bird on it intelligentsia semiotics leggings normcore. <span class="hljs-type">Flexitarian</span> <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> mustache carles kickstarter <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> <span class="hljs-type">Blue</span> <span class="hljs-type">Bottle</span> actually tumblr beard literally tote bag <span class="hljs-type">Pitchfork</span> cray shabby <span class="hljs-type">Portland</span> stumptown asymmetrical.&#39;
+        }
+      }
+    , footer : {
+        span : {
+          str : <code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${datespan} ${company}. &lt;span class=&quot;hljs-type&quot;&gt;All&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Rights&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Reserved&lt;/span&gt;.</code>
+}}})}
+
+<span class="hljs-comment">// or this?</span>
+const n = notJSX
+function notJSXparser(){
+  <span class="hljs-keyword">return</span> n(<span class="hljs-symbol">&#39;bod</span>y&#39;, [
+    n(<span class="hljs-symbol">&#39;h</span>1&#39;, {<span class="hljs-symbol">&#39;this</span> is a website&#39;},
+      n(&#39;p&#39;, {<span class="hljs-symbol">&#39;this</span> is a lot of text! texytext, text. texting. txet.&#39;},
+        n(<span class="hljs-symbol">&#39;foote</span>r&#39;, {<code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${stuff}</code>})
+      )
+    )
+  ])
+}
+
+<span class="hljs-comment">// how they do it in EVE&#39;s UI (<span class="hljs-doctag">note:</span> they use typescript and an in-house custom lib they call &#39;microReact&#39;)</span>
+const page = {
+  t          : <span class="hljs-symbol">&#39;spa</span>n&#39; <span class="hljs-comment">// the tag type; defauts to &#39;div&#39;</span>
+, c          : <span class="hljs-symbol">&#39;col</span>-<span class="hljs-number">12</span>&#39; <span class="hljs-comment">// className</span>
+, text       : <span class="hljs-symbol">&#39;some</span> content&#39;
+, children   : [{
+    <span class="hljs-comment">// array of further nodes</span>
+  }]
+, top        : <span class="hljs-number">10</span>
+, width      : <span class="hljs-number">100</span> <span class="hljs-comment">// more styles can go here, like react&#39;s style object basically</span>
+, click      : someHandler
+, svg        : <span class="hljs-literal">true</span> <span class="hljs-comment">// to add svg properties... why? idk. just &#39;cuz, i guess.</span>
+, cx         : <span class="hljs-number">4</span>
+, cy         : <span class="hljs-number">4</span>
+, postRender : someDomManipulationFunction <span class="hljs-comment">// on insertion and on update</span>
+}
+
+<span class="hljs-comment">// how jsx actually kinda works (reactelement anyway) under the hood:</span>
+let someEl = {
+  <span class="hljs-class"><span class="hljs-keyword">type</span>  :</span> <span class="hljs-symbol">&#39;di</span>v&#39;
+, props : {}
+, ref   : <span class="hljs-literal">null</span>
+, key   : <span class="hljs-literal">null</span>
+}</code></pre>]]></description><link>//better-jsx.html</link><guid isPermaLink="true">//better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item><item><title><![CDATA[More DevMountain Notes]]></title><description><![CDATA[<p>This is a bunch more notes from my time going through the course at DevMountain.</p>
 <p>These notes are specifically from the first three weeks. They&#39;re a mess.</p>
 <p>Don&#39;t take anything too seriously. I probably didn&#39;t know what I was talking about, a lot of the time.</p>
 <hr>
@@ -1786,7 +1562,228 @@ $.ajax(ajaxParams).then(<span class="hljs-function"><span class="hljs-keyword">f
 <span class="hljs-comment">// cyclomatic complexity</span>
 <span class="hljs-comment">// more things you&#39;re doing</span>
 <span class="hljs-comment">// more bugs</span>
-<span class="hljs-comment">//</span></code></pre>]]></description><link>/2016/05/05/notes-from-devmountain-02.html</link><guid isPermaLink="true">/2016/05/05/notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
+<span class="hljs-comment">//</span></code></pre>]]></description><link>//notes-from-devmountain-02.html</link><guid isPermaLink="true">//notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:35:00 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
+<p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
+<p>Whatever.</p>
+<p>Don&#39;t take it all so seriously. Some of it could be really helpful. This is about half of my collected
+notes <em>that were inside project files</em>. Everything else has already been cleaned up and posted, or is in
+a directory of drafts somewhere. This stuff is totally unedited.</p>
+<hr>
+<h2 id="ng-probs">ng probs</h2>
+<pre class="hljs"><code><span class="hljs-comment">// this is in a <code>.then</code>. NOTE THAT ANGULAR WILL GIVE YOU AN OBJECT EVEN IF YOU HAVE AN ARRAY</span>
+<span class="hljs-comment">// though it will give you your <em>objects</em> in the <em>array</em> that they come in, it&#39;ll still work</span>
+<span class="hljs-comment">// on the front end.</span>
+<span class="hljs-comment">// we were having issues here looping over the array and setting the returned index on scope,</span>
+<span class="hljs-comment">// then trying to return that. this works a lot better.</span>
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(stuff)</span></span>{
+  <span class="hljs-variable">$scope</span>.foo = stuff
+  <span class="hljs-variable">$scope</span>.things = stuff.StuffToBringBack
+})</code></pre><hr>
+<h2 id="angular-directives">angular: directives</h2>
+<p>directives are different than controllers and services. directives ALWAYS return an object. when you write a
+ctrl or svc you&#39;re giving some definitions to something that already exists. with directives you&#39;re closer
+to writing routing. you&#39;re writing a set of instructions. they return an object. objects get, obviously,
+key-value pairs.</p>
+<pre class="hljs"><code><span class="hljs-class">.directive</span>(<span class="hljs-string">&#39;myDirective&#39;</span>, <span class="hljs-function">function</span>(){
+  <span class="hljs-tag">return</span> {
+    <span class="hljs-attribute">template</span>: <span class="hljs-string">&#39;Key: Value, key: value&#39;</span>;
+  }
+})</code></pre><p>directive names MUST be camelCase. pascal case will not be recognized. nor snake case?</p>
+<p>i mean, really, it&#39;s all made a lot more complicated than it needs to be. we&#39;re starting out basically
+just making our own little bits. it makes sense. if it works as a template file, or as just regular html,
+it&#39;ll work as a custom directive. just more reusable as a directive.</p>
+<p>we could have a directive with a TYPE. imagine a function that returns a customer with an attribute that&#39;s
+.type... so we&#39;d have a directive called myCustomer, type=&quot;name&quot;, then another, type=&quot;smoking habits&quot;.
+paramaters here are always (element, attribute).</p>
+<p>Restrict as a property: E means element (so you&#39;d do <myDirective> instead of <div myDirective>
+A is attribute, so it&#39;d be <div myDirective>
+can do BOTH so it&#39;d work for either. (restrict: EA)
+C is for class, but let&#39;s not do that! That seems like a really not okay and very bad idea.
+This is basically for semantic enforcement. Element would be good for a custom block, eg</p>
+<p><myDirective>a whole bunch of shit just about this one</myDirective></p>
+<p><mySECONDdirective>another whole bunch</mySECONDdirective> etc
+A would be good for tacking things onto elements that would likely be there anyway, it seems.
+If you need to take in parameters, A would be better.</p>
+<p>custom filters like this!</p>
+<pre class="hljs"><code>&lt;input model=<span class="hljs-string">&quot;whatcha&quot;</span>&gt;
+&lt;span custom=<span class="hljs-string">&quot;format&quot;</span>&gt;
+<span class="hljs-keyword">function</span> link(scope, <span class="hljs-literal">element</span>, attributes){
+var whatever
+stuffings
+}
+<span class="hljs-keyword">return</span> { link: link; }
+scp.<span class="hljs-variable">$watch</span>(<span class="hljs-string">&#39;format&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-keyword">value</span>){
+format=value;
+updateTime();
+});</code></pre><p>link ALWAYS takes in at leaste those three, and alkways in that order!</p>
+<p>inside a directive, feel free to do some jquery-lite.
+if you want to use, say, d3, or three.js, you can go ahead and inject that into angular
+and use it. (we&#39;re talking about other DOM manupilation, not utilities like lodash).</p>
+<p>inside a link whatever, that scp refers to its parent&#39;s scope, it shares parent&#39;s scope
+by default. eg if custom up there is directly below mainCtrl, scp means mainCtrl&#39;s $scope.</p>
+<p>underneath .directive, the scope: { stuff } actually means, like, scope INSTRUCTIONS or
+somesuch.</p>
+<p>SCOPE</p>
+<pre class="hljs"><code><span class="hljs-tag">scope</span>: {
+<span class="hljs-attribute">string</span>: <span class="hljs-string">&#39;@&#39;</span>,
+<span class="hljs-attribute">link</span>: <span class="hljs-string">&#39;=&#39;</span>,
+<span class="hljs-attribute">func</span>: <span class="hljs-string">&#39;&amp;&#39;</span>
+}</code></pre><p>The properties on the scope object represent the attributes on the directive in the html. Our example scope object here would look something like this in the html.
+<code>&lt;example-directive string=&quot;a string&quot; link=&quot;user&quot; func=&quot;updateUser()&quot;&gt;&lt;/example-directive&gt;</code>
+The hard part here is the <code>@</code>, <code>=</code>, and <code>&amp;</code>. They each have very important and distinct meanings.</p>
+<ul>
+<li><code>@</code> says take in my attribute value as a string.</li>
+<li><code>=</code> says take in my attribute value as a two-way bound variable from the parent scope.</li>
+<li><p><code>&amp;</code> says take in my attribute value as a reference to a function on the parent scope.</p>
+</li>
+<li><p>(from another notes snippet):</p>
+<ul>
+<li><code>@</code> : string/text (one-way)</li>
+<li><code>=</code> : two-way</li>
+<li><code>&amp;</code> : binds parent scope&#39;s methods into directive&#39;s scope</li>
+<li><code>&lt;</code> : one-way (outer-to-inner)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="firebase">firebase</h2>
+<p>firebase with $firebaseObject (or $firebaseArray) and $bindTo just makes all
+the <strong>MAGIC</strong> (that we poor slobs are are too dumb to even vaguely comprehend)
+even MORE magical; with angularfire and firebase and angular doing everything
+for you, we now have, basically, a subpar meteor-like 3-way-binding.</p>
+<p><code>&lt;ng-change=&quot;$scope.save(thingy)&quot;&gt;</code> will propogate back to firebase
+(or <code>&lt;ng-change=&quot;thingy(save)&quot;&gt; // $scope.sav(thingy)</code> if we&#39;re doing things
+modularly).</p>
+<p><code>ng-model-options=&quot;{debounce: {&#39;default&#39;: 5000}}&quot; // debounces. to 5000 ms. wowe.</code></p>
+<hr>
+<h2 id="express">express</h2>
+<ul>
+<li>if chain in express:</li>
+<li>method, url, callback</li>
+<li><code>app.all(&#39;/endpoint&#39;, function(){console.log(&#39;a thing&#39;)})</code></li>
+<li>so it&#39;s one long chain of if statements. like we do manually. that&#39;s all.</li>
+<li>express chain [{method: &#39;all&#39;, endpoint:&#39;/endpoint&#39;, function(){}, {method: &#39;get&#39;, endpoint:&#39;/nextone&#39;}etc etc etc etc}]d</li>
+<li>all endpoints are hit, with exception dependent on response</li>
+<li>req and res are passed to EVERY function by express</li>
+<li>ongoing request and response are passed on down whole if statement chain</li>
+<li>a controller can&#39;t reference arrays from another file.<ul>
+<li>so, your server (or, let&#39;s say, your index) couldn&#39;t have something defined that a ctrl needs to access<ul>
+<li>(assuming your ctrl is set up as a an object, module.exports = {} with your functions(req, res, next) all in there.)</li>
+</ul>
+</li>
+<li>solution?</li>
+<li>move your stuff into the file where you want to access it, i guess.</li>
+<li>module.exports can be an array, too. that makes sense in a db context, okay.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="express-more">express more</h2>
+<h4 id="req-params-vs-req-query">req.params vs req.query</h4>
+<ul>
+<li>Params and Query do the same thing.</li>
+<li>Params is hardcoded into endpoint; query allows some flexibility.</li>
+<li>Query uses <a href="http://url.url/api/endpoint?whatever=something">http://url.url/api/endpoint?whatever=something</a></li>
+<li>Param would be more like <a href="http://url.url/api/endpoint/something">http://url.url/api/endpoint/something</a></li>
+</ul>
+<pre class="hljs"><code>app.get(<span class="hljs-string">&#39;api/hobbies/:type/:fun&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
+  req.params.<span class="hljs-built_in">type</span> // boring
+  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
+    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.params.<span class="hljs-built_in">type</span>) {
+      res.send(hobby)
+    }
+  })
+});
+
+localhost:<span class="hljs-number">8989</span>/api/hobbies/boring/no
+
+app.get(<span class="hljs-string">&#39;api/hobbies&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
+  req.query.<span class="hljs-built_in">type</span> // boring
+  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
+    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.query.<span class="hljs-built_in">type</span>) {
+      res.send(hobby)
+    }
+  })
+})
+
+localhost:<span class="hljs-number">8989</span>/api/hobbies?<span class="hljs-built_in">type</span>=boring&amp;fun=no
+
+var hobbies = [];</code></pre><h4 id="how-to-not-need-to-use-express-cors-or-whatever-cors-">how to not need to use express-cors (or whatever-cors)</h4>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;express&#39;</span>);
+<span class="hljs-keyword">var</span> request = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;request&#39;</span>);
+
+<span class="hljs-keyword">var</span> app = express();
+app.<span class="hljs-keyword">use</span>(<span class="hljs-string">&#39;/&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
+  <span class="hljs-keyword">var</span> url = apiServerHost + req.url;
+  req.pipe(request(url)).pipe(res);
+});
+
+app.listen(process.env.PORT || <span class="hljs-number">3000</span>);</code></pre><p>OBVIOUSLY this only applies when everything&#39;s local; this is a proxy server, essentially, sort of.</p>
+<p>also there&#39;s an express builtin: <code>app.use(express.static()</code>, eg <code>app.use(express.static(&#39;public&#39;))</code></p>
+<h4 id="monogooooooooooo-se-">monogooooooooooo(se)</h4>
+<p>Turns out if you send Mongoose anything that&#39;s not in your schema, it&#39;s just like &quot;Oh, okay, I&#39;m not interested&quot; and tosses that bit out, I guess.</p>
+<p>When we&#39;re not doing eg <code>require(&#39;./path&#39;)</code> (but rather <code>require(/path)&#39; with no dot first</code>), it looks in <code>node_modules/</code>. Obvs usually we&#39;ll probably look from cwd instead. Any way to look from project root by default?</p>
+<pre class="hljs"><code>getStuff: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
+  <span class="hljs-transposed_variable">Stuff.</span>find().populate(<span class="hljs-string">&#39;things.whatevers&#39;</span>).exec()
+    .<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data, err)</span></span>
+<span class="hljs-comment">// etc., etc., etc., etc.</span></code></pre><hr>
+<h2 id="ionic">ionic</h2>
+<ul>
+<li>We&#39;re getting a little super-fast (read: unplanned and, I think, unannounced) rundown on Ionic.</li>
+<li>Which is totally fine, but it&#39;s basically Angular, plus Phonegap, which are two things I rather dislike.</li>
+<li>Okay, I&#39;m using the Yeoman generator-ionic-gulp seed.</li>
+<li>Aaaaand this is just like Angular, except with predefined CSS rules, basically.</li>
+<li>The &#39;magic&#39; is all in the bit where it handles compiling/wrapping for you.</li>
+<li>So... on with my personal project, I suppose.</li>
+</ul>
+<hr>
+<h2 id="d3">D3</h2>
+<ul>
+<li>svg starts 0,0 top left, not bottom left.</li>
+<li>svg has no z-index. just renders in order it&#39;s written.</li>
+<li>rotations and transforms on svg will screw with things when it comes to moving stuff!</li>
+<li>d3, chaining methods super common.</li>
+</ul>
+<hr>
+<h2 id="react">react</h2>
+<ul>
+<li>react is reacty. it reacts, sometimes reactively.</li>
+<li>it&#39;s still ugly as hell and i hope it dies, though.</li>
+<li>note that i&#39;m doing all this in vim because:<ul>
+<li>A. lighttable doesn&#39;t like react and</li>
+<li>B. lighttable has my projects loadded up, currently, and i don&#39;t want to add yet another workspace.</li>
+</ul>
+</li>
+<li>so, this will probably all be formatted like shit, because vim doesn&#39;t understand, no matter how many times i tell it, that i don&#39;t want it to turn spaces into tabs, i want the opposite.</li>
+<li>oh well.</li>
+</ul>
+<hr>
+<h2 id="s3">S3</h2>
+<ul>
+<li>Basically, since Mongo can&#39;t store images without doing difficult-ish things involving GridFS,
+the prescription is to use S3 in... basically the same way, actually, which results in more total requests,
+but the hope is that Amazon&#39;s caching or somesuch is good enough to offset the latency.</li>
+<li>Amazon needs your regional server to be passed in during requests. Which is both sensible and silly, since really that should be a part of your keys.</li>
+<li>When Amazon wants a &#39;Key&#39; in your paramss, that&#39;s not a key. That&#39;s the actual thing you&#39;re fuckin&#39; with. so, req.body.img.</li>
+<li>Buffers in node are bytes in python are strings in PHP if they were mutable.</li>
+</ul>
+<hr>
+<h2 id="deployment-while-in-development">deployment while in development</h2>
+<h3 id="heroku">heroku</h3>
+<ul>
+<li>workflow: have a project. have a git repo in it. <code>heroku create</code>, assuming you use/have heroku.</li>
+<li>(same as <code>git remote add heroku https://someurl.herokuapp.com</code>)</li>
+</ul>
+<h3 id="digital-ocean">digital ocean</h3>
+<ul>
+<li>digital ocean: works the same as ever, which is to say, it&#39;s not convenient,
+but it it&#39;s okay. prefer koding if they let me back in, but if not,
+maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev servers.</li>
+</ul>
+<hr>
+<p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
+<p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
+]]></description><link>//notes-from-devmountain-01.html</link><guid isPermaLink="true">//notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:30:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
 <ul>
 <li>The actual promise is immutable (nothing can change that)</li>
 <li>There&#39;s a guarantee that we&#39;ll get something back</li>
@@ -1871,7 +1868,7 @@ fulProm
 one()
 .then(res =&gt; Promise.all([res, two(res)]))
   .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
-  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>/2016/05/05/promises.html</link><guid isPermaLink="true">/2016/05/05/promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
+  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>//promises.html</link><guid isPermaLink="true">//promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
 <p>So. Which way should you create a freaking component? These notes are more for myself than anyone else.</p>
 <p>Use a class if you need <code>this</code> or lifecycle methods. (An ES6 class. <code>class foo extends React.Component</code>.)</p>
 <p>So, <code>this</code> actually refers to that <code>ReactComponent</code>.</p>
@@ -1881,4 +1878,7 @@ one()
 <p>Don&#39;t use <code>React.createClass</code>, basically ever. Use <code>React.Component</code> instead.</p>
 <p>So basically, use a function if you possibly can. Otherwise use <code>class bar extends React.Component</code>.</p>
 <p>That was easy.</p>
-]]></description><link>/2016/05/05/react-which.html</link><guid isPermaLink="true">/2016/05/05/react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 06:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>//react-which.html</link><guid isPermaLink="true">//react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:42:00 GMT</pubDate></item><item><title><![CDATA[This is a test]]></title><description><![CDATA[<h1 id="this-is-a-test-">This is a test!</h1>
+<p>I&#39;m testing out a little thing called <a href="https://github.com/mixu/ghost-render">ghost-render</a>.</p>
+<p>I&#39;ve been needing a new blog engine. Maybe this one will do.</p>
+]]></description><link>//test.html</link><guid isPermaLink="true">//test.html</guid><category><![CDATA[test]]></category><category><![CDATA[blogging]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:39:25 GMT</pubDate></item></channel></rss>
