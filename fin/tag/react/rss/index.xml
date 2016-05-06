@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 06 May 2016 03:05:45 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 06 May 2016 03:07:23 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
 <p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
 <p>i don&#39;t dislike jsx, i got over that</p>
 <p>pretty sure ryan did, too</p>
@@ -148,7 +148,7 @@ let someEl = {
 , props : {}
 , ref   : <span class="hljs-literal">null</span>
 , key   : <span class="hljs-literal">null</span>
-}</code></pre>]]></description><link>//better-jsx.html</link><guid isPermaLink="true">//better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
+}</code></pre>]]></description><link>/2016/better-jsx.html</link><guid isPermaLink="true">/2016/better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
 <p>So. Which way should you create a freaking component? These notes are more for myself than anyone else.</p>
 <p>Use a class if you need <code>this</code> or lifecycle methods. (An ES6 class. <code>class foo extends React.Component</code>.)</p>
 <p>So, <code>this</code> actually refers to that <code>ReactComponent</code>.</p>
@@ -158,4 +158,4 @@ let someEl = {
 <p>Don&#39;t use <code>React.createClass</code>, basically ever. Use <code>React.Component</code> instead.</p>
 <p>So basically, use a function if you possibly can. Otherwise use <code>class bar extends React.Component</code>.</p>
 <p>That was easy.</p>
-]]></description><link>//react-which.html</link><guid isPermaLink="true">//react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:42:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/react-which.html</link><guid isPermaLink="true">/2016/react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:42:00 GMT</pubDate></item></channel></rss>
