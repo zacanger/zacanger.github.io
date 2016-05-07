@@ -286,6 +286,169 @@ module Main where
 ## javascript
 
 ```javascript
+
+for(x=0;x++<100;)console.log(x%3||'fizz',x%5||'buzz')
+
+////
+
+var
+  words = []
+, func = null
+, l    = 100
+
+var conditions = {
+  1  : {
+    true  : null
+  , false : function(i) {
+      return function() {
+        console.log(i)
+      }
+    }
+  }
+, 3  : {
+    true  : function() {
+      return func;
+    }
+  , false : function() {
+      return function() {
+        console.log('fizz')
+      }
+    }
+  }
+, 5  : {
+    true  : function() {
+      return func
+    }
+  , false : function() {
+      return function() {
+        console.log('buzz')
+      }
+    }
+  }
+, 15 : {
+    true  : function() {
+      return func
+    }
+  , false : function() {
+      return function() {
+        console.log('fizzbuzz')
+      }
+    }
+  }
+}
+
+for (l = 1; l < 100; l++) {
+  for (var thing in conditions) {
+    var result = l % thing
+    func = conditions[thing][!!result](l)
+  }
+  func()
+}
+
+////
+
+Object.keys(new Int8Array(100))
+.map(x      => ((++x % 3  ==  0) ? f = 'fizz' : x))
+.map((x, i) => ((++i % 5  ==  0) ? b = 'buzz' : x))
+.map((x, i) => ((++i % 15 === 0) ? f + b : x))
+
+////
+
+// this is basically the same as the usual solution, just sorta recursive also
+const fizzBuzz = num => {
+  if (num % 3 === 0 && num % 5 === 0) {
+    console.log('FizzBuzz')
+  } else if (num % 3 === 0) {
+    console.log('Fizz')
+  } else if (num % 5 === 0) {
+    console.log('Buzz')
+  } else {
+    console.log(num)
+  }
+  if (num < 100) {
+    let newNum = num + 1
+    fizzBuzz(newNum)
+  }
+}
+fizzBuzz(1)
+
+////
+
+function fizzbuzz(num, fizz, buzz) {
+  for (var i = 1; i <= num; i++) {
+    if (i % (fizz * buzz) === 0) {
+      console.log('FizzBuzz')
+    } else if (i % buzz === 0) {
+      console.log('Buzz')
+    } else if (i % fizz === 0) {
+      console.log('Fizz')
+    } else {
+      console.log(i)
+    }
+  }
+}
+fizzbuzz(100, 3, 5)
+
+////
+
+for (let i = 1; i <= 100; i++) {
+  let
+    mod3   = i % 3 === 0
+  , mod5   = i % 5 === 0
+  , result = mod3 && mod5 ? 'fizzbuzz' : mod3 ? 'fizz' : mod5 ? 'buzz' : i
+  console.log(result)
+}
+
+////
+
+let counter = 0
+
+while (counter < 100) {
+  counter = counter + 1
+  if (counter % 3 === 0 && counter % 5 === 0) {
+    console.log('FizzBuzz')
+  } else if (counter % 3 === 0) {
+    console.log('Fizz')
+  } else if (counter % 5 === 0) {
+    console.log('Buzz')
+  } else {
+    console.log(counter)
+  }
+}
+
+////
+
+let
+  div = ((n, s) => i => i % n ? '' : s)
+, f = div(3,'fizz')
+, b = div(5,'buzz')
+, loop = fn => i => i > 0 && loop(fn)(i - 1) || fn(i)
+, fizzbuzz = loop(i => console.log(f(i) + b(i) || i))
+fizzbuzz(100)
+
+// (or)
+
+let
+  div = ((n, s) => i => i % n ? '' : s)
+, f = div(3,'fizz')
+, b = div(5,'buzz')
+, fizzbuzz = i => i > 0 && fizzbuzz((i - 1)) || console.log(f(i) + b(i) || i)
+fizzbuzz(100)
+
+////
+
+// this may or may not continue to work in firefox
+// it may not ever work anywhere else; list comprehensions were
+// removed from es2015 drafts.
+console.log(
+  [for (i of Array(100).keys())
+    (++i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i]
+  .join('\n')
+)
+
+////
+
+
 for(i=0;++i<101;)console.log((i%3?'':'Fizz')+(i%5?'':'Buzz')||i)
 
 ////
