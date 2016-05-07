@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 07 May 2016 18:51:41 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 07 May 2016 18:52:17 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
 <p>i like to collect fizzbuzz solutions. that&#39;s a little weird, i guess. but fun.</p>
 <p>fizzbuzz is kind of the stereotypical pointless toy problem/whiteboarding problem.</p>
 <p>if you&#39;re not familiar, here&#39;s the standard definition of the problem:</p>
 <p>write a program that prints numbers from 1 to 100, but for multiples of
 three print &#39;fizz,&#39; for multiples of five print &#39;buzz,&#39; and for multiples
-of both three and five print &#39;fizzbuzz.&#39;
-and some good reading on fizzbuzz:</p>
+of both three and five print &#39;fizzbuzz.&#39;</p>
+<p>and some good reading on fizzbuzz:</p>
 <ul>
 <li><a href="http://c2.com/cgi/wiki?FizzBuzzTest">http://c2.com/cgi/wiki?FizzBuzzTest</a></li>
 <li><a href="http://blog.codinghorror.com/why-cant-programmers-program/">http://blog.codinghorror.com/why-cant-programmers-program/</a></li>
