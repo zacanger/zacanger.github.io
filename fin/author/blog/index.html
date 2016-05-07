@@ -42,6 +42,35 @@
 <div id="content-main">
 
 
+  <article class="post tag-devmtn">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/bootcamp-analogies.html">bootcamp analogies</a></h2>
+      <span class="post-meta"><time datetime="2016-05-07">May 7, 2016</time>  | Tags: <a href="/tag/devmtn/">devmtn</a></span>
+
+      </br>
+        <span class="post-meta">Written by <a href="/author/blog/" style="color: #4183c4">zac anger</a>  |   </span>
+
+    </header>
+    <section class="post-content">
+      <p><p>bootcamps are like a three-month crash-course on building features and creating value
+for yourself and your future employer very quickly. and also on learning. as in,
+learning to learn stuff on your own.</p>
+<p>mentoring at a bootcamp is kind of a three-month course on talking/people skills.
+most obviously, there&#39;s the explaining code you&#39;ve never seen before to people who have
+no idea what you&#39;re saying and might not even speak the same language (natively).</p>
+<p>working at a bootcamp is like being thrown headfirst into both education and jr dev
+roles, which can be overwhelming but also awesome.</p>
+<p>hanging out at a bootcamp after finishing is like going back to a high school reunion
+after going from nerd to hugely successful nerd, waving it in everyone&#39;s face, except
+everyone is that same nerd so it&#39;s kinda more like an encouraging wave than a &quot;see,
+told you i&#39;d amount to something&quot; kind of wave.</p>
+<p>just some thoughts i had while trying to avoid having my skin ripped off by the
+pressure-washer-like shower that i just took. i need to be better at plumbing.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-currying tag-fp tag-partial-application tag-functional-programming tag-js">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/currying-and-partial-application.html">currying and partial application</a></h2>
@@ -1882,106 +1911,6 @@ maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev 
 <p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
 <p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
 </p>
-    </section>
-  </article>
-
-
-  <article class="post tag-promises tag-es6 tag-es2015 tag-js">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/promises.html">Promises</a></h2>
-      <span class="post-meta"><time datetime="2016-05-05">May 5, 2016</time>  | Tags: <a href="/tag/promises/">promises</a>, <a href="/tag/es6/">es6</a>, <a href="/tag/es2015/">es2015</a>, <a href="/tag/js/">js</a></span>
-
-      </br>
-        <span class="post-meta">Written by <a href="/author/blog/" style="color: #4183c4">zac anger</a>  |   </span>
-
-    </header>
-    <section class="post-content">
-      <p><p>Important things:</p>
-<ul>
-<li>The actual promise is immutable (nothing can change that)</li>
-<li>There&#39;s a guarantee that we&#39;ll get something back</li>
-<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
-<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
-<li>A promise will have one of three states:<ul>
-<li>Pending (until something happens)</li>
-<li>Fulfilled (if the first handler is called)</li>
-<li>Rejected (if the second handler is called)</li>
-</ul>
-</li>
-<li>It can only be &#39;settled&#39; (either resolved or rejected) once.</li>
-<li>Can&#39;t cancel a promise.</li>
-<li>No way to check the status (if pending, fulfilled, or rejected).</li>
-<li>An immediately-resolved promise can be created like <code>Promise.resolve(&#39;something&#39;)</code>.</li>
-<li>An immediately-rejected promise can be created like <code>Promise.reject(&#39;something&#39;)</code>.</li>
-<li>Attach a <code>then()</code> to consume the promise.</li>
-<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
-<li>It can actually take a rejection callback too.</li>
-<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
-<li>You can chain <code>.then()</code>s.</li>
-<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
-<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
-<li><code>throw</code>ing will automatically reject that promise.</li>
-<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<ul>
-<li>Otherwise (if any are rejected) it will reject.</li>
-</ul>
-</li>
-<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
-<li>Don&#39;t program with promises using same patterns as with callbacks.<ul>
-<li>(Don&#39;t do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
-</ul>
-</li>
-<li>Don&#39;t nest promises. Use a <code>.all</code> instead.</li>
-</ul>
-<p>Examples:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    resolve(value)
-  } <span class="hljs-keyword">else</span> {
-    reject(reason)
-  }
-})
-
-<span class="hljs-keyword">const</span> p = Promise.resolve(<span class="hljs-string">&#39;something&#39;</span>)
-p.then(res =&gt; console.log(res))
-<span class="hljs-keyword">const</span> p2 = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  setTimeout(() =&gt; resolve(<span class="hljs-string">&#39;asdf&#39;</span>), <span class="hljs-number">2000</span>)
-})
-p2.then(res =&gt; {
-  res += <span class="hljs-string">&#39;ghjkl;&#39;</span>
-  console.log(res)
-})
-p2.then(res =&gt; console.log(res)) <span class="hljs-comment">// this is still &#39;asdf&#39;</span>
-
-somePromise.then(
-  val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val)
-, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-pr.then(val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val))
-  .then(<span class="hljs-keyword">null</span>, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-<span class="hljs-keyword">const</span> throwProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;rejected&#39;</span>)
-  } <span class="hljs-keyword">else</span> {
-  resolve(stuff)
-  }
-})
-throwProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; console.log(<span class="hljs-string">&#39;hey&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;err&#39;</span>, err.message))
-
-<span class="hljs-keyword">const</span> fulProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; res(<span class="hljs-number">8</span>))
-fulProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;failure&#39;</span>)})
-.then(val =&gt; console.log(<span class="hljs-string">&#39;yay&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;error&#39;</span>, err.message))
-
-one()
-.then(res =&gt; Promise.all([res, two(res)]))
-  .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
-  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre></p>
     </section>
   </article>
 
