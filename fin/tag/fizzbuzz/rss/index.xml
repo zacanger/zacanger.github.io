@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 07 May 2016 18:50:46 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 07 May 2016 18:51:41 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
 <p>i like to collect fizzbuzz solutions. that&#39;s a little weird, i guess. but fun.</p>
 <p>fizzbuzz is kind of the stereotypical pointless toy problem/whiteboarding problem.</p>
 <p>if you&#39;re not familiar, here&#39;s the standard definition of the problem:</p>
-<pre class="hljs"><code><span class="hljs-built_in">write</span> <span class="hljs-operator">a</span> program that prints numbers <span class="hljs-built_in">from</span> <span class="hljs-number">1</span> <span class="hljs-built_in">to</span> <span class="hljs-number">100</span>, but <span class="hljs-keyword">for</span> multiples <span class="hljs-operator">of</span>
-<span class="hljs-constant">three</span> print <span class="hljs-string">&#39;fizz,&#39;</span> <span class="hljs-keyword">for</span> multiples <span class="hljs-operator">of</span> <span class="hljs-constant">five</span> print <span class="hljs-string">&#39;buzz,&#39;</span> <span class="hljs-operator">and</span> <span class="hljs-keyword">for</span> multiples
-<span class="hljs-operator">of</span> both <span class="hljs-constant">three</span> <span class="hljs-operator">and</span> <span class="hljs-constant">five</span> print <span class="hljs-string">&#39;fizzbuzz.&#39;</span></code></pre><p>and some good reading on fizzbuzz:</p>
+<p>write a program that prints numbers from 1 to 100, but for multiples of
+three print &#39;fizz,&#39; for multiples of five print &#39;buzz,&#39; and for multiples
+of both three and five print &#39;fizzbuzz.&#39;
+and some good reading on fizzbuzz:</p>
 <ul>
 <li><a href="http://c2.com/cgi/wiki?FizzBuzzTest">http://c2.com/cgi/wiki?FizzBuzzTest</a></li>
 <li><a href="http://blog.codinghorror.com/why-cant-programmers-program/">http://blog.codinghorror.com/why-cant-programmers-program/</a></li>
