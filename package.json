@@ -12,7 +12,7 @@
   "bin": "./bin/ghost-render",
   "scripts": {
     "start": "forever start -a -l f.log -o o.log -e e.log serve.js",
-    "test": "mocha -R spec ./test/*.test.js"
+    "test": "mocha -R spec ./test.js"
   },
   "homepage": "http://blog.zacanger.com",
   "repository": {
