@@ -1,23 +1,17 @@
 {{!< default}}
 
-{{! The comment above "< default" means - insert everything in this file into
-    the {body} of the default.hbs template, which contains our header/footer. }}
-
-{{! The main content area on the homepage }}
 <div id="content-main">
 
-  {{! Each post will be output using this markup }}
   {{#foreach posts}}
 
   <article class="{{post_class}}">
     <header class="post-header">
       <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
-      <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="MMMM D, YYYY"}}</time> {{#if tags}} | Tags: {{tags}}{{/if}}</span>
+      <span class="post-meta">
+        <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM, YYYY"}}</time>
+        {{#if tags}} | tags: {{tags}}{{/if}}</span>
 
-      </br>
-      {{#author}}
-        <span class="post-meta">Written by <a href="{{url}}" style="color: #4183c4">{{name}}</a> {{#if location}} | {{location}} {{/if}}</span>
-      {{/author}}
+      <br>
 
     </header>
     <section class="post-content">
