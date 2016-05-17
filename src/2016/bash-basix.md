@@ -1,5 +1,5 @@
 ---
-title: This is a test
+title: bash basix
 published_at: 2016-05-16 22:24:00
 author: zacanger
 tags: sh
