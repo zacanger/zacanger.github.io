@@ -1,5 +1,264 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 17 May 2016 04:27:14 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 20 May 2016 07:02:51 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[notes from my personal project at devmountain]]></title><description><![CDATA[<h1 id="this-is-probably-a-mess">this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working
+on my &#39;personal project&#39; at devmountain.</p>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
+for people who actually cared about writing. turns out no one really wants that.
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+cool.</p>
+<p>requirements for this: make a mean stack app, basically.</p>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+and more importantly here&#39;s the mess of notes i took while doing stuff with that.</p>
+<hr>
+<h2 id="planner">Planner</h2>
+<p>At DevMountain, for projects, you&#39;re encouraged (required, really) to use a planning
+paper, which is basically a big sheet of paper divided up into sections that represent
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+the bottom.</p>
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
+there was a PDF version floating around so I threw a little app up using that (converted to
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
+able to easily just save all my notes out (they were all just in a big text file anyway, on
+my server). Note: I&#39;d initially planned on using my earlier app from my &#39;no-server&#39; project
+(something we do at DevMountain early on, just an Angular app that can actually use a server
+so long as it&#39;s a BaaS and not one we&#39;ve spent time doing, because we don&#39;t actually know how
+to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
+<p>Anyway, these are the contents from my planning thing.</p>
+<h3 id="ideas-and-users">Ideas and Users</h3>
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
+ADHD social media style of content-creation and likes and shares that&#39;s taken
+over the popular idea of the blog, but instead around long-form writing; essays,
+meaningful stories, and such. the target audience here is the moderately
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+out in coffee shops too much.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>mvp: oh wait, that&#39;s already done. well, except for getting it to work in the
+desktop client, which is the entire idea here.</li>
+<li>the rest:<ul>
+<li>a clean, simple &#39;feed&#39; (a la jekyll archive pages), filterable by tag and possibly date.</li>
+<li>comments.</li>
+<li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
+</ul>
+<h3 id="views">Views</h3>
+<ol>
+<li>the existing markdown editor (however, likely revamped to move away from
+plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one&#39;s own posts as
+someone else&#39;s).</li>
+<li>the &#39;social&#39; view: a feed, no &#39;content-based&#39; sorting, just purely ordered
+chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they&#39;ll be isolated (data-wise), so it may be smarter to
+load them in dynamically (see: discourse [not discuz, they&#39;re ruby], but don&#39;t
+do that stupid thing where half the page disappears, that&#39;s some annoying-ass
+bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an
+archive file, delete account.</li>
+</ol>
+<h3 id="controllers">Controllers</h3>
+<ul>
+<li>browser, main, and nav (see existing codebase)</li>
+<li>not controllers, but...</li>
+<li>services: files (existing)</li>
+<li>filters: filename and cut (existing)<ul>
+<li>by tag (feed view)</li>
+<li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
+</ul>
+<h3 id="endpoints">Endpoints</h3>
+<p>Those are a thing, yes.</p>
+<h3 id="schemas">Schemas</h3>
+<pre class="hljs"><code>// possible schemas ??
+
+<span class="hljs-keyword">const</span> mongoose = require(&#39;mongoose&#39;)
+
+<span class="hljs-keyword">const</span> user = mongoose.<span class="hljs-type">Schema</span>({
+  username : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, pass     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>, minlength : <span class="hljs-number">6</span>}
+, post     : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;post&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> post = mongoose.<span class="hljs-type">Schema</span>({
+  title    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, content  : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, tags     : <span class="hljs-type">Array</span>
+, date     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default : new <span class="hljs-type">Date</span>()}
+, author   : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectID</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> comment = mongoose.<span class="hljs-type">Schema</span>({
+  date    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default  : new <span class="hljs-type">Date</span>()}
+, content : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, post    : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;posts&#39;}]
+, author  : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+})
+
+mongoose.model(&#39;user&#39;, user)
+mongoose.model(&#39;post&#39;, post)
+mongoose.model(&#39;comment&#39;, comment)</code></pre><h3 id="other-thoughts-">Other Thoughts:</h3>
+<p>this would be relatively easy to throw up in a web browser. blogging platforms
+are a dime a dozen, especially ones built on node. the idea here isn&#39;t to make
+another tumblr, but to bring actual writing back to the web. sort of like
+medium, but without all the twitter. a key part of that is having it NOT be in a
+browser. right now the goal is to put all this in an electron shell, but i&#39;m not
+going to focus super hardcore on that right this moment. if i can get everything
+else in place and rock-solid first, then i&#39;ll stuff it all in electron. if not,
+then i&#39;ll just write up a manifest file and call it a chrome app. either way,
+fuck y&#39;all, it&#39;s already got nigh on a thousand installs....</p>
+<hr>
+<h2 id="the-presentation-speech">The Presentation Speech</h2>
+<p>This is what I&#39;d planned to say when presenting my app. I think instead
+I just kind of mumbled a little bit about how neat CodeMirror is and how
+annoying it was to struggle with the <code>&#39;node-integration&#39;</code> issue with
+Electron.</p>
+<h3 id="markdown">Markdown</h3>
+<p>…is a lightweight markup language which makes writing for the web a much quicker
+and easier process than if using a rich text editor (like Word), which wouldn&#39;t
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
+<code>&lt;strong&gt;</code>, in Markdown you&#39;d use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
+Github are usually written in an implementation of Markdown called Github
+Flavoured Markdown, which shows just how popular the format has grown. Stack
+Overflow, the Discourse comment system, and various blog systems including
+Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
+<p>vi is possibly the most influential editor of, like, ever. it was written in
+1976, and either vi or one of its descendants (usually vim, which stands for &#39;vi
+improved&#39;) has been on almost every unix-based system since then, including
+every computer in this building (except the microsoft machines -- and even on
+those, if you have git-bash or something similar). vim&#39;s power comes from how
+easily and quickly it can manipulate large chunks of text. For example, typing
+in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
+<p>So, putting these things together makes for a really great tool for writing. Not
+necessarily writing Tweets or Facebook posts, but writing longer texts, like
+articles or essays. That&#39;s the purpose of this app. It&#39;s not a social blog. It&#39;s
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+minus… teenagers.</p>
+<p>Since the editor component itself is based around CodeMirror, it&#39;s very
+extensible, which is exciting because it leaves so much open for future
+development. For example, if we wanted to make this a Javascript editor instead,
+we could just change a few lines and now we have the right syntax highlighting,
+automatic indentation, et cetera.</p>
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
+from the beginning it was really meant to be a desktop tool; browsers are
+distracting, this not so much.</p>
+<p>Aaaand here&#39;s the code.</p>
+<hr>
+<h2 id="misc-notes">misc notes</h2>
+<p>All this stuff was just thrown in another file.
+It&#39;s mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
+<p>check <a href="https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md">https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md</a>
+before trying to get any other browser-shit going on--we&#39;ll want to move things
+into their own windows, i feel; chromeless might be a good idea, at least for
+the editor view</p>
+<pre class="hljs"><code>const BrowserWindow = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#39;electron&#39;</span>)</span></span><span class="hljs-class">.BrowserWindow</span>
+let win = new <span class="hljs-function"><span class="hljs-title">BrowserWindow</span><span class="hljs-params">({width : <span class="hljs-number">1900</span>, height : <span class="hljs-number">1600</span>, frame : false})</span></span></code></pre><p>so basically it&#39;s just a new browser window, frame as false, but we want to
+probably lock the px to whatever screen we&#39;re working with, if CSS continues to
+fail miserably.</p>
+<p>-- note: check how atom manages to not fuck that up. except those bits where
+they do.</p>
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+clickables, one assumes).</p>
+<ul>
+<li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
+<li>downloadItem.setSavePath(path)</li>
+<li>downloadItem.cancel()</li>
+<li>downloadItem.getURL() // origin url</li>
+<li>file.path = real (fs) path</li>
+</ul>
+<h3 id="printing">printing</h3>
+<pre class="hljs"><code>webContents.printToPDF(opts, cb) <span class="hljs-comment">// where:</span>
+opts:
+  marginsType: <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> (<span class="hljs-number">0</span> <span class="hljs-keyword">default</span>)
+  pageSize: <span class="hljs-string">&#39;A4&#39;</span>, <span class="hljs-string">&#39;A3&#39;</span>, <span class="hljs-string">&#39;Legal&#39;</span>, <span class="hljs-string">&#39;Letter&#39;</span>, <span class="hljs-string">&#39;Tabloid&#39;</span>
+  printBackground: <span class="hljs-keyword">false</span> (duh)
+  landscape: <span class="hljs-keyword">false</span> (is portrait)
+cb <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{<span class="hljs-keyword">if</span> err etc, data = content buffer}
+
+<span class="hljs-keyword">empty</span> opts = <code>{marginsType: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, printBackground: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, printSelectionOnly: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, landscape: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;}</code>
+
+<span class="hljs-comment">// sample from electron docs</span>
+<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;electron&#39;</span>).BrowserWindow
+<span class="hljs-keyword">const</span> fs = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+<span class="hljs-keyword">let</span> win = <span class="hljs-keyword">new</span> BrowserWindow({width: <span class="hljs-number">800</span>, height: <span class="hljs-number">600</span>})
+win.loadURL(<span class="hljs-string">&#39;<a href="http://github.com">http://github.com</a>&#39;</span>)
+win.webContents.on(<span class="hljs-string">&#39;did-finish-load&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Use default printing options</span>
+  win.webContents.printToPDF({}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+    <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error
+    }
+    fs.writeFile(<span class="hljs-string">&#39;/tmp/print.pdf&#39;</span>, data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">throw</span> error
+      }
+      console.log(<span class="hljs-string">&#39;done did dat&#39;</span>)
+    })
+  })
+})</code></pre><ul>
+<li>main process is a normal node script</li>
+<li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
+<li>electron&#39;s built-in modules don&#39;t need <code>require(&#39;asdf&#39;)</code>; set
+<code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
+<li>shell.openExternal(url) opens in eg xdg-browser</li>
+<li>shell.openItem(&#39;/FULL/path/to/item&#39;) = xdg-open</li>
+</ul>
+<h3 id="menus">menus</h3>
+<ul>
+<li>new MenuItem(opts):<ul>
+<li>id: string, unique within menu</li>
+<li>submenu</li>
+<li>checked: bool</li>
+<li>visible: bool</li>
+<li>enabled: bool</li>
+<li>label: string</li>
+<li>type: normal, separator, submenu, checkbox, or radio</li>
+<li>role: action; if specified, next thing will be ignored</li>
+<li>click: function -- click(menuItem, browserWindow) -- this is that &#39;next thing&#39;</li>
+</ul>
+</li>
+<li>recommended to set role:<ul>
+<li>undo</li>
+<li>redo</li>
+<li>cut</li>
+<li>copy</li>
+<li>paste</li>
+<li>selectall</li>
+<li>minimize</li>
+<li>close</li>
+</ul>
+</li>
+</ul>
+<p>electron-rebuild would automatically take care of headers &amp; native node module
+builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
+<p>the &#39;npm&#39; way: same as usual, except env variables:</p>
+<pre class="hljs"><code><span class="hljs-keyword">export</span>
+  npm_config_disturl=https:<span class="hljs-comment">//atom.io/download/atom-shell</span>
+  npm_config_target=<span class="hljs-number">0.33</span><span class="hljs-number">.1</span> <span class="hljs-preprocessor"># ???</span>
+  npm_config_arch=x64
+  npm_config_runtime=electron
+HOME=~/.electron-gyp npm install module-name <span class="hljs-preprocessor"># home equals? what?</span></code></pre><p>one important thing: nw.js&#39;s url in the package file? nah, bro, electron don&#39;t
+do that shit. so manually creating the browser window and loading HTML is the
+right way with electron.</p>
+]]></description><link>/2016/personal-project.html</link><guid isPermaLink="true">/2016/personal-project.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[electron]]></category><category><![CDATA[nwjs]]></category><category><![CDATA[markdown]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 20 May 2016 05:00:00 GMT</pubDate></item><item><title><![CDATA[ealiest devmtn notes]]></title><description><![CDATA[<p>uh so i just found these in a note book and remembered that
+one day i forgot my laptop charger so i took notes during a lecture
+by hand
+i don&#39;t know what
+idk</p>
+<pre class="hljs"><code>vertical organization <span class="hljs-keyword">is</span> by feature;
+routes, configs, etc. under the same directory.
+this <span class="hljs-keyword">is</span> the devmtn preferred <span class="hljs-keyword">method</span>.
+this works <span class="hljs-keyword">for</span> angular <span class="hljs-keyword">as</span> well.
+keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> root --
+directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
+starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
+heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre>]]></description><link>/2016/earliest-devmtn-notes.html</link><guid isPermaLink="true">/2016/earliest-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 19 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
 <ul>
 <li>debugging a bash script: use the <code>-x</code> flag</li>
 <li>semicolons divide commands that are on the same line</li>
@@ -3270,310 +3529,4 @@ $.ajax(ajaxParams).then(<span class="hljs-function"><span class="hljs-keyword">f
 <span class="hljs-comment">// cyclomatic complexity</span>
 <span class="hljs-comment">// more things you&#39;re doing</span>
 <span class="hljs-comment">// more bugs</span>
-<span class="hljs-comment">//</span></code></pre>]]></description><link>/2016/notes-from-devmountain-02.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:35:00 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
-<p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
-<p>Whatever.</p>
-<p>Don&#39;t take it all so seriously. Some of it could be really helpful. This is about half of my collected
-notes <em>that were inside project files</em>. Everything else has already been cleaned up and posted, or is in
-a directory of drafts somewhere. This stuff is totally unedited.</p>
-<hr>
-<h2 id="ng-probs">ng probs</h2>
-<pre class="hljs"><code><span class="hljs-comment">// this is in a <code>.then</code>. NOTE THAT ANGULAR WILL GIVE YOU AN OBJECT EVEN IF YOU HAVE AN ARRAY</span>
-<span class="hljs-comment">// though it will give you your <em>objects</em> in the <em>array</em> that they come in, it&#39;ll still work</span>
-<span class="hljs-comment">// on the front end.</span>
-<span class="hljs-comment">// we were having issues here looping over the array and setting the returned index on scope,</span>
-<span class="hljs-comment">// then trying to return that. this works a lot better.</span>
-.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(stuff)</span></span>{
-  <span class="hljs-variable">$scope</span>.foo = stuff
-  <span class="hljs-variable">$scope</span>.things = stuff.StuffToBringBack
-})</code></pre><hr>
-<h2 id="angular-directives">angular: directives</h2>
-<p>directives are different than controllers and services. directives ALWAYS return an object. when you write a
-ctrl or svc you&#39;re giving some definitions to something that already exists. with directives you&#39;re closer
-to writing routing. you&#39;re writing a set of instructions. they return an object. objects get, obviously,
-key-value pairs.</p>
-<pre class="hljs"><code><span class="hljs-class">.directive</span>(<span class="hljs-string">&#39;myDirective&#39;</span>, <span class="hljs-function">function</span>(){
-  <span class="hljs-tag">return</span> {
-    <span class="hljs-attribute">template</span>: <span class="hljs-string">&#39;Key: Value, key: value&#39;</span>;
-  }
-})</code></pre><p>directive names MUST be camelCase. pascal case will not be recognized. nor snake case?</p>
-<p>i mean, really, it&#39;s all made a lot more complicated than it needs to be. we&#39;re starting out basically
-just making our own little bits. it makes sense. if it works as a template file, or as just regular html,
-it&#39;ll work as a custom directive. just more reusable as a directive.</p>
-<p>we could have a directive with a TYPE. imagine a function that returns a customer with an attribute that&#39;s
-.type... so we&#39;d have a directive called myCustomer, type=&quot;name&quot;, then another, type=&quot;smoking habits&quot;.
-paramaters here are always (element, attribute).</p>
-<p>Restrict as a property: E means element (so you&#39;d do <myDirective> instead of <div myDirective>
-A is attribute, so it&#39;d be <div myDirective>
-can do BOTH so it&#39;d work for either. (restrict: EA)
-C is for class, but let&#39;s not do that! That seems like a really not okay and very bad idea.
-This is basically for semantic enforcement. Element would be good for a custom block, eg</p>
-<p><myDirective>a whole bunch of shit just about this one</myDirective></p>
-<p><mySECONDdirective>another whole bunch</mySECONDdirective> etc
-A would be good for tacking things onto elements that would likely be there anyway, it seems.
-If you need to take in parameters, A would be better.</p>
-<p>custom filters like this!</p>
-<pre class="hljs"><code>&lt;input model=<span class="hljs-string">&quot;whatcha&quot;</span>&gt;
-&lt;span custom=<span class="hljs-string">&quot;format&quot;</span>&gt;
-<span class="hljs-keyword">function</span> link(scope, <span class="hljs-literal">element</span>, attributes){
-var whatever
-stuffings
-}
-<span class="hljs-keyword">return</span> { link: link; }
-scp.<span class="hljs-variable">$watch</span>(<span class="hljs-string">&#39;format&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-keyword">value</span>){
-format=value;
-updateTime();
-});</code></pre><p>link ALWAYS takes in at leaste those three, and alkways in that order!</p>
-<p>inside a directive, feel free to do some jquery-lite.
-if you want to use, say, d3, or three.js, you can go ahead and inject that into angular
-and use it. (we&#39;re talking about other DOM manupilation, not utilities like lodash).</p>
-<p>inside a link whatever, that scp refers to its parent&#39;s scope, it shares parent&#39;s scope
-by default. eg if custom up there is directly below mainCtrl, scp means mainCtrl&#39;s $scope.</p>
-<p>underneath .directive, the scope: { stuff } actually means, like, scope INSTRUCTIONS or
-somesuch.</p>
-<p>SCOPE</p>
-<pre class="hljs"><code><span class="hljs-tag">scope</span>: {
-<span class="hljs-attribute">string</span>: <span class="hljs-string">&#39;@&#39;</span>,
-<span class="hljs-attribute">link</span>: <span class="hljs-string">&#39;=&#39;</span>,
-<span class="hljs-attribute">func</span>: <span class="hljs-string">&#39;&amp;&#39;</span>
-}</code></pre><p>The properties on the scope object represent the attributes on the directive in the html. Our example scope object here would look something like this in the html.
-<code>&lt;example-directive string=&quot;a string&quot; link=&quot;user&quot; func=&quot;updateUser()&quot;&gt;&lt;/example-directive&gt;</code>
-The hard part here is the <code>@</code>, <code>=</code>, and <code>&amp;</code>. They each have very important and distinct meanings.</p>
-<ul>
-<li><code>@</code> says take in my attribute value as a string.</li>
-<li><code>=</code> says take in my attribute value as a two-way bound variable from the parent scope.</li>
-<li><p><code>&amp;</code> says take in my attribute value as a reference to a function on the parent scope.</p>
-</li>
-<li><p>(from another notes snippet):</p>
-<ul>
-<li><code>@</code> : string/text (one-way)</li>
-<li><code>=</code> : two-way</li>
-<li><code>&amp;</code> : binds parent scope&#39;s methods into directive&#39;s scope</li>
-<li><code>&lt;</code> : one-way (outer-to-inner)</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="firebase">firebase</h2>
-<p>firebase with $firebaseObject (or $firebaseArray) and $bindTo just makes all
-the <strong>MAGIC</strong> (that we poor slobs are are too dumb to even vaguely comprehend)
-even MORE magical; with angularfire and firebase and angular doing everything
-for you, we now have, basically, a subpar meteor-like 3-way-binding.</p>
-<p><code>&lt;ng-change=&quot;$scope.save(thingy)&quot;&gt;</code> will propogate back to firebase
-(or <code>&lt;ng-change=&quot;thingy(save)&quot;&gt; // $scope.sav(thingy)</code> if we&#39;re doing things
-modularly).</p>
-<p><code>ng-model-options=&quot;{debounce: {&#39;default&#39;: 5000}}&quot; // debounces. to 5000 ms. wowe.</code></p>
-<hr>
-<h2 id="express">express</h2>
-<ul>
-<li>if chain in express:</li>
-<li>method, url, callback</li>
-<li><code>app.all(&#39;/endpoint&#39;, function(){console.log(&#39;a thing&#39;)})</code></li>
-<li>so it&#39;s one long chain of if statements. like we do manually. that&#39;s all.</li>
-<li>express chain [{method: &#39;all&#39;, endpoint:&#39;/endpoint&#39;, function(){}, {method: &#39;get&#39;, endpoint:&#39;/nextone&#39;}etc etc etc etc}]d</li>
-<li>all endpoints are hit, with exception dependent on response</li>
-<li>req and res are passed to EVERY function by express</li>
-<li>ongoing request and response are passed on down whole if statement chain</li>
-<li>a controller can&#39;t reference arrays from another file.<ul>
-<li>so, your server (or, let&#39;s say, your index) couldn&#39;t have something defined that a ctrl needs to access<ul>
-<li>(assuming your ctrl is set up as a an object, module.exports = {} with your functions(req, res, next) all in there.)</li>
-</ul>
-</li>
-<li>solution?</li>
-<li>move your stuff into the file where you want to access it, i guess.</li>
-<li>module.exports can be an array, too. that makes sense in a db context, okay.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="express-more">express more</h2>
-<h4 id="req-params-vs-req-query">req.params vs req.query</h4>
-<ul>
-<li>Params and Query do the same thing.</li>
-<li>Params is hardcoded into endpoint; query allows some flexibility.</li>
-<li>Query uses <a href="http://url.url/api/endpoint?whatever=something">http://url.url/api/endpoint?whatever=something</a></li>
-<li>Param would be more like <a href="http://url.url/api/endpoint/something">http://url.url/api/endpoint/something</a></li>
-</ul>
-<pre class="hljs"><code>app.get(<span class="hljs-string">&#39;api/hobbies/:type/:fun&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
-  req.params.<span class="hljs-built_in">type</span> // boring
-  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
-    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.params.<span class="hljs-built_in">type</span>) {
-      res.send(hobby)
-    }
-  })
-});
-
-localhost:<span class="hljs-number">8989</span>/api/hobbies/boring/no
-
-app.get(<span class="hljs-string">&#39;api/hobbies&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span></span>{
-  req.query.<span class="hljs-built_in">type</span> // boring
-  hobbies.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hobby)</span></span>{
-    <span class="hljs-keyword">if</span> (hobby.<span class="hljs-built_in">type</span> = req.query.<span class="hljs-built_in">type</span>) {
-      res.send(hobby)
-    }
-  })
-})
-
-localhost:<span class="hljs-number">8989</span>/api/hobbies?<span class="hljs-built_in">type</span>=boring&amp;fun=no
-
-var hobbies = [];</code></pre><h4 id="how-to-not-need-to-use-express-cors-or-whatever-cors-">how to not need to use express-cors (or whatever-cors)</h4>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;express&#39;</span>);
-<span class="hljs-keyword">var</span> request = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;request&#39;</span>);
-
-<span class="hljs-keyword">var</span> app = express();
-app.<span class="hljs-keyword">use</span>(<span class="hljs-string">&#39;/&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
-  <span class="hljs-keyword">var</span> url = apiServerHost + req.url;
-  req.pipe(request(url)).pipe(res);
-});
-
-app.listen(process.env.PORT || <span class="hljs-number">3000</span>);</code></pre><p>OBVIOUSLY this only applies when everything&#39;s local; this is a proxy server, essentially, sort of.</p>
-<p>also there&#39;s an express builtin: <code>app.use(express.static()</code>, eg <code>app.use(express.static(&#39;public&#39;))</code></p>
-<h4 id="monogooooooooooo-se-">monogooooooooooo(se)</h4>
-<p>Turns out if you send Mongoose anything that&#39;s not in your schema, it&#39;s just like &quot;Oh, okay, I&#39;m not interested&quot; and tosses that bit out, I guess.</p>
-<p>When we&#39;re not doing eg <code>require(&#39;./path&#39;)</code> (but rather <code>require(/path)&#39; with no dot first</code>), it looks in <code>node_modules/</code>. Obvs usually we&#39;ll probably look from cwd instead. Any way to look from project root by default?</p>
-<pre class="hljs"><code>getStuff: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span>{</span>
-  <span class="hljs-transposed_variable">Stuff.</span>find().populate(<span class="hljs-string">&#39;things.whatevers&#39;</span>).exec()
-    .<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data, err)</span></span>
-<span class="hljs-comment">// etc., etc., etc., etc.</span></code></pre><hr>
-<h2 id="ionic">ionic</h2>
-<ul>
-<li>We&#39;re getting a little super-fast (read: unplanned and, I think, unannounced) rundown on Ionic.</li>
-<li>Which is totally fine, but it&#39;s basically Angular, plus Phonegap, which are two things I rather dislike.</li>
-<li>Okay, I&#39;m using the Yeoman generator-ionic-gulp seed.</li>
-<li>Aaaaand this is just like Angular, except with predefined CSS rules, basically.</li>
-<li>The &#39;magic&#39; is all in the bit where it handles compiling/wrapping for you.</li>
-<li>So... on with my personal project, I suppose.</li>
-</ul>
-<hr>
-<h2 id="d3">D3</h2>
-<ul>
-<li>svg starts 0,0 top left, not bottom left.</li>
-<li>svg has no z-index. just renders in order it&#39;s written.</li>
-<li>rotations and transforms on svg will screw with things when it comes to moving stuff!</li>
-<li>d3, chaining methods super common.</li>
-</ul>
-<hr>
-<h2 id="react">react</h2>
-<ul>
-<li>react is reacty. it reacts, sometimes reactively.</li>
-<li>it&#39;s still ugly as hell and i hope it dies, though.</li>
-<li>note that i&#39;m doing all this in vim because:<ul>
-<li>A. lighttable doesn&#39;t like react and</li>
-<li>B. lighttable has my projects loadded up, currently, and i don&#39;t want to add yet another workspace.</li>
-</ul>
-</li>
-<li>so, this will probably all be formatted like shit, because vim doesn&#39;t understand, no matter how many times i tell it, that i don&#39;t want it to turn spaces into tabs, i want the opposite.</li>
-<li>oh well.</li>
-</ul>
-<hr>
-<h2 id="s3">S3</h2>
-<ul>
-<li>Basically, since Mongo can&#39;t store images without doing difficult-ish things involving GridFS,
-the prescription is to use S3 in... basically the same way, actually, which results in more total requests,
-but the hope is that Amazon&#39;s caching or somesuch is good enough to offset the latency.</li>
-<li>Amazon needs your regional server to be passed in during requests. Which is both sensible and silly, since really that should be a part of your keys.</li>
-<li>When Amazon wants a &#39;Key&#39; in your paramss, that&#39;s not a key. That&#39;s the actual thing you&#39;re fuckin&#39; with. so, req.body.img.</li>
-<li>Buffers in node are bytes in python are strings in PHP if they were mutable.</li>
-</ul>
-<hr>
-<h2 id="deployment-while-in-development">deployment while in development</h2>
-<h3 id="heroku">heroku</h3>
-<ul>
-<li>workflow: have a project. have a git repo in it. <code>heroku create</code>, assuming you use/have heroku.</li>
-<li>(same as <code>git remote add heroku https://someurl.herokuapp.com</code>)</li>
-</ul>
-<h3 id="digital-ocean">digital ocean</h3>
-<ul>
-<li>digital ocean: works the same as ever, which is to say, it&#39;s not convenient,
-but it it&#39;s okay. prefer koding if they let me back in, but if not,
-maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev servers.</li>
-</ul>
-<hr>
-<p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
-<p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
-]]></description><link>/2016/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:30:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
-<ul>
-<li>The actual promise is immutable (nothing can change that)</li>
-<li>There&#39;s a guarantee that we&#39;ll get something back</li>
-<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
-<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
-<li>A promise will have one of three states:<ul>
-<li>Pending (until something happens)</li>
-<li>Fulfilled (if the first handler is called)</li>
-<li>Rejected (if the second handler is called)</li>
-</ul>
-</li>
-<li>It can only be &#39;settled&#39; (either resolved or rejected) once.</li>
-<li>Can&#39;t cancel a promise.</li>
-<li>No way to check the status (if pending, fulfilled, or rejected).</li>
-<li>An immediately-resolved promise can be created like <code>Promise.resolve(&#39;something&#39;)</code>.</li>
-<li>An immediately-rejected promise can be created like <code>Promise.reject(&#39;something&#39;)</code>.</li>
-<li>Attach a <code>then()</code> to consume the promise.</li>
-<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
-<li>It can actually take a rejection callback too.</li>
-<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
-<li>You can chain <code>.then()</code>s.</li>
-<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
-<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
-<li><code>throw</code>ing will automatically reject that promise.</li>
-<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<ul>
-<li>Otherwise (if any are rejected) it will reject.</li>
-</ul>
-</li>
-<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
-<li>Don&#39;t program with promises using same patterns as with callbacks.<ul>
-<li>(Don&#39;t do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
-</ul>
-</li>
-<li>Don&#39;t nest promises. Use a <code>.all</code> instead.</li>
-</ul>
-<p>Examples:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    resolve(value)
-  } <span class="hljs-keyword">else</span> {
-    reject(reason)
-  }
-})
-
-<span class="hljs-keyword">const</span> p = Promise.resolve(<span class="hljs-string">&#39;something&#39;</span>)
-p.then(res =&gt; console.log(res))
-<span class="hljs-keyword">const</span> p2 = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  setTimeout(() =&gt; resolve(<span class="hljs-string">&#39;asdf&#39;</span>), <span class="hljs-number">2000</span>)
-})
-p2.then(res =&gt; {
-  res += <span class="hljs-string">&#39;ghjkl;&#39;</span>
-  console.log(res)
-})
-p2.then(res =&gt; console.log(res)) <span class="hljs-comment">// this is still &#39;asdf&#39;</span>
-
-somePromise.then(
-  val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val)
-, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-pr.then(val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val))
-  .then(<span class="hljs-keyword">null</span>, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-<span class="hljs-keyword">const</span> throwProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;rejected&#39;</span>)
-  } <span class="hljs-keyword">else</span> {
-  resolve(stuff)
-  }
-})
-throwProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; console.log(<span class="hljs-string">&#39;hey&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;err&#39;</span>, err.message))
-
-<span class="hljs-keyword">const</span> fulProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; res(<span class="hljs-number">8</span>))
-fulProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;failure&#39;</span>)})
-.then(val =&gt; console.log(<span class="hljs-string">&#39;yay&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;error&#39;</span>, err.message))
-
-one()
-.then(res =&gt; Promise.all([res, two(res)]))
-  .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
-  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>/2016/promises.html</link><guid isPermaLink="true">/2016/promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:00:00 GMT</pubDate></item></channel></rss>
+<span class="hljs-comment">//</span></code></pre>]]></description><link>/2016/notes-from-devmountain-02.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:35:00 GMT</pubDate></item></channel></rss>
