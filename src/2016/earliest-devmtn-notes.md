@@ -1,5 +1,5 @@
 ---
-title: ealiest devmtn notes
+title: earliest devmtn notes
 published_at: 2016-05-19 12:39:25
 author: zacanger
 tags: devmtn
