@@ -47,6 +47,281 @@
 <div id="content-main">
 
 
+  <article class="post tag-js tag-streams">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/streams.html">streams</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-15">15 May, 2016</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/streams/">streams</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>bits and pieces of notes on streams</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> foo = fetch(<span class="hljs-string">&#39;/something&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.json())
+.<span class="hljs-keyword">then</span>(d =&gt; d.thingwewant)
+
+<span class="hljs-keyword">const</span> bar = fetch(<span class="hljs-string">&#39;/otherstuff&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.body)
+
+<span class="hljs-keyword">const</span> stream = someTaggedFunctionThing<code>&amp;lt;div&amp;gt;${foo}&amp;lt;/div&amp;gt;
+  &amp;lt;span&amp;gt;${bar}&amp;lt;/span&amp;gt;</code></code></pre><ul>
+<li>streams can be infinite</li>
+<li>you can be aware of the beginning and end of a stream</li>
+<li>unread values are buffered (unlike how events pre-listener(s) are just gone)</li>
+<li>piping</li>
+<li>error-handling (down the pipeline)</li>
+<li>cancellation (up the pipeline)</li>
+<li>flow control (react to the reader speed)</li>
+<li>one reader per stream</li>
+<li>untapped stream can be used like <code>tee</code></li>
+</ul>
+<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code>
+on that if text content expected).</p>
+<p>there may be transform streams implemented in the browser at some point (r/w).</p>
+<p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{} // called immediately
+, pull<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{}  // called when buffer isn<span class="hljs-quoted">&#39;t</span> full<span class="hljs-comment">; called until buffer is full</span>
+, cancel<span class="hljs-list">(<span class="hljs-keyword">reason</span>)</span>{}    // called if stream is cancelled
+}, queuingStrategy)</span>   // how the stream buffers <span class="hljs-list">(<span class="hljs-keyword">default</span> : one item)</span></code></pre><ul>
+<li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream&#39;s buffer</li>
+<li><code>controller.close()</code> ends</li>
+<li><code>controller.error(e)</code> sends <code>e</code> (is a terminal error)</li>
+<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)<ul>
+<li><code>queuingStrategy</code> is used to get this</li>
+</ul>
+</li>
+<li>you could call <code>controller.enqueue()</code> whenever there&#39;s data to send (stream as a push source)</li>
+<li>you could wait until there&#39;s a <code>pull</code> called, then queue up some data (pull source)</li>
+<li>you can do whatever you like (basically)</li>
+<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source
+is good/efficient. won&#39;t break anything if you don&#39;t, though, unless you run out of memory.</li>
+</ul>
+<p>html renders as it&#39;s received (no matter how it gets there). so fetching/compiling/whatevering
+markup on the fly (aka client-side rendering, aka the devil usually) without streams means
+slowness.</p>
+<p>here&#39;s a thing basically just copied out of jake archibald&#39;s blog. it&#39;s like this because we
+don&#39;t have a <code>.pipe()</code> in the browser. we need that.</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{
+    // start and end from cache, middle from network with cache fallback
+    const
+      start = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/start-cached</span>&#39;)</span>
+    , end   = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/end-cached</span>&#39;)</span>
+    , mid   = fetch<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle</span>&#39;)</span>
+        .catch<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle-cached</span>&#39;)</span>)</span>
+      push  = stream =&gt; {
+      const reader = stream.getReader<span class="hljs-list">()</span>
+      return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">function</span> process<span class="hljs-list">(<span class="hljs-keyword">result</span>)</span>{
+        if <span class="hljs-list">(<span class="hljs-keyword">result</span>.done)</span> {
+          return
+        }
+        controller.enqueue<span class="hljs-list">(<span class="hljs-keyword">result</span>.value)</span>
+        return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">process</span>)</span>
+      })</span>
+    }
+
+    start.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; mid)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; end)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; controller.close<span class="hljs-list">()</span>)</span>
+  }
+})</span></code></pre><p>From here down I&#39;ll probably just be taking notes on streams in Node.</p>
+<p>Some important things to remember (for me to remember, that is) -- differences between the
+proposed Stream and Node&#39;s streams:</p>
+<ul>
+<li>Readable<ul>
+<li><code>.read()</code> instead of <code>.on(&#39;readable&#39;)</code></li>
+<li>Also a sync <code>.read()</code></li>
+<li>Cancellation semantics added</li>
+<li><code>desiredSize</code></li>
+<li><code>tee</code>ing built in</li>
+<li><code>data</code> event fully gone (it&#39;s only in Node streams in compatability mode, btw)</li>
+<li><code>pause</code> and <code>resume</code> aren&#39;t a thing</li>
+<li>no <code>unshift</code></li>
+<li>binary/string/object mode switching isn&#39;t a thing</li>
+<li>size parameter is gone (use BYOB readers)</li>
+</ul>
+</li>
+<li>Writable<ul>
+<li>No cork/uncork</li>
+</ul>
+</li>
+<li>Transform<ul>
+<li>now just <code>{readable, writable}</code> rly</li>
+</ul>
+</li>
+<li>other<ul>
+<li>promises instead of cbs</li>
+<li>no enc/dec built-in</li>
+<li><code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><ul>
+<li>so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for
+<code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Okay, so, Node streams.</p>
+<ul>
+<li><code>req</code> and <code>res</code> are streams</li>
+<li><code>.pipe()</code> listens for &#39;data&#39; and &#39;end&#39; from fs streams</li>
+<li><code>.pipe()</code> handles backpressure for ya</li>
+<li>types of streams:<ul>
+<li>readable</li>
+<li>writable</li>
+<li>transform</li>
+<li>duplex</li>
+<li>&#39;classic&#39;</li>
+</ul>
+</li>
+<li>chain pipes, don&#39;t break crap out<ul>
+<li><code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code></li>
+<li>that&#39;s basically the same as <code>one | two | three</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code>//<span class="hljs-comment">
+// readable</span><span class="hljs-comment">
+//</span>
+
+const Readable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Readable
+const rs = <span class="hljs-built_in">new</span> Readable
+rs.push(<span class="hljs-string">&#39;something, and &#39;</span>)
+rs.push(<span class="hljs-string">&#39;something else.&#39;</span>)
+rs.push(<span class="hljs-constant">null</span>)<span class="hljs-comment"> // this tells data consumers that we&#39;re done with rs</span>
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// so the pushes are buffered until a consumer wants them (the pipe to standard out)</span>
+<span class="hljs-comment">
+// instead of buffering:</span>
+let c = <span class="hljs-number">100</span>
+rs.<span class="hljs-title">_read</span> = () =&gt; {
+  rs.push(String.fromCharCode(c++))
+  <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-string">&#39;z&#39;</span>.charCodeAt(<span class="hljs-number">0</span>)) {
+    rs.push(<span class="hljs-constant">null</span>)
+  }
+}
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// ._read can take a size param, the amount (in bytes) that the consumer wants</span><span class="hljs-comment">
+// to call it like that, try <code>node thisfile | head -cN</code> where <code>N</code> is an integer</span><span class="hljs-comment">
+// note that we&#39;d need to set up an error handler here because there&#39;ll be a SIGPIPE</span><span class="hljs-comment">
+// after <code>head</code> (EPIPE in node). that&#39;s not an issue when keeping your business all</span><span class="hljs-comment">
+// in node.</span><span class="hljs-comment">
+// <code>Readable({objectMode : true})</code> to be able to push arbitrary stuff (not just</span><span class="hljs-comment">
+// buffers and strings).</span>
+
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>()
+  console.dir(buf)
+})<span class="hljs-comment">
+// echo stuff, pipe it, eg <code>(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js</code></span><span class="hljs-comment">
+// usually we&#39;d probably pipe a stream into another stream, maybe using through2 or somesuch</span><span class="hljs-comment">
+// the above will return null at the end of what&#39;s being sent, because there&#39;s nothing left</span><span class="hljs-comment">
+// we could do <code>.read(N)</code> where <code>N</code> is bytes. doesn&#39;t work for object streams.</span>
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">2</span>)
+  console.dir(buf)<span class="hljs-comment"> // so we&#39;d get 2-byte chunks here. adding:</span>
+  <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">0</span>)<span class="hljs-comment"> // will get the rest and make this actually work.</span>
+})
+<span class="hljs-comment">
+// YAY, that&#39;s it for readable streams</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// writable</span><span class="hljs-comment">
+//</span>
+
+const Writable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Writable
+const ws = <span class="hljs-built_in">new</span> Writable()
+ws.<span class="hljs-title">_write</span> = (chunk, encoding, next) =&gt; {
+  console.dir(chunk)
+  next()
+}
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.pipe(ws)<span class="hljs-comment">
+// chunk is the data written</span><span class="hljs-comment">
+// encoding (string) is only for when <code>opts.decodeStrings</code> is false and we&#39;ve been given a string</span><span class="hljs-comment">
+// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj</span><span class="hljs-comment">
+// if input stream is string, that&#39;ll be converted to buf. when creating the stream we can do</span>
+const strWs = <span class="hljs-built_in">new</span> Writable({decodeStrings : <span class="hljs-constant">false</span>})<span class="hljs-comment">
+// and if we&#39;re getting in objects</span>
+const objWs = <span class="hljs-built_in">new</span> Writable({objectMode : <span class="hljs-constant">true</span>})
+<span class="hljs-comment">
+// writing is basically as simple as calling .write (as we do with stdout)</span><span class="hljs-comment">
+// you can do a .end() to say we&#39;re done. that can take data to write, right before ending.</span><span class="hljs-comment">
+// write returns false when there&#39;s more data in incoming buff than opts.highWaterMark;</span><span class="hljs-comment">
+// listen for drain event to know when it&#39;s empty</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// transform</span><span class="hljs-comment">
+// these are duplex streams that do exactly what it sounds like. sometimes called &#39;through&#39; streams.</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// duplex</span><span class="hljs-comment">
+// r/w where both ends are two-way. example: <code>x.pipe(y).pipe(x)</code></span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// classic streams</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// we&#39;re on node 6.1.0 as of this writing, and chances are i won&#39;t be doing much node stuff</span><span class="hljs-comment">
+// at all in the forseeable future, so i really don&#39;t care too too much about the legacy</span><span class="hljs-comment">
+// streams api. just <code>require(&#39;readable-stream&#39;)</code> instead of <code>&#39;stream&#39;</code>, if we must support</span><span class="hljs-comment">
+// node or other streams from &lt;=v0.8.</span>
+<span class="hljs-comment">
+// readable example:</span>
+const <span class="hljs-built_in">sin</span> = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;data&#39;</span>, buf =&gt; console.<span class="hljs-built_in">log</span>(buf))
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;end&#39;</span>, () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#39;peace&#39;</span>))<span class="hljs-comment">
+// as soon as a data listener is registered, you&#39;re using compatability mode, so</span><span class="hljs-comment">
+// basically you lose a lot of functionality.</span><span class="hljs-comment">
+// through (the package) lets you use legacy streams with pipe</span><span class="hljs-comment">
+// these also have pause and resume.</span>
+<span class="hljs-comment">
+// writable:</span><span class="hljs-comment">
+// define write(buf), end(buf), and destroy(). end doesn&#39;t HAVE to have (buf), but</span><span class="hljs-comment">
+// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+// streams that are built in to node</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// not gonna take really extensive notes here, for the reasons above and also because</span><span class="hljs-comment">
+// it&#39;s really easy to just go to the api docs and read all of them.</span></code></pre></p>
+    </section>
+  </article>
+
+
+  <article class="post tag-api tag-design">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/api-design-notes.html">api design notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-14">14 May, 2016</time>
+         | tags: <a href="/tag/api/">api</a>, <a href="/tag/design/">design</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>think in terms of positives, not negatives</p>
+<p>for example &#39;ishidden(true)&#39; is confusing.
+instead to &#39;isvisible&#39;.</p>
+<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
+<p>instead of this, think in terms of enabled/showing</p>
+<p>this is both for myself (because i get confused) and for other people</p>
+<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
+<p>example from ariya hidayat&#39;s blog:
+if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
+take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-react tag-performance">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/react-performance.html">React Performance</a></h2>
@@ -474,137 +749,9 @@ actually use (smaller than the largest index of your array).</li>
   </article>
 
 
-  <article class="post tag-apple">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html">Forty Reasons To Wonder Why The Fuck You Love Apple</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-09">09 May, 2016</time>
-         | tags: <a href="/tag/apple/">apple</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>A response to <a href="http://www.networkworld.com/article/3050934/macs/on-its-40th-anniversary-40-things-we-love-about-apple.html">this
-absurdity</a>.</p>
-<p>These are literally just a summary of each of those slides.</p>
-<ul>
-<li>Apple has a marketing team</li>
-<li>their users are obsessed</li>
-<li>they make decent clones of other products years after those products are the norm</li>
-<li>they don&#39;t know their own target demographic</li>
-<li>they make products</li>
-<li>they make the same products year after year and announce them as if they&#39;re new</li>
-<li>they make inferior products and market them as if they&#39;re worth buying</li>
-<li>they still don&#39;t know their own users</li>
-<li>their users are still obsessed</li>
-<li>they have stores that sell their products</li>
-<li>they put their products in boxes</li>
-<li>they offer short-term care for their products after you buy them</li>
-<li>they have stores that you have to wait to get into</li>
-<li>they make products</li>
-<li>they made products years ago, too</li>
-<li>their products were not the exact same products as other products, years ago</li>
-<li>one of the products they used to make was a printer</li>
-<li>they also used to make... products</li>
-<li>like an idiot, i don&#39;t back up my data. and when a hard drive fails, i prefer to buy a new computer of a different
-brand and then blame an entire major segment of consumer electronics for my own stupidity.</li>
-<li>i noce bought one of their products</li>
-<li>they make overpriced things that don&#39;t offer anything that any other platform doesn&#39;t have, but i by their crap anyway</li>
-<li>their smartphones offer all the same functionality that flip phones have</li>
-<li>they make apps</li>
-<li>at one point the company almost totally failed, but then didn&#39;t</li>
-<li>some people who work at Apple aren&#39;t native English speakers</li>
-<li>i buy their products both for myself and for my kids sometimes</li>
-<li>they made another &#39;new&#39; product that had already been on the market for years</li>
-<li>they even had a marketing team back when CDs were still a thing</li>
-<li>they made a really shitty mouse that everyone hated, aww, look at them trying, so cute</li>
-<li>applescript is such a joke that it wasn&#39;t going to be included in OS X until, whoops, someone put them on the spot
-about it</li>
-<li>there is a voice assistant</li>
-<li>Apple had a version of BASIC which was almost the same but not <em>exactly</em> the same as any of the other BASICs on the
-market at the time</li>
-<li>they had PR person that nobody liked</li>
-<li>their computers can run software, including some games</li>
-<li>they have stores not just where you are but in other places also</li>
-<li>they have both marketing and PR people</li>
-<li>they sometimes sponsor events, in the same way that most large companies sometimes sponsor events</li>
-<li>they sometimes have TV commercials</li>
-<li>there are people who like their products enough to sometimes write about them</li>
-</ul>
-<p>... are you fucking kidding me?</p>
-<p>Here&#39;s a couple of things to like about Macs/Apple. Keep in mind that I don&#39;t own any Apple products, and haven&#39;t owned
-any since before Mac OS X. I have used them regularly over the past several years, though.</p>
-<ul>
-<li>Their hardware doesn&#39;t suck. It&#39;s not great, performance-wise, for the price, but it&#39;s good hardware.<ul>
-<li>Great battery life (due to the fancy it&#39;s-not-in-just-one-place-in-your-laptop battery).</li>
-<li>Great displays (if you pay for the great display).</li>
-<li>The cases (speaking of their laptops, here) are <em>gorgeous</em>.</li>
-<li>They&#39;re super light. Yes, there are Windows laptops that are also super light. Those Windows laptops also probably
-cost less and are more powerful, generally. But you can get a powerful Mac that&#39;s also lightweight (for like $3500).</li>
-<li>The keyboards, while annoyingly different from literally every other type of computer ever, have a nice feel.
-(My current laptop, and the one I used just prior to this one, had equally good keyboards. They&#39;re not only a
-Mac thing.)</li>
-</ul>
-</li>
-<li>Under the hood, Mac OS X is a (gimped) BSD. It&#39;s a PITA sometimes to actually get to the good parts, and it&#39;s a lot
-easier to just throw Linux on a (much cheaper, probably faster) laptop, but it can be made into a really nice
-development environment. It takes some work on any platform (and is virtually impossible on Windows, unless you&#39;re
-developing to target Windows), but on Macs it&#39;s a little more difficult to get to the UNIX-y bits than on a Linux or
-BSD.</li>
-<li>Macs are trendy. People who really believe they &#39;think different&#39; will think you&#39;re cool for having one. Of course,
-all that means is that you believe the same marketing as those people, but they&#39;re not a bad bunch to be kinda lumped
-together with, usually.</li>
-<li>There&#39;s some software (and I&#39;m thinking specifically of design software here) that just isn&#39;t available for other
-platforms. I still can&#39;t accept that it&#39;s a good idea to only target Mac, but The Omni Group has been doing it for
-like 27 years and they&#39;re still around, so I guess it works. This fits in with the whole &#39;we make products for a
-specific type of person and if you are that type of person you NEED to use this product&#39; kind of marketing though.
-There are great design tools available on Windows (Adobe products, for example, or Macaw). There are even great tools
-for Linux. Go ahead and laugh at GIMP and Inkscape -- they&#39;ve been around forever and are <em>incredibly</em> powerful. And
-we (Linux users) also have Scribus, Blender, Lightworks, Krita, Radiance, Darktable (which is hands-down the best RAW
-editor I&#39;ve ever seen), and a host of fantastic video tools -- plus, of course, ImageMagick and everything that
-allows.</li>
-<li>Mac OS X isn&#39;t Windows.<ul>
-<li>I should say that Windows <em>is</em> good at some things. I think. Not the OS itself, but having the OS, it&#39;s probably a
-good idea if you&#39;re really into games, or developing specifically for Microsoft products (VB, C#, whatever).</li>
-</ul>
-</li>
-</ul>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-personal">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/words.html">words</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-08">08 May, 2016</time>
-         | tags: <a href="/tag/personal/">personal</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>words i regret the most:</p>
-<blockquote>
-<p>it&#39;s cold. you should go.</p>
-<p>i&#39;ll see you later.</p>
-<p>i should go.</p>
-<p>we&#39;ll catch up later, yeah?</p>
-<p>it&#39;s been a long day, i&#39;m headed home.</p>
-<p>give me a call sometime.</p>
-</blockquote>
-<p>i have a really hard time with losing people.</p>
-<p>and also with losing opportunities.</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
         <a class="newer-posts" href="/">&larr; Newer Posts</a>
-    <span class="page-number">Page 2 of 4</span>
+    <span class="page-number">Page 2 of 5</span>
         <a class="older-posts" href="/page/3/">Older Posts &rarr;</a>
 </nav>
 
