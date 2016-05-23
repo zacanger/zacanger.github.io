@@ -11,6 +11,7 @@
   "main": "serve.js",
   "bin": "./bin/ghost-render",
   "scripts": {
+    "lint": "./alex.sh",
     "start": "forever start -a -l f.log -o o.log -e e.log serve.js",
     "test": "mocha -R spec ./test.js"
   },
@@ -24,6 +25,7 @@
     "blog"
   ],
   "dependencies": {
+    "alex": "^3.0.0",
     "bluebird": "^2.3.2",
     "clone": "^0.1.18",
     "downsize": "0.0.8",
