@@ -66,6 +66,10 @@ node index.js
 
 Installing (on nix): `curl https://get.docker.com/ | sh`
 
+Installing test version: `curl https://test.docker.com | sh`
+
+Installing dev version: `curl https://experimental.docker.com | sh`
+
 Compose is like fig, but from Docker.
 
 ```

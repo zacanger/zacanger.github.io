@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 24 May 2016 19:35:28 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 24 May 2016 19:46:27 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
 <pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
 <span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
 </span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
@@ -31,6 +31,8 @@ then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
 </span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
 </span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
 </span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
+<p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
+<p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
 <p>Compose is like fig, but from Docker.</p>
 <pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
 docker-compose up -<span class="hljs-keyword">d</span>
