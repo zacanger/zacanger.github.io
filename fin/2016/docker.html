@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/docker.html" />
+</head>
+<body class="author-template author-blog post-template tag-docker">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-docker">
+
+
+    <h2 class="post-title"><a href="/2016/docker.html">docker notes</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-05-24">24 May, 2016</time>
+       | tags: <a href="/tag/docker/">docker</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>So this is a <code>Dockerfile</code>:</p>
+<pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
+<span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get install build-essential curl
+</span><span class="hljs-built_in">RUN</span> <span class="bash">curl <a href="https://gist.githubusercontent.com/isaacs/">https://gist.githubusercontent.com/isaacs/</a><span class="hljs-number">579814</span>/raw/<span class="hljs-number">24</span>f5f02b5<span class="hljs-built_in">cd</span>1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
+</span><span class="hljs-built_in">EXPOSE</span> <span class="hljs-number">4010</span> <span class="hljs-comment"># port to expose</span>
+ENTRYPOINT [<span class="hljs-string">&quot;node&quot;</span>] <span class="hljs-comment"># thing to run when we start the image, i think</span></code></pre><p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
+<p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
+<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
+<p>Some other Dockerfile commands (?):</p>
+<pre class="hljs"><code><span class="hljs-built_in">WORKDIR</span> <span class="bash">/<span class="hljs-built_in">set</span>/working/directory/to/here/i/guess
+</span><span class="hljs-built_in">COPY</span> <span class="bash">thisthing /to/here
+</span><span class="hljs-built_in">CMD</span> <span class="bash">[<span class="hljs-string">&quot;array&quot;</span>, <span class="hljs-string">&quot;of&quot;</span>, <span class="hljs-string">&quot;commands&quot;</span>, <span class="hljs-string">&quot;like&quot;</span>, <span class="hljs-string">&quot;npm&quot;</span>, <span class="hljs-string">&quot;start&quot;</span>]
+</span><span class="hljs-built_in">ADD</span> <span class="bash">. . <span class="hljs-comment"># add files/dirs from cwd to image</span></span></code></pre><p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p 80:4010</code> looks obvious.</p>
+<p>Some commands:</p>
+<pre class="hljs"><code>docker ps <span class="hljs-comment"># get container id</span>
+docker logs containerid
+docer exec -<span class="hljs-keyword">it</span> containerid /bin/bash <span class="hljs-comment"># enter the container</span></code></pre><p>It&#39;s totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
+<p>There&#39;s also a <code>node:versionnumber</code> image I think?</p>
+<p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
+then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
+<p>To limit usage: <code>-m &quot;256M&quot; --memory-swap &quot;2G&quot;</code></p>
+<p>An example:</p>
+<pre class="hljs"><code>docker run \
+-<span class="ruby">e <span class="hljs-string">&quot;NODE_ENV=production&quot;</span> \
+</span>-<span class="ruby">u <span class="hljs-string">&quot;app&quot;</span> \
+</span>-<span class="ruby">m <span class="hljs-string">&quot;256M&quot;</span> --memory-swap <span class="hljs-string">&quot;2G&quot;</span> \
+</span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
+</span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
+</span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
+<p>Compose is like fig, but from Docker.</p>
+<pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
+docker-compose up -<span class="hljs-keyword">d</span>
+docker-compose <span class="hljs-keyword">stop</span>, <span class="hljs-keyword">kill</span>, rm</span></code></pre><p>All of these just go off a YAML file, I guess.</p>
+<p>Okay, based on Node&#39;s official docs we can do:</p>
+<pre class="hljs"><code>FROM <span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title">:6</span>.<span class="hljs-number">2.0</span>
+EXPOSE <span class="hljs-number">4010</span>
+
+<span class="hljs-comment"># and then</span>
+
+docker build -t jane-com .
+docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env default)</code></p>
+<p>And if you need systemd in the mix, try something like:</p>
+<pre class="hljs"><code><span class="hljs-comment">;; once docker is installed, there should already be</span>
+<span class="hljs-comment">;; a systemd service for it. so you can just systemctl start docker</span>
+<span class="hljs-comment">;; and systemctl enable docker and that SHOULD be it</span>
+<span class="hljs-title">
+[Unit]</span>
+<span class="hljs-setting">Description=<span class="hljs-value">This is our Node service</span></span>
+<span class="hljs-setting">Requires=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-setting">After=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-title">
+[Service]</span>
+<span class="hljs-setting">Restart=<span class="hljs-value">always</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker kill ournodecontainer</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker rm ournodecontainer</span></span>
+<span class="hljs-setting">ExecStart=<span class="hljs-value">/usr/bin/docker run --name=ournodecontainer ournode/container</span></span>
+<span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
+<span class="hljs-title">
+[Install]</span>
+<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre>
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=docker notes&url=http://blog.zacanger.com/2016/docker.html"
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>
+
