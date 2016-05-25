@@ -119,7 +119,15 @@ docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To kee
 <span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
 <span class="hljs-title">
 [Install]</span>
-<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre>
+<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre><p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don&#39;t really tell you where to look for that):</p>
+<pre class="hljs"><code>docker <span class="hljs-built_in">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
+
+<span class="hljs-comment"># And then you could just:</span>
+
+mkdir ~/foo
+tar -C ~/foo -xvf dockerimg.tar
+
+<span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre>
     </section>
 
     <footer class="post-footer">

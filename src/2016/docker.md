@@ -117,3 +117,16 @@ ExecStop=/usr/bin/docker stop ournodecontainer
 WantedBy=multi-user.target
 ```
 
+**TO GET YOUR IMAGE INTO A TARBALL, LOCALLY** (because they don't really tell you where to look for that):
+
+```shell
+docker export <container-hash> > dockerimg.tar
+
+# And then you could just:
+
+mkdir ~/foo
+tar -C ~/foo -xvf dockerimg.tar
+
+# (or just use atool's aunpack, much easier to remember!)
+```
+
