@@ -130,3 +130,5 @@ tar -C ~/foo -xvf dockerimg.tar
 # (or just use atool's aunpack, much easier to remember!)
 ```
 
+Docker can take a `.dockerignore`, formatted I guess basically the same as gitignore.
+
