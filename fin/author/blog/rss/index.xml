@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 25 May 2016 19:55:58 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 26 May 2016 04:22:06 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[devmountain alumni meetup notes]]></title><description><![CDATA[<p>this was from some reasonably long time ago</p>
+<ul>
+<li><p>Barbara:</p>
+<ul>
+<li>Networking events matter.</li>
+<li>Barbara from DM2 ended up as the only actual webdev at her company</li>
+<li>This kinda means she&#39;s got to be everything from junior dev to PM</li>
+<li>Definitely don&#39;t be self-deprecating about stuff.</li>
+<li>Express interest outright in companies/their products.</li>
+<li>Yeah, sure, don&#39;t talk yourself <em>up</em> too much, but seriously, communicate
+well about what you&#39;ve actually managed to do, because they want to know.</li>
+<li>Know why it is that a company makes the choices it does. Barbara&#39;s
+example: knowing why it was the company she works for uses Angular.</li>
+</ul>
+</li>
+<li><p>Mark:</p>
+<ul>
+<li>Having past projects to talk about <em>really</em> helps. Obviously. Duh.</li>
+<li><a href="https://en.wikipedia.org/wiki/Situation,_Task,_Action,_Result">STAR</a> is a thing,
+and maybe I should actually know what that is, I guess?</li>
+<li>This is basically a totally disheartening little talk. What?</li>
+<li>They asked him to rewrite his whole project in Scala. I&#39;m confused about what
+this guy is actually even talking about. What is this?</li>
+<li>His experience is basically one of being put through hell to get in with
+some SAAS analytics-analytics company (yes, that&#39;s correct, his company
+analyses analytics).</li>
+<li>Actual takeaways: go to meetups, network with people, and talk about <em>why</em>
+you actually want to be doing this.</li>
+<li>Trying out actual interviews (like, with companies where it may or may not
+ever happen, but basically you&#39;re not really counting on that working out
+anyway) can be a lot more helpful than just going over responses on your own
+or in an absolutely-no-pressure kind of situation.</li>
+<li>Oh, wait, okay. As depressing as his little bit was, the actual point of it
+is this: jump through the hoops, because it&#39;ll probably be worth it. Maybe
+the company will pay you for your work on the project (I mean, that&#39;s kinda
+becoming normal now, anyway). Maybe they won&#39;t -- and if they don&#39;t, use that
+project or whatever on your portfolio.</li>
+</ul>
+</li>
+<li><p>Dallin:</p>
+<ul>
+<li>He likes whatever it is that he does now, I guess.</li>
+<li>He has &#39;come to realise more, the many fallacies in his personality.&#39;<ul>
+<li>Yay?</li>
+</ul>
+</li>
+<li>I don&#39;t know that he has any actual advice. Besides, basically, just kinda
+don&#39;t be like him, because he&#39;s more about learning from mistakes than just,
+like, maybe, not trying to make as many.</li>
+<li>He said a lot of other things but I was too busy being really annoyed with
+the damned profiles.devmounta.in project to take any other notes.<ul>
+<li>Seriously, it wouldn&#39;t kill people to check pull requests before making
+huge commits. I give up.</li>
+</ul>
+</li>
+<li>Dallin learned Ruby in a week between getting hired and actually starting work.
+That&#39;s pretty cool. He works mostly in Rails, and I know he does Coffeescript,
+so chances are he learned that on the job (knowing Ruby definitely would&#39;ve
+helped with that).</li>
+</ul>
+</li>
+<li><p>Jeff:</p>
+<ul>
+<li>Don&#39;t make portfolio pieces that aren&#39;t accessible.<ul>
+<li>Example: his Instagram analytics site.</li>
+<li>If this isn&#39;t possible, do a video demo of that project.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/alum-meetup.html</link><guid isPermaLink="true">/2016/alum-meetup.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 25 May 2016 23:39:25 GMT</pubDate></item><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
 <pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
 <span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
 </span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
@@ -1695,15 +1766,4 @@ good idea if you&#39;re really into games, or developing specifically for Micros
 </ul>
 </li>
 </ul>
-]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item><item><title><![CDATA[words]]></title><description><![CDATA[<p>words i regret the most:</p>
-<blockquote>
-<p>it&#39;s cold. you should go.</p>
-<p>i&#39;ll see you later.</p>
-<p>i should go.</p>
-<p>we&#39;ll catch up later, yeah?</p>
-<p>it&#39;s been a long day, i&#39;m headed home.</p>
-<p>give me a call sometime.</p>
-</blockquote>
-<p>i have a really hard time with losing people.</p>
-<p>and also with losing opportunities.</p>
-]]></description><link>/2016/words.html</link><guid isPermaLink="true">/2016/words.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 08 May 2016 17:53:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item></channel></rss>
