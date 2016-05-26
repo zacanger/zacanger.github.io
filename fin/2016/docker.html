@@ -49,7 +49,7 @@
 
     <h2 class="post-title"><a href="/2016/docker.html">docker notes</a></h2>
     <span class="post-meta">
-      <time datetime="2016-05-24">24 May, 2016</time>
+      <time datetime="2016-05-26">26 May, 2016</time>
        | tags: <a href="/tag/docker/">docker</a></span>
 
     <br>
@@ -128,6 +128,10 @@ mkdir ~/foo
 tar -C ~/foo -xvf dockerimg.tar
 
 <span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
+<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
+<p><code>docker save</code> is for <em>images</em>.</p>
 
     </section>
 

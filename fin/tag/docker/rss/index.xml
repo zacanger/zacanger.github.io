@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 26 May 2016 04:22:06 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 26 May 2016 19:04:25 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
 <pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
 <span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
 </span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
@@ -72,4 +72,8 @@ mkdir ~/foo
 tar -C ~/foo -xvf dockerimg.tar
 
 <span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
-]]></description><link>/2016/docker.html</link><guid isPermaLink="true">/2016/docker.html</guid><category><![CDATA[docker]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 24 May 2016 18:00:00 GMT</pubDate></item></channel></rss>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
+<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
+<p><code>docker save</code> is for <em>images</em>.</p>
+]]></description><link>/2016/docker.html</link><guid isPermaLink="true">/2016/docker.html</guid><category><![CDATA[docker]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 26 May 2016 21:00:00 GMT</pubDate></item></channel></rss>

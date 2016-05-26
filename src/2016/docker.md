@@ -1,6 +1,6 @@
 ---
 title: docker notes
-published_at: 2016-05-24 12:00:00
+published_at: 2016-05-26 15:00:00
 author: zacanger
 tags: docker
 ---
@@ -131,4 +131,11 @@ tar -C ~/foo -xvf dockerimg.tar
 ```
 
 Docker can take a `.dockerignore`, formatted I guess basically the same as gitignore.
+
+Doing an `export` piped to an `import` essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn't take up extra space.
+
+`docker export` is for _containers_, currently running.
+
+`docker save` is for _images_.
 
