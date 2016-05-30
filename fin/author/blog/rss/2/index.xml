@@ -1,5 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 01:08:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Forty Reasons To Wonder Why The Fuck You Love Apple]]></title><description><![CDATA[<p>A response to <a href="http://www.networkworld.com/article/3050934/macs/on-its-40th-anniversary-40-things-we-love-about-apple.html">this
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 02:33:52 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[cs notes]]></title><description><![CDATA[<p>notes on a bunch of stuff</p>
+<h2 id="big-o-">Big O:</h2>
+<ul>
+<li>analyzing the efficiency of algorithms (or code).</li>
+<li>One could figure how much time fn will take given n input(s).</li>
+<li>But really more interested in orders of magnitude than precise differences
+(eg 100ms vs 10000ms, not 100ms vs 110ms).</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// this is <code>O(n)</code>. we go through the input(s) once, in a loop.</span>
+<span class="hljs-keyword">const</span> crossAdd = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">let</span>
+      up = input[i]
+    , dn = input[input.length - <span class="hljs-number">1</span> - i]
+    answer.push(up + dn)
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-comment">// also <code>O(n)</code>.</span>
+<span class="hljs-comment">// we assume the worst, here. and the worst is that</span>
+<span class="hljs-comment">// the last element of <code>haystack</code> would match <code>needle</code>.</span>
+<span class="hljs-keyword">const</span> find = (needle, haystack) =&gt; {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; haystack.length; i++) {
+    <span class="hljs-keyword">if</span> (haystack[i] === needle) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>
+    }
+  }
+}
+
+<span class="hljs-comment">// this is <code>O(n2)</code> (imagine that <code>2</code> is superscript, please).</span>
+<span class="hljs-comment">// we have to basically go through an extra loop every time we need</span>
+<span class="hljs-comment">// to go through one loop.. this is bad.</span>
+<span class="hljs-keyword">const</span> makeTuples = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; i &lt; input.length; j++) {
+      answer.push([input[i], input[j]])
+    }
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&#39;stuff&#39;</span> <span class="hljs-comment">// this would be called <code>O(1)</code>, meaning &#39;constant time&#39;</span>
+
+<span class="hljs-comment">// <code>O(log n)</code> is a good. recursion, for example, can be helpful here.</span>
+<span class="hljs-comment">// this is tough to understand without having any real background in math</span>
+<span class="hljs-comment">// i think what this mens is, so, <code>log n</code> means something like, what you&#39;d need</span>
+<span class="hljs-comment">// to raise 2 by (exponentially) to get to <code>n</code>. so if <code>n = 1024</code>, <code>O(n)</code> is like</span>
+<span class="hljs-comment">// saying <code>fn(1024)</code>, and <code>O(log n)</code> would be like saying <code>fn(32)</code>... or something</span>
+<span class="hljs-comment">// ... sort of? whatever, not gonna stress about it too much right this minute.</span></code></pre><h2 id="sorts">Sorts</h2>
+<ul>
+<li>A bubble sort is <code>O(n2)</code>, because there are two loops:<ul>
+<li>One to check if the indices of two elements ought to be swapped, and</li>
+<li>An outer loop to see if the swap took place</li>
+</ul>
+</li>
+<li>An insertion sort is slightly better.<ul>
+<li>It&#39;d be useful if you&#39;re reasonably confident that what you&#39;re sorting is already
+somewhat close to being sorted.</li>
+<li>This could be anywhere from <code>O(n2)</code> to <code>O(n)</code>.</li>
+</ul>
+</li>
+<li>Merge sort is recursive.<ul>
+<li>The way this works is to take your list, split it, and then call itself (the sort)
+on each half.</li>
+<li>Then that repeats for each smaller bit. Once the list gets down to one, that&#39;s returned.</li>
+<li>Then I guess you&#39;d have another merge going on that&#39;s going over each pair (or set?) of
+lists and merging that, and then on back up, until it&#39;s done.</li>
+<li><code>Array.sort()</code> is usually a merge sort.</li>
+<li>A merge sort will also keep equivalent elements at their original indicies.<ul>
+<li>Apparenty we call that being <em>stable</em>.</li>
+</ul>
+</li>
+<li><code>O(n log n)</code>. Wat.</li>
+</ul>
+</li>
+<li>Quicksort is also recursive.<ul>
+<li>It&#39;s the other one some engines use for <code>Array.prototype.sort</code>.</li>
+<li>Take the last el, and call it your pivot.<ul>
+<li>Everything smaller goes to the &#39;left&#39; of that, everything larger to the right.</li>
+<li>Then the same sort is called on each half.</li>
+<li>Each returns, and then the left, pivot, and right are catenated (in that order).</li>
+<li>When you get to a list of one or zero, it just returns.</li>
+</ul>
+</li>
+<li>This is also <code>O(n log n)</code>.<ul>
+<li>Uses less memory than a merge sort (doesn&#39;t have to create new lists all over the place).</li>
+<li>Performs like crap on an already-sorted list, since it&#39;d be starting with a pivot of the
+largest element, already.<ul>
+<li>You can get around that by doing stuff like checking the 0, length -1, and in the middle,
+and swapping if need be to get a better pivot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+<li>Interfaces?<ul>
+<li>Meaning, we just want to consume that data structure.</li>
+<li>We don&#39;t need to know how it works, just that it acts some specific, expected way.</li>
+</ul>
+</li>
+<li>Sets are nice. We have these in ES6 now.<ul>
+<li>Sets will always at least let you:<ul>
+<li><strong>add</strong> items,</li>
+<li>check if the set <strong>contains</strong> them,</li>
+<li><strong>remove</strong> items,</li>
+<li>and call <strong>toList</strong> (or similar; JS sets have <code>.values()</code> but for an Array you&#39;d want to do
+something like <code>const arr = Array.from(someSet)</code> or <code>const arr = [...someSet]</code>.<ul>
+<li>This won&#39;t come back in any particular order -- sets don&#39;t keep track of that.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What I can really see useful about them is that they don&#39;t allow duplicate values.<ul>
+<li>If you do something like <code>const s = new Set ; s.add(&#39;foo&#39;) ; s.add(&#39;foo&#39;)</code> it won&#39;t yell at you,
+but if you then do <code>s.values()</code> you&#39;ll just see <code>SetIterator { &#39;foo&#39; }</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Maps are basically the same sort of concept as a hash/dictionary/JS object, except without all the
+extra bits that JS objects have (methods, inheritance, etc.).<ul>
+<li>Basically just a collection of key-value pairs, except:<ul>
+<li>Really more like a <em>set</em> of keys, with values associated with them, so</li>
+<li>Again, no duplicates!</li>
+<li>You could have duplicate <em>values</em> though. Just not duplicate keys.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stacks are kinda like what they sound like.<ul>
+<li>Only <code>push</code> and <code>pop</code> type of things.</li>
+<li>LIFO</li>
+<li>So if you have a stack that&#39;s like <code>a b c</code> and you push <code>d</code>, then pop, you&#39;ll get <code>d</code> returned
+(and removed from the stack).</li>
+<li>Frequently have a &#39;peek&#39;-like method for looking at the top of the stack without actualy doing
+anything.</li>
+<li>Easiest way to visualize this is probably just thinking about the order of execution of something
+trivial, like a function that calls two functions, one of which maybe calls another funciton or two.</li>
+</ul>
+</li>
+<li>Queues are FIFO.<ul>
+<li>These would have methods like <code>enqueue</code> (push) and <code>dequeue</code> (pop), and probably a &#39;peek&#39; type of
+thing too.</li>
+<li>With priority queues, things that have a higher priority can be sort of rushed through the line,
+basically, and dequeued earlier.</li>
+</ul>
+</li>
+</ul>
+<h3 id="implementations">Implementations</h3>
+<ul>
+<li>An ArrayList (it&#39;s a Java thing, I guess -- JS has arrays, and we don&#39;t really need to think all that
+much about how they actually do their job because we have GC--wait, does Java not? Oh. Huh. Poor them.)
+addresses specific indices like normal, but when you remove items from the array, you have to, like,
+shrink it back down because you have to think about that bit of memory.<ul>
+<li>So I guess, say you do the equivalent of <code>.splice()</code> or something, you have to actually say &#39;okay, get rid of element [2], then move everything from [3] to the end back one, then get rid of the last one, please&#39; or something.</li>
+</ul>
+</li>
+<li>So, I hear a lot about linked lists. Apparently they&#39;re super important because it&#39;s one of like three
+things any CS grad knows. Almost definitely in Java.<ul>
+<li>A linked list is just a list where each element is aware of the next element.</li>
+<li>So basically it&#39;s a list where each item has two properties:<ul>
+<li>Its actual value, and</li>
+<li>A pointer (or reference) to the next node (element)</li>
+</ul>
+</li>
+<li>A linked list&#39;s <code>add</code> and <code>remove</code> would be <code>O(1)</code>, then, because all you need to do is change the
+pointer on the previous node.<ul>
+<li>Its <code>get</code> would be <code>O(n)</code> though because you need to loop through up &#39;til you get to the right node.</li>
+<li>The ArrayList would be the other way around, it&#39;d have a <code>delete</code> and <code>add</code> of <code>O(n)</code> and a <code>get</code> of <code>O(1)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BST!<ul>
+<li>Each node will have either 0, 1, or 2 subtrees.<ul>
+<li>Every el in the left subtree will be less than the value of the node.</li>
+<li>Every el in the right will be greater.</li>
+</ul>
+</li>
+<li>Just have to change pointers, then, to add.<ul>
+<li>Basically just walk down the tree and find the right spot.</li>
+</ul>
+</li>
+<li>Roughly <code>O(log n)</code> on <code>get</code>, <code>add</code>, and <code>delete</code>.<ul>
+<li>Can be as bad as <code>O(n)</code> if a sorted list is stuck in there.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution to some of the problems of a BST? AVL tree.<ul>
+<li>(It&#39;s got some long name, so we&#39;ll stick with the abbreviation.)<ul>
+<li>This is a &#39;self-balancing binary search tree.&#39;</li>
+</ul>
+</li>
+<li>BSTs can get out of whack.</li>
+<li>An AVL tree is always a valid BST (but not always the other way around).</li>
+<li>Adding works the same, except that you check to see if the node is balanced after adding.</li>
+<li>It&#39;s unbalanced if there&#39;s a height difference greater than one on the subtrees.</li>
+<li>Worst case? <code>O(log n)</code>.</li>
+<li>You could end up in a situation where you need a double rotation.<ul>
+<li>Basically, if the opposite child is heavy during rotation.</li>
+<li>So before you do the (probably initially intended) rotation, you do one on the root
+node of that rotation, opposite-wise.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hash tables have constant-time get, delete, and add (if you&#39;re working with a set or a map).<ul>
+<li>So, you&#39;ve got a key, and you hash that (MD5 or whatever).<ul>
+<li>Now we&#39;ve got a key that points to some addressable space.</li>
+<li>This isn&#39;t really a thing in JS.</li>
+</ul>
+</li>
+<li>This is neat in other languages because you can just work against that space, without
+needing to do the (logic) work of hunting things down, kinda, basically.</li>
+<li>No concept of order.</li>
+<li>Uses a fair bit of memory.</li>
+<li>Needs an idempotent hash (that is, a super-pure function -- exact same output, provided the same
+input, every single time.).</li>
+<li>Hash also has to be very well distributed.</li>
+<li>And fast.</li>
+<li>Almost probably definitely maybe need to use <code>%</code> to get your hash down to a manageable number you can
+actually use (smaller than the largest index of your array).</li>
+</ul>
+</li>
+</ul>
+<h2 id="some-fp-basics">Some FP Basics</h2>
+<ul>
+<li>Purity<ul>
+<li>Don&#39;t you dare touch my state!</li>
+</ul>
+</li>
+<li>HOF</li>
+<li>Vector (or array) programming is especially fp-friendly.<ul>
+<li>It makes sense to expect that you can chain functions together.</li>
+<li>This ends up being much, <em>much</em> more declarative.</li>
+<li>Just think about <code>map</code>, <code>reduce</code>, and <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/cs-notes.html</link><guid isPermaLink="true">/2016/cs-notes.html</guid><category><![CDATA[cs]]></category><category><![CDATA[algorithms]]></category><category><![CDATA[datastructures]]></category><category><![CDATA[sort]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 12 May 2016 15:21:24 GMT</pubDate></item><item><title><![CDATA[Forty Reasons To Wonder Why The Fuck You Love Apple]]></title><description><![CDATA[<p>A response to <a href="http://www.networkworld.com/article/3050934/macs/on-its-40th-anniversary-40-things-we-love-about-apple.html">this
 absurdity</a>.</p>
 <p>These are literally just a summary of each of those slides.</p>
 <ul>
@@ -84,7 +332,7 @@ good idea if you&#39;re really into games, or developing specifically for Micros
 </ul>
 </li>
 </ul>
-]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item><item><title><![CDATA[words]]></title><description><![CDATA[<p>words i regret the most:</p>
+]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 16:14:00 GMT</pubDate></item><item><title><![CDATA[words]]></title><description><![CDATA[<p>words i regret the most:</p>
 <blockquote>
 <p>it&#39;s cold. you should go.</p>
 <p>i&#39;ll see you later.</p>
@@ -95,7 +343,7 @@ good idea if you&#39;re really into games, or developing specifically for Micros
 </blockquote>
 <p>i have a really hard time with losing people.</p>
 <p>and also with losing opportunities.</p>
-]]></description><link>/2016/words.html</link><guid isPermaLink="true">/2016/words.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 08 May 2016 17:53:00 GMT</pubDate></item><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
+]]></description><link>/2016/words.html</link><guid isPermaLink="true">/2016/words.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 08 May 2016 15:53:00 GMT</pubDate></item><item><title><![CDATA[fizzbuzz]]></title><description><![CDATA[<h1 id="fizzbuzz-">fizzbuzz!</h1>
 <p>i like to collect fizzbuzz solutions. that&#39;s a little weird, i guess. but fun.</p>
 <p>fizzbuzz is kind of the stereotypical pointless toy problem/whiteboarding problem.</p>
 <p>if you&#39;re not familiar, here&#39;s the standard definition of the problem:</p>
@@ -1053,7 +1301,7 @@ console.log(...fizzbuzz)
       <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>100<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>]]></description><link>/2016/fizzbuzz.html</link><guid isPermaLink="true">/2016/fizzbuzz.html</guid><category><![CDATA[js]]></category><category><![CDATA[fizzbuzz]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 07 May 2016 18:38:00 GMT</pubDate></item><item><title><![CDATA[bootcamp analogies]]></title><description><![CDATA[<p>bootcamps are like a three-month crash-course on building features and creating value
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>]]></description><link>/2016/fizzbuzz.html</link><guid isPermaLink="true">/2016/fizzbuzz.html</guid><category><![CDATA[js]]></category><category><![CDATA[fizzbuzz]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 07 May 2016 16:38:00 GMT</pubDate></item><item><title><![CDATA[bootcamp analogies]]></title><description><![CDATA[<p>bootcamps are like a three-month crash-course on building features and creating value
 for yourself and your future employer very quickly. and also on learning. as in,
 learning to learn stuff on your own.</p>
 <p>mentoring at a bootcamp is kind of a three-month course on talking/people skills.
@@ -1067,7 +1315,7 @@ everyone is that same nerd so it&#39;s kinda more like an encouraging wave than 
 told you i&#39;d amount to something&quot; kind of wave.</p>
 <p>just some thoughts i had while trying to avoid having my skin ripped off by the
 pressure-washer-like shower that i just took. i need to be better at plumbing.</p>
-]]></description><link>/2016/bootcamp-analogies.html</link><guid isPermaLink="true">/2016/bootcamp-analogies.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 07 May 2016 17:20:00 GMT</pubDate></item><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
+]]></description><link>/2016/bootcamp-analogies.html</link><guid isPermaLink="true">/2016/bootcamp-analogies.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 07 May 2016 15:20:00 GMT</pubDate></item><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
 <span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> fn   = <span class="hljs-keyword">this</span>
     , args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)
@@ -1430,7 +1678,7 @@ squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span
     }
   }
 
-}())</code></pre>]]></description><link>/2016/currying-and-partial-application.html</link><guid isPermaLink="true">/2016/currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
+}())</code></pre>]]></description><link>/2016/currying-and-partial-application.html</link><guid isPermaLink="true">/2016/currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
 <p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
 <p>i don&#39;t dislike jsx, i got over that</p>
 <p>pretty sure ryan did, too</p>
@@ -1579,7 +1827,7 @@ let someEl = {
 , props : {}
 , ref   : <span class="hljs-literal">null</span>
 , key   : <span class="hljs-literal">null</span>
-}</code></pre>]]></description><link>/2016/better-jsx.html</link><guid isPermaLink="true">/2016/better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item><item><title><![CDATA[More DevMountain Notes]]></title><description><![CDATA[<p>This is a bunch more notes from my time going through the course at DevMountain.</p>
+}</code></pre>]]></description><link>/2016/better-jsx.html</link><guid isPermaLink="true">/2016/better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:00:00 GMT</pubDate></item><item><title><![CDATA[More DevMountain Notes]]></title><description><![CDATA[<p>This is a bunch more notes from my time going through the course at DevMountain.</p>
 <p>These notes are specifically from the first three weeks. They&#39;re a mess.</p>
 <p>Don&#39;t take anything too seriously. I probably didn&#39;t know what I was talking about, a lot of the time.</p>
 <hr>
@@ -2630,7 +2878,7 @@ $.ajax(ajaxParams).then(<span class="hljs-function"><span class="hljs-keyword">f
 <span class="hljs-comment">// cyclomatic complexity</span>
 <span class="hljs-comment">// more things you&#39;re doing</span>
 <span class="hljs-comment">// more bugs</span>
-<span class="hljs-comment">//</span></code></pre>]]></description><link>/2016/notes-from-devmountain-02.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:35:00 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
+<span class="hljs-comment">//</span></code></pre>]]></description><link>/2016/notes-from-devmountain-02.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-02.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 17:35:00 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
 <p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
 <p>Whatever.</p>
 <p>Don&#39;t take it all so seriously. Some of it could be really helpful. This is about half of my collected
@@ -2851,7 +3099,7 @@ maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev 
 <hr>
 <p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
 <p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
-]]></description><link>/2016/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:30:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
+]]></description><link>/2016/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 17:30:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
 <ul>
 <li>The actual promise is immutable (nothing can change that)</li>
 <li>There&#39;s a guarantee that we&#39;ll get something back</li>
@@ -2936,7 +3184,7 @@ fulProm
 one()
 .then(res =&gt; Promise.all([res, two(res)]))
   .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
-  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>/2016/promises.html</link><guid isPermaLink="true">/2016/promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
+  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>/2016/promises.html</link><guid isPermaLink="true">/2016/promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 17:00:00 GMT</pubDate></item><item><title><![CDATA[Creating A React Component]]></title><description><![CDATA[<p>Okay so basically React changes like every two weeks and it&#39;s really tough to know which way to do which thing.</p>
 <p>So. Which way should you create a freaking component? These notes are more for myself than anyone else.</p>
 <p>Use a class if you need <code>this</code> or lifecycle methods. (An ES6 class. <code>class foo extends React.Component</code>.)</p>
 <p>So, <code>this</code> actually refers to that <code>ReactComponent</code>.</p>
@@ -2946,10 +3194,10 @@ one()
 <p>Don&#39;t use <code>React.createClass</code>, basically ever. Use <code>React.Component</code> instead.</p>
 <p>So basically, use a function if you possibly can. Otherwise use <code>class bar extends React.Component</code>.</p>
 <p>That was easy.</p>
-]]></description><link>/2016/react-which.html</link><guid isPermaLink="true">/2016/react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:42:00 GMT</pubDate></item><item><title><![CDATA[This is a test]]></title><description><![CDATA[<h1 id="this-is-a-test-">This is a test!</h1>
+]]></description><link>/2016/react-which.html</link><guid isPermaLink="true">/2016/react-which.html</guid><category><![CDATA[react]]></category><category><![CDATA[es6]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 16:42:00 GMT</pubDate></item><item><title><![CDATA[This is a test]]></title><description><![CDATA[<h1 id="this-is-a-test-">This is a test!</h1>
 <p>I&#39;m testing out a little thing called <a href="https://github.com/mixu/ghost-render">ghost-render</a>.</p>
 <p>I&#39;ve been needing a new blog engine. Maybe this one will do.</p>
-]]></description><link>/2016/test.html</link><guid isPermaLink="true">/2016/test.html</guid><category><![CDATA[test]]></category><category><![CDATA[blogging]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[notes from mentoring at devmountain]]></title><description><![CDATA[<h2 id="webinar-notes">webinar notes</h2>
+]]></description><link>/2016/test.html</link><guid isPermaLink="true">/2016/test.html</guid><category><![CDATA[test]]></category><category><![CDATA[blogging]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 16:39:25 GMT</pubDate></item><item><title><![CDATA[notes from mentoring at devmountain]]></title><description><![CDATA[<h2 id="webinar-notes">webinar notes</h2>
 <ul>
 <li><code>%</code> is not <em>exactly</em> modulo, but rather remainder. Eg <code>9 % 3 // 0</code> , or <code>10 % 3 // 1</code></li>
 <li><code>var++ === var=var+1</code></li>
@@ -3084,4 +3332,4 @@ selector to find the elements, and then do things to them, in Angular you write 
 <code>&lt;button ng-click=&quot;stuff()&quot;&gt;</code>), or simply write your own elements, and plug them in.</p>
 <p>Angular&#39;s super opinionated about things. If you want to use unobtrusive JS, don&#39;t use Angular. Angular&#39;s position is
 that it&#39;s an HTML extension; it&#39;s template-driven, declarative, and compiled.</p>
-]]></description><link>/2016/notes-from-mentoring-at-demvountain.html</link><guid isPermaLink="true">/2016/notes-from-mentoring-at-demvountain.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[mentoring]]></category><category><![CDATA[angular]]></category><category><![CDATA[mongo]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 May 2015 22:35:36 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/notes-from-mentoring-at-demvountain.html</link><guid isPermaLink="true">/2016/notes-from-mentoring-at-demvountain.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[mentoring]]></category><category><![CDATA[angular]]></category><category><![CDATA[mongo]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 May 2015 20:35:36 GMT</pubDate></item></channel></rss>

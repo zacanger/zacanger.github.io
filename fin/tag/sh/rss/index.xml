@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 01:08:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 02:33:52 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
 <ul>
 <li>debugging a bash script: use the <code>-x</code> flag</li>
 <li>semicolons divide commands that are on the same line</li>
@@ -17,4 +17,4 @@ constant, and array variables.<ul>
 <li>to get started with everything: <code>man 1 intro</code></li>
 <li>also <code>git help everyday</code></li>
 </ul>
-]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 04:24:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 02:24:00 GMT</pubDate></item></channel></rss>

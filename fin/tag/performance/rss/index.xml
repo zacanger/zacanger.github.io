@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 01:08:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[React Performance]]></title><description><![CDATA[<ul>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 02:33:52 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[React Performance]]></title><description><![CDATA[<ul>
 <li>Take a baseline measurement.<ul>
 <li>There&#39;s no way to measure improvements without something to measure against.</li>
 <li>Chrome&#39;s Timeline thing works well for this.</li>
@@ -39,4 +39,4 @@
 <li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
 <li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
 </ul>
-]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:06:37 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 20:06:37 GMT</pubDate></item></channel></rss>
