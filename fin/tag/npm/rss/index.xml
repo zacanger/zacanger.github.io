@@ -87,22 +87,4 @@ dotfiles nearly as extensive as those, but you don&#39;t need to -- i&#39;m a li
 of a hoarder. disk space is cheap. whatever.</p>
 <h2 id="stop-reading-blogs">stop reading blogs</h2>
 <p>k.</p>
-]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 03:55:55 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
-<ul>
-<li>debugging a bash script: use the <code>-x</code> flag</li>
-<li>semicolons divide commands that are on the same line</li>
-<li>newlines are much more readable</li>
-<li>bash variables: there are local, global, string, integer,
-constant, and array variables.<ul>
-<li>global = env variables.</li>
-<li>local are available only in current shell.</li>
-<li>also predefined vars, like id (try <code>echo $UID</code>).</li>
-<li>capitalised by default. case-sensitive. local ones</li>
-<li>are sometimes done in lowercase, though. can contain</li>
-<li>integers, but can&#39;t <em>start</em> with integers.</li>
-</ul>
-</li>
-<li>to get started with everything: <code>man 1 intro</code></li>
-<li>also <code>git help everyday</code></li>
-</ul>
-]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 02:24:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 03:55:55 GMT</pubDate></item></channel></rss>

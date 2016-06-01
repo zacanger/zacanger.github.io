@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 30 May 2016 02:33:52 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bookmarklets]]></title><description><![CDATA[<p>I want to take one short blogs post just to share my bookmarklets.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 01 Jun 2016 03:43:33 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[how to be slightly more productive]]></title><description><![CDATA[<p>one of my pet peeves is seeing people who make software for a living doing
+things in incredibly slow/unproductive ways. i know everyone has their own
+ways of being awesome, and most of those ways are much more awesome ways than
+the ways in which i am okay at things, but still, there are better ways, and
+most developers i&#39;ve seen just have <em>no</em> idea how much time they waste.</p>
+<p>so here are just some tiny little tips. none of these are big news, none
+are esoteric, none are risky, all require a little bit of work but make things
+a lot faster in a very short period of time.</p>
+<h2 id="bash-things">bash things</h2>
+<p>you can use zsh, and that&#39;s a thing, and it doesn&#39;t suck, okay, but it pays
+to be good at bash. bash is everywhere. it&#39;s the default shell on just about
+every system. zsh gives you nice things, but you can get all the same nice
+things in bash with just a tiny bit of work.</p>
+<p>the number one most useful thing to do with bash is aliases, i think.
+it&#39;s generally recommended that you use functions if you can, but there&#39;s
+really no harm in using aliases. try these out, for example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">alias</span> <span class="hljs-title">ns</span>=<span class="hljs-comment">&#39;npm start&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nt</span>=<span class="hljs-comment">&#39;npm test&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nis</span>=<span class="hljs-comment">&#39;npm i -S&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nid</span>=<span class="hljs-comment">&#39;npm i -D&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">bn</span>=<span class="hljs-comment">&#39;babel-node&#39;</span></code></pre><p>throw these at the bottom of your <code>~/.bashrc</code> (or <code>~/.bash_profile</code> on a mac).</p>
+<h2 id="npm">npm</h2>
+<p>for that matter, there&#39;s the aliases up there... npm has a bunch built-in.
+for example, you never need to type out <code>npm install --save-dev</code>
+-- just do <code>npm i -S</code>.</p>
+<p>npm gives you a million things. just read the docs sometime. or the help screens.</p>
+<h2 id="the-terminal">the terminal</h2>
+<p>use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow
+(or option-arrow on mac) to get around between words. use these things.</p>
+<p>set your prompt up to tell you nice stuff. i <em>highly</em> recommend using liquidprompt
+(<code>apt-get install -y liquidprompt</code> or <code>brew install liquidprompt</code>), but you can
+also do all these things manually (check
+<a href="https://github.com/zacanger/z/blob/master/.bashrc#L127">my dotfiles</a> for examples).</p>
+<p>pick a bookmarking system and stick with it. <a href="https://github.com/wting/autojump">there</a>
+<a href="https://github.com/rupa/z">are</a> a <a href="https://github.com/shyiko/commacd">bunch</a> of them
+out there (many many more, just search). or export aliases to move to places. or you
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/g.sh">can</a>
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/ga.sh">use</a>
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/gt.sh">mine</a> if you&#39;d like.</p>
+<h2 id="markdown">markdown</h2>
+<p>if you don&#39;t use it, use it. if you still click around in microsoft word or google docs,
+goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
+lightweight-markup authoring format out there. it&#39;s the only way to write, really.</p>
+<h2 id="your-editor">your editor</h2>
+<p>i don&#39;t care what your editor is. i really don&#39;t. i know just enough about lisp
+to not even hate emacs users. i do dislike VS Code, but mostly because of the
+idiotic and transparent licensing scheme. and also because it&#39;s not a very
+good editor. but the built-in debugger isn&#39;t bad (you can get all the same things
+from other tools, but it is better than the ones that you can get for most other
+editors for node).</p>
+<p>whatever your editor is, take a week to learn it really well. in my case, finally
+just spending some time getting <em>fluid</em> with vim has made a huge difference.
+i no longer have any other editors installed (and i tried a lot of them! i loved
+<a href="http://lighttable.com/">LightTable</a> and <a href="http://foicica.com/textadept/">Textadept</a>
+especially, and also really liked atom (but it&#39;s <em>slow</em>); brackets was a waste of
+my time, sublime was okay but nonfree and there&#39;s textadept so whatever, see above
+for notes on VS code; actual IDEs i tent to avoid because they&#39;re just overwhelmingly
+large and in the way all the time, to me). that doesn&#39;t mean vim&#39;s the <em>best</em> editor
+(though it totally is), it just means it&#39;s the one i decided i wanted use, and it&#39;s
+the absolute best tool that i have now because i&#39;m pretty quick with it.</p>
+<p>even if you use vs code or brackets (i&#39;d advise you not to do so, but it&#39;s up to
+you...), just take the time to learn your editor well. learn its plugin/extension/
+whatever system, find or write a theme that makes things really easy on you, check
+out <a href="https://medium.com/@evnbr/coding-in-color-3a6db2743a1e#.5rffb0gto">semantic highlighting</a>
+and give that a shot for a week, find a way to open a terminal in your editor
+(because you DO need that) if it&#39;s a graphical editor, learn keybinds, learn
+configs, and make it work for you. that sounds like a lot of work put into something
+that&#39;s not directly <strong>work</strong>, but it&#39;s work invested in yourself being better
+at using your tools.</p>
+<p>laurie voss, the cto of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a>
+that one of the most important things you can do is be good at your editor.
+he&#39;s obviously right. he&#39;s laurie voss.</p>
+<h2 id="use-git">use git</h2>
+<p>this should be obvious. but, i mean, really use it. use it enough that you
+learn how to use a gitconfig, templates, etc., and try out lots of different
+extensions and wrappers for git (like hub, legit, ghcli, etc.). do stuff with
+git. get really comfortable with git. it&#39;s important. other version control also
+matters sometimes in some businesses but really really really spend some time
+learning git.</p>
+<h2 id="configs">configs</h2>
+<p>(<a href="https://github.com/zacanger/z">like these</a>)</p>
+<p>organize yours. store them somewhere, like in a repo. because when your current
+computer dies (and it will), it&#39;ll take you weeks to get things feeling decent
+if you have to recreate everything manually. granted, most people don&#39;t have
+dotfiles nearly as extensive as those, but you don&#39;t need to -- i&#39;m a little bit
+of a hoarder. disk space is cheap. whatever.</p>
+<h2 id="stop-reading-blogs">stop reading blogs</h2>
+<p>k.</p>
+]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 03:55:55 GMT</pubDate></item><item><title><![CDATA[bookmarklets]]></title><description><![CDATA[<p>I want to take one short blogs post just to share my bookmarklets.</p>
 <p>If you don&#39;t know what that means, don&#39;t worry.</p>
 <p>There once was a time when browser extensions/add-ons didn&#39;t exist, and a
 slightly later time when they did exist but still really sucked. And, I mean,
@@ -1726,95 +1814,4 @@ take a minute of thinking to even understand. instead, why not just <code>caseSe
 <li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
 <li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
 </ul>
-]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 20:06:37 GMT</pubDate></item><item><title><![CDATA[fetch]]></title><description><![CDATA[<p>fetch is a thing</p>
-<p>uses promises</p>
-<p>here&#39;s doing stuff with xhr:</p>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest()
-xhr.open(<span class="hljs-string">&#39;GET&#39;</span>, url)
-xhr.responseType = <span class="hljs-string">&#39;json&#39;</span>
-
-xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-comment">// do stuff with xhr.response</span>
-}
-
-xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#39;crap&#39;</span>)
-}
-
-xhr.send()</code></pre><p>and the equivalent with fetch:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(url)</span></span>
-.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(res =&gt; res.json()</span></span>)
-.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(data =&gt; /<em> do stuff with data </em>/)</span></span>
-.<span class="hljs-function"><span class="hljs-title">catch</span><span class="hljs-params">(e =&gt; console.error(e)</span></span>)</code></pre><p>granted i&#39;m also using es2015 in the fetch example, which makes it even nicer-looking,
-but whatever.</p>
-<p>using esnext async functions:</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword">async</span><span class="hljs-list">()</span> =&gt; <span class="hljs-collection">{
-  try <span class="hljs-collection">{
-    let res = await fetch<span class="hljs-list">(<span class="hljs-keyword">url</span>)</span>
-    let data = awat res.json<span class="hljs-list">()</span>
-    // do stuff with data
-  }</span> catch<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span> <span class="hljs-collection">{
-    console.error<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span>
-  }</span>
-}</span>)</span><span class="hljs-list">()</span></code></pre><p>xhr is kinda gross. i mean, everyone&#39;s used to it, and it basically works, but... yech.</p>
-<p>fetch is basically complete i think? i mean, evidently it&#39;s even in safari&#39;s dev preview version.</p>
-<p>if it&#39;s made it to safari, it&#39;s probably safe to use.</p>
-<p>fetch keeps req and res separate (they&#39;re constructors).</p>
-<p>request.context lets you tell where the req actually came from (eg link vs loaded asset vs whatever).</p>
-<p>you can throw a <code>no-cors</code> in your request so stuff doesn&#39;t fail (like it would with XHR) without CORS headers.</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(<span class="hljs-string">&#39;//foo.com&#39;</span>, {mode : <span class="hljs-string">&#39;no-cors&#39;</span>})</span></span>.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(response =&gt; console.log(response.type)</span></span>) <span class="hljs-comment">// opaque</span></code></pre><p>can&#39;t actually read the content of response here, but it could be used by something else (add an event listener
-for when it comes back, for example).</p>
-<p>other modes: <code>same-origin</code>, <code>cors</code>, and <code>cors-with-forced-preflight</code>.</p>
-<p>you could also cache that stuff, which is nice.</p>
-<p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access
-it sort of, with <code>responseText</code> while it&#39;s still going on, but it&#39;s going to put it all in mem anyway.</p>
-<pre class="hljs"><code>fetch(url)
-.then(response =&gt; {
-  <span class="hljs-keyword">let</span> foo = &#39;some <span class="hljs-type">string</span>, <span class="hljs-keyword">for</span> example&#39;
-  <span class="hljs-keyword">let</span> reader = response.body.getReader()
-  reader.read().then(<span class="hljs-literal">result</span>) =&gt; {
-    // okay there&#39;s actually a little more to this, but the idea <span class="hljs-keyword">is</span>,
-    // we can have an <span class="hljs-keyword">if</span> <span class="hljs-keyword">in</span> here to check <span class="hljs-keyword">if</span> this bit <span class="hljs-keyword">of</span> the stream
-    // <span class="hljs-keyword">is</span> equal to the thing we want. <span class="hljs-keyword">and</span> then, say
-    reader.cancel(&#39;i guess we\&#39;re done, here&#39;)
-  }
-})
-.then(<span class="hljs-literal">result</span> =&gt; /<em> <span class="hljs-keyword">do</span> stuff </em>/)
-.catch(e =&gt; console.error(e))</code></pre><p><code>response.body</code> is a <code>ReadableStream</code>.</p>
-<p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate
-content on the go, using that, with fetch. You can feed that to the view as you get it.</p>
-<p>I guess fetch didn&#39;t have streams when it first started to be implemented, so they have some
-other readers they stuck in there. So, <code>response</code> (or <code>request</code> actually, too), then</p>
-<ul>
-<li><code>.arrayBuffer()</code></li>
-<li><code>.blob()</code></li>
-<li><code>.formData()</code></li>
-<li><code>.json()</code></li>
-<li>and <code>.text()</code></li>
-</ul>
-<p>Once they&#39;ve been called, you can&#39;t call another one on that same stream (they &#39;drain&#39; the stream). What we could
-do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respone.clone().json().catch() =&gt; response.text())</code>.</p>
-<p>You can check <code>response.headers</code> to decide what you need to do with it.</p>
-<pre class="hljs"><code>fetch(url)
-.<span class="hljs-keyword">then</span>(response =&gt; {
-  <span class="hljs-keyword">if</span> (response.headers.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#39;Content-Type&#39;</span>) === <span class="hljs-string">&#39;application/json&#39;</span>) {
-    <span class="hljs-constant">return</span> response.json()
-  }
-  <span class="hljs-constant">return</span> response.<span class="hljs-keyword">text</span>()
-})</code></pre><p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better
-control over cache, and same-origin requests without credentials (no credentials is fetch&#39;s default).</p>
-<p>You <em>can&#39;t</em> abort a request with fetch before at least the headers come back (yet).</p>
-<p>You can&#39;t track progress (yet), but you can do stuff to do that on your own (by working with <code>Content-Length</code>).</p>
-<p>Sync is in the spec, but doesn&#39;t look like anyone will implement that in the API.</p>
-<p>Oh right, thre are other verbs here. Or just POST?</p>
-<pre class="hljs"><code>fetch(url, {
-  <span class="hljs-keyword">method</span>  : &#39;post&#39;
-, headers : {&#39;<span class="hljs-type">Content</span>-<span class="hljs-type">Type</span>&#39; : &#39;application/x-www-form-urlencoded; charset=<span class="hljs-type">UTF</span>-<span class="hljs-number">8</span>&#39;}
-, body    : &#39;stuff=things&amp;hello=world&#39;
-})
-.then(/<em> etc. </em>/)</code></pre><p>And credentials (like cookies, for example): <code>fetch(url, {credentials : &#39;include&#39;})</code></p>
-<p>There&#39;s a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch
-instead of XHR. Looks pretty nice.</p>
-<p>There are a bunch of other fetch implementations. But it&#39;s already basically in browsers, so Node can&#39;t be
-<em>too</em> far behind... right?</p>
-]]></description><link>/2016/fetch.html</link><guid isPermaLink="true">/2016/fetch.html</guid><category><![CDATA[js]]></category><category><![CDATA[fetch]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 12 May 2016 15:23:31 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 20:06:37 GMT</pubDate></item></channel></rss>
