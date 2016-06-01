@@ -47,6 +47,55 @@
 <div id="content-main">
 
 
+  <article class="post tag-mac">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/parallels-weirdness.html">fixing parallels weirdness</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-22">22 May, 2016</time>
+         | tags: <a href="/tag/mac/">mac</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>at work, parallels kept crashing. what led to this:</p>
+<ul>
+<li>took a system update on the mac from the app store</li>
+<li>after rebooting, went over to parallels, which runs windows 10</li>
+<li>that needed an update too apparently, so took that</li>
+<li>after rebooting the virtual windows, didn&#39;t think about it for a while</li>
+<li>went back to it, went to un-suspend or whatever you&#39;d call it, and it crashed</li>
+<li>happened several times, tried force quitting, killing all related processes, rebooting the mac, no luck</li>
+<li>the fix on the kb was totally unrelated. running prd_client_app manually gave the following:</li>
+</ul>
+<pre class="hljs"><code>May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">33</span>  pdfm-bootstrap[<span class="hljs-number">84883</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84847</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span>
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $ .<span class="hljs-regexp">/./</span>prl_client_app
+objc[<span class="hljs-number">84919</span>]: Class YRKSpinningProgressIndicator is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/PDControlCenter.framework/</span>Versions<span class="hljs-regexp">/A/</span>PDControlCenter and <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks/libPrlGui<span class="hljs-number">.2</span>.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class DeallocHook is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class MethodInfo is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class PreviewItem is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class QLResponder is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class SSBaseDelegate is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84957</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Is executed with params <span class="hljs-string">&#39;start&#39;</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84969</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Loading pids from <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84970</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: prl_event_tap already started with pid <span class="hljs-number">84870</span> and alive
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84971</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Starting prl_naptd...
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84977</span>] &lt;Warning&gt;: agent[<span class="hljs-number">84958</span>]: prl_naptd not started
+<span class="hljs-string">error:</span> failed to execute <span class="hljs-string">subprocess:</span> -<span class="hljs-number">2</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84980</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Dump pids to <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84981</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span></code></pre><p>most of that is probably irrelevant, apparently that class is implemented in both thingy
+is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
+anyway, the thing that actually ended up working was:</p>
+<p><code>sudo &quot;/Applications/Parallels Desktop.app/Contents/MacOS/inittool&quot; init -b &quot;/Applications/Parallels Desktop.app&quot;</code></p>
+<p>note: run that as sudo from your normal user, don&#39;t <code>sudo su</code> and then do it.</p>
+<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
+if anyone else can&#39;t get anything to work, maybe that&#39;ll help.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-devmtn tag-electron tag-nwjs tag-markdown tag-angular">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/personal-project.html">notes from my personal project at devmountain</a></h2>
@@ -621,35 +670,9 @@ const <span class="hljs-built_in">sin</span> = <span class="hljs-built_in">proce
   </article>
 
 
-  <article class="post tag-api tag-design">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/api-design-notes.html">api design notes</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-14">14 May, 2016</time>
-         | tags: <a href="/tag/api/">api</a>, <a href="/tag/design/">design</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>think in terms of positives, not negatives</p>
-<p>for example &#39;ishidden(true)&#39; is confusing.
-instead to &#39;isvisible&#39;.</p>
-<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
-<p>instead of this, think in terms of enabled/showing</p>
-<p>this is both for myself (because i get confused) and for other people</p>
-<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
-<p>example from ariya hidayat&#39;s blog:
-if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
-take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
         <a class="newer-posts" href="/author/blog/page/2/">&larr; Newer Posts</a>
-    <span class="page-number">Page 3 of 6</span>
+    <span class="page-number">Page 3 of 7</span>
         <a class="older-posts" href="/author/blog/page/4/">Older Posts &rarr;</a>
 </nav>
 

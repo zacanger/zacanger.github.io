@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 01 Jun 2016 04:31:46 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 01 Jun 2016 09:26:22 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
 <p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
 because really you&#39;re just talking about a different target (jvm vs js vm), rite?
 but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
@@ -79,4 +79,4 @@ hugs all around, had a beer, unpacked, showered maybe, gone to bed.
 i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
 another day of work, sweaty and gross, eurgh.</p>
 <p>on the other hand i met some nice people suck in this zombie airport, so.</p>
-]]></description><link>/2016/clojure.html</link><guid isPermaLink="true">/2016/clojure.html</guid><category><![CDATA[clj]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 05:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/clojure.html</link><guid isPermaLink="true">/2016/clojure.html</guid><category><![CDATA[clj]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 06:00:00 GMT</pubDate></item></channel></rss>
