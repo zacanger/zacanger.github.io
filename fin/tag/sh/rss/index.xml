@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 01 Jun 2016 09:26:22 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[how to be slightly more productive]]></title><description><![CDATA[<p>one of my pet peeves is seeing people who make software for a living doing
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 03 Jun 2016 20:17:04 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[how to be slightly more productive]]></title><description><![CDATA[<p>one of my pet peeves is seeing people who make software for a living doing
 things in incredibly slow/unproductive ways. i know everyone has their own
 ways of being awesome, and most of those ways are much more awesome ways than
 the ways in which i am okay at things, but still, there are better ways, and
@@ -87,7 +87,7 @@ dotfiles nearly as extensive as those, but you don&#39;t need to -- i&#39;m a li
 of a hoarder. disk space is cheap. whatever.</p>
 <h2 id="stop-reading-blogs">stop reading blogs</h2>
 <p>k.</p>
-]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 04:55:55 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 05:55:55 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
 <ul>
 <li>debugging a bash script: use the <code>-x</code> flag</li>
 <li>semicolons divide commands that are on the same line</li>
@@ -105,4 +105,4 @@ constant, and array variables.<ul>
 <li>to get started with everything: <code>man 1 intro</code></li>
 <li>also <code>git help everyday</code></li>
 </ul>
-]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 03:24:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 04:24:00 GMT</pubDate></item></channel></rss>
