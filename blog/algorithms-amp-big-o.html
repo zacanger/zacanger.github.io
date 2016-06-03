@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>Algorithms &amp; Big-O</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='Algorithms &amp; Big-O' />
+<meta name='twitter:description' content=" Algorithms and Problem Solving in One Hour or Less.  Why use algorithms? Because they're a structured set of rules to use for calculations of any type, duh. They let you loop over arrays, etc., in a more functional and portable manner.  Common uses:" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="algorithms-amp-big-o.html">
+Algorithms &amp; Big-O
+</a></h3>
+<div class="subtitle">January 14, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<h2>Algorithms and Problem Solving in One Hour or Less.</h2>
+
+<p>Why use algorithms? Because they're a structured set of rules to use for calculations of any type, duh. They let you loop over arrays, etc., in a more functional and portable manner.</p>
+
+<p>Common uses: sorting, searching, solving.</p>
+
+<p>Implementations: recursive, logical (which is exact opposite of recursive), prl/distr/etc
+* binary starts with a sorted list
+* EVERY recursive function should start, straight away, with a CYA
+  * eg, if (searchArray.length = 0) return exit status 1
+  * because infinite loops are dumb</p>
+
+<hr />
+
+<p><a href="https://github.com/addyosmani/recursive-binarysearch">recursive binary search:</a></p>
+
+<pre><code>function recBin(array, target, left, right){  
+  if (left &gt; right){  
+  return -1  
+  }  
+  var middle = Math.floor((right + left) / 2)  
+  if (array[middle] === target){  
+    return middle  
+  } else if (array[middle] &gt; key){  
+    return recBin(array, target, left, middle -1)  
+  } else {  
+    return recBin(array, target,  middle + 1, right)  
+  }  
+}  
+// we can make this a node module  
+// then we can be all like  
+// var findThat = require('req-bin')  
+// findThat([7, 15, 98, 234, 4587, 883489384, 34783473443], 4587)  
+module.exports = function(array, target){  
+  return recBin(array, target, 0, array.length)  
+}  
+</code></pre>
+
+<p>Finally a valid use for that Wolfram API account. Any big O type of stuff I don't understand by reading it, Wolfram can just straight-up graph that.</p>
+
+<hr />
+
+<p>Asymptotic notations: languages that let us analyse the time it will take to run an algorithm by identifying its behavior, as the size of the algorithm's input increases.</p>
+
+<p>Let's say algorithm is fn f, input is in, and f(n) is the time it takes to run. So with that algorithm f, input size n, you get the time f(n), yes? This means that we can graph this where Y ix the <em>runtime</em>, and x is the <em>input size</em>; points on the graph are the amount of <em>time</em> for that <em>input size</em>.</p>
+
+<p>Big O in <em>maths</em> and Big O in <em>computer science</em> are a wee bit different. If you read the Wikipedia article on Big O, that's the <em>math</em> version; check the Wikipedia article for <em>Time Complexity</em> instead.</p>
+
+<p>Big O n cubed = a Rubik's Cube. That'd be a triply-nested for loop.</p>
+
+<p>Algorithm that takes an array, iterates over every element in array, and every character of every string <em>in</em> the array: <code>O(n*m)</code></p>
+
+<p><code>.sort</code> in JS is <code>(n*m)</code> complexity.</p>
+
+<p>That's linearithmic or (linear logarithmic).</p>
+
+<p>Bucket sorts: we start with an array or whatever, make some buckets. Let's say our array is <code>[1, 4, 3, 7, 7, 9, 6, 2]</code>. Then we make some buckets (let's say ten of them). Just places to put things. Then we go through those buckets, and count how many times those things are in each bucket. So we'd sort our array like this:</p>
+
+<pre><code>1  1    1,  
+2  1    2,  
+3  1    3,  
+4  1    4,  
+5         
+6  1    6,  
+7  2    7, 7,  
+8         
+9  1    9  
+10        
+</code></pre>
+
+<p>So the output array is <code>[1, 2, 3, 4, 6, 7, 7, 9]</code>. That's chill!</p>
+
+<p>Some samples of sorts! (Of sorts.)</p>
+
+<pre><code>// bubble sort  
+var randomArray = function(size){  
+  var array = []  
+  for(var i = 0; i &lt; size; i++){  
+    array.push(parseInt(Math.random() * 100))  
+  }  
+  return array  
+}  
+var bubbleSort = function(array){  
+  var swapped = true  
+  while(swapped){  
+    swapped = false  
+    for (var i = 0; i &lt; array.length-1; i++){  
+      if(array[i] &gt; array[i+1]){  
+        swap(i, i+1)  
+        swapped = true  
+      }  
+    }  
+  }  
+  function swap(a, b){  
+    var tmp = array[a]  
+    array[a] = array[b]  
+    array[b] = tmp  
+  }  
+}  
+// bucket sort  
+var bucketSort = function(array){  
+  var buckets = []  
+  for(var i = 0; i &lt; 100; i++){  
+    buckets[i] = 0  
+  }  
+  for (var i = 0; i &lt; array.length; i++){  
+    buckets[number]++  
+  }  
+  var currentIndex = 0  
+  for(var number = 0; number &lt; buckets.length; number++){  
+    var count = buckets[number]  
+    for (var j = 0; j &lt; count; j ++){  
+      array[currentIndex] = number  
+      currentIndex++  
+    }  
+  }  
+  return array  
+}  
+// let's see how they perform...  
+var array = randomArray(5000)  
+// console.log(array)  
+console.time('bubbleSort')  
+// console.log('\n#########################################\n')  
+bubbleSort(array)  
+console.timeEnd('bubbleSort')  
+// console.log('\n#########################################\n')  
+bucketSort(array)  
+// console.log(array)  
+// console.log('\n#########################################\n')  
+console.time('bucketSort')  
+console.timeEnd('bucketSort')  
+</code></pre>
+
+<p>And some resources for actually kind of understanding any of this stuff (because I only halfway actually do):</p>
+
+<ul>
+<li><a href="https://learnxinyminutes.com/docs/asymptotic-notation/">Learn X in Y</a></li>
+<li><a href="http://mathworld.wolfram.com/TravelingSalesmanProblem.html">Traveling Salesman</a></li>
+<li><a href="http://bigocheatsheet.com/">Big-O Cheatsheet</a></li>
+<li><a href="http://stackoverflow.com/questions/487258/plain-english-explanation-of-big-o">Plain English Explanation of Big O</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Time_complexity">Time Complexity</a></li>
+<li><a href="https://www.packtpub.com/sites/default/files/downloads/4874OS_Appendix_Big_O_Cheat_Sheet.pdf">Another Big-O Cheatsheet</a></li>
+</ul>
+
+<p>tags: <a href='tag_algorithms.html'>algorithms</a>, <a href='tag_big-o.html'>big-o</a>, <a href='tag_sort.html'>sort</a>, <a href='tag_math.html'>math</a>, <a href='tag_js.html'>js</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/algorithms-amp-big-o.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/algorithms-amp-big-o.html'><span id='count-24326'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

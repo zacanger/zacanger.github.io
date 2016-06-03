@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "programming"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "programming"' />
+<meta name='twitter:description' content=" Solving programming problems  February 10, 2016  &mdash;  Zac Anger   Basic steps of solving programming problems:   Find the input. Find the output. Figure out how you need to transform the input to the output in plain English. Translate this into " />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="solving-programming-problems.html">
+Solving programming problems
+</a></h3>
+<div class="subtitle">February 10, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Basic steps of solving programming problems:</p>
+
+<ol>
+<li>Find the input.</li>
+<li>Find the output.</li>
+<li>Figure out how you need to transform the input to the output <em>in plain English</em>.</li>
+<li>Translate this into your chosen programming language.</li>
+<li>Run the code (in your head, or on a machine).</li>
+<li>If the output isn't what you expected, start over with step three.</li>
+</ol>
+
+<p>... that's basically it.</p>
+
+<p>tags: <a href='tag_toy-problems.html'>toy-problems</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_problem-solving.html'>problem-solving</a></p>
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/solving-programming-problems.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/solving-programming-problems.html'><span id='count-11393'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="baconjs.html">
+BaconJS
+</a></h3>
+<div class="subtitle">January 19, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p><em>Note: this post references 'the snake game' a lot. That's over <br />
+<a href="here">https://github.com/zacanger/extras/tree/master/bacon</a>, now.</em></p>
+
+<p>Bacon is a JS lib for FRP, like Rx, but not MS.</p>
+
+<p>Here's some jQuery, because I don't know why.</p>
+
+<pre><code>var go = $('#clickMe').asEventStream('click')
+go.onValue (
+  () =&gt; $('#output').append('clicked!'))
+</code></pre>
+
+<p>Is it just me or is this tutorial using <em>typescript</em>? Eww, it totally is! Gross.</p>
+
+<p><code>scan</code> combinator is kinda like <code>reduce</code>, except async and produces multiple values. So, there's an initial value,
+and a function to combine them. Returned stream contains the aggregate.</p>
+
+<pre><code>var clicks = $('#example button').asEventStream('click')
+  , counter = clicks
+      .map(1)
+      .scan(0, (x,y) =&gt; x + y)
+counter.onValue(x =&gt; $('#example .output').html(x))
+</code></pre>
+
+<p>Ohh, okay, so the 'take' and 'skip' combinators are new. They do what they sound like. Basically like slicing
+arrays, but with streams.</p>
+
+<p class="readmore"><a href="./baconjs.html">read more...</a></p>
+<p>tags: <a href='tag_bacon.html'>bacon</a>, <a href='tag_js.html'>js</a>, <a href='tag_frp.html'>frp</a>, <a href='tag_streams.html'>streams</a>, <a href='tag_events.html'>events</a>, <a href='tag_functional.html'>functional</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_reactive.html'>reactive</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/baconjs.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/baconjs.html'><span id='count-21805'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="functional-programming-vocabulary.html">
+Functional Programming Vocabulary
+</a></h3>
+<div class="subtitle">January 16, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<ul>
+<li><p>arity</p>
+
+<ul>
+<li>number of args a function takes</li>
+<li>ary + ity (it's two suffixes!)</li>
+<li>binary, ternary, etc = arity of two, arity of three, etc</li>
+<li>variable number of args = variadic</li>
+<li>dyadic = binary (talkin greek here)</li>
+</ul></li>
+<li><p>hof</p>
+
+<ul>
+<li>function that takes function as arg</li>
+<li>or function that returns a function</li>
+</ul></li>
+<li><p>partial application</p>
+
+<ul>
+<li>getting a function with lower arity compared to original function</li>
+<li>by fixing number of args</li>
+</ul></li>
+<li><p>currying</p>
+
+<ul>
+<li>converting function with multiple arity into function with arity of one</li>
+</ul></li>
+<li><p>purity</p>
+
+<ul>
+<li>pure function's return value is determined ONLY by input values</li>
+<li>no side effects</li>
+</ul></li>
+<li><p>side effects</p>
+
+<ul>
+<li>if modifies some state</li>
+<li>or has observable interaction with external functions</li>
+</ul></li>
+<li><p>idempotency</p>
+
+<ul>
+<li>no side effects on multiple executions with same parameters</li>
+</ul></li>
+<li><p>points-free</p>
+
+<ul>
+<li>does not include information regarding arguments</li>
+</ul></li>
+<li><p>functor</p>
+
+<ul>
+<li>structure than can be mapped over</li>
+<li>simplest in js is an array</li>
+</ul></li>
+<li><p>referential transparency</p>
+
+<ul>
+<li>expression that can be replaced with its value without changing its behavior</li>
+<li>eg <code>let oi = ()  = 'howdy'</code>; <code>oi()</code> can be <code>'howdy'</code>, hence is referentially transparent</li>
+</ul></li>
+<li><p>lazy eval</p>
+
+<ul>
+<li>delays evaluation of expression until needed</li>
+<li>allows for structures that are not available in imperative langs where sequence is significant</li>
+</ul></li>
+<li><p>monoid</p>
+
+<ul>
+<li>data type and two-param function that combines two values of the type, where an identity value that doesn't affect result also exists</li>
+<li>example: 1 + 1 (data type is number, function is =)</li>
+<li>1 + 0 (identity value is 0)</li>
+</ul></li>
+<li><p>monad</p>
+
+<ul>
+<li>abstraction. provides interface for executing common sequence of commands on a value one normally avoids acting on directly</li>
+<li>optional value monad is common (to avoid exposing to null values)</li>
+<li>a monad is a special functor that also returns a monad</li>
+<li>so, can be chained to describe sequence of operations</li>
+<li>useful when sequence matters (hence nickname 'programmable semicolons')</li>
+<li>example: <code>let Identity = v =&gt; ({bind: transform =&gt; transform(v)})</code></li>
+</ul></li>
+</ul>
+
+<p>tags: <a href='tag_functional.html'>functional</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_vocabulary.html'>vocabulary</a>, <a href='tag_vocab.html'>vocab</a>, <a href='tag_definitions.html'>definitions</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/functional-programming-vocabulary.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/functional-programming-vocabulary.html'><span id='count-2098'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="differences-from-js.html">
+Elm (notes)
+</a></h3>
+<div class="subtitle">January 14, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Differences from JS:</p>
+
+<ul>
+<li>Elm has multiline string support, with <em>triple</em> sets of quotes, eg """multiline string"""</li>
+<li>Elm <em>cannot</em> use single quotes for <em>strings</em>. Elm uses single quotes to denote <em>characters</em>.</li>
+<li>Booleans are uppercase.</li>
+<li>Objects use <code>=</code> instead of <code>:</code>, so <code>{key: value, key2: value2}</code> in JS would be <code>{key = value, key2 = value2}</code> in Elm.</li>
+<li><code>point.x = 42</code> in JS would be <code>{point | x = 42}</code> in Elm.</li>
+<li>Functions are greatly simplified. <code>function(foo, bar){return foo+bar}</code> in js would be <code>\foo bar -&gt; foo + bar</code> in Elm.</li>
+<li>Math is a little simpler: <code>Math.max(2,4)</code> is just <code>max 2 4</code>. Same with <code>min</code>. <code>Math.pow</code> is just <code>^</code>, eg <code>Math.min(1, Math.pow(2, 4))</code> is <code>min 1 (2^4)</code>.</li>
+<li><code>numbers.map(Math.sqrt)</code> would be <code>List.map sqrt numbers</code>. <code>points.map(function(p){return p.x})</code> becomes <code>List.map .x points</code>.</li>
+<li><code>2 &lt; 4 ? 'WHAT' : 'how?'</code>, <code>if 2 &lt; 4 then "WHAT" else "how?"</code></li>
+<li><code>var foo = 72</code>; <code>let foo = 72 in...</code></li>
+<li>No return statements; everything is an expression.</li>
+<li><code>String.length "asdf"</code> rather than 'asdf.length'</li>
+</ul>
+
+<p>Mostly it looks pretty neat, but there's virtually nothing out there for actually <em>learning</em> it, so I'm already kind of over it....</p>
+
+<p>Note that the 'EventLog.elm' in this directory doesn't actually need the start-app package anymore; turns out it's really easy to just wire the damn thing up all on your own.</p>
+
+<p class="readmore"><a href="./differences-from-js.html">read more...</a></p>
+<p>tags: <a href='tag_js.html'>js</a>, <a href='tag_haskell.html'>haskell</a>, <a href='tag_functional.html'>functional</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_elm.html'>elm</a>, <a href='tag_lang.html'>lang</a>, <a href='tag_language.html'>language</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/differences-from-js.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/differences-from-js.html'><span id='count-26621'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="javascript.html">
+Javascript
+</a></h3>
+<div class="subtitle">October 16, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>We're staring that today, and this is exciting. I never hated CSS until Bootstrap, but now I think I'd rather debug a hypothetical program written in both PHP and assembler than have to deal with bad CSS ever again. And I don't know any assembly languages.</p>
+
+<p>So far today, everything actually makes sense. It's not easy or simple, but it's logical. I can see that mindmaps, or some similar diagraming/mapping tool, could be super useful for larger projects, though. Or even medium-ish projects. Keeping track of what's returning what to where and which functions are calling which other functions and all these things, it could very easily scramble the brains.</p>
+
+<p>I've starting using Vim, too, which is another whole level of lifelong education, but I know that now that I've got the basics down, I'll probably never have trouble picking an editor again. I'm specifically using <a href="https://neovim.io/">Neovim</a>, which is not nearly as ridiculous and bloated and slow as Vim itself (thank fuck). It's taking a bit to get used to certain commands, and I'm still not exactly sure what counts as a word when I type, for example, <code>d4e</code>, but I'm getting there, and it's super exciting because I've finally found an editor that not only works (and works <em>well</em>, unlike the horde of bloated-text-editor-meets-cut-down-IDE deals), and doesn't require endless paren-mashing to work with (lookin' at you, Emacs), and has quick and easy keybinds (again, Emacs, what are you doing with yourself and why would anyone want to press seven keys simultaneously and in various combinations just to do simple things?) that mostly kind of make sense.</p>
+
+<p>So that's cool. I just need to spend some time to learn how to set things up, I guess. Syntax highlighting works fine, but I have to turn it on every time I open a file. No autocompletion by default, it seems, and the indent levels are all sorts of wrong (hey four-spacers, you need to get help...).</p>
+
+<p>Anyway, here's just a quick blog post. Now that we're starting to learn to program, I have a feeling I'll be too busy to think, most days, so maybe no updates for a wee bit.</p>
+
+<p>tags: <a href='tag_javascript.html'>javascript</a>, <a href='tag_css.html'>css</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_vim.html'>vim</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/javascript.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/javascript.html'><span id='count-21635'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="code-bootcamps-comparison.html">
+Code Bootcamps (Comparison)
+</a></h3>
+<div class="subtitle">October 12, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>This is old, but I just found it lingering in my important docs directory in Dropbox. So... before I move it away, I figured I'd post it here in case someone is looking into these things at some point.</p>
+
+<p>FWIW, I'm now officially at DevMountain (day one, yo), and I think I made the absolute best possible choice here.</p>
+
+<p class="readmore"><a href="./code-bootcamps-comparison.html">read more...</a></p>
+<p>tags: <a href='tag_old.html'>old</a>, <a href='tag_education.html'>education</a>, <a href='tag_school.html'>school</a>, <a href='tag_code-bootcamp.html'>code-bootcamp</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_coding.html'>coding</a>, <a href='tag_programming.html'>programming</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/code-bootcamps-comparison.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/code-bootcamps-comparison.html'><span id='count-25828'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="learn-to-code-link-post.html">
+Learn To Code; Link Post
+</a></h3>
+<div class="subtitle">September 29, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Here we have a giant list of links, sort of unsorted. Much about front-end dev education, a good bit that I suppose could be devops, quite a bit of tricks and hackery for the nixes. A good chunk of it is messed up, formatting-wise. Oh well. THis is basically the leftover links and bits from when I was researching school options.</p>
+
+<p class="readmore"><a href="./learn-to-code-link-post.html">read more...</a></p>
+<p>tags: <a href='tag_education.html'>education</a>, <a href='tag_links.html'>links</a>, <a href='tag_nix.html'>nix</a>, <a href='tag_dev.html'>dev</a>, <a href='tag_web.html'>web</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_code.html'>code</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/learn-to-code-link-post.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/learn-to-code-link-post.html'><span id='count-24333'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

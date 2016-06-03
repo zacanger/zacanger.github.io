@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>SQL/RDBMS</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='SQL/RDBMS' />
+<meta name='twitter:description' content="  It makes sense that document stores (like Mongo) are a lot faster for reads--everything is stored all in one place. Here's your object with your stuff. Tables mean doing joins, which is slower. But goddamn, there's so much more flexibility and powe" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="sqlrdbms.html">
+SQL/RDBMS
+</a></h3>
+<div class="subtitle">January 28, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<ul>
+<li>It makes sense that document stores (like Mongo) are a lot faster for reads--everything is stored all in one place. Here's your object with your stuff. Tables mean doing joins, which is slower. But goddamn, there's so much more flexibility and power there. And also potential to screw up your queries, of course. But unlike Mongo, you <em>can</em> do this. That's why populate kind of sucks.</li>
+<li><em>One query</em>. Number one rule for decent DB performance.</li>
+<li>UML is great here. I mean, it's worth actually <a href="http://www.uml.org/">learning UMl (the actual language)</a> because without knowing this stuff, you have to keep gigantic graphs by hand (by point-and-click), which is exhausting and not okay.</li>
+<li>Transactions. Transactions are kind of, super simplified, a series of actions that you want to execute as one single operation. If it fails, it just simply goes back to its previous state. The idea here is that your data is never getting screwed up. Modern DBs also have niceties like preventing multiple concurrent writes to the same data.</li>
+<li>So... let's learn some basic queries!</li>
+</ul>
+
+<hr />
+
+<h3>Queries</h3>
+
+<p>These will be in SQLite, specifically.</p>
+
+<pre><code>SELECT * FROM foo_bar
+SELECT quux,baz FROM foo_bar
+/* find this thing in that table */
+SELECT * FROM what WHERE things = 'stuff'
+/* WHERE is a simple conditional */
+</code></pre>
+
+<ul>
+<li>There are normal operators (<code>&lt; &gt; = &lt;&gt;</code> etc).</li>
+<li>When defining schemas you have to define types. When doing queries, you can <em>use</em> those types.</li>
+<li>The <code>AND</code> word chains conditions in queries. Syntax is <code>SELECT foo FROM bar WHERE quux = 'baz' AND jargon &gt; 3</code></li>
+<li>The <code>OR</code> is the same concept.</li>
+<li><code>IN</code> kind of a shorthand way of doing a bunch of chained <code>OR</code>s. <code>WHERE things IN ('foo', 'bar')</code>, or <code>NOT IN ('quux', 'baz')</code></li>
+<li><code>DISTINCT</code> is the first thing on this list that doesn't come after the <code>WHERE</code> clause.
+<ul>
+<li><code>SELECT DISTINCT column FROM table</code></li>
+<li><code>SELECT DISTINCT column FROM table WHERE condition &lt;&gt; 'thing'</code></li>
+</ul></li>
+<li>Queries are <em>not</em> case-sensitive, but it is definitely good practice to capitalise them.</li>
+<li><code>ORDER BY</code> would be <code>SELECT * FROM foo ORDER BY id desc</code> for example. Simple sort.</li>
+<li>KnexJS allows a SQL-like interface from Node to SQL.</li>
+<li>Bookshelf allows for Javascript-like queries to SQL from Node (and is built on top of Knex).</li>
+<li><code>LIMIT</code> the amount in a page. There's also <code>SKIP</code>.</li>
+<li><code>COUNT(4)</code> or <code>COUNT(*) FROM foo WHERE bar</code></li>
+<li><code>SUM(num_people) FROM group</code></li>
+<li><code>SELECT AVG(num_people) FROM group</code></li>
+<li><code>MAX</code> and <code>MIN</code> are largest and smallest from that thing you're querying.</li>
+<li><code>GROUP BY</code> splits table based on the values of the rows.
+<ul>
+<li><code>SELECT COUNT(*) things FROM bar_table GROUP BY foo_column</code></li>
+</ul></li>
+<li>Nested queries are putting a query inside a query. Basically you query something, and then query what that returns.
+<ul>
+<li><code>SELECT * FROM foo_table WHERE foo_column = (SELECT MIN(num_people) FROM foo_table)</code></li>
+</ul></li>
+<li><code>NULL</code> for empty values</li>
+<li>Dates are format <code>YYYY-MM-DD</code></li>
+<li>Aliases: <code>AS</code>, as in <code>SELECT f.thing, b.thing FROM foo AS f</code></li>
+<li>Column aliases work the same way: <code>SELECT thing.stuff AS asdf</code></li>
+<li><code>LIKE</code> has two characters: <code>%</code> represents zero, one, or multiple characters; <code>_</code> represents one character.
+<ul>
+<li><code>LIKE "SUPER _"</code> would be "SUPER 1", "SUPER A", etc, whereas <code>LIKE "SUPER%"</code> would be "SUPERASDF", "SUPER FOO BAR QUUX BAZ", "SUPER" on its own, etc.</li>
+<li><code>LIKE</code> is <em>not</em> case sensitive (the actual query).</li>
+</ul></li>
+<li><code>CASE</code> goes <code>CASE WHEN foo = whatever THEN value WHEN bar = whatever THEN stuff... ELSE thing_for_else END</code></li>
+<li><code>SUBSTR(column_name, index, number_of_chars)</code>. Character number is optional; if not included, it returns the whole rest of the string. (In other versions of SQL, <code>RIGHT</code> can do this.)</li>
+<li><code>COALESCE</code> takes a list of columns, returns value of the first column that is not <code>null</code>. <code>SELECT foo, COALESCE(bar, quux) as baz FROM asdfghjkl</code></li>
+</ul>
+
+<h4>Joins</h4>
+
+<p>This is a big deal, so it gets its own subsection.</p>
+
+<ul>
+<li>Joins are the big performance issue. Things take a long time to find, when they're in multiple tables. (<em>This isn't from the lecture, but I'd place 5 joins as a limit for my own usage, and even that is getting pretty gross....</em>)</li>
+<li><code>INNER JOIN ... ON</code></li>
+<li><code>table_name.column_name</code></li>
+<li><code>SELECT table.column, table_two.column_thing FROM table_two JOIN table ON table.column = table_two.column_two</code></li>
+<li><code>INNER JOIN</code> is the default join. There are many ways to join, though.</li>
+<li>Mutiple joins... are a pain. Basically <code>SELECT ..., ... FROM ... INNER JOIN ... ON ... = ... INNER JOIN ... ON ... = ...</code></li>
+<li><code>WHERE</code> clauses in joins can be like <code>ON ... = ... WHERE ... &lt;&gt; ... AND .... &lt;&gt; ...</code></li>
+<li>A <code>LEFT JOIN</code> will return <code>null</code> values, too.</li>
+</ul>
+
+<p>Aaaandd... my brain kinda hurts. That's enough of that. Here are a couple of resources for learning the basics of relational databases:
+* <a href="https://www.sqlteaching.com/">SQL Teaching</a>
+* <a href="https://lagunita.stanford.edu/courses/DB/2014/SelfPaced/about">Stanford's Free Online Mini-Courses</a></p>
+
+<p>tags: <a href='tag_db.html'>db</a>, <a href='tag_rdbms.html'>rdbms</a>, <a href='tag_sql.html'>sql</a>, <a href='tag_sqlite.html'>sqlite</a></p>
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/sqlrdbms.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/sqlrdbms.html'><span id='count-19789'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

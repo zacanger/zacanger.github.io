@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>Meteor Notes</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='Meteor Notes' />
+<meta name='twitter:description' content=" General Notes, from that time I played with Meteor  {{#with foo}} is a template tag that takes arg (foo). that is the data context for the block in that tag. being a tag, it needs to be closed later ({/with}).  {{#each}} also takes an argument, usua" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="meteor-notes.html">
+Meteor Notes
+</a></h3>
+<div class="subtitle">January 21, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<h2>General Notes, from that time I played with Meteor</h2>
+
+<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later (<code>{/with}</code>).</p>
+
+<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of <code>Collection.find()</code>.</p>
+
+<p>Includes are like so: <code>{{&gt; foo bar}}</code> which will bring in the bar from foo.</p>
+
+<p>meteor's blaze will soon just be a thin templating layer over react.</p>
+
+<p>iron router is meteor's primary routing package. its 'data' method helps with data contexts.</p>
+
+<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data context is accessible via <code>this</code>. an example:</p>
+
+<pre><code>&lt;template name="profile"&gt;
+  &lt;h3&gt;profile&lt;/h3&gt;
+  {{#with profile}}
+  &lt;img src="{{avatarPath}}" /&gt;
+  {{#with name}}
+  &lt;p&gt;{{fullName}}&lt;/p&gt;
+  {{/with}}
+  {{/with}}
+&lt;/template&gt;
+
+
+Template.profile.helpers({
+  profile: function(){
+    return Users.findOne(Session.get('userId'))
+  },
+  avatarPath: function(){
+    return 'images/' + this.avatar
+  },
+  fullName: function(){
+    return this.first + ' ' +  this.last
+  }
+})
+</code></pre>
+
+<p>a dedicated {{log}} helper can be more useful than console.log(this)</p>
+
+<pre><code>Template.profile.helpers({
+  log: function(){
+    console.log(this)
+}})
+
+
+&lt;template name="profile"&gt;
+  {{#with profile}}
+  {{log}}
+  &lt;!-- etc --&gt;
+  {{/with}}
+</code></pre>
+
+<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad, actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and <code>{{blahblah ../..}}</code>).</p>
+
+<h4>Reactivity in Meteor</h4>
+
+<p>Reactive computation: block of code (inside of a function) that re-runs when a reactive data source <em>inside</em> it changes.</p>
+
+<pre><code>Template.hello.helpers{(
+  counter: function(){
+    console.log('counter helper is running')
+    return Session.get('count')
+  }
+)}
+</code></pre>
+
+<p>Here, counter re-runs whenever count changes (count is retrieved by Session.get('count_')). <br />
+Session variables are <em>reactive sources</em>. Template helpers are <em>reactive computations</em>.</p>
+
+<p>Reactive variables in Meteor:</p>
+
+<ul>
+<li>Session variables
+<ul>
+<li>defined with <code>Session.set()</code></li>
+<li>retrieved with <code>Session.get()</code></li>
+<li>global to the app, and reactive</li>
+</ul></li>
+<li>Cursors
+<ul>
+<li>what you get when querying db</li>
+<li>(via <code>Collection.find()</code>)</li>
+</ul></li>
+<li>Subscription's <code>ready()</code> method
+<ul>
+<li><code>subscription.ready()</code> is when the client has received all data</li>
+</ul></li>
+<li>some others, including:
+<ul>
+<li><code>Meteor.user()</code></li>
+<li><code>Meteor.userId()</code></li>
+<li><code>Meteor.status</code></li>
+<li><code>Meteor.loggingIn</code></li>
+</ul></li>
+</ul>
+
+<p>Reactive computations:</p>
+
+<ul>
+<li>template helpers (eg <code>{{something}}</code> in a template, duh)</li>
+<li>iron router (third party) hooks are reactive
+<ul>
+<li>route functions and <em>most</em> hooks are run in a reactive computation</li>
+</ul></li>
+</ul>
+
+<p>Custom reactivity in meteor: <br />
+reactive-var (third party package) enables defining own reactive variables. <br />
+these don't have global names (like Session.get('foo')'s foo), more like this.foo.get() <br />
+declared like <code>new ReactiveVar()</code>.</p>
+
+<pre><code>var count = new ReactiveVar(0)
+count.set(1)
+count.get() // 1
+</code></pre>
+
+<p>There's also <code>ReactiveDict</code>. That's a thing.</p>
+
+<p>Custom reactive computations: <br />
+<code>Tracker.autorun(function(){})</code> <br />
+Read the full Meteor manual for more on that, I guess.</p>
+
+<p>Reactivity can be passed on through composition, eg <code>var getCount = function(){ return Session.get('count') }</code> -- getCount is a reactive data source, by virtue of Session.get('count'), which is itself a reactive data source. <br />
+SO...</p>
+
+<pre><code>Template.hello.helpers({
+  counter: function(){
+    console.log('counter helper is running')
+    return Session.get('count')
+  }
+})
+</code></pre>
+
+<p>IS THE SAME AS</p>
+
+<pre><code>var getCount = function(){
+  return Session.get('count')
+}
+
+Template.hello.helpers({
+  counter: function(){
+    console.log('counter helper is running')
+    return getCount()
+  }
+})
+</code></pre>
+
+<p>both ways, counter reruns whenever count session variable changes.</p>
+
+<p>composition only applies to functions. not variables.</p>
+
+<p>tags: <a href='tag_meteor.html'>meteor</a>, <a href='tag_js.html'>js</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/meteor-notes.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/meteor-notes.html'><span id='count-15026'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

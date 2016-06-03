@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "electron"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "electron"' />
+<meta name='twitter:description' content=" getting up and running with nw.js really super quickly  February 14, 2016  &mdash;  Zac Anger   There are basically two main ways to build a desktop app in JS: Electron (formerly called 'Atom-Shell') and NW.js (formerly called 'Node-Webkit'). Electr" />
+<meta name='twitter:image' content='http://zacanger.com/blog/markvi-1.jpg' />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="getting-up-and-running-with-nwjs-really-super-quickly.html">
+getting up and running with nw.js really super quickly
+</a></h3>
+<div class="subtitle">February 14, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>There are basically two main ways to build a desktop app in JS: Electron (formerly called 'Atom-Shell') and
+NW.js (formerly called 'Node-Webkit'). Electron's really swell, probably offers more options overall, and has a cleaner
+way of keeping Node and client-side code separate. NW.js is a heckuva lot easier, overall, though.</p>
+
+<p>This is what I've been using to build and run Pharaoh: https://github.com/nwjs/nw-builder</p>
+
+<p>There's also a nifty sort of version manager for NW.js here: https://www.npmjs.com/package/nwjs , which worked a little
+more smoothly out of the box, but gave me issues when trying to get Node integration to work.</p>
+
+<p>To get up and running with NW.js using nw-builder, you basically just need to put the relevant information in your
+<code>package.json</code>. The relevant info on that is all here: https://github.com/nwjs/nw.js/wiki/Manifest-format but mostly
+it's just something like</p>
+
+<pre><code>"window": {
+  "height": 800,
+  "width": 1200,
+  "title": "my app"
+}
+</code></pre>
+
+<p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or whatever in it), needs to be what NW.js
+is pointed to. That can be an HTML file (<code>"main": "./client/public/index.html"</code> or whatever) or a URL (if you're
+serving the app, especially locally--this is how Atom, Brackets, LightTable, etc. do things, except using Electron).</p>
+
+<p>That's basically it, I think. There are a lot of great Yeoman generators and stuff to scaffold out NW.js apps, but
+they're mostly overkill.</p>
+
+<p>Using <code>nw-builder</code> makes things pretty simple. <code>npm i -g nw-builder</code>, then just run <code>nwbuild -h</code> to see the options.
+(I use <code>nwbuild -r .</code> in the project root/wherever the relevant <code>package.json</code> is, to run the app).</p>
+
+<p>Their docs are really good, and there's a crapload of options and neat stuff you can do: https://github.com/nwjs/nw.js/wiki</p>
+
+<p>tags: <a href='tag_nwjs.html'>nwjs</a>, <a href='tag_desktop.html'>desktop</a>, <a href='tag_node.html'>node</a>, <a href='tag_electron.html'>electron</a>, <a href='tag_app.html'>app</a></p>
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/getting-up-and-running-with-nwjs-really-super-quickly.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/getting-up-and-running-with-nwjs-really-super-quickly.html'><span id='count-15589'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="electron-and-nwjs.html">
+Electron and NW.js
+</a></h3>
+<div class="subtitle">January 15, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Electron (formerly known as Atom Shell) and NW.js (formerly known as Node Webkit) are similar projects that bring Javascript to the desktop. They're both based on browser runtimes. Electron is sponsored by Github, and uses libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine (from Chrome), are fully open source (MIT Licensed), can access a variety of open and licensed codecs, work on Unix-like systems (and, with a little extra work, on Windows), and can use Flash (in Electron's case, through the Pepper plugin). The biggest difference I've had in working with them is that Electron, being currently more popular (likely because of the Github support, and the popularity of the Atom editor, which is built on Electron) is usually closer to the current version of Chromium, and NW.js is usually a few versions behind. Electron seems to have a lot more community activity around it right now, too, so there are a lot of useful NPM packages like <a href="https://www.npmjs.com/package/electron-prebuilt">Electron-Prebuilt</a> (and <a href="https://www.npmjs.com/package/electron-prebuilt-lite">a lite version</a>) and <a href="https://www.npmjs.com/package/electron-packager">Electron-Packager</a> (and <a href="https://www.npmjs.com/package/electron-packager-interactive">an interactive version!</a>). Electron also needs a Javascript entry point, which looks something like this:</p>
+
+<pre><code>var app           = require('app')  
+  , BrowserWindow = require('browser-window')  
+require('crash-reporter').start()  
+
+var mainWindow = null  
+
+app.on('window-all-closed', function(){  
+  if(process.platform != 'darwin'){  
+      app.quit()  
+  }  
+})  
+app.on('ready', function(){  
+  mainWindow = new BrowserWindow({  
+    width                : 1200  
+  , height               : 800  
+  , 'accept-first-mouse' : true  
+  , 'title-bar-style'    : 'hidden'  
+  , 'node-integration'   : false  
+  })  
+  mainWindow.loadUrl('http://127.0.0.1:9090')  
+  mainWindow.on('closed', function(){  
+    mainWindow = null  
+  })  
+})  
+</code></pre>
+
+<p>That 'node-integration' line is <em>really important</em> if you want to use certain client-side libraries like Angular or jQuery that use the word 'module;' your stuff will just completely break without it.</p>
+
+<p>NW.js, on the other hand, can just be pointed at your <code>index.html</code>, and that's enough to get started. That's really convenient, but for my own uses I've found that Electron has a lot more options. Its binaries are significantly larger, but there are evidently ways to cut them down. Don't count on being able to build an Electron app in less than a hundred megs, though.</p>
+
+<p>If you're doing something small, like a text editor or some other little widgety kind of app, you'd probably still be better off with Qt or GTK--you can write a full text editor in GTK-Webkit with Python in less than 16kb, and that's if need a full rich-text interface with buttons and such. But for larger apps, and especially for apps you've already written for the browser, NW.js and Electron are both really great options. If you're going to be relying on a lot of the Node environment, Electron's got a better interface to Node because of its separated rendering and browser engines, but you do have to keep in mind that you'll be limited as to what client-side libraries you can use.</p>
+
+<p>tags: <a href='tag_nwjs.html'>nwjs</a>, <a href='tag_electron.html'>electron</a>, <a href='tag_desktop.html'>desktop</a>, <a href='tag_js.html'>js</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_apps.html'>apps</a>, <a href='tag_node.html'>node</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/electron-and-nwjs.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/electron-and-nwjs.html'><span id='count-24273'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="notes.html">
+Notes
+</a></h3>
+<div class="subtitle">January 13, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>So, I have a <em>lot</em> of notes that I've taken over the course of the last couple of months. Seeing as they're not doing me a whole lot of good sitting in a pile of Markdown files, I'm gradually going through them, cleaning them up, and I think I'll just post them all as sort of blog posts. Why not? So here's a little list of the topics I'll be covering over the next few weeks:</p>
+
+<ul>
+<li>Unicode</li>
+<li>SystemJS (and JSPM)</li>
+<li>Go</li>
+<li>UI</li>
+<li>Github Organizations</li>
+<li>Functional Reactive Programming (and RxJS)</li>
+<li>Elm</li>
+<li>Browserify</li>
+<li>Bash Builtins</li>
+<li>Firebase</li>
+<li>ES6</li>
+<li>Pusher</li>
+<li>Styleguides</li>
+<li>Passport (and problems getting errors out of Express)</li>
+<li>React (and Webpack)</li>
+<li>Isomorphic React</li>
+<li>Flux</li>
+<li>Meteor</li>
+<li>All the reasons I kind of dislike Angular</li>
+<li>Bacon.js</li>
+<li>Basics of webmastering (which is totally not a word)</li>
+<li>Functional programming (in general)</li>
+<li>Effective web design</li>
+<li>Mongo (and Mongoose, and MongoJS, and Mongolayer)</li>
+<li>Ruby, maybe a little bit</li>
+<li>Electron (formerly Atom Shell)</li>
+<li>NW.js (formerly Node Webkit)</li>
+<li>Gulp</li>
+<li>Node in general</li>
+<li>Probably a good bit of Node stuff, really</li>
+<li>I like Node a lot</li>
+<li>Maybe a little bit of jQuery?</li>
+<li>The developer hiring process</li>
+<li>Maybe a little bit of that Javascript language, or something?</li>
+<li>Probably not much at all on HTML, because HTML doesn't need... notes... really</li>
+<li>CSS... lol, CSS.</li>
+<li>People, and the experience of dealing with people on a regular basis</li>
+<li>What it's like to live with the people I live with</li>
+<li>What it's like to actually find myself liking human beings, and wanting to be around them, especially certain ones, quite a lot. (It's <em>weird!</em>)</li>
+</ul>
+
+<p>tags: <a href='tag_blogs.html'>blogs</a>, <a href='tag_personal.html'>personal</a>, <a href='tag_notes.html'>notes</a>, <a href='tag_education.html'>education</a>, <a href='tag_react.html'>react</a>, <a href='tag_js.html'>js</a>, <a href='tag_electron.html'>electron</a>, <a href='tag_flux.html'>flux</a>, <a href='tag_meteor.html'>meteor</a>, <a href='tag_elm.html'>elm</a>, <a href='tag_gulp.html'>gulp</a>, <a href='tag_css.html'>css</a>, <a href='tag_es6.html'>es6</a>, <a href='tag_ruby.html'>ruby</a>, <a href='tag_mongo.html'>mongo</a>, <a href='tag_bash.html'>bash</a>, <a href='tag_unicode.html'>unicode</a>, <a href='tag_go.html'>go</a>, <a href='tag_ui.html'>ui</a>, <a href='tag_design.html'>design</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/notes.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/notes.html'><span id='count-9132'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="things-learned-dealing-with-electron-and-the-mean-stack.html">
+things learned dealing with electron and the mean stack
+</a></h3>
+<div class="subtitle">December 16, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>In the interest of <a href="http://coffeecoder.net/blog/blog-little-things/">blogging the little things</a>, I want to write down a couple of things I learned while struggling through <a href="https://github.com/zacanger/ayuba.git">my project</a>. Nothing major, but a few things that I really had to dig to find answers to, buried way underneath unrelated issues in Github and whatnot.</p>
+
+<p class="readmore"><a href="./things-learned-dealing-with-electron-and-the-mean-stack.html">read more...</a></p>
+<p>tags: <a href='tag_javascript.html'>javascript</a>, <a href='tag_js.html'>js</a>, <a href='tag_electron.html'>electron</a>, <a href='tag_angular.html'>angular</a>, <a href='tag_mean.html'>mean</a>, <a href='tag_school.html'>school</a>, <a href='tag_css.html'>css</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/things-learned-dealing-with-electron-and-the-mean-stack.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/things-learned-dealing-with-electron-and-the-mean-stack.html'><span id='count-14163'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="projects-projects-projects.html">
+Projects, projects, projects.
+</a></h3>
+<div class="subtitle">December 09, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>I haven't really mentioned what I'm actually doing here, yet, a whole lot. Well, it should be pretty obvious, but it's mostly cramming as much Javascript into my head as I can possibly handle. THen forgetting some, then relearning it. Lots of that, over and over again, until eventually a good bit starts to stick. For a really large list of the stuff I've been working on, I have some public repos on <a href="https://github.com/zacanger">my Github</a>. The pertinent ones would be the actual <a href="https://github.com/zacanger/devmtn.git">DevMountain assignments and small projects</a>, and the <a href="https://github.com/zacanger/excerpts-and-excersises.git">repo full of extras</a>, things I wanted to learn or messed around with or whatever, since I've been here.</p>
+
+<p>The bigger things are the no-server and personal projects--and in my case, my personal project is (at least conceptually) based on the no-server project (which was, as it sounds, just client-side Angular app.)</p>
+
+<p><img src="http://zacanger.com/blog/markvi-1.jpg" alt="Markvi" /></p>
+
+<p class="readmore"><a href="./projects-projects-projects.html">read more...</a></p>
+<p>tags: <a href='tag_school.html'>school</a>, <a href='tag_devmtn.html'>devmtn</a>, <a href='tag_markvi.html'>markvi</a>, <a href='tag_projects.html'>projects</a>, <a href='tag_editor.html'>editor</a>, <a href='tag_electron.html'>electron</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/projects-projects-projects.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/projects-projects-projects.html'><span id='count-17177'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

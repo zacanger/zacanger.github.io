@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "web-crawler"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "web-crawler"' />
+<meta name='twitter:description' content=" Crawling from the Front End  January 24, 2016  &mdash;  Zac Anger   The steps are pretty simple. We're going to use Yahoo's API.   First, create an array to store visited links: var visitedLinks = []. Now, define a seed URL and root domain: var link" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="crawling-from-the-front-end.html">
+Crawling from the Front End
+</a></h3>
+<div class="subtitle">January 24, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>The steps are pretty simple. We're going to use Yahoo's API.</p>
+
+<ul>
+<li>First, create an array to store visited links: <code>var visitedLinks = []</code>.</li>
+<li>Now, define a seed URL and root domain: <code>var link = http://some.url, rootDomain = some.url</code>.</li>
+<li>Now we need a recursive function that takes in the link.</li>
+<li>In the function, define a URL to request from Yahoo, to get all the internal links on that page.
+<ul>
+<li>The Yahoo Query Language looks like this: <code>SELECT * FROM html WHERE url = '" + encodeURI(link) + "' AND xpath=\"//a[not(contains(@href,'" + rootDomain + "'))][contains(@href,'http')]\""</code></li>
+</ul></li>
+<li>This returns JSON, which contains an array of objects under data=>query=>results=>a, with each object containing a key of <code>href</code> and a value of a link.</li>
+<li>We need to loop through this, check if the link is in the <code>visitedLinks</code> array, move on if true, and add it to the array otherwise. Then we call the function again and use the new link as the parameter.</li>
+<li>To limit this, we can do something like <code>if(vistedLInks &lt;= 10000){ourFunction(newLink)}else{console.log('done!')}</code></li>
+</ul>
+
+<p>tags: <a href='tag_crawling.html'>crawling</a>, <a href='tag_frontend.html'>frontend</a>, <a href='tag_web-crawler.html'>web-crawler</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/crawling-from-the-front-end.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/crawling-from-the-front-end.html'><span id='count-18298'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

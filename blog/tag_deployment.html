@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "deployment"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "deployment"' />
+<meta name='twitter:description' content=" nginx reverse proxy  March 28, 2016 &mdash;  Zac Anger   reverse proxy: multiple local servers being served out to a client that only really sees ngnix.  cd /etc/ngnix  vi nginx.conf  at the bottom-ish there'll be an http {} block, with a comment ab" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="nginx-reverse-proxy.html">
+nginx reverse proxy
+</a></h3>
+<div class="subtitle">March 28, 2016 &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>reverse proxy: multiple local servers being served out to a client that only really sees
+ngnix.</p>
+
+<p><code>cd /etc/ngnix</code></p>
+
+<p><code>vi nginx.conf</code></p>
+
+<p>at the bottom-ish there'll be an <code>http {}</code> block, with a comment about virtual host configs</p>
+
+<p><code>cd /etc/nginx/site-available</code></p>
+
+<p><code>cp default whatever</code></p>
+
+<p>replace (non-comment) content with something like the following:</p>
+
+<pre><code>server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://127.0.0.1:3000;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
+</code></pre>
+
+<p>and then do an <code>ln -s /etc/nginx/sites-available/whatever /etc/nginx/sites-enabled/</code></p>
+
+<p>after <code>service nginx restart</code> shiz should be working.</p>
+
+<p>redirects www.url.com to url.com:</p>
+
+<pre><code>server {
+    server_name www.example.com;
+    return 301 $scheme://example.com$request_uri;
+}
+</code></pre>
+
+<p>a full working example:</p>
+
+<pre><code>server {
+    listen 80;
+    server_name example.com;
+    location / {
+        proxy_pass http://127.0.0.1:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    server_name www.example.com;
+    return 301 $scheme://example.com$request_uri;
+}
+
+server {
+    listen 80;
+    server_name qwerty.example.com;
+    location / {
+        proxy_pass http://127.0.0.1:8082;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    listen 80;
+    server_name asdf.example.com;
+    location / {
+        proxy_pass http://127.0.0.1:8083;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    listen 80;
+    server_name ghjkl.example.com;
+    location / {
+        proxy_pass http://127.0.0.1:8084;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+</code></pre>
+
+<p>tags: <a href='tag_nginx.html'>nginx</a>, <a href='tag_deployment.html'>deployment</a>, <a href='tag_reverse-proxy.html'>reverse-proxy</a></p>
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/nginx-reverse-proxy.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/nginx-reverse-proxy.html'><span id='count-17596'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

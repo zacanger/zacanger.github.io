@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>mf</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="./css.css" media="all">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+</head>
+<body>
+  <header class="sg-header" role="banner">
+
+    <div class="nav url-change">
+      <form method="get" action="">
+        <label for="url" id="url-toggle" class="url-toggle">URL</label>
+        <input id="url" type="text" name="url" placeholder="Enter a URL">
+        <button id="url-submit">Go</button>
+      </form>
+    </div>
+
+    <div class="sg-controls" id="sg-controls">
+      <div class="sg-control-content">
+        <ul class="sg-control">
+          <li class="sg-size">
+
+            <div class="sg-current-size">
+              <form id="sg-form">
+                Size <input type="text" class="sg-input sg-size-px" value="320">px /
+                <input type="text" class="sg-input sg-size-em" value="20">em
+              </form>
+            </div>
+
+            <ul class="sg-acc-panel sg-size-options">
+              <li class="sg-quarter"><a href="#" id="sg-size-s">S</a></li>
+              <li class="sg-quarter"><a href="#" id="sg-size-m">M</a></li>
+              <li class="sg-quarter"><a href="#" id="sg-size-l">L</a></li>
+              <li class="sg-half"><a href="#" id="sg-size-full">Full</a></li>
+              <li class="sg-half"><a href="#" id="sg-size-random">Random</a></li>
+              <li class="sg-half"><a href="#" class="mode-link" id="sg-size-disco">Dance</a></li>
+              <li class="sg-half"><a href="#" class="mode-link" id="sg-size-hay">Grow</a></li>
+            </ul>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div id="sg-vp-wrap">
+    <div id="sg-cover"></div>
+    <div id="sg-gen-container">
+      <script type="text/javascript">
+
+        var queryString = function () {
+          var query_string = {}
+            , query = window.location.search.substring(1)
+            , vars  = query.split("&")
+
+          for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=")
+            pair[0] = decodeURIComponent(pair[0])
+            pair[1] = decodeURIComponent(pair[1])
+
+            // if first entry with this name
+            if (typeof query_string[pair[0]] === 'undefined') {
+              query_string[pair[0]] = pair[1]
+            } else if (typeof query_string[pair[0]] === 'string') {
+              var arr = [query_string[pair[0]], pair[1]]
+              query_string[pair[0]] = arr // if second entry
+            } else { // if third or later
+              query_string[pair[0]].push(pair[1])
+            }
+          }
+
+          return query_string
+        }(),
+
+        src = queryString.url || 'http://zacanger.com'
+
+        if (src.indexOf('http') !== 0) {
+          src = 'http://' + src
+        }
+
+        document.writeln('<iframe id="sg-viewport" src="' + src + '"></iframe>')
+
+      </script>
+
+      <div id="sg-rightpull-container">
+        <div id="sg-rightpull"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./js.js"></script>
+</body>
+</html>
+

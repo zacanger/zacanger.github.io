@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "nib"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "nib"' />
+<meta name='twitter:description' content=" CSS Preprocessors  January 14, 2016  &mdash;  Zac Anger   Less is kind of just the same as CSS, plus mixins and variables. Yay.... It's in Javascript. Really not a much better way to write CSS.  Sass (which is officially not in all caps!) is okay. W" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="css-preprocessors.html">
+CSS Preprocessors
+</a></h3>
+<div class="subtitle">January 14, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Less is kind of just the same as CSS, plus mixins and variables. Yay.... It's in Javascript. Really not a much better way to write CSS.</p>
+
+<p>Sass (which is officially <em>not</em> in all caps!) is okay. Whitespace significant nesting, no semicolons or braces in the <code>.sass</code> format (the <code>.scss</code> is a strict superset of CSS, and does need all the usual punctuation), it takes variables, mixins, and partials (basically variables in a separate file), and can do basic math in-line. It's written in Ruby, and was one of the first (if not <em>the</em> first) CSS preprocessors.</p>
+
+<p>Stylus is really nice. It's in JS, doesn't need much punctuation, nesting is (like Sass) based on whitespace, and it can take regular CSS. Doesn't need braces, colons, commas, semicolons, can use in-language functions, and it's all really optional, so you can mix and match, even in the same file. You do need to use commas when you have selectors that look like properties (so <code>foo bar baz, p span code</code>). The <code>&amp;</code> refers to the parent selector(s). Interpolation works by using <code>{}</code> around the expression, eg <code>-webkit-{'border' + '-radius'}</code>. <br />
+Nib is a library for Stylus, which gives you a bunch of really convenient mixins, including browser prefixing. This has to be installed locally (no CLI). <br />
+Styl is based on Rework (a plugin system for CSS). It's not quite as featureful as Stylus, but it's quite a bit faster than Stylus, includes all of Rework's features and plugins, has an executable, automatically throws vendor prefixing on regular CSS, and can use Sass/Stylus-style whitespace (for nesting and references to parent selectors).</p>
+
+<p>tags: <a href='tag_css.html'>css</a>, <a href='tag_preprocessors.html'>preprocessors</a>, <a href='tag_stylus.html'>stylus</a>, <a href='tag_sass.html'>sass</a>, <a href='tag_scss.html'>scss</a>, <a href='tag_less.html'>less</a>, <a href='tag_styl.html'>styl</a>, <a href='tag_nib.html'>nib</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/css-preprocessors.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/css-preprocessors.html'><span id='count-4426'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

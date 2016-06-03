@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>ES-Next Notes</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='ES-Next Notes' />
+<meta name='twitter:description' content=" That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and es-the-number-after-that notes.  What ~~will~~ might we get?  Array.prototype.includes // so, for example, instead of: if(someArr.indexOf(val) &gt; -1) // we can do: if(s" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="es-next-notes.html">
+ES-Next Notes
+</a></h3>
+<div class="subtitle">February 05, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and es-the-number-after-that notes.</p>
+
+<p>What ~~will~~ might we get?</p>
+
+<pre><code>Array.prototype.includes // so, for example, instead of:
+if(someArr.indexOf(val) &gt; -1) // we can do:
+if(someArr.includes(val))
+
+// you know how we have destructuring with arrays in es6? what about objects?
+let {x,y,...z} = {x:1,y:2,a:3,b:4}
+x // 1
+y // 2
+z // {a:3, b:4}
+// and...
+let q = {x,y,...z}
+q // {x:1,y:2,a:3,b:4}
+
+// decorators (for modifying/annotating classes on creation)
+function foo(target, name, descriptor){
+  descriptor.something = whatever
+  return descriptor
+}
+class Bar {
+  @foo
+  quux() {return `this thing is ${this.baz} asdf lkadjfklal`}
+}
+// so, quux is gonna conform to whatever we said in foo()
+
+// we get exponents!
+Math.pow(x,y) // no more! now just
+x ** y
+
+// simd! (limited to 128 bits though--256 and maybe 512 in the future?)
+let foo = SIMD.float64x2.load(oneArr, 0)
+let bar = SIMD.float64x2.load(twoArr, 0)
+let res = SIMD.float64x3.add(x,y)
+SIMD.float64x2.store(treArr, 0, res)
+// this will make calc with typed arrs &amp; typed objs sooo much faster
+
+// es-next-next (es8?) may have type annotations!
+// oh, and macros?! howlly craaeep.
+
+// async functions and generators, with possible syntax like:
+async function* whatever(){
+  yield 1
+  yield 2
+  yield 3
+}
+async function things(){
+  for(var asdf on whatever()){
+    console.log(asdf)
+  }
+}
+// Object.values, Object.entries, Object.getOwnPropertyDescriptors
+// Typed Objects, so like
+var Asdf = new StructType({
+    x : int32
+, y : int32
+})
+var Ghjkl = new Asdf({
+  x : 99
+, y : 120
+})
+// trailing commas... which is kinda dumb, actually, in a few ways.
+// .toJSON (Set.prototype)
+// String.prototype.at
+// String.prototype.padLeft, .padRight, .trimLeft, .trimRight
+// Regexp.escape ?!
+::forEach(x =&gt; return(x)) // BINDING/METHOD EXTRACTION!
+</code></pre>
+
+<p>tags: <a href='tag_es7.html'>es7</a>, <a href='tag_es8.html'>es8</a>, <a href='tag_ecmascript.html'>ecmascript</a>, <a href='tag_js.html'>js</a></p>
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/es-next-notes.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/es-next-notes.html'><span id='count-14951'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

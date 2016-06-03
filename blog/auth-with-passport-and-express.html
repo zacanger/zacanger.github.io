@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>Auth with Passport and Express</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='Auth with Passport and Express' />
+<meta name='twitter:description' content=" Passport/Flash Issues  npm i -S express-flash, and var flash = require('express-flash') in your app.app.use(flash())`.  So, make a route in your app/routes/config file, wherever you're keeping those, something like app.get('/forgot', function(req, r" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="auth-with-passport-and-express.html">
+Auth with Passport and Express
+</a></h3>
+<div class="subtitle">January 23, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<h2>Passport/Flash Issues</h2>
+
+<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash') in your app.</code>app.use(flash())`.</p>
+
+<p>So, make a route in your app/routes/config file, wherever you're keeping those, something like <code>app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})</code>, assuming you have some html with a form that <code>POST</code>s, and input for the email.</p>
+
+<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid or gmail or whatever).</p>
+
+<pre><code>app.post('/forgot', function(req, res, next){
+  async.waterfall([
+    function(done){
+      crypto.randomBytes(20, function(err, buf){
+        var token = buf.toString('hex')
+        done(err, token)
+      })
+    },
+    function(token, done){
+      User.findOne({email: req.body.email}, function(err, user){
+        if(!user){
+          req.flash('error', 'no account!')
+          return res.redirect('/forgot')
+        }
+        user.resetPasswordToken   = token
+        user.resetPasswordExpires = Date.now() + 3600000
+        user.save(function(err){
+          done(err, token, user)
+        })
+      })
+    },
+    function(token, user, done){
+      var smptTransport = nodemailer.createTransport('SMTP', {
+        service: 'foo',
+        auth: {user: 'your username for the service', pass: 'your pass for the service'}
+      })
+      var mailOptions = {
+        to: user.email,
+        from: 'learny-app@thing.bar',
+        subject: 'reset yer passwerd, yo'.
+        text: 'hey, click the thingy and stuff, right here, to reset yer passwerd: http://' + req.headers.post + '/forgot/' + token '\n' + ' .'
+      }
+      smtpTransport.sendMail(mailOptions, function(err){
+        req.flash('info', 'email sent to ' + user.email + ' to reset yer passwyrd.')
+        done(err, 'done')
+      })
+    }
+  ],
+  function(err){
+    if(err) return next(err)
+    res.redirect('/forgot')
+  })
+})
+app.get('/reset/:token', function(req, res{
+  User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: $gt: Date.now()}), function(err, user){
+    if(!user){
+      req.flash('error', 'invalid password reset token')
+      return res.redirect('/forgot')
+    }
+    res.render('reset', {
+      user.req.user
+    })
+  })
+})
+app.post('/reset/:token', function(req, res){
+  async.waterfall([
+    function(done) {
+      User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}}, function(err, user){
+        if(!user){
+          req.flash('error', 'nope, nope nope.')
+          return res.redirect('back')
+        }
+        user.password = req.body.password
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+        user.save(function(err){
+          req.logIn(user, function(err){
+            done(err, user)
+          })
+        })
+      })
+    },
+    function(user, done){
+      var smtpTransport = nodemailer.createTransport('SMTP', {
+        service: 'quux',
+        auth: {
+          user: 'same as above',
+          pass: 'same as above'
+        }
+      })
+      var mailOptions = {
+        to: user.email,
+        from: 'learnythingy@stuff.baz',
+        subject: 'changed pw!',
+        text: 'heyo,\n\n' +
+          'account ' + user.email + ''s password was changed \n'
+      }
+      smtpTransport.sendMail(mailOptions, function(err){
+        req.flash('success', 'pw changed')
+        done(err)
+      })
+    }
+  ], function(err){
+    res.redirect('/')
+  })
+})
+</code></pre>
+
+<hr />
+
+<h2>Passport with Express and Flash--what's going on, here? (Take two.)</h2>
+
+<p>So, a flash message is just a variable, yes? A very temporary variable. It's stored in a session, and only available once--for the next request. If we attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So, here's an example of how that might work:</p>
+
+<pre><code>router.post('/signup', passport.authenticate('local-login', {
+  successRedirect : '/profile'
+, failureRedirect : '/signup'
+, failureFlash    : 'true' // just allowing flash messages, here
+}))
+// passport handles auth:
+passport.use('local-signup', new LocalStrategy({
+  usernameField     : 'email'
+, passwordField     : 'password'
+, passReqToCallback : true // we can pass the whole request, now
+},
+function(req, email, password, done){
+process.nextTick(function(){
+    User.findOne({'email' : email}, function(err, user){
+        if (err){
+          return done(err)
+        }
+        if (user){
+          return done(null, false, req.flash('loginMessage', 'sorry, no'))
+          } else {
+            var user            = new User()
+            user.local.email    = email
+            user.local.password = user.generateHash(password)
+            user.save(function(err){
+              if (err){
+                throw err
+              }
+              return done(null, user)
+})}})})})) // hey, look, it's lisp!
+// now back in our router...
+router.get('/signup', function(req, res){
+  res.render('signup', { message : req.flash('signupMessage')})
+})
+</code></pre>
+
+<p>This is basically where we are right now. Everything <em>looks</em> like it should work, but it totally doesn't. I think what we need here is to fix the session.</p>
+
+<pre><code>app.use(session({
+  secret            : config.sessionSecret
+, resave            : false
+, saveUninitialized : true
+, cookie            : {secure : true} // _this_ is a problem!
+}))
+</code></pre>
+
+<p>On a local machine, there's no HTTPS.</p>
+
+<hr />
+
+<p>Stack says:</p>
+
+<pre><code>app.post('/login', passport.authenticate('local', {
+  successRedirect: '/loggedin',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+</code></pre>
+
+<p>Three things might happen here:</p>
+
+<ul>
+<li>Internal error, which Express will handle, spit out a 500</li>
+<li>Invalid auth (no user, password != user.password, whatever):
+<ul>
+<li>Here we <em>don't</em> generate an error, we just pass <code>false</code> as the user object:</li>
+<li><code>next(null, false)</code>… this triggers the <code>failureRedirect</code>, which will be a generated 401 by default.</li>
+</ul></li>
+<li>Or, maybe there's a real user (<code>next(null, user)</code>), in which case we go to the <code>successRedirect</code>, yay!</li>
+</ul>
+
+<p>In the second case, a message could be passed as well, like <code>next(null, false, {message: 'sorry, you lose!'})</code>. <br />
+If there's that <code>failureFlash</code> up there (which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed, the message is stored in the session so you can access it for a template or whatever.</p>
+
+<p>Another option here would be to do things the long way (manually):</p>
+
+<pre><code>app.post('/login', function(req, res, next){
+  passport.authenticate('local', function(err, user, info){
+    if(err){
+      return next(err) // generated 500 error
+    } // and now we generate some JSON to spit back regarding
+    if(!user){ // auth status
+      return res.send({success:false, message:'auth failed, yo!'})
+    }
+    return res.send({success:true, message:'hooray, you\'re in!'})
+  })(req, res, next)
+})
+</code></pre>
+
+<p>Yet <em>another</em> potential problem here is how things are being dealth with in the front end. <br />
+Requests from the browser act according to the response. If the browser's sending, for <br />
+example, with AJAX, using jQuery (this is a very specific example, I know), then the jQuery <br />
+will be expecting JSON back, will be <em>getting</em> HTML, won't know what to do with it, and <br />
+maybe you won't know what's going on here, because you maybe don't have a <code>.fail()</code> in your <br />
+call. <br />
+…and this is getting <em>really</em> specific, based on just two things I'm reading on Stack Overflow, so let's ditch that path, shall we? And just show a quick code sample:</p>
+
+<pre><code>app.post('/login/ajax', passport.authenticate('local-login'))
+// login form sent here
+app.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+// custom cb something kinda along these lines, maybe?
+app.post('/login', function(req, res, next){
+  passport.authenticate('local-login', function(err, user, info){
+    switch (req.accepts('html', 'json')){
+      case 'html':
+        if(err){return next(err)}
+        if(!user){return res.redirect('/login')}
+        req.logIn(user, function(err){
+          if(err){return next(err)}
+          return res.redirect('/profile)
+        })
+        break
+      case 'json':
+        if(err){return next(err)}
+        if(!user){return res.status(401).send({"okay":false})}
+        req.logIn(user, function(err){
+          if(err){return res.status(401).send({"okay":false})}
+          return res.send({"okay":true})
+        })
+        break
+      default:
+        res.status(406).send()
+    }
+  })(req, res, next)
+})
+</code></pre>
+
+<p>tags: <a href='tag_passport.html'>passport</a>, <a href='tag_express.html'>express</a>, <a href='tag_node.html'>node</a>, <a href='tag_auth.html'>auth</a>, <a href='tag_authentication.html'>authentication</a>, <a href='tag_local.html'>local</a>, <a href='tag_login.html'>login</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/auth-with-passport-and-express.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/auth-with-passport-and-express.html'><span id='count-8706'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>Github Organizations</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='Github Organizations' />
+<meta name='twitter:description' content=" And general notes on working with other humans.   git push -u origin branchName (push new branch--short for --set-upstream) git pull origin master, no matter what branch you're in, will pull and merge master into your current branch. so, do git pull" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="github-organizations.html">
+Github Organizations
+</a></h3>
+<div class="subtitle">January 19, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>And general notes on working with other humans.</p>
+
+<ul>
+<li><code>git push -u origin branchName</code> (push new branch--short for <code>--set-upstream</code>)</li>
+<li><code>git pull origin master</code>, no matter what branch you're in, will pull and merge master into your current branch. so, do <code>git pull &lt;remote name&gt; &lt;branch name&gt;</code></li>
+<li><code>git stash</code> to push changes to temp thing before pulling, then <code>git stash pop</code> to throw those back over after you pull, so it's basically a kind of automerge. Then you can go ahead and do your merge in depth.</li>
+<li>Make sure your master and remote master are in sync. Keep master merged into your feature branches at least once a day.
+<ul>
+<li>Checkout master, pull that, switch to feature branch, merge that. To merge your feature branch in, be on master, then <code>git merge feature-branch</code>.</li>
+</ul></li>
+</ul>
+
+<p>I guess not really a whole lot of notes. Oh well.</p>
+
+<p>tags: <a href='tag_git.html'>git</a>, <a href='tag_github.html'>github</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/github-organizations.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/github-organizations.html'><span id='count-2001'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

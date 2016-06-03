@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "lang"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "lang"' />
+<meta name='twitter:description' content=" Go  January 24, 2016  &mdash;  Zac Anger   Go programs are made of packages. The package name is the last element of the import path.  main is the entry point.  Imports can be written as a single statement, or multiple statements.  import 'fmt' impo" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="go.html">
+Go
+</a></h3>
+<div class="subtitle">January 24, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Go programs are made of packages. The package name is the last element of the import path.</p>
+
+<p><code>main</code> is the entry point.</p>
+
+<p>Imports can be written as a single statement, or multiple statements.</p>
+
+<p>import "fmt"
+import "math"</p>
+
+<pre><code>import (
+  "fmt"
+  "math"
+)
+</code></pre>
+
+<p>Good practice says to use the former option.</p>
+
+<p>Exports being with a CapitalLetter. Imports can bring in any exports from other packages, same as with NPM//APT/ whatever.</p>
+
+<p>Functions can take 0 or more args:</p>
+
+<pre><code>func add(x int, y int) int {
+  return x + y
+}
+</code></pre>
+
+<p>Declaration is a little weird. Instead of the traditional <code>int Z</code> or the dynamic (JS style), we do <code>w int</code>. This means:</p>
+
+<pre><code>x int
+p *int
+a [3]int
+
+func main(argc int, argv[]string) int
+</code></pre>
+
+<p>Note that Go's actual <code>main</code> takes no arguments.</p>
+
+<pre><code>f func(func(int,int) int, int) func (int, int) int
+</code></pre>
+
+<p>Pointers: <code>x = *p</code></p>
+
+<p>So, Go declares left-to-right.</p>
+
+<p>If two named function params share a type the type can be omitted from everything except the last, eg</p>
+
+<pre><code>func add(x, y, z int) int {
+  return x + y + z
+}
+</code></pre>
+
+<p>Functions can return any number of results. Returns can be named, as well, and if they are, they're vars defined at top of function (hosted return variables, I guess?). A 'naked' return would be one that doesn't say <em>what</em> to return, in which case it just returns the named variables. Should only be used in short fns for readability.</p>
+
+<p><code>var</code> can be at package or fn level. Type is declared after. so <code>var foo, bar, quux, baz bool</code>.</p>
+
+<p>If initialized at declaration, explicit type annotation can be omitted. <code>var q, r = 8, 16</code>.</p>
+
+<p><code>:=</code> is shortand for <code>var</code> with implicit type, but only available inside a fn--globally, every statement must begin with keyword. So:</p>
+
+<pre><code>var foo, bar = false, false
+
+func foo() {
+  var s, t int = 32, 64
+  u := 128
+}
+</code></pre>
+
+<p>Types in Go:
+* <code>bool</code>
+* <code>string</code>
+* <code>int</code> <code>int8</code> <code>int16</code> <code>int32</code> <code>int64</code>
+* <code>uint</code> ''     ''      ''       ''  <code>uintptr</code></p>
+
+<ul>
+<li><code>float32</code> <code>float64</code></li>
+<li><code>complex64</code> <code>complex128</code></li>
+<li><code>rune</code> (alias to <code>int32</code>)</li>
+<li><code>byte</code> (alias to <code>uint8</code>)</li>
+</ul>
+
+<p><code>var</code> declared without value is given <em>zero value</em>. That means <code>0</code> for numerics, <code>false</code>, or <code>""</code>.</p>
+
+<p>Expression <code>T(v)</code> makes value to Type.</p>
+
+<p>Types are inferred by value on the right, except when right contains untyped numeric const--that means we can have <code>int</code>, <code>float64</code>, or <code>complex128</code> depending on precision of the const.</p>
+
+<p><code>const</code> is declared var-style, can be <code>char</code>, <code>string</code>, <code>bool</code>, or numeric. Cannot use <code>:=</code>.</p>
+
+<p>Note that <code>int</code> can store <em>max</em> 64-bit.</p>
+
+<p>Loops: only <code>for</code>. No <code>()</code>, <code>{}</code> are required.</p>
+
+<pre><code>func bar() {
+  sum :=0
+  for i :=0; i &lt; 10; i++ {
+    sum +=1
+  }
+  fmt.Print1n(sum)
+}
+</code></pre>
+
+<p>Pre and post can be empty, which just gives us a <code>while</code>.</p>
+
+<pre><code>for sum &lt; 999 {
+  sum += sum
+}
+</code></pre>
+
+<p>Infinte loop:</p>
+
+<pre><code>func quux () {
+  for {
+  }
+}
+</code></pre>
+
+<p>If statements, again no parens, required braces. Vars declared in <code>if</code> are avail in <code>else</code>, before <code>fmt.Print1n</code>.</p>
+
+<p>Case: similar. Breaks automatically, unless <code>fallthrough</code>. Switch from top down, breaks on success. Switch sans condition means <code>switch true</code>.</p>
+
+<p><code>defer</code> does not evaluate until its surrounding func returns. Defers can be stacked; they are then executed LIFO.</p>
+
+<p>Here's the usual...</p>
+
+<pre><code>package main
+
+import fmt "fmt" // formatted i/o
+
+func main() {
+  fmt.Printf("Hello, world.")
+}
+</code></pre>
+
+<p>tags: <a href='tag_go.html'>go</a>, <a href='tag_lang.html'>lang</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/go.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/go.html'><span id='count-11475'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="differences-from-js.html">
+Elm (notes)
+</a></h3>
+<div class="subtitle">January 14, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Differences from JS:</p>
+
+<ul>
+<li>Elm has multiline string support, with <em>triple</em> sets of quotes, eg """multiline string"""</li>
+<li>Elm <em>cannot</em> use single quotes for <em>strings</em>. Elm uses single quotes to denote <em>characters</em>.</li>
+<li>Booleans are uppercase.</li>
+<li>Objects use <code>=</code> instead of <code>:</code>, so <code>{key: value, key2: value2}</code> in JS would be <code>{key = value, key2 = value2}</code> in Elm.</li>
+<li><code>point.x = 42</code> in JS would be <code>{point | x = 42}</code> in Elm.</li>
+<li>Functions are greatly simplified. <code>function(foo, bar){return foo+bar}</code> in js would be <code>\foo bar -&gt; foo + bar</code> in Elm.</li>
+<li>Math is a little simpler: <code>Math.max(2,4)</code> is just <code>max 2 4</code>. Same with <code>min</code>. <code>Math.pow</code> is just <code>^</code>, eg <code>Math.min(1, Math.pow(2, 4))</code> is <code>min 1 (2^4)</code>.</li>
+<li><code>numbers.map(Math.sqrt)</code> would be <code>List.map sqrt numbers</code>. <code>points.map(function(p){return p.x})</code> becomes <code>List.map .x points</code>.</li>
+<li><code>2 &lt; 4 ? 'WHAT' : 'how?'</code>, <code>if 2 &lt; 4 then "WHAT" else "how?"</code></li>
+<li><code>var foo = 72</code>; <code>let foo = 72 in...</code></li>
+<li>No return statements; everything is an expression.</li>
+<li><code>String.length "asdf"</code> rather than 'asdf.length'</li>
+</ul>
+
+<p>Mostly it looks pretty neat, but there's virtually nothing out there for actually <em>learning</em> it, so I'm already kind of over it....</p>
+
+<p>Note that the 'EventLog.elm' in this directory doesn't actually need the start-app package anymore; turns out it's really easy to just wire the damn thing up all on your own.</p>
+
+<p class="readmore"><a href="./differences-from-js.html">read more...</a></p>
+<p>tags: <a href='tag_js.html'>js</a>, <a href='tag_haskell.html'>haskell</a>, <a href='tag_functional.html'>functional</a>, <a href='tag_programming.html'>programming</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_elm.html'>elm</a>, <a href='tag_lang.html'>lang</a>, <a href='tag_language.html'>language</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/differences-from-js.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/differences-from-js.html'><span id='count-26621'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

@@ -1,0 +1,16 @@
+[Unit]
+Description=Z
+
+[Service]
+WorkingDirectory=/srv/zacanger
+ExecStart=/usr/local/bin/forever start -a -l f.log -o o.log -e e.log index.js
+Restart=Always
+RestartSec=1
+TimeoutSec=0
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=z
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>?</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather">
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: #101010;
+      color: #cecece;
+    }
+    .container {
+      padding-top: 20vh;
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .search {
+      background: #101010;
+      height: 30vh;
+      line-height: 1.6;
+      font-size: 3.8rem;
+      border: 0;
+      text-align: center;
+      box-shadow: 0;
+      font-family: "Merriweather", serif;
+      outline: 0;
+      color: #cecece;
+    }
+    .search:focus { outline: 0; }
+    ::-webkit-input-placeholder { text-align: center; color: #565656; }
+    :-moz-placeholder { text-align: center; color: #565656; }
+    ::-moz-placeholder { text-align: center; color: #565656; }
+    :-ms-input-placeholder { text-align: center; color: #565656; }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <form id="searchForm" autocomplete="off" role="form">
+      <input
+        type="text"
+        placeholder="search"
+        class="search"
+        id="search">
+    </form>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#searchForm').on('submit', function() {
+      window.location.href = 'https://www.google.com/search?q=' + $('#search').val()
+      return false
+    })
+  })
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,281 @@
+* {
+  text-align: left;
+  font-size: 1em;
+  text-shadow: 0 0 1px #F4F4F4;
+  color: #282828;
+}
+
+html { background: #FEFEFE; }
+
+body {
+  text-align: center;
+  font-family: "Fantasque Sans Mono", monospace;
+  font-weight: 300;
+  text-shadow: 0 0 1px #F4F4F4;
+  color: #282828;
+  margin: 1.2em;
+}
+
+#wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 80%;
+  max-width: 900px;
+}
+
+@media (min-width: 900px) {
+  #right {
+    float: right;
+    width: 240px;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+  #left {
+    float: left;
+    width: 580px;
+  }
+}
+
+@media (max-width: 900px) {
+  #right {
+    clear: both;
+    width: 80%;
+  }
+  #left { width: 80%; }
+}
+
+h1, h2, h3, h4, p {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.6em;
+  text-transform: uppercase;
+  margin-left: -2px;
+  margin-top: 5%;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 1.6em;
+}
+
+h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  border-bottom: 1px solid #282828;
+  margin-bottom: 25px;
+}
+
+h3 a i {
+  color: #0F5D8D;
+  text-shadow: 0 0 0px;
+  font-size: 1.4em;
+}
+
+#right h3 { border-bottom: 0px; }
+
+h4 {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+#left .h-left {
+  width: 310px;
+  text-align: left;
+}
+
+#left .h-right {
+  width: 310px;
+  text-align: right;
+  float: right;
+}
+
+#right .h-left {
+  width: 165px;
+  text-align: left;
+}
+
+#right .h-right {
+  width: 165px;
+  text-align: right;
+  float: right;
+}
+
+a:link, a:visited, a:focus {
+  color: #0F5D8D;
+  text-decoration: none;
+}
+
+section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  line-height: 150%;
+}
+
+.entry {
+  margin-bottom: 25px;
+  width: 80%;
+}
+
+.date {
+  width: 80px;
+  float: left;
+}
+
+.specs {
+  width: 480px;
+  margin-left: 80px;
+}
+
+.employer { font-weight: 700; }
+
+.occupation { font-weight: bold; }
+
+#right section { margin-top: 0px; }
+
+.tabular { display: table-row; }
+
+.tabular-icon {
+  display: table-cell;
+  width: 20px;
+  padding-right: 6px;
+  padding-bottom: 0px;
+}
+
+.tabular-content {
+  display: table-cell;
+  padding-bottom: 0px;
+}
+
+.progress {
+  height: 19px;
+  margin-top: 19px;
+  margin-bottom: 19px;
+  background-color: rgb(180,180,180);
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  float: left;
+  height: 100%;
+  background-color: rgb(120,120,120);
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.progress-bar-label {
+  height: 19px;
+  line-height: 18px;
+  margin-left: 2px;
+  font-size: 1em;
+  padding-left: 3px;
+  padding-bottom: 1px;
+  color: white;
+  text-shadow: 0 0 0px;
+  text-align: left;
+}
+
+.scale { margin-top: -10px; }
+
+.scale-left {
+  width: 162px;
+  text-align: left;
+  margin-top: 23px;
+  float: left;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+.scale-right {
+  width: 162px;
+  margin-top: 23px;
+  text-align: right;
+  float: left;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 700;
+  padding-right: 3px;
+}
+
+.progress-right {
+  height: 23px;	/* 20px for png */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-image: url(bar-bg.png);
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+
+.progress-bar-right {
+  float: left;
+  height: 100%;
+  font-size: 1.2em;
+  color: #282828;
+  text-shadow: 0 0 1px rgb(130,130,130);
+  background-color: transparent;
+}
+
+.timeline { margin-top: -50px; }
+
+ul.events {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0 20px 0;
+}
+
+ul.events li {
+  border-bottom: 1px solid #999;
+  color: transparent;
+  font-size: 1em;
+  margin-bottom: 8px;
+  padding: 1px 0px 2px;
+  position: relative;
+  white-space: nowrap;
+  text-align: left;
+  line-height: 100%;
+}
+
+ul.events li a {
+  color: #aaa;
+  color: transparent;
+}
+
+.timeline-event a {
+  width: 100%;
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+  margin-right: 1px;
+}
+
+ul.intervals {
+  list-style-type: none;
+  padding: 0;
+  display: block;
+  margin: 0;
+}
+
+/* Width depends on the number of intervals. Example: 100 / 7 = 14.29% */
+
+ul.intervals li {
+  border-right: 1px solid #ddd;
+  color: #888;
+  float: left;
+  font-size: 1em;
+  margin: 0;
+  text-align: center;
+  width: 12.36%;
+}
+
+ul.intervals li.last { border-right: 0px; }
+

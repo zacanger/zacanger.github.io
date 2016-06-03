@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>Automatic Semicolon Insertion</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='Automatic Semicolon Insertion' />
+<meta name='twitter:description' content=" This is a simplified version of the section from the spec that deals with ASI, because I'm really tired of all the idiocy and debate about this. It's not a big deal whether you use semicolons everywhere or don't, but the vitriol from those who use t" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="automatic-semicolon-insertion.html">
+Automatic Semicolon Insertion
+</a></h3>
+<div class="subtitle">December 13, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>This is a simplified version of the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">section from the spec that deals with ASI</a>, because I'm really tired of all the idiocy and debate about this. It's not a big deal whether you use semicolons everywhere or don't, but the vitriol from those who use them everywhere really needs to end, and from what I can tell it's almost entirely based on this idea that ASI is complicated. ASI is <em>really simple</em>, and its rules are a lot easier to remember than stupidity like <code>++foo</code> vs <code>foo++</code>, or the rules for <code>this</code>. The actual spec's ASI section is less than two pages, but it can be simplified further, into probably less than a page.</p>
+
+<hr />
+
+<h2>Automatic Semicolon Insertion</h2>
+
+<p>ECMAScript statements are really really basic, and if you don't know what a statement is, you probably shouldn't be programming. A lot of statements in JavaScript (the popular implementation of the ECMAScript standard) are terminated by semicolons. These are:</p>
+
+<ul>
+<li>empty statement</li>
+<li>variable statement</li>
+<li>expression statement</li>
+<li>do-while statement</li>
+<li>continue statement</li>
+<li>break statement</li>
+<li>throw statement</li>
+<li>return statement</li>
+</ul>
+
+<p>Semicolons don't need to be included in the source while writing these, though. Why not? Because when they're parsed, semicolons are automatically inserted. Why is this okay? Because new lines (what the spec calls a 'LineTerminator') also end statements, except in a few cases:</p>
+
+<ol>
+<li>The next line starts with one of the following characters: <code>[ ( + * / - , .</code></li>
+<li>The next line starts by incrementing or decrementing a token</li>
+<li>You're in a <code>for()</code>, <code>while()</code>, <code>do</code>, <code>if()</code>, or <code>else</code>, and there's no <code>}</code></li>
+<li>The statement has an unclosed paren or ends in some other invalid way (like a <code>.</code> or <code>,</code>)</li>
+</ol>
+
+<p>Let's talk about that for a second.</p>
+
+<p>Exception number four is pretty obvious, and no one has a problem with that.</p>
+
+<p>Exception number three is also pretty obvious, because you're talking about being in a block. Not rocket science.</p>
+
+<p>Exception number three: <br />
+If you're writing something like this, you need some mental help:</p>
+
+<pre><code>i
+++
+j
+</code></pre>
+
+<p>ASI would turn that into:</p>
+
+<pre><code>i;
+++j;
+</code></pre>
+
+<p>But guess what? No rational human being would write code like that, so it's not a problem. Right? Right.</p>
+
+<p>It's the first thing that people worry about, really. Which is why we like to do semicolons at the beginning of those lines. It turns out it's a lot quicker and easier to remember than people think. Don't write your code like a jackass (it's not concrete poetry, dummy), and put a semicolon at the beginning of a line if it starts with <code>[</code> or <code>(</code>. And it turns out it's a lot easier to read, too (comma-first is another entire discussion, but what it comes down to is that comma-first is much, much easier to read and write, so it doesn't really make much sense not to do it).</p>
+
+<p>There's also that other thing where ASI could totally break your code, and that goes back to the "Don't write code like a jackass (it's not concrete poetry)" bit. Imagine you're a tool, so you write:</p>
+
+<pre><code>function foo(bar){
+  return
+    bar
+}
+</code></pre>
+
+<p>Well, for starters, you're weird. And ASI will do this: <code>function foo(bar){ return; bar; };</code>. It turns out there's a really super easy way around that problem, and it's something all people do anyway because they're not horrible human beings: don't put random newlines in your code. <code>return</code> is <em>always</em> terminated by a newline (as mentioned above), so everyone's already aware of this. That was easy. Same goes for <code>break</code>, <code>continue</code>, and <code>throw</code>.</p>
+
+<p>The idea that putting semicolons everywhere is somehow more readable or safe makes very little sense. I could put semicolons all over the place, and it makes no difference.</p>
+
+<pre><code>function foo(){;;;;;;;;;;;
+;;var bar = 'semicolons';;
+;;console.log(bar);;;;;;;;
+};;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;foo();;
+</code></pre>
+
+<p>Try running that in your browser console, or Node. Try running this one:</p>
+
+<pre><code>function foo(){
+  var bar = 'no semicolons'
+  console.log(bar)
+}
+foo()
+</code></pre>
+
+<p>See any difference?</p>
+
+<p>ASI's not a new thing (it's older than a lot of people writing JavaScript these days, actually). It's not scary, it's not unreliable, and it definitely doesn't cause <a href="https://google.github.io/styleguide/javascriptguide.xml?showone=Semicolons#Semicolons">subtle, hard to debug problems</a>, as long as you don't write code like a jackass.</p>
+
+<p>I'm basically done here. I still definitely recommend <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">actually reading this</a>, both because it's a bit more verbose and because it's extraordinarily comprehensible. But if technical literature's not your style, then maybe check <a href="http://inimino.org/~inimino/blog/javascript_semicolons">one of</a> <a href="http://mislav.net/2010/05/semicolons/">the big</a> <a href="http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding">blog posts</a> from smarter people than myself on the topic.</p>
+
+<h2>TL;DR</h2>
+
+<p>The TL;DR here is that no one actually gives a shit how you write code in the privacy of your cubicle, as long as it conforms to the styleguide of the project you're working on. But the nastiness directed towards people who don't use semicolons really has to end. The rules are stupid-simple, nearly impossible to fuck up, and taking five minutes to get in the habit of writing code this way actually does make things more readable. If you love your semicolons, good for you. But don't ever tell someone their style is 'wrong' or 'dangerous' or prone to breakage just because they spent an extra five minutes to read two pages of the language specification. And don't be afraid of learning the rules yourself. It's really actually incredibly simple.</p>
+
+<p>tags: <a href='tag_js.html'>js</a>, <a href='tag_asi.html'>asi</a>, <a href='tag_semicolons.html'>semicolons</a>, <a href='tag_rant.html'>rant</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/automatic-semicolon-insertion.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/automatic-semicolon-insertion.html'><span id='count-27334'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

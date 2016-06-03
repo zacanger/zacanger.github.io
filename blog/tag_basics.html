@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "basics"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "basics"' />
+<meta name='twitter:description' content=" node-fs basics  February 12, 2016  &mdash;  Zac Anger   this is another one that'll be presented just as a giant code block.  // using files in node var fs = require('fs') var buf = new Buffer(1024)  // reading asynchronously fs.readFile('foo.md', f" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="node-fs-basics.html">
+node-fs basics
+</a></h3>
+<div class="subtitle">February 12, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>this is another one that'll be presented just as a giant code block.</p>
+
+<pre><code>// using files in node
+var fs = require('fs')
+var buf = new Buffer(1024)
+
+// reading asynchronously
+fs.readFile('foo.md', function(err, data){
+  if(err){
+    return console.error(err)
+  }
+  console.log('async read: ' + data.toString())
+})
+// and synchronously
+var data = fs.readFileSync('foo.md')
+console.log('sync read: ' + data.toString())
+console.log('#############\n')
+
+// opening
+// fs.open(path, flags[, mode], cb)
+// flags can be r (r), r (rw), rs (r synchronously), rs+ (rw, sync),
+// w (write), wx (fails if file exists), w+ (rw, creates file (or truncates existing)),
+// wx+ (fails if path exists), a (append), ax (fails if path exists),
+// a+ (file for read &amp; append), ax+ (fails if path exists)
+console.log('opening file')
+fs.open('foo.md', 'r+', function(err, fd){
+  if(err){
+    return console.error(err)
+  }
+  console.log('opened')
+})
+
+// information about files
+// fs.stat(path, callback)
+// .isFile() returns true if file, .isDirectory returns true if dir,
+// isBlockDevice returns true if block device, isCharacterDevice...,
+// isSymbolicLink ..., isFifo, isSocket
+console.log('getting file info')
+fs.stat('foo.md', function(err, stats){
+  if(err){
+    return console.error(err)
+  }
+  console.log(stats)
+  console.log('got yer file')
+  console.log('symlink? ' +  stats.isSymbolicLink)
+  console.log('char? ' + stats.isCharacterDevice)
+})
+
+// writing: fs.writeFile(filename, data[, options], cb)
+console.log('gonna write a file')
+fs.writeFile('bar.md', 'stuff!', function(err){
+  if(err){return console.error(err)}
+  console.log('written!')
+  console.log('reading that now')
+  fs.readFile('bar.md', function(err, data){
+    if(err){return console.error(err)}
+    console.log('async read: ' data.toString())
+  })
+})
+
+// closing: fs.close(fd, callback)
+console.log('opening file')
+fs.open('bar.md', 'r+', function(err, fd){
+  if(err){return console.error(err)}
+  console.log('opened')
+  console.log('reading it')
+  fs.read(fd, buf, 0, buf.length, 0 function(err, bytes){
+    if(err){console.log(err)}
+    if(bytes &gt; 0){console.log(buf.slice(0, bytes).toString())}
+    fs.close(fd, function(err){
+      if(err){console.log(err)
+    }
+    console.log('closed!')
+    })
+  })
+})
+
+// truncating: fs.ftruncate(fd, len, cb)
+// ... meh
+
+// deleting: fs.unlink(path, cb)
+console.log('gonna DELETE a file!')
+fs.unlink('bar.md', function(err){if(err){return console.error(err)}
+console.log('deleted!')})
+
+// mkdir: fs.mkdir(path[, mode], cb)
+fs.mkdir('./test', function(err){
+  if(err){return console.error(err)}
+  console.log('created a directory at \'test\'')
+})
+fs.mkdir('./asdf', function(err){
+  if(err){return console.error(err)}
+  console.log('created one called \'asdf\', too!')
+})
+// fs.readdir(path, cb)
+fs.readdir('./', function(err, files){
+  if(err){return console.error(err)}
+  files.forEach(function(file){
+    console.log(file)
+  })
+})
+
+// fs.rmdir(path, cb)
+fs.rmdir('./asdf', function(err){
+  if(err){return console.error(err)}
+  fs.readdir('./', function(err, files){
+    if(err){return console.error(err)}
+    files.forEach(function(file){
+      console.log(file)
+    })
+  })
+})
+
+// there are a whole bunch of other methods, but i feel like this is good enough for now, yes?
+</code></pre>
+
+<p>tags: <a href='tag_node.html'>node</a>, <a href='tag_fs.html'>fs</a>, <a href='tag_node-fs.html'>node-fs</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_basics.html'>basics</a></p>
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/node-fs-basics.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/node-fs-basics.html'><span id='count-25094'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>angr &mdash; posts tagged "meteor"</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='angr &mdash; posts tagged "meteor"' />
+<meta name='twitter:description' content=" Meteor Notes  January 21, 2016  &mdash;  Zac Anger   General Notes, from that time I played with Meteor  {{#with foo}} is a template tag that takes arg (foo). that is the data context for the block in that tag. being a tag, it needs to be closed lat" />
+<meta name='twitter:image' content='http://zacanger.com/blog/devmtn-sign.jpg' />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="meteor-notes.html">
+Meteor Notes
+</a></h3>
+<div class="subtitle">January 21, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<h2>General Notes, from that time I played with Meteor</h2>
+
+<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later (<code>{/with}</code>).</p>
+
+<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of <code>Collection.find()</code>.</p>
+
+<p>Includes are like so: <code>{{&gt; foo bar}}</code> which will bring in the bar from foo.</p>
+
+<p>meteor's blaze will soon just be a thin templating layer over react.</p>
+
+<p>iron router is meteor's primary routing package. its 'data' method helps with data contexts.</p>
+
+<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data context is accessible via <code>this</code>. an example:</p>
+
+<pre><code>&lt;template name="profile"&gt;
+  &lt;h3&gt;profile&lt;/h3&gt;
+  {{#with profile}}
+  &lt;img src="{{avatarPath}}" /&gt;
+  {{#with name}}
+  &lt;p&gt;{{fullName}}&lt;/p&gt;
+  {{/with}}
+  {{/with}}
+&lt;/template&gt;
+
+
+Template.profile.helpers({
+  profile: function(){
+    return Users.findOne(Session.get('userId'))
+  },
+  avatarPath: function(){
+    return 'images/' + this.avatar
+  },
+  fullName: function(){
+    return this.first + ' ' +  this.last
+  }
+})
+</code></pre>
+
+<p>a dedicated {{log}} helper can be more useful than console.log(this)</p>
+
+<pre><code>Template.profile.helpers({
+  log: function(){
+    console.log(this)
+}})
+
+
+&lt;template name="profile"&gt;
+  {{#with profile}}
+  {{log}}
+  &lt;!-- etc --&gt;
+  {{/with}}
+</code></pre>
+
+<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad, actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and <code>{{blahblah ../..}}</code>).</p>
+
+<h4>Reactivity in Meteor</h4>
+
+<p>Reactive computation: block of code (inside of a function) that re-runs when a reactive data source <em>inside</em> it changes.</p>
+
+<pre><code>Template.hello.helpers{(
+  counter: function(){
+    console.log('counter helper is running')
+    return Session.get('count')
+  }
+)}
+</code></pre>
+
+<p>Here, counter re-runs whenever count changes (count is retrieved by Session.get('count_')). <br />
+Session variables are <em>reactive sources</em>. Template helpers are <em>reactive computations</em>.</p>
+
+<p>Reactive variables in Meteor:</p>
+
+<ul>
+<li>Session variables
+<ul>
+<li>defined with <code>Session.set()</code></li>
+<li>retrieved with <code>Session.get()</code></li>
+<li>global to the app, and reactive</li>
+</ul></li>
+<li>Cursors
+<ul>
+<li>what you get when querying db</li>
+<li>(via <code>Collection.find()</code>)</li>
+</ul></li>
+<li>Subscription's <code>ready()</code> method
+<ul>
+<li><code>subscription.ready()</code> is when the client has received all data</li>
+</ul></li>
+<li>some others, including:
+<ul>
+<li><code>Meteor.user()</code></li>
+<li><code>Meteor.userId()</code></li>
+<li><code>Meteor.status</code></li>
+<li><code>Meteor.loggingIn</code></li>
+</ul></li>
+</ul>
+
+<p>Reactive computations:</p>
+
+<ul>
+<li>template helpers (eg <code>{{something}}</code> in a template, duh)</li>
+<li>iron router (third party) hooks are reactive
+<ul>
+<li>route functions and <em>most</em> hooks are run in a reactive computation</li>
+</ul></li>
+</ul>
+
+<p>Custom reactivity in meteor: <br />
+reactive-var (third party package) enables defining own reactive variables. <br />
+these don't have global names (like Session.get('foo')'s foo), more like this.foo.get() <br />
+declared like <code>new ReactiveVar()</code>.</p>
+
+<pre><code>var count = new ReactiveVar(0)
+count.set(1)
+count.get() // 1
+</code></pre>
+
+<p>There's also <code>ReactiveDict</code>. That's a thing.</p>
+
+<p>Custom reactive computations: <br />
+<code>Tracker.autorun(function(){})</code> <br />
+Read the full Meteor manual for more on that, I guess.</p>
+
+<p>Reactivity can be passed on through composition, eg <code>var getCount = function(){ return Session.get('count') }</code> -- getCount is a reactive data source, by virtue of Session.get('count'), which is itself a reactive data source. <br />
+SO...</p>
+
+<pre><code>Template.hello.helpers({
+  counter: function(){
+    console.log('counter helper is running')
+    return Session.get('count')
+  }
+})
+</code></pre>
+
+<p>IS THE SAME AS</p>
+
+<pre><code>var getCount = function(){
+  return Session.get('count')
+}
+
+Template.hello.helpers({
+  counter: function(){
+    console.log('counter helper is running')
+    return getCount()
+  }
+})
+</code></pre>
+
+<p>both ways, counter reruns whenever count session variable changes.</p>
+
+<p>composition only applies to functions. not variables.</p>
+
+<p>tags: <a href='tag_meteor.html'>meteor</a>, <a href='tag_js.html'>js</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/meteor-notes.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/meteor-notes.html'><span id='count-15026'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="meteor-and-react.html">
+meteor and react
+</a></h3>
+<div class="subtitle">January 21, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>anything in <code>&lt;template&gt;is a _meteor_ template&lt;/template&gt;</code>; include in html by <code>{{&gt; thatTemplate}}</code>, or in js with <code>Template.thatTemplate</code>. (not doing that at all with react as view.)</p>
+
+<p><code>React.createClass</code> defines a new view... class. why are components classes? <code>props</code> are attributes that allow compnents/classes to inherit <em>data</em>.</p>
+
+<p><code>render()</code> (react) gets a description of the markup to show. html's inside jsx, so get used to angle brackets in your scripting, yay.... jsx: <code>className</code> instead of <code>class</code>. jsx, not templating lang... just compiles to plain old js.</p>
+
+<p>jsx can use es6 (what about esnext-next?). this includes <code>const</code> &amp; <code>let</code>, <code>methodShorthand(){...}</code>, and <code>=&gt;</code>.</p>
+
+<p>collections: how meteor stores persistent data. aka mongo. lol duh. accessible from server and client.</p>
+
+<p><code>collectionName = new Mongo.Collection("collection-name")</code> to make that happen. that makes a new mongo collection on the server, and cache on the client.</p>
+
+<p>tags: <a href='tag_meteor.html'>meteor</a>, <a href='tag_react.html'>react</a>, <a href='tag_js.html'>js</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/meteor-and-react.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/meteor-and-react.html'><span id='count-17043'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="notes.html">
+Notes
+</a></h3>
+<div class="subtitle">January 13, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>So, I have a <em>lot</em> of notes that I've taken over the course of the last couple of months. Seeing as they're not doing me a whole lot of good sitting in a pile of Markdown files, I'm gradually going through them, cleaning them up, and I think I'll just post them all as sort of blog posts. Why not? So here's a little list of the topics I'll be covering over the next few weeks:</p>
+
+<ul>
+<li>Unicode</li>
+<li>SystemJS (and JSPM)</li>
+<li>Go</li>
+<li>UI</li>
+<li>Github Organizations</li>
+<li>Functional Reactive Programming (and RxJS)</li>
+<li>Elm</li>
+<li>Browserify</li>
+<li>Bash Builtins</li>
+<li>Firebase</li>
+<li>ES6</li>
+<li>Pusher</li>
+<li>Styleguides</li>
+<li>Passport (and problems getting errors out of Express)</li>
+<li>React (and Webpack)</li>
+<li>Isomorphic React</li>
+<li>Flux</li>
+<li>Meteor</li>
+<li>All the reasons I kind of dislike Angular</li>
+<li>Bacon.js</li>
+<li>Basics of webmastering (which is totally not a word)</li>
+<li>Functional programming (in general)</li>
+<li>Effective web design</li>
+<li>Mongo (and Mongoose, and MongoJS, and Mongolayer)</li>
+<li>Ruby, maybe a little bit</li>
+<li>Electron (formerly Atom Shell)</li>
+<li>NW.js (formerly Node Webkit)</li>
+<li>Gulp</li>
+<li>Node in general</li>
+<li>Probably a good bit of Node stuff, really</li>
+<li>I like Node a lot</li>
+<li>Maybe a little bit of jQuery?</li>
+<li>The developer hiring process</li>
+<li>Maybe a little bit of that Javascript language, or something?</li>
+<li>Probably not much at all on HTML, because HTML doesn't need... notes... really</li>
+<li>CSS... lol, CSS.</li>
+<li>People, and the experience of dealing with people on a regular basis</li>
+<li>What it's like to live with the people I live with</li>
+<li>What it's like to actually find myself liking human beings, and wanting to be around them, especially certain ones, quite a lot. (It's <em>weird!</em>)</li>
+</ul>
+
+<p>tags: <a href='tag_blogs.html'>blogs</a>, <a href='tag_personal.html'>personal</a>, <a href='tag_notes.html'>notes</a>, <a href='tag_education.html'>education</a>, <a href='tag_react.html'>react</a>, <a href='tag_js.html'>js</a>, <a href='tag_electron.html'>electron</a>, <a href='tag_flux.html'>flux</a>, <a href='tag_meteor.html'>meteor</a>, <a href='tag_elm.html'>elm</a>, <a href='tag_gulp.html'>gulp</a>, <a href='tag_css.html'>css</a>, <a href='tag_es6.html'>es6</a>, <a href='tag_ruby.html'>ruby</a>, <a href='tag_mongo.html'>mongo</a>, <a href='tag_bash.html'>bash</a>, <a href='tag_unicode.html'>unicode</a>, <a href='tag_go.html'>go</a>, <a href='tag_ui.html'>ui</a>, <a href='tag_design.html'>design</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/notes.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/notes.html'><span id='count-9132'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="quick-little-thing.html">
+QUICK LITTLE THING
+</a></h3>
+<div class="subtitle">November 21, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p><a href="https://www.instagram.com/p/-SlGTAxf6W/?taken-by=zacanger"><img src="http://zacanger.com/blog/devmtn-sign.jpg" alt="DevMountain Sign" /></a></p>
+
+<p class="readmore"><a href="./quick-little-thing.html">read more...</a></p>
+<p>tags: <a href='tag_react.html'>react</a>, <a href='tag_angular.html'>angular</a>, <a href='tag_mean-stack.html'>mean-stack</a>, <a href='tag_meteor.html'>meteor</a>, <a href='tag_socket.html'>socket</a>, <a href='tag_idk.html'>idk</a>, <a href='tag_personal projects.html'>personal projects</a>, <a href='tag_break.html'>break</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/quick-little-thing.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/quick-little-thing.html'><span id='count-12213'></span></a>&nbsp;</p>
+<h3><a class="ablack" href="react-meetup-17-nov-2015.html">
+React Meetup, 17 Nov, 2015
+</a></h3>
+<div class="subtitle">November 17, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>React:
+  - Good at managing state.
+    - which is to say, dynamism
+  - Components, just like... everything else these days, so that's totally irrelevant.
+  - virtual dom, which is not exactly facebook's anyway.
+  - unidirectional data flow, which is a mouthful.
+    - that is, the loop.
+    - more boilerplate to run that... less boilerplate-replacer built into react?</p>
+
+<p class="readmore"><a href="./react-meetup-17-nov-2015.html">read more...</a></p>
+<p>tags: <a href='tag_react.html'>react</a>, <a href='tag_meetup.html'>meetup</a>, <a href='tag_php.html'>php</a>, <a href='tag_xml.html'>xml</a>, <a href='tag_js.html'>js</a>, <a href='tag_school.html'>school</a>, <a href='tag_meteor.html'>meteor</a></p>
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/react-meetup-17-nov-2015.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/react-meetup-17-nov-2015.html'><span id='count-29172'></span></a>&nbsp;</p>
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

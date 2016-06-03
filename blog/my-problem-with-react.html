@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>My Problem With React</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='My Problem With React' />
+<meta name='twitter:description' content=" There's this post kinda making the rounds lately. It's a nice post. Everything in there, I agree with, for sure. Especially as someone who feels a lot more comfortable with Node than with, say, Angular's mostly ungrokable API. I get why people like " />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="my-problem-with-react.html">
+My Problem With React
+</a></h3>
+<div class="subtitle">December 28, 2015  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>There's this <a href="https://medium.com/bread-crumbs/i-officially-endorse-react-for-president-9c103e4568d4">post</a> kinda making the rounds lately. It's a nice post. Everything in there, I agree with, for sure. Especially as someone who feels a lot more comfortable with Node than with, say, Angular's mostly ungrokable <a href="https://docs.angularjs.org/api">API</a>. I <em>get</em> why people like React. <em>I get React</em>. It's not exactly hard to pick up, anyway. It's very logical and intuitive. And I really do like the concepts behind React. But I still have problems with it.</p>
+<hr>
+<p>Part of the problem is that React is Facebook. It doesn't matter how much React is actually community-lead; we've seen before that when a company owns/controls a library/framework/language, things can get hairy, sometimes, and cause <a href="https://iojs.org/en/">issues</a>. Besides which, Facebook is kind of absolute pure evil. I mean, maybe not <em>quite</em> Google-level evil, but at least Google provides a lot of useful tools for people. (Google also screws over developers using their frameworks with <a href="https://angular.io/">huge breaking changes and no upgrade paths</a>, but that doesn't make their suite of online tools any less useful.) Facebook's entire business model, the way they actually manage to stay afloat as a company, is one of exploiting their users, dumbing them down, and selling their secrets (okay, yeah, if it's on Facebook it's not a secret anymore, but you get what I mean). That's kinda, like, pretty shady, man.</p>
+<p>But, look, I get it. It's just a library. And it really is mostly community-lead. That's pretty great. What's not so great is how some things are implemented. I do like the <em>theory</em> behind React. I like that it can be used (and usually is used) just as a view. MVCs are all well and good, but what about all the times we don't need a whole MVC framework? That's nice. I like the data flow. I like that it's much more <em>naturally</em> modular (or componentized, I guess). But that doesn't mean it manages separation of concerns. That means it manages separation of elements. Yeah, it's a paragon of <a href="http://atomicdesign.bradfrost.com/">atomic design</a>, and that's really really super nice, but the way it <em>does</em> this isn't really really super nice.</p>
+<p>I'm not going to go deep in and bring up examples from the hordes of React-alikes out there, because chances are half of them will be deprecated (or 'Enterprise', in front-ender speak) by next week. But there are a lot of similar libraries, and some of them do React better than React does. The biggest thing that makes them better is keeping markup, logic, and styling <em>apart</em>. There are a lot of ways to do that and still get use a component structure and workflow, and still work against a virtual DOM (or the real one, that's a thing too), and still base everything on state, and still have a fully one-way data flow. It can be done. I won't go and write up a bunch of examples, but I will mention a few alternatives you might check out.</p>
+<ul>
+<li><p><a href="http://mithril.js.org/">Mithril</a> is <em>very</em> intuitive, and has a super-small API. It's very easy to get up and running, and it's also very easy to think your way through problems, because there's so little you have to deal with on Mithril's end. It's an MVC framework, though, so it's more of an alternative for the likes of Angular than React. May be worth keeping an eye on, especially since Angular 2 is likely to see very little interest (at least for now... too many changes, and no path to upgrade...). Mithril is really clean, and a lot of fun. Its design seems very much inspired by Angular's problems, which means it mostly doesn't have any of those. Its syntax is still clunky and awkward, but not nearly as hideous and jarring as JSX.</p>
+</li>
+<li><p><a href="http://aurelia.io/">Aurelia</a> is another framework--really more a collection of modular libraries, though. Aurelia can be used as an MV-whatever, but it's also easy to just use bits and pieces of Aurelia in your apps. It has Angular-ish two-way data-binding, but it does this more flexibly than Angular, and provides more options for observation. It's completely written in ES2016, which means you get modules, classes, decorators, etc., straight up. Like React, it's all about writing Javascript in Javascript; what that means for me, personally, is that I can write Javascript however the hell I want to write it: ES7, Coffeescript, or even (no, I wouldn't do this, but just for the sake of argument) Typescript (there are even TS starter kits).</p>
+</li>
+<li><p><a href="http://riotjs.com/">Riot</a> is very much like React, and their site will tell you as much. They stick by Facebook's assertion that &quot;Templates separate technologies, not concerns.&quot; What this means for us is that we're sticking with React's concepts (which are great), just not implementing them how React does it. This really basically solves the number one problem most people have with React, which is that it's absolutely hideous. They keep their markup and logic separate, but still in the same component, rather than doing things the old-fashioned way (project structures that keep all your controllers here, templates there, etc.). It's a lot simpler and smaller than React, which is kind of its point, but it does have its own router and event emitter. Oh, and it's not unbearably painful to write, so there's that. This all sounds really great, but Riot's still relatively young, and it hasn't attracted a significant community.</p>
+</li>
+<li><p><a href="http://w3c.github.io/webcomponents/explainer/">Web Components</a> - Sure? I mean, yes, they are, or will be, eventually, a thing that someone at some point will care about again. Kinda like writing CSS in CSS, maybe. (In case you're not sure, that's supposed to be a joke.) Web Components will make a lot of the things a lot of libraries and frameworks do pretty much obsolete. With this option you're looking at two-way binding again, which is great if you want it, not so much if you don't (hey, there's no law that says that Javascript, a completely multi-paradigm language, can only be used functionally--I just happen to roll that way, personally). Web Components won't be performant, because you'll be dealing with the regular old DOM rather than a fake DOM written in JS--and there's way too much going on in the native DOM, all the time, for it to really be zippy. So, you could get templating, two-way binding, and easier custom elements, but it'll probably be slower than React by a good bit. Also, no one really cares.</p>
+</li>
+<li><p>Angu--hahahaha, fooled you.</p>
+</li>
+<li><p><a href="http://vuejs.org">Vue</a> is... so great. I really like Vue. A lot. It's just so... goddamn... good. It supports two-way binding, but defaults to a unidirectional flow. Vue updates against the <em>actual</em> DOM, which is neat. React's rendering checks its virtual DOM (a representation of the DOM in memory), fully re-renders <em>that</em> on state change, and then patches the real DOM based on the difference. That's pretty cool, but it means a lot more logic in your <code style="font-family: Fira Code;">render()</code> (which is acceptable, since this <em>is</em> programming, after all), and if you ever want to directly control the DOM, you have to fight React to do it. And anyway, you'd still have to be writing your markup and styling in your scripts, which is gross. Vue, like Riot, is a lot simpler than React. Unlike Riot, it doesn't want to be React. It also doesn't want to be Angular, or Ember, or Polymer. It <em>does</em> take inspiration from all of them, and it shows it some design decisions (Vue components and Polymer elements are somewhat similar, for example). It's <em>fast</em>, too. And a pleasure to write. Vue's single-file-component style is better at a true separation of concerns than React manages, since it's still fully modular and pluggable, but doesn't require mixing up two or three languages all in the same mess just to get anything done. Vue (if you couldn't tell from the name) is just a view layer, like React. Vue's reactive data-binding is simple and sensible; make changes to the data, things happen on the view, so there's no need to be messing around directly in the DOM. Because of how you separate your styles, logic, and markup in a Vue file, it's very easy to write each in whatever compiled/transpiled language you like. ES7064, YAMAHAMJADEL, StyLASS? Go for it. If there's a plugin for your build tool, you can do it. You will need to take a few minutes to get comfortable with Browserify and/or Webpack to get everything you can out of Vue, but if you're using React, you're probably already using Webpack, so that shouldn't be an issue.</p>
+</li>
+</ul>
+<p>I won't go on <em>too</em> much about Vue. Maybe I'll save that for some other blog post. It really is just downright <em>fun</em> to write, and it makes a lot of sense. Given the rate of growth in Vue's community (and the big names on some projects that have used Vue so far), I think keeping an eye on Vue and taking an hour or two to get familiar with it might be a pretty good idea.</p>
+<p>Okay, that's only a very few technologies that do things in different, often better, and always much less hideous ways than React. That doesn't even touch on all the great libraries for reactive programming in Javascript--that's also a post for another day.</p>
+<p>So, really I just wanna say... I don't hate React. I hate JSX, because it's disgusting, and writing React without JSX is significantly more work than just using an alternative. None of these has all of React's features, I think, but some of them have some additions that are <em>very</em> welcome, and React itself (and the common community additions/components/libraries for React) is actually not exactly small, at all (no, really, <a href="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.min.js">React core</a> 133kb, minified, and you still need to figure out routing, state containers, and all the other bits!), so almost all of these React-ish alternatives will load faster in the browser. Riot, Vue, and Mithril, in particular, are a definite improvement in most ways, though Mithril's ugly 'HTML' (and the fact that it's a full-on framework) put it a little bit lower than the other two in my mind.</p>
+<p>On that note... I've successfully procrastinated the entire day away, writing this and another post on front-end performance (which is not nearly as rambling, I promise). Yay, procrastination. Boo, I still need to read the docs for Socket.</p>
+
+<p>tags: <a href='tag_react.html'>react</a>, <a href='tag_frameworks.html'>frameworks</a>, <a href='tag_libraries.html'>libraries</a>, <a href='tag_riot.html'>riot</a>, <a href='tag_vue.html'>vue</a>, <a href='tag_js.html'>js</a>, <a href='tag_javascript.html'>javascript</a>, <a href='tag_angular.html'>angular</a>, <a href='tag_components.html'>components</a>, <a href='tag_jsx.html'>jsx</a>, <a href='tag_mithril.html'>mithril</a>, <a href='tag_design.html'>design</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/my-problem-with-react.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/my-problem-with-react.html'><span id='count-8898'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>

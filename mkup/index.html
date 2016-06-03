@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mockup Designer</title>
+    <link type="text/css" rel="stylesheet" href="media/css/jquery-ui-1.9.1.css" />
+    <link type="text/css" rel="stylesheet" href="media/css/h5bp.css" />
+    <link type="text/css" rel="stylesheet" href="media/css/screen.css" />
+    <style type="text/css">
+
+    </style>
+  </head>
+  <body>
+
+    <!-- layout -->
+    <nav>
+      <a class="documents">Select a Document</a>
+      <a class="properties">Properties</a>
+      <a class="import-export">Import / Export</a>
+
+    <a href="https://github.com/fatiherikli/mockup-designer">source</a>
+      <section id="documents">
+        <h3>Documents</h3>
+        <ul></ul>
+        <h3>Create a new document</h3>
+        <form>
+          <input type="text" name="title" id="id_title" />
+        </form>
+      </section>
+
+      <section id="document-properties">
+        <h3>Document Properties</h3>
+        <form>
+          <label for="id_title">Title</label>
+          <input type="text" name="title" id="id_title" />
+
+          <div class="width">
+            <label for="id_width">Width</label>
+            <input type="text" name="width" id="id_width" />
+          </div>
+
+          <div class="height">
+            <label for="id_height">Height</label>
+            <input type="text" name="height" id="id_height" />
+          </div>
+
+          <input type="submit" value="Save" id="save">
+
+        </form>
+      </section>
+
+      <section id="document-import-export">
+        <h3>Import / Export</h3>
+        <form>
+          <label for="id_models">Models</label>
+          <textarea name="textarea" rows="10" cols="60" id="id_models"></textarea>
+          <input type="submit" value="Import" id="import">
+          <a class="export-image">Export PNG</a>
+        </form>
+      </section>
+
+    </nav>
+
+    <aside>
+    </aside>
+
+    <header>
+      <h1></h1>
+    </header>
+
+    <article></article>
+
+    <footer>
+      <h2>Properties</h2>
+      <form class="properties"></form>
+    </footer>
+
+    <div id="social">
+      <!--<iframe src="http://ghbtns.com/github-btn.html?user=fatiherikli&repo=mockup-designer&type=fork"-->
+        <!--allowtransparency="true" frameborder="0" scrolling="0" width="63" height="20"></iframe>-->
+      <!--<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://fatiherikli.github.com/mockup-designer/" data-via="fthrkl" data-count="none">Tweet</a>-->
+      <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
+    </div>
+
+    <!-- templates -->
+
+    <script type="text/html" id="navigation-item-template">
+      <a class="show" href="#document/<%= id %>"><%= title %></a>
+      <a class="destroy" href="#">Delete</a>
+    </script>
+
+    <script type="text/html" id="property-form-template">
+      <% for (var attribute in attributes) { %>
+      <% if (!attributes[attribute].hidden) { %>
+      <div class="line <%= attributes[attribute].type %>">
+        <label for="id_<%= attributes[attribute].name %>"><%= attributes[attribute].name %></label>
+
+        <% if (attributes[attribute].type == "boolean") { %>
+        <input type="checkbox" id="id_<%= attributes[attribute].name %>"
+        name="<%= attributes[attribute].name %>"
+        <% if (attributes[attribute].value) { %> checked="checked" <% } %> />
+        <% } else { %>
+        <input type="text" id="id_<%= attributes[attribute].name %>"
+        name="<%= attributes[attribute].name %>"
+        value="<%= attributes[attribute].value %>" />
+        <% } %>
+      </div>
+      <% } %>
+      <% } %>
+      <div class="line tools">
+        <a class="send-to-back" href="#">send to back</a>
+        <a class="bring-to-front" href="#">bring to front</a>
+        <a class="delete" href="#">delete</a>
+      </div>
+    </script>
+
+    <script type="text/html" id="button-template">
+      <div class="button" data-attribute="text"><%= text %></div>
+    </script>
+
+    <script type="text/html" id="checkbox-template">
+      <div class="checkbox <%= checked ? 'checked' : '' %>"></div>
+      <span data-attribute="text"><%= text %></span>
+    </script>
+
+    <script type="text/html" id="radio-template">
+      <div class="radio <%= checked ? 'checked' : '' %>"></div>
+      <span data-attribute="text"><%= text %></span>
+    </script>
+
+    <script type="text/html" id="text-template">
+      <div class="text-input">
+        <% if (label) { %>
+        <label data-attribute="text"><%= text %></label>
+        <% } %>
+        <div class="input"></div>
+      </div>
+    </script>
+
+    <script type="text/html" id="heading-template">
+      <h1 class="heading" data-attribute="text" style="font-size: <%= size %>px; color: <%= color %>"><%= text %></h1>
+    </script>
+
+    <script type="text/html" id="paragraph-template">
+      <div class="paragraph" style="background-color: <%= background %>">
+        <p data-attribute="text"><%= text %></p>
+      </div>
+    </script>
+
+    <script type="text/html" id="label-template">
+      <strong data-attribute="text" style="color: <%= color %>; font-size: <%= size %>px;"><%= text %></strong>
+    </script>
+
+    <script type="text/html" id="combobox-template">
+      <div class="combobox">
+        <span class="text" data-attribute="text"><%= text %></span>
+        <span class="opener"></span>
+      </div>
+    </script>
+
+    <script type="text/html" id="hscrollbar-template">
+      <div class="hscrollbar">
+        <div class="trough" data-attribute="text" style="margin-left: <%= value %>%;">
+          <span class="left"></span>
+          <span class="right"></span>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/html" id="progressbar-template">
+      <div class="progressbar" data-attribute="text">
+        <div class="bar" style="width: <%= percent %>%;"></div>
+      </div>
+    </script>
+
+    <script type="text/html" id="browser-template">
+      <div class="browser">
+        <div class="top">
+          <%= title %>
+          <div class="url" data-attribute="text"><%= url %></div>
+        </div>
+        <div class="page-content"></div>
+      </div>
+    </script>
+
+    <script type="text/html" id="table-template">
+      <table>
+        <% if (header) { %>
+        <thead>
+          <tr>
+            <% for (var col=0; col < columns; col++ ) { %>
+            <th>
+              <input type="text" data-row="<%= 0 %>" data-column="<%= col %>" value="<%=  values[0] ? values[0][col] : ''  %>" />
+            </th>
+            <% } %>
+          </tr>
+        </thead>
+        <% } %>
+        <tbody>
+          <% for (var i=header ? 1 : 0; i < rows; i++ ) { %>
+          <tr>
+            <% for (var j=0; j < columns; j++ ) { %>
+            <td>
+              <input type="text" data-row="<%= i %>" data-column="<%= j %>" value="<%=  values[i] ? values[i][j] : ''  %>" />
+            </td>
+            <% } %>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/html" id="image-template">
+      <svg class="image" xmlns="http://www.w3.org/2000/svg" version='1.1'
+        style=" width:100%; height:100%;" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <line vector-effect="non-scaling-stroke" fill="none" stroke="#dedede" stroke-width="2" x1="0" y1="100" x2="100" y2="0"></line>
+        <line vector-effect="non-scaling-stroke" fill="none" stroke="#dedede" stroke-width="2" x1="0" y1="0" x2="100" y2="100"></line>
+      </svg>
+    </script>
+
+    <script type="text/html" id="groupbox-template">
+      <fieldset>
+        <legend><%= title %></legend>
+        <div class="content"></div>
+      </fieldset>
+    </script>
+
+    <script type="text/html" id="shape-template">
+      <div class="shape" style="background-color: <%= color %>; <%= border ? '' : 'border:none' %>"></div>
+    </script>
+
+    <script src="media/js/libs/jquery-1.8.2.min.js"></script>
+    <script src="media/js/libs/jquery-ui-1.9.0.min.js"></script>
+    <script src="media/js/libs/underscore-1.4.2.min.js"></script>
+    <script src="media/js/libs/backbone-0.9.2.min.js"></script>
+    <script src="media/js/libs/html2canvas.min.js"></script>
+    <script src="media/js/persistance/local-storage.js"></script>
+
+    <script type="text/javascript">
+      // namespace definition
+    var usemockups = {
+      models: {},
+      collections: {},
+      routers: {},
+      views: {},
+      fixtures: {},
+      toolbox: []
+    }
+    </script>
+
+    <script src="media/js/fixtures/demo-document.js"></script>
+    <script src="media/js/fixtures/toolbox.js"></script>
+    <script src="media/js/routers/document.js"></script>
+    <script src="media/js/models/document.js"></script>
+    <script src="media/js/models/mockup.js"></script>
+    <script src="media/js/models/toolbox.js"></script>
+    <script src="media/js/views/document.js"></script>
+    <script src="media/js/views/toolbox.js"></script>
+    <script src="media/js/views/mockup.js"></script>
+    <script src="media/js/views/properties.js"></script>
+
+    <script type="text/javascript">
+
+      usemockups.toolbox = new usemockups.collections.Toolbox(usemockups.fixtures.toolbox);
+
+      usemockups.custom_mockup_views = {
+        "table": usemockups.views.TableMockup
+      };
+
+      $(function () {
+
+        var documents = new usemockups.collections.Documents();
+        var router = new usemockups.routers.Document({
+          documents: documents
+        });
+
+        Backbone.history.start({
+          pushState: false // !!(window.history && window.history.pushState)
+        });
+
+        new usemockups.views.Navigation({
+          router: router,
+          model: documents
+        });
+
+      });
+    </script>
+  </body>
+</html>
+

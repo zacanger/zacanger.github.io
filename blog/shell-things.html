@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="./prism.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="z.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="subscribe" href="feed.rss">
+<title>shell things</title>
+<script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37160536-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+<meta name='twitter:card' content='summary' />
+<meta name='twitter:site' content='@zacanger' />
+<meta name='twitter:title' content='shell things' />
+<meta name='twitter:description' content=" Just some tidbits.  Renaming all files in cwd to have a certain extension:  for i in * do   mv $i $i.ext done   Or with sed: find . -name 'file' | sed 's/.*/mv &amp; &amp;.ext/' | sh  Or in vi: something like ls -a file* &gt; a, then vi a, and the c" />
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="http://zacanger.com/blog">angr</a></h1>
+<div id="description">writings from zac anger, who is not all that angry</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="shell-things.html">
+shell things
+</a></h3>
+<div class="subtitle">January 24, 2016  &mdash; 
+Zac Anger</div>
+<!-- text begin -->
+
+<p>Just some tidbits.</p>
+
+<p>Renaming all files in <code>cwd</code> to have a certain extension:</p>
+
+<pre><code>for i in *
+do
+  mv $i $i.ext
+done
+</code></pre>
+
+<p>Or with sed: <code>find . -name "file" | sed 's/.*/mv &amp; &amp;.ext/' | sh</code></p>
+
+<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command <code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command above, just in vi, basically).</p>
+
+<hr />
+
+<p>Doing the same thing, but with files of a certain extension:</p>
+
+<pre><code>for i in *.txt
+do
+  x=`basename $i .old`
+  mv $i $x.ext
+done
+</code></pre>
+
+<p>Or with sed: <code>find . -name "*.old" | sed 's/\(.*\.\)\(.*\)mv &amp; \1ext/' | sh</code>.</p>
+
+<p>Or in vi: <code>ls -a file* &gt; a</code>; <code>vi a</code>; <code>:%s/\.old$/\.ext/</code>; <code>sh a</code>.</p>
+
+<hr />
+
+<p><code>:!./%</code> runs your current file from vi.</p>
+
+<hr />
+
+<p>This little script is pretty nice. It's a much shorter version of something I modified from soem blog somewhere (check my dotfiles for the full thing, which I called <a href="https://github.com/zacanger/z/blob/master/bin/sh/writescripts">writescripts</a>):</p>
+
+<pre><code>if [ ! -f $1 ] ; then
+  echo "#!/usr/bin/env bash" &gt; $1
+fi
+
+while [ 1 ] ;
+do
+  $EDITOR $1
+  chmod 755 $1
+  ./$1
+  read dummy
+done
+</code></pre>
+
+<p><code>paste</code> is <em>really</em> useful, and you should learn it.</p>
+
+<p>that's all, for now, i think.</p>
+
+<p>tags: <a href='tag_sh.html'>sh</a>, <a href='tag_bash.html'>bash</a>, <a href='tag_shell.html'>shell</a>, <a href='tag_sed.html'>sed</a>, <a href='tag_vi.html'>vi</a>, <a href='tag_vim.html'>vim</a></p>
+
+
+
+
+
+
+
+<!-- text end -->
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/shell-things.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<a href='http://topsy.com/trackback?url=http://zacanger.com/blog/shell-things.html'><span id='count-24920'></span></a>&nbsp;</p>
+<!-- entry end -->
+</div>
+<div id="footer">WTFPL <a href="http://twitter.com/zacanger">Zac Anger</a> &mdash; <a href="mailto:zac&#64;zacanger&#46;com">zac&#64;zacanger&#46;com</a><br>
+written in <a href="https://daringfireball.net/projects/markdown/">markdown</a> and generated with a <a href="http://tiswww.case.edu/php/chet/bash/bashtop.html">shell script</a></div>
+<a href="http://zacanger.com/me">zac anger?</a>
+</div></div>
+</body></html>
