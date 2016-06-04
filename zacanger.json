@@ -142,6 +142,26 @@
     }
   ],
 
+  "languages and technologies": {
+    "proficient": [
+      "javascript",
+      "react",
+      "(neo)vim",
+      "bash/sh",
+      "debian administration",
+      "css/stylus/sass/less",
+      "node",
+      "angular (1.x)",
+      "vue"
+    ],
+    "learning": [
+      "ruby",
+      "python",
+      "haskell",
+      "soft skills"
+    ]
+  },
+
   "relevant experience": [
     {
       "name": "Jane.com",
