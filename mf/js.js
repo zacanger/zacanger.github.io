@@ -1,23 +1,24 @@
 (function(w){
-  var sw             = document.body.clientWidth     // viewport width
-    , minVPWidth     = 240                           // min viewport size
-    , maxVPWidth     = 2600                          // max viewport size
-    , vpResizerWidth = 14                            // resize handle width
-    , $sgWrapper     = $('#sg-gen-container')        // wrapper
-    , $sgViewport    = $('#sg-viewport')             // viewport element
-    , $sizePx        = $('.sg-size-px')              // px input
-    , $sizeEms       = $('.sg-size-em')              // em input
-    , $bodySize      = 16                            // body size
-    , discoID        = false
-    , fullMode       = true
-    , discoMode      = false
-    , hayMode        = false
-    , hash           = window.location.hash.replace(/^.*?#/,'')
+  var
+    sw             = document.body.clientWidth     // viewport width
+  , minVPWidth     = 240                           // min viewport size
+  , maxVPWidth     = 2600                          // max viewport size
+  , vpResizerWidth = 14                            // resize handle width
+  , $sgWrapper     = $('#sg-gen-container')        // wrapper
+  , $sgViewport    = $('#sg-viewport')             // viewport element
+  , $sizePx        = $('.sg-size-px')              // px input
+  , $sizeEms       = $('.sg-size-em')              // em input
+  , $bodySize      = 16                            // body size
+  , discoID        = false
+  , fullMode       = true
+  , discoMode      = false
+  , hayMode        = false
+  , hash           = window.location.hash.replace(/^.*?#/,'')
 
   // url submission
   $('#url-form').submit(function(e) {
     var urlVal = $('#url').val()
-    var regex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+    var regex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
 
     if (regex.test(urlVal)) {
       return
@@ -45,20 +46,21 @@
     }
   }
 
-  $('.sg-acc-handle').on("click", function(e){
-    var $this  = $(this)
-      , $panel = $this.next('.sg-acc-panel')
+  $('.sg-acc-handle').on('click', function(e){
+    var
+      $this  = $(this)
+    , $panel = $this.next('.sg-acc-panel')
     e.preventDefault()
     $this.toggleClass('active')
     $panel.toggleClass('active')
   })
 
-  $('#sg-size-toggle').on("click", function(e){
+  $('#sg-size-toggle').on('click', function(e){
     e.preventDefault()
     $(this).parents('ul').toggleClass('active')
   })
 
-  $('#sg-size-s').on("click", function(e){
+  $('#sg-size-s').on('click', function(e){
     e.preventDefault()
     killDisco()
     killHay()
@@ -68,7 +70,7 @@
     sizeSmall()
   })
 
-  $('#sg-size-m').on("click", function(e){
+  $('#sg-size-m').on('click', function(e){
     e.preventDefault()
     killDisco()
     killHay()
@@ -78,7 +80,7 @@
     sizeMedium()
   })
 
-  $('#sg-size-l').on("click", function(e){
+  $('#sg-size-l').on('click', function(e){
     e.preventDefault()
     killDisco()
     killHay()
@@ -88,7 +90,7 @@
     sizeLarge()
   })
 
-  $('#sg-size-full').on("click", function(e){ // resets
+  $('#sg-size-full').on('click', function(e){ // resets
     e.preventDefault()
     killDisco()
     killHay()
@@ -98,7 +100,7 @@
     sizeiframe(sw)
   })
 
-  $('#sg-size-random').on("click", function(e){
+  $('#sg-size-random').on('click', function(e){
     e.preventDefault()
     fullMode = false
     sizeRandom()
@@ -135,7 +137,7 @@
     updateSizeReading(sw)
   }
 
-  $('#sg-size-disco').on("click", function(e){
+  $('#sg-size-disco').on('click', function(e){
     e.preventDefault()
     killHay()
     fullMode = false
@@ -166,7 +168,7 @@
     discoID = setInterval(disco, 800)
   }
 
-  $('#sg-size-hay').on("click", function(e){
+  $('#sg-size-hay').on('click', function(e){
     e.preventDefault()
     killDisco()
 
@@ -191,8 +193,8 @@
 
   function startHay() {
     hayMode = true
-    $sgWrapper.removeClass("vp-animate").width(minVPWidth+vpResizerWidth)
-    $sgViewport.removeClass("vp-animate").width(minVPWidth)
+    $sgWrapper.removeClass('vp-animate').width(minVPWidth+vpResizerWidth)
+    $sgViewport.removeClass('vp-animate').width(minVPWidth)
 
     window.setTimeout(function(){
       $sgWrapper.addClass('hay-mode').width(maxVPWidth+vpResizerWidth)
@@ -253,11 +255,11 @@
     updateSizeReading(val,'em','updatePxInput')
   })
 
-  $('#sg-mq a').on("click", function(e){
+  $('#sg-mq a').on('click', function(e){
     e.preventDefault()
     var val = $(this).html()
     var type = (val.indexOf('px') !== -1) ? 'px' : 'em'
-    val = val.replace(type,"")
+    val = val.replace(type,'')
     var width = (type === 'px') ? val * 1 : val * $bodySize
     sizeiframe(width,true)
   })
@@ -278,11 +280,11 @@
 
     // conditionally remove CSS animation class from viewport
     if (animate === false) {
-      $sgWrapper.removeClass("vp-animate")
-      $sgViewport.removeClass("vp-animate")
+      $sgWrapper.removeClass('vp-animate')
+      $sgViewport.removeClass('vp-animate')
     } else {
-      $sgWrapper.addClass("vp-animate")
-      $sgViewport.addClass("vp-animate")
+      $sgWrapper.addClass('vp-animate')
+      $sgViewport.addClass('vp-animate')
     }
 
     $sgWrapper.width(theSize + vpResizerWidth) // resize wrapper to size + resize handle
@@ -333,7 +335,7 @@
     var origViewportWidth = $sgViewport.width()
     fullMode = false
 
-    $("#sg-cover").css("display","block") // show the cover
+    $('#sg-cover').css('display', 'block') // show the cover
 
     // add the mouse move event and capture data. also update the viewport width
     $('#sg-cover').mousemove(function(event) {
@@ -352,7 +354,7 @@
   // on "mouseup" we unbind the "mousemove" event and hide the cover again
   $('body').mouseup(function(event) {
     $('#sg-cover').unbind('mousemove')
-    $('#sg-cover').css("display","none")
+    $('#sg-cover').css('display', 'none')
   })
 
   // capture the viewport width that was loaded and modify it so it fits with the pull bar
@@ -375,10 +377,8 @@
     sizeSmall()
   } else if (!isNaN(hash) && hash !== '') {
     sizeiframe(parseInt(hash))
-    console.log('this is a number')
   } else {
     sizeFull()
-    console.log('this is not a number')
   }
 
 })(this)
