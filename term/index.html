@@ -24,7 +24,7 @@
     #app, div.input-area { height: 100%; }
     .holder { overflow: auto; }
     .prompt { color: #97ded1; }
-    @media (max-width: 800px) {
+
       body { margin: 0; }
       p { margin-bottom: 0; line-height: 1.2; }
       div#main {
@@ -46,9 +46,9 @@
         height: 100%;
       }
       svg { display: none; }
-    }
 
-    @media (min-width: 800px) {
+    @media (min-width: 1000px) {
+      svg { display: block; }
       body { margin: 5vh 0; }
       p { margin-bottom: 0; line-height: 20px; }
       div#main {
