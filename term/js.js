@@ -19615,14 +19615,21 @@ const App = React.createClass({displayName: "App",
 , registerCommands () {
     this.setState({
       commands : {
-        'clear' : this.clearHistory
-      , 'ls'    : this.listFiles
-      , 'help'  : this.showHelp
-      , 'cat'   : this.catFile
-      , 'gh'    : this.openLink('http://github.com/zacanger')
-      , 'blog'  : this.openLink('http://blog.zacanger.com')
-      , 'cv'    : this.openLink('http://zacanger.com/zacanger.json')
-      , 'exit'  : this.exit
+        'clear'   : this.clearHistory
+      , 'ls'      : this.listFiles
+      , 'help'    : this.showHelp
+      , 'cat'     : this.catFile
+      , 'mf'      : this.openLink('http://zacanger.com/mf')
+      , 'twitter' : this.openLink('http://twitter.com/zacanger')
+      , 'mkup'    : this.openLink('http://zacanger.com/mkup')
+      , 'p'       : this.openLink('http://zacanger.com/p')
+      , 'mdkb'    : this.openLink('http://mdkb.zacanger.com')
+      , 'search'  : this.openLink('http://zacanger.com/search')
+      , 'gh'      : this.openLink('http://github.com/zacanger')
+      , 'blog'    : this.openLink('http://blog.zacanger.com')
+      , 'light'   : this.openLink('http://zacanger.com/light')
+      , 'cv'      : this.openLink('http://zacanger.com/zacanger.json')
+      , 'exit'    : this.exit
       }
     })
   }
@@ -19683,9 +19690,16 @@ const App = React.createClass({displayName: "App",
     this.addHistory('help - this help text')
     this.addHistory('gh - go to my github')
     this.addHistory('blog - check mine out')
+    this.addHistory('twitter - go to my twitter')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
     this.addHistory('ls - list files')
+    this.addHistory('mf - open mobile-friendly tester')
+    this.addHistory('mdkb - docs site')
+    this.addHistory('p - go to my little pastebin')
+    this.addHistory('mkup - open mockup tool')
+    this.addHistory('search - search the web')
+    this.addHistory('light - open a flashlight')
     this.addHistory('cv - view my cv (in json)')
     this.addHistory('exit - close this session')
   }
