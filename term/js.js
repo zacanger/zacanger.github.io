@@ -28,7 +28,7 @@ const App = React.createClass({displayName: "App",
     })
   }
 
-, exit () { window.close() }
+, exit () { window.location.href = 'http://zacanger.com' }
 
 , listFiles () {
     this.addHistory('README.md')
