@@ -2,10 +2,10 @@
   "name": "react-term",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "start": "watchify -t reactify ./index.js -o ./js.js -v",
-    "build": "NODE_ENV=production browserify -t reactify ./index.js > js.js"
+    "start": "watchify -t reactify ./src.js -o ./js.js -v",
+    "build": "NODE_ENV=production browserify -t reactify ./src.js > js.js"
   },
   "author": "",
   "license": "MIT",

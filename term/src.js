@@ -16,7 +16,6 @@ const App = React.createClass({
       commands : {
         'clear' : this.clearHistory
       , 'ls'    : this.listFiles
-      , 'intro' : this.showWelcomeMsg
       , 'help'  : this.showHelp
       , 'cat'   : this.catFile
       , 'gh'    : this.openLink('http://github.com/zacanger')
@@ -42,24 +41,19 @@ const App = React.createClass({
 
 , catFile (arg) {
     if (arg === 'README.md') {
-      this.addHistory(' ')
       this.addHistory('# ZAC ANGER')
       this.addHistory('JS Dev, nix hacker, musician')
       this.addHistory('Type `help` to see available commands')
-      this.addHistory(' ')
     } else if (arg === 'about.md') {
-      this.addHistory(' ')
       this.addHistory('This page is written in React.')
       this.addHistory('The original version is located')
       this.addHistory('here: https://github.com/prakhar1989/react-term')
-      this.addHistory(' ')
     } else if (arg === 'zacanger.json') {
       this.addHistory('{')
       this.addHistory('"name": "Zac Anger",')
       this.addHistory('"links": [')
       this.addHistory('"http://zacanger.com",')
       this.addHistory('"http://blog.zacanger.com",')
-      this.addHistory('"http://zacanger.com/logo.svg",')
       this.addHistory('"http://pinboard.in/u:zacanger",')
       this.addHistory('"http://linkedin.com/in/zacanger",')
       this.addHistory('"http://twitter.com/zacanger",')
@@ -68,9 +62,6 @@ const App = React.createClass({
       this.addHistory('"http://soundcloud.com/zacanger",')
       this.addHistory('"http://zacanger.bandcamp.com",')
       this.addHistory('"http://zacanger.deviantart.com",')
-      this.addHistory('"http://zacanger.pen.io",')
-      this.addHistory('"http://facebook.com/zacangermusic",')
-      this.addHistory('"https://plus.google.com/+zacangermusic/"')
       this.addHistory('],')
       this.addHistory('"languages and technologies": [')
       this.addHistory('"javascript", "react", "vim", "bash/sh",')
@@ -78,10 +69,8 @@ const App = React.createClass({
       this.addHistory('],')
       this.addHistory('"message": "to see more, please type `cv`"')
       this.addHistory('}')
-
-
     } else {
-      this.addHistory('cat: ' + arg + ': No such file or directory')
+      this.addHistory(`cat : ${arg}: No such file or directory`)
     }
   }
 
@@ -92,7 +81,6 @@ const App = React.createClass({
 , showHelp () {
     this.addHistory('help - this help text')
     this.addHistory('gh - go to my github')
-    this.addHistory('intro - print intro message')
     this.addHistory('blog - check mine out')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
@@ -103,7 +91,6 @@ const App = React.createClass({
 
 , componentDidMount () {
     var term = this.refs.term.getDOMNode()
-
     this.registerCommands()
     this.showWelcomeMsg()
     term.focus()
