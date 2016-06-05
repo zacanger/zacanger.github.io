@@ -174,6 +174,7 @@ const App = React.createClass({
         <p>
           <span className="prompt">{this.state.prompt}</span>
           <input
+            autofocus
             type="text"
             spellCheck="false"
             onKeyPress={this.handleInput}

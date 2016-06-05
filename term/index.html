@@ -8,10 +8,11 @@
   <style type="text/css">
 
     body {
-      max-width: 100vw;
-      font-size: 24px;
+      font-size: 1.6em;
       font-family: "Fantasque Sans Mono", monospace;
       color: #dfe1e8;
+      margin: 0;
+      padding: 0;
       background: #121312;
     }
 
@@ -19,33 +20,33 @@
       border: none;
       padding: 0;
       margin: 0;
-      height: 24px;
+      height: 1.6em;
       background: #1a202a;
       color: #ebcb8b;
       width: 80%;
     }
 
-    svg { display: none; }
     #app, div.input-area { height: 100%; }
     .holder { overflow: auto; }
     .prompt { color: #97ded1; }
 
-    body { margin: 0; }
     p { margin-bottom: 0; line-height: 1.2; }
 
     div#main {
-      width: 100&;
+      width: 100vw;
       background: #1a202a;
       border-radius: 3px;
+      border: 1px solid #222;
       height: 96vh;
       overflow: hidden;
     }
 
     #bar {
       height: 20px;
-      width: 100&;
+      width: 100vw;
       background: #101010;
       border-radius: 3px;
+      border: 1px solid #222;
     }
 
     #content {
@@ -53,7 +54,18 @@
       height: 100%;
     }
 
-    @media (min-width: 1000px) {
+    @media (max-width: 1200px) {
+      svg { display: none; }
+      #bar { display: none; }
+      input[type=text],
+      input[type=text]:focus,
+      div#main {
+        background: #121312;
+        border: none;
+      }
+    }
+
+    @media (min-width: 1200px) {
 
       svg { display: block; }
       body { margin: 5vh 0; }
