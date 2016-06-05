@@ -6,51 +6,59 @@
   <link rel="stylesheet" href="http://getskeleton.com/dist/css/skeleton.css">
   <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/fantasque-sans-mono" type="text/css">
   <style type="text/css">
+
     body {
+      font-size: 24px;
       font-family: "Fantasque Sans Mono", monospace;
       color: #dfe1e8;
       background: #121312;
-      font-size: 1.8em;
     }
+
     input[type=text], input[type=text]:focus {
       border: none;
       padding: 0;
       margin: 0;
-      height: 1.8em;
+      height: 24px;
       background: #1a202a;
       color: #ebcb8b;
       width: 80%;
     }
+
+    svg { display: none; }
     #app, div.input-area { height: 100%; }
     .holder { overflow: auto; }
     .prompt { color: #97ded1; }
 
-      body { margin: 0; }
-      p { margin-bottom: 0; line-height: 1.2; }
-      div#main {
-        width: 100vw;
-        background: #1a202a;
-        border-radius: 3px;
-        height: 96vh;
-        overflow: hidden;
-      }
-      #bar {
-        height: 4vh;
-        width: 100vw;
-        max-width: 900px;
-        background: black;
-        border-radius: 3px;
-      }
-      #content {
-        padding: 1em;
-        height: 100%;
-      }
-      svg { display: none; }
+    body { margin: 0; }
+    p { margin-bottom: 0; line-height: 1.2; }
+
+    div#main {
+      width: 100vw;
+      background: #1a202a;
+      border-radius: 3px;
+      height: 96vh;
+      overflow: hidden;
+    }
+
+    #bar {
+      height: 20px;
+      width: 100vw;
+      max-width: 900px;
+      background: black;
+      border-radius: 3px;
+    }
+
+    #content {
+      padding: 1em;
+      height: 100%;
+    }
 
     @media (min-width: 1000px) {
+
       svg { display: block; }
       body { margin: 5vh 0; }
       p { margin-bottom: 0; line-height: 20px; }
+
       div#main {
         width: 80vw;
         max-width: 900px;
@@ -70,11 +78,14 @@
         background: black;
         border-radius: 3px;
       }
+
       #content {
         padding: 1em;
         height: 100%;
       }
+
     }
+
   </style>
 </head>
 <body>
