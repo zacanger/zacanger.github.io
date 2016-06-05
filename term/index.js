@@ -5,7 +5,7 @@ const App = React.createClass({
     return {
       commands : {}
     , history  : []
-    , prompt   : '$ '
+    , prompt   : '[zac@ngr:~] $ '
     }
   }
 
@@ -14,30 +14,30 @@ const App = React.createClass({
 , registerCommands () {
     this.setState({
       commands : {
-        'clear'  : this.clearHistory
-      , 'ls'     : this.listFiles
-      , 'intro'  : this.showWelcomeMsg
-      , 'help'   : this.showHelp
-      , 'cat'    : this.catFile
-      , 'source' : this.openLink('https://github.com/prakhar1989/react-term/')
-      , 'github' : this.openLink('http://github.com/zacanger')
-      , 'blog'   : this.openLink('http://blog.zacanger.com')
-      , 'resume' : this.openLink('http://zacanger.com/zacanger.json')
-      , 'exit'   : this.goHome
+        'clear' : this.clearHistory
+      , 'ls'    : this.listFiles
+      , 'intro' : this.showWelcomeMsg
+      , 'help'  : this.showHelp
+      , 'cat'   : this.catFile
+      , 'gh'    : this.openLink('http://github.com/zacanger')
+      , 'blog'  : this.openLink('http://blog.zacanger.com')
+      , 'cv'    : this.openLink('http://zacanger.com/zacanger.json')
+      , 'exit'  : this.exit
       }
     })
   }
 
-, goHome () { window.location.href = 'http://zacanger.com' }
+, exit () { window.close() }
 
 , listFiles () {
     this.addHistory('README.md')
+    this.addHistory('about.md')
     this.addHistory('zacanger.json')
   }
 
 , showWelcomeMsg () {
-    this.addHistory('Zac Anger, developer and musician.')
-    this.addHistory('type `help` to see available commands')
+    this.addHistory(`Last login : ${new Date()} on tty1`)
+    this.addHistory('Welcome!')
   }
 
 , catFile (arg) {
@@ -47,69 +47,58 @@ const App = React.createClass({
       this.addHistory('JS Dev, nix hacker, musician')
       this.addHistory('Type `help` to see available commands')
       this.addHistory(' ')
+    } else if (arg === 'about.md') {
+      this.addHistory(' ')
+      this.addHistory('This page is written in React.')
+      this.addHistory('The original version is located')
+      this.addHistory('here: https://github.com/prakhar1989/react-term')
+      this.addHistory(' ')
     } else if (arg === 'zacanger.json') {
-      this.addHistory(`
-{
-  "name": "Zac Anger",
-  "status": "Happy employed.",
-  "website": "http://zacanger.com",
-  "avatar": "http://zacanger.com/logo.svg",
-  "writing": "http://blog.zacanger.com",
-  "links": [
-    "http://pinboard.in/u:zacanger",
-    "http://linkedin.com/in/zacanger",
-    "http://twitter.com/zacanger",
-    "http://zacanger.tumblr.com",
-    "http://github.com/zacanger",
-    "http://soundcloud.com/zacanger",
-    "http://zacanger.bandcamp.com",
-    "http://zacanger.deviantart.com",
-    "http://zacanger.pen.io",
-    "http://facebook.com/zacangermusic",
-    "https://plus.google.com/+zacangermusic/"
-  ],
-  "languages and technologies": [
-    "javascript",
-    "react",
-    "(neo)vim",
-    "bash/sh",
-    "debian administration",
-    "css/stylus/sass/less",
-    "node",
-    "angular (1.x)",
-    "vue"
-    "ruby",
-    "python",
-    "haskell",
-    "soft skills"
-  ]
-}
+      this.addHistory('{')
+      this.addHistory('"name": "Zac Anger",')
+      this.addHistory('"links": [')
+      this.addHistory('"http://zacanger.com",')
+      this.addHistory('"http://blog.zacanger.com",')
+      this.addHistory('"http://zacanger.com/logo.svg",')
+      this.addHistory('"http://pinboard.in/u:zacanger",')
+      this.addHistory('"http://linkedin.com/in/zacanger",')
+      this.addHistory('"http://twitter.com/zacanger",')
+      this.addHistory('"http://zacanger.tumblr.com",')
+      this.addHistory('"http://github.com/zacanger",')
+      this.addHistory('"http://soundcloud.com/zacanger",')
+      this.addHistory('"http://zacanger.bandcamp.com",')
+      this.addHistory('"http://zacanger.deviantart.com",')
+      this.addHistory('"http://zacanger.pen.io",')
+      this.addHistory('"http://facebook.com/zacangermusic",')
+      this.addHistory('"https://plus.google.com/+zacangermusic/"')
+      this.addHistory('],')
+      this.addHistory('"languages and technologies": [')
+      this.addHistory('"javascript", "react", "vim", "bash/sh",')
+      this.addHistory('"linux", "css/stylus/sass/less", "node"')
+      this.addHistory('],')
+      this.addHistory('"message": "to see more, please type `cv`"')
+      this.addHistory('}')
 
-`)
+
     } else {
       this.addHistory('cat: ' + arg + ': No such file or directory')
     }
   }
 
 , openLink (link) {
-    return function () {
-      window.open(link, '_blank')
-    }
+    return () => window.open(link, '_blank')
   }
 
 , showHelp () {
-    this.addHistory(' ')
     this.addHistory('help - this help text')
-    this.addHistory('github - go to my github')
-    this.addHistory('source - check out the original version of this page')
+    this.addHistory('gh - go to my github')
     this.addHistory('intro - print intro message')
     this.addHistory('blog - check mine out')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
     this.addHistory('ls - list files')
-    this.addHistory('resume - view my cv (in json)')
-    this.addHistory('exit')
-    this.addHistory(' ')
+    this.addHistory('cv - view my cv (in json)')
+    this.addHistory('exit - close this session')
   }
 
 , componentDidMount () {
@@ -137,7 +126,8 @@ const App = React.createClass({
       this.addHistory(this.state.prompt + ' ' + input_text)
 
       if (command === undefined) {
-        this.addHistory('sh: command not found: ' + input)
+        this.addHistory(`sh: command not found: ${input}`)
+        this.addHistory('type `help` to see available commands')
       } else {
         command(arg)
       }
@@ -166,7 +156,12 @@ const App = React.createClass({
         {output}
         <p>
           <span className="prompt">{this.state.prompt}</span>
-          <input type="text" onKeyPress={this.handleInput} ref="term" />
+          <input
+            type="text"
+            spellcheck="false"
+            onKeyPress={this.handleInput}
+            ref="term"
+          />
         </p>
       </div>
     )

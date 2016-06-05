@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "watchify -t reactify ./index.js -o ./main.min.js -v",
-    "build": "NODE_ENV=production browserify -t reactify ./index.js > main.min.js"
+    "start": "watchify -t reactify ./index.js -o ./js.js -v",
+    "build": "NODE_ENV=production browserify -t reactify ./index.js > js.js"
   },
   "author": "",
   "license": "MIT",
