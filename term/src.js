@@ -45,7 +45,10 @@ const App = React.createClass({
     })
   }
 
-, exit () { window.location.href = 'http://zacanger.com' }
+, exit () {
+    this.addHistory('bye!')
+    setTimeout(() => window.location.href = 'http://zacanger.com', 1000)
+  }
 
 , listFiles () {
     this.addHistory('README.md')
