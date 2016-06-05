@@ -19616,20 +19616,32 @@ const App = React.createClass({displayName: "App",
     this.setState({
       commands : {
         'clear'   : this.clearHistory
+      , 'c'       : this.clearHistory
       , 'ls'      : this.listFiles
+      , 'l'       : this.listFiles
       , 'help'    : this.showHelp
+      , 'h'       : this.showHelp
       , 'cat'     : this.catFile
       , 'mf'      : this.openLink('http://zacanger.com/mf')
       , 'twitter' : this.openLink('http://twitter.com/zacanger')
+      , 't'       : this.openLink('http://twitter.com/zacanger')
       , 'mkup'    : this.openLink('http://zacanger.com/mkup')
+      , 'paste'   : this.openLink('http://zacanger.com/p')
       , 'p'       : this.openLink('http://zacanger.com/p')
+      , 'doc'     : this.openLink('http://mdkb.zacanger.com')
       , 'mdkb'    : this.openLink('http://mdkb.zacanger.com')
       , 'search'  : this.openLink('http://zacanger.com/search')
+      , 's'       : this.openLink('http://zacanger.com/search')
+      , 'github'  : this.openLink('http://github.com/zacanger')
       , 'gh'      : this.openLink('http://github.com/zacanger')
       , 'blog'    : this.openLink('http://blog.zacanger.com')
+      , 'b'       : this.openLink('http://blog.zacanger.com')
       , 'light'   : this.openLink('http://zacanger.com/light')
+      , 'lite'    : this.openLink('http://zacanger.com/light')
       , 'cv'      : this.openLink('http://zacanger.com/zacanger.json')
+      , 'resume'  : this.openLink('http://zacanger.com/zacanger.json')
       , 'exit'    : this.exit
+      , 'q'       : this.exit
       }
     })
   }
@@ -19648,15 +19660,15 @@ const App = React.createClass({displayName: "App",
   }
 
 , catFile (arg) {
-    if (arg === 'README.md') {
+    if (arg.toLowerCase() ===  'readme.md') {
       this.addHistory('# ZAC ANGER')
       this.addHistory('JS Dev, nix hacker, musician')
       this.addHistory('Type `help` to see available commands')
-    } else if (arg === 'about.md') {
+    } else if (arg.toLowerCase() === 'about.md') {
       this.addHistory('This page is written in React.')
       this.addHistory('The original version is located')
       this.addHistory('here: https://github.com/prakhar1989/react-term')
-    } else if (arg === 'zacanger.json') {
+    } else if (arg.toLowerCase() === 'zacanger.json') {
       this.addHistory('{')
       this.addHistory('"name": "Zac Anger",')
       this.addHistory('"links": [')
@@ -19675,7 +19687,7 @@ const App = React.createClass({displayName: "App",
       this.addHistory('"javascript", "react", "vim", "bash/sh",')
       this.addHistory('"linux", "css/stylus/sass/less", "node"')
       this.addHistory('],')
-      this.addHistory('"message": "to see more, please type `cv`"')
+      this.addHistory('"note": "to see more, please type `cv`"')
       this.addHistory('}')
     } else {
       this.addHistory(`cat : ${arg}: No such file or directory`)
@@ -19687,43 +19699,44 @@ const App = React.createClass({displayName: "App",
   }
 
 , showHelp () {
-    this.addHistory('help - this help text')
-    this.addHistory('gh - go to my github')
-    this.addHistory('blog - check mine out')
-    this.addHistory('twitter - go to my twitter')
-    this.addHistory('clear - clear screen')
+    this.addHistory('h | help - this help text')
+    this.addHistory('gh | github - go to my github')
+    this.addHistory('b | blog - check mine out')
+    this.addHistory('t | twitter - go to my twitter')
+    this.addHistory('c | clear - clear screen')
     this.addHistory('cat - print contents of a file')
-    this.addHistory('ls - list files')
+    this.addHistory('l | ls - list files')
     this.addHistory('mf - open mobile-friendly tester')
-    this.addHistory('mdkb - docs site')
-    this.addHistory('p - go to my little pastebin')
+    this.addHistory('doc | mdkb - docs site')
+    this.addHistory('p | paste - go to my little pastebin')
     this.addHistory('mkup - open mockup tool')
-    this.addHistory('search - search the web')
-    this.addHistory('light - open a flashlight')
-    this.addHistory('cv - view my cv (in json)')
-    this.addHistory('exit - close this session')
+    this.addHistory('s | search - search the web')
+    this.addHistory('lite | light - open a flashlight')
+    this.addHistory('cv | resume - view my cv (in json)')
+    this.addHistory('q | exit - close this session')
   }
 
 , componentDidMount () {
-    var term = this.refs.term.getDOMNode()
+    const term = this.refs.term.getDOMNode()
     this.registerCommands()
     this.showWelcomeMsg()
     term.focus()
   }
 
 , componentDidUpdate () {
-    var el = React.findDOMNode(this)
-    var container = document.getElementById('main')
+    const el = React.findDOMNode(this)
+    let container = document.getElementById('main')
     container.scrollTop = el.scrollHeight
   }
 
 , handleInput (e) {
     if (e.key === 'Enter') {
-      var input_text = this.refs.term.getDOMNode().value
-      var input_array = input_text.split(' ')
-      var input = input_array[0]
-      var arg = input_array[1]
-      var command = this.state.commands[input]
+      const
+        input_text = this.refs.term.getDOMNode().value
+      , input_array = input_text.toLowerCase().split(' ')
+      , input = input_array[0]
+      , arg = input_array[1]
+      , command = this.state.commands[input]
 
       this.addHistory(this.state.prompt + ' ' + input_text)
 
@@ -19740,18 +19753,18 @@ const App = React.createClass({displayName: "App",
 , clearInput () { this.refs.term.getDOMNode().value = '' }
 
 , addHistory (output) {
-    var history = this.state.history
+    const history = this.state.history
     history.push(output)
     this.setState({'history' : history})
   }
 
 , handleClick () {
-    var term = this.refs.term.getDOMNode()
+    const term = this.refs.term.getDOMNode()
     term.focus()
   }
 
 , render () {
-    var output = this.state.history.map((op, i) => React.createElement("p", {key: i}, op))
+    const output = this.state.history.map((op, i) => React.createElement("p", {key: i}, op))
 
     return (
       React.createElement("div", {className: "input-area", onClick: this.handleClick}, 
@@ -19760,7 +19773,7 @@ const App = React.createClass({displayName: "App",
           React.createElement("span", {className: "prompt"}, this.state.prompt), 
           React.createElement("input", {
             type: "text", 
-            spellcheck: "false", 
+            spellCheck: "false", 
             onKeyPress: this.handleInput, 
             ref: "term"}
           )
