@@ -1,6 +1,7 @@
-const React = require('react')
+const
+  React = require('react')
+, App   = React.createClass({
 
-const App = React.createClass({
   getInitialState () {
     return {
       commands : {}
@@ -18,7 +19,10 @@ const App = React.createClass({
       , 'c'       : this.clearHistory
       , 'ls'      : this.listFiles
       , 'l'       : this.listFiles
+      , 'k'       : this.listFiles
       , 'help'    : this.showHelp
+      , 'info'    : this.showHelp
+      , 'man'     : this.showHelp
       , 'h'       : this.showHelp
       , 'cat'     : this.catFile
       , 'mf'      : this.openLink('http://zacanger.com/mf')
@@ -30,7 +34,6 @@ const App = React.createClass({
       , 'doc'     : this.openLink('http://mdkb.zacanger.com')
       , 'mdkb'    : this.openLink('http://mdkb.zacanger.com')
       , 'search'  : this.openLink('http://zacanger.com/search')
-      , 's'       : this.openLink('http://zacanger.com/search')
       , 'github'  : this.openLink('http://github.com/zacanger')
       , 'gh'      : this.openLink('http://github.com/zacanger')
       , 'blog'    : this.openLink('http://blog.zacanger.com')
@@ -64,7 +67,13 @@ const App = React.createClass({
 , catFile (arg) {
     if (arg.toLowerCase() ===  'readme.md') {
       this.addHistory('# ZAC ANGER')
-      this.addHistory('JS Dev, nix hacker, musician')
+      this.addHistory('developer & musician')
+      this.addHistory('JS developer, web technology enthusiast,')
+      this.addHistory('Linux (Debian Sid) user.')
+      this.addHistory('Node fan, functional programming believer,')
+      this.addHistory('internet addict, (neo)vim user.')
+      this.addHistory('Musician; multi-instrumentalist, recording')
+      this.addHistory('engineer, amateur composer, beat-mangler.')
       this.addHistory('Type `help` to see available commands')
     } else if (arg.toLowerCase() === 'about.md') {
       this.addHistory('This page is written in React.')
@@ -101,21 +110,21 @@ const App = React.createClass({
   }
 
 , showHelp () {
-    this.addHistory('h | help - this help text')
-    this.addHistory('gh | github - go to my github')
-    this.addHistory('b | blog - check mine out')
-    this.addHistory('t | twitter - go to my twitter')
-    this.addHistory('c | clear - clear screen')
+    this.addHistory('help - this help text')
+    this.addHistory('github - go to my github')
+    this.addHistory('blog - check mine out')
+    this.addHistory('twitter - go to my twitter')
+    this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
-    this.addHistory('l | ls - list files')
+    this.addHistory('ls - list files')
     this.addHistory('mf - open mobile-friendly tester')
-    this.addHistory('doc | mdkb - docs site')
-    this.addHistory('p | paste - go to my little pastebin')
+    this.addHistory('doc - docs site')
+    this.addHistory('paste - go to my little pastebin')
     this.addHistory('mkup - open mockup tool')
-    this.addHistory('s | search - search the web')
-    this.addHistory('lite | light - open a flashlight')
-    this.addHistory('cv | resume - view my cv (in json)')
-    this.addHistory('q | exit - close this session')
+    this.addHistory('search - search the web')
+    this.addHistory('light - open a flashlight')
+    this.addHistory('cv - view my cv (in json)')
+    this.addHistory('exit - close this session')
   }
 
 , componentDidMount () {

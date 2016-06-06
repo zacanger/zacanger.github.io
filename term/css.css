@@ -2,7 +2,7 @@ html, body { margin: 0; padding: 0; box-sizing: border-box; }
 * { box-sizing: inherit; }
 
 body {
-  font-size: 1.6em;
+  font-size: 1.6rem;
   font-family: "Fantasque Sans Mono", monospace;
   color: #dfe1e8;
   background: #121312;
@@ -13,7 +13,7 @@ input[type=text], input[type=text]:focus {
   padding: 0;
   margin: 0;
   height: 1.6em;
-  background: #1a202a;
+  background: #1d1e1f;
   color: #6cdd7c;
   width: 80%;
 }
@@ -47,12 +47,13 @@ div#main {
 }
 
 @media (max-width: 1200px) {
-  body { font-size: 2.2em; }
+  body { font-size: 2.2rem; }
   svg { display: none; }
   #bar { display: none; }
   input[type=text],
   input[type=text]:focus,
   div#main {
+    font-size: 2.2rem;
     background: #121312;
     border: none;
   }
@@ -67,7 +68,7 @@ div#main {
   div#main {
     width: 80vw;
     max-width: 900px;
-    background: #1a202a;
+    background: #1d1e1f;
     border-radius: 3px;
     height: 80vh;
     max-height: 900px;
