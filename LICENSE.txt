@@ -4,7 +4,7 @@ _Stefan Kamphausen [http://www.skamphausen.de/][14]_
 
 _February 28, 2004_
 
-## 1 Praeambel
+## 1 Preamble
 
 ### 1.1 License
 
