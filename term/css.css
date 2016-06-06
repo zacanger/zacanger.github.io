@@ -15,7 +15,7 @@ input[type=text], input[type=text]:focus {
   height: 1.6em;
   background: #1d1e1f;
   color: #6cdd7c;
-  width: 80%;
+  width: 50%;
 }
 
 #app, div.input-area { height: 100%; }
