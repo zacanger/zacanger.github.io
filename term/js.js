@@ -19616,7 +19616,8 @@ const
 , registerCommands () {
     this.setState({
       commands : {
-        'clear'   : this.clearHistory
+        ''        : this.enter
+      , 'clear'   : this.clearHistory
       , 'c'       : this.clearHistory
       , 'ls'      : this.listFiles
       , 'l'       : this.listFiles
@@ -19668,18 +19669,14 @@ const
 , catFile (arg) {
     if (arg.toLowerCase() ===  'readme.md') {
       this.addHistory('# ZAC ANGER')
-      this.addHistory('developer & musician')
-      this.addHistory('JS developer, web technology enthusiast,')
-      this.addHistory('Linux (Debian Sid) user.')
-      this.addHistory('Node fan, functional programming believer,')
-      this.addHistory('internet addict, (neo)vim user.')
-      this.addHistory('Musician; multi-instrumentalist, recording')
-      this.addHistory('engineer, amateur composer, beat-mangler.')
+      this.addHistory('### developer & musician')
+      this.addHistory('JS developer, web technology enthusiast, Linux (Debian Sid) user.')
+      this.addHistory('Node fan, functional programming believer, internet addict, (neo)vim user.')
+      this.addHistory('Musician; multi-instrumentalist, recording engineer, amateur composer, beat-mangler.')
       this.addHistory('Type `help` to see available commands')
     } else if (arg.toLowerCase() === 'about.md') {
-      this.addHistory('This page is written in React.')
-      this.addHistory('The original version is located')
-      this.addHistory('here: https://github.com/prakhar1989/react-term')
+      this.addHistory('This page is written in React. The original version is located')
+      this.addHistory('[here](https://github.com/prakhar1989/react-term).')
     } else if (arg.toLowerCase() === 'zacanger.json') {
       this.addHistory('{')
       this.addHistory('"name": "Zac Anger",')
@@ -19706,24 +19703,28 @@ const
     }
   }
 
+, enter () {
+    this.addHistory('')
+  }
+
 , openLink (link) {
     return () => window.open(link, '_blank')
   }
 
 , showHelp () {
     this.addHistory('help - this help text')
-    this.addHistory('github - go to my github')
     this.addHistory('blog - check mine out')
+    this.addHistory('github - go to my github')
     this.addHistory('twitter - go to my twitter')
+    this.addHistory('light - open a flashlight')
+    this.addHistory('paste - go to my little pastebin')
+    this.addHistory('doc - docs site')
+    this.addHistory('mkup - open mockup tool')
+    this.addHistory('search - search the web')
+    this.addHistory('mf - open mobile-friendly tester')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
     this.addHistory('ls - list files')
-    this.addHistory('mf - open mobile-friendly tester')
-    this.addHistory('doc - docs site')
-    this.addHistory('paste - go to my little pastebin')
-    this.addHistory('mkup - open mockup tool')
-    this.addHistory('search - search the web')
-    this.addHistory('light - open a flashlight')
     this.addHistory('cv - view my cv (in json)')
     this.addHistory('exit - close this session')
   }
@@ -19736,19 +19737,20 @@ const
   }
 
 , componentDidUpdate () {
-    const el = React.findDOMNode(this)
-    let container = document.getElementById('main')
+    const
+      el        = React.findDOMNode(this)
+    , container = document.getElementById('main')
     container.scrollTop = el.scrollHeight
   }
 
 , handleInput (e) {
     if (e.key === 'Enter') {
       const
-        input_text = this.refs.term.getDOMNode().value
+        input_text  = this.refs.term.getDOMNode().value
       , input_array = input_text.toLowerCase().split(' ')
-      , input = input_array[0]
-      , arg = input_array[1]
-      , command = this.state.commands[input]
+      , input       = input_array[0]
+      , arg         = input_array[1]
+      , command     = this.state.commands[input]
 
       this.addHistory(this.state.prompt + ' ' + input_text)
 
