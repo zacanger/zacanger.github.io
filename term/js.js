@@ -19775,6 +19775,7 @@ const App = React.createClass({displayName: "App",
         React.createElement("p", null, 
           React.createElement("span", {className: "prompt"}, this.state.prompt), 
           React.createElement("input", {
+            autofocus: true, 
             type: "text", 
             spellCheck: "false", 
             onKeyPress: this.handleInput, 
