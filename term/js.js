@@ -19627,7 +19627,6 @@ const
       , 'man'     : this.showHelp
       , 'h'       : this.showHelp
       , 'cat'     : this.catFile
-      , 'mf'      : this.openLink('http://zacanger.com/mf')
       , 'twitter' : this.openLink('http://twitter.com/zacanger')
       , 't'       : this.openLink('http://twitter.com/zacanger')
       , 'mkup'    : this.openLink('http://zacanger.com/mkup')
@@ -19721,7 +19720,6 @@ const
     this.addHistory('doc - docs site')
     this.addHistory('mkup - open mockup tool')
     this.addHistory('search - search the web')
-    this.addHistory('mf - open mobile-friendly tester')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')
     this.addHistory('ls - list files')
