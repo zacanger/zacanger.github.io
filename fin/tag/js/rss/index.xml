@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 03 Jun 2016 20:17:04 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bookmarklets]]></title><description><![CDATA[<p>I want to take one short blogs post just to share my bookmarklets.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 06 Jun 2016 04:03:16 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>Classes, actually faster than factory functions, by ~twice.
+But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
+<p>Better programmers means better software means better solutions for bigger problems.</p>
+<p>Dear Zac: Please start writing tests. Thanks! Love, Zac.</p>
+<p>&#39;The Overjustification Effect&#39; ... side projects are valuable in multiple ways.
+(I think everyone knew this.)</p>
+<p>Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).</p>
+<p>APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
+brackets and braces, then? Like... wat?</p>
+<ul>
+<li>Five steps to understanding a new code base:<ul>
+<li>Find a mentor who really understands that code base and is willing and able to take the
+time to talk to you about it.</li>
+<li>Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
+etc. for all of it, then go study all those things <em>apart</em> from the current code so you
+know how they&#39;re all supposed to work. Also find out the history of the code.</li>
+<li>Complete a task. A tiny feature or bugfix or something.</li>
+<li>Don&#39;t get stuck. If you&#39;re not getting anything done for more than like a half hour or
+whatever and you can&#39;t figure it out, <em>ask that mentor</em>.</li>
+<li>Code review, review, review code, code, code review.</li>
+</ul>
+</li>
+</ul>
+<h3 id="functors">FUNCTORS</h3>
+<p>I don&#39;t really know what a functor is but apparently map and filter are functors.</p>
+<p>Functors are objects that have a map-type method. Not the method itself.</p>
+<p>A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.</p>
+]]></description><link>/2016/fff.html</link><guid isPermaLink="true">/2016/fff.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 03:39:25 GMT</pubDate></item><item><title><![CDATA[bookmarklets]]></title><description><![CDATA[<p>I want to take one short blogs post just to share my bookmarklets.</p>
 <p>If you don&#39;t know what that means, don&#39;t worry.</p>
 <p>There once was a time when browser extensions/add-ons didn&#39;t exist, and a
 slightly later time when they did exist but still really sucked. And, I mean,
