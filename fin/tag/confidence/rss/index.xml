@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 11 Jun 2016 04:18:44 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[a tip]]></title><description><![CDATA[<p>I have, like, an actual kind of tip, for new-ish developers.</p>
+<p>It&#39;s pretty simple. Shouldn&#39;t be too hard to grasp, maybe a little harder to
+implement.</p>
+<blockquote>
+<p>Have confidence in your code.</p>
+</blockquote>
+<p>If you don&#39;t have confidence in your code, then try this:</p>
+<blockquote>
+<p>Write code in which you have confience.</p>
+</blockquote>
+<p>It really sucks to have to walk someone through your  code when you&#39;re not
+sure it&#39;s even doing the things it&#39;s supposed to do, or when you <em>are</em> sure
+it&#39;s doing the right things but doing them in a really gross kind of way.</p>
+<p>I think this is something everyone struggles with. It&#39;s really easy to copy
+and paste stuff from StackOverflow, and everyone does it for a while. I still
+do it sometimes, though usually with a lot of testing and reading before
+actually running that code.</p>
+<p>It&#39;s really easy, as a new dev, to say &quot;Well, I don&#39;t know how to do that thing,
+can you just show me?&quot; And that&#39;s okay, but it&#39;s a lot more okay to say &quot;Hey,
+I spent an hour with the docs, here&#39;s my implementation, here&#39;s the stack trace
+and I couldn&#39;t find anything helpful on the source&#39;s issues or SO, do you have
+any ideas?&quot;</p>
+<p>It takes a while to write code that you don&#39;t hate, but usually even someone
+who&#39;s been programming for a few months knows what good code looks like. It&#39;s
+concise, readable, logical, and consistent. It doesn&#39;t make you cringe.</p>
+<p>I&#39;m not really very good at writing code and feeling great about it. When it
+comes to, say, raw Node or a Bash script, I&#39;m usually better with these things
+than anyone I know on a personal level, and have no problem taking charge and
+just doing things. But when it comes to the things I actually do every day
+(which right now means React, Koa, AWS stuff, Docker, trying to read C#, and
+Sass, mostly) I know I&#39;m not that great. Knowing that I&#39;m not that great means
+I take probably twice as long as I would to get anything done as I would if I
+was the best at that thing in the room, because I know people who know more
+than I do will be looking at my code and will need to fix it.</p>
+<p>That&#39;s not a <strong>bad</strong> thing, but it&#39;s not a good thing either. It means I&#39;m
+programming without confidence, when I&#39;m writing React or Sass. And I&#39;m not
+even <em>bad</em> at either, I just have no confidence when writing these things
+on a project with people who are better at them than I am. That&#39;s something
+that I should get over.</p>
+<p>Anyway, I meant to write this post on the train and post it when I got home,
+but I ended up standing on the train so it&#39;s split, from while waiting for the
+train &#39;til 10:30 PM while sitting at DevMountain, so it&#39;s probably a little
+disjointed.</p>
+<p>The point here is, if you have confidence in what you&#39;re doing, you&#39;ll get
+stuff done quicker and better, and if you don&#39;t have confidence in what you&#39;re
+doing, make it so that you can.</p>
+]]></description><link>/2016/a-tip.html</link><guid isPermaLink="true">/2016/a-tip.html</guid><category><![CDATA[confidence]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 11 Jun 2016 04:37:00 GMT</pubDate></item></channel></rss>
