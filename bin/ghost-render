@@ -1,112 +1,111 @@
 #!/usr/bin/env node
-var fs = require('fs'),
-    path = require('path'),
-    subarg = require('subarg');
 
-var argv = subarg(process.argv.slice(2));
+const
+  fs     = require('fs')
+, path   = require('path')
+, subarg = require('subarg')
+, argv   = subarg(process.argv.slice(2))
 
 // defaults
 
-var config = { };
+var config = { }
 
 if (argv.init) {
-  console.log(fs.readFileSync(__dirname + '/default-config.json').toString());
-  process.exit();
-  return;
+  console.log(fs.readFileSync(__dirname + '/default-config.json').toString())
+  process.exit()
+  return
 }
 
 if (argv.version || argv.v) {
-  console.log(require('../package.json').version);
-  process.exit();
+  console.log(require('../package.json').version)
+  process.exit()
 }
 
 if (argv.help || argv.h) {
-  console.log(fs.readFileSync(__dirname + '/usage.txt').toString());
-  process.exit();
-  return;
+  console.log(fs.readFileSync(__dirname + '/usage.txt').toString())
+  process.exit()
+  return
 }
 
 if (argv.settings) {
-  var settingsPath = path.resolve(process.cwd(), argv.settings);
-  var loaded = require(settingsPath);
+  var settingsPath = path.resolve(process.cwd(), argv.settings)
+  var loaded = require(settingsPath)
 
   // resolve relative to the config file location
-  ['input', 'output', 'theme'].forEach(function(key) {
+  ;['input', 'output', 'theme'].forEach(function(key) {
     if (typeof loaded[key] !== 'undefined') {
-      loaded[key] = path.resolve(path.dirname(settingsPath), loaded[key]);
+      loaded[key] = path.resolve(path.dirname(settingsPath), loaded[key])
     }
-  });
+  })
 
   Object.keys(loaded).forEach(function(key) {
     // loaded file overrides all values that were not set yet
     if (typeof config[key] === 'undefined') {
-      config[key] = loaded[key];
+      config[key] = loaded[key]
     }
-  });
+  })
 } else {
-  console.log(fs.readFileSync(__dirname + '/usage.txt').toString());
-  console.log();
-  console.log('The --settings command line argument is required.');
-  process.exit();
-  return;
+  console.log(fs.readFileSync(__dirname + '/usage.txt').toString())
+  console.log()
+  console.log('The --settings command line argument is required.')
+  process.exit()
+  return
 }
 
 if (!config.input) {
-  config.input = path.resolve(process.cwd(), argv.input || './input/');
+  config.input = path.resolve(process.cwd(), argv.input || './input/')
 }
 if (!config.output) {
-  config.output = path.resolve(process.cwd(), argv.output || './output/');
+  config.output = path.resolve(process.cwd(), argv.output || './output/')
 }
 if (!config.theme && argv.theme) {
-  config.theme = path.resolve(process.cwd(), argv.theme);
+  config.theme = path.resolve(process.cwd(), argv.theme)
 }
 
 if (!config.theme) {
-  console.log(fs.readFileSync(__dirname + '/usage.txt').toString());
-  console.log();
-  console.log('The --theme command line argument is required.');
-  return;
+  console.log(fs.readFileSync(__dirname + '/usage.txt').toString())
+  console.log()
+  console.log('The --theme command line argument is required.')
+  return
 }
 
 // process
-
-var pi = require('pipe-iterators'),
-    through = require('through2'),
-    glob = require('wildglob'),
-    mkdirp = require('mkdirp');
-
-var stream = require('../index.js').stream,
-    Theme = require('../index.js').Theme;
-    md = require('../index.js').md;
-
-var templatePath = config.theme,
-    assetPath = config.theme + '/assets';
-
-var meta = { blog: config.blog, authors: config.authors },
-    theme = new Theme({
-  templatePath: templatePath,
-  meta: meta
-});
+var
+  pi           = require('pipe-iterators')
+, through      = require('through2')
+, glob         = require('wildglob')
+, mkdirp       = require('mkdirp')
+, stream       = require('../index.js').stream
+, Theme        = require('../index.js').Theme
+, md           = require('../index.js').md
+, templatePath = config.theme
+, assetPath    = config.theme + '/assets'
+, meta         = {blog : config.blog, authors : config.authors}
+, theme        = new Theme({
+  templatePath : templatePath
+, meta         : meta
+})
 
 var pipelines = require('../index.js').pipelines(theme, config.input, config.output);
 
 function copy(targetFn) {
-  var seen = {};
+  var seen = {}
   return through.obj(function(filename, enc, done) {
-    var target = targetFn(filename),
-        copyDir = path.dirname(target);
-    (seen[copyDir] ? function(a, onDone) { onDone(null); } : mkdirp)(
+    var
+      target  = targetFn(filename)
+    , copyDir = path.dirname(target)
+  ;(seen[copyDir] ? function(a, onDone) { onDone(null) } : mkdirp)(
       copyDir, function(err) {
         if (err) {
-          throw err;
+          throw err
         }
-        seen[copyDir] = true;
+        seen[copyDir] = true
         fs.createReadStream(filename)
           .pipe(fs.createWriteStream(target))
           .once('finish', done)
-          .once('error', done);
-      });
-  });
+          .once('error', done)
+      })
+  })
 }
 
 glob.stream(config.input + '/**')
@@ -114,41 +113,41 @@ glob.stream(config.input + '/**')
 
   // fixme: duplicated in stream.read
   pi.filter(function(filename) {
-    var stat = fs.statSync(filename);
-    return stat.isFile();
-  }),
+    var stat = fs.statSync(filename)
+    return stat.isFile()
+  })
 
-  pi.match(
+, pi.match(
     // for non-markdown files: copy the file.
     function(filename) {
-      var ext = path.extname(filename);
+      var ext = path.extname(filename)
       if (ext === '.markdown' ||
-          ext === '.mdown' ||
-          ext === '.mkd' ||
-          ext === '.mkdn' ||
+          ext === '.mdown'    ||
+          ext === '.mkd'      ||
+          ext === '.mkdn'     ||
           ext === '.md') {
-        return false;
+        return false
       }
-      return true;
-    },
-    copy(function(filename) {
-      var target = path.normalize(filename.replace(config.input, config.output));
-      console.log('Copy non-markdown file', filename, '=>', target);
-      return target;
-    }),
+      return true
+    }
+  , copy(function(filename) {
+      var target = path.normalize(filename.replace(config.input, config.output))
+      console.log('Copy non-markdown file', filename, '=>', target)
+      return target
+    })
     // rest:
-    pi.head([
-      stream.read(),
-      md.parseHeader(),
-      md.parseMd(),
-      md.annotateMdHeadings(),
+  , pi.head([
+      stream.read()
+    , md.parseHeader()
+    , md.parseMd()
+    , md.annotateMdHeadings()
 
       // add helper + template that uses the headings
 
-      md.highlightJs(),
-      md.convertMd(),
+    , md.highlightJs()
+    , md.convertMd()
 
-      stream.fileToPost(meta),
+    , stream.fileToPost(meta)
 
       // generate the URL for the post.
       // This determines:
@@ -161,53 +160,53 @@ glob.stream(config.input + '/**')
       //
       // As for author pages, tag pages, the blog index pages and rss XML pages,
       // these have a fixed, non-configurable URL scheme (in Ghost and here).
-      stream.computeUrl(config.input),
+    , stream.computeUrl(config.input)
 
-      stream.parsePublishedAt(),
-      stream.parseTags(),
-      stream.sortByPublishedAt(),
+    , stream.parsePublishedAt()
+    , stream.parseTags()
+    , stream.sortByPublishedAt()
 
-      pi.match(
+    , pi.match(
         // pages pipeline: only pages
-        function(post) { return post.page; }, pipelines.page,
-        pi.head([
+        function(post) { return post.page; } pipelines.page
+      , pi.head([
           // no drafts, no pages past this point
-          pi.filter(function(post) { return !post.draft && !post.page; }),
+          pi.filter(function(post) { return !post.draft && !post.page })
 
-          pi.fork(
-            pipelines.post,
-            pipelines.index,
-            pipelines.postRSS,
-            pipelines.tags,
-            pipelines.authors
+        , pi.fork(
+            pipelines.post
+          , pipelines.index
+          , pipelines.postRSS
+          , pipelines.tags
+          , pipelines.authors
           )
         ])
       )
     ])
   )
-]));
+]))
 
 // copy assets
 glob.stream(assetPath + '/**' )
-  .pipe(pi.filter(function(filename) {
-    var stat = fs.statSync(filename);
-    return stat.isFile();
-  }))
+.pipe(pi.filter(function(filename) {
+  var stat = fs.statSync(filename)
+  return stat.isFile()
+}))
   .pipe(copy(function(filename) {
-    var target = path.normalize(filename.replace(assetPath, config.output + '/assets/'));
-    console.log('Copy theme asset:', filename, '=>', target);
-    return target;
-  }));
+  var target = path.normalize(filename.replace(assetPath, config.output + '/assets/'))
+  console.log('Copy theme asset:', filename, '=>', target)
+  return target
+}))
 
 var ghostAssetPath = path.normalize(__dirname + '/../public/assets');
 
 glob.stream(ghostAssetPath + '/**' )
-  .pipe(pi.filter(function(filename) {
-    var stat = fs.statSync(filename);
-    return stat.isFile();
-  }))
-  .pipe(copy(function(filename) {
-    var target = path.normalize(filename.replace(ghostAssetPath + '/', config.output + '/assets/'));
-    console.log('Copy base asset:', filename, '=>', target);
-    return target;
-  }));
+.pipe(pi.filter(function(filename) {
+  var stat = fs.statSync(filename)
+  return stat.isFile()
+}))
+.pipe(copy(function(filename) {
+  var target = path.normalize(filename.replace(ghostAssetPath + '/', config.output + '/assets/'))
+  console.log('Copy base asset:', filename, '=>', target)
+  return target
+}))
