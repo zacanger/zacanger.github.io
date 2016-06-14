@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 14 Jun 2016 03:29:01 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[api design notes]]></title><description><![CDATA[<p>think in terms of positives, not negatives</p>
-<p>for example &#39;ishidden(true)&#39; is confusing.
-instead to &#39;isvisible&#39;.</p>
-<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
-<p>instead of this, think in terms of enabled/showing</p>
-<p>this is both for myself (because i get confused) and for other people</p>
-<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
-<p>example from ariya hidayat&#39;s blog:
-if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
-take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
-]]></description><link>/2016/api-design-notes.html</link><guid isPermaLink="true">/2016/api-design-notes.html</guid><category><![CDATA[api]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:09:28 GMT</pubDate></item><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 14 Jun 2016 03:30:46 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
 these are a bunch of notes i took on that topic
 there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
 but those can wait for osme other time.</p>
@@ -107,4 +97,14 @@ rather than the whole thing.</li>
 </ul>
 </li>
 </ul>
-]]></description><link>/2016/editor-design-notes.html</link><guid isPermaLink="true">/2016/editor-design-notes.html</guid><category><![CDATA[editor]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Invalid Date</pubDate></item></channel></rss>
+]]></description><link>/2016/editor-design-notes.html</link><guid isPermaLink="true">/2016/editor-design-notes.html</guid><category><![CDATA[editor]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 14 Jun 2016 03:27:00 GMT</pubDate></item><item><title><![CDATA[api design notes]]></title><description><![CDATA[<p>think in terms of positives, not negatives</p>
+<p>for example &#39;ishidden(true)&#39; is confusing.
+instead to &#39;isvisible&#39;.</p>
+<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
+<p>instead of this, think in terms of enabled/showing</p>
+<p>this is both for myself (because i get confused) and for other people</p>
+<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
+<p>example from ariya hidayat&#39;s blog:
+if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
+take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
+]]></description><link>/2016/api-design-notes.html</link><guid isPermaLink="true">/2016/api-design-notes.html</guid><category><![CDATA[api]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:09:28 GMT</pubDate></item></channel></rss>

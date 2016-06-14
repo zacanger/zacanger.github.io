@@ -1,6 +1,6 @@
 ---
 title: editor design notes
-published_at: 2016-16-13 21:27:00
+published_at: 2016-06-13 21:27:00
 author: zacanger
 tags: editor design
 ---

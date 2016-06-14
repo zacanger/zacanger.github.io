@@ -47,6 +47,62 @@
 <div id="content-main">
 
 
+  <article class="post tag-react tag-performance">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/react-performance.html">React Performance</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-14">14 May, 2016</time>
+         | tags: <a href="/tag/react/">react</a>, <a href="/tag/performance/">performance</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><ul>
+<li>Take a baseline measurement.<ul>
+<li>There&#39;s no way to measure improvements without something to measure against.</li>
+<li>Chrome&#39;s Timeline thing works well for this.</li>
+<li>Try measuring total elapsed time between the initial paint and the final rendering.</li>
+<li>Make sure the &#39;Paint&#39; and &#39;Screenshot&#39; options are checked.</li>
+</ul>
+</li>
+<li>Obviously the first big one is to just make your production code production code.<ul>
+<li><code>NODE_ENV=production</code>, <code>webpack -p</code>, etc.</li>
+<li>You can do something like this in your Webpack config:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// stuff</span>
+<span class="hljs-string">plugins :</span> [
+  <span class="hljs-keyword">new</span> webpack.DefinePlugin({
+    <span class="hljs-string">&#39;process.env.NODE_ENV&#39;</span> : JSON.stringify(<span class="hljs-string">&#39;production&#39;</span>)
+  })
+, <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin({
+    <span class="hljs-string">compress :</span> {
+      <span class="hljs-string">warnings :</span> <span class="hljs-literal">false</span>
+    }
+  })
+]
+<span class="hljs-comment">// stuff</span></code></pre><ul>
+<li>Reduce calls to <code>React.createClass</code> (if we&#39;re still doing that).<ul>
+<li>Try using React Inline Elements for this.</li>
+<li>We could configure Babel for this like so (this example would go directly in your package.json):</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-string">&quot;babel&quot;</span>: { <span class="hljs-string">&quot;env&quot;</span>: { <span class="hljs-string">&quot;production&quot;</span>: { <span class="hljs-string">&quot;plugins&quot;</span>: [
+  <span class="hljs-string">&quot;transform-react-constant-elements&quot;</span>,
+  <span class="hljs-string">&quot;transform-react-inline-elements&quot;</span>
+] } } }</code></pre><ul>
+<li>Keep checking against the initial benchmark.</li>
+<li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
+<li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-js tag-fetch">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/fetch.html">fetch</a></h2>
@@ -541,120 +597,6 @@ good idea if you&#39;re really into games, or developing specifically for Micros
 </blockquote>
 <p>i have a really hard time with losing people.</p>
 <p>and also with losing opportunities.</p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-editor tag-design">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/editor-design-notes.html">editor design notes</a></h2>
-      <span class="post-meta">
-        <time datetime="Invalid date">Invalid date</time>
-         | tags: <a href="/tag/editor/">editor</a>, <a href="/tag/design/">design</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>ages ago, like multiple months ago, i really wanted to make an editor that was better
-these are a bunch of notes i took on that topic
-there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
-but those can wait for osme other time.</p>
-<p>now, i&#39;m perfectly 100% satisfied with what i get out of a
-<a href="https://github.com/zacanger/z.git">well-configured</a> <a href="https://neovim.io">neovim</a>.</p>
-<hr>
-<h2 id="editor-idea">editor idea</h2>
-<ul>
-<li>libraries, etc: in local storage</li>
-<li>POST to back end</li>
-<li>offline: save to local, queue, push when back online</li>
-<li>do while loop: cash saves, settimeout, push to backend periodically</li>
-<li>alert for unsaved files on exit</li>
-<li>codefolding and tabs.<ul>
-<li>VS Code STILL doesn&#39;t have these basics. Wow.</li>
-</ul>
-</li>
-<li>autosaves, but saves are git commits?<ul>
-<li>easy reversion. integrate with dropbox/gdrive/whatever to keep commits distributed but private.</li>
-</ul>
-</li>
-</ul>
-<h3 id="things-any-programming-editor-cum-environment-should-do">Things any programming editor-cum-environment should do</h3>
-<h4 id="-including-some-really-obvious-ones-but-i-just-want-to-make-it-all-clear-">(including some really obvious ones, but i just want to make it all clear)</h4>
-<ul>
-<li>allow navigation of projects</li>
-<li>enable editing of source code</li>
-<li>detect syntax of languages (through extension is okay)</li>
-<li>integrate with compiler(s)/interpreter(s), CI, REPL(s) (depending on language specificity of the editor)</li>
-<li>allow for community collaborative effort to build/maintain language &amp; feature support</li>
-<li>integrate with modern development tools/environments (browsers, source control, deployment, etc)</li>
-<li>allow for non-code (text, hints, live previews, etc) !!</li>
-<li>allow for collaboration <em>within</em> editor (realtime remote connection) !!</li>
-<li>interpret code as it is typed; show results locally !!</li>
-<li>abstract <em>above</em> just a normal directory tree for navigation/code organization !!</li>
-</ul>
-<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,
-technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research
-before even prototyping.</p>
-<h3 id="notes-from-brett-victor-s-talks-and-such">notes from brett victor&#39;s talks and such</h3>
-<ul>
-<li>Information Design two big rules: Show the data, and show comparisons.</li>
-<li>Larry Tesler: personal vendetta against modes in software. &#39;Don\&#39;t mode me in.&#39;</li>
-<li>He&#39;s the reason we have straight-up WYSIWYG editing and stuff.</li>
-<li>His editor was called &#39;Gypsy.&#39; Click and drag? That&#39;s him.</li>
-<li>Cut, copy, and paste: that&#39;s him.</li>
-<li>That&#39;s funny, kinda, because the best software is still moded.</li>
-<li>This is curious, because to everyone else at the time, modes were just a way of life
-with computing. This wasn&#39;t a problem to anyone else, just to him.</li>
-</ul>
-<h2 id="on-version-control-and-ot-and-eve-in-general">on version control and ot and eve in general</h2>
-<ul>
-<li>Recording changes as they happen is easier than inferring them after the fact.</li>
-<li>Preserving history (the context in which a change was made) is necessary for proper merges.</li>
-<li>Being predictable is more important than being smart.</li>
-<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,
-rather than the whole thing.</li>
-</ul>
-<h2 id="links">Links</h2>
-<ul>
-<li><a href="https://github.com/jdleesmiller/jotgit">Git-backed editor</a> build on Meteor, in Coffeescript.</li>
-<li>Some bits relating to editor design:<ul>
-<li><a href="https://vimeo.com/36579366">bret victor&#39;s &#39;inventing on principle&#39;</a></li>
-<li><a href="http://worrydream.com/LearnableProgramming/">(and his followup to it, so people would stop misinterpreting in)</a></li>
-<li><a href="http://dl.acm.org/citation.cfm?id=2677279">an empirical study of imperative programming assignments</a></li>
-</ul>
-</li>
-<li>Some things about LightTable:<ul>
-<li><a href="https://groups.google.com/forum/#!topic/light-table-discussion/T3DhzWhabok">discussion about writing plugins</a></li>
-<li><a href="https://github.com/mdhaney/lt-plugin-template">plugin template</a></li>
-<li><a href="https://github.com/swannodette/lt-cljs-tutorial">clojurescript tutorial for lighttable users</a></li>
-<li><a href="http://product.reverb.com/2014/05/10/getting-started-programming-light-table/">basics of hacking on lighttable</a></li>
-<li><a href="https://github.com/LightTable/Declassifier">basic walkthrough of plugin build</a></li>
-<li><a href="https://github.com/LightTable/LightTable/wiki/Creating-an-LT-Client-using-LTs&#39;-bundled-Node">using node in lighttable</a></li>
-</ul>
-</li>
-<li>Eve links:<ul>
-<li><a href="http://www.cse.yorku.ca/~wolfgang/papers/layoutALE.pdf">Auckland layout editor for constraint-based UI</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/dbtest12-bloom.pdf">BloomUnit: Declarative Testing for Distributed Programs</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/eurosys10-boom.pdf">BOOM Analytics: Exploring Data-Centric, Declarative Programming for the Cloud</a></li>
-<li><a href="https://4d75d27f-a-62cb3a1a-s-sites.googlegroups.com/site/sinhnish/documents/fluidLayouts.pdf?attachauth=ANoY7crdYgssu75ccg3Gc6sSDm-dxh2rWHL5jLVh7LkNKtUgFpv2GDqK8AVzr1IJ53Dg6eM5StLasOQk-SDN4KWaCi-phlQK30GSum-hbWOzT5VVSiNRJ7U3F_FJ8pBMndIjR60O9bYSSzxu1TJmR6kX4dlEuCL16pituZTrEFj7BNnX-SRU3JajEKY4f9s_mYqR3uTF4GW5Jm2EkHgpEUfSZtCrUJOZVPO4NGg7nc59490937x_VW4%3D&amp;attredirects=0">Compiling Mockups to Flexible UI</a></li>
-<li><a href="http://arxiv.org/pdf/1401.1031v1.pdf">Constraint Solvers for User Interface Layout</a></li>
-<li><a href="http://arxiv.org/pdf/1408.1675.pdf">Database Queries that Explain their Work</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/datalog2011-dedalus.pdf">Dedalus: Datalog in Time and Space</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/vldb14-edelweiss.pdf">Edelweiss: Automatic Storage Reclamation for Distributed Programming</a></li>
-<li><a href="http://p2.berkeley.intel-research.net/papers/EvitaRacedVLDB2008.pdf">Evita Raced: Metacompilation for Declarative Networks</a></li>
-<li><a href="http://faculty.washington.edu/ajko/papers/Lee2011Gidget.pdf">Improves Novice Programmers Learning</a></li>
-<li><a href="http://infoscience.epfl.ch/record/180642/files/EPFL_TH5456.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
-<li><a href="http://lampwww.epfl.ch/~rompf/thesis_120716.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
-<li><a href="http://www.neilconway.org/docs/socc2012_bloom_lattices.pdf">Logic and Lattices for Distributed Programming</a></li>
-<li><a href="https://infosys.uni-saarland.de/publications/DJ11.pdf">OctopusDB: Towards a One Size Fits All Database Architecture</a></li>
-<li><a href="http://db.cs.berkeley.edu/cs286/papers/lookingglass-sigmod2008.pdf">OLTP Through the Looking Glass</a></li>
-<li><a href="http://icwww.epfl.ch/~kuncak/papers/DagandETAL08Opis.pdf">Opis: Reliable Distributed Systems in OCaml</a></li>
-<li><a href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1165&amp;context=hcii">Why Not Questions about Program Behavior</a></li>
-</ul>
-</li>
-</ul>
 </p>
     </section>
   </article>
