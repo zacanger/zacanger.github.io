@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      body {
+        background-color: #0000FF;
+        color: #D8D8D8;
+        font-family: courier, monospace;
+        font-weight: bold; font-size: 15pt;
+      }
+      span { cursor: default; }
+      div { cursor: default; }
+      .span {
+        color: #0000FF;
+        background-color: #A0A0A0;
+        width: 100%;
+        text-align: center;
+        margin-left: 50%;
+      }
+    </style>
+    <script type="text/javascript">
+      function blink() {
+        if (!document.getElementById('blink').style.visibility) {
+          document.getElementById('blink').style.visibility='hidden'
+        } if (document.getElementById('blink').style.visibility=='hidden') {
+          document.getElementById('blink').style.visibility='visible'
+        } else {
+          document.getElementById('blink').style.visibility='hidden'
+        }
+        setTimeout('blink()',100)
+      }
+      document.onkeypress=new Function('window.close()')
+    </script>
+  </head>
+  <body scroll="no" onload="blink()">
+    <br><br><br><br><br><br><br><br><br><br>
+    <span class="span">Windows</span><br><br>
+    <div>
+      A fatal exception OE has occurred at 0028:C004CBBFF in VXD VFAT(01) + <br>
+      0000B897. The current application will be terminated.
+    </div>
+    <br><br>
+    <div>
+      *&nbsp;Press any key to terminate the current application. <br>
+      *&nbsp;Press CTRL+ALT+DEL again to restart your computer. You will <br>
+      &nbsp;&nbsp;lose any unsaved information in all applications.
+      <br>
+    </div>
+    <br><br><br>
+    <div align="center">
+      Press any key to continue  <span id="blink">_</span>
+    </div>
+  </body>
+</html>
+
