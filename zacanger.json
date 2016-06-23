@@ -5,7 +5,7 @@
     "handle": "zacanger"
   },
 
-  "status": "Happy employed.",
+  "status": "Happily employed.",
 
   "website": "http://zacanger.com",
 
@@ -105,7 +105,7 @@
     }
   ],
 
-  "social": [
+  "links": [
     {
       "name": "Pinboard",
       "url": "http://pinboard.in/u:zacanger"
@@ -159,7 +159,8 @@
       "ruby",
       "python",
       "haskell",
-      "soft skills"
+      "soft skills",
+      "aws"
     ]
   },
 
@@ -209,47 +210,7 @@
       "year completed": 2016,
       "description": "Full-time immersive JavaScript programme with focus on MEAN Stack.",
       "url": "http://devmounta.in"
-    },{
-      "name": "Homeschool",
-      "year completed": 2007,
-      "description": "Focus on music and recording technology, medieval history.",
-      "url": null
-    }
-  ],
-
-  "references": [
-    {
-      "name": "Jeremy Robertson",
-      "type": "Professional",
-      "relation": "Supervisor, DevMountain",
-      "contact": "jeremy@devmounta.in"
-    },{
-      "name": "Erin Sheridan",
-      "type": "Professional",
-      "relation": "Co-worker, DevMountain",
-      "contact": "sheridanerin@gmail.com"
-    },{
-      "name": "Ryan Walsh",
-      "type": "Personal",
-      "relation": "Mentor, Devmountain",
-      "contact": "ryan@thehatrack.net"
-    },{
-      "name": "Destnyee Ceresini",
-      "type": "Professional",
-      "relation": "Coworker",
-      "concact": "destynee.ceresini@gmail.com"
-    },{
-      "name": "Melissa Jones",
-      "type": "Professional",
-      "relation": "Supervisor, McDonald's",
-      "contact": "717.825.1775"
-    },{
-      "name": "Mel Cranston",
-      "type": "Professional",
-      "relation": "Supervisor, Giant",
-      "contact": "717.246.7137"
     }
   ]
 
 }
-
