@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "watchify -t reactify ./src.js -o ./js.js -v",
-    "build": "NODE_ENV=production browserify -t reactify ./src.js > js.js"
+    "build": "NODE_ENV=production ./node_modules/browserify/bin/cmd.js -t reactify ./src.js > js.js"
   },
   "author": "",
   "license": "MIT",
