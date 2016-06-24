@@ -23,7 +23,7 @@
   "bugs": "https://github.com/zacanger/foo/issues",
   "license": "WTFPL",
   "dependencies": {
-    "express": "^4.13.4",
+    "express": "^4.14.0",
     "forever": "^0.15.2"
   },
   "devDependencies": {}
