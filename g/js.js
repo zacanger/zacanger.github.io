@@ -6,12 +6,12 @@ function ($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('home', {
     url         : '/'
-  , templateUrl : './home.view.html'
+  , template    : '<h1>github search</h1><form ng-submit="search()" role="form"><input type="text" autofocus ng-model="query"><input type="submit" value="?"></form>'
   , controller  : 'HomeCtrl'
   })
   .state('search', {
     url         : '/search/:query'
-  , templateUrl : './search.view.html'
+  , templateUrl : './results.html'
   , controller  : 'SearchCtrl'
   })
 }])

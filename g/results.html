@@ -1,0 +1,13 @@
+<h2><a href="#/">github search</a></h2>
+<form ng-submit="search()" style="margin-top: 5px;" role="form">
+  <input type="text" style="width: 100%;" ng-model="query">
+  <button type="submit"> ? </button>
+</form>
+<p style="margin-top: 10px;">{{metadata.count}} results</p>
+<hr>
+<div ng-repeat="result in results">
+  <a target="_blank" id="repo-name" href="{{result.html_url}}">{{result.name}}</a><br>
+  <span id="repo-link">{{result.html_url}}.git</span><br>
+  <span id="repo-desc">{{result.description}}</span>
+  <hr>
+</div>
