@@ -19628,7 +19628,6 @@ const
       , 'cat'     : this.catFile
       , 'twitter' : this.openLink('http://twitter.com/zacanger')
       , 't'       : this.openLink('http://twitter.com/zacanger')
-      , 'mkup'    : this.openLink('http://zacanger.com/m')
       , 'paste'   : this.openLink('http://zacanger.com/p')
       , 'p'       : this.openLink('http://zacanger.com/p')
       , 'f'       : this.openLink('http://zacanger.com/f')
@@ -19729,7 +19728,6 @@ const
     this.addHistory('paste - go to my little pastebin')
     this.addHistory('fiddle - tiny fiddle thing')
     this.addHistory('doc - docs site')
-    this.addHistory('mkup - open mockup tool')
     this.addHistory('search - search the web')
     this.addHistory('clear - clear screen')
     this.addHistory('cat - print contents of a file')

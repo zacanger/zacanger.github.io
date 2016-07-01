@@ -1,5 +1,4 @@
 function multilineText(context, text, width){
-
   var
     len      = text.length
   , strArray = []
@@ -12,32 +11,25 @@ function multilineText(context, text, width){
 
   for (i = 0; i < len; i++) {
     var c = text.charAt(i)
-
     if (c == '\n') {
       strArray.push(tmp)
       tmp = ''
       continue
-    }
-
-    if (context.measureText(tmp + c).width <= width) {
+    } if (context.measureText(tmp + c).width <= width) {
       tmp += c
-    }
-
-    else {
+    } else {
       strArray.push(tmp)
       tmp = c
     }
-
   }
 
-  if (tmp.length > 0)
+  if (tmp.length > 0) {
     strArray.push(tmp)
+  }
   return strArray
-
 }
 
 function change(){
-
   var
     canvas  = document.getElementById('canvas')
   , text    = document.getElementById('text')
@@ -56,7 +48,6 @@ function change(){
 
   var jpg = canvas.toDataURL()
   document.getElementById('newImg').src = jpg
-
 }
 
 var cm = CodeMirror.fromTextArea(document.getElementById('text'), {
@@ -64,7 +55,9 @@ var cm = CodeMirror.fromTextArea(document.getElementById('text'), {
 , theme       : 'zeemirror'
 , lineNumbers : true
 })
+
 cm.setSize(600, 800)
+
 function go(){
   cm.save()
   change()

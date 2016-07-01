@@ -27,7 +27,7 @@ body {
   border: none;
 }
 
-.cm-s-zeemirror.CodeMirror {background: #101010; color:#bad2b0;}
+.cm-s-zeemirror.CodeMirror {background: #101010; color: #bad2b0;}
 .cm-s-zeemirror .CodeMirror-sizer{padding-bottom: 0px;}
 .cm-s-zeemirror .CodeMirror-scroll{
   margin-right: 0px;
@@ -36,7 +36,7 @@ body {
 }
 .cm-s-zeemirror .CodeMirror-vscrollbar{overflow-y: hidden;}
 
-.cm-s-zeemirror.CodeMirror .inline-widget{background: #303030;color: #cbcecd;}
+.cm-s-zeemirror.CodeMirror .inline-widget{background: #303030; color: #cbcecd;}
 .cm-s-zeemirror.CodeMirror .inline-widget h1,
 .cm-s-zeemirror.CodeMirror .inline-widget h2,
 .cm-s-zeemirror.CodeMirror .inline-widget h3{
@@ -48,7 +48,7 @@ body {
 .cm-s-zeemirror.CodeMirror .inline-widget code{
 	color: #ddd;
 }
-.cm-s-zeemirror.CodeMirror .CodeMirror-gutters {border-style: none;background: #393d54;}
+.cm-s-zeemirror.CodeMirror .CodeMirror-gutters {border-style: none; background: #393d54;}
 .cm-s-zeemirror.CodeMirror .CodeMirror-linenumbers {
 	background-color: #202020;
     background-image: linear-gradient(to bottom, #393939 33%, #686868 67%);
@@ -56,7 +56,7 @@ body {
     background-size: 1px 3px;
     background-repeat: repeat-y;
 }
-.cm-s-zeemirror.CodeMirror .CodeMirror-linenumber {color: #acbec5;padding-left: 5px;}
+.cm-s-zeemirror.CodeMirror .CodeMirror-linenumber {color: #acbec5; padding-left: 5px;}
 .cm-s-zeemirror.CodeMirror .CodeMirror-activeline,
 .cm-s-zeemirror.CodeMirror.CodeMirror-focused .CodeMirror-activeline .CodeMirror-gutter-elt{
 	background-color: #666;
@@ -66,10 +66,10 @@ body {
 .cm-s-zeemirror.CodeMirror .CodeMirror-cursor {border-left: 2px solid #cec0b5;}
 .cm-s-zeemirror.CodeMirror .CodeMirror-selected {background: rgba(180,180,180,0.4);}
 .cm-s-zeemirror.CodeMirror .CodeMirror-matchingbracket {
-	border-bottom: 1px solid #a0dbdb;color: #ccc19b;
+	border-bottom: 1px solid #a0dbdb; color: #ccc19b;
 }
 .cm-s-zeemirror.CodeMirror .CodeMirror-unmatchingbracket {
-  border-bottom: 1px solid #cb3233;color: #e3884a;
+  border-bottom: 1px solid #cb3233; color: #e3884a;
 }
 
 .cm-s-zeemirror.CodeMirror .cm-comment {color: #a3a37c;}
