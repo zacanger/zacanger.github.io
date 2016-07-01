@@ -19621,7 +19621,6 @@ const
       , 'c'       : this.clearHistory
       , 'ls'      : this.listFiles
       , 'l'       : this.listFiles
-      , 'k'       : this.listFiles
       , 'help'    : this.showHelp
       , 'info'    : this.showHelp
       , 'man'     : this.showHelp
@@ -19634,15 +19633,17 @@ const
       , 'p'       : this.openLink('http://zacanger.com/p')
       , 'f'       : this.openLink('http://zacanger.com/f')
       , 'fiddle'  : this.openLink('http://zacanger.com/f')
+      , 'keys'    : this.openLink('http://zacanger.com/k')
+      , 'k'       : this.openLink('http://zacanger.com/k')
       , 'audio'   : this.openLink('http://zacanger.com/a')
       , 'a'       : this.openLink('http://zacanger.com/a')
       , 'g'       : this.openLink('http://zacanger.com/g')
-      , 'ghs'      : this.openLink('http://zacanger.com/g')
+      , 'ghs'     : this.openLink('http://zacanger.com/g')
       , 'doc'     : this.openLink('http://mdkb.zacanger.com')
       , 'mdkb'    : this.openLink('http://mdkb.zacanger.com')
       , 'search'  : this.openLink('http://zacanger.com/search')
       , 'github'  : this.openLink('http://github.com/zacanger')
-      , 'gh'     : this.openLink('http://github.com/zacanger')
+      , 'gh'      : this.openLink('http://github.com/zacanger')
       , 'blog'    : this.openLink('http://blog.zacanger.com')
       , 'b'       : this.openLink('http://blog.zacanger.com')
       , 'light'   : this.openLink('http://zacanger.com/l')
@@ -19723,6 +19724,7 @@ const
     this.addHistory('twitter - go to my twitter')
     this.addHistory('light - open a flashlight')
     this.addHistory('audio - audio viz toy')
+    this.addHistory('keys - check your key codes')
     this.addHistory('ghs - github search')
     this.addHistory('paste - go to my little pastebin')
     this.addHistory('fiddle - tiny fiddle thing')
@@ -19807,7 +19809,6 @@ const
 
 const AppComponent = React.createFactory(App)
 React.render(AppComponent(), document.getElementById('app'))
-
 
 
 },{"react":155}]},{},[156]);
