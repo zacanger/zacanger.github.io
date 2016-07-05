@@ -130,15 +130,6 @@
     },{
       "name": "DeviantArt",
       "url": "http://zacanger.deviantart.com"
-    },{
-      "name": "Pen",
-      "url": "http://zacanger.pen.io"
-    },{
-      "name": "Facebook",
-      "url": "http://facebook.com/zacangermusic"
-    },{
-      "name": "Google+",
-      "url": "https://plus.google.com/+zacangermusic/"
     }
   ],
 
@@ -169,8 +160,8 @@
       "name": "Jane.com",
       "position": "Front-end developer",
       "dates": "2016-Present",
-      "description": "Buildin' stuffz!",
-      "technologies": "React, CSS, *nix, Typescript, Koa, Express, Purescript"
+      "description": "Front-end and infrastructure (ops-ish).",
+      "technologies": "React, CSS, *nix, Typescript, Koa, Express, Redux, AWS, Docker."
     },{
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
