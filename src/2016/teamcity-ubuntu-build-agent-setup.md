@@ -109,4 +109,17 @@ apt-get purge
 systemctl daemon-reload
 systemctl enable docker
 systemctl start docker
+
+echo "
+#!/usr/bin/env bash
+
+while true
+do
+  sleep 86400
+  docker rmi `docker images -aq`
+done
+" > ~/docker-cleanup.sh
+
+chmod +x ~/docker-cleanup.sh
+nohup ~/docker-cleanup.sh &
 ```
