@@ -109,6 +109,123 @@ doing, make it so that you can.</p>
   </article>
 
 
+  <article class="post tag-ubuntu tag-docker tag-aws tag-teamcity">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/teamcity-ubuntu-build-agent-setup.html">script to set up ec2 build agent for tc</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-06">06 June, 2016</time>
+         | tags: <a href="/tag/ubuntu/">ubuntu</a>, <a href="/tag/docker/">docker</a>, <a href="/tag/aws/">aws</a>, <a href="/tag/teamcity/">teamcity</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+set up as a build agent for TeamCity, running stuff in Docker.</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env bash</span>
+
+<span class="hljs-comment"># start with a t2.large (or maybe medium) ec2 instance</span>
+<span class="hljs-comment"># ubuntu, preferably 16.x</span>
+<span class="hljs-comment"># needs to have semi-open network access and public IP</span>
+<span class="hljs-comment"># to be able to update packages and talk to docker and your</span>
+<span class="hljs-comment"># build server</span>
+<span class="hljs-comment"># after running this and registering the agent on the TC</span>
+<span class="hljs-comment"># server, just use the agent push</span>
+<span class="hljs-comment"># or, download the zip and scp it up</span>
+
+<span class="hljs-comment"># new ubuntu instances won&#39;t have pw on default user (ubuntu)</span>
+sudo su
+
+apt-get update
+
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+mkdir -p /etc/sources.list.d/
+touch /etc/sources.list.d/docker.list
+echo &#39;deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main&#39; &gt;&gt; /etc/sources.list.d/docker.list
+echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
+
+if [ command -v lxc-docker ] ; then
+  apt-get purge lxc-docker -y
+fi
+
+echo &quot;
+<span class="hljs-comment">## Note, this file is written by cloud-init on first boot of an instance</span>
+<span class="hljs-comment">## modifications made here will not survive a re-bundle.</span>
+<span class="hljs-comment">## if you wish to make changes you can:</span>
+<span class="hljs-comment">## a.) add &#39;apt_preserve_sources_list: true&#39; to /etc/cloud/cloud.cfg</span>
+<span class="hljs-comment">##     or do the same in user-data</span>
+<span class="hljs-comment">## b.) add sources in /etc/apt/sources.list.d</span>
+<span class="hljs-comment">## c.) make changes to template file /etc/cloud/templates/sources.list.tmpl</span>
+<span class="hljs-comment">#</span>
+
+<span class="hljs-comment"># See <a href="http://help.ubuntu.com/community/UpgradeNotes">http://help.ubuntu.com/community/UpgradeNotes</a> for how to upgrade to</span>
+<span class="hljs-comment"># newer versions of the distribution.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial main restricted
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial main restricted
+
+<span class="hljs-comment">## Major bug fix updates produced after the final release of the</span>
+<span class="hljs-comment">## distribution.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates main restricted
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates main restricted
+
+<span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="hljs-comment">## team. Also, please note that software in universe WILL NOT receive any</span>
+<span class="hljs-comment">## review or updates from the Ubuntu security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial universe
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial universe
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates universe
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates universe
+
+<span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="hljs-comment">## team, and may not be under a free licence. Please satisfy yourself as to</span>
+<span class="hljs-comment">## your rights to use the software. Also, please note that software in</span>
+<span class="hljs-comment">## multiverse WILL NOT receive any review or updates from the Ubuntu</span>
+<span class="hljs-comment">## security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial multiverse
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates multiverse
+
+<span class="hljs-comment">## Uncomment the following two lines to add software from the &#39;backports&#39;</span>
+<span class="hljs-comment">## repository.</span>
+<span class="hljs-comment">## N.B. software from this repository may not have been tested as</span>
+<span class="hljs-comment">## extensively as that contained in the main release, although it includes</span>
+<span class="hljs-comment">## newer versions of some applications which may provide useful features.</span>
+<span class="hljs-comment">## Also, please note that software in backports WILL NOT receive any review</span>
+<span class="hljs-comment">## or updates from the Ubuntu security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-backports main restricted universe multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-backports main restricted universe multiverse
+
+<span class="hljs-comment">## Uncomment the following two lines to add software from Canonical&#39;s</span>
+<span class="hljs-comment">## &#39;partner&#39; repository.</span>
+<span class="hljs-comment">## This software is not part of Ubuntu, but is offered by Canonical and the</span>
+<span class="hljs-comment">## respective vendors as a service to Ubuntu users.</span>
+<span class="hljs-comment"># deb <a href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> xenial partner</span>
+<span class="hljs-comment"># deb-src <a href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> xenial partner</span>
+
+deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main
+deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main
+deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security universe
+deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security universe
+<span class="hljs-comment"># deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security multiverse</span>
+<span class="hljs-comment"># deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security multiverse</span>
+&quot; &gt; /etc/apt/sources.list
+
+apt-get install -y apt-transport-https ca-certificates
+apt-get install -y linux-image-extra-$(uname -r) --fix-missing --allow-unauthenticated
+apt-get install -y default-jdk unzip docker-engine --fix-missing --allow-unauthenticated
+apt-get dist-upgrade -y --allow-unauthenticated --fix-missing
+apt-get autoremove
+apt-get purge
+
+systemctl daemon-reload
+systemctl enable docker
+systemctl start docker</code></pre></p>
+    </section>
+  </article>
+
+
   <article class="post tag-js tag-fp">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/fff.html">More Notes Taken While Watching MPJ&#x27;s Videos</a></h2>
@@ -256,102 +373,6 @@ maybe in FTP.</li>
 <p>client will check if-modified-since and if-none-match</p>
 <p>accept-encoding (with gzip or compress) yay</p>
 <p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-clj">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/clojure.html">clojure</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-06-01">01 June, 2016</time>
-         | tags: <a href="/tag/clj/">clj</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>just a few clojure notes</p>
-<p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
-because really you&#39;re just talking about a different target (jvm vs js vm), rite?
-but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
-with two different names if they were the exact same language and the only actual
-difference was the target vm.</p>
-<p>i&#39;d look this up but i&#39;m on a plane. so.</p>
-<p>some notes!</p>
-<p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code>
-which is called a form.</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> varname varval)</span>
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> me <span class="hljs-string">&quot;zac&quot;</span>)</span></code></pre><p>but there&#39;s also the <code>let</code> keyword which is different. for functions?</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">let</span></span> <span class="hljs-collection">[myname <span class="hljs-string">&quot;zac&quot;</span>]</span>
-  <span class="hljs-list">(<span class="hljs-keyword">println</span> myname)</span>)</span></code></pre><p>oh wait is it <code>def</code> or <code>defn</code>? crud now i&#39;m seeing <code>defn</code>.</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> functionName
-  <span class="hljs-collection">[arguments moreArgs]</span> <span class="hljs-comment">;; comment</span>
-  returnValue)</span>         <span class="hljs-comment">;; the above could be just [] if no args</span>
-
-<span class="hljs-comment">;; so maybe</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> multiplier
-  <span class="hljs-collection">[a b]</span>
-  <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword">multiplier</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fnName
-  <span class="hljs-list">(<span class="hljs-collection">[ifThisPatternIsMatched]</span> returnThis)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[elseIfThisOne sureWhyNot]</span> returnThisInstead)</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fooBar
-  <span class="hljs-list">(<span class="hljs-collection">[a]</span> a)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> a b)</span>)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b c]</span> <span class="hljs-list">(/ <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span> c)</span>)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b c d]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> <span class="hljs-list">(/ a b)</span> c d)</span>)</span>)</span>
-
-<span class="hljs-comment">;; so [] are args, () are forms, {} are keys or something?</span>
-<span class="hljs-comment">;; no, keys are with :, so {} are just... i don&#39;t know, yet.</span>
-
-<span class="hljs-comment">;; and a private function just has a - after it, i think? like</span>
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn-</span></span> thisIsNotPublic
-  <span class="hljs-collection">[]</span> <span class="hljs-comment">;; and other stuff -- are in-line comments a thing?</span>
-  )</span></code></pre><p>Testing with lein (what is lein, exactly? I think it&#39;s a package manager?):</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">ns</span></span> project.namespace-test
-  <span class="hljs-list">(<span class="hljs-attribute">:require</span> <span class="hljs-collection">[clojure.text <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>
-            <span class="hljs-collection">[project.namespace <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>)</span>)</span>
-
-<span class="hljs-comment">;; deftest defines a test fn</span>
-<span class="hljs-comment">;; testing for description for it</span>
-<span class="hljs-comment">;; is -- assertion</span>
-
-<span class="hljs-list">(<span class="hljs-keyword">deftest</span> nameOfTest
-  <span class="hljs-list">(<span class="hljs-keyword">testing</span> <span class="hljs-string">&quot;this is what i&#39;m testing&quot;</span>
-    <span class="hljs-list">(<span class="hljs-keyword">is</span> <span class="hljs-list">(<span class="hljs-keyword">true</span>)</span>)</span>)</span>)</span> <span class="hljs-comment">;; i don&#39;t know if this is valid</span></code></pre><p>okay so leiningen is &#39;automation made easy&#39;</p>
-<p>pkg mgmt, testing, pm, etc.?</p>
-<p><code>lein new app &lt;appname&gt;</code></p>
-<p>that will layout a whole project directory for you, damn.</p>
-<p>lein searches maven and clojars for packages, with <code>lein search &lt;packagename&gt;</code>.</p>
-<p>update <code>:dependencies</code> in <code>project.clj</code> (which i think is like a meta file
-package.json-y kinda thing) and do a <code>lein deps</code> to install that stuff.</p>
-<ul>
-<li><code>lein run</code></li>
-<li><code>lein test</code></li>
-<li><code>lein repl</code></li>
-<li><code>lein install</code></li>
-<li><code>lein uberjar</code> -- this packages up the whole rpoject (as a jar, i guess?)</li>
-</ul>
-<p>zipper is a thing that does things but i don&#39;t really have the
-attention span to read this right now.</p>
-<p>did i mention i was on a plane? i wasn&#39;t <em>really</em> on a plane. i&#39;m in an airport.
-for a lot of hours. it&#39;s a long story. sort of. it&#39;s actually a relatively short
-story, but it&#39;s kind of boring. so whatever.</p>
-<p>there are transducers, which are <em>not</em> like a <code>map</code> or <code>functor</code> or whatever.</p>
-<p>these are composable transforms</p>
-<p>did i mention that i&#39;m in an airport? all night, i&#39;ll be here.
-meant to be home by now. in bed. sleeping. having seen the people i really miss,
-hugs all around, had a beer, unpacked, showered maybe, gone to bed.
-i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
-another day of work, sweaty and gross, eurgh.</p>
-<p>on the other hand i met some nice people suck in this zombie airport, so.</p>
 </p>
     </section>
   </article>

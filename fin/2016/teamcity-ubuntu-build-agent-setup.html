@@ -1,10 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 06 Jul 2016 15:59:54 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[crappy error messages]]></title><description><![CDATA[<p>teamcity and aws have the worst error messages.</p>
-<p>things that don&#39;t count as real error messages:</p>
-<p><code>Environment health has transitioned from Degraded to Warning. Command failed on 1 out of 2 instances. Configuration update in progress on 1 instance. 0 out of 2 instances completed (running for 9 minutes).</code> WHAT COMMAND?</p>
-<p><code>No agents connected after instance start. Please check the image has TeamCity agent configured and it can connect to the server using http://foo.bar address. Start the instance manually to check for agent again.</code> (What actually happened? Any errors? Network? Permissions? Anything? No?)</p>
-<p><code>Incompatible Runner: Command Line</code> (on a Debian instance. Fuck you.)</p>
-]]></description><link>/2016/teamcity-and-aws-fuck-you.html</link><guid isPermaLink="true">/2016/teamcity-and-aws-fuck-you.html</guid><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 30 Jun 2016 01:52:28 GMT</pubDate></item><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/teamcity-ubuntu-build-agent-setup.html" />
+</head>
+<body class="author-template author-blog post-template tag-ubuntu tag-docker tag-aws tag-teamcity">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-ubuntu tag-docker tag-aws tag-teamcity">
+
+
+    <h2 class="post-title"><a href="/2016/teamcity-ubuntu-build-agent-setup.html">script to set up ec2 build agent for tc</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-06-06">06 June, 2016</time>
+       | tags: <a href="/tag/ubuntu/">ubuntu</a>, <a href="/tag/docker/">docker</a>, <a href="/tag/aws/">aws</a>, <a href="/tag/teamcity/">teamcity</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>This is a shell script to run on a new Ubuntu EC2 instance to get it
 set up as a build agent for TeamCity, running stuff in Docker.</p>
 <pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env bash</span>
 
@@ -105,4 +156,46 @@ apt-get purge
 
 systemctl daemon-reload
 systemctl enable docker
-systemctl start docker</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 15:59:29 GMT</pubDate></item></channel></rss>
+systemctl start docker</code></pre>
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=script to set up ec2 build agent for tc&url=http://blog.zacanger.com/2016/teamcity-ubuntu-build-agent-setup.html"
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>
+

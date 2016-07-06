@@ -1,5 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 30 Jun 2016 01:53:45 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 06 Jul 2016 15:59:54 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+set up as a build agent for TeamCity, running stuff in Docker.</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env bash</span>
+
+<span class="hljs-comment"># start with a t2.large (or maybe medium) ec2 instance</span>
+<span class="hljs-comment"># ubuntu, preferably 16.x</span>
+<span class="hljs-comment"># needs to have semi-open network access and public IP</span>
+<span class="hljs-comment"># to be able to update packages and talk to docker and your</span>
+<span class="hljs-comment"># build server</span>
+<span class="hljs-comment"># after running this and registering the agent on the TC</span>
+<span class="hljs-comment"># server, just use the agent push</span>
+<span class="hljs-comment"># or, download the zip and scp it up</span>
+
+<span class="hljs-comment"># new ubuntu instances won&#39;t have pw on default user (ubuntu)</span>
+sudo su
+
+apt-get update
+
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+mkdir -p /etc/sources.list.d/
+touch /etc/sources.list.d/docker.list
+echo &#39;deb <a href="https://apt.dockerproject.org/repo">https://apt.dockerproject.org/repo</a> ubuntu-xenial main&#39; &gt;&gt; /etc/sources.list.d/docker.list
+echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
+
+if [ command -v lxc-docker ] ; then
+  apt-get purge lxc-docker -y
+fi
+
+echo &quot;
+<span class="hljs-comment">## Note, this file is written by cloud-init on first boot of an instance</span>
+<span class="hljs-comment">## modifications made here will not survive a re-bundle.</span>
+<span class="hljs-comment">## if you wish to make changes you can:</span>
+<span class="hljs-comment">## a.) add &#39;apt_preserve_sources_list: true&#39; to /etc/cloud/cloud.cfg</span>
+<span class="hljs-comment">##     or do the same in user-data</span>
+<span class="hljs-comment">## b.) add sources in /etc/apt/sources.list.d</span>
+<span class="hljs-comment">## c.) make changes to template file /etc/cloud/templates/sources.list.tmpl</span>
+<span class="hljs-comment">#</span>
+
+<span class="hljs-comment"># See <a href="http://help.ubuntu.com/community/UpgradeNotes">http://help.ubuntu.com/community/UpgradeNotes</a> for how to upgrade to</span>
+<span class="hljs-comment"># newer versions of the distribution.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial main restricted
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial main restricted
+
+<span class="hljs-comment">## Major bug fix updates produced after the final release of the</span>
+<span class="hljs-comment">## distribution.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates main restricted
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates main restricted
+
+<span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="hljs-comment">## team. Also, please note that software in universe WILL NOT receive any</span>
+<span class="hljs-comment">## review or updates from the Ubuntu security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial universe
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial universe
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates universe
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates universe
+
+<span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="hljs-comment">## team, and may not be under a free licence. Please satisfy yourself as to</span>
+<span class="hljs-comment">## your rights to use the software. Also, please note that software in</span>
+<span class="hljs-comment">## multiverse WILL NOT receive any review or updates from the Ubuntu</span>
+<span class="hljs-comment">## security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial multiverse
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-updates multiverse
+
+<span class="hljs-comment">## Uncomment the following two lines to add software from the &#39;backports&#39;</span>
+<span class="hljs-comment">## repository.</span>
+<span class="hljs-comment">## N.B. software from this repository may not have been tested as</span>
+<span class="hljs-comment">## extensively as that contained in the main release, although it includes</span>
+<span class="hljs-comment">## newer versions of some applications which may provide useful features.</span>
+<span class="hljs-comment">## Also, please note that software in backports WILL NOT receive any review</span>
+<span class="hljs-comment">## or updates from the Ubuntu security team.</span>
+deb <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-backports main restricted universe multiverse
+deb-src <a href="http://us-east-1.ec2.archive.ubuntu.com/ubuntu/">http://us-east-1.ec2.archive.ubuntu.com/ubuntu/</a> xenial-backports main restricted universe multiverse
+
+<span class="hljs-comment">## Uncomment the following two lines to add software from Canonical&#39;s</span>
+<span class="hljs-comment">## &#39;partner&#39; repository.</span>
+<span class="hljs-comment">## This software is not part of Ubuntu, but is offered by Canonical and the</span>
+<span class="hljs-comment">## respective vendors as a service to Ubuntu users.</span>
+<span class="hljs-comment"># deb <a href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> xenial partner</span>
+<span class="hljs-comment"># deb-src <a href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> xenial partner</span>
+
+deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main
+deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main
+deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security universe
+deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security universe
+<span class="hljs-comment"># deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security multiverse</span>
+<span class="hljs-comment"># deb-src <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security multiverse</span>
+&quot; &gt; /etc/apt/sources.list
+
+apt-get install -y apt-transport-https ca-certificates
+apt-get install -y linux-image-extra-$(uname -r) --fix-missing --allow-unauthenticated
+apt-get install -y default-jdk unzip docker-engine --fix-missing --allow-unauthenticated
+apt-get dist-upgrade -y --allow-unauthenticated --fix-missing
+apt-get autoremove
+apt-get purge
+
+systemctl daemon-reload
+systemctl enable docker
+systemctl start docker</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 15:59:29 GMT</pubDate></item><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
 <p>You can use Docker&#39;s repos. That&#39;s the easy way so I won&#39;t talk about it here.
 There are loads of good docs out there on that, and anyway, it&#39;s built into the
 tools. Instead this post deals with deployment of images that you can&#39;t publish
