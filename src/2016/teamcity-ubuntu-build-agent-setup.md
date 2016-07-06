@@ -1,6 +1,6 @@
 ---
 title: script to set up ec2 build agent for tc
-published_at: 2016-06-06 09:59:29
+published_at: 2016-07-06 09:59:29
 author: zacanger
 tags: ubuntu docker aws teamcity
 ---

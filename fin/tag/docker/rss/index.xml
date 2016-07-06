@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 06 Jul 2016 15:59:54 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 06 Jul 2016 16:01:11 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
 set up as a build agent for TeamCity, running stuff in Docker.</p>
 <pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env bash</span>
 
@@ -100,7 +100,7 @@ apt-get purge
 
 systemctl daemon-reload
 systemctl enable docker
-systemctl start docker</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 15:59:29 GMT</pubDate></item><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
+systemctl start docker</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 Jul 2016 15:59:29 GMT</pubDate></item><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
 <p>You can use Docker&#39;s repos. That&#39;s the easy way so I won&#39;t talk about it here.
 There are loads of good docs out there on that, and anyway, it&#39;s built into the
 tools. Instead this post deals with deployment of images that you can&#39;t publish
