@@ -102,6 +102,10 @@
       "name": "F Me On Github",
       "url": "http://zacanger.github.io/f-me-on-github/",
       "summary": "An amusing, inappropriate take on the 'Fork Me On Github' ribbon."
+    },{
+      "name": "Mickey's Wholesale Pizza",
+      "url": null,
+      "summary": "Revamp of web presence; design and development"
     }
   ],
 
@@ -166,14 +170,8 @@
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
       "dates": "2016",
-      "description": "Mentored group of new devs; planned and carried out lectures; maintained curriculum; worked on internal projects",
-      "technologies": "Node, Express, Angular, Chromium (extensions), CSS and preprocessors, MongoDB and Mongoose, MySQL, build systems, Linux."
-    },{
-      "name": "Mickey's Wholesale Pizza",
-      "position": "Web Developer",
-      "dates": "2014-2015",
-      "description": "Full revamp of wholesale foods company's web presence.",
-      "technologies": "HTML, CSS, JavaScript, jQuery, Twitter Bootstrap, image manipulation."
+      "description": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects",
+      "technologies": "Node, Express, Angular, Chromium (extensions), CSS/preprocessors, MongoDB/Mongoose, MySQL, build systems, Linux."
     },{
       "name": "RLH Guitars",
       "position": "Venue management, recording engineer",
@@ -199,7 +197,7 @@
     {
       "name": "DevMountain",
       "year completed": 2016,
-      "description": "Full-time immersive JavaScript programme with focus on MEAN Stack.",
+      "description": "Full-time immersive JavaScript program with focus on MEAN Stack.",
       "url": "http://devmounta.in"
     }
   ]
