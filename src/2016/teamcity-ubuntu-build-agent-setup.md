@@ -27,9 +27,9 @@ apt-get update
 
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-mkdir -p /etc/sources.list.d/
-touch /etc/sources.list.d/docker.list
-echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' >> /etc/sources.list.d/docker.list
+mkdir -p /etc/apt/sources.list.d/
+touch /etc/apt/sources.list.d/docker.list
+echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' >> /etc/apt/sources.list.d/docker.list
 echo 'apt_preserve_sources_list: true' >> /etc/cloud/cloud.cfg
 
 if [ command -v lxc-docker ] ; then

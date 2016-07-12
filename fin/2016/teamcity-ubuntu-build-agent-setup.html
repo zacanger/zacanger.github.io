@@ -75,9 +75,9 @@ apt-get <span class="hljs-keyword">update</span>
 
 apt-key adv --keyserver hkp:<span class="hljs-comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span>
 
-<span class="hljs-keyword">mkdir</span> -p /etc/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
-touch /etc/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
-echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/sources.list.d/docker.list</span>
+<span class="hljs-keyword">mkdir</span> -p /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
+touch /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
+echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/apt/sources.list.d/docker.list</span>
 echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
 
 <span class="hljs-keyword">if</span> [ command -v lxc-docker ] ; then

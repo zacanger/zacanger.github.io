@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 06 Jul 2016 16:48:51 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 12 Jul 2016 01:28:32 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
 set up as a build agent for TeamCity, running stuff in Docker.</p>
 <pre class="hljs"><code>#!/usr/bin/env bash
 
@@ -19,9 +19,9 @@ apt-get <span class="hljs-keyword">update</span>
 
 apt-key adv --keyserver hkp:<span class="hljs-comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span>
 
-<span class="hljs-keyword">mkdir</span> -p /etc/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
-touch /etc/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
-echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/sources.list.d/docker.list</span>
+<span class="hljs-keyword">mkdir</span> -p /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
+touch /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
+echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/apt/sources.list.d/docker.list</span>
 echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
 
 <span class="hljs-keyword">if</span> [ command -v lxc-docker ] ; then
