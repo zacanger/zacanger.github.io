@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 12 Jul 2016 01:28:32 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 13 Jul 2016 02:57:14 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[This is a test]]></title><description><![CDATA[<p>this is all i have</p>
+<pre class="hljs"><code><span class="hljs-label">const</span>
+  id    = a =&gt; a
+, <span class="hljs-keyword">add </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a + <span class="hljs-keyword">b
+</span>, <span class="hljs-keyword">sub </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a - <span class="hljs-keyword">b
+</span>, <span class="hljs-keyword">mul </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a * <span class="hljs-keyword">b
+</span>, div   = (a, <span class="hljs-keyword">b) </span>=&gt; a / <span class="hljs-keyword">b
+</span>, mol   = (a, <span class="hljs-keyword">b) </span>=&gt; a % <span class="hljs-keyword">b
+</span>, idF   = () =&gt; a =&gt; a
+, <span class="hljs-keyword">addF </span> = a =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; a + <span class="hljs-keyword">b
+</span>, cur   = <span class="hljs-preprocessor">fn</span> =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)
+</span>, rCur  = <span class="hljs-preprocessor">fn</span> =&gt; <span class="hljs-keyword">b </span>=&gt; a =&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)</span></code></pre>]]></description><link>/2016/july-12-meetup.html</link><guid isPermaLink="true">/2016/july-12-meetup.html</guid><category><![CDATA[fp]]></category><category><![CDATA[meetup]]></category><category><![CDATA[notes]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 13 Jul 2016 02:39:25 GMT</pubDate></item><item><title><![CDATA[NOTES FROM DEVMOUNTAIN]]></title><description><![CDATA[<p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
 <p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
 <p>Whatever.</p>
 <p>Don&#39;t take it all so seriously. Some of it could be really helpful. This is about half of my collected
