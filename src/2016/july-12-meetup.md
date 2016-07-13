@@ -1,5 +1,5 @@
 ---
-title: This is a test
+title: meet notes i guess
 published_at: 2016-07-12 20:39:25
 author: zacanger
 tags: fp meetup notes
