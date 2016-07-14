@@ -27,6 +27,10 @@
 
   "projects": [
     {
+      "name": "zacanger",
+      "url": "http://npm.im/zacanger",
+      "description": "My CV, in JSON, in your terminal, in colour"
+    },{
       "name": "luvi",
       "url": "http://npm.im/luvi",
       "description": "Dev server with nifty extras and easy config and API."
