@@ -13,7 +13,7 @@
 
   "writing": "http://blog.zacanger.com",
 
-  "description": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, keeping software and development free, open, and transparent, and keeping content accessible.",
+  "summary": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, keeping software and development free, open, and transparent, and keeping content accessible.",
 
   "occupations": [
     "*n*x nerd",
@@ -29,47 +29,51 @@
     {
       "name": "zacanger",
       "url": "http://npm.im/zacanger",
-      "description": "My CV, in JSON, in your terminal, in colour"
+      "summary": "My CV, in JSON, in your terminal, in colour"
     },{
       "name": "luvi",
       "url": "http://npm.im/luvi",
-      "description": "Dev server with nifty extras and easy config and API."
+      "summary": "Dev server with nifty extras and easy config and API."
     },{
       "name": "mdkb",
       "url": "https://github.com/zacanger/mdkb",
-      "description": "Markdown-based knowledgebase webapp"
+      "summary": "Markdown-based knowledgebase webapp"
     },{
       "name": "create-repo",
       "url": "http://npm.im/create-repo",
-      "description": "Node tool to create GH repo using name/description from package.json."
+      "summary": "Node tool to create GH repo using name/description from package.json."
     },{
       "name": "hey-you",
       "url": "http://npm.im/hey-you",
-      "description": "A very nice little desktop widget."
+      "summary": "A very nice little desktop widget."
     },{
       "name": "zeess",
       "url": "http://zacanger.github.io/zeess",
-      "description": "CSS Microframework"
+      "summary": "CSS Microframework"
     },{
       "name": "dolog",
       "url": "http://npm.im/dolog",
-      "description": "Node module to turn console.log on and off at will"
+      "summary": "Node module to turn console.log on and off at will"
     },{
       "name": "hipper",
       "url": "http://npm.im/hipper",
-      "description": "A text editor for the terminal."
+      "summary": "A text editor for the terminal."
     },{
       "name": "lilnote",
       "url": "http://npm.im/lilnote",
-      "description": "A tiny note-taking app that stores notes in JSON"
+      "summary": "A tiny note-taking app that stores notes in JSON"
     },{
       "name": "scrapegh",
       "url": "http://npm.im/scrapegh",
-      "description": "A command-line utility for scraping GitHub"
+      "summary": "A command-line utility for scraping GitHub"
     },{
       "name": "scrapingnode",
       "url": "http://npm.im/scrapingnode",
-      "description": "A tiny command-line scraper in Node"
+      "summary": "A tiny command-line scraper in Node"
+    },{
+      "name": "lolwut",
+      "url": "http://npm.im/lolwut",
+      "summary": "Music and colours in your terminal"
     },{
       "name": "Pharaoh",
       "url": "http://pharaoh.js.org",
@@ -88,11 +92,11 @@
       "summary": "In-browser Markdown editor with realtime rendering & vim-like keybinds."
     },{
       "name": "Gifland",
-      "url": "http://zacanger.com/gifland",
+      "url": null,
       "summary": "Animated gif hosting for personal & friend usage."
     },{
       "name": "From Under The Mountain OST",
-      "url": "http://zacanger.com/fromunderthemountain",
+      "url": null,
       "summary": "Commissioned soundtrack accompaniment for fantasy novel."
     },{
       "name": "pengins",
@@ -168,25 +172,25 @@
       "name": "Jane.com",
       "position": "Front-end developer",
       "dates": "2016-Present",
-      "description": "Front-end and infrastructure (ops-ish).",
+      "summary": "Front-end and infrastructure (ops-ish).",
       "technologies": "React, CSS, *nix, Typescript, Koa, Express, Redux, AWS, Docker."
     },{
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
       "dates": "2016",
-      "description": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects",
+      "summary": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects",
       "technologies": "Node, Express, Angular, Chromium (extensions), CSS/preprocessors, MongoDB/Mongoose, MySQL, build systems, Linux."
     },{
       "name": "RLH Guitars",
       "position": "Venue management, recording engineer",
       "dates": "2005-2008",
-      "description": "Ran live music venue; lead engineer at in-house recording studio.",
+      "summary": "Ran live music venue; lead engineer at in-house recording studio.",
       "technologies": "Windows, Mac, and Linux workstations and servers; pro audio hardware and software."
     },{
       "name": "York County Library System",
       "position": "Volunteer",
       "dates": "2001-2005",
-      "description": "Worked with catalogues, DDS, customer service.",
+      "summary": "Worked with catalogues, DDS, customer service.",
       "technologies": "Various library systems including bespoke software and national systems."
     }
   ],
@@ -201,7 +205,7 @@
     {
       "name": "DevMountain",
       "year completed": 2016,
-      "description": "Full-time immersive JavaScript program with focus on MEAN Stack.",
+      "summary": "Full-time immersive JavaScript program with focus on MEAN Stack.",
       "url": "http://devmounta.in"
     }
   ]
