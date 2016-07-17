@@ -47,6 +47,14 @@
       "url": "http://npm.im/hey-you",
       "summary": "A very nice little desktop widget."
     },{
+      "name": "punchcard-cli",
+      "url": "http://npm.im/punchcard-cli",
+      "summary": "Wrapper around a node module to get punchcards from strings"
+    },{
+      "name": "hyperterm-mild-dark",
+      "url": "http://npm.im/hyperterm-mild-dark",
+      "summary": "Mild dark theme for the HyperTerm terminal"
+    },{
       "name": "zeess",
       "url": "http://zacanger.github.io/zeess",
       "summary": "CSS Microframework"
