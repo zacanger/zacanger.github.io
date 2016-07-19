@@ -1,56 +1,47 @@
-@import url(https://fonts.googleapis.com/css?family=Cardo:700);
-@import url(https://fonts.googleapis.com/css?family=Merriweather:300);
+/* CSS code released under the following license:
 
-html {
-  height: 100%;
-  width: 100%;
-  font-size: 62.5%;
+The ISC License
+
+Copyright (c) Isaac Z. Schlueter
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
+
+* {
+  font-family: "Hack", "Hasklig", "Fira Code", "Fantasque Sans Mono", monospace;
+  font-size: 1em;
+  border: 0;
   margin: 0;
   padding: 0;
+  list-style: none;
+  font-weight: 400;
+  color: #fbf9f9;
+  background: #1c1e1d;
 }
-
-body {
-  font-size: 1.6em;
-  line-height: 1.6;
-  font-weight: 300;
-  font-family: "Merriweather", serif;
-  color: #16241e;
-  background: #fbf9f9;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  padding-top: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  max-width: 900px;
+h1, h2, h3, h4, h5, h6, ul, ol, p { margin-top: 1em; }
+ol li { list-style: decimal inside; }
+h1, h2, h3, h4, h5, h6 { color: #64c1d9; }
+h1::before { content: "# "; }
+h2::before { content: "## "; }
+h3::before { content: "### "; }
+h4::before { content: "#### "; }
+h5::before { content: "##### "; }
+h6::before { content: "###### "; }
+ul li::before { content: "* "; }
+a { color: #64d9a5; }
+a:hover { color: #9bd964; }
+a:visited { color: #e1d18e; }
+body { width: 120ex; margin: 1em auto; }
+@media print {
+  body { width: auto; font-size: 10pt; }
+  a { text-decoration: none; }
 }
-
-h1, h3 {
-  margin: 0 0 1rem 0;
-  font-weight: 700;
-  font-family: "Cardo", serif;
-  letter-spacing: -0.1rem;
-}
-
-h1 { font-size: 3.4rem; line-height: 1.2; font-weight: 700; }
-h3 { font-size: 2.2rem; line-height: 1.2; font-weight: 700; }
-
-small {
-  font-size: 10px;
-  line-height: 10px;
-}
-
-a { color: #0a542b; text-decoration: none; }
-a:hover { color: #337580; text-decoration: underline; }
-a:visted { color: #234534; text-decoration: none; }
-a:active { color: #304f4a; text-decoration: none; }
-
-p { margin-top: 1rem; margin-bottom: 1rem; }
-
-hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border-width: 0;
-  border-top: 1px solid #b688b0;
-}
-
-.inline h1, .inline h3 { display: inline-block; }
