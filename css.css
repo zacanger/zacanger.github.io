@@ -27,7 +27,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
   color: #fbf9f9;
   background: #1c1e1d;
 }
-h1, h2, h3, h4, h5, h6, ul, ol, p { margin-top: 1em; }
+h1, h2, h3, h4, h5, h6, ul, ol, p { margin-top: 0.5em; }
 ol li { list-style: decimal inside; }
 h1, h2, h3, h4, h5, h6 { color: #64c1d9; }
 h1::before { content: "# "; }
