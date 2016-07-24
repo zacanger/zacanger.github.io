@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 13 Jul 2016 02:57:59 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 24 Jul 2016 20:46:26 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
+analogy</p>
+<p>here&#39;s a stream-making thingy</p>
+<pre class="hljs"><code>const foo = {
+  each (cb) {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">1</span>), <span class="hljs-number">100</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">2</span>), <span class="hljs-number">200</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">3</span>), <span class="hljs-number">300</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">4</span>), <span class="hljs-number">400</span>)
+  }
+}
+foo.each(<span class="hljs-built_in">console</span>.log)</code></pre><p>prototypes are faster than factory functions but geez they&#39;re
+kinda gross to think about you know so unless we&#39;re doing something
+like making ten million objects just use a factory there i guess</p>
+<p>streams are functors</p>
+<p>functors are just a thing that implements map</p>
+<p>monads are functors that also implement <em>flatMap</em></p>
+<p>flatMap just flattens, i guess? that&#39;s what it sounds like.</p>
+<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.
+same with stuff like bind and chain methods and stuff. it&#39;s basically
+flattening into its <em>value</em> rather than having the actual (semi-expected)
+value (function/promise/stream/whatever).</p>
+<p>so if you have a flatMap that would return another monad, i guess,
+it&#39;d actually return its value, not that other monad.</p>
+<p>if you are a tooling addict, don&#39;t do tools. (this actually totally applies to
+me, because i&#39;ve spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a>
+than on any other individual project... <em>but</em> i feel like it&#39;s worth it, mostly.
+being able to just use vim and not go through the work of setting up any other
+editor on any computer, being able to just clone that repo and symlink what i need,
+that really does make me more productive. as long as i don&#39;t forget how to use
+computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
+<p>start with: <a href="https://www.youtube.com/watch?v=MdlHgIJrQn0">https://www.youtube.com/watch?v=MdlHgIJrQn0</a></p>
+]]></description><link>/2016/fff2.html</link><guid isPermaLink="true">/2016/fff2.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 24 Jul 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
 <pre class="hljs"><code><span class="hljs-label">const</span>
   id    = a =&gt; a
 , <span class="hljs-keyword">add </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a + <span class="hljs-keyword">b

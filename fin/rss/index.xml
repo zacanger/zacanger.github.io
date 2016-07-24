@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 13 Jul 2016 02:57:58 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 24 Jul 2016 20:46:26 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
+analogy</p>
+<p>here&#39;s a stream-making thingy</p>
+<pre class="hljs"><code>const foo = {
+  each (cb) {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">1</span>), <span class="hljs-number">100</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">2</span>), <span class="hljs-number">200</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">3</span>), <span class="hljs-number">300</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">4</span>), <span class="hljs-number">400</span>)
+  }
+}
+foo.each(<span class="hljs-built_in">console</span>.log)</code></pre><p>prototypes are faster than factory functions but geez they&#39;re
+kinda gross to think about you know so unless we&#39;re doing something
+like making ten million objects just use a factory there i guess</p>
+<p>streams are functors</p>
+<p>functors are just a thing that implements map</p>
+<p>monads are functors that also implement <em>flatMap</em></p>
+<p>flatMap just flattens, i guess? that&#39;s what it sounds like.</p>
+<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.
+same with stuff like bind and chain methods and stuff. it&#39;s basically
+flattening into its <em>value</em> rather than having the actual (semi-expected)
+value (function/promise/stream/whatever).</p>
+<p>so if you have a flatMap that would return another monad, i guess,
+it&#39;d actually return its value, not that other monad.</p>
+<p>if you are a tooling addict, don&#39;t do tools. (this actually totally applies to
+me, because i&#39;ve spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a>
+than on any other individual project... <em>but</em> i feel like it&#39;s worth it, mostly.
+being able to just use vim and not go through the work of setting up any other
+editor on any computer, being able to just clone that repo and symlink what i need,
+that really does make me more productive. as long as i don&#39;t forget how to use
+computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
+<p>start with: <a href="https://www.youtube.com/watch?v=MdlHgIJrQn0">https://www.youtube.com/watch?v=MdlHgIJrQn0</a></p>
+]]></description><link>/2016/fff2.html</link><guid isPermaLink="true">/2016/fff2.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 24 Jul 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
 <pre class="hljs"><code><span class="hljs-label">const</span>
   id    = a =&gt; a
 , <span class="hljs-keyword">add </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a + <span class="hljs-keyword">b
@@ -675,351 +707,4 @@ have devtools)</p>
 <pre class="hljs"><code>javascript:(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">var</span> x,n,nD,z,i; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">htmlEscape</span>(<span class="hljs-params">s</span>)</span>{s=s.replace(<span class="hljs-regexp">/&amp;/g</span>,<span class="hljs-string">&#39;&amp;amp;&#39;</span>);s=s.replace(<span class="hljs-regexp">/&gt;/g</span>,<span class="hljs-string">&#39;&amp;gt;&#39;</span>);s=s.replace(<span class="hljs-regexp">/&lt;/g</span>,<span class="hljs-string">&#39;&amp;lt;&#39;</span>);<span class="hljs-keyword">return</span> s;} <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attrQuoteEscape</span>(<span class="hljs-params">s</span>)</span>{s=s.replace(<span class="hljs-regexp">/&amp;/g</span>,<span class="hljs-string">&#39;&amp;amp;&#39;</span>); s=s.replace(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&#39;&amp;quot;&#39;</span>);<span class="hljs-keyword">return</span> s;} x=prompt(<span class="hljs-string">&quot;show links with this word/phrase in link text or target url (leave blank to list all links):&quot;</span>, <span class="hljs-string">&quot;&quot;</span>); n=<span class="hljs-number">0</span>; <span class="hljs-keyword">if</span>(x!=<span class="hljs-literal">null</span>) { x=x.toLowerCase(); nD = <span class="hljs-built_in">window</span>.open().document; nD.writeln(<span class="hljs-string">&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Links containing &quot;&#39;</span>+htmlEscape(x)+<span class="hljs-string">&#39;&quot;&lt;/title&gt;&lt;base target=&quot;_blank&quot;&gt;&lt;/head&gt;&lt;body&gt;&#39;</span>); nD.writeln(<span class="hljs-string">&#39;Links on &lt;a href=&quot;&#39;</span>+attrQuoteEscape(location.href)+<span class="hljs-string">&#39;&quot;&gt;&#39;</span>+htmlEscape(location.href)+<span class="hljs-string">&#39;&lt;/a&gt;&lt;br&gt; with link text or target url containing &amp;quot;&#39;</span> + htmlEscape(x) + <span class="hljs-string">&#39;&amp;quot;&lt;br&gt;&lt;hr&gt;&#39;</span>); z = <span class="hljs-built_in">document</span>.links; <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; z.length; ++i) { <span class="hljs-keyword">if</span> ((z[i].innerHTML &amp;&amp; z[i].innerHTML.toLowerCase().indexOf(x) != -<span class="hljs-number">1</span>) || z[i].href.toLowerCase().indexOf(x) != -<span class="hljs-number">1</span> ) { nD.writeln(++n + <span class="hljs-string">&#39;. &lt;a href=&quot;&#39;</span> + attrQuoteEscape(z[i].href) + <span class="hljs-string">&#39;&quot;&gt;&#39;</span> + (z[i].innerHTML || htmlEscape(z[i].href)) + <span class="hljs-string">&#39;&lt;/a&gt;&lt;br&gt;&#39;</span>); } } nD.writeln(<span class="hljs-string">&#39;&lt;hr&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span>); nD.close(); } })();</code></pre><p>show the urls for any links on the page (including image links)</p>
 <pre class="hljs"><code>javascript:(<span class="hljs-keyword">function</span>(){var<span class="hljs-decorator">%20i</span>,c,x,h;<span class="hljs-decorator">%20for</span>(i=<span class="hljs-number">0</span>;x=document.links[i];++i)<span class="hljs-decorator">%20</span>{<span class="hljs-decorator">%20h</span>=x.href;<span class="hljs-decorator">%20x</span>.title+=<span class="hljs-decorator">%22</span><span class="hljs-decorator">%20</span><span class="hljs-decorator">%22</span><span class="hljs-decorator">%20</span>+<span class="hljs-decorator">%20x</span>.innerHTML;<span class="hljs-decorator">%20while</span>(c=x.firstChild)x.removeChild(c);<span class="hljs-decorator">%20x</span>.appendChild(document.createTextNode(h));<span class="hljs-decorator">%20</span>}<span class="hljs-decorator">%20</span>})()</code></pre><p>get rid of all presentational crap on the page</p>
 <pre class="hljs"><code><span class="hljs-keyword">javascript</span>:(function(){function<span class="hljs-number">%20</span>R(w){try{var<span class="hljs-number">%20</span>d=w.document,j,i,t,T,N,b,r=1,C;for(j=0;t=[<span class="hljs-number">%22</span>object<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>embed<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>applet<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>iframe<span class="hljs-number">%22</span>][j];++j){T=d.getElementsByTagName(t);for(i=T.length-1;(i+1)&amp;&amp;(N=T[i]);--i)if(j!=3||!R((C=N.contentWindow)?C:N.contentDocument.defaultView)){b=d.createElement(<span class="hljs-number">%22</span>div<span class="hljs-number">%22</span>);b.style.width=N.width;<span class="hljs-number">%20</span>b.style.height=N.height;b.innerHTML=<span class="hljs-number">%22</span>&lt;del&gt;<span class="hljs-number">%22</span>+(j==3?<span class="hljs-number">%22</span>third-party<span class="hljs-number">%20</span><span class="hljs-number">%22</span>+t:t)+<span class="hljs-number">%22</span>&lt;/del&gt;<span class="hljs-number">%22</span>;N.parentNode.replaceChild(b,N);}}}catch(E){r=0}return<span class="hljs-number">%20</span>r}R(self);var<span class="hljs-number">%20</span>i,x;for(i=0;x=frames[i];++i)R(x)})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>newSS,<span class="hljs-number">%20</span>styles=&#39;<em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>background:<span class="hljs-number">%20</span>white<span class="hljs-number">%20</span>!<span class="hljs-number">%20</span>important;<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>black<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>:link,<span class="hljs-number">%20</span>:link<span class="hljs-number">%20</span></em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>#0000EE<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>:visited,<span class="hljs-number">%20</span>:visited<span class="hljs-number">%20</span><em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>#551A8B<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}&#39;;<span class="hljs-number">%20</span>if(document.createStyleSheet)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>document.createStyleSheet(<span class="hljs-number">%22</span>javascript:&#39;<span class="hljs-number">%22</span>+styles+<span class="hljs-number">%22</span>&#39;<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>else<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>newSS=document.createElement(&#39;link&#39;);<span class="hljs-number">%20</span>newSS.rel=&#39;stylesheet&#39;;<span class="hljs-number">%20</span>newSS.href=&#39;data:text/css,&#39;+escape(styles);<span class="hljs-number">%20</span>document.getElementsByTagName(<span class="hljs-number">%22</span>head<span class="hljs-number">%22</span>)[0].appendChild(newSS);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>d=document;<span class="hljs-number">%20</span>function<span class="hljs-number">%20</span>K(N,w)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>nn<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>d.createElement(w),<span class="hljs-number">%20</span>C<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>N.childNodes,<span class="hljs-number">%20</span>i;<span class="hljs-number">%20</span>for(i=C.length-1;i&gt;=0;--i)<span class="hljs-number">%20</span>nn.insertBefore(C[i],nn.childNodes[0]);<span class="hljs-number">%20</span>N.parentNode.replaceChild(nn,N);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>function<span class="hljs-number">%20</span>Z(t,w)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>T<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>document.getElementsByTagName(t),<span class="hljs-number">%20</span>j;<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(j=T.length-1;j&gt;=0;--j)<span class="hljs-number">%20</span>K(T[j],w);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>Z(<span class="hljs-number">%22</span>blink<span class="hljs-number">%22</span>,<span class="hljs-number">%20</span><span class="hljs-number">%22</span>span<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>Z(<span class="hljs-number">%22</span>marquee<span class="hljs-number">%22</span>,<span class="hljs-number">%20</span><span class="hljs-number">%22</span>div<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>H=[<span class="hljs-number">%22</span>mouseover<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>mouseout<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>unload<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>resize<span class="hljs-number">%22</span>],o=window.opera;<span class="hljs-number">%20</span>if(document.addEventListener/</em>MOZ<em>/&amp;&amp;!o)<span class="hljs-number">%20</span>for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)document.addEventListener(H[j],function(e){e.stopPropagation();},true);<span class="hljs-number">%20</span>else<span class="hljs-number">%20</span>if(window.captureEvents/</em>NS4<em>/&amp;&amp;!o)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>document.captureEvents(-1/</em><span class="hljs-literal">ALL</span><em>/);for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)window[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]=null;}<span class="hljs-number">%20</span>else/</em>IE<em>/<span class="hljs-number">%20</span>{function<span class="hljs-number">%20</span>R(N){var<span class="hljs-number">%20</span>i,x;for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)if(N[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]/</em>NOT<span class="hljs-number">%20</span>TEXTNODE*/)N[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]=null;for(i=0;x=N.childNodes[i];++i)R(x);}R(document);}})();<span class="hljs-number">%20</span>javascript:(function()<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>c,<span class="hljs-number">%20</span>tID,<span class="hljs-number">%20</span>iID;<span class="hljs-number">%20</span>tID<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>setTimeout(function(){},<span class="hljs-number">%200</span>);<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(c=1;<span class="hljs-number">%20</span>c&lt;1000<span class="hljs-number">%20</span>&amp;&amp;<span class="hljs-number">%20</span>c&lt;=tID;<span class="hljs-number">%20</span>++c)<span class="hljs-number">%20</span>clearTimeout(tID<span class="hljs-number">%20</span>-<span class="hljs-number">%20</span>c);<span class="hljs-number">%20</span>iID<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>setInterval(function(){},1000);<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(c=0;<span class="hljs-number">%20</span>c&lt;1000<span class="hljs-number">%20</span>&amp;&amp;<span class="hljs-number">%20</span>c&lt;=iID;<span class="hljs-number">%20</span>++c)<span class="hljs-number">%20</span>clearInterval(iID<span class="hljs-number">%20</span>-<span class="hljs-number">%20</span>c);<span class="hljs-number">%20</span>})();</code></pre><p>and, just for fun</p>
-<pre class="hljs"><code>javascript:<span class="hljs-keyword">var</span> setTitle=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-number">0</span>!=<span class="hljs-built_in">document</span>.title.indexOf(<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0&quot;</span>)&amp;&amp;(<span class="hljs-built_in">document</span>.title=<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0 &quot;</span>+<span class="hljs-built_in">document</span>.title)};<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;load&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{titleChange=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;changed&quot;</span>),setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{setTitle()},<span class="hljs-number">20</span>)};<span class="hljs-keyword">var</span> e=<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;title&quot;</span>)[<span class="hljs-number">0</span>];e.addEventListener(<span class="hljs-string">&quot;DOMSubtreeModified&quot;</span>,titleChange,!<span class="hljs-number">1</span>),setTitle()},!<span class="hljs-number">1</span>),setTitle();</code></pre>]]></description><link>/2016/bookmarklets.html</link><guid isPermaLink="true">/2016/bookmarklets.html</guid><category><![CDATA[bookmarklets]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 30 May 2016 05:30:30 GMT</pubDate></item><item><title><![CDATA[Actually The Last Of The Notes]]></title><description><![CDATA[<h2 id="wait-i-found-more-notes">WAIT I FOUND MORE NOTES</h2>
-<p>These should be the very last of the notes taken while at DevMountain. I stuck
-in like two comments somewhere just because there was something actually
-incorrect, but as usual, please don&#39;t take anything in here seriously, there&#39;s a
-pretty good chance I didn&#39;t know what I was talking about when I wrote a lot of
-this.</p>
-<hr>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">format</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> args = [].slice.call(<span class="hljs-built_in">arguments</span>)
-  <span class="hljs-keyword">var</span> initial = args.shift()
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params">text, replacement</span>)</span>{
-    <span class="hljs-keyword">return</span> text.replace(<span class="hljs-string">&#39;%s&#39;</span>, replacement)
-  }
-  <span class="hljs-keyword">return</span> args.reduce(replacer, initial)
-}</code></pre><p>this is my implementation, called format.js, stolen mostly from bevacqua. it&#39;s
-like util.format(), but for not-node.</p>
-<p>so, you can pass arguments to console.log and console.error that will be passed
-to util.format()</p>
-<p>so %s for strings, %d for numbers, and %j for objects are valid</p>
-<pre class="hljs"><code>console.<span class="hljs-function"><span class="hljs-title">trace</span><span class="hljs-params">(label)</span></span>
-console.<span class="hljs-function"><span class="hljs-title">time</span><span class="hljs-params">(label)</span></span> and console.<span class="hljs-function"><span class="hljs-title">timeEnd</span><span class="hljs-params">(label)</span></span>
-console.<span class="hljs-function"><span class="hljs-title">assert</span><span class="hljs-params">(expression, arguments)</span></span>
-console.<span class="hljs-function"><span class="hljs-title">dir</span><span class="hljs-params">(object)</span></span></code></pre><hr>
-<p>Don&#39;t use Mongoose. Mongoose actually does have all the problems I thought it
-had. Try Mongolayer at least once. <a href="https://github.com/simpleviewinc/mongolayer">https://github.com/simpleviewinc/mongolayer</a>
-<code>npm i --save mongolayer</code></p>
-<p>Recursive populates, create vs insert fixed, find/create and save using
-different syntax fixed, and each document only having the fields added to it,
-rather than being a whole new instance of the schema fixed. Records getting
-default values instead of not filling that field fixed. Plus other things.</p>
-<hr>
-<p>Generators DO look just like infinite loops. I&#39;m not wrong. Turns out that&#39;s
-because they are infinite loops, but that&#39;s okay, because they&#39;re basically kind
-of backgrounded until called. You hit it up with an iterator, get what you need,
-and then it goes back to sleep. So, in a way, maybe that&#39;s kind of like a
-builtin thing that you&#39;d imagine needs to be an infinite loop, but isn&#39;t in the
-way because you only poke it when you need it. (Like Math.random(), kinda?)
-That&#39;s my interpretation, anyway.</p>
-<hr>
-<h2 id="notes-on-mongo-schema-design">Notes on Mongo schema design</h2>
-<h4 id="-in-a-one-to-n-sort-of-situation-">(in a one-to-n sort of situation...)</h4>
-<ul>
-<li>Embed N if low cardinality &amp; don&#39;t need to access embedded N standalone (outside parent object&#39;s context) (array of documents)<ul>
-<li>Array of refs to N objects if cardinality is one-to-many, or if N objects should need to stand alone (array of refs)</li>
-<li>Ref to One from the N objects if cardinality is very high (parent ref in the N-side document)</li>
-</ul>
-</li>
-</ul>
-<h4 id="the-six-rules-of-thumb-according-to-mongodb-">the six rules of thumb, according to mongodb:</h4>
-<pre class="hljs"><code><span class="hljs-number">1</span>. favour embedding unless there <span class="hljs-keyword">is</span> a compelling reason <span class="hljs-keyword">not</span> <span class="hljs-keyword">to</span>
-<span class="hljs-number">1</span>. needing <span class="hljs-keyword">to</span> <span class="hljs-keyword">access</span> an object <span class="hljs-keyword">on</span> its own <span class="hljs-keyword">is</span> a compelling reason
-<span class="hljs-number">1</span>. arrays should <span class="hljs-keyword">not</span> grow. more than a couple hundred <span class="hljs-keyword">on</span> the <span class="hljs-attribute">&#39;many</span>&#39; side, don<span class="hljs-attribute">&#39;t</span> embed. <span class="hljs-keyword">if</span> there are more than a couple thousand, don<span class="hljs-attribute">&#39;t</span> <span class="hljs-keyword">use</span> an <span class="hljs-keyword">array</span> <span class="hljs-keyword">of</span> objectid refs.
-<span class="hljs-number">1</span>. don<span class="hljs-attribute">&#39;t</span> fear application-level joins.
-<span class="hljs-number">1</span>. keep r/w ratio <span class="hljs-keyword">in</span> mind <span class="hljs-keyword">when</span> denormalizing. mostly read <span class="hljs-keyword">is</span> a good candidate. frequently updated means it<span class="hljs-attribute">&#39;s</span> <span class="hljs-keyword">not</span> worth it.
-<span class="hljs-number">1</span>. structure your models around how you will <span class="hljs-keyword">access</span> data. how the app queries <span class="hljs-keyword">and</span> updates are very important here.</code></pre><hr>
-<p>Type <em>introspection</em> is a feature of languages where, at runtime (which, for the
-sake of keeping it in my head, we&#39;ll say is when said language goes from source
-to not-source, whether that&#39;s a binary or a browser window, or whatever... (Java
-bytecode doesn&#39;t count, I&#39;m not even sure where it falls on the range of
-&#39;scripting&#39; to &#39;compiled&#39;)  a program can take a peek inside and see what the
-<em>type</em> of an <em>object</em> is.</p>
-<p>So:</p>
-<pre class="hljs"><code><span class="hljs-literal">A</span>=Class.new
-B=Class.new <span class="hljs-literal">A</span>
-<span class="hljs-literal">a</span>=<span class="hljs-literal">A</span>.new
-b=B.new
-<span class="hljs-literal">a</span>.instance_of? <span class="hljs-literal">A</span>
-=&gt; <span class="hljs-literal">true</span>
-b.instance_of? <span class="hljs-literal">A</span>
-=&gt; <span class="hljs-literal">false</span>
-b.kind_of? <span class="hljs-literal">A</span>
-=&gt; <span class="hljs-literal">true</span></code></pre><pre class="hljs"><code><span class="hljs-keyword">if</span> (<span class="hljs-variable">$obj</span> instanceof Cat) {
-    // hey look, it<span class="hljs-string">&#39;s a cat!
-}</span></code></pre><pre class="hljs"><code>thingy = <span class="hljs-function"><span class="hljs-title">whatever</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>
-blingy = <span class="hljs-function"><span class="hljs-title">blahhh</span><span class="hljs-params">(<span class="hljs-number">17</span>)</span></span>
-<span class="hljs-function"><span class="hljs-title">type</span><span class="hljs-params">(thingy)</span></span>
-&lt;type <span class="hljs-string">&#39;whatever&#39;</span>&gt;
-<span class="hljs-function"><span class="hljs-title">isinstance</span><span class="hljs-params">(thingy, type(whatever)</span></span>)
-True
-<span class="hljs-function"><span class="hljs-title">isinstance</span><span class="hljs-params">(thingy, type(blingy)</span></span>)
-False</code></pre><p>Python also has <code>hasattr</code>, which is nifty.</p>
-<hr>
-<h2 id="cron-in-node">Cron in Node</h2>
-<p><code>node-schedule</code> seems quite popular. It&#39;s a &#39;cron-like&#39; and &#39;not-cron-like&#39;
-scheduler. I believe that means it&#39;s a scheduler, but it&#39;s time based instead of
-interval based (because <code>setInterval</code> exists). Node-schedule is for in-process
-scheduling, so once your script has executed, it&#39;s gone (and then cron makes a
-lot more sense, because otherwise you&#39;d have to write a script just to start
-node-schedule to do whatever it is that you need done at whatever time and/or
-date).</p>
-<hr>
-<p>Gulp:</p>
-<pre class="hljs"><code>gulp.task(<span class="hljs-string">&#39;nameOfTask&#39;</span>, [<span class="hljs-string">&#39;arraywithTasksToExecute&#39;</span>, <span class="hljs-string">&#39;beforeThisTaskHappens&#39;</span>, <span class="hljs-string">&#39;whichAreOptionalReally&#39;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{})</code></pre><hr>
-<h2 id="electron-vs-node-webkit">Electron vs Node Webkit</h2>
-<ul>
-<li>Electron: <code>main</code> in <code>package.json</code> is the <code>app.js</code> or whatever to run.</li>
-<li>nw.js: <code>main</code> is the <code>index.html</code> to display.</li>
-<li>nw.js: can specify options about window, such as toolbar, width, and height.</li>
-<li>electron: you do that in the app.js or whatever.</li>
-<li>electron&#39;s menus are available on the main process. for dynamic updates to menus from within the app (rendering process), need to use ipc (built-in to electron).</li>
-<li>nw: call set menu, and set stuff. it&#39;s all bundled anyway, so whatever.</li>
-<li>nw: shell calls are totally fine.</li>
-<li>electron: need to spawn child procs with the <code>pipe</code> stdio option.</li>
-</ul>
-<p>A package for nw.js is a zip archive wit hthe extension &#39;nw.&#39; There must be a
-package.json, which includes the &#39;main&#39; key (html to open on load), and name of
-package (similar to node modules).</p>
-<p>&#39;nodejs&#39; field on package.json is boolean; set false to disable node running
-there (purely client-side). node-main is the path to the script for node to run
-(so we could have nodde run the server, and nwjs working with its own files, and
-there _shouldn&#39;t- be conflict.)</p>
-<ul>
-<li>user-agent (should be pretty obvious.)</li>
-<li>remote enalbes calling node in remote pages, whitelist of hostnames.</li>
-<li>chromium-args (literally).</li>
-<li>js-flags (string) for example:<code>{&quot;name&quot;: &quot;test&quot;, &quot;main&quot;: &quot;index.html&quot;, &quot;js-flags&quot;: etc function etc}</code></li>
-<li><p>inject-js-start and inject-js-end (THESE ARE THE IMPORTANT BITS, PAY ATTENTION HERE!)</p>
-<ul>
-<li>start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.</li>
-<li>end: same, but it&#39;s excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.</li>
-</ul>
-</li>
-<li><p>window:</p>
-<ul>
-<li>title str</li>
-<li>width/height int</li>
-<li>tooolbar bool</li>
-<li>icon str (path to the icon)</li>
-<li>position  str (null, center, or mouse)</li>
-<li><code>min_width</code>, <code>min_height</code>, <code>max_width</code>, <code>max_height</code> int</li>
-<li><code>as_desktop</code> bool show as x server desktop background window</li>
-<li>resizable bool<ul>
-<li>always-on-top bool</li>
-</ul>
-</li>
-<li>visible-on-all-workspaces bool</li>
-<li>fullscreen bool</li>
-<li><code>show_in_taskbar</code> bool</li>
-<li>frame bool (sets frameless; avoid if setting fullscreen to true!)</li>
-<li>show bool (false would mean hidden startup [tray?])</li>
-<li>kiosk bool (fullscreen, prevents mouse-driven leaving app; alt-f4 still works, and ctrl-q probably does as well)</li>
-<li>transparent bool (would need composition support) (if true, set with rgba as in css)</li>
-</ul>
-</li>
-<li><p>webkit</p>
-<ul>
-<li>plugin bool (defaults false, for loading media plugins)</li>
-<li>java bool (fuck no, leave that shit where it is)</li>
-<li>page-cache bool</li>
-</ul>
-</li>
-</ul>
-<p>More on nw stuff:</p>
-<p>whether a .nw file (renamed zip) or project directory, the package.json needs to
-be in the root, and if it&#39;s the .nw, that needs to be the actual project
-directory contents, not a directory containing them.</p>
-<p><code>console.log</code> redirects to dev tools (same with console.warn and console.error)</p>
-<p>the <code>process</code> object:</p>
-<ul>
-<li><code>process.versions[&#39;node-webkit&#39;]</code> is set with nw&#39;s version<ul>
-<li><code>process.versions[&#39;chromium&#39;]</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)</li>
-<li><code>process.mainModule</code> is set to the <em>start</em> page, eg <code>index.html</code>--this is whatever&#39;s under <code>main</code> in the package.json, UNLESS there&#39;s a specified <code>node-main</code> field there.</li>
-</ul>
-</li>
-</ul>
-<p><code>__dirname</code> can only be called by node modules (with <code>require()</code>). webkit doesn&#39;t have that (not in devtools either). a hacky fix:</p>
-<p><code>exports.dirname = __dirname</code> in a file, then require that (eg <code>var dirname = require(&#39;./dirnamefile&#39;).dirname; console.log(dirname)</code> would return dirname).</p>
-<hr>
-<h1 id="misc-node-things">MISC NODE THINGS</h1>
-<p>What the hell is an event emitter, anyway? Oh, okay. So. Here&#39;s an example.
-<code>net.Server</code> emits an event when a peer connects. <code>fs.readStream</code> emits an event
-when a file is opened. <code>events.EventEmitter</code> objects! This can be accessed
-directly by requiring <code>events</code>.</p>
-<p>Functions can be executed when an event is emitted--these are called
-<strong>listeners</strong> (not something silly like emitter methods or whatever, that would
-just be nonsense). In those functions, <code>this</code> is the <code>EventEmitter</code> to which the
-listener is attached.</p>
-<p>Something worth noting: <em>HANDLE EVENTEMITTER ERRORS</em>. Errors are special events
-in node, and if there&#39;s no listener for it, node&#39;ll just print a stack trace and
-exit. So always always always be aware, and do something like <code>.on(&#39;error&#39;, fn)</code>
-to make sure you&#39;re handling errors the way you <strong>want</strong> to handle them, rather
-than just letting shit crash and die.</p>
-<hr>
-<p>Gulp core&#39;s api is THIS SIMPLE. Check this out.</p>
-<pre class="hljs"><code>.<span class="hljs-function"><span class="hljs-title">src</span><span class="hljs-params">(globs [, options])</span></span>   <span class="hljs-comment">// takes glob, returns stream in</span>
-.<span class="hljs-function"><span class="hljs-title">dest</span><span class="hljs-params">(path)</span></span>               <span class="hljs-comment">// takes path, returns stream out</span>
-.<span class="hljs-function"><span class="hljs-title">task</span><span class="hljs-params">(name [, deps], fn)</span></span>  <span class="hljs-comment">// defines task</span>
-.<span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">(tasks... [, cb])</span></span>     <span class="hljs-comment">// runs task</span>
-.<span class="hljs-function"><span class="hljs-title">watch</span><span class="hljs-params">(glob [, opts], cb)</span></span> <span class="hljs-comment">// watches fs</span></code></pre><p>That&#39;s IT. The entire codebase is actually readable in a relatively short amount
-of time. Fuckin&#39; beautiful.</p>
-<p>Clearly that doesn&#39;t include <code>.pipe()</code>, but pipe isn&#39;t exactly an api thing I
-think. It&#39;s a pipe. That&#39;d be like saying &#39;oh yeah, you need to learn |, that&#39;s
-a really important thing&#39; or whatever. Sure, it&#39;s the most vital and fundamental
-thing about *n*x, but it&#39;s not a thing you learn, I guess.</p>
-<p>(note : pipe is from node, not gulp-specific)</p>
-<hr>
-<p>Regarding ES6 <code>let</code> and <code>const</code>: <code>let</code> would be mutable. <code>const</code> is basically
-exactly what it sounds like.</p>
-<p>(note : not exactly)</p>
-<hr>
-<p>React things:</p>
-<p><code>componentWillMount()</code> is triggered <em>once</em>, before any rendering.</p>
-<p><code>componentDidMount()</code> is triggered <em>after</em> initial rendering. Access to DOM, here!</p>
-<p><code>componentWillReceiveProps(object nextProps)</code> triggers after component receives new props.</p>
-<p><code>shouldComponentUpdate(object nextProps, object nextState)</code> optimize rendering, return false if no need to update.</p>
-<p><code>componentWillUpdate(same as above, there ^^ )</code> triggered after shouldEtc,etc..., and before <code>render()</code>.</p>
-<p><code>compnentDidUpdate()</code> after rendering. Modify the DOM here.</p>
-<p><code>componentWillUnmount()</code> just before component unmounted from DOM--do cleanup here.</p>
-<p><code>displayName</code> good for debug especially. ES6 classes, derived from class name.</p>
-<p><code>getInitialState()</code> equivalent of constructor in classes.</p>
-<p><code>getDefaultProps()</code> same, bro.</p>
-<p><code>mixins</code> array</p>
-<p><code>statics</code> properties and methods for component</p>
-<hr>
-<p>Webpack: <code>preLoaders</code> gets executed before <code>loaders</code>, regardless of order; this
-still goes in under <code>module:{}</code>.  <code>jshint-loader</code> works in here! That&#39;ll just
-look for your standard <code>.jshintrc</code>.</p>
-<p>Eslint would be better for React, especially because of <code>eslint-plugin-react</code>.
-Eslint also has autofixing (--fix) for some stuff.</p>
-<p>With eslint we&#39;d just include that as an npm script, eg <code>npm run lint</code> with
-<code>&quot;lint&quot;: &quot;eslint . --ext .js --ext .jsx --fix&quot;</code>.</p>
-<p>Eslint also follows an <code>.eslintignore</code>, and an <code>.eslintrc</code>. Rules have
-<em>severity</em>: 0 for disabled, 1 for warning, 2 for error. Some rules take an
-<em>array</em> instead, like <code>&quot;quotes&quot;: [2, &quot;single&quot;]</code>.</p>
-<p>When there&#39;s a lint error with Eslint, npm will give you an <code>ELIFECYCLE</code> error.
-To hide that, we could do <code>npm run lint --silent</code>; alternatively, the same npm
-script above could have <code>|| true</code> appended, but if we invoke that from somewhere
-else, it&#39;ll pass even when there are failures.</p>
-<p><code>jscs</code>, with <code>jscs-loader</code>, follows <code>.jscsrc</code>.</p>
-<p>And, lastly, there&#39;s always EditorConfig and the <code>.editorconfig</code> file.</p>
-<hr>
-<p>Flux: really just an architecture pattern that means it has a <em>unidirectional
-data flow</em>. Like, seriously, that&#39;s all. Here&#39;s an example diagram: <code>Actions -&gt;
-Data Stores -&gt; Components (Views)</code>. That&#39;s <em>it</em>. All Flux really is is a way of
-<em>thinking</em> about things. That&#39;s why there are libraries that <em>implement</em> Flux
-patterns, like Alt.</p>
-<p>Another example diagram:</p>
-<pre class="hljs"><code>  Stores &lt;- - <span class="hljs-string">\</span>
- |              Components
- |(listens)      |
- <span class="hljs-string">\</span>               / <span class="hljs-function"><span class="hljs-params">(calls)</span>
-  --&gt;</span> Actions &lt;--</code></pre><hr>
-<p>Some React Vocab:</p>
-<p>As of some...time, <em>all</em> React custom components <em>must</em> be Uppercase, like This,
-to differentiate from standard xml/html. See <a href="https://gist.github.com/sebmarkbage/f1f4ba40816e7d7848ad">this
-gist</a> for more info on
-that.</p>
-<p>There are five main types in React (and that&#39;s a horrible word to use, can we
-think of something better? Kinds of elements? Things? Idk...).</p>
-<p>React Elements are the primary... thing. A <code>ReactElement</code> has four properties:
-type, props, key, ref. No methods, nothing on prototype. Created like <code>var foo =
-React.createElement(&#39;div&#39;).</code> You pass these to <code>React.render</code>, with a DOM element
-(HTML or SVG), like <code>React.render(foo, document.body)</code>. To add properties to it,
-pass a properties object as the second argument. Children to the third. (Note
-that if using JSX, that&#39;s a bit less verbose.</p>
-<p><code>ReactElement</code>-<em>factory</em> is a function that generates <code>ReactElement</code> with
-specific <code>type</code> property. <code>function createFactory(type){return
-React.createElement.bind(null, type)}</code>; <code>var div = React.createFactory(&#39;div&#39;);
-var foo = div({className: &#39;my-div&#39;}); React.render(foo, document.body)</code>. Common
-HTML tags have built-in factories in React (like <code>var quux = React.DOM.ul</code> or
-<code>var bar = React.DOM.li</code>). But, again, JSX negates the need for factories.</p>
-<p><code>ReactNode</code> could be <code>ReactElement</code>, string, number, or array of ReactNodes
-(<code>ReactFragment</code>). This is a property of other <code>ReactElement</code>s used to represent
-children. Kind of basically create a tree of REs.</p>
-<p><code>ReactComponent</code> would be where the real meat of React can be found. Here we can
-create whatsits in React, and then sort of encapsulate them with their own
-little embedded <em>state</em>. And remember, in React, everything is state. And
-everything is a really ugly bit of PHP that wants to be Javascript. So, <code>var
-thingy = React.createElement(SomeComponent)</code> or <code>var thingy = &lt;Some Component
-/&gt;</code></p>
-<pre class="hljs"><code>React.render = (ReactElement, HTMLElement | SVGElement) =&gt; ReactComponent
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactNode</span> </span>= ReactElement | ReactFragment | ReactText
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactElement</span> </span>= ReactComponentElement | ReactDOMElement
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactDOMElement</span> </span>= {
-    <span class="hljs-class"><span class="hljs-keyword">type</span>: <span class="hljs-title">string</span>,</span>
-    props: {
-        children: ReactNodeList,
-        className: string,
-        etc.
-    },
-    key : string | boolean | number | <span class="hljs-keyword">null</span>,
-    ref : string | <span class="hljs-keyword">null</span>
-}
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactComponentElement</span>&lt;TProps&gt; </span>= {
-    <span class="hljs-class"><span class="hljs-keyword">type</span>: <span class="hljs-title">ReacetClass</span>&lt;TProps&gt;,</span>
-    props: TProps,
-    key : string | boolean | number | <span class="hljs-keyword">null</span>,
-    ref : string | <span class="hljs-keyword">null</span>
-}
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactFragment</span> </span>= Array&lt;ReactNode | ReactEmpty&gt;
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactNodeList</span> </span>= ReactNode | ReactEmpty
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactText</span> <span class="hljs-title">string</span> | <span class="hljs-title">number</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactEmpty</span> </span>= <span class="hljs-keyword">null</span> | undefined | boolean
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReacetClass</span>&lt;TProps&gt; </span>= (TProps) =&gt; ReactComponent&lt;TProps&gt;
-
-<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactComponent</span>&lt;TProps&gt; </span>= {
-    props: TProps,
-    render: () =&gt; ReactElement
-}</code></pre><hr>
-<h4 id="waterfall-model-">Waterfall Model:</h4>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">Requirements</span> ==&gt;</span>
-<span class="hljs-function">  <span class="hljs-title">Design</span>       ==&gt;</span>
-<span class="hljs-function">    <span class="hljs-title">Implementation</span> ==&gt;</span>
-<span class="hljs-function">        <span class="hljs-title">Verification</span> ==&gt;</span>
-            Maintenance</code></pre><p>Also known as:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">Denial</span> ==&gt;</span>
-<span class="hljs-function">  <span class="hljs-title">Bargaining</span> ==&gt;</span>
-<span class="hljs-function">    <span class="hljs-title">Anger</span>      ==&gt;</span>
-<span class="hljs-function">      <span class="hljs-title">Depression</span> ==&gt;</span>
-          Acceptance</code></pre><hr>
-<p>TO DISPLAY BRACES (<code>{{}}</code>) IN ANGULAR, YOU NEED TO WRAP THEM IN A WHATEVER
-(<code>&lt;span&gt;</code>, <code>&lt;p&gt;</code>, whatever) AND GIVE THAT TAG THE ATTRIBUTE <code>ng-non-bindable</code>,
-LIKE IN <code>&lt;code ng-non-bindable&gt;{{show.things}}&lt;/code&gt;</code>.</p>
-<hr>
-<p>Dates/times in JS:</p>
-<pre class="hljs"><code><span class="hljs-tag">var</span> myDate  = new <span class="hljs-function"><span class="hljs-title">Date</span><span class="hljs-params">(<span class="hljs-string">&#39;December 31, 2015 11:58:30&#39;</span>)</span></span>
-  , myEpoch = myDate.<span class="hljs-function"><span class="hljs-title">getTime</span><span class="hljs-params">()</span></span>/<span class="hljs-number">1000.0</span>
-console.<span class="hljs-function"><span class="hljs-title">log</span><span class="hljs-params">(myEpoch)</span></span>
-
-<span class="hljs-tag">var</span> yourDate  = new <span class="hljs-function"><span class="hljs-title">Date</span><span class="hljs-params">(<span class="hljs-number">1451631690</span> * <span class="hljs-number">1000</span>)</span></span>
-console.<span class="hljs-function"><span class="hljs-title">log</span><span class="hljs-params">(yourDate.toGMTString()</span></span> + <span class="hljs-string">&#39; &#39;</span> + yourDate.<span class="hljs-function"><span class="hljs-title">toLocaleString</span><span class="hljs-params">()</span></span>)</code></pre><hr>
-<pre class="hljs"><code>_.isString(<span class="hljs-keyword">str</span>) = (<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">str</span> === <span class="hljs-string">&#39;string</span>&#39;) = (toString.call(<span class="hljs-keyword">str</span>) === &#39;[object <span class="hljs-built_in">String</span>]&#39;)
-<span class="hljs-comment">// underscore&#39;s okay, typeof is okay, but this one here is the shiznit, fo sho</span></code></pre><hr>
-<p>A transpiler is a compiler. It takes code that can&#39;t be run on whatever engine
-it&#39;s targetting, and compiles it so it works. The only actual difference is that
-when funky-code-X is compiled into normal-code-Y, it stays at around the same
-level of abstraction. So, turning JSX or ES6 into ES5 doesn&#39;t really make a vast
-difference in terms of performance, and it&#39;s not like Javascript is a low-level
-language that we&#39;re compiling to, using Babel--we&#39;re just basically
-cross-piling. Hence the &#39;trans&#39; prefix.</p>
-<hr>
-<pre class="hljs"><code><span class="hljs-comment">/<em> hides the element so it&#39;s just <em>gone</em> </em>/</span>
-<span class="hljs-class">.thing</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>;}</span>
-<span class="hljs-comment">/<em> hides its attributes and stuff, but the tag is still there, so it might take up space </em>/</span>
-<span class="hljs-class">.stuff</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">visibility</span>:<span class="hljs-value"> hidden</span></span>;}</span></code></pre><p>NPM -- local (to project) <code>.npmrc</code> <em>must</em> be <code>0600</code>! Otherwise NPM ignores them.
-Idea being that they should only be readable and writable by the single user
-account. The local <code>.npmrc</code> can be overridden by arguments (such as <code>npm config
-set foo:port 9999</code>_).</p>
-]]></description><link>/2016/actually-last-notes.html</link><guid isPermaLink="true">/2016/actually-last-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 30 May 2016 02:00:00 GMT</pubDate></item></channel></rss>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">var</span> setTitle=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-number">0</span>!=<span class="hljs-built_in">document</span>.title.indexOf(<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0&quot;</span>)&amp;&amp;(<span class="hljs-built_in">document</span>.title=<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0 &quot;</span>+<span class="hljs-built_in">document</span>.title)};<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;load&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{titleChange=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;changed&quot;</span>),setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{setTitle()},<span class="hljs-number">20</span>)};<span class="hljs-keyword">var</span> e=<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;title&quot;</span>)[<span class="hljs-number">0</span>];e.addEventListener(<span class="hljs-string">&quot;DOMSubtreeModified&quot;</span>,titleChange,!<span class="hljs-number">1</span>),setTitle()},!<span class="hljs-number">1</span>),setTitle();</code></pre>]]></description><link>/2016/bookmarklets.html</link><guid isPermaLink="true">/2016/bookmarklets.html</guid><category><![CDATA[bookmarklets]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 30 May 2016 05:30:30 GMT</pubDate></item></channel></rss>
