@@ -27,7 +27,6 @@ app.controller('HomeCtrl', [
   }
 }])
 
-
 app.controller('SearchCtrl', [
   '$scope', '$stateParams', '$location', 'GitSearcher',
   function ($scope, $stateParams, $location, GitSearcher) {
@@ -58,4 +57,3 @@ function ($http) {
     }
   }
 }])
-

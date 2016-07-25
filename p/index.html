@@ -84,10 +84,10 @@
   </div>
 
   <textarea spellcheck="false" id="t">
-    this is kind of like a pastebin, but also kind of not.
-    my server will never be aware of anything written or shared here.
-    your pastes are simply stored in the URL, after the hash.
-    isn't that nifty?
+this is kind of like a pastebin, but also kind of not.
+my server will never be aware of anything written or shared here.
+your pastes are simply stored in the URL, after the hash.
+isn't that nifty?
   </textarea>
 
   <script type="text/javascript" src="lz-string.min.js"></script>
@@ -111,9 +111,9 @@
       download.href        = downloadUri()
     }
 
-    function hash(){return LZString.compressToBase64(textarea.value)}
-    function title(){return textarea.value ? textarea.value.slice(0,30) : 'p'}
-    function filename(){return title().replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt'}
+    function hash()       {return LZString.compressToBase64(textarea.value)}
+    function title()      {return textarea.value ? textarea.value.slice(0,30) : 'p'}
+    function filename()   {return title().replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt'}
     function downloadUri(){return "data:text/plain," + encodeURIComponent(textarea.value)}
 
     function contentChanged(){
