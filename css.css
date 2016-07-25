@@ -24,8 +24,8 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
   padding: 0;
   list-style: none;
   font-weight: 400;
-  color: #fbf9f9;
-  background: #1c1e1d;
+  color: #dbd7d7;
+  background: #1a1c1b;
 }
 h1, h2, h3, h4, h5, h6, ul, ol, p { margin-top: 0.5em; }
 ol li { list-style: decimal inside; }
@@ -45,3 +45,4 @@ body { width: 120ex; margin: 1em auto; }
   body { width: auto; font-size: 10pt; }
   a { text-decoration: none; }
 }
+small { font-size: 0.4em; }
