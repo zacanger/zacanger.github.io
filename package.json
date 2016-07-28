@@ -1,30 +1,30 @@
 {
   "name": "zacanger.com",
-  "version": "0.1.0",
   "description": "zacanger.com",
-  "main": "index.js",
-  "scripts": {
-    "start": "forever start -a -l f.log -e e.log -o o.log index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zacanger/foo.git"
-  },
-  "keywords": [
-    "",
-    ""
-  ],
+  "version": "0.1.0",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
     "url": "http://zacanger.com"
   },
-  "homepage": "https://github.com/zacanger/foo#readme",
-  "bugs": "https://github.com/zacanger/foo/issues",
   "license": "WTFPL",
+  "main": "index.js",
+  "scripts": {
+    "start": "forever start -a -l f.log -e e.log -o o.log index.js"
+  },
+  "homepage": "https://github.com/zacanger/foo#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/foo.git"
+  },
+  "bugs": "https://github.com/zacanger/foo/issues",
+  "keywords": [
+    "website"
+  ],
   "dependencies": {
     "express": "^4.14.0",
     "forever": "^0.15.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "private": true
 }
