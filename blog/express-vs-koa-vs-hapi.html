@@ -36,7 +36,7 @@
 <h3><a class="ablack" href="express-vs-koa-vs-hapi.html">
 Express vs Koa vs Hapi
 </a></h3>
-<div class="subtitle">December 30, 2015  &mdash; 
+<div class="subtitle">December 30, 2015  &mdash;
 Zac Anger</div>
 <!-- text begin -->
 
@@ -113,7 +113,7 @@ Zac Anger</div>
       , app   = koa()
 
     app.use(route.get('/api/items', function*(){this.body = 'Get'}))
-    app.use(route.get('/api/items/:id', function*)(id){this.body = 'Get id: ' + id}
+    app.use(route.get('/api/items/:id', function*(id){this.body = 'Get id: ' + id}
     app.use(route.put('/api/items/:id', function*(id){this.body = 'put ' + id}))
     app.use(route.delete('/api/items/:id', function*(id){this.body = 'Delete Id '}))
     app.use(function*(){this.body = 'are you lost?'})
@@ -194,7 +194,7 @@ Zac Anger</div>
 
 
 <!-- text end -->
-<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/express-vs-koa-vs-hapi.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a> 
+<p id='twitter'><a href='http://twitter.com/intent/tweet?url=http://zacanger.com/blog/express-vs-koa-vs-hapi.html&text=&lt;say nice things about me&gt;&via=zacanger'>so, tweet it?</a>
 <a href='http://topsy.com/trackback?url=http://zacanger.com/blog/express-vs-koa-vs-hapi.html'><span id='count-11154'></span></a>&nbsp;</p>
 <!-- entry end -->
 </div>
