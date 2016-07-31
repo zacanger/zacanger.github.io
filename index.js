@@ -5,7 +5,6 @@
 const
   express = require('express')
 , port    = process.env.PORT || 2000
-, dns     = require('dns')
 , app     = express()
 
 app
