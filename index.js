@@ -8,6 +8,7 @@ const
 , app     = express()
 
 app
+.disable('x-powered-by')
 .use(express.static(__dirname))
 .get('/cv', (req, res) => res.sendFile(`${__dirname}/zacanger.json`))
 .use((req, res) => res.sendFile(`${__dirname}/404/index.html`))
