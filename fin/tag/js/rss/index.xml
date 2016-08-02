@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 29 Jul 2016 12:56:27 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 02 Aug 2016 04:17:56 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
 analogy</p>
 <p>here&#39;s a stream-making thingy</p>
 <pre class="hljs"><code>const foo = {
@@ -30,7 +30,6 @@ being able to just use vim and not go through the work of setting up any other
 editor on any computer, being able to just clone that repo and symlink what i need,
 that really does make me more productive. as long as i don&#39;t forget how to use
 computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
-<p>start with: <a href="https://www.youtube.com/watch?v=MdlHgIJrQn0">https://www.youtube.com/watch?v=MdlHgIJrQn0</a></p>
 ]]></description><link>/2016/fff2.html</link><guid isPermaLink="true">/2016/fff2.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 24 Jul 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>Classes, actually faster than factory functions, by ~twice.
 But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
 <p>Better programmers means better software means better solutions for bigger problems.</p>

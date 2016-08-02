@@ -49,5 +49,3 @@ being able to just use vim and not go through the work of setting up any other
 editor on any computer, being able to just clone that repo and symlink what i need,
 that really does make me more productive. as long as i don't forget how to use
 computers without my dotfiles, i don't think they're really a waste of time.)
-
-start with: https://www.youtube.com/watch?v=MdlHgIJrQn0

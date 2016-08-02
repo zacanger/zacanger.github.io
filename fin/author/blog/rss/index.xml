@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 29 Jul 2016 12:56:27 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux in two lines]]></title><description><![CDATA[<p>Okay, not actually Redux in two lines, just the idea behind it
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 02 Aug 2016 04:17:56 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux in two lines]]></title><description><![CDATA[<p>Okay, not actually Redux in two lines, just the idea behind it
 And really one of those is basically the idea of React, I guess.</p>
 <pre class="hljs"><code>const render = <span class="hljs-keyword">state</span> =&gt; ui
 const reducer = (oldState, action) =&gt; newState</code></pre>]]></description><link>/2016/redux-in-two-lines.html</link><guid isPermaLink="true">/2016/redux-in-two-lines.html</guid><category><![CDATA[react]]></category><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 29 Jul 2016 07:09:37 GMT</pubDate></item><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
@@ -33,7 +33,6 @@ being able to just use vim and not go through the work of setting up any other
 editor on any computer, being able to just clone that repo and symlink what i need,
 that really does make me more productive. as long as i don&#39;t forget how to use
 computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
-<p>start with: <a href="https://www.youtube.com/watch?v=MdlHgIJrQn0">https://www.youtube.com/watch?v=MdlHgIJrQn0</a></p>
 ]]></description><link>/2016/fff2.html</link><guid isPermaLink="true">/2016/fff2.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 24 Jul 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
 <pre class="hljs"><code><span class="hljs-label">const</span>
   id    = a =&gt; a
