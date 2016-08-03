@@ -47,6 +47,68 @@
 <div id="content-main">
 
 
+  <article class="post tag-confidence">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/a-tip.html">a tip</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-10">10 June, 2016</time>
+         | tags: <a href="/tag/confidence/">confidence</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>I have, like, an actual kind of tip, for new-ish developers.</p>
+<p>It&#39;s pretty simple. Shouldn&#39;t be too hard to grasp, maybe a little harder to
+implement.</p>
+<blockquote>
+<p>Have confidence in your code.</p>
+</blockquote>
+<p>If you don&#39;t have confidence in your code, then try this:</p>
+<blockquote>
+<p>Write code in which you have confience.</p>
+</blockquote>
+<p>It really sucks to have to walk someone through your  code when you&#39;re not
+sure it&#39;s even doing the things it&#39;s supposed to do, or when you <em>are</em> sure
+it&#39;s doing the right things but doing them in a really gross kind of way.</p>
+<p>I think this is something everyone struggles with. It&#39;s really easy to copy
+and paste stuff from StackOverflow, and everyone does it for a while. I still
+do it sometimes, though usually with a lot of testing and reading before
+actually running that code.</p>
+<p>It&#39;s really easy, as a new dev, to say &quot;Well, I don&#39;t know how to do that thing,
+can you just show me?&quot; And that&#39;s okay, but it&#39;s a lot more okay to say &quot;Hey,
+I spent an hour with the docs, here&#39;s my implementation, here&#39;s the stack trace
+and I couldn&#39;t find anything helpful on the source&#39;s issues or SO, do you have
+any ideas?&quot;</p>
+<p>It takes a while to write code that you don&#39;t hate, but usually even someone
+who&#39;s been programming for a few months knows what good code looks like. It&#39;s
+concise, readable, logical, and consistent. It doesn&#39;t make you cringe.</p>
+<p>I&#39;m not really very good at writing code and feeling great about it. When it
+comes to, say, raw Node or a Bash script, I&#39;m usually better with these things
+than anyone I know on a personal level, and have no problem taking charge and
+just doing things. But when it comes to the things I actually do every day
+(which right now means React, Koa, AWS stuff, Docker, trying to read C#, and
+Sass, mostly) I know I&#39;m not that great. Knowing that I&#39;m not that great means
+I take probably twice as long as I would to get anything done as I would if I
+was the best at that thing in the room, because I know people who know more
+than I do will be looking at my code and will need to fix it.</p>
+<p>That&#39;s not a <strong>bad</strong> thing, but it&#39;s not a good thing either. It means I&#39;m
+programming without confidence, when I&#39;m writing React or Sass. And I&#39;m not
+even <em>bad</em> at either, I just have no confidence when writing these things
+on a project with people who are better at them than I am. That&#39;s something
+that I should get over.</p>
+<p>Anyway, I meant to write this post on the train and post it when I got home,
+but I ended up standing on the train so it&#39;s split, from while waiting for the
+train &#39;til 10:30 PM while sitting at DevMountain, so it&#39;s probably a little
+disjointed.</p>
+<p>The point here is, if you have confidence in what you&#39;re doing, you&#39;ll get
+stuff done quicker and better, and if you don&#39;t have confidence in what you&#39;re
+doing, make it so that you can.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-js tag-fp">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/fff.html">More Notes Taken While Watching MPJ&#x27;s Videos</a></h2>
@@ -290,110 +352,6 @@ hugs all around, had a beer, unpacked, showered maybe, gone to bed.
 i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
 another day of work, sweaty and gross, eurgh.</p>
 <p>on the other hand i met some nice people suck in this zombie airport, so.</p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-sh tag-npm">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/how-to-be-slightly-more-productive.html">how to be slightly more productive</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-31">31 May, 2016</time>
-         | tags: <a href="/tag/sh/">sh</a>, <a href="/tag/npm/">npm</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>one of my pet peeves is seeing people who make software for a living doing
-things in incredibly slow/unproductive ways. i know everyone has their own
-ways of being awesome, and most of those ways are much more awesome ways than
-the ways in which i am okay at things, but still, there are better ways, and
-most developers i&#39;ve seen just have <em>no</em> idea how much time they waste.</p>
-<p>so here are just some tiny little tips. none of these are big news, none
-are esoteric, none are risky, all require a little bit of work but make things
-a lot faster in a very short period of time.</p>
-<h2 id="bash-things">bash things</h2>
-<p>you can use zsh, and that&#39;s a thing, and it doesn&#39;t suck, okay, but it pays
-to be good at bash. bash is everywhere. it&#39;s the default shell on just about
-every system. zsh gives you nice things, but you can get all the same nice
-things in bash with just a tiny bit of work.</p>
-<p>the number one most useful thing to do with bash is aliases, i think.
-it&#39;s generally recommended that you use functions if you can, but there&#39;s
-really no harm in using aliases. try these out, for example:</p>
-<pre class="hljs"><code><span class="hljs-keyword">alias</span> <span class="hljs-title">ns</span>=<span class="hljs-comment">&#39;npm start&#39;</span>
-<span class="hljs-keyword">alias</span> <span class="hljs-title">nt</span>=<span class="hljs-comment">&#39;npm test&#39;</span>
-<span class="hljs-keyword">alias</span> <span class="hljs-title">nis</span>=<span class="hljs-comment">&#39;npm i -S&#39;</span>
-<span class="hljs-keyword">alias</span> <span class="hljs-title">nid</span>=<span class="hljs-comment">&#39;npm i -D&#39;</span>
-<span class="hljs-keyword">alias</span> <span class="hljs-title">bn</span>=<span class="hljs-comment">&#39;babel-node&#39;</span></code></pre><p>throw these at the bottom of your <code>~/.bashrc</code> (or <code>~/.bash_profile</code> on a mac).</p>
-<h2 id="npm">npm</h2>
-<p>for that matter, there&#39;s the aliases up there... npm has a bunch built-in.
-for example, you never need to type out <code>npm install --save-dev</code>
--- just do <code>npm i -S</code>.</p>
-<p>npm gives you a million things. just read the docs sometime. or the help screens.</p>
-<h2 id="the-terminal">the terminal</h2>
-<p>use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow
-(or option-arrow on mac) to get around between words. use these things.</p>
-<p>set your prompt up to tell you nice stuff. i <em>highly</em> recommend using liquidprompt
-(<code>apt-get install -y liquidprompt</code> or <code>brew install liquidprompt</code>), but you can
-also do all these things manually (check
-<a href="https://github.com/zacanger/z/blob/master/.bashrc#L127">my dotfiles</a> for examples).</p>
-<p>pick a bookmarking system and stick with it. <a href="https://github.com/wting/autojump">there</a>
-<a href="https://github.com/rupa/z">are</a> a <a href="https://github.com/shyiko/commacd">bunch</a> of them
-out there (many many more, just search). or export aliases to move to places. or you
-<a href="https://github.com/zacanger/z/blob/master/.bash_functions/g.sh">can</a>
-<a href="https://github.com/zacanger/z/blob/master/.bash_functions/ga.sh">use</a>
-<a href="https://github.com/zacanger/z/blob/master/.bash_functions/gt.sh">mine</a> if you&#39;d like.</p>
-<h2 id="markdown">markdown</h2>
-<p>if you don&#39;t use it, use it. if you still click around in microsoft word or google docs,
-goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
-lightweight-markup authoring format out there. it&#39;s the only way to write, really.</p>
-<h2 id="your-editor">your editor</h2>
-<p>i don&#39;t care what your editor is. i really don&#39;t. i know just enough about lisp
-to not even hate emacs users. i do dislike VS Code, but mostly because of the
-idiotic and transparent licensing scheme. and also because it&#39;s not a very
-good editor. but the built-in debugger isn&#39;t bad (you can get all the same things
-from other tools, but it is better than the ones that you can get for most other
-editors for node).</p>
-<p>whatever your editor is, take a week to learn it really well. in my case, finally
-just spending some time getting <em>fluid</em> with vim has made a huge difference.
-i no longer have any other editors installed (and i tried a lot of them! i loved
-<a href="http://lighttable.com/">LightTable</a> and <a href="http://foicica.com/textadept/">Textadept</a>
-especially, and also really liked atom (but it&#39;s <em>slow</em>); brackets was a waste of
-my time, sublime was okay but nonfree and there&#39;s textadept so whatever, see above
-for notes on VS code; actual IDEs i tent to avoid because they&#39;re just overwhelmingly
-large and in the way all the time, to me). that doesn&#39;t mean vim&#39;s the <em>best</em> editor
-(though it totally is), it just means it&#39;s the one i decided i wanted use, and it&#39;s
-the absolute best tool that i have now because i&#39;m pretty quick with it.</p>
-<p>even if you use vs code or brackets (i&#39;d advise you not to do so, but it&#39;s up to
-you...), just take the time to learn your editor well. learn its plugin/extension/
-whatever system, find or write a theme that makes things really easy on you, check
-out <a href="https://medium.com/@evnbr/coding-in-color-3a6db2743a1e#.5rffb0gto">semantic highlighting</a>
-and give that a shot for a week, find a way to open a terminal in your editor
-(because you DO need that) if it&#39;s a graphical editor, learn keybinds, learn
-configs, and make it work for you. that sounds like a lot of work put into something
-that&#39;s not directly <strong>work</strong>, but it&#39;s work invested in yourself being better
-at using your tools.</p>
-<p>laurie voss, the cto of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a>
-that one of the most important things you can do is be good at your editor.
-he&#39;s obviously right. he&#39;s laurie voss.</p>
-<h2 id="use-git">use git</h2>
-<p>this should be obvious. but, i mean, really use it. use it enough that you
-learn how to use a gitconfig, templates, etc., and try out lots of different
-extensions and wrappers for git (like hub, legit, ghcli, etc.). do stuff with
-git. get really comfortable with git. it&#39;s important. other version control also
-matters sometimes in some businesses but really really really spend some time
-learning git.</p>
-<h2 id="configs">configs</h2>
-<p>(<a href="https://github.com/zacanger/z">like these</a>)</p>
-<p>organize yours. store them somewhere, like in a repo. because when your current
-computer dies (and it will), it&#39;ll take you weeks to get things feeling decent
-if you have to recreate everything manually. granted, most people don&#39;t have
-dotfiles nearly as extensive as those, but you don&#39;t need to -- i&#39;m a little bit
-of a hoarder. disk space is cheap. whatever.</p>
-<h2 id="stop-reading-blogs">stop reading blogs</h2>
-<p>k.</p>
 </p>
     </section>
   </article>
