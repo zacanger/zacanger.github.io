@@ -5,7 +5,13 @@ author: zacanger
 tags: redux
 ---
 
-Some notes on Redux.
+Because the Redux docs say "Redux is actually really simple!" when sometimes
+it's not, and because those docs themselves are pretty overwhelming when
+you're first trying out Redux, I'm going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.
+
+--------
 
 The store is an object that holds state. There's only ever one store in Redux,
 with many reducers that act on it.

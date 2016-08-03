@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 03 Aug 2016 01:12:22 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux notes, part one]]></title><description><![CDATA[<p>Some notes on Redux.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 03 Aug 2016 01:14:47 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux notes, part one]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
 <p>The store is an object that holds state. There&#39;s only ever one store in Redux,
 with many reducers that act on it.</p>
 <p><code>getState()</code> returns the state from the store.</p>
