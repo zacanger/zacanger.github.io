@@ -122,7 +122,7 @@ blockquote {
   padding: 0 0 0 1.6em;
   border-left: #666666 0.4em solid;
   color: #666666;
-  font-family: Georgia,Times,serif;
+  font-family: "Cardo", serif;
   font-style: italic;
 }
 
@@ -147,7 +147,7 @@ dl dt {
 
 code, tt {
   padding: 1px 3px;
-  font-family: Inconsolata, monospace, sans-serif;
+  font-family: "Hack", monospace;
   font-size: 0.85em;
   white-space: pre;
   border: 1px solid #444;
@@ -162,7 +162,7 @@ pre {
   border: 1px solid #444444;
   width: 100%;
   padding: 10px;
-  font-family: Inconsolata, monospace, sans-serif;
+  font-family: "Hack", monospace;
   font-size: 0.9em;
   white-space: pre;
   overflow: auto;
@@ -595,4 +595,3 @@ body .gist .pl-vo, body .gist .pl-v, body .gist .pl-vpf { color: #ffffff; }
 body .gist .pl-en, body .gist .pl-c1, body .gist .pl-s3 { color: #ECAC29; }
 body .gist .pl-k, body .gist .pl-st { color: #7373F2; }
 body .gist .pl-s1, body .gist .pl-pds { color: #76A22F; }
-
