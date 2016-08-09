@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 09 Aug 2016 19:58:12 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[void elements]]></title><description><![CDATA[<p>i posted this a while back on <a href="http://zacanger.com/blog">my old blog</a> but it&#39;s worth posting again.</p>
+<p>obviously this doesn&#39;t apply when using jsx, because everything needs to be closed. but, in jsx, if
+it <em>can</em> be a self-closed tag (meaning literally any of these but also anything else that doesn&#39;t
+have children), please self-close it.</p>
+<ul>
+<li>area</li>
+<li>base</li>
+<li>br</li>
+<li>col</li>
+<li>embed</li>
+<li>hr</li>
+<li>img</li>
+<li>input</li>
+<li>keygen</li>
+<li>link</li>
+<li>menuitem</li>
+<li>meta</li>
+<li>param</li>
+<li>source</li>
+<li>track</li>
+<li>wbr</li>
+</ul>
+<p>see what they all have in common?</p>
+<p>you can&#39;t possibly have anything in any of them, like, between tags. what can you put between
+an opening and closing line break tag? <strong>nothing</strong>. so why would you need a closing tag?  <strong>you wouldn&#39;t</strong>.
+so don&#39;t close it. none of that <code>&lt;img src=&quot;img.jpg&quot;&gt;&lt;/img&gt;</code> bs. No <code>&lt;br /&gt;</code>. and please, please,
+never do something just weird like <code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot; /&gt;</code>.</p>
+]]></description><link>/2016/void-elements.html</link><guid isPermaLink="true">/2016/void-elements.html</guid><category><![CDATA[html]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 09 Aug 2016 19:58:00 GMT</pubDate></item></channel></rss>

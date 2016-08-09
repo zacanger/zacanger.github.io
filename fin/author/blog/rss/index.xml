@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 07 Aug 2016 03:33:59 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux notes, part three]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 09 Aug 2016 19:58:12 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[void elements]]></title><description><![CDATA[<p>i posted this a while back on <a href="http://zacanger.com/blog">my old blog</a> but it&#39;s worth posting again.</p>
+<p>obviously this doesn&#39;t apply when using jsx, because everything needs to be closed. but, in jsx, if
+it <em>can</em> be a self-closed tag (meaning literally any of these but also anything else that doesn&#39;t
+have children), please self-close it.</p>
+<ul>
+<li>area</li>
+<li>base</li>
+<li>br</li>
+<li>col</li>
+<li>embed</li>
+<li>hr</li>
+<li>img</li>
+<li>input</li>
+<li>keygen</li>
+<li>link</li>
+<li>menuitem</li>
+<li>meta</li>
+<li>param</li>
+<li>source</li>
+<li>track</li>
+<li>wbr</li>
+</ul>
+<p>see what they all have in common?</p>
+<p>you can&#39;t possibly have anything in any of them, like, between tags. what can you put between
+an opening and closing line break tag? <strong>nothing</strong>. so why would you need a closing tag?  <strong>you wouldn&#39;t</strong>.
+so don&#39;t close it. none of that <code>&lt;img src=&quot;img.jpg&quot;&gt;&lt;/img&gt;</code> bs. No <code>&lt;br /&gt;</code>. and please, please,
+never do something just weird like <code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot; /&gt;</code>.</p>
+]]></description><link>/2016/void-elements.html</link><guid isPermaLink="true">/2016/void-elements.html</guid><category><![CDATA[html]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 09 Aug 2016 19:58:00 GMT</pubDate></item><item><title><![CDATA[redux notes, part three]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
 it&#39;s not, and because those docs themselves are pretty overwhelming when
 you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
 bits of my own (admittedly limited) personal experience with Redux into a
@@ -725,31 +752,4 @@ disjointed.</p>
 <p>The point here is, if you have confidence in what you&#39;re doing, you&#39;ll get
 stuff done quicker and better, and if you don&#39;t have confidence in what you&#39;re
 doing, make it so that you can.</p>
-]]></description><link>/2016/a-tip.html</link><guid isPermaLink="true">/2016/a-tip.html</guid><category><![CDATA[confidence]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 11 Jun 2016 04:37:00 GMT</pubDate></item><item><title><![CDATA[More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>Classes, actually faster than factory functions, by ~twice.
-But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
-<p>Better programmers means better software means better solutions for bigger problems.</p>
-<p>Dear Zac: Please start writing tests. Thanks! Love, Zac.</p>
-<p>&#39;The Overjustification Effect&#39; ... side projects are valuable in multiple ways.
-(I think everyone knew this.)</p>
-<p>Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).</p>
-<p>APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
-brackets and braces, then? Like... wat?</p>
-<ul>
-<li>Five steps to understanding a new code base:<ul>
-<li>Find a mentor who really understands that code base and is willing and able to take the
-time to talk to you about it.</li>
-<li>Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
-etc. for all of it, then go study all those things <em>apart</em> from the current code so you
-know how they&#39;re all supposed to work. Also find out the history of the code.</li>
-<li>Complete a task. A tiny feature or bugfix or something.</li>
-<li>Don&#39;t get stuck. If you&#39;re not getting anything done for more than like a half hour or
-whatever and you can&#39;t figure it out, <em>ask that mentor</em>.</li>
-<li>Code review, review, review code, code, code review.</li>
-</ul>
-</li>
-</ul>
-<h3 id="functors">FUNCTORS</h3>
-<p>I don&#39;t really know what a functor is but apparently map and filter are functors.</p>
-<p>Functors are objects that have a map-type method. Not the method itself.</p>
-<p>A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.</p>
-]]></description><link>/2016/fff.html</link><guid isPermaLink="true">/2016/fff.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 03:39:25 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/a-tip.html</link><guid isPermaLink="true">/2016/a-tip.html</guid><category><![CDATA[confidence]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 11 Jun 2016 04:37:00 GMT</pubDate></item></channel></rss>
