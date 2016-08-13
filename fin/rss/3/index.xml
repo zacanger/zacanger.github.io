@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 09 Aug 2016 19:58:12 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 13 Aug 2016 23:59:15 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[earliest devmtn notes]]></title><description><![CDATA[<p>uh so i just found these in a note book and remembered that
+one day i forgot my laptop charger so i took notes during a lecture
+by hand
+i don&#39;t know what
+idk</p>
+<pre class="hljs"><code>vertical organization <span class="hljs-keyword">is</span> by feature;
+routes, configs, etc. under the same directory.
+this <span class="hljs-keyword">is</span> the devmtn preferred <span class="hljs-keyword">method</span>.
+this works <span class="hljs-keyword">for</span> angular <span class="hljs-keyword">as</span> well.
+keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> root --
+directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
+starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
+heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre>]]></description><link>/2016/earliest-devmtn-notes.html</link><guid isPermaLink="true">/2016/earliest-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 19 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
 <ul>
 <li>debugging a bash script: use the <code>-x</code> flag</li>
 <li>semicolons divide commands that are on the same line</li>
@@ -3491,89 +3503,4 @@ maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev 
 <hr>
 <p>...that&#39;s all, for now. There will probably be more, once I sort through the first three weeks&#39; worth of shit.</p>
 <p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
-]]></description><link>/2016/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:30:00 GMT</pubDate></item><item><title><![CDATA[Promises]]></title><description><![CDATA[<p>Important things:</p>
-<ul>
-<li>The actual promise is immutable (nothing can change that)</li>
-<li>There&#39;s a guarantee that we&#39;ll get something back</li>
-<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
-<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
-<li>A promise will have one of three states:<ul>
-<li>Pending (until something happens)</li>
-<li>Fulfilled (if the first handler is called)</li>
-<li>Rejected (if the second handler is called)</li>
-</ul>
-</li>
-<li>It can only be &#39;settled&#39; (either resolved or rejected) once.</li>
-<li>Can&#39;t cancel a promise.</li>
-<li>No way to check the status (if pending, fulfilled, or rejected).</li>
-<li>An immediately-resolved promise can be created like <code>Promise.resolve(&#39;something&#39;)</code>.</li>
-<li>An immediately-rejected promise can be created like <code>Promise.reject(&#39;something&#39;)</code>.</li>
-<li>Attach a <code>then()</code> to consume the promise.</li>
-<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
-<li>It can actually take a rejection callback too.</li>
-<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
-<li>You can chain <code>.then()</code>s.</li>
-<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
-<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
-<li><code>throw</code>ing will automatically reject that promise.</li>
-<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<ul>
-<li>Otherwise (if any are rejected) it will reject.</li>
-</ul>
-</li>
-<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
-<li>Don&#39;t program with promises using same patterns as with callbacks.<ul>
-<li>(Don&#39;t do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
-</ul>
-</li>
-<li>Don&#39;t nest promises. Use a <code>.all</code> instead.</li>
-</ul>
-<p>Examples:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    resolve(value)
-  } <span class="hljs-keyword">else</span> {
-    reject(reason)
-  }
-})
-
-<span class="hljs-keyword">const</span> p = Promise.resolve(<span class="hljs-string">&#39;something&#39;</span>)
-p.then(res =&gt; console.log(res))
-<span class="hljs-keyword">const</span> p2 = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
-  setTimeout(() =&gt; resolve(<span class="hljs-string">&#39;asdf&#39;</span>), <span class="hljs-number">2000</span>)
-})
-p2.then(res =&gt; {
-  res += <span class="hljs-string">&#39;ghjkl;&#39;</span>
-  console.log(res)
-})
-p2.then(res =&gt; console.log(res)) <span class="hljs-comment">// this is still &#39;asdf&#39;</span>
-
-somePromise.then(
-  val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val)
-, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-pr.then(val =&gt; console.log(<span class="hljs-string">&#39;fulfilled&#39;</span>, val))
-  .then(<span class="hljs-keyword">null</span>, err =&gt; console.error(<span class="hljs-string">&#39;rejected&#39;</span>, err))
-
-<span class="hljs-keyword">const</span> throwProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; {
-  <span class="hljs-keyword">if</span> (something) {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;rejected&#39;</span>)
-  } <span class="hljs-keyword">else</span> {
-  resolve(stuff)
-  }
-})
-throwProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; console.log(<span class="hljs-string">&#39;hey&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;err&#39;</span>, err.message))
-
-<span class="hljs-keyword">const</span> fulProm = <span class="hljs-keyword">new</span> Promise((res, rej) =&gt; res(<span class="hljs-number">8</span>))
-fulProm
-.then(val =&gt; val + <span class="hljs-number">8</span>)
-.then(val =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&#39;failure&#39;</span>)})
-.then(val =&gt; console.log(<span class="hljs-string">&#39;yay&#39;</span>, val))
-.<span class="hljs-keyword">catch</span>(err =&gt; console.error(<span class="hljs-string">&#39;error&#39;</span>, err.message))
-
-one()
-.then(res =&gt; Promise.all([res, two(res)]))
-  .then(results =&gt; <span class="hljs-comment">/<em> stuff </em>/</span>)
-  .<span class="hljs-keyword">catch</span>(err =&gt; <span class="hljs-comment">/<em> handle err </em>/</span>)</code></pre>]]></description><link>/2016/promises.html</link><guid isPermaLink="true">/2016/promises.html</guid><category><![CDATA[promises]]></category><category><![CDATA[es6]]></category><category><![CDATA[es2015]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/notes-from-devmountain-01.html</link><guid isPermaLink="true">/2016/notes-from-devmountain-01.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[notes]]></category><category><![CDATA[js]]></category><category><![CDATA[css]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 19:30:00 GMT</pubDate></item></channel></rss>
