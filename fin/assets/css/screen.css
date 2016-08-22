@@ -309,6 +309,13 @@ table.plain {
   display: inline;
 }
 
+.blog-subtitle {
+  margin: 10px 0 10px 0;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  display: inline;
+}
+
 .blog-description {
   margin: 0;
   font-size: 1.4rem;
