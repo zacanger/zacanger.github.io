@@ -8,11 +8,17 @@ tags: visual-studio windows ms
 ## Story:
 
 Manager: 'Hey there's this thing, can you do it? Shouldn't take long.'
+
 Me: 'Sure, I guess.'
+
 Manager: 'It's in Angular.'
+
 Me: 'Urgh, right, okay, no prob.'
+
 Me: 'In [C# app]?'
+
 Manager: 'Yeah.'
+
 Me: Spends five hours fighting Visual Studio.
 
 True story.
