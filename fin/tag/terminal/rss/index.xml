@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 25 Aug 2016 04:10:37 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[a basic command-line app in node]]></title><description><![CDATA[<p>I&#39;m going to walk through a super basic app in Node that you can
+run in your terminal. I&#39;ve got a more in-depth tutorial coming up soon,
+but wanted to get this idea out there tonight.</p>
+<p><a href="http://ryanwalsh.io">Someone</a> brought up the idea of a React component
+generator the other day, and I immediately thought <em>Bash script</em>. Well, that&#39;s
+pretty easy.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/bin/bash
+</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;
+import React from &#39;react&#39;
+
+const <span class="hljs-variable">$1</span> = () =&gt; (
+  &lt;div&gt;<span class="hljs-variable">$1</span>&lt;/div&gt;
+)
+
+export default <span class="hljs-variable">$1</span>
+&quot;</span> &gt; <span class="hljs-variable">$1</span>.js</code></pre><p>There you go, a basic pure component generator script. This could be a little
+more complex, handle some content, handle generating a class instead of a
+function, and whatever, but that&#39;s the basic idea, in Bash.</p>
+<p>The idea here is that you just call this script from somewhere and it gives you
+a component already laid out for you. It&#39;s not too fancy, but it&#39;s useful.</p>
+<pre class="hljs"><code>$ ./my-script.sh Foo
+
+$ cat Foo.js
+
+<span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> Foo = () =&gt; (
+  &lt;div&gt;Foo&lt;/div&gt;
+)
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> Foo</code></pre><p>That could save a little bit of time. I use something similar for generating an
+<code>index.html</code> for React apps.</p>
+<p>This is a lot like using snippets in your editor, except it doesn&#39;t rely on you
+having that editor and those snippets handy. You could pass this around to anyone
+who uses any editor, on any computer, and get the same result. You could upload
+it to somewhere and just <code>curl my-script.sh | bash</code> and not even need to have the
+file around. Pretty handy, I think.</p>
+<p>But... what about in JS? I mean, we&#39;re JavaScript devs, right?</p>
+<p>It&#39;s still pretty straightforward in Node, as it happens.</p>
+<p>We only need one file to get going. I&#39;ll call mine <del>compgen</del> rcg.js, for React
+Component Generator.</p>
+<blockquote>
+<p>I apologize in advance, some of the syntax highlighting will look a little
+odd... apparently the highlighting library I use doesn&#39;t understand template
+strings.</p>
+</blockquote>
+<pre class="hljs"><code>touch rcg.js     # <span class="hljs-operator"><span class="hljs-keyword">create</span> a <span class="hljs-keyword">new</span> <span class="hljs-keyword">file</span>
+chmod +x rcg.js  # <span class="hljs-keyword">set</span> an executable <span class="hljs-built_in">bit</span> <span class="hljs-keyword">on</span> the <span class="hljs-keyword">file</span>
+vi rcg.js        # <span class="hljs-keyword">open</span> it <span class="hljs-keyword">for</span> editing</span></code></pre><p>(Obviously substitute your editor for <code>vi</code>.)</p>
+<p>What&#39;s the first thing any executable script needs? A shebang! We&#39;ll also go
+ahead and use <code>process</code>. If you don&#39;t know <code>process</code>, open Node in a terminal
+(<code>node</code>) and just type in <code>process</code>. It&#39;s pretty cool. The bit we want is
+<code>.argv</code>, which is an array of all arguments passed. It always has <code>node</code> and the
+file that&#39;s calling it as the first two elements, so we don&#39;t need those.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]</code></pre><p>What we&#39;re going for here is a script we can call like <code>./rcg.js function Foo</code>,
+or with a <code>class</code> parameter instead.</p>
+<p>The next thing we&#39;ll need to do is actually sketch out these components. I&#39;ll be
+using template literals. If you don&#39;t have a recent version of Node, you should
+update. If you can&#39;t update, you&#39;ll have to use string concatenation instead (so
+really, you should just update). To update (on Mac or Linux; on Windows you
+should just go to <a href="http://nodejs.org">the website</a> and download a new version),
+just <code>npm i -g n &amp;&amp; n latest</code>.</p>
+<p>Let&#39;s write out what a pure (function) component looks like, first.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span></code></pre><p>It doesn&#39;t have a whole lot going on, I know. This is just a quick file
+generator, it can&#39;t write your code for you. :P</p>
+<p>If you can&#39;t update node, that&#39;d look something like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> pureComponent = <span class="hljs-string">&#39;import React from \&#39;</span>react\<span class="hljs-string">&#39;&#39;</span> +
+<span class="hljs-string">&#39;function &#39;</span> + component + <span class="hljs-string">&#39;(){&#39;</span> +
+  <span class="hljs-string">&#39;return &lt;div&gt;&#39;</span> + component + <span class="hljs-string">&#39;&lt;/div&gt;&#39;</span> +
+<span class="hljs-string">&#39;}&#39;</span> +
+<span class="hljs-string">&#39;module.exports = &#39;</span> + component</code></pre><p>(Kind of annoying, right?)</p>
+<p>So now, let&#39;s get one for a class (I won&#39;t go through doing this one with an old
+version of Node, nor with <code>React.createClass</code>&mdash;just with ES2015 classes).</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span></code></pre><p>Lovely! Obviously this should be more complex; if your class only has a render
+function that returns JSX, just use a function instead.</p>
+<p>Great, now you have a bunch of stuff in a file that doesn&#39;t do anything! Let&#39;s
+handle arguments and make it actually do things.</p>
+<p>There are a lot of great libraries for parsing options, and I&#39;ll list a few of
+them in the next blog post. For now, we&#39;ll just use <code>if</code> statements.</p>
+<pre class="hljs"><code><span class="hljs-keyword">let</span> toWrite <span class="hljs-comment">// this is what we&#39;ll end up writing to a file</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">function</span>&#39;) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">function</span>&#39; &amp;&amp; <span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  console.log(&#39;please pass <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">of</span> <span class="hljs-title">component</span> <span class="hljs-title">as</span> <span class="hljs-title">first</span> <span class="hljs-title">argument</span>&#39;)</span>
+}</code></pre><p>That&#39;s a little sloppy&mdash;intentionally! I&#39;m hoping you take some time to
+write this out a little better than just copying and pasting from this blog
+post.</p>
+<p>There&#39;s one major bit left: actually writing a file. We&#39;ll need Node&#39;s <code>fs</code> for
+this.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)</code></pre><p>Now, at the bottom of our file, let&#39;s actually do the fun bit.</p>
+<pre class="hljs"><code>writeFile<span class="hljs-list">(`${component}.js`, toWrite, <span class="hljs-quoted">&#39;utf8</span>&#39;, err =&gt; {
+  if <span class="hljs-list">(<span class="hljs-keyword">err</span>)</span> console.log<span class="hljs-list">(<span class="hljs-keyword">err</span>)</span>
+})</span></code></pre><p>Now your whole file should look something like this:</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]
+<span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+
+<span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">let</span> toWrite
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;function&#39;</span>) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;class&#39;</span>) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (type !== <span class="hljs-string">&#39;function&#39;</span> &amp;&amp; type !== <span class="hljs-string">&#39;class&#39;</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;please pass type of component as first argument&#39;</span>)
+}
+
+writeFile(<span class="hljs-string">`${component}.js`,</span> toWrite, <span class="hljs-string">&#39;utf8&#39;</span>, err =&gt; {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
+})</code></pre><p>Boom! You&#39;ve made a command-line app! You can drop this anywhere in your <code>$PATH</code>
+and call it from anywhere to generate a component for you! (<code>$PATH</code> is where
+your system looks for files to execute. If you don&#39;t have something like a
+<code>~/bin</code> directory, maybe <code>mv rcg.js /usr/local/bin</code>. If you don&#39;t want to move it
+somewhere like that, you can always either do <code>./rcg.js</code> or <code>node rcg</code>.)</p>
+<p>That&#39;s it! This script is not super clean. There are a few little things that
+can be done to make it a lot better, like using a <code>switch</code> statement to handle
+arguments, handling unexpected arguments, not overwritting an existing file,
+passing more options, and trimming extra lines from the generated files, and not
+keeping your templates in the same file as all the rest of the things. I&#39;m going
+to leave that up to you. Have fun with it!</p>
+]]></description><link>/2016/a-basic-cli-app-in-node.html</link><guid isPermaLink="true">/2016/a-basic-cli-app-in-node.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 25 Aug 2016 03:42:00 GMT</pubDate></item></channel></rss>
