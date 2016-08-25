@@ -31,6 +31,9 @@ There you go, a basic pure component generator script. This could be a little
 more complex, handle some content, handle generating a class instead of a
 function, and whatever, but that's the basic idea, in Bash.
 
+> Keep in mind, none of this is React-specific. All we're doing is handling
+> arguments and spitting out a file.
+
 The idea here is that you just call this script from somewhere and it gives you
 a component already laid out for you. It's not too fancy, but it's useful.
 
@@ -243,3 +246,7 @@ arguments, handling unexpected arguments, not overwritting an existing file,
 passing more options, and trimming extra lines from the generated files, and not
 keeping your templates in the same file as all the rest of the things. I'm going
 to leave that up to you. Have fun with it!
+
+If you're interested in doing this kind of stuff in Node, be sure to check back!
+I've got two more tutorials on writing command-line apps in Node, which will go
+progressively more in depth, on the way

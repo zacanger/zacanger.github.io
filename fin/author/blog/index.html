@@ -77,6 +77,10 @@ export default <span class="hljs-variable">$1</span>
 &quot;</span> &gt; <span class="hljs-variable">$1</span>.js</code></pre><p>There you go, a basic pure component generator script. This could be a little
 more complex, handle some content, handle generating a class instead of a
 function, and whatever, but that&#39;s the basic idea, in Bash.</p>
+<blockquote>
+<p>Keep in mind, none of this is React-specific. All we&#39;re doing is handling
+arguments and spitting out a file.</p>
+</blockquote>
 <p>The idea here is that you just call this script from somewhere and it gives you
 a component already laid out for you. It&#39;s not too fancy, but it&#39;s useful.</p>
 <pre class="hljs"><code>$ ./my-script.sh Foo
@@ -227,6 +231,9 @@ arguments, handling unexpected arguments, not overwritting an existing file,
 passing more options, and trimming extra lines from the generated files, and not
 keeping your templates in the same file as all the rest of the things. I&#39;m going
 to leave that up to you. Have fun with it!</p>
+<p>If you&#39;re interested in doing this kind of stuff in Node, be sure to check back!
+I&#39;ve got two more tutorials on writing command-line apps in Node, which will go
+progressively more in depth, on the way</p>
 </p>
     </section>
   </article>
