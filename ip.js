@@ -18,7 +18,7 @@ http.createServer((req, res) => {
     switch (req.headers.accept) {
       case 'application/json':
         const data = {'ip' : ip}
-        if (!error && domains.length > 1){
+        if (!error && domains.length > 1) {
           data.hostname = domains[0]
         }
         res.writeHead(200, {'content-type' : 'application/json'})

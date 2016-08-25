@@ -1,7 +1,7 @@
 {
   "name": "zacanger.com",
   "description": "zacanger.com",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -12,12 +12,12 @@
   "scripts": {
     "start": "forever start -a -l f.log -e e.log -o o.log index.js && forever start ip.js"
   },
-  "homepage": "https://github.com/zacanger/foo#readme",
+  "homepage": "https://github.com/zacanger/dotcom#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zacanger/foo.git"
+    "url": "https://github.com/zacanger/dotcom.git"
   },
-  "bugs": "https://github.com/zacanger/foo/issues",
+  "bugs": "https://github.com/zacanger/dotcom/issues",
   "keywords": [
     "website"
   ],
