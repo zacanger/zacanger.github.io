@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 25 Aug 2016 04:21:17 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[devmountain alumni meetup notes]]></title><description><![CDATA[<p>this was from some reasonably long time ago</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 27 Aug 2016 03:00:00 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
+<pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
+<span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get install build-essential curl
+</span><span class="hljs-built_in">RUN</span> <span class="bash">curl <a href="https://gist.githubusercontent.com/isaacs/">https://gist.githubusercontent.com/isaacs/</a><span class="hljs-number">579814</span>/raw/<span class="hljs-number">24</span>f5f02b5<span class="hljs-built_in">cd</span>1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
+</span><span class="hljs-built_in">EXPOSE</span> <span class="hljs-number">4010</span> <span class="hljs-comment"># port to expose</span>
+ENTRYPOINT [<span class="hljs-string">&quot;node&quot;</span>] <span class="hljs-comment"># thing to run when we start the image, i think</span></code></pre><p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
+<p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
+<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
+<p>Some other Dockerfile commands (?):</p>
+<pre class="hljs"><code><span class="hljs-built_in">WORKDIR</span> <span class="bash">/<span class="hljs-built_in">set</span>/working/directory/to/here/i/guess
+</span><span class="hljs-built_in">COPY</span> <span class="bash">thisthing /to/here
+</span><span class="hljs-built_in">CMD</span> <span class="bash">[<span class="hljs-string">&quot;array&quot;</span>, <span class="hljs-string">&quot;of&quot;</span>, <span class="hljs-string">&quot;commands&quot;</span>, <span class="hljs-string">&quot;like&quot;</span>, <span class="hljs-string">&quot;npm&quot;</span>, <span class="hljs-string">&quot;start&quot;</span>]
+</span><span class="hljs-built_in">ADD</span> <span class="bash">. . <span class="hljs-comment"># add files/dirs from cwd to image</span></span></code></pre><p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p 80:4010</code> looks obvious.</p>
+<p>Some commands:</p>
+<pre class="hljs"><code>docker ps <span class="hljs-comment"># get container id</span>
+docker logs containerid
+docer exec -<span class="hljs-keyword">it</span> containerid /bin/bash <span class="hljs-comment"># enter the container</span></code></pre><p>It&#39;s totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
+<p>There&#39;s also a <code>node:versionnumber</code> image I think?</p>
+<p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
+then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
+<p>To limit usage: <code>-m &quot;256M&quot; --memory-swap &quot;2G&quot;</code></p>
+<p>An example:</p>
+<pre class="hljs"><code>docker run \
+-<span class="ruby">e <span class="hljs-string">&quot;NODE_ENV=production&quot;</span> \
+</span>-<span class="ruby">u <span class="hljs-string">&quot;app&quot;</span> \
+</span>-<span class="ruby">m <span class="hljs-string">&quot;256M&quot;</span> --memory-swap <span class="hljs-string">&quot;2G&quot;</span> \
+</span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
+</span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
+</span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
+<p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
+<p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
+<p>Compose is like fig, but from Docker.</p>
+<pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
+docker-compose up -<span class="hljs-keyword">d</span>
+docker-compose <span class="hljs-keyword">stop</span>, <span class="hljs-keyword">kill</span>, rm</span></code></pre><p>All of these just go off a YAML file, I guess.</p>
+<p>Okay, based on Node&#39;s official docs we can do:</p>
+<pre class="hljs"><code>FROM <span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title">:6</span>.<span class="hljs-number">2.0</span>
+EXPOSE <span class="hljs-number">4010</span>
+
+<span class="hljs-comment"># and then</span>
+
+docker build -t jane-com .
+docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env default)</code></p>
+<p>And if you need systemd in the mix, try something like:</p>
+<pre class="hljs"><code><span class="hljs-comment">;; once docker is installed, there should already be</span>
+<span class="hljs-comment">;; a systemd service for it. so you can just systemctl start docker</span>
+<span class="hljs-comment">;; and systemctl enable docker and that SHOULD be it</span>
+<span class="hljs-title">
+[Unit]</span>
+<span class="hljs-setting">Description=<span class="hljs-value">This is our Node service</span></span>
+<span class="hljs-setting">Requires=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-setting">After=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-title">
+[Service]</span>
+<span class="hljs-setting">Restart=<span class="hljs-value">always</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker kill ournodecontainer</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker rm ournodecontainer</span></span>
+<span class="hljs-setting">ExecStart=<span class="hljs-value">/usr/bin/docker run --name=ournodecontainer ournode/container</span></span>
+<span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
+<span class="hljs-title">
+[Install]</span>
+<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre><p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don&#39;t really tell you where to look for that):</p>
+<pre class="hljs"><code>docker <span class="hljs-built_in">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
+
+<span class="hljs-comment"># And then you could just:</span>
+
+mkdir ~/foo
+tar -C ~/foo -xvf dockerimg.tar
+
+<span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
+<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
+<p><code>docker save</code> is for <em>images</em>.</p>
+]]></description><link>/2016/docker.html</link><guid isPermaLink="true">/2016/docker.html</guid><category><![CDATA[docker]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 26 May 2016 21:00:00 GMT</pubDate></item><item><title><![CDATA[devmountain alumni meetup notes]]></title><description><![CDATA[<p>this was from some reasonably long time ago</p>
 <ul>
 <li><p>Barbara:</p>
 <ul>
@@ -1693,15 +1770,4 @@ good idea if you&#39;re really into games, or developing specifically for Micros
 </ul>
 </li>
 </ul>
-]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item><item><title><![CDATA[words]]></title><description><![CDATA[<p>words i regret the most:</p>
-<blockquote>
-<p>it&#39;s cold. you should go.</p>
-<p>i&#39;ll see you later.</p>
-<p>i should go.</p>
-<p>we&#39;ll catch up later, yeah?</p>
-<p>it&#39;s been a long day, i&#39;m headed home.</p>
-<p>give me a call sometime.</p>
-</blockquote>
-<p>i have a really hard time with losing people.</p>
-<p>and also with losing opportunities.</p>
-]]></description><link>/2016/words.html</link><guid isPermaLink="true">/2016/words.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 08 May 2016 17:53:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item></channel></rss>
