@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 02 Sep 2016 03:47:50 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[haskell meetup, 1 sept 2016]]></title><description><![CDATA[<p>just a few random notes. most of this was way over my head.</p>
+<p><a href="https://github.com/pinealservo/mamedb">https://github.com/pinealservo/mamedb</a></p>
+<p>xml-conduit -- xml parsing</p>
+<p>hasql - postgres lib</p>
+<p>maybe keep all types etc in own file</p>
+<p>cabal files: main-is Main.hs, list other of <em>our</em> modules.</p>
+<p>build-depends are dependencies. install with stack.</p>
+<p>stack build is like npm i</p>
+<p>$$ -- ?
+$= -- ?</p>
+<p>combinators from conduit</p>
+<p>conduit is a streaming library thing</p>
+<p>better than lazy io</p>
+<p>there&#39;s also pipes, another group of streaming abstractions</p>
+<p>also iostreams -- uses io</p>
+<p>in:</p>
+<pre class="hljs"><code>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
+parseMame = <span class="hljs-keyword">void</span> $ tagIgnoreAttrs <span class="hljs-string">&quot;mame&quot;</span> $ manyYield parseMachine</code></pre><p>void is explicitly discarding the value</p>
+<p>you can use the -&gt; typeclass to build things, and use them as arrows,
+including in type signatures.</p>
+<p>in <code>rId &lt;- insertRom -&lt; rom</code>,
+rom is input to insertrom ; insertrom&#39;s output is romid</p>
+<p>stack ghci: ghci but for project</p>
+<p>:r -- reload loaded module</p>
+<p>11 -- oom</p>
+]]></description><link>/2016/hs-meetup-9-1.html</link><guid isPermaLink="true">/2016/hs-meetup-9-1.html</guid><category><![CDATA[haskell]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 02 Sep 2016 03:45:00 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 27 Aug 2016 03:00:00 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[building command-line apps in node (a note-taking app)]]></title><description><![CDATA[<h1 id="build-a-note-taking-app-for-the-terminal-in-node">Build a Note-Taking App for the Terminal, in Node</h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 02 Sep 2016 03:47:50 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[haskell meetup, 1 sept 2016]]></title><description><![CDATA[<p>just a few random notes. most of this was way over my head.</p>
+<p><a href="https://github.com/pinealservo/mamedb">https://github.com/pinealservo/mamedb</a></p>
+<p>xml-conduit -- xml parsing</p>
+<p>hasql - postgres lib</p>
+<p>maybe keep all types etc in own file</p>
+<p>cabal files: main-is Main.hs, list other of <em>our</em> modules.</p>
+<p>build-depends are dependencies. install with stack.</p>
+<p>stack build is like npm i</p>
+<p>$$ -- ?
+$= -- ?</p>
+<p>combinators from conduit</p>
+<p>conduit is a streaming library thing</p>
+<p>better than lazy io</p>
+<p>there&#39;s also pipes, another group of streaming abstractions</p>
+<p>also iostreams -- uses io</p>
+<p>in:</p>
+<pre class="hljs"><code>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
+parseMame = <span class="hljs-keyword">void</span> $ tagIgnoreAttrs <span class="hljs-string">&quot;mame&quot;</span> $ manyYield parseMachine</code></pre><p>void is explicitly discarding the value</p>
+<p>you can use the -&gt; typeclass to build things, and use them as arrows,
+including in type signatures.</p>
+<p>in <code>rId &lt;- insertRom -&lt; rom</code>,
+rom is input to insertrom ; insertrom&#39;s output is romid</p>
+<p>stack ghci: ghci but for project</p>
+<p>:r -- reload loaded module</p>
+<p>11 -- oom</p>
+]]></description><link>/2016/hs-meetup-9-1.html</link><guid isPermaLink="true">/2016/hs-meetup-9-1.html</guid><category><![CDATA[haskell]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 02 Sep 2016 03:45:00 GMT</pubDate></item><item><title><![CDATA[building command-line apps in node (a note-taking app)]]></title><description><![CDATA[<h1 id="build-a-note-taking-app-for-the-terminal-in-node">Build a Note-Taking App for the Terminal, in Node</h1>
 <p>This is a follow-up to my <a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html">first
 post</a> on writing
 command-line apps in Node. I suggest you read that first, but this post should
@@ -1022,35 +1047,4 @@ it, or have any suggestions/additions/whatever.</p>
 ]]></description><link>/2016/design-for-devs.html</link><guid isPermaLink="true">/2016/design-for-devs.html</guid><category><![CDATA[design]]></category><category><![CDATA[idea]]></category><category><![CDATA[dev]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 00:42:58 GMT</pubDate></item><item><title><![CDATA[redux in two lines]]></title><description><![CDATA[<p>Okay, not actually Redux in two lines, just the idea behind it
 And really one of those is basically the idea of React, I guess.</p>
 <pre class="hljs"><code>const render = <span class="hljs-keyword">state</span> =&gt; ui
-const reducer = (oldState, action) =&gt; newState</code></pre>]]></description><link>/2016/redux-in-two-lines.html</link><guid isPermaLink="true">/2016/redux-in-two-lines.html</guid><category><![CDATA[react]]></category><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 29 Jul 2016 07:09:37 GMT</pubDate></item><item><title><![CDATA[More More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>lol streams are like the weird lovechild of promises and arrays i love that
-analogy</p>
-<p>here&#39;s a stream-making thingy</p>
-<pre class="hljs"><code>const foo = {
-  each (cb) {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">1</span>), <span class="hljs-number">100</span>)
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">2</span>), <span class="hljs-number">200</span>)
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">3</span>), <span class="hljs-number">300</span>)
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">4</span>), <span class="hljs-number">400</span>)
-  }
-}
-foo.each(<span class="hljs-built_in">console</span>.log)</code></pre><p>prototypes are faster than factory functions but geez they&#39;re
-kinda gross to think about you know so unless we&#39;re doing something
-like making ten million objects just use a factory there i guess</p>
-<p>streams are functors</p>
-<p>functors are just a thing that implements map</p>
-<p>monads are functors that also implement <em>flatMap</em></p>
-<p>flatMap just flattens, i guess? that&#39;s what it sounds like.</p>
-<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.
-same with stuff like bind and chain methods and stuff. it&#39;s basically
-flattening into its <em>value</em> rather than having the actual (semi-expected)
-value (function/promise/stream/whatever).</p>
-<p>so if you have a flatMap that would return another monad, i guess,
-it&#39;d actually return its value, not that other monad.</p>
-<p>if you are a tooling addict, don&#39;t do tools. (this actually totally applies to
-me, because i&#39;ve spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a>
-than on any other individual project... <em>but</em> i feel like it&#39;s worth it, mostly.
-being able to just use vim and not go through the work of setting up any other
-editor on any computer, being able to just clone that repo and symlink what i need,
-that really does make me more productive. as long as i don&#39;t forget how to use
-computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
-]]></description><link>/2016/fff2.html</link><guid isPermaLink="true">/2016/fff2.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 24 Jul 2016 22:00:00 GMT</pubDate></item></channel></rss>
+const reducer = (oldState, action) =&gt; newState</code></pre>]]></description><link>/2016/redux-in-two-lines.html</link><guid isPermaLink="true">/2016/redux-in-two-lines.html</guid><category><![CDATA[react]]></category><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 29 Jul 2016 07:09:37 GMT</pubDate></item></channel></rss>
