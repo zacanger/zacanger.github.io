@@ -419,7 +419,18 @@ squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span
     }
   }
 
-}())</code></pre>
+}())
+
+
+<span class="hljs-comment">// one more</span>
+<span class="hljs-keyword">const</span> curry = fn =&gt; {
+  <span class="hljs-keyword">const</span> length = fn.length
+  <span class="hljs-keyword">const</span> acc = (...args) =&gt; {
+    <span class="hljs-keyword">if</span> (args.length === length) <span class="hljs-keyword">return</span> fn(...args)
+    <span class="hljs-keyword">return</span> (...args) =&gt; acc(...args.concat(args))
+  }
+  <span class="hljs-keyword">return</span> acc
+}</code></pre>
     </section>
 
     <footer class="post-footer">

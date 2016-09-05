@@ -369,5 +369,15 @@ var autoCurry = (function(){
   }
 
 }())
-```
 
+
+// one more
+const curry = fn => {
+  const length = fn.length
+  const acc = (...args) => {
+    if (args.length === length) return fn(...args)
+    return (...args) => acc(...args.concat(args))
+  }
+  return acc
+}
+```
