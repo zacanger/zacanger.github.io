@@ -196,7 +196,7 @@ type `http://` before a URL, so maybe we should automatically add that on.
 
 ```javascript
 const url = process.argv[2]
-const src = url.includes('http://' || 'https://') ? url : `http://${url}`
+const src = url.includes('http://' || 'https://') ? url : \`http://${url}\`
 ```
 
 All this extra bit is doing is checking if the passed in argument aleady has a
@@ -204,6 +204,9 @@ scheme, and if it doesn't, just sticking on on the beginning. If you're not
 familiar with template literals, check out the previous tutorials and the [docs
 on
 MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+
+If you're not familiar with `Array.prototype.includes()`, it's basically a
+shorthand for `.indexOf(foo !== -1)`.
 
 Make sure you change the `get` call to use `src` instead of `url`.
 
@@ -399,7 +402,7 @@ const
 , conv     = a => toMd(a, opts)
 , wrap     = a => wrapper(a)
 , log      = a => console.log(a)
-, src      = url.includes('http://' || 'https://') ? url : `http://${url}`
+, src      = url.includes('http://' || 'https://') ? url : \`http://${url}\`
 
 const main = a => get(a, res => {
   let b = ''

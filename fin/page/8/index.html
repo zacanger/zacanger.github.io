@@ -48,6 +48,123 @@
 <div id="content-main">
 
 
+  <article class="post tag-react">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/react-meetup-notes.html">notes and little bits from the react meetup on 17th nov at devmountain</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-22">22 May, 2016</time>
+         | tags: <a href="/tag/react/">react</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="important-">IMPORTANT:</h1>
+<p>don&#39;t take anything here seriously. i think it&#39;s just interesting to reread
+my initial reaction when i was confronted with everything that is react.</p>
+<hr>
+<h2 id="react-meetup-17-nov-2015">React Meetup, 17 Nov, 2015</h2>
+<p>React:</p>
+<ul>
+<li>Good at managing state.</li>
+<li>which is to say, dynamism</li>
+<li>Components, just like... everything else these days, so that&#39;s totally irrelevant.</li>
+<li>virtual dom, which is not exactly facebook&#39;s anyway.</li>
+<li>unidirectional data flow, which is a mouthful.</li>
+<li>that is, the loop.</li>
+<li>more boilerplate to run that... less boilerplate-replacer built into react?</li>
+</ul>
+<hr>
+<p>Random-ass notes and stuff.</p>
+<p>Erm. Thus far, it&#39;s web architecture 101. Components are a thing. People don&#39;t
+like to refresh whole pages. Etc.</p>
+<p><code>render() == render: function(){}</code></p>
+<p><code>this.setState</code> = important, should always use</p>
+<p>React is a view. But, does server-side rendering. Which is much more up my
+alley, because it&#39;s not making life miserable for users. We can check that out
+when we check out all those other frameworks, for fun.</p>
+<p>React is compiled.</p>
+<p>Redux is a state container. Which actually makes sense now. Because everything
+is state, in React, it seems. So, it abstracts state and manages it
+independently from the front-end, which is how React <em>can</em> do it&#39;s thing on the
+server.</p>
+<p>My god, though, React people are worse than Lisp people. Everything has to be
+about how they do things better, even when they very clearly just do things at a
+totally okay level.</p>
+<p><a href="https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook">OH. It turns out that React looks like PHP to be because it was influenced by XHP</a>.
+Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So
+React is Javascript based on PHP based on Javascript based on XML. So it&#39;s
+totally okay to think that it&#39;s hideous. That&#39;s good.</p>
+<p>app.jsx:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span> <span class="hljs-comment">// same as var React = require(&#39;react&#39;)</span>
+<span class="hljs-literal">import</span> ReactDOM from <span class="hljs-string">&#39;react-dom&#39;</span>
+<span class="hljs-literal">import</span> <span class="hljs-built_in">List</span> from <span class="hljs-string">&#39;./List&#39;</span>
+<span class="hljs-literal">import</span> Friendz from <span class="hljs-string">&#39;./Friendz&#39;</span>
+
+<span class="hljs-keyword">const</span> App = React.createClass({
+  getInitialState(){
+    <span class="hljs-keyword">return</span> (
+      bros: [<span class="hljs-string">&#39;bman&#39;</span>, <span class="hljs-string">&#39;brosef&#39;</span>]
+    )
+  },
+  componentDidMount(){}, <span class="hljs-comment">// onload</span>
+  componentWillMount(){}, <span class="hljs-comment">// not quite on load?</span>
+  addFriend(newFriend){
+    <span class="hljs-keyword">this</span>.setState({
+      friends: <span class="hljs-keyword">this</span>.state.friends.cocat(<span class="hljs-keyword">new</span>, newFriend)
+    })
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;what up {<span class="hljs-keyword">this</span>.state.bros}&lt;/div&gt;
+    )
+  }
+})
+
+ReactDOM.render(
+  &lt;App /&gt;,
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#39;root&#39;</span>)
+)</code></pre><p>miniform.jsx:</p>
+<pre class="hljs"><code>import React <span class="hljs-keyword">from</span> &#39;react&#39;
+
+const Friendz = React.createClass(
+  render() {
+    getInitialState(){
+      return {
+        newFriend: &#39;&#39;
+      }
+    },
+    updateFriend(e){ // <span class="hljs-keyword">for</span> event.
+      this.<span class="hljs-built_in">set</span>State({
+        newFriend: event.target.value
+      })
+    },
+    return (
+      <span class="hljs-variable">&lt;div&gt;</span>
+        <span class="hljs-variable">&lt;input type=&quot;text&quot; /&gt;</span>
+        <span class="hljs-variable">&lt;button onClick={() =&gt;</span> this.props.addFriend} <span class="hljs-keyword">on</span>Change={this.<span class="hljs-keyword">state</span>.newFriend}&gt;add it!<span class="hljs-variable">&lt;/button&gt;</span>
+      <span class="hljs-variable">&lt;/div&gt;</span>
+    )
+  }
+)
+
+export <span class="hljs-keyword">default</span> Friendz</code></pre><p>list.jsx:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">List</span> = React.createClass({
+  render() {
+    <span class="hljs-keyword">const</span> friendsLIs = <span class="hljs-keyword">this</span>.props.friends.map({item, list}) =&gt;
+      <span class="hljs-keyword">return</span> &lt;li key={index}&gt;{item}&lt;/li&gt;
+      <span class="hljs-comment">// return ( ) something...?</span>
+  }
+})
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> <span class="hljs-built_in">List</span> <span class="hljs-comment">// like module.exports = {}</span></code></pre></p>
+    </section>
+  </article>
+
+
   <article class="post tag-css tag-postcss">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/postcss.html">random notes from when reading about postcss</a></h2>
@@ -409,40 +526,6 @@ keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> r
 directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
 starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
 heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre></p>
-    </section>
-  </article>
-
-
-  <article class="post tag-sh">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/bash-basix.html">bash basix</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-16">16 May, 2016</time>
-         | tags: <a href="/tag/sh/">sh</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
-<ul>
-<li>debugging a bash script: use the <code>-x</code> flag</li>
-<li>semicolons divide commands that are on the same line</li>
-<li>newlines are much more readable</li>
-<li>bash variables: there are local, global, string, integer,
-constant, and array variables.<ul>
-<li>global = env variables.</li>
-<li>local are available only in current shell.</li>
-<li>also predefined vars, like id (try <code>echo $UID</code>).</li>
-<li>capitalised by default. case-sensitive. local ones</li>
-<li>are sometimes done in lowercase, though. can contain</li>
-<li>integers, but can&#39;t <em>start</em> with integers.</li>
-</ul>
-</li>
-<li>to get started with everything: <code>man 1 intro</code></li>
-<li>also <code>git help everyday</code></li>
-</ul>
-</p>
     </section>
   </article>
 
