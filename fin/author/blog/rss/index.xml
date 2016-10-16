@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 28 Sep 2016 02:40:48 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[html2text in node tutorial]]></title><description><![CDATA[<p>Okay, ready to build another command-line app in Node?</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 16 Oct 2016 18:51:45 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Thoughts On Learning Functional Programming]]></title><description><![CDATA[<p>Functional programming is the new hotness these days. It&#39;s also the old hotness.
+It&#39;s just pretty hot, really. Everyone wants to have a more functional codebase,
+and that&#39;s a good thing. Less side-effecty, easier to hold in your head, etc.;
+the benefits of FP have been thoroughly espoused elsewhere. I just have a couple
+of things to add about learning functional programming, especially if you&#39;re
+coming from another paradigm or a mixed-paradigm language (like JS).</p>
+<h2 id="you-probably-don-t-need-to-learn-another-language">You (Probably) Don&#39;t Need To Learn Another Language</h2>
+<p>Languages like Haskell are really neat. They&#39;ll change the way you think about
+writing code. But you don&#39;t need to learn a classically functional language to
+learn functional programming.</p>
+<pre class="hljs"><code><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Environment</span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  args &lt;- getArgs
+  putStrLn (<span class="hljs-string">&quot;Hello &quot;</span> ++ args !! <span class="hljs-number">0</span>)</code></pre><p>If a block of code like that looks pretty foreign, that&#39;s okay. <em>You can program
+functionally in whatever language is most familiar to you</em>. Probably. If you&#39;re
+a C# dev or Rubyist or something, maybe you should look into something a little
+less strictly OO, but if you already write JS (for example), you don&#39;t need to
+go learn about abstract algebra and what stuff like <code>Foo :: [Bar] -&gt; Baz Quux</code>
+means. Which leads into thought number two:</p>
+<h2 id="a-better-type-system-doesn-t-make-a-language-functional">A Better Type System Doesn&#39;t Make A Language Functional</h2>
+<p>Yeah, languages like Idris and Haskell and other super mathy things are great
+for functional programming, but you don&#39;t <em>need</em> super complex type systems to
+program functionally. They&#39;re just, y&#39;know, pretty nice. Look at
+<a href="https://racket-lang.org/">Racket</a>, for example. You can have static typing
+(with <code>#lang typed/racket</code>) but you don&#39;t <em>have</em> to. Similarly, you can program
+functionally just fine in plain old JS, and you can write super imperative code
+in TypeScript. My point is, type systems don&#39;t make a language more functional,
+they make a language have a different type system.</p>
+<h2 id="lots-of-languages-have-a-repl">Lots Of Languages Have A REPL</h2>
+<p>LISP people like to talk about their REPL a lot. Same with Haskell folks,
+they&#39;ll tell you to go experient in GHCI. That&#39;s great, it really is. The REPL,
+for any given language, should be one of the primary tools you use to figure
+things out. But most languages have one. If you do Python, you&#39;re probably
+familiar with it. Same with Ruby (irb or pry). Node&#39;s REPL, while a little
+limited compared to GHCI, is still pretty fantastic. Racket&#39;s is very basic, but
+if you <code>(require xrepl)</code> it ends up being very pleasant. Having a decent REPL
+isn&#39;t a functional language feature, it&#39;s just a language ecosystem feature.</p>
+<h2 id="scheme-is-really-nice">Scheme Is Really Nice</h2>
+<p>I&#39;m not a LISPer. I&#39;ve just started learning Racket, which I chose because it&#39;s
+very compact compared to, say, ClojureScript (which also looks fantastic, by the
+way). But coming primarily from JavaScript, Scheme (Racket is a Scheme) is a
+really good way to get into FP in another language. Haskell, ML, Idris, etc.,
+are all awesome languages, but Scheme might be a better way to break into
+functional languages for a lot of folks. Give it a shot sometime.</p>
+<h2 id="if-you-re-brand-new-to-fp">If You&#39;re Brand New To FP</h2>
+<p>Check out these links.</p>
+<ul>
+<li><a href="https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q">FunFunFunction</a> is
+a great YouTube channel with videos that cover the basics of FP in JS.</li>
+<li><a href="https://medium.com/@cscalfani">Charles Scalfani</a> has a series of posts on
+Medium that talk about a lot of the same things.</li>
+<li><a href="https://www.youtube.com/channel/UCKjVLbSDoM-8-eEM7A30igA">Brian Lonsdorf</a> has
+a bunch of videos and talks that will convince you that FP is the Right Way.</li>
+</ul>
+]]></description><link>/2016/on-learning-fp.html</link><guid isPermaLink="true">/2016/on-learning-fp.html</guid><category><![CDATA[fp]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 16 Oct 2016 18:30:00 GMT</pubDate></item><item><title><![CDATA[html2text in node tutorial]]></title><description><![CDATA[<p>Okay, ready to build another command-line app in Node?</p>
 <p>If you haven&#39;t seen my last two posts, you should check them out, since I&#39;m not
 going to cover a lot of the basics again. They&#39;re both on writing small cli apps
 in Node, with no dependencies.</p>
@@ -1298,25 +1355,4 @@ dispatch function and return a dispatch function.</p>
 creator and return a different store creator. They&#39;re basically kind of a
 middleware for the store creator. You probably won&#39;t directly use one, ever.
 Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
-]]></description><link>/2016/redux-one.html</link><guid isPermaLink="true">/2016/redux-one.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 01:10:00 GMT</pubDate></item><item><title><![CDATA[idea: series on design for devs]]></title><description><![CDATA[<p>I&#39;ve wanted to do something like this for a while (since December-ish), but
-haven&#39;t had the time. I have some minor design experience (not a lot), and tend
-to read more about interaction design, HCI, and other random
-non-programming-but-still-computer-and-person-working-together-related topics
-than I do about programming.</p>
-<p>Would anyone be interested in seeing something like that? This is a short list
-of things I might cover:</p>
-<ul>
-<li>A11Y</li>
-<li>Typography</li>
-<li>Colour theory</li>
-<li>Whitespace</li>
-<li>Scalable design (math; see Basscss)</li>
-<li>Styleguides (writing, maintaining, conforming)</li>
-<li>Image manipulation (mostly what <em>not</em> to do)</li>
-<li>Importance and longevity of simplicity</li>
-<li>KISS</li>
-<li><a href="http://jxnblk.com/principles/">Principles</a></li>
-</ul>
-<p>Please <a href="https://twitter.com/@zacanger">tweet at me</a> if you think you&#39;d be into
-it, or have any suggestions/additions/whatever.</p>
-]]></description><link>/2016/design-for-devs.html</link><guid isPermaLink="true">/2016/design-for-devs.html</guid><category><![CDATA[design]]></category><category><![CDATA[idea]]></category><category><![CDATA[dev]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 00:42:58 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/redux-one.html</link><guid isPermaLink="true">/2016/redux-one.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 01:10:00 GMT</pubDate></item></channel></rss>

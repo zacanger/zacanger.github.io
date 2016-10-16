@@ -185,4 +185,3 @@ describe('test metadata defaults', function() {
   it('parses metadata blocks even if they only have the beginning --- and a newline')
 
 })
-

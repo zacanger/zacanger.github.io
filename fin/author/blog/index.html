@@ -47,6 +47,79 @@
 <div id="content-main">
 
 
+  <article class="post tag-fp tag-js">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/on-learning-fp.html">Thoughts On Learning Functional Programming</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-10-16">16 October, 2016</time>
+         | tags: <a href="/tag/fp/">fp</a>, <a href="/tag/js/">js</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>Functional programming is the new hotness these days. It&#39;s also the old hotness.
+It&#39;s just pretty hot, really. Everyone wants to have a more functional codebase,
+and that&#39;s a good thing. Less side-effecty, easier to hold in your head, etc.;
+the benefits of FP have been thoroughly espoused elsewhere. I just have a couple
+of things to add about learning functional programming, especially if you&#39;re
+coming from another paradigm or a mixed-paradigm language (like JS).</p>
+<h2 id="you-probably-don-t-need-to-learn-another-language">You (Probably) Don&#39;t Need To Learn Another Language</h2>
+<p>Languages like Haskell are really neat. They&#39;ll change the way you think about
+writing code. But you don&#39;t need to learn a classically functional language to
+learn functional programming.</p>
+<pre class="hljs"><code><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Environment</span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+  args &lt;- getArgs
+  putStrLn (<span class="hljs-string">&quot;Hello &quot;</span> ++ args !! <span class="hljs-number">0</span>)</code></pre><p>If a block of code like that looks pretty foreign, that&#39;s okay. <em>You can program
+functionally in whatever language is most familiar to you</em>. Probably. If you&#39;re
+a C# dev or Rubyist or something, maybe you should look into something a little
+less strictly OO, but if you already write JS (for example), you don&#39;t need to
+go learn about abstract algebra and what stuff like <code>Foo :: [Bar] -&gt; Baz Quux</code>
+means. Which leads into thought number two:</p>
+<h2 id="a-better-type-system-doesn-t-make-a-language-functional">A Better Type System Doesn&#39;t Make A Language Functional</h2>
+<p>Yeah, languages like Idris and Haskell and other super mathy things are great
+for functional programming, but you don&#39;t <em>need</em> super complex type systems to
+program functionally. They&#39;re just, y&#39;know, pretty nice. Look at
+<a href="https://racket-lang.org/">Racket</a>, for example. You can have static typing
+(with <code>#lang typed/racket</code>) but you don&#39;t <em>have</em> to. Similarly, you can program
+functionally just fine in plain old JS, and you can write super imperative code
+in TypeScript. My point is, type systems don&#39;t make a language more functional,
+they make a language have a different type system.</p>
+<h2 id="lots-of-languages-have-a-repl">Lots Of Languages Have A REPL</h2>
+<p>LISP people like to talk about their REPL a lot. Same with Haskell folks,
+they&#39;ll tell you to go experient in GHCI. That&#39;s great, it really is. The REPL,
+for any given language, should be one of the primary tools you use to figure
+things out. But most languages have one. If you do Python, you&#39;re probably
+familiar with it. Same with Ruby (irb or pry). Node&#39;s REPL, while a little
+limited compared to GHCI, is still pretty fantastic. Racket&#39;s is very basic, but
+if you <code>(require xrepl)</code> it ends up being very pleasant. Having a decent REPL
+isn&#39;t a functional language feature, it&#39;s just a language ecosystem feature.</p>
+<h2 id="scheme-is-really-nice">Scheme Is Really Nice</h2>
+<p>I&#39;m not a LISPer. I&#39;ve just started learning Racket, which I chose because it&#39;s
+very compact compared to, say, ClojureScript (which also looks fantastic, by the
+way). But coming primarily from JavaScript, Scheme (Racket is a Scheme) is a
+really good way to get into FP in another language. Haskell, ML, Idris, etc.,
+are all awesome languages, but Scheme might be a better way to break into
+functional languages for a lot of folks. Give it a shot sometime.</p>
+<h2 id="if-you-re-brand-new-to-fp">If You&#39;re Brand New To FP</h2>
+<p>Check out these links.</p>
+<ul>
+<li><a href="https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q">FunFunFunction</a> is
+a great YouTube channel with videos that cover the basics of FP in JS.</li>
+<li><a href="https://medium.com/@cscalfani">Charles Scalfani</a> has a series of posts on
+Medium that talk about a lot of the same things.</li>
+<li><a href="https://www.youtube.com/channel/UCKjVLbSDoM-8-eEM7A30igA">Brian Lonsdorf</a> has
+a bunch of videos and talks that will convince you that FP is the Right Way.</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-node tag-cli tag-terminal tag-html tag-markdown">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/cli-apps-part-three.html">html2text in node tutorial</a></h2>
@@ -856,38 +929,6 @@ to leave that up to you. Have fun with it!</p>
 <p>If you&#39;re interested in doing this kind of stuff in Node, be sure to check back!
 I&#39;ve got two more tutorials on writing command-line apps in Node, which will go
 progressively more in depth, on the way</p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-js">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/things-that-suck-about-js.html">things that suck about js</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-08-22">22 August, 2016</time>
-         | tags: <a href="/tag/js/">js</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>asked some people what they dislike about js, just out of curiosity.
-results are predictable.</p>
-<p>in no particular order:</p>
-<ul>
-<li>events (dom events, event cycle, event loop)</li>
-<li>js fatigue</li>
-<li>this (context)</li>
-<li>es6 classes/oo idea prevalence</li>
-<li>mobile safari even existing</li>
-<li>internet explorer/edge</li>
-<li>no type system</li>
-<li>everything DOM related</li>
-<li>no real immutable values</li>
-<li>lack of neat syntax tools found in new languages (simple shit like range operators)</li>
-<li>the way everyone else writes it</li>
-</ul>
 </p>
     </section>
   </article>
