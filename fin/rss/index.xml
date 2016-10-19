@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 16 Oct 2016 18:51:44 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Thoughts On Learning Functional Programming]]></title><description><![CDATA[<p>Functional programming is the new hotness these days. It&#39;s also the old hotness.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:07:05 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[pm tools kill productivity]]></title><description><![CDATA[<p>Project management tools kill productivity. This isn&#39;t news. They <em>can</em> help
+other people be more aware of what you&#39;re doing, which is generally a good thing
+(collaborating on projects, managers keeping track of progress, whatever), but
+overdoing it with the tools can be seriously detrimental to actually getting
+anything done.</p>
+<p>I was going to write a much longer post about this, but let me just give you a
+list of all things I check several times a day (in the case of Slack, several
+times an hour), instead.</p>
+<ul>
+<li>Wrike (a task/project management thing with the worst UI of any like tool on
+the market)</li>
+<li>Trello (not so much anymore, but some people still use it at work, apparently)</li>
+<li>Quip (a weird combination of Trello and Excel)</li>
+<li>Github Issues/PRs (Issues not so much anymore, though that would be the most
+sensible place to keep track of repo-specific todos)</li>
+<li>And of course, Slack</li>
+</ul>
+<p>Personally I keep track of what I need to do in two places: for personal items,
+a JSON file (yes, a JSON file). This means I can use it with my little
+<a href="http://npmjs.com/package/lilnote">command-line note-taking app</a>, easily work
+with it in any language, whatever. For work tasks, I just keep a giant Markdown
+file, using GFM-style task lists. I end up copying things over from one or more
+of the above tools into Markdown, where I keep track of them for hours or days
+or weeks, then as things are fleshed out, completed, nixed, or whatever, going
+back to those tools (usually more than one) to update them.</p>
+<p>This is not an efficient workflow. Some of these tools (Quip and Wrike
+especially) are so lacking in all the things that make a good project management
+app (mainly, simplicity and ease of use) that using them ends up taking more
+than half as much time as many of the small tasks.</p>
+<p>I meant to write a good bit more about this but I probably don&#39;t need to.
+Everyone complains about using too many tools all the time, especially devs
+using businessy tools. And it&#39;s late. So.</p>
+]]></description><link>/2016/pm-tools-kill-productivity.html</link><guid isPermaLink="true">/2016/pm-tools-kill-productivity.html</guid><category><![CDATA[tools]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 19 Oct 2016 05:00:00 GMT</pubDate></item><item><title><![CDATA[Thoughts On Learning Functional Programming]]></title><description><![CDATA[<p>Functional programming is the new hotness these days. It&#39;s also the old hotness.
 It&#39;s just pretty hot, really. Everyone wants to have a more functional codebase,
 and that&#39;s a good thing. Less side-effecty, easier to hold in your head, etc.;
 the benefits of FP have been thoroughly espoused elsewhere. I just have a couple
@@ -1302,57 +1334,4 @@ store in Redux, you just use <code>createStore</code>.</p>
 <span class="hljs-keyword">const</span> store = createStore(() =&gt; ({})) <span class="hljs-comment">// your store is just an empty object, now</span></code></pre><p><code>store.subscribe()</code> returns a function for _un_subscribing. So you can do
 something like:</p>
 <pre class="hljs"><code>const unsubscribe = store.<span class="hljs-function"><span class="hljs-title">subscribe</span><span class="hljs-params">(someListener)</span></span>
-<span class="hljs-function"><span class="hljs-title">unsubscribe</span><span class="hljs-params">()</span></span></code></pre>]]></description><link>/2016/redux-two.html</link><guid isPermaLink="true">/2016/redux-two.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 06 Aug 2016 14:37:00 GMT</pubDate></item><item><title><![CDATA[redux notes, part one]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#39;s not, and because those docs themselves are pretty overwhelming when
-you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts.</p>
-<hr>
-<p>The store is an object that holds state. There&#39;s only ever one store in Redux,
-with many reducers that act on it.</p>
-<p><code>getState()</code> returns the state from the store.</p>
-<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
-<p>There&#39;s also a <code>replaceReducer</code> but unless you&#39;re writing hot middlware or
-something you probably won&#39;t touch this one.</p>
-<p>State can by any type, though obviously it&#39;s probably best to just use an
-object here.</p>
-<p>Actions are always objects, and they always have a <code>type</code>.</p>
-<pre class="hljs"><code>store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;do-stuff&#39;</span>})</span></span>
-<span class="hljs-comment">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
-store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;DO_OTHER_STUFF&#39;</span>, stuff: <span class="hljs-string">&#39;[things to do here, maybe]&#39;</span>})</span></span></code></pre><p>Action creators are functions that create actions based on any sorts of
-arguments.</p>
-<pre class="hljs"><code><span class="hljs-title">const</span> sendSomeData = &#39;send-some-<span class="hljs-typedef"><span class="hljs-keyword">data</span>&#39;</span>
-<span class="hljs-title">const</span> sendSomeDataActionCreator = <span class="hljs-typedef"><span class="hljs-keyword">data</span> =&gt; <span class="hljs-container">({
-  <span class="hljs-title">type</span> : <span class="hljs-title">sendSomeData</span>
-, <span class="hljs-title">data</span>
-})</span></span></code></pre><p>A &#39;bound&#39; action creator would be one that creates the action and immediately
-dispatches it. This might be familiar to folks who&#39;ve worked with Flux before.</p>
-<p>This is how you might have something like this in Flux:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> sendMoreData = data =&gt; {
-  <span class="hljs-keyword">const</span> doIt = {
-    type : sendMoreData,
-    data
-  }
-  dispatch(doIt)
-}</code></pre><p>And this is how it&#39;d work in Redux:</p>
-<pre class="hljs"><code><span class="hljs-comment">// assuming you already have the dispatch and action creator, you&#39;d just</span>
-const boundSendMoreData = data =&gt;
-  <span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">(sendMoreData(data)</span></span>)</code></pre><p>There&#39;s also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
-has <code>connect()</code>.</p>
-<p>Async actions should go through middleware to be turned into regular actions
-before being dispatched.</p>
-<p>Reducers always take state and an action and return state.
-<code>reducer (state, action) =&gt; state</code>
-These are what they sound like&mdash;reducing functions.
-The state a reducer takes is your existing (or previous, I guess) state.
-Reducers are pure functions.</p>
-<p>A dispatch is a function that takes an action (or an async action). It may then
-dispatch an action (or actions) which will affect the store.
-There&#39;s a base <code>dispatch</code> that always sends an action to the reducer.</p>
-<p>Middleware are about what you&#39;d expect&mdash;functions (HOF) that take a
-dispatch function and return a dispatch function.</p>
-<p>There are &#39;store enhancers&#39; that are higher-order functions that take a store
-creator and return a different store creator. They&#39;re basically kind of a
-middleware for the store creator. You probably won&#39;t directly use one, ever.
-Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
-]]></description><link>/2016/redux-one.html</link><guid isPermaLink="true">/2016/redux-one.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 01:10:00 GMT</pubDate></item></channel></rss>
+<span class="hljs-function"><span class="hljs-title">unsubscribe</span><span class="hljs-params">()</span></span></code></pre>]]></description><link>/2016/redux-two.html</link><guid isPermaLink="true">/2016/redux-two.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 06 Aug 2016 14:37:00 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 16 Oct 2016 18:51:44 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[idea: series on design for devs]]></title><description><![CDATA[<p>I&#39;ve wanted to do something like this for a while (since December-ish), but
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:07:05 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux notes, part one]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
+<p>The store is an object that holds state. There&#39;s only ever one store in Redux,
+with many reducers that act on it.</p>
+<p><code>getState()</code> returns the state from the store.</p>
+<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
+<p>There&#39;s also a <code>replaceReducer</code> but unless you&#39;re writing hot middlware or
+something you probably won&#39;t touch this one.</p>
+<p>State can by any type, though obviously it&#39;s probably best to just use an
+object here.</p>
+<p>Actions are always objects, and they always have a <code>type</code>.</p>
+<pre class="hljs"><code>store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;do-stuff&#39;</span>})</span></span>
+<span class="hljs-comment">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
+store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;DO_OTHER_STUFF&#39;</span>, stuff: <span class="hljs-string">&#39;[things to do here, maybe]&#39;</span>})</span></span></code></pre><p>Action creators are functions that create actions based on any sorts of
+arguments.</p>
+<pre class="hljs"><code><span class="hljs-title">const</span> sendSomeData = &#39;send-some-<span class="hljs-typedef"><span class="hljs-keyword">data</span>&#39;</span>
+<span class="hljs-title">const</span> sendSomeDataActionCreator = <span class="hljs-typedef"><span class="hljs-keyword">data</span> =&gt; <span class="hljs-container">({
+  <span class="hljs-title">type</span> : <span class="hljs-title">sendSomeData</span>
+, <span class="hljs-title">data</span>
+})</span></span></code></pre><p>A &#39;bound&#39; action creator would be one that creates the action and immediately
+dispatches it. This might be familiar to folks who&#39;ve worked with Flux before.</p>
+<p>This is how you might have something like this in Flux:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> sendMoreData = data =&gt; {
+  <span class="hljs-keyword">const</span> doIt = {
+    type : sendMoreData,
+    data
+  }
+  dispatch(doIt)
+}</code></pre><p>And this is how it&#39;d work in Redux:</p>
+<pre class="hljs"><code><span class="hljs-comment">// assuming you already have the dispatch and action creator, you&#39;d just</span>
+const boundSendMoreData = data =&gt;
+  <span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">(sendMoreData(data)</span></span>)</code></pre><p>There&#39;s also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
+has <code>connect()</code>.</p>
+<p>Async actions should go through middleware to be turned into regular actions
+before being dispatched.</p>
+<p>Reducers always take state and an action and return state.
+<code>reducer (state, action) =&gt; state</code>
+These are what they sound like&mdash;reducing functions.
+The state a reducer takes is your existing (or previous, I guess) state.
+Reducers are pure functions.</p>
+<p>A dispatch is a function that takes an action (or an async action). It may then
+dispatch an action (or actions) which will affect the store.
+There&#39;s a base <code>dispatch</code> that always sends an action to the reducer.</p>
+<p>Middleware are about what you&#39;d expect&mdash;functions (HOF) that take a
+dispatch function and return a dispatch function.</p>
+<p>There are &#39;store enhancers&#39; that are higher-order functions that take a store
+creator and return a different store creator. They&#39;re basically kind of a
+middleware for the store creator. You probably won&#39;t directly use one, ever.
+Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
+]]></description><link>/2016/redux-one.html</link><guid isPermaLink="true">/2016/redux-one.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 01:10:00 GMT</pubDate></item><item><title><![CDATA[idea: series on design for devs]]></title><description><![CDATA[<p>I&#39;ve wanted to do something like this for a while (since December-ish), but
 haven&#39;t had the time. I have some minor design experience (not a lot), and tend
 to read more about interaction design, HCI, and other random
 non-programming-but-still-computer-and-person-working-together-related topics
@@ -529,84 +582,4 @@ maybe in FTP.</li>
 <p>client will check if-modified-since and if-none-match</p>
 <p>accept-encoding (with gzip or compress) yay</p>
 <p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
-]]></description><link>/2016/http.html</link><guid isPermaLink="true">/2016/http.html</guid><category><![CDATA[http]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 09:03:03 GMT</pubDate></item><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
-<p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
-because really you&#39;re just talking about a different target (jvm vs js vm), rite?
-but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
-with two different names if they were the exact same language and the only actual
-difference was the target vm.</p>
-<p>i&#39;d look this up but i&#39;m on a plane. so.</p>
-<p>some notes!</p>
-<p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code>
-which is called a form.</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> varname varval)</span>
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> me <span class="hljs-string">&quot;zac&quot;</span>)</span></code></pre><p>but there&#39;s also the <code>let</code> keyword which is different. for functions?</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">let</span></span> <span class="hljs-collection">[myname <span class="hljs-string">&quot;zac&quot;</span>]</span>
-  <span class="hljs-list">(<span class="hljs-keyword">println</span> myname)</span>)</span></code></pre><p>oh wait is it <code>def</code> or <code>defn</code>? crud now i&#39;m seeing <code>defn</code>.</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> functionName
-  <span class="hljs-collection">[arguments moreArgs]</span> <span class="hljs-comment">;; comment</span>
-  returnValue)</span>         <span class="hljs-comment">;; the above could be just [] if no args</span>
-
-<span class="hljs-comment">;; so maybe</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> multiplier
-  <span class="hljs-collection">[a b]</span>
-  <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword">multiplier</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fnName
-  <span class="hljs-list">(<span class="hljs-collection">[ifThisPatternIsMatched]</span> returnThis)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[elseIfThisOne sureWhyNot]</span> returnThisInstead)</span>)</span>
-
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fooBar
-  <span class="hljs-list">(<span class="hljs-collection">[a]</span> a)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> a b)</span>)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b c]</span> <span class="hljs-list">(/ <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span> c)</span>)</span>
-  <span class="hljs-list">(<span class="hljs-collection">[a b c d]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> <span class="hljs-list">(/ a b)</span> c d)</span>)</span>)</span>
-
-<span class="hljs-comment">;; so [] are args, () are forms, {} are keys or something?</span>
-<span class="hljs-comment">;; no, keys are with :, so {} are just... i don&#39;t know, yet.</span>
-
-<span class="hljs-comment">;; and a private function just has a - after it, i think? like</span>
-<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn-</span></span> thisIsNotPublic
-  <span class="hljs-collection">[]</span> <span class="hljs-comment">;; and other stuff -- are in-line comments a thing?</span>
-  )</span></code></pre><p>Testing with lein (what is lein, exactly? I think it&#39;s a package manager?):</p>
-<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">ns</span></span> project.namespace-test
-  <span class="hljs-list">(<span class="hljs-attribute">:require</span> <span class="hljs-collection">[clojure.text <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>
-            <span class="hljs-collection">[project.namespace <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>)</span>)</span>
-
-<span class="hljs-comment">;; deftest defines a test fn</span>
-<span class="hljs-comment">;; testing for description for it</span>
-<span class="hljs-comment">;; is -- assertion</span>
-
-<span class="hljs-list">(<span class="hljs-keyword">deftest</span> nameOfTest
-  <span class="hljs-list">(<span class="hljs-keyword">testing</span> <span class="hljs-string">&quot;this is what i&#39;m testing&quot;</span>
-    <span class="hljs-list">(<span class="hljs-keyword">is</span> <span class="hljs-list">(<span class="hljs-keyword">true</span>)</span>)</span>)</span>)</span> <span class="hljs-comment">;; i don&#39;t know if this is valid</span></code></pre><p>okay so leiningen is &#39;automation made easy&#39;</p>
-<p>pkg mgmt, testing, pm, etc.?</p>
-<p><code>lein new app &lt;appname&gt;</code></p>
-<p>that will layout a whole project directory for you, damn.</p>
-<p>lein searches maven and clojars for packages, with <code>lein search &lt;packagename&gt;</code>.</p>
-<p>update <code>:dependencies</code> in <code>project.clj</code> (which i think is like a meta file
-package.json-y kinda thing) and do a <code>lein deps</code> to install that stuff.</p>
-<ul>
-<li><code>lein run</code></li>
-<li><code>lein test</code></li>
-<li><code>lein repl</code></li>
-<li><code>lein install</code></li>
-<li><code>lein uberjar</code> -- this packages up the whole rpoject (as a jar, i guess?)</li>
-</ul>
-<p>zipper is a thing that does things but i don&#39;t really have the
-attention span to read this right now.</p>
-<p>did i mention i was on a plane? i wasn&#39;t <em>really</em> on a plane. i&#39;m in an airport.
-for a lot of hours. it&#39;s a long story. sort of. it&#39;s actually a relatively short
-story, but it&#39;s kind of boring. so whatever.</p>
-<p>there are transducers, which are <em>not</em> like a <code>map</code> or <code>functor</code> or whatever.</p>
-<p>these are composable transforms</p>
-<p>did i mention that i&#39;m in an airport? all night, i&#39;ll be here.
-meant to be home by now. in bed. sleeping. having seen the people i really miss,
-hugs all around, had a beer, unpacked, showered maybe, gone to bed.
-i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
-another day of work, sweaty and gross, eurgh.</p>
-<p>on the other hand i met some nice people suck in this zombie airport, so.</p>
-]]></description><link>/2016/clojure.html</link><guid isPermaLink="true">/2016/clojure.html</guid><category><![CDATA[clj]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 07:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/http.html</link><guid isPermaLink="true">/2016/http.html</guid><category><![CDATA[http]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 09:03:03 GMT</pubDate></item></channel></rss>

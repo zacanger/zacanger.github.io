@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 16 Oct 2016 18:51:45 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fetch]]></title><description><![CDATA[<p>fetch is a thing</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:07:06 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[React Performance]]></title><description><![CDATA[<ul>
+<li>Take a baseline measurement.<ul>
+<li>There&#39;s no way to measure improvements without something to measure against.</li>
+<li>Chrome&#39;s Timeline thing works well for this.</li>
+<li>Try measuring total elapsed time between the initial paint and the final rendering.</li>
+<li>Make sure the &#39;Paint&#39; and &#39;Screenshot&#39; options are checked.</li>
+</ul>
+</li>
+<li>Obviously the first big one is to just make your production code production code.<ul>
+<li><code>NODE_ENV=production</code>, <code>webpack -p</code>, etc.</li>
+<li>You can do something like this in your Webpack config:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// stuff</span>
+<span class="hljs-string">plugins :</span> [
+  <span class="hljs-keyword">new</span> webpack.DefinePlugin({
+    <span class="hljs-string">&#39;process.env.NODE_ENV&#39;</span> : JSON.stringify(<span class="hljs-string">&#39;production&#39;</span>)
+  })
+, <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin({
+    <span class="hljs-string">compress :</span> {
+      <span class="hljs-string">warnings :</span> <span class="hljs-literal">false</span>
+    }
+  })
+]
+<span class="hljs-comment">// stuff</span></code></pre><ul>
+<li>Reduce calls to <code>React.createClass</code> (if we&#39;re still doing that).<ul>
+<li>Try using React Inline Elements for this.</li>
+<li>We could configure Babel for this like so (this example would go directly in your package.json):</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-string">&quot;babel&quot;</span>: { <span class="hljs-string">&quot;env&quot;</span>: { <span class="hljs-string">&quot;production&quot;</span>: { <span class="hljs-string">&quot;plugins&quot;</span>: [
+  <span class="hljs-string">&quot;transform-react-constant-elements&quot;</span>,
+  <span class="hljs-string">&quot;transform-react-inline-elements&quot;</span>
+] } } }</code></pre><ul>
+<li>Keep checking against the initial benchmark.</li>
+<li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
+<li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
+</ul>
+]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:06:37 GMT</pubDate></item><item><title><![CDATA[fetch]]></title><description><![CDATA[<p>fetch is a thing</p>
 <p>uses promises</p>
 <p>here&#39;s doing stuff with xhr:</p>
 <pre class="hljs"><code><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest()

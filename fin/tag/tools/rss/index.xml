@@ -31,45 +31,4 @@ than half as much time as many of the small tasks.</p>
 <p>I meant to write a good bit more about this but I probably don&#39;t need to.
 Everyone complains about using too many tools all the time, especially devs
 using businessy tools. And it&#39;s late. So.</p>
-]]></description><link>/2016/pm-tools-kill-productivity.html</link><guid isPermaLink="true">/2016/pm-tools-kill-productivity.html</guid><category><![CDATA[tools]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 19 Oct 2016 05:00:00 GMT</pubDate></item><item><title><![CDATA[just two gifs]]></title><description><![CDATA[<p><img src="assets/img/daniel-jump.gif" alt="jumping">
-<img src="assets/img/daniel-jumpjump.gif" alt="jumpjumping"></p>
-]]></description><link>/2016/daniel-jumping-gifs.html</link><guid isPermaLink="true">/2016/daniel-jumping-gifs.html</guid><category><![CDATA[gifs]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 29 Jun 2016 16:09:00 GMT</pubDate></item><item><title><![CDATA[stack]]></title><description><![CDATA[<p>just a list to keep in mind the stuff
-that we use at work</p>
-<p>because it&#39;s sometimes a lot of stuff</p>
-<p>this is just the stuff i encounter at least
-weekly i think, except the design things, which
-i need to learn i guess sometime</p>
-<ul>
-<li><p>windows server</p>
-<ul>
-<li>visual studio</li>
-<li>c#</li>
-<li>.net</li>
-<li>sql server</li>
-</ul>
-</li>
-<li><p>linux servers</p>
-<ul>
-<li>aws s3, ec2, elastic beanstalk, various others</li>
-<li>docker</li>
-<li>sysd?</li>
-<li>koa</li>
-<li>react</li>
-<li>mocha, chai, enzyme</li>
-<li>graphql, apollo?</li>
-<li>redux</li>
-<li>immutable</li>
-<li>typescript</li>
-<li>purescript</li>
-<li>sass</li>
-<li>postcss</li>
-</ul>
-</li>
-<li><p>teamcity</p>
-</li>
-<li><p>sketch</p>
-</li>
-<li>invision</li>
-<li>bittorrent sync?</li>
-</ul>
-]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/pm-tools-kill-productivity.html</link><guid isPermaLink="true">/2016/pm-tools-kill-productivity.html</guid><category><![CDATA[tools]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 19 Oct 2016 05:00:00 GMT</pubDate></item></channel></rss>

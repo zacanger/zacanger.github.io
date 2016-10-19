@@ -48,6 +48,23 @@
 <div id="content-main">
 
 
+  <article class="post tag-angular">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/angular-in-one-line.html">angular in one line</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-08-13">13 August, 2016</time>
+         | tags: <a href="/tag/angular/">angular</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>also angular in one line, just cuz.</p>
+<pre class="hljs"><code><span class="hljs-label">WEIRD</span> MIX <span class="hljs-keyword">BETWEEN </span><span class="hljs-keyword">MARKUP </span><span class="hljs-keyword">AND </span>JAVA-LIKE JAVASCRIPT GOES HERE</code></pre></p>
+    </section>
+  </article>
+
+
   <article class="post tag-react">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/react-in-one-line.html">react in one line</a></h2>
@@ -386,75 +403,6 @@ store in Redux, you just use <code>createStore</code>.</p>
 something like:</p>
 <pre class="hljs"><code>const unsubscribe = store.<span class="hljs-function"><span class="hljs-title">subscribe</span><span class="hljs-params">(someListener)</span></span>
 <span class="hljs-function"><span class="hljs-title">unsubscribe</span><span class="hljs-params">()</span></span></code></pre></p>
-    </section>
-  </article>
-
-
-  <article class="post tag-redux">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/redux-one.html">redux notes, part one</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-08-02">02 August, 2016</time>
-         | tags: <a href="/tag/redux/">redux</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#39;s not, and because those docs themselves are pretty overwhelming when
-you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts.</p>
-<hr>
-<p>The store is an object that holds state. There&#39;s only ever one store in Redux,
-with many reducers that act on it.</p>
-<p><code>getState()</code> returns the state from the store.</p>
-<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
-<p>There&#39;s also a <code>replaceReducer</code> but unless you&#39;re writing hot middlware or
-something you probably won&#39;t touch this one.</p>
-<p>State can by any type, though obviously it&#39;s probably best to just use an
-object here.</p>
-<p>Actions are always objects, and they always have a <code>type</code>.</p>
-<pre class="hljs"><code>store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;do-stuff&#39;</span>})</span></span>
-<span class="hljs-comment">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
-store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;DO_OTHER_STUFF&#39;</span>, stuff: <span class="hljs-string">&#39;[things to do here, maybe]&#39;</span>})</span></span></code></pre><p>Action creators are functions that create actions based on any sorts of
-arguments.</p>
-<pre class="hljs"><code><span class="hljs-title">const</span> sendSomeData = &#39;send-some-<span class="hljs-typedef"><span class="hljs-keyword">data</span>&#39;</span>
-<span class="hljs-title">const</span> sendSomeDataActionCreator = <span class="hljs-typedef"><span class="hljs-keyword">data</span> =&gt; <span class="hljs-container">({
-  <span class="hljs-title">type</span> : <span class="hljs-title">sendSomeData</span>
-, <span class="hljs-title">data</span>
-})</span></span></code></pre><p>A &#39;bound&#39; action creator would be one that creates the action and immediately
-dispatches it. This might be familiar to folks who&#39;ve worked with Flux before.</p>
-<p>This is how you might have something like this in Flux:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> sendMoreData = data =&gt; {
-  <span class="hljs-keyword">const</span> doIt = {
-    type : sendMoreData,
-    data
-  }
-  dispatch(doIt)
-}</code></pre><p>And this is how it&#39;d work in Redux:</p>
-<pre class="hljs"><code><span class="hljs-comment">// assuming you already have the dispatch and action creator, you&#39;d just</span>
-const boundSendMoreData = data =&gt;
-  <span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">(sendMoreData(data)</span></span>)</code></pre><p>There&#39;s also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
-has <code>connect()</code>.</p>
-<p>Async actions should go through middleware to be turned into regular actions
-before being dispatched.</p>
-<p>Reducers always take state and an action and return state.
-<code>reducer (state, action) =&gt; state</code>
-These are what they sound like&mdash;reducing functions.
-The state a reducer takes is your existing (or previous, I guess) state.
-Reducers are pure functions.</p>
-<p>A dispatch is a function that takes an action (or an async action). It may then
-dispatch an action (or actions) which will affect the store.
-There&#39;s a base <code>dispatch</code> that always sends an action to the reducer.</p>
-<p>Middleware are about what you&#39;d expect&mdash;functions (HOF) that take a
-dispatch function and return a dispatch function.</p>
-<p>There are &#39;store enhancers&#39; that are higher-order functions that take a store
-creator and return a different store creator. They&#39;re basically kind of a
-middleware for the store creator. You probably won&#39;t directly use one, ever.
-Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
-</p>
     </section>
   </article>
 
