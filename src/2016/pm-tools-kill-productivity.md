@@ -37,6 +37,12 @@ especially) are so lacking in all the things that make a good project management
 app (mainly, simplicity and ease of use) that using them ends up taking more
 than half as much time as many of the small tasks.
 
+The last place I worked, we switched to this thing called Droptask. It was so
+bad, such a ridiculously complicated UI mess, that myself and some co-workers
+just ended up not using it at all, and relied solely on Slack. Picking a (one,
+singular) decent tool really makes a difference. Trello's popular because it's
+simple and easy. For devs, same goes for Issues.
+
 I meant to write a good bit more about this but I probably don't need to.
 Everyone complains about using too many tools all the time, especially devs
 using businessy tools. And it's late. So.

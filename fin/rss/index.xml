@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:07:05 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[pm tools kill productivity]]></title><description><![CDATA[<p>Project management tools kill productivity. This isn&#39;t news. They <em>can</em> help
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:10:11 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[pm tools kill productivity]]></title><description><![CDATA[<p>Project management tools kill productivity. This isn&#39;t news. They <em>can</em> help
 other people be more aware of what you&#39;re doing, which is generally a good thing
 (collaborating on projects, managers keeping track of progress, whatever), but
 overdoing it with the tools can be seriously detrimental to actually getting
@@ -28,6 +28,11 @@ back to those tools (usually more than one) to update them.</p>
 especially) are so lacking in all the things that make a good project management
 app (mainly, simplicity and ease of use) that using them ends up taking more
 than half as much time as many of the small tasks.</p>
+<p>The last place I worked, we switched to this thing called Droptask. It was so
+bad, such a ridiculously complicated UI mess, that myself and some co-workers
+just ended up not using it at all, and relied solely on Slack. Picking a (one,
+singular) decent tool really makes a difference. Trello&#39;s popular because it&#39;s
+simple and easy. For devs, same goes for Issues.</p>
 <p>I meant to write a good bit more about this but I probably don&#39;t need to.
 Everyone complains about using too many tools all the time, especially devs
 using businessy tools. And it&#39;s late. So.</p>
