@@ -25,7 +25,7 @@
     "node fanboi"
   ],
 
-  "projects": [
+  "major-projects": [
     {
       "name": "zacanger",
       "url": "http://npm.im/zacanger",
@@ -35,33 +35,13 @@
       "url": "http://npm.im/luvi",
       "summary": "Dev server with nifty extras and easy config and API."
     },{
-      "name": "mdkb",
-      "url": "https://github.com/zacanger/mdkb",
-      "summary": "Markdown-based knowledgebase webapp"
-    },{
-      "name": "create-repo",
-      "url": "http://npm.im/create-repo",
-      "summary": "Node tool to create GH repo using name/description from package.json."
-    },{
       "name": "hey-you",
       "url": "http://npm.im/hey-you",
       "summary": "A very nice little desktop widget."
     },{
-      "name": "punchcard-cli",
-      "url": "http://npm.im/punchcard-cli",
-      "summary": "Wrapper around a node module to get punchcards from strings"
-    },{
       "name": "hyperterm-mild-dark",
       "url": "http://npm.im/hyperterm-mild-dark",
       "summary": "Mild dark theme for the HyperTerm terminal"
-    },{
-      "name": "zeess",
-      "url": "http://zacanger.github.io/zeess",
-      "summary": "CSS Microframework"
-    },{
-      "name": "dolog",
-      "url": "http://npm.im/dolog",
-      "summary": "Node module to turn console.log on and off at will"
     },{
       "name": "hipper",
       "url": "http://npm.im/hipper",
@@ -70,10 +50,6 @@
       "name": "lilnote",
       "url": "http://npm.im/lilnote",
       "summary": "A tiny note-taking app that stores notes in JSON"
-    },{
-      "name": "scrapegh",
-      "url": "http://npm.im/scrapegh",
-      "summary": "A command-line utility for scraping GitHub"
     },{
       "name": "scrapingnode",
       "url": "http://npm.im/scrapingnode",
@@ -84,44 +60,12 @@
       "summary": "Music and colours in your terminal"
     },{
       "name": "Pharaoh",
-      "url": "http://pharaoh.js.org",
-      "summary": "An educational tool, for live broadcasting of code. This is the web frontend."
-    },{
-      "name": "Pharaoh-Desktop",
       "url": "http://npm.im/pharaoh",
-      "summary": "The desktop app for Pharaoh; installable as an executable from NPM."
-    },{
-      "name": "ayuba",
-      "url": "https://github.com/zacanger/ayuba.git",
-      "summary": "A desktop Markdown editor, with realtime rendering, customisable themes, and Mongo storage."
-    },{
-      "name": "markvi",
-      "url": "http://npm.im/markvi",
-      "summary": "In-browser Markdown editor with realtime rendering & vim-like keybinds."
-    },{
-      "name": "Gifland",
-      "url": null,
-      "summary": "Animated gif hosting for personal & friend usage."
-    },{
-      "name": "From Under The Mountain OST",
-      "url": null,
-      "summary": "Commissioned soundtrack accompaniment for fantasy novel."
-    },{
-      "name": "pengins",
-      "url": "http://npm.im/pengins",
-      "summary": "A tiny script to give you 'pengins, in ur xterm, chillin.'"
+      "summary": "A editor built for live broadcasting of code; installable as an executable from NPM."
     },{
       "name": "z",
       "url": "https://github.com/zacanger/z.git",
       "summary": "My own configuration files, scripts, cheatsheets, and manpages."
-    },{
-      "name": "F Me On Github",
-      "url": "http://zacanger.github.io/f-me-on-github/",
-      "summary": "An amusing, inappropriate take on the 'Fork Me On Github' ribbon."
-    },{
-      "name": "Mickey's Wholesale Pizza",
-      "url": null,
-      "summary": "Revamp of web presence; design and development"
     }
   ],
 
