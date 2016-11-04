@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>angr - Page 6</title>
+  <title>undefined - Page 6</title>
   <meta name="description" content="">
   <meta name="author" content="Zac Anger">
   <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
 
   <meta name="generator" content="Ghost ?" />
-<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="alternate" type="application/rss+xml" title="" href="/rss/index.xml">
 <link rel="canonical" href="http://blog.zacanger.com/page/6/index.html" />
 <link rel="prev" href="http://blog.zacanger.com/page/5/" />
 <link rel="next" href="http://blog.zacanger.com/page/7/" />
@@ -35,7 +35,7 @@
       <div class="vertical">
         <div class="blog-title-wrap">
         <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
-        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com"></a></h1>
         </div>
         <div class="blog-description-wrap">
         <h2 class="blog-description">writings from zac anger</h2>
@@ -46,6 +46,61 @@
 
     
 <div id="content-main">
+
+
+  <article class="post tag-work">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/stack.html">stack</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-24">24 June, 2016</time>
+         | tags: <a href="/tag/work/">work</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>just a list to keep in mind the stuff
+that we use at work</p>
+<p>because it&#39;s sometimes a lot of stuff</p>
+<p>this is just the stuff i encounter at least
+weekly i think, except the design things, which
+i need to learn i guess sometime</p>
+<ul>
+<li><p>windows server</p>
+<ul>
+<li>visual studio</li>
+<li>c#</li>
+<li>.net</li>
+<li>sql server</li>
+</ul>
+</li>
+<li><p>linux servers</p>
+<ul>
+<li>aws s3, ec2, elastic beanstalk, various others</li>
+<li>docker</li>
+<li>sysd?</li>
+<li>koa</li>
+<li>react</li>
+<li>mocha, chai, enzyme</li>
+<li>graphql, apollo?</li>
+<li>redux</li>
+<li>immutable</li>
+<li>typescript</li>
+<li>purescript</li>
+<li>sass</li>
+<li>postcss</li>
+</ul>
+</li>
+<li><p>teamcity</p>
+</li>
+<li><p>sketch</p>
+</li>
+<li>invision</li>
+<li>bittorrent sync?</li>
+</ul>
+</p>
+    </section>
+  </article>
 
 
   <article class="post tag-editor tag-design">
@@ -320,65 +375,9 @@ mycompany/theirprivatecode</code>.</p>
   </article>
 
 
-  <article class="post tag-http">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/http.html">http</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-06-01">01 June, 2016</time>
-         | tags: <a href="/tag/http/">http</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>http: k-v store of urls and resources</p>
-<p>representations: dictionaries of actual resources</p>
-<p>eh?</p>
-<p>example: url: foo.bar/video with:
-representations: various formats and sizes of said video</p>
-<p>methods: possible to define custom</p>
-<p>get, put, and delete are really obvious</p>
-<p>patch: like put, but for small changes</p>
-<p>head: get, but for just meta about the resource</p>
-<p>options: what all can i even do with this thing?
-(useful for... cors, i guess)</p>
-<p>post: kind of a catch-all for whatever else you want to do rly
-it&#39;s not actually intended to be used as the C in CRUD</p>
-<p>i may be rethinking my position on url parameters vs queries</p>
-<p>remembering, from <a href="http://mdkb.zacanger.com/urls">my docs</a>:</p>
-<p><a href="http://www.ietf.org/rfc/rfc2396.txt">URLs</a> are made up of (usually just some) of these parts:
-<code>&lt;scheme&gt;://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;parameters&gt;?&lt;query&gt;#&lt;fragment&gt;</code>.</p>
-<ul>
-<li>The scheme is the <em>protocol</em> (http, https, ftp, git, etc.). It ends with <code>:</code> (not <code>//</code>).</li>
-<li>The username and password are fairly self-explanitory, and we don&#39;t see that a whole whole lot these days, except
-maybe in FTP.</li>
-<li>The host is the part we all know well, like &#39;github&#39; or &#39;google.&#39; It can be a domain name or an IP address.</li>
-<li>The port (80 for HTTP, 443 for HTTPS, etc.) is self-explanitory; defaults to 80.</li>
-<li>The path would be segments (like <code>/doc/search</code> or whatever), and can contain semicolons to separate parameters (like <code>thing=foo;stuff=bar</code>).</li>
-<li>Queries can be before or after parameters, and that&#39;d be something like <code>/?q=foo+bar</code>.</li>
-<li>Fragments are for specific parts of a resource, like <code>somepage.html#somesection</code>.</li>
-<li><code>; / ? : @ &amp; = + $ ,</code> are reserved characters (meaning they have special uses in URLs).</li>
-<li><code>- _ . ! ~ * &#39; ( )</code> are unreserved (you can use them almost wherever you&#39;d like).</li>
-<li><code>{ } | \\ ^ [ ] \</code> ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).</li>
-<li><code>&lt; &gt; # % &quot;</code> don&#39;t use these, at all (except the <code>%</code> and <code>#</code> <em>if</em> you have a valid reason for it, because they do special things in URLs).</li>
-</ul>
-<hr>
-<ul>
-<li>content headers from client to specify what it can be (accept)</li>
-<li>content headers from server to specify what it is (content-type)</li>
-</ul>
-<p>cache-control, last-modified, and etag to control caching</p>
-<p>client will check if-modified-since and if-none-match</p>
-<p>accept-encoding (with gzip or compress) yay</p>
-<p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
         <a class="newer-posts" href="/page/5/">&larr; Newer Posts</a>
-    <span class="page-number">Page 6 of 12</span>
+    <span class="page-number">Page 6 of 13</span>
         <a class="older-posts" href="/page/7/">Older Posts &rarr;</a>
 </nav>
 

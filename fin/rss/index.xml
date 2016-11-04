@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:10:11 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[pm tools kill productivity]]></title><description><![CDATA[<p>Project management tools kill productivity. This isn&#39;t news. They <em>can</em> help
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 04 Nov 2016 03:49:35 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Two Things That Might Be Fun]]></title><description><![CDATA[<p>Two things that I think might be fun to play around with, at some point.</p>
+<p>First: a less intrusive type annotation thing for JS. It&#39;d be similar to ML or
+Haskell style annotations, but maybe use Flow as a sort of backend to actually
+do the type checking? It could look something like this:</p>
+<pre class="hljs"><code>//<span class="hljs-type-annotation">::</span> <span class="hljs-built_in">Int</span> -&gt; <span class="hljs-built_in">Int</span> -&gt; [<span class="hljs-built_in">Int</span>]
+<span class="hljs-keyword">const</span> putIntsInList = (a, b) =&gt; [ a,  b ]
+
+//<span class="hljs-type-annotation">::</span>Str -&gt; Str -&gt; Str // or
+//<span class="hljs-type-annotation">::</span>[<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>]
+<span class="hljs-keyword">const</span> doThingsWithStrings = (a, b) =&gt; <span class="hljs-string"><code>${a} ${b}</code></span></code></pre><p>It could use some sort of regexy thing to basically just detect anywhere there&#39;s
+<code>//::</code>, see what the next thing is, and see if they go together. I don&#39;t know
+much about ASTs or type systems, though. I just think that&#39;d be a lot less
+in-the-way than how TypeScript and Flow currently work. Also, my syntax
+highlighting doesn&#39;t know what template strings are, so. That&#39;s gross.</p>
+<p>Another thing:</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> React, { PropTypes } from &#39;react&#39;
+<span class="hljs-keyword">import</span> AnotherComponent from &#39;./AnotherComponent&#39;
+
+const <span class="hljs-type">Something</span> = ({ a, b, <span class="hljs-built_in">c</span> }) =&gt; {
+  <span class="hljs-keyword">if</span> (!a) <span class="hljs-keyword">return</span> null
+
+  <span class="hljs-keyword">return</span> (
+    (div
+      (another-component (whatever &#39;a))
+        (not (null? b)
+          (span (b))
+        (not (null? <span class="hljs-built_in">c</span>)
+          (<span class="hljs-built_in">map</span> (p (<span class="hljs-built_in">c</span>)))))))
+  <span class="hljs-comment">// which would be like</span>
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="hljs-type">AnotherComponent</span> whatever={a} /&gt;
+      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
+      {<span class="hljs-built_in">c</span> &amp;&amp; <span class="hljs-built_in">c</span>.length &amp;&amp;
+        <span class="hljs-built_in">c</span>.<span class="hljs-built_in">map</span>((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
+      }
+    &lt;/div&gt;
+  )
+}
+
+export <span class="hljs-keyword">default</span> <span class="hljs-type">Something</span></code></pre><p>This a totally made-up syntax for a thing that doesn&#39;t exactly exist, and I
+don&#39;t know how useful this would actually be, since there are already great
+React libraries for ClojureScript out there. Just think it&#39;d be neat to be able
+to to JSX in Scheme. I dunno, just a thought.</p>
+]]></description><link>/2016/two-things-that-might-be-fun.html</link><guid isPermaLink="true">/2016/two-things-that-might-be-fun.html</guid><category><![CDATA[cljs]]></category><category><![CDATA[scheme]]></category><category><![CDATA[types]]></category><category><![CDATA[hs]]></category><category><![CDATA[jsx]]></category><category><![CDATA[js]]></category><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 04 Nov 2016 03:40:00 GMT</pubDate></item><item><title><![CDATA[pm tools kill productivity]]></title><description><![CDATA[<p>Project management tools kill productivity. This isn&#39;t news. They <em>can</em> help
 other people be more aware of what you&#39;re doing, which is generally a good thing
 (collaborating on projects, managers keeping track of progress, whatever), but
 overdoing it with the tools can be seriously detrimental to actually getting
@@ -1229,114 +1273,4 @@ test.beforeEach(<span class="hljs-string">&#39;Set up &lt;MyComponent /&gt;&#39;
 test(<span class="hljs-string">&#39;&lt;MyComponent /&gt; isn\&#39;t broken!&#39;</span>, t =&gt; {
   t.<span class="hljs-keyword">is</span>(t.context.prop(<span class="hljs-string">&#39;some&#39;</span>), <span class="hljs-string">&#39;props&#39;</span>)
 })
-<span class="hljs-comment">// and it won&#39;t throw errors about not finding a store and stuff!</span></code></pre>]]></description><link>/2016/redux-three.html</link><guid isPermaLink="true">/2016/redux-three.html</guid><category><![CDATA[redux]]></category><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 07 Aug 2016 03:29:00 GMT</pubDate></item><item><title><![CDATA[redux notes, part two]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#39;s not, and because those docs themselves are pretty overwhelming when
-you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts.</p>
-<hr>
-<p>All your data moves in one direction. This is the same as in Flux. You will
-always go through the same steps in redux:</p>
-<ul>
-<li>Action (call <code>store.dispatch()</code> with an object that describes something
-happening)</li>
-<li>Reducer (pure function called based on the action that was dispatched that
-calculates next state)</li>
-<li>Your root reducer combines a bunch of reducers&#39; outputs into one state tree
-(assuming you have a root reducer, which you probably do)</li>
-<li>The store saves the state tree as returned by the above&mdash;now that&#39;s your
-state (and at this point anything you subscribed with will be invoked)</li>
-</ul>
-<p>All your state in redux is just an object&mdash;just one object. It&#39;s probably a
-good idea to try to keep that as shallow as possible, and reference things by
-keys (IDs), rather than deeply nesting stuff.</p>
-<p>Reducers are just functions. They take your existing state (state previous to
-acting on it) and an action and output state (new state).</p>
-<pre class="hljs"><code>const someReducer = <span class="hljs-function"><span class="hljs-params">(oldState, action)</span> =&gt;</span> newState</code></pre><p>It&#39;s a reducing function just like you&#39;d pass to <code>Array.reduce()</code>, it it should
-always be a pure function. Don&#39;t mutate arguments, call non-pure functions, make
-API calls, or anything like that in a reducer. If you don&#39;t know what a pure
-function is, it&#39;s actually super simple:</p>
-<blockquote>
-<p>Given the same arguments, a pure function will always have the same output.
-This means it&#39;s a function who&#39;s result relies solely on its arguments.</p>
-</blockquote>
-<p>One thing you should get in the habit of doing is using &#39;default arguments.&#39;
-This is new in ES2015, and saves you a bit of code. This means you could have
-some initial state:</p>
-<pre class="hljs"><code>const initState = {
-  <span class="hljs-string">something     :</span> <span class="hljs-string">&#39;a&#39;</span>
-, <span class="hljs-string">somethingElse :</span> <span class="hljs-string">&#39;b&#39;</span>
-}</code></pre><p>And instead of needing to write</p>
-<pre class="hljs"><code>const reducer = (<span class="hljs-keyword">state</span>, action) =&gt; {
-  if (typeof <span class="hljs-keyword">state</span> === &#39;undefined&#39;) {
-    return initState
-  }
-  // do stuff
-}</code></pre><p>You can just do</p>
-<pre class="hljs"><code>const reducer = (<span class="hljs-keyword">state</span> = initState, action) =&gt; // do stuff</code></pre><p>Reducers are frequently switch statements. This might seem a little weird at
-first, since most JS folks avoid switch statements (I think some linters even
-warn about them, saying they&#39;re &#39;confusing&#39;), but it makes sense in reducers
-since you can handle various actions in one function. Remember, an action is
-just an object: <code>{type: &#39;do_thing&#39;}</code> with possible other fields: <code>{type:
-&#39;do_thing&#39;, to: &#39;stuff&#39;}</code>.</p>
-<pre class="hljs"><code>const someReducer = (<span class="hljs-keyword">state</span> = initState, action) {
-  switch (action.type) {
-    case do_stuff:
-      return Object.assign({}, <span class="hljs-keyword">state</span>, {something: action.<span class="hljs-keyword">to</span>})
-    <span class="hljs-keyword">default</span>:
-      return <span class="hljs-keyword">state</span>
-  }
-}</code></pre><p>Note the <code>Object.assign()</code>&mdash;we don&#39;t mutate state, we return a new state
-based on the old state and the action. You&#39;ll probably want to use a polyfill
-for <code>.assign()</code>, but chances are you&#39;re already using Babel anyway. You could
-also use something from Lodash, Underscore, or some other library.</p>
-<p>It&#39;s always a good idea to return <code>state</code> (which is our old state) as a default,
-in case we get sent some unexpected action.</p>
-<p>It&#39;s also a good idea to split your reducers and compose them:</p>
-<pre class="hljs"><code>const firstReducer = (<span class="hljs-keyword">state</span> = {}, action) =&gt; {
-  switch (action.type) {
-    case something:
-      return stuff
-    <span class="hljs-keyword">default</span>:
-      return <span class="hljs-keyword">state</span>
-  }
-}
-
-const secondReducer = (<span class="hljs-keyword">state</span> = initState, action) =&gt; {
-  switch (action.type) {
-    case whatever:
-      return firstReducer(<span class="hljs-keyword">state</span>.field, action)
-    <span class="hljs-keyword">default</span>
-      return <span class="hljs-keyword">state</span>
-  }
-}</code></pre><p>This means that <code>firstReducer</code> only needs to get the state that it actually
-cares about, when it needs to do something. Also note that defaut state is an
-empty object there. It could be anything you want it to be, just make sure it&#39;s
-the shape your reducer expects to act on.</p>
-<p>When you have a lot of reducers, you can use <code>combineReducers</code>:</p>
-<pre class="hljs"><code><span class="hljs-literal">import</span> { combineReducers } from <span class="hljs-string">&#39;redux&#39;</span>
-
-<span class="hljs-keyword">const</span> lotsOfReducers = combineReducers({
-  firstReducer
-, secondReducer
-<span class="hljs-comment">// , etc.</span>
-})
-
-<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> lotsOfReducers</code></pre><p>And you can do this as many times as you like, in as many files as you need.</p>
-<p>All you&#39;re doing with reducers is taking in the state as it exists, taking in an
-action, and outputing the new state. What you&#39;re operating against is the store.</p>
-<p>The Store is a really important bit. It holds all the state of your app. This
-is different from Flux, where you&#39;d have a lot of little stores. In Redux
-there&#39;s only one. It&#39;s accessed similiarly&mdash;you have <code>getState()</code>, you
-dispatch actions, and you can have listeners subscribe to changes. To create a
-store in Redux, you just use <code>createStore</code>.</p>
-<pre class="hljs"><code><span class="hljs-literal">import</span> { createStore } from <span class="hljs-string">&#39;redux&#39;</span>
-<span class="hljs-literal">import</span> someReducer from <span class="hljs-string">&#39;./someFile&#39;</span>
-<span class="hljs-keyword">const</span> store = createStore(someReducer)
-<span class="hljs-comment">// createStore can take your initial state, too</span>
-<span class="hljs-keyword">const</span> store = createStore(someReducer, initialState)
-<span class="hljs-comment">// and for creating a store as simply as possible (mocking in testing, etc.):</span>
-<span class="hljs-keyword">const</span> store = createStore(() =&gt; ({})) <span class="hljs-comment">// your store is just an empty object, now</span></code></pre><p><code>store.subscribe()</code> returns a function for _un_subscribing. So you can do
-something like:</p>
-<pre class="hljs"><code>const unsubscribe = store.<span class="hljs-function"><span class="hljs-title">subscribe</span><span class="hljs-params">(someListener)</span></span>
-<span class="hljs-function"><span class="hljs-title">unsubscribe</span><span class="hljs-params">()</span></span></code></pre>]]></description><link>/2016/redux-two.html</link><guid isPermaLink="true">/2016/redux-two.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 06 Aug 2016 14:37:00 GMT</pubDate></item></channel></rss>
+<span class="hljs-comment">// and it won&#39;t throw errors about not finding a store and stuff!</span></code></pre>]]></description><link>/2016/redux-three.html</link><guid isPermaLink="true">/2016/redux-three.html</guid><category><![CDATA[redux]]></category><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 07 Aug 2016 03:29:00 GMT</pubDate></item></channel></rss>

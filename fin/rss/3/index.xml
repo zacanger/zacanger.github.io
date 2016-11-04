@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 19 Oct 2016 04:10:11 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 04 Nov 2016 03:49:35 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[http]]></title><description><![CDATA[<p>http: k-v store of urls and resources</p>
+<p>representations: dictionaries of actual resources</p>
+<p>eh?</p>
+<p>example: url: foo.bar/video with:
+representations: various formats and sizes of said video</p>
+<p>methods: possible to define custom</p>
+<p>get, put, and delete are really obvious</p>
+<p>patch: like put, but for small changes</p>
+<p>head: get, but for just meta about the resource</p>
+<p>options: what all can i even do with this thing?
+(useful for... cors, i guess)</p>
+<p>post: kind of a catch-all for whatever else you want to do rly
+it&#39;s not actually intended to be used as the C in CRUD</p>
+<p>i may be rethinking my position on url parameters vs queries</p>
+<p>remembering, from <a href="http://mdkb.zacanger.com/urls">my docs</a>:</p>
+<p><a href="http://www.ietf.org/rfc/rfc2396.txt">URLs</a> are made up of (usually just some) of these parts:
+<code>&lt;scheme&gt;://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;parameters&gt;?&lt;query&gt;#&lt;fragment&gt;</code>.</p>
+<ul>
+<li>The scheme is the <em>protocol</em> (http, https, ftp, git, etc.). It ends with <code>:</code> (not <code>//</code>).</li>
+<li>The username and password are fairly self-explanitory, and we don&#39;t see that a whole whole lot these days, except
+maybe in FTP.</li>
+<li>The host is the part we all know well, like &#39;github&#39; or &#39;google.&#39; It can be a domain name or an IP address.</li>
+<li>The port (80 for HTTP, 443 for HTTPS, etc.) is self-explanitory; defaults to 80.</li>
+<li>The path would be segments (like <code>/doc/search</code> or whatever), and can contain semicolons to separate parameters (like <code>thing=foo;stuff=bar</code>).</li>
+<li>Queries can be before or after parameters, and that&#39;d be something like <code>/?q=foo+bar</code>.</li>
+<li>Fragments are for specific parts of a resource, like <code>somepage.html#somesection</code>.</li>
+<li><code>; / ? : @ &amp; = + $ ,</code> are reserved characters (meaning they have special uses in URLs).</li>
+<li><code>- _ . ! ~ * &#39; ( )</code> are unreserved (you can use them almost wherever you&#39;d like).</li>
+<li><code>{ } | \\ ^ [ ] \</code> ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).</li>
+<li><code>&lt; &gt; # % &quot;</code> don&#39;t use these, at all (except the <code>%</code> and <code>#</code> <em>if</em> you have a valid reason for it, because they do special things in URLs).</li>
+</ul>
+<hr>
+<ul>
+<li>content headers from client to specify what it can be (accept)</li>
+<li>content headers from server to specify what it is (content-type)</li>
+</ul>
+<p>cache-control, last-modified, and etag to control caching</p>
+<p>client will check if-modified-since and if-none-match</p>
+<p>accept-encoding (with gzip or compress) yay</p>
+<p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
+]]></description><link>/2016/http.html</link><guid isPermaLink="true">/2016/http.html</guid><category><![CDATA[http]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 09:03:03 GMT</pubDate></item><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
 <p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
 because really you&#39;re just talking about a different target (jvm vs js vm), rite?
 but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
@@ -1844,14 +1884,4 @@ const <span class="hljs-built_in">sin</span> = <span class="hljs-built_in">proce
 //</span>
 <span class="hljs-comment">
 // not gonna take really extensive notes here, for the reasons above and also because</span><span class="hljs-comment">
-// it&#39;s really easy to just go to the api docs and read all of them.</span></code></pre>]]></description><link>/2016/streams.html</link><guid isPermaLink="true">/2016/streams.html</guid><category><![CDATA[js]]></category><category><![CDATA[streams]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 15 May 2016 23:39:25 GMT</pubDate></item><item><title><![CDATA[api design notes]]></title><description><![CDATA[<p>think in terms of positives, not negatives</p>
-<p>for example &#39;ishidden(true)&#39; is confusing.
-instead to &#39;isvisible&#39;.</p>
-<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
-<p>instead of this, think in terms of enabled/showing</p>
-<p>this is both for myself (because i get confused) and for other people</p>
-<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
-<p>example from ariya hidayat&#39;s blog:
-if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
-take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
-]]></description><link>/2016/api-design-notes.html</link><guid isPermaLink="true">/2016/api-design-notes.html</guid><category><![CDATA[api]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:09:28 GMT</pubDate></item></channel></rss>
+// it&#39;s really easy to just go to the api docs and read all of them.</span></code></pre>]]></description><link>/2016/streams.html</link><guid isPermaLink="true">/2016/streams.html</guid><category><![CDATA[js]]></category><category><![CDATA[streams]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 15 May 2016 23:39:25 GMT</pubDate></item></channel></rss>
