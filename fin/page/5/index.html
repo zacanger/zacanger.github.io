@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>undefined - Page 5</title>
+  <title>angr - Page 5</title>
   <meta name="description" content="">
   <meta name="author" content="Zac Anger">
   <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
 
   <meta name="generator" content="Ghost ?" />
-<link rel="alternate" type="application/rss+xml" title="" href="/rss/index.xml">
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
 <link rel="canonical" href="http://blog.zacanger.com/page/5/index.html" />
 <link rel="prev" href="http://blog.zacanger.com/page/4/" />
 <link rel="next" href="http://blog.zacanger.com/page/6/" />
@@ -35,7 +35,7 @@
       <div class="vertical">
         <div class="blog-title-wrap">
         <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
-        <h1 class="blog-title"><a href="http://blog.zacanger.com"></a></h1>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
         </div>
         <div class="blog-description-wrap">
         <h2 class="blog-description">writings from zac anger</h2>
@@ -46,6 +46,53 @@
 
     
 <div id="content-main">
+
+
+  <article class="post tag-js tag-fp">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/fff2.html">More More Notes Taken While Watching MPJ&#x27;s Videos</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-07-24">24 July, 2016</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/fp/">fp</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>lol streams are like the weird lovechild of promises and arrays i love that
+analogy</p>
+<p>here&#39;s a stream-making thingy</p>
+<pre class="hljs"><code>const foo = {
+  each (cb) {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">1</span>), <span class="hljs-number">100</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">2</span>), <span class="hljs-number">200</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">3</span>), <span class="hljs-number">300</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> cb(<span class="hljs-number">4</span>), <span class="hljs-number">400</span>)
+  }
+}
+foo.each(<span class="hljs-built_in">console</span>.log)</code></pre><p>prototypes are faster than factory functions but geez they&#39;re
+kinda gross to think about you know so unless we&#39;re doing something
+like making ten million objects just use a factory there i guess</p>
+<p>streams are functors</p>
+<p>functors are just a thing that implements map</p>
+<p>monads are functors that also implement <em>flatMap</em></p>
+<p>flatMap just flattens, i guess? that&#39;s what it sounds like.</p>
+<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.
+same with stuff like bind and chain methods and stuff. it&#39;s basically
+flattening into its <em>value</em> rather than having the actual (semi-expected)
+value (function/promise/stream/whatever).</p>
+<p>so if you have a flatMap that would return another monad, i guess,
+it&#39;d actually return its value, not that other monad.</p>
+<p>if you are a tooling addict, don&#39;t do tools. (this actually totally applies to
+me, because i&#39;ve spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a>
+than on any other individual project... <em>but</em> i feel like it&#39;s worth it, mostly.
+being able to just use vim and not go through the work of setting up any other
+editor on any computer, being able to just clone that repo and symlink what i need,
+that really does make me more productive. as long as i don&#39;t forget how to use
+computers without my dotfiles, i don&#39;t think they&#39;re really a waste of time.)</p>
+</p>
+    </section>
+  </article>
 
 
   <article class="post tag-fp tag-meetup tag-notes">
@@ -239,78 +286,6 @@ nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre></
     <section class="post-content">
       <p><p><img src="assets/img/daniel-jump.gif" alt="jumping">
 <img src="assets/img/daniel-jumpjump.gif" alt="jumpjumping"></p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-devmtn">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/three-quick-tips.html">Three Quick Tips for Fresh Bootcamp Grads</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-06-24">24 June, 2016</time>
-         | tags: <a href="/tag/devmtn/">devmtn</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>This was originally posted
-<a href="https://github.com/lukeschunk/Notebook/blob/master/DailyNotes/Three_Quick_Tips.md">here</a>
-by <a href="https://twitter.com/LukeSchunk">Luke Schunk</a>, but I wanted to repost because
-there&#39;s some good stuff in here, and because he doesn&#39;t actually, like, share
-links to his notes.</p>
-<hr>
-<h2 id="three-quick-tips-for-succeeding-at-a-bootcamp">Three Quick Tips for Succeeding at A Bootcamp</h2>
-<p>I recently graduated from DevMountain, a 12-week immersive web development
-bootcamp with campuses in Provo, Salt Lake, and Dallas. I had an overwhelmingly
-positive experience, and I landed a great job soon after graduation. So for me,
-the bootcamp was a good choice. I&#39;ve noticed this disparity, though, between
-people who attend bootcamps and have a positive experience, and people who have
-a negative one. Oftentimes this negativity is caused by inability to find a job
-after finishing up a bootcamp.</p>
-<p>Here are three tips to help you end up in the column of success stories.</p>
-<h3 id="enjoy-what-you-do">Enjoy What You Do</h3>
-<p>Perhaps this sounds obvious, but I was surprised about how many people signed up
-to go to a bootcamp without having any idea of whether or not they liked
-programming. Some people are lured in by the prospects of landing a shiny new
-job, and I get that. It&#39;s a tempting idea. But, if you don&#39;t enjoy what you&#39;re
-doing, it&#39;s going to be very hard to succeed. Even if you can get through the
-bootcamp and land a job, why would you want to start a career doing something
-you don&#39;t enjoy? I spent several months teaching myself to code before going to
-the bootcamp, so by the time the first day of class came around, I already had a
-healthy enjoyment for programming.</p>
-<h3 id="set-yourself-apart">Set Yourself Apart</h3>
-<p>In a nutshell, the way I landed my job was by learning and doing something that
-almost nobody in my cohort did. I learned ReactJS, which was not taught heavily
-as curriculum at the time I attended DevMountain. Really diving into React on my
-own enabled me to contribute to some open source components at MX (a startup in
-Utah). When I applied for the apprenticeship at MX, they received a slew of
-other talented applicants, but I was able to land the job. This was largely due
-to the fact that they had a rapport with me via back-and-forth communication in
-pull requests, and my open source contributions gave them confidence I could
-contribute to their codebase. There are a lot of ways to set yourself apart -
-learn something different, build something different, contribute to open source,
-etc. Find something that interests you and dive in.</p>
-<h3 id="make-connections">Make Connections</h3>
-<p>I prefer the phrase make-connections over &#39;network&#39;. I hate the idea of
-business-type-people mingling over cocktails and that&#39;s what I used to think of
-when I heard the word network. What I&#39;ve found though, is making connections
-doesn&#39;t have to be uncomfortable. Twitter can be an extremely useful tool for
-chatting with prominent developers in your area, and you can also ask them an
-occasional question. So not only can you make connections and form
-relationships, but also you can get some help from experts in the field. Forming
-relationships on twitter enabled me to speak at my first meetup.</p>
-<p>Twitter isn&#39;t the only way to have success with this. I&#39;ve connected with people
-over linkedin and in person as well. Find what works for you. One last tip on
-this - it&#39;s a lot easier to network when you <em>arent</em> desperate for a job. When
-you reach out to someone while you&#39;re looking for a job, no matter how well your
-intentions are, it might come across like you&#39;re looking for a handout. I
-addressed this by networking very early in the bootcamp, so the pressure of
-finding a job was lifted.</p>
-<p>This isn&#39;t a ground breaking list of tips, but I was surprised to see people who
-failed to do one or multiple of these things. Give it a go, and I wish you the
-best of luck in your new journey as a developer!</p>
 </p>
     </section>
   </article>
