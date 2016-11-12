@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 09 Nov 2016 16:07:01 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Three Quick Tips for Fresh Bootcamp Grads]]></title><description><![CDATA[<p>This was originally posted
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 12 Nov 2016 18:26:38 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[advice for new devs]]></title><description><![CDATA[<p>So, I went to one of those code bootcamps. I started there just over a year ago,
+and when I finished the course I worked there as a mentor for a cohort (three
+months). Immediately after that, I got what I think is a pretty swell job doing
+development full time, working mostly in technologies that I really like.</p>
+<p>It&#39;s hard to find non-success stories from bootcamps, since generally the people
+who go to these things are people who are really determined to do very well. You
+don&#39;t go and pay $10k-$20k to lock yourself up in a building with a bunch of
+other nerds for twelve or moure hours every day for three months straight unless
+you really want to get something out of it. I think I&#39;m a good example of
+someone who did really well through a bootcamp, though, and the reason I did so
+well comes down to really just one thing, which I think everyone going into
+computing (whether it&#39;s web development, databases, hardware, whatever) really
+should be aware of.</p>
+<blockquote>
+<p>KNOW COMPUTERS</p>
+</blockquote>
+<p>That seems really obvious, right? But as a mentor it was amazing to me how many
+people would come into a course that&#39;s just about making things happen with
+computers, not knowing a lot of the basics of how to <em>use</em> a computer, and
+knowing virtually nothing about how computers actually <em>work</em>. They&#39;re not just
+a thing with a keyboard and a screen and a logo on the back. They&#39;re not just a
+status symbol, though Mac users would like you to think they are. They&#39;re not
+magical, and it&#39;s important to know what they do and how they do it, at least in
+vague terms.</p>
+<p>No junior web dev should really be expected to be familiar with what a page
+cache is, or maybe even how domain names are resolved, but you should at least
+know what a kernel is, what userland actually means, what the implications of
+using your particular filesystem are, what the internet infrastructure kind of
+looks like (at least in vague terms), and how to do some basic things that will
+save you a lot of time later on (general terminal usage is a good place to
+start).</p>
+<p>This is the number one thing that can help you get, and stay, ahead as a student
+and junior dev, in my opinion. And it&#39;s stuff you&#39;ll absolutely <em>have</em> to know
+at some point, and probably mostly won&#39;t be taught, so it&#39;s a good idea to just
+pick up this stuff as early as possible.</p>
+]]></description><link>/2016/advice-for-new-devs.html</link><guid isPermaLink="true">/2016/advice-for-new-devs.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[tips]]></category><category><![CDATA[dev]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 12 Nov 2016 18:26:00 GMT</pubDate></item><item><title><![CDATA[Three Quick Tips for Fresh Bootcamp Grads]]></title><description><![CDATA[<p>This was originally posted
 <a href="https://github.com/lukeschunk/Notebook/blob/master/DailyNotes/Three_Quick_Tips.md">here</a>
 by <a href="https://twitter.com/LukeSchunk">Luke Schunk</a>, but I wanted to repost because
 there&#39;s some good stuff in here, and because he doesn&#39;t actually, like, share

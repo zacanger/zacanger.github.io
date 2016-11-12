@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 09 Nov 2016 16:07:01 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 12 Nov 2016 18:26:39 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>Classes, actually faster than factory functions, by ~twice.
+But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
+<p>Better programmers means better software means better solutions for bigger problems.</p>
+<p>Dear Zac: Please start writing tests. Thanks! Love, Zac.</p>
+<p>&#39;The Overjustification Effect&#39; ... side projects are valuable in multiple ways.
+(I think everyone knew this.)</p>
+<p>Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).</p>
+<p>APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
+brackets and braces, then? Like... wat?</p>
+<ul>
+<li>Five steps to understanding a new code base:<ul>
+<li>Find a mentor who really understands that code base and is willing and able to take the
+time to talk to you about it.</li>
+<li>Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
+etc. for all of it, then go study all those things <em>apart</em> from the current code so you
+know how they&#39;re all supposed to work. Also find out the history of the code.</li>
+<li>Complete a task. A tiny feature or bugfix or something.</li>
+<li>Don&#39;t get stuck. If you&#39;re not getting anything done for more than like a half hour or
+whatever and you can&#39;t figure it out, <em>ask that mentor</em>.</li>
+<li>Code review, review, review code, code, code review.</li>
+</ul>
+</li>
+</ul>
+<h3 id="functors">FUNCTORS</h3>
+<p>I don&#39;t really know what a functor is but apparently map and filter are functors.</p>
+<p>Functors are objects that have a map-type method. Not the method itself.</p>
+<p>A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.</p>
+]]></description><link>/2016/fff.html</link><guid isPermaLink="true">/2016/fff.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 03:39:25 GMT</pubDate></item><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
 <p>You can use Docker&#39;s repos. That&#39;s the easy way so I won&#39;t talk about it here.
 There are loads of good docs out there on that, and anyway, it&#39;s built into the
 tools. Instead this post deals with deployment of images that you can&#39;t publish
@@ -1670,22 +1697,4 @@ this works <span class="hljs-keyword">for</span> angular <span class="hljs-keywo
 keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> root --
 directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
 starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
-heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre>]]></description><link>/2016/earliest-devmtn-notes.html</link><guid isPermaLink="true">/2016/earliest-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 19 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
-<ul>
-<li>debugging a bash script: use the <code>-x</code> flag</li>
-<li>semicolons divide commands that are on the same line</li>
-<li>newlines are much more readable</li>
-<li>bash variables: there are local, global, string, integer,
-constant, and array variables.<ul>
-<li>global = env variables.</li>
-<li>local are available only in current shell.</li>
-<li>also predefined vars, like id (try <code>echo $UID</code>).</li>
-<li>capitalised by default. case-sensitive. local ones</li>
-<li>are sometimes done in lowercase, though. can contain</li>
-<li>integers, but can&#39;t <em>start</em> with integers.</li>
-</ul>
-</li>
-<li>to get started with everything: <code>man 1 intro</code></li>
-<li>also <code>git help everyday</code></li>
-</ul>
-]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 04:24:00 GMT</pubDate></item></channel></rss>
+heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre>]]></description><link>/2016/earliest-devmtn-notes.html</link><guid isPermaLink="true">/2016/earliest-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 19 May 2016 18:39:25 GMT</pubDate></item></channel></rss>
