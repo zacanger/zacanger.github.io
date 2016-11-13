@@ -6,6 +6,7 @@ const
 , port = process.env.PORT || 5000
 
 http.createServer((req, res) => {
+  let ip
   if (req.method === 'GET') {
     ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     dns.reverse(ip, handleResponse)
@@ -14,7 +15,7 @@ http.createServer((req, res) => {
     res.end()
   }
 
-  function handleResponse(error, domains) {
+  function handleResponse (error, domains) {
     switch (req.headers.accept) {
       case 'application/json':
         const data = {'ip' : ip}

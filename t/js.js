@@ -1,4 +1,4 @@
-function multilineText(context, text, width){
+function multilineText (context, text, width) {
   var
     len      = text.length
   , strArray = []
@@ -11,7 +11,7 @@ function multilineText(context, text, width){
 
   for (i = 0; i < len; i++) {
     var c = text.charAt(i)
-    if (c == '\n') {
+    if (c === '\n') {
       strArray.push(tmp)
       tmp = ''
       continue
@@ -29,7 +29,7 @@ function multilineText(context, text, width){
   return strArray
 }
 
-function change(){
+function change () {
   var
     canvas  = document.getElementById('canvas')
   , text    = document.getElementById('text')
@@ -50,6 +50,7 @@ function change(){
   document.getElementById('newImg').src = jpg
 }
 
+// eslint-disable-next-line
 var cm = CodeMirror.fromTextArea(document.getElementById('text'), {
   mode        : 'javascript'
 , theme       : 'zeemirror'
@@ -58,7 +59,8 @@ var cm = CodeMirror.fromTextArea(document.getElementById('text'), {
 
 cm.setSize(600, 800)
 
-function go(){
+// eslint-disable-next-line
+function go () {
   cm.save()
   change()
 }
