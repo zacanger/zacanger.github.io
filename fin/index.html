@@ -47,6 +47,138 @@
 <div id="content-main">
 
 
+  <article class="post tag-fp">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/category-theory-for-js-devs.html">Category Theory Notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-11-26">26 November, 2016</time>
+         | tags: <a href="/tag/fp/">fp</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="category-theory-for-js-devs">Category Theory for JS Devs</h1>
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this series</a>.</p>
+<h2 id="contracts">Contracts</h2>
+<p>Basics of type checking.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> str = a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string">&#39;string&#39;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected a string&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><h2 id="guarded-functions-and-categories">Guarded Functions and Categories</h2>
+<p>Functions that have contracts on input or output are called <em>guarded</em> functions.</p>
+<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
+<p>Maps between categories are functors.</p>
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded) functions.</p>
+<p>Function that returns a contract:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> typeOf = type =&gt; a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string"><code>&lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;</code></span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string"><code>Expected &lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;!</code></span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>And basic usage:</p>
+<pre class="hljs"><code>const bool = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;boolean&#39;</span>)</span></span>
+const num  = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;number&#39;</span>)</span></span>
+<span class="hljs-comment">// etc.</span>
+<span class="hljs-comment">// Obviously, for arrays you&#39;d need to use Array.isArray()</span></code></pre><p>Then we could do something like</p>
+<pre class="hljs"><code>const increment = <span class="hljs-operator">a</span> =&gt; {
+  <span class="hljs-operator">a</span> = <span class="hljs-built_in">num</span>(<span class="hljs-operator">a</span>)
+  <span class="hljs-constant">return</span> <span class="hljs-operator">a</span> + <span class="hljs-number">1</span>
+}</code></pre><p>Before I go further I should mention that yes, I have heard of Flow and TypeScript.</p>
+<pre class="hljs"><code>const increment = (<span class="hljs-tag">a</span>: number) =&gt; <span class="hljs-tag">a</span> + <span class="hljs-number">1</span></code></pre><p>I assume this video series will get to actual type systems at some point, though
+it was made before TypeScript and Flow were written, so it won&#39;t be mentioning those.</p>
+<h2 id="array-contracts">Array Contracts</h2>
+<p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> arr = a =&gt; {
+  <span class="hljs-keyword">if</span> ({}.toString.call(a) !== <span class="hljs-string">&#39;[object Array]&#39;</span>) <span class="hljs-keyword">throw</span> TypeError(<span class="hljs-string">&#39;Expected array!&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
+<h2 id="functors">Functors</h2>
+<p>Takes a maps the contract over the things array. Will throw if they&#39;re not all
+correct. Ensure that your array is, for example, all Strings, or whatever.</p>
+<pre class="hljs"><code>const arrayOf = contract =&gt; things =&gt; <span class="hljs-function"><span class="hljs-title">arr</span><span class="hljs-params">(things)</span></span>.<span class="hljs-function"><span class="hljs-title">map</span><span class="hljs-params">(c)</span></span></code></pre><p>This acts on the category&#39;s <em>objects</em> and <em>morphisms</em> both, and produces new
+objects and new morphisms.</p>
+<h2 id="maybe">Maybe</h2>
+<p>The <em>Maybe</em> functor.</p>
+<p><code>Maybe</code> is a Monad, but I guess we&#39;re only thinking of its Functor-ness for this
+video?</p>
+<p>Anyway here&#39;s some code.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Maybe = () =&gt; {}
+Maybe.prototype.getOrElse = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Some) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}
+<span class="hljs-comment">// the above: maybe something getOrElse what to do if none</span>
+
+<span class="hljs-keyword">const</span> None = () =&gt; {}
+None.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype) <span class="hljs-comment">// all instances of None are an instance of Maybe</span>
+None.prototype.toString = () =&gt; <span class="hljs-string">&#39;None&#39;</span>
+<span class="hljs-keyword">const</span> none = <span class="hljs-keyword">new</span> None()
+
+<span class="hljs-keyword">const</span> Some = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">this</span>.a = a }
+Some.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype)
+Some.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string"><code>Some(thisa)</code></span> }
+<span class="hljs-keyword">const</span> some = a =&gt; <span class="hljs-keyword">new</span> Some(a)
+
+<span class="hljs-keyword">const</span> maybe = c =&gt; m =&gt; {
+  <span class="hljs-keyword">if</span> (m <span class="hljs-keyword">instanceof</span> None) <span class="hljs-keyword">return</span> m
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m instance <span class="hljs-keyword">of</span> Some) <span class="hljs-keyword">return</span> some((m.a))
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected None or Some a!&#39;</span>)
+}</code></pre><h2 id="unit-and-flatten">Unit and Flatten</h2>
+<pre class="hljs"><code>const arrayOfUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return arrayOf<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">([a])</span>
+  }
+)</span>
+
+const maybeUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">(<span class="hljs-keyword">some</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>)</span>
+  }
+)</span>
+
+const arrayOfFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = arrayOf<span class="hljs-list">(<span class="hljs-keyword">arrayOf</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    const r = []
+    const l = a.length
+    for <span class="hljs-list">(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; l; ++i) {</span>
+      r = r.concat<span class="hljs-list">(<span class="hljs-keyword">a</span>[i])</span> // ew wtf is this guy doing?
+    }
+  }
+)</span>
+
+const maybeFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = maybe<span class="hljs-list">(<span class="hljs-keyword">maybe</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof Some)</span> {
+      a = a.x
+    } else if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof None)</span> {
+      a = a // why? if it<span class="hljs-quoted">&#39;s</span> not Some, it <em>must</em> be None.
+    }
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+  }
+)</span>
+
+// oh god what is even happening right now
+Array.unit = a =&gt; [a]
+Maybe.unit = some
+Array.prototype.flatten = function <span class="hljs-list">(<span class="hljs-keyword">c</span> = any)</span> { return arrayOfFlatten<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">this</span>)</span> }
+// he literally has if <span class="hljs-list">(<span class="hljs-keyword">c</span> === void <span class="hljs-number">0</span>)</span> c = any
+// but this isn<span class="hljs-quoted">&#39;t</span> the <span class="hljs-number">90</span>s so
+
+// apply given functor twice to a contract
+const twice = f =&gt; c =&gt; f<span class="hljs-list">(<span class="hljs-keyword">f</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>
+const once = f =&gt; f // what the actual fuck, this is id..</span></span></code></pre><p>Okay, I&#39;m done, I tried. there are like 20 more videos in this series but it&#39;s
+so badly done and there are so many mistakes and the guy talks so slowly that
+I just can&#39;t do this anymore.</p>
+<p>If anyone knows of a decent intro to category theory for JS devs, please let
+me know.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-devmtn tag-tips tag-dev">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/advice-for-new-devs.html">advice for new devs</a></h2>
@@ -295,79 +427,6 @@ simple and easy. For devs, same goes for Issues.</p>
 <p>I meant to write a good bit more about this but I probably don&#39;t need to.
 Everyone complains about using too many tools all the time, especially devs
 using businessy tools. And it&#39;s late. So.</p>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-fp tag-js">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/on-learning-fp.html">Thoughts On Learning Functional Programming</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-10-16">16 October, 2016</time>
-         | tags: <a href="/tag/fp/">fp</a>, <a href="/tag/js/">js</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>Functional programming is the new hotness these days. It&#39;s also the old hotness.
-It&#39;s just pretty hot, really. Everyone wants to have a more functional codebase,
-and that&#39;s a good thing. Less side-effecty, easier to hold in your head, etc.;
-the benefits of FP have been thoroughly espoused elsewhere. I just have a couple
-of things to add about learning functional programming, especially if you&#39;re
-coming from another paradigm or a mixed-paradigm language (like JS).</p>
-<h2 id="you-probably-don-t-need-to-learn-another-language">You (Probably) Don&#39;t Need To Learn Another Language</h2>
-<p>Languages like Haskell are really neat. They&#39;ll change the way you think about
-writing code. But you don&#39;t need to learn a classically functional language to
-learn functional programming.</p>
-<pre class="hljs"><code><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
-<span class="hljs-import"><span class="hljs-keyword">import</span> System.Environment</span>
-
-<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
-  args &lt;- getArgs
-  putStrLn (<span class="hljs-string">&quot;Hello &quot;</span> ++ args !! <span class="hljs-number">0</span>)</code></pre><p>If a block of code like that looks pretty foreign, that&#39;s okay. <em>You can program
-functionally in whatever language is most familiar to you</em>. Probably. If you&#39;re
-a C# dev or Rubyist or something, maybe you should look into something a little
-less strictly OO, but if you already write JS (for example), you don&#39;t need to
-go learn about abstract algebra and what stuff like <code>Foo :: [Bar] -&gt; Baz Quux</code>
-means. Which leads into thought number two:</p>
-<h2 id="a-better-type-system-doesn-t-make-a-language-functional">A Better Type System Doesn&#39;t Make A Language Functional</h2>
-<p>Yeah, languages like Idris and Haskell and other super mathy things are great
-for functional programming, but you don&#39;t <em>need</em> super complex type systems to
-program functionally. They&#39;re just, y&#39;know, pretty nice. Look at
-<a href="https://racket-lang.org/">Racket</a>, for example. You can have static typing
-(with <code>#lang typed/racket</code>) but you don&#39;t <em>have</em> to. Similarly, you can program
-functionally just fine in plain old JS, and you can write super imperative code
-in TypeScript. My point is, type systems don&#39;t make a language more functional,
-they make a language have a different type system.</p>
-<h2 id="lots-of-languages-have-a-repl">Lots Of Languages Have A REPL</h2>
-<p>LISP people like to talk about their REPL a lot. Same with Haskell folks,
-they&#39;ll tell you to go experient in GHCI. That&#39;s great, it really is. The REPL,
-for any given language, should be one of the primary tools you use to figure
-things out. But most languages have one. If you do Python, you&#39;re probably
-familiar with it. Same with Ruby (irb or pry). Node&#39;s REPL, while a little
-limited compared to GHCI, is still pretty fantastic. Racket&#39;s is very basic, but
-if you <code>(require xrepl)</code> it ends up being very pleasant. Having a decent REPL
-isn&#39;t a functional language feature, it&#39;s just a language ecosystem feature.</p>
-<h2 id="scheme-is-really-nice">Scheme Is Really Nice</h2>
-<p>I&#39;m not a LISPer. I&#39;ve just started learning Racket, which I chose because it&#39;s
-very compact compared to, say, ClojureScript (which also looks fantastic, by the
-way). But coming primarily from JavaScript, Scheme (Racket is a Scheme) is a
-really good way to get into FP in another language. Haskell, ML, Idris, etc.,
-are all awesome languages, but Scheme might be a better way to break into
-functional languages for a lot of folks. Give it a shot sometime.</p>
-<h2 id="if-you-re-brand-new-to-fp">If You&#39;re Brand New To FP</h2>
-<p>Check out these links.</p>
-<ul>
-<li><a href="https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q">FunFunFunction</a> is
-a great YouTube channel with videos that cover the basics of FP in JS.</li>
-<li><a href="https://medium.com/@cscalfani">Charles Scalfani</a> has a series of posts on
-Medium that talk about a lot of the same things.</li>
-<li><a href="https://www.youtube.com/channel/UCKjVLbSDoM-8-eEM7A30igA">Brian Lonsdorf</a> has
-a bunch of videos and talks that will convince you that FP is the Right Way.</li>
-</ul>
 </p>
     </section>
   </article>

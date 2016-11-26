@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/hack/css/hack-extended.min.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/category-theory-for-js-devs.html" />
+</head>
+<body class="author-template author-blog post-template tag-fp">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-fp">
+
+
+    <h2 class="post-title"><a href="/2016/category-theory-for-js-devs.html">Category Theory Notes</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-11-26">26 November, 2016</time>
+       | tags: <a href="/tag/fp/">fp</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <h1 id="category-theory-for-js-devs">Category Theory for JS Devs</h1>
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this series</a>.</p>
+<h2 id="contracts">Contracts</h2>
+<p>Basics of type checking.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> str = a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string">&#39;string&#39;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected a string&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><h2 id="guarded-functions-and-categories">Guarded Functions and Categories</h2>
+<p>Functions that have contracts on input or output are called <em>guarded</em> functions.</p>
+<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
+<p>Maps between categories are functors.</p>
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded) functions.</p>
+<p>Function that returns a contract:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> typeOf = type =&gt; a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string"><code>&lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;</code></span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string"><code>Expected &lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;!</code></span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>And basic usage:</p>
+<pre class="hljs"><code>const bool = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;boolean&#39;</span>)</span></span>
+const num  = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;number&#39;</span>)</span></span>
+<span class="hljs-comment">// etc.</span>
+<span class="hljs-comment">// Obviously, for arrays you&#39;d need to use Array.isArray()</span></code></pre><p>Then we could do something like</p>
+<pre class="hljs"><code>const increment = <span class="hljs-operator">a</span> =&gt; {
+  <span class="hljs-operator">a</span> = <span class="hljs-built_in">num</span>(<span class="hljs-operator">a</span>)
+  <span class="hljs-constant">return</span> <span class="hljs-operator">a</span> + <span class="hljs-number">1</span>
+}</code></pre><p>Before I go further I should mention that yes, I have heard of Flow and TypeScript.</p>
+<pre class="hljs"><code>const increment = (<span class="hljs-tag">a</span>: number) =&gt; <span class="hljs-tag">a</span> + <span class="hljs-number">1</span></code></pre><p>I assume this video series will get to actual type systems at some point, though
+it was made before TypeScript and Flow were written, so it won&#39;t be mentioning those.</p>
+<h2 id="array-contracts">Array Contracts</h2>
+<p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> arr = a =&gt; {
+  <span class="hljs-keyword">if</span> ({}.toString.call(a) !== <span class="hljs-string">&#39;[object Array]&#39;</span>) <span class="hljs-keyword">throw</span> TypeError(<span class="hljs-string">&#39;Expected array!&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
+<h2 id="functors">Functors</h2>
+<p>Takes a maps the contract over the things array. Will throw if they&#39;re not all
+correct. Ensure that your array is, for example, all Strings, or whatever.</p>
+<pre class="hljs"><code>const arrayOf = contract =&gt; things =&gt; <span class="hljs-function"><span class="hljs-title">arr</span><span class="hljs-params">(things)</span></span>.<span class="hljs-function"><span class="hljs-title">map</span><span class="hljs-params">(c)</span></span></code></pre><p>This acts on the category&#39;s <em>objects</em> and <em>morphisms</em> both, and produces new
+objects and new morphisms.</p>
+<h2 id="maybe">Maybe</h2>
+<p>The <em>Maybe</em> functor.</p>
+<p><code>Maybe</code> is a Monad, but I guess we&#39;re only thinking of its Functor-ness for this
+video?</p>
+<p>Anyway here&#39;s some code.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Maybe = () =&gt; {}
+Maybe.prototype.getOrElse = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Some) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}
+<span class="hljs-comment">// the above: maybe something getOrElse what to do if none</span>
+
+<span class="hljs-keyword">const</span> None = () =&gt; {}
+None.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype) <span class="hljs-comment">// all instances of None are an instance of Maybe</span>
+None.prototype.toString = () =&gt; <span class="hljs-string">&#39;None&#39;</span>
+<span class="hljs-keyword">const</span> none = <span class="hljs-keyword">new</span> None()
+
+<span class="hljs-keyword">const</span> Some = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">this</span>.a = a }
+Some.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype)
+Some.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string"><code>Some(thisa)</code></span> }
+<span class="hljs-keyword">const</span> some = a =&gt; <span class="hljs-keyword">new</span> Some(a)
+
+<span class="hljs-keyword">const</span> maybe = c =&gt; m =&gt; {
+  <span class="hljs-keyword">if</span> (m <span class="hljs-keyword">instanceof</span> None) <span class="hljs-keyword">return</span> m
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m instance <span class="hljs-keyword">of</span> Some) <span class="hljs-keyword">return</span> some((m.a))
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected None or Some a!&#39;</span>)
+}</code></pre><h2 id="unit-and-flatten">Unit and Flatten</h2>
+<pre class="hljs"><code>const arrayOfUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return arrayOf<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">([a])</span>
+  }
+)</span>
+
+const maybeUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">(<span class="hljs-keyword">some</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>)</span>
+  }
+)</span>
+
+const arrayOfFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = arrayOf<span class="hljs-list">(<span class="hljs-keyword">arrayOf</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    const r = []
+    const l = a.length
+    for <span class="hljs-list">(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; l; ++i) {</span>
+      r = r.concat<span class="hljs-list">(<span class="hljs-keyword">a</span>[i])</span> // ew wtf is this guy doing?
+    }
+  }
+)</span>
+
+const maybeFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = maybe<span class="hljs-list">(<span class="hljs-keyword">maybe</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof Some)</span> {
+      a = a.x
+    } else if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof None)</span> {
+      a = a // why? if it<span class="hljs-quoted">&#39;s</span> not Some, it <em>must</em> be None.
+    }
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+  }
+)</span>
+
+// oh god what is even happening right now
+Array.unit = a =&gt; [a]
+Maybe.unit = some
+Array.prototype.flatten = function <span class="hljs-list">(<span class="hljs-keyword">c</span> = any)</span> { return arrayOfFlatten<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">this</span>)</span> }
+// he literally has if <span class="hljs-list">(<span class="hljs-keyword">c</span> === void <span class="hljs-number">0</span>)</span> c = any
+// but this isn<span class="hljs-quoted">&#39;t</span> the <span class="hljs-number">90</span>s so
+
+// apply given functor twice to a contract
+const twice = f =&gt; c =&gt; f<span class="hljs-list">(<span class="hljs-keyword">f</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>
+const once = f =&gt; f // what the actual fuck, this is id..</span></span></code></pre><p>Okay, I&#39;m done, I tried. there are like 20 more videos in this series but it&#39;s
+so badly done and there are so many mistakes and the guy talks so slowly that
+I just can&#39;t do this anymore.</p>
+<p>If anyone knows of a decent intro to category theory for JS devs, please let
+me know.</p>
+
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=Category Theory Notes&url=http://blog.zacanger.com/2016/category-theory-for-js-devs.html"
+          title="Tweet this post."
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>
