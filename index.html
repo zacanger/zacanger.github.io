@@ -31,6 +31,12 @@
 
 </head>
 <body>
+  <script type="text/javascript">
+    function noSpam (user, domain) {
+      var s = 'mailto:' + user + '@' + domain
+      window.location = s
+    }
+  </script>
   <div class="man">
     <div class="header">
       <p class="left">zacanger(7)</p>
@@ -139,7 +145,7 @@
         title="Amazon Music"
         rel="nofollow noopener noreferrer"
         target="_blank">Amazon Music</a>.
-      And here's my <a href="mailto:zac@zacanger.com">email</a>.
+      And here's my <a href="javascript:noSpam('zac', 'zacanger.com')">email</a>.
     </p>
     <div class="footer">
       <p class="left"><span class="end">(END) </span></p>
