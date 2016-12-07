@@ -1,7 +1,7 @@
 {
   "name": "zacanger.com",
   "description": "zacanger.com",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "express": "^4.14.0",
-    "forever": "^0.15.2"
+    "forever": "^0.15.3"
   },
   "devDependencies": {},
   "private": true
