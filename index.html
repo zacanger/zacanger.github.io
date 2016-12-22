@@ -2,7 +2,15 @@
 <html lang="en">
   <head>
     <title>happy holidays!</title>
-    <style type="text/css"> * { padding: 0; margin: 0; } </style>
+    <style type="text/css">
+      * { padding: 0; margin: 0; }
+      body { background: #101010; }
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
     <script type="text/javascript">
       var thetamin = 0,
         thetamax = 6 * Math.PI,
@@ -149,9 +157,9 @@
       }
     </script>
   </head>
-  <body onload="run()" style="background:#101010;">
+  <body onload="run()">
     <a href="/home.html">
-    <div style="display:flex;justify-content:center;align-items:center;">
+    <div class="wrapper">
       <canvas id="scene" width="500" height="500"></canvas>
     </div>
     </a>
