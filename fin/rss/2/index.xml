@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 26 Nov 2016 21:58:03 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[react in one line]]></title><description><![CDATA[<p>like my redux-in-one-line post&mdash;no, not really. just the idea of it.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 31 Dec 2016 20:32:03 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[angular in one line]]></title><description><![CDATA[<p>also angular in one line, just cuz.</p>
+<pre class="hljs"><code><span class="hljs-label">WEIRD</span> MIX <span class="hljs-keyword">BETWEEN </span><span class="hljs-keyword">MARKUP </span><span class="hljs-keyword">AND </span>JAVA-LIKE JAVASCRIPT GOES HERE</code></pre>]]></description><link>/2016/angular-in-one-line.html</link><guid isPermaLink="true">/2016/angular-in-one-line.html</guid><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 13 Aug 2016 23:59:00 GMT</pubDate></item><item><title><![CDATA[react in one line]]></title><description><![CDATA[<p>like my redux-in-one-line post&mdash;no, not really. just the idea of it.
 really the idea of stateless components, the pure-function kind that we got to
 start using in 0.14 or whatever.</p>
 <pre class="hljs"><code>v = <span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(d)</span></span></code></pre><p>tada.</p>
@@ -612,102 +613,4 @@ i need to learn i guess sometime</p>
 <li>invision</li>
 <li>bittorrent sync?</li>
 </ul>
-]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
-these are a bunch of notes i took on that topic
-there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
-but those can wait for osme other time.</p>
-<p>now, i&#39;m perfectly 100% satisfied with what i get out of a
-<a href="https://github.com/zacanger/z.git">well-configured</a> <a href="https://neovim.io">neovim</a>.</p>
-<hr>
-<h2 id="editor-idea">editor idea</h2>
-<ul>
-<li>libraries, etc: in local storage</li>
-<li>POST to back end</li>
-<li>offline: save to local, queue, push when back online</li>
-<li>do while loop: cash saves, settimeout, push to backend periodically</li>
-<li>alert for unsaved files on exit</li>
-<li>codefolding and tabs.<ul>
-<li>VS Code STILL doesn&#39;t have these basics. Wow.</li>
-</ul>
-</li>
-<li>autosaves, but saves are git commits?<ul>
-<li>easy reversion. integrate with dropbox/gdrive/whatever to keep commits distributed but private.</li>
-</ul>
-</li>
-</ul>
-<h3 id="things-any-programming-editor-cum-environment-should-do">Things any programming editor-cum-environment should do</h3>
-<h4 id="-including-some-really-obvious-ones-but-i-just-want-to-make-it-all-clear-">(including some really obvious ones, but i just want to make it all clear)</h4>
-<ul>
-<li>allow navigation of projects</li>
-<li>enable editing of source code</li>
-<li>detect syntax of languages (through extension is okay)</li>
-<li>integrate with compiler(s)/interpreter(s), CI, REPL(s) (depending on language specificity of the editor)</li>
-<li>allow for community collaborative effort to build/maintain language &amp; feature support</li>
-<li>integrate with modern development tools/environments (browsers, source control, deployment, etc)</li>
-<li>allow for non-code (text, hints, live previews, etc) !!</li>
-<li>allow for collaboration <em>within</em> editor (realtime remote connection) !!</li>
-<li>interpret code as it is typed; show results locally !!</li>
-<li>abstract <em>above</em> just a normal directory tree for navigation/code organization !!</li>
-</ul>
-<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,
-technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research
-before even prototyping.</p>
-<h3 id="notes-from-brett-victor-s-talks-and-such">notes from brett victor&#39;s talks and such</h3>
-<ul>
-<li>Information Design two big rules: Show the data, and show comparisons.</li>
-<li>Larry Tesler: personal vendetta against modes in software. &#39;Don\&#39;t mode me in.&#39;</li>
-<li>He&#39;s the reason we have straight-up WYSIWYG editing and stuff.</li>
-<li>His editor was called &#39;Gypsy.&#39; Click and drag? That&#39;s him.</li>
-<li>Cut, copy, and paste: that&#39;s him.</li>
-<li>That&#39;s funny, kinda, because the best software is still moded.</li>
-<li>This is curious, because to everyone else at the time, modes were just a way of life
-with computing. This wasn&#39;t a problem to anyone else, just to him.</li>
-</ul>
-<h2 id="on-version-control-and-ot-and-eve-in-general">on version control and ot and eve in general</h2>
-<ul>
-<li>Recording changes as they happen is easier than inferring them after the fact.</li>
-<li>Preserving history (the context in which a change was made) is necessary for proper merges.</li>
-<li>Being predictable is more important than being smart.</li>
-<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,
-rather than the whole thing.</li>
-</ul>
-<h2 id="links">Links</h2>
-<ul>
-<li><a href="https://github.com/jdleesmiller/jotgit">Git-backed editor</a> build on Meteor, in Coffeescript.</li>
-<li>Some bits relating to editor design:<ul>
-<li><a href="https://vimeo.com/36579366">bret victor&#39;s &#39;inventing on principle&#39;</a></li>
-<li><a href="http://worrydream.com/LearnableProgramming/">(and his followup to it, so people would stop misinterpreting in)</a></li>
-<li><a href="http://dl.acm.org/citation.cfm?id=2677279">an empirical study of imperative programming assignments</a></li>
-</ul>
-</li>
-<li>Some things about LightTable:<ul>
-<li><a href="https://groups.google.com/forum/#!topic/light-table-discussion/T3DhzWhabok">discussion about writing plugins</a></li>
-<li><a href="https://github.com/mdhaney/lt-plugin-template">plugin template</a></li>
-<li><a href="https://github.com/swannodette/lt-cljs-tutorial">clojurescript tutorial for lighttable users</a></li>
-<li><a href="http://product.reverb.com/2014/05/10/getting-started-programming-light-table/">basics of hacking on lighttable</a></li>
-<li><a href="https://github.com/LightTable/Declassifier">basic walkthrough of plugin build</a></li>
-<li><a href="https://github.com/LightTable/LightTable/wiki/Creating-an-LT-Client-using-LTs&#39;-bundled-Node">using node in lighttable</a></li>
-</ul>
-</li>
-<li>Eve links:<ul>
-<li><a href="http://www.cse.yorku.ca/~wolfgang/papers/layoutALE.pdf">Auckland layout editor for constraint-based UI</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/dbtest12-bloom.pdf">BloomUnit: Declarative Testing for Distributed Programs</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/eurosys10-boom.pdf">BOOM Analytics: Exploring Data-Centric, Declarative Programming for the Cloud</a></li>
-<li><a href="https://4d75d27f-a-62cb3a1a-s-sites.googlegroups.com/site/sinhnish/documents/fluidLayouts.pdf?attachauth=ANoY7crdYgssu75ccg3Gc6sSDm-dxh2rWHL5jLVh7LkNKtUgFpv2GDqK8AVzr1IJ53Dg6eM5StLasOQk-SDN4KWaCi-phlQK30GSum-hbWOzT5VVSiNRJ7U3F_FJ8pBMndIjR60O9bYSSzxu1TJmR6kX4dlEuCL16pituZTrEFj7BNnX-SRU3JajEKY4f9s_mYqR3uTF4GW5Jm2EkHgpEUfSZtCrUJOZVPO4NGg7nc59490937x_VW4%3D&amp;attredirects=0">Compiling Mockups to Flexible UI</a></li>
-<li><a href="http://arxiv.org/pdf/1401.1031v1.pdf">Constraint Solvers for User Interface Layout</a></li>
-<li><a href="http://arxiv.org/pdf/1408.1675.pdf">Database Queries that Explain their Work</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/datalog2011-dedalus.pdf">Dedalus: Datalog in Time and Space</a></li>
-<li><a href="http://db.cs.berkeley.edu/papers/vldb14-edelweiss.pdf">Edelweiss: Automatic Storage Reclamation for Distributed Programming</a></li>
-<li><a href="http://p2.berkeley.intel-research.net/papers/EvitaRacedVLDB2008.pdf">Evita Raced: Metacompilation for Declarative Networks</a></li>
-<li><a href="http://faculty.washington.edu/ajko/papers/Lee2011Gidget.pdf">Improves Novice Programmers Learning</a></li>
-<li><a href="http://infoscience.epfl.ch/record/180642/files/EPFL_TH5456.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
-<li><a href="http://lampwww.epfl.ch/~rompf/thesis_120716.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
-<li><a href="http://www.neilconway.org/docs/socc2012_bloom_lattices.pdf">Logic and Lattices for Distributed Programming</a></li>
-<li><a href="https://infosys.uni-saarland.de/publications/DJ11.pdf">OctopusDB: Towards a One Size Fits All Database Architecture</a></li>
-<li><a href="http://db.cs.berkeley.edu/cs286/papers/lookingglass-sigmod2008.pdf">OLTP Through the Looking Glass</a></li>
-<li><a href="http://icwww.epfl.ch/~kuncak/papers/DagandETAL08Opis.pdf">Opis: Reliable Distributed Systems in OCaml</a></li>
-<li><a href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1165&amp;context=hcii">Why Not Questions about Program Behavior</a></li>
-</ul>
-</li>
-</ul>
-]]></description><link>/2016/editor-design-notes.html</link><guid isPermaLink="true">/2016/editor-design-notes.html</guid><category><![CDATA[editor]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 14 Jun 2016 03:27:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item></channel></rss>
