@@ -31,5 +31,6 @@ tags: personal
 * Take the time to move all things using Facebook auth away from this, so I can finally delete my Facebook
 * Change how this blog is built, so it's more flexible, and maybe using something fun like Frog
   * Also, blog more (at least, clear out my `drafts` dir).
-* Be making more money, either where I am now or somewhere else
+* Be making more money
+  * Preferably where I am now, but somewhere else if that doesn't work out
   * Also start actually emailing recruiters back
