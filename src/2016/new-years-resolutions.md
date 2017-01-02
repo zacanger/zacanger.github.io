@@ -34,3 +34,4 @@ tags: personal
 * Be making more money
   * Preferably where I am now, but somewhere else if that doesn't work out
   * Also start actually emailing recruiters back
+* Switch to Mutt or some other purely text-based email client
