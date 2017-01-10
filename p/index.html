@@ -6,7 +6,6 @@
   <title>p</title>
 
   <style type="text/css">
-
     body, textarea, input, #tools {
       background-color: #020f12;
       color: #a1d4d4;
@@ -55,7 +54,6 @@
     }
 
     @media (min-width: 600px) {
-
       #tools {
         padding: 10px 20px 0 0;
         right: 0;
@@ -69,9 +67,7 @@
       }
 
       #t { padding: 30px 50px 30px 50px; }
-
     }
-
   </style>
 </head>
 
@@ -99,11 +95,11 @@ isn't that nifty?
     , f
 
     var content = LZString.decompressFromBase64(window.location.hash.slice(1))
-    if(content){textarea.value = content}
+    if (content) textarea.value = content
 
     processContent() // Update urlInput and download link
 
-    function processContent() {
+    function processContent () {
       window.location.hash = hash()
       urlInput.value       = window.location
       document.title       = title()
@@ -111,29 +107,29 @@ isn't that nifty?
       download.href        = downloadUri()
     }
 
-    function hash()       {return LZString.compressToBase64(textarea.value)}
-    function title()      {return textarea.value ? textarea.value.slice(0,30) : 'p'}
-    function filename()   {return title().replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt'}
-    function downloadUri(){return "data:text/plain," + encodeURIComponent(textarea.value)}
+    function hash ()        { return LZString.compressToBase64(textarea.value) }
+    function title ()       { return textarea.value ? textarea.value.slice(0,30) : 'p' }
+    function filename ()    { return title().replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.txt' }
+    function downloadUri () { return "data:text/plain," + encodeURIComponent(textarea.value) }
 
-    function contentChanged(){
+    function contentChanged () {
       clearInterval(f)
-      f = setTimeout(function(){
+      f = setTimeout(function () {
         processContent()
       }, 500)
     }
 
-    function share() {
+    function share () {
       urlInput.style.display = 'block'
       urlInput.select()
       return false
     }
 
-    function unshare(){
+    function unshare () {
       urlInput.style.display = 'none'
     }
 
-    function clear() {
+    function clear () {
       textarea.value = ''
       unshare()
       textarea.focus()
@@ -149,4 +145,3 @@ isn't that nifty?
   </script>
 </body>
 </html>
-
