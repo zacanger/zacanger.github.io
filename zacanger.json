@@ -5,7 +5,7 @@
     "handle": "zacanger"
   },
 
-  "status": "Happily employed.",
+  "status": "Employed.",
 
   "website": "http://zacanger.com",
 
@@ -13,23 +13,17 @@
 
   "writing": "http://blog.zacanger.com",
 
-  "summary": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, keeping software and development free, open, and transparent, and keeping content accessible.",
+  "summary": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, and keeping software and development free, open, transparent, and accessible.",
 
-  "occupations": [
-    "*n*x nerd",
-    "debian administrator",
-    "javascript developer",
-    "web enthusiast",
-    "session musician",
-    "sometime web designer",
-    "node fanboi"
-  ],
-
-  "major-projects": [
+  "notable projects": [
     {
       "name": "zacanger",
       "url": "http://npm.im/zacanger",
       "summary": "My CV, in JSON, in your terminal, in colour"
+    },{
+      "name": "alert-node",
+      "url": "http://npm.im/alert-node",
+      "summary": "Cross-platform alert in Node"
     },{
       "name": "luvi",
       "url": "http://npm.im/luvi",
@@ -43,21 +37,9 @@
       "url": "http://npm.im/hyperterm-mild-dark",
       "summary": "Mild dark theme for the HyperTerm terminal"
     },{
-      "name": "hipper",
-      "url": "http://npm.im/hipper",
-      "summary": "A text editor for the terminal."
-    },{
       "name": "lilnote",
       "url": "http://npm.im/lilnote",
       "summary": "A tiny note-taking app that stores notes in JSON"
-    },{
-      "name": "scrapingnode",
-      "url": "http://npm.im/scrapingnode",
-      "summary": "A tiny command-line scraper in Node"
-    },{
-      "name": "lolwut",
-      "url": "http://npm.im/lolwut",
-      "summary": "Music and colours in your terminal"
     },{
       "name": "Pharaoh",
       "url": "http://npm.im/pharaoh",
@@ -106,19 +88,21 @@
       "react",
       "(neo)vim",
       "bash/sh",
-      "debian administration",
+      "linux (specifically debian)",
       "css/stylus/sass/less",
       "node",
-      "angular (1.x)",
-      "vue"
+      "docker",
+      "angular (1.x)"
     ],
     "learning": [
-      "docker",
       "ruby",
       "python",
       "haskell",
+      "clojure(script)",
+      "scheme (racket)",
       "soft skills",
-      "aws"
+      "aws",
+      "vue"
     ]
   },
 
@@ -128,7 +112,7 @@
       "position": "Front-end developer",
       "dates": "2016-Present",
       "summary": "Front-end and infrastructure (ops-ish).",
-      "technologies": "React, CSS, *nix, Koa, Express, Redux, AWS, Docker."
+      "technologies": "React, CSS, *nix, Koa, Express, Redux, AWS, Docker, NGINX, Angular, C#."
     },{
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
@@ -160,8 +144,8 @@
     {
       "name": "DevMountain",
       "year completed": 2016,
-      "summary": "Full-time immersive JavaScript program with focus on MEAN Stack.",
-      "url": "http://devmounta.in"
+      "summary": "Full-time immersive JavaScript program (bootcamp) with focus on MEAN Stack.",
+      "url": "https://devmountain.com"
     }
   ]
 
