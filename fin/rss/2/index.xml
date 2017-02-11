@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 02 Jan 2017 06:07:30 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[angular in one line]]></title><description><![CDATA[<p>also angular in one line, just cuz.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 11 Feb 2017 17:14:57 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[purescript things]]></title><description><![CDATA[<p>What are <code>@</code> and <code>=&gt;</code>?</p>
+<p>What is fixity? Is this the same as precedence?</p>
+<pre class="hljs"><code>foo :: [<span class="hljs-operator">a</span>] <span class="hljs-comment">-- in haskell would be</span>
+foo :: forall <span class="hljs-operator">a</span>. Array <span class="hljs-operator">a</span> <span class="hljs-comment">-- in purescript, i think?</span>
+<span class="hljs-comment">-- there&#39;s no [] in annotations, it&#39;s always Array a</span>
+<span class="hljs-comment">-- but there is List, but you have to use Data.List instead of just []</span>
+
+Number <span class="hljs-comment">-- is js number</span>
+Int <span class="hljs-comment">-- is 32 bit -- and it&#39;s basically n | 0 (?)</span>
+
+Unit <span class="hljs-comment">-- ()</span>
+
+main :: IO () <span class="hljs-comment">-- would be</span>
+main :: Eff <span class="hljs-comment">-- basically, but really more something like</span>
+main :: Eff (<span class="hljs-built_in">process</span> :: PROCESS, fs :: FS) Unit <span class="hljs-comment">-- or something</span>
+
+<span class="hljs-operator">a</span> &lt;&gt; b <span class="hljs-comment">-- a ++ b -- concat a b</span>
+
+A &lt;= B <span class="hljs-comment">-- B implies instance of A</span></code></pre><p>something like this is kind of right i think (what builds on what):
+i</p>
+<pre class="hljs"><code>      monad
+  applicative   ??
+    apply  <span class="hljs-keyword">bind
+</span>      functor</code></pre><p>No tuples, just records. But there&#39;s a lib for tuples.</p>
+<p><code>&lt;&lt;&lt;</code>  is <code>.</code> for rtl composition, and <code>&gt;&gt;&gt;</code> for ltr</p>
+<p>Lots of <code>Data.List</code> stuff is in <code>Data.Foldable</code> and <code>Data.Traversable</code> instead.</p>
+<p>To export stuff: <code>module Foo (a, b, c) where</code>.
+That&#39;s like <code>export { a, b, c }</code> in JS, I think.
+<code>module Foo (..)</code> exports everything, I think.</p>
+<h2 id="what">what</h2>
+<pre class="hljs"><code>z ± psci
+PSCi requires the purescript-psci-support package to be installed.
+You can <span class="hljs-operator"><span class="hljs-keyword">install</span> it <span class="hljs-keyword">using</span> Bower <span class="hljs-keyword">as</span> <span class="hljs-keyword">follows</span>:
+
+  bower <span class="hljs-keyword">i</span> purescript-psci-support <span class="hljs-comment">--save-dev</span>
+
+<span class="hljs-keyword">For</span> <span class="hljs-keyword">help</span> getting started, visit <span class="hljs-keyword">http</span>://wiki.purescript.org/PSCi
+
+z ± a bower_components/ | ag psci
+purescript-psci-support/
+
+z ± jq .devDependencies &lt; bower.<span class="hljs-keyword">json</span>
+{
+  <span class="hljs-string">&quot;purescript-spec&quot;</span>: <span class="hljs-string">&quot;^0.8.0&quot;</span>,
+  <span class="hljs-string">&quot;purescript-psci-support&quot;</span>: <span class="hljs-string">&quot;^1.0.0&quot;</span>
+}
+
+z ±
+
+z ± pulp psci
+PSCi, <span class="hljs-keyword">version</span> <span class="hljs-number">0.9</span><span class="hljs-number">.3</span>
+<span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> <span class="hljs-keyword">help</span>
+
+&gt; :<span class="hljs-keyword">l</span> <span class="hljs-keyword">Main</span>
+Unrecognized directive. <span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> <span class="hljs-keyword">help</span>.
+&gt; <span class="hljs-keyword">import</span> <span class="hljs-keyword">Main</span>
+&gt; :<span class="hljs-keyword">t</span> <span class="hljs-keyword">Main</span>
+<span class="hljs-keyword">Error</span> <span class="hljs-keyword">found</span>:
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">module</span> $PSCI
+<span class="hljs-keyword">at</span>  line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">1</span> - line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">2</span>
+
+  <span class="hljs-keyword">Unknown</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">constructor</span> <span class="hljs-keyword">Main</span>
+
+
+See <a href="https://github.com/purescript/purescript/wiki/">https://github.com/purescript/purescript/wiki/</a><span class="hljs-keyword">Error</span>-Code-UnknownName <span class="hljs-keyword">for</span> more information,
+<span class="hljs-keyword">or</span> <span class="hljs-keyword">to</span> contribute <span class="hljs-keyword">content</span> related <span class="hljs-keyword">to</span> this <span class="hljs-keyword">error</span>.
+
+
+&gt; :<span class="hljs-keyword">i</span> <span class="hljs-keyword">Main</span>
+Unrecognized directive. <span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> <span class="hljs-keyword">help</span>.
+&gt; :<span class="hljs-keyword">t</span> <span class="hljs-keyword">Module</span>.Thing.functionThatIKnowIsThere
+<span class="hljs-keyword">Error</span> <span class="hljs-keyword">found</span>:
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">module</span> $PSCI
+<span class="hljs-keyword">at</span>  line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">1</span> - line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">15</span>
+
+  <span class="hljs-keyword">Unknown</span> <span class="hljs-keyword">module</span> <span class="hljs-keyword">Module</span>.Thing
+
+
+See <a href="https://github.com/purescript/purescript/wiki/">https://github.com/purescript/purescript/wiki/</a><span class="hljs-keyword">Error</span>-Code-UnknownName <span class="hljs-keyword">for</span> more information,
+<span class="hljs-keyword">or</span> <span class="hljs-keyword">to</span> contribute <span class="hljs-keyword">content</span> related <span class="hljs-keyword">to</span> this <span class="hljs-keyword">error</span>.
+
+
+&gt; :q
+See ya!</span></code></pre><p>kbai</p>
+]]></description><link>/2016/purescript-things.html</link><guid isPermaLink="true">/2016/purescript-things.html</guid><category><![CDATA[purescript]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 20 Aug 2016 03:32:00 GMT</pubDate></item><item><title><![CDATA[angular in one line]]></title><description><![CDATA[<p>also angular in one line, just cuz.</p>
 <pre class="hljs"><code><span class="hljs-label">WEIRD</span> MIX <span class="hljs-keyword">BETWEEN </span><span class="hljs-keyword">MARKUP </span><span class="hljs-keyword">AND </span>JAVA-LIKE JAVASCRIPT GOES HERE</code></pre>]]></description><link>/2016/angular-in-one-line.html</link><guid isPermaLink="true">/2016/angular-in-one-line.html</guid><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 13 Aug 2016 23:59:00 GMT</pubDate></item><item><title><![CDATA[react in one line]]></title><description><![CDATA[<p>like my redux-in-one-line post&mdash;no, not really. just the idea of it.
 really the idea of stateless components, the pure-function kind that we got to
 start using in 0.14 or whatever.</p>
@@ -574,43 +658,4 @@ finding a job was lifted.</p>
 <p>This isn&#39;t a ground breaking list of tips, but I was surprised to see people who
 failed to do one or multiple of these things. Give it a go, and I wish you the
 best of luck in your new journey as a developer!</p>
-]]></description><link>/2016/three-quick-tips.html</link><guid isPermaLink="true">/2016/three-quick-tips.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:29:00 GMT</pubDate></item><item><title><![CDATA[stack]]></title><description><![CDATA[<p>just a list to keep in mind the stuff
-that we use at work</p>
-<p>because it&#39;s sometimes a lot of stuff</p>
-<p>this is just the stuff i encounter at least
-weekly i think, except the design things, which
-i need to learn i guess sometime</p>
-<ul>
-<li><p>windows server</p>
-<ul>
-<li>visual studio</li>
-<li>c#</li>
-<li>.net</li>
-<li>sql server</li>
-</ul>
-</li>
-<li><p>linux servers</p>
-<ul>
-<li>aws s3, ec2, elastic beanstalk, various others</li>
-<li>docker</li>
-<li>sysd?</li>
-<li>koa</li>
-<li>react</li>
-<li>mocha, chai, enzyme</li>
-<li>graphql, apollo?</li>
-<li>redux</li>
-<li>immutable</li>
-<li>typescript</li>
-<li>purescript</li>
-<li>sass</li>
-<li>postcss</li>
-</ul>
-</li>
-<li><p>teamcity</p>
-</li>
-<li><p>sketch</p>
-</li>
-<li>invision</li>
-<li>bittorrent sync?</li>
-</ul>
-]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/three-quick-tips.html</link><guid isPermaLink="true">/2016/three-quick-tips.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:29:00 GMT</pubDate></item></channel></rss>

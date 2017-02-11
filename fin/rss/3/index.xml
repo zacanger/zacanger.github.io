@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Mon, 02 Jan 2017 06:07:30 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 11 Feb 2017 17:14:57 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[stack]]></title><description><![CDATA[<p>just a list to keep in mind the stuff
+that we use at work</p>
+<p>because it&#39;s sometimes a lot of stuff</p>
+<p>this is just the stuff i encounter at least
+weekly i think, except the design things, which
+i need to learn i guess sometime</p>
+<ul>
+<li><p>windows server</p>
+<ul>
+<li>visual studio</li>
+<li>c#</li>
+<li>.net</li>
+<li>sql server</li>
+</ul>
+</li>
+<li><p>linux servers</p>
+<ul>
+<li>aws s3, ec2, elastic beanstalk, various others</li>
+<li>docker</li>
+<li>sysd?</li>
+<li>koa</li>
+<li>react</li>
+<li>mocha, chai, enzyme</li>
+<li>graphql, apollo?</li>
+<li>redux</li>
+<li>immutable</li>
+<li>typescript</li>
+<li>purescript</li>
+<li>sass</li>
+<li>postcss</li>
+</ul>
+</li>
+<li><p>teamcity</p>
+</li>
+<li><p>sketch</p>
+</li>
+<li>invision</li>
+<li>bittorrent sync?</li>
+</ul>
+]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
 these are a bunch of notes i took on that topic
 there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
 but those can wait for osme other time.</p>
@@ -1549,37 +1588,4 @@ but also probably) stylus (i hope), cssnano/csso, stylelint,
 bem/suit stuff, et-OH MY GOD A SEARCH ON THE WEBSITE SHOWS NO
 STYLUS PLUGINS WHAT oh wait it&#39;s okay a search on npm shows
 two, we&#39;re saved.</p>
-]]></description><link>/2016/postcss.html</link><guid isPermaLink="true">/2016/postcss.html</guid><category><![CDATA[css]]></category><category><![CDATA[postcss]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 21:00:00 GMT</pubDate></item><item><title><![CDATA[fixing parallels weirdness]]></title><description><![CDATA[<p>at work, parallels kept crashing. what led to this:</p>
-<ul>
-<li>took a system update on the mac from the app store</li>
-<li>after rebooting, went over to parallels, which runs windows 10</li>
-<li>that needed an update too apparently, so took that</li>
-<li>after rebooting the virtual windows, didn&#39;t think about it for a while</li>
-<li>went back to it, went to un-suspend or whatever you&#39;d call it, and it crashed</li>
-<li>happened several times, tried force quitting, killing all related processes, rebooting the mac, no luck</li>
-<li>the fix on the kb was totally unrelated. running prd_client_app manually gave the following:</li>
-</ul>
-<pre class="hljs"><code>May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">33</span>  pdfm-bootstrap[<span class="hljs-number">84883</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84847</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span>
-[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $
-[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $ .<span class="hljs-regexp">/./</span>prl_client_app
-objc[<span class="hljs-number">84919</span>]: Class YRKSpinningProgressIndicator is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/PDControlCenter.framework/</span>Versions<span class="hljs-regexp">/A/</span>PDControlCenter and <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks/libPrlGui<span class="hljs-number">.2</span>.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class DeallocHook is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class MethodInfo is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class PreviewItem is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class QLResponder is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class SSBaseDelegate is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84957</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Is executed with params <span class="hljs-string">&#39;start&#39;</span>
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84969</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Loading pids from <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84970</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: prl_event_tap already started with pid <span class="hljs-number">84870</span> and alive
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84971</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Starting prl_naptd...
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84977</span>] &lt;Warning&gt;: agent[<span class="hljs-number">84958</span>]: prl_naptd not started
-<span class="hljs-string">error:</span> failed to execute <span class="hljs-string">subprocess:</span> -<span class="hljs-number">2</span>
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84980</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Dump pids to <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84981</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span></code></pre><p>most of that is probably irrelevant, apparently that class is implemented in both thingy
-is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
-anyway, the thing that actually ended up working was:</p>
-<p><code>sudo &quot;/Applications/Parallels Desktop.app/Contents/MacOS/inittool&quot; init -b &quot;/Applications/Parallels Desktop.app&quot;</code></p>
-<p>note: run that as sudo from your normal user, don&#39;t <code>sudo su</code> and then do it.</p>
-<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
-if anyone else can&#39;t get anything to work, maybe that&#39;ll help.</p>
-]]></description><link>/2016/parallels-weirdness.html</link><guid isPermaLink="true">/2016/parallels-weirdness.html</guid><category><![CDATA[mac]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 20:30:56 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/postcss.html</link><guid isPermaLink="true">/2016/postcss.html</guid><category><![CDATA[css]]></category><category><![CDATA[postcss]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 21:00:00 GMT</pubDate></item></channel></rss>

@@ -48,6 +48,62 @@
 <div id="content-main">
 
 
+  <article class="post tag-http">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/http.html">http</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-01">01 June, 2016</time>
+         | tags: <a href="/tag/http/">http</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>http: k-v store of urls and resources</p>
+<p>representations: dictionaries of actual resources</p>
+<p>eh?</p>
+<p>example: url: foo.bar/video with:
+representations: various formats and sizes of said video</p>
+<p>methods: possible to define custom</p>
+<p>get, put, and delete are really obvious</p>
+<p>patch: like put, but for small changes</p>
+<p>head: get, but for just meta about the resource</p>
+<p>options: what all can i even do with this thing?
+(useful for... cors, i guess)</p>
+<p>post: kind of a catch-all for whatever else you want to do rly
+it&#39;s not actually intended to be used as the C in CRUD</p>
+<p>i may be rethinking my position on url parameters vs queries</p>
+<p>remembering, from <a href="http://mdkb.zacanger.com/urls">my docs</a>:</p>
+<p><a href="http://www.ietf.org/rfc/rfc2396.txt">URLs</a> are made up of (usually just some) of these parts:
+<code>&lt;scheme&gt;://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;parameters&gt;?&lt;query&gt;#&lt;fragment&gt;</code>.</p>
+<ul>
+<li>The scheme is the <em>protocol</em> (http, https, ftp, git, etc.). It ends with <code>:</code> (not <code>//</code>).</li>
+<li>The username and password are fairly self-explanitory, and we don&#39;t see that a whole whole lot these days, except
+maybe in FTP.</li>
+<li>The host is the part we all know well, like &#39;github&#39; or &#39;google.&#39; It can be a domain name or an IP address.</li>
+<li>The port (80 for HTTP, 443 for HTTPS, etc.) is self-explanitory; defaults to 80.</li>
+<li>The path would be segments (like <code>/doc/search</code> or whatever), and can contain semicolons to separate parameters (like <code>thing=foo;stuff=bar</code>).</li>
+<li>Queries can be before or after parameters, and that&#39;d be something like <code>/?q=foo+bar</code>.</li>
+<li>Fragments are for specific parts of a resource, like <code>somepage.html#somesection</code>.</li>
+<li><code>; / ? : @ &amp; = + $ ,</code> are reserved characters (meaning they have special uses in URLs).</li>
+<li><code>- _ . ! ~ * &#39; ( )</code> are unreserved (you can use them almost wherever you&#39;d like).</li>
+<li><code>{ } | \\ ^ [ ] \</code> ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).</li>
+<li><code>&lt; &gt; # % &quot;</code> don&#39;t use these, at all (except the <code>%</code> and <code>#</code> <em>if</em> you have a valid reason for it, because they do special things in URLs).</li>
+</ul>
+<hr>
+<ul>
+<li>content headers from client to specify what it can be (accept)</li>
+<li>content headers from server to specify what it is (content-type)</li>
+</ul>
+<p>cache-control, last-modified, and etag to control caching</p>
+<p>client will check if-modified-since and if-none-match</p>
+<p>accept-encoding (with gzip or compress) yay</p>
+<p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-clj">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/clojure.html">clojure</a></h2>
@@ -660,102 +716,9 @@ set foo:port 9999</code>_).</p>
   </article>
 
 
-  <article class="post tag-docker">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/docker.html">docker notes</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-26">26 May, 2016</time>
-         | tags: <a href="/tag/docker/">docker</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>So this is a <code>Dockerfile</code>:</p>
-<pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
-<span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
-</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
-</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
-</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get install build-essential curl
-</span><span class="hljs-built_in">RUN</span> <span class="bash">curl <a href="https://gist.githubusercontent.com/isaacs/">https://gist.githubusercontent.com/isaacs/</a><span class="hljs-number">579814</span>/raw/<span class="hljs-number">24</span>f5f02b5<span class="hljs-built_in">cd</span>1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
-</span><span class="hljs-built_in">EXPOSE</span> <span class="hljs-number">4010</span> <span class="hljs-comment"># port to expose</span>
-ENTRYPOINT [<span class="hljs-string">&quot;node&quot;</span>] <span class="hljs-comment"># thing to run when we start the image, i think</span></code></pre><p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
-<p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
-<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
-<p>Some other Dockerfile commands (?):</p>
-<pre class="hljs"><code><span class="hljs-built_in">WORKDIR</span> <span class="bash">/<span class="hljs-built_in">set</span>/working/directory/to/here/i/guess
-</span><span class="hljs-built_in">COPY</span> <span class="bash">thisthing /to/here
-</span><span class="hljs-built_in">CMD</span> <span class="bash">[<span class="hljs-string">&quot;array&quot;</span>, <span class="hljs-string">&quot;of&quot;</span>, <span class="hljs-string">&quot;commands&quot;</span>, <span class="hljs-string">&quot;like&quot;</span>, <span class="hljs-string">&quot;npm&quot;</span>, <span class="hljs-string">&quot;start&quot;</span>]
-</span><span class="hljs-built_in">ADD</span> <span class="bash">. . <span class="hljs-comment"># add files/dirs from cwd to image</span></span></code></pre><p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p 80:4010</code> looks obvious.</p>
-<p>Some commands:</p>
-<pre class="hljs"><code>docker ps <span class="hljs-comment"># get container id</span>
-docker logs containerid
-docer exec -<span class="hljs-keyword">it</span> containerid /bin/bash <span class="hljs-comment"># enter the container</span></code></pre><p>It&#39;s totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
-<p>There&#39;s also a <code>node:versionnumber</code> image I think?</p>
-<p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
-then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
-<p>To limit usage: <code>-m &quot;256M&quot; --memory-swap &quot;2G&quot;</code></p>
-<p>An example:</p>
-<pre class="hljs"><code>docker run \
--<span class="ruby">e <span class="hljs-string">&quot;NODE_ENV=production&quot;</span> \
-</span>-<span class="ruby">u <span class="hljs-string">&quot;app&quot;</span> \
-</span>-<span class="ruby">m <span class="hljs-string">&quot;256M&quot;</span> --memory-swap <span class="hljs-string">&quot;2G&quot;</span> \
-</span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
-</span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
-</span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
-<p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
-<p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
-<p>Compose is like fig, but from Docker.</p>
-<pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
-docker-compose up -<span class="hljs-keyword">d</span>
-docker-compose <span class="hljs-keyword">stop</span>, <span class="hljs-keyword">kill</span>, rm</span></code></pre><p>All of these just go off a YAML file, I guess.</p>
-<p>Okay, based on Node&#39;s official docs we can do:</p>
-<pre class="hljs"><code>FROM <span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title">:6</span>.<span class="hljs-number">2.0</span>
-EXPOSE <span class="hljs-number">4010</span>
-
-<span class="hljs-comment"># and then</span>
-
-docker build -t jane-com .
-docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env default)</code></p>
-<p>And if you need systemd in the mix, try something like:</p>
-<pre class="hljs"><code><span class="hljs-comment">;; once docker is installed, there should already be</span>
-<span class="hljs-comment">;; a systemd service for it. so you can just systemctl start docker</span>
-<span class="hljs-comment">;; and systemctl enable docker and that SHOULD be it</span>
-<span class="hljs-title">
-[Unit]</span>
-<span class="hljs-setting">Description=<span class="hljs-value">This is our Node service</span></span>
-<span class="hljs-setting">Requires=<span class="hljs-value">docker.service</span></span>
-<span class="hljs-setting">After=<span class="hljs-value">docker.service</span></span>
-<span class="hljs-title">
-[Service]</span>
-<span class="hljs-setting">Restart=<span class="hljs-value">always</span></span>
-<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker kill ournodecontainer</span></span>
-<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker rm ournodecontainer</span></span>
-<span class="hljs-setting">ExecStart=<span class="hljs-value">/usr/bin/docker run --name=ournodecontainer ournode/container</span></span>
-<span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
-<span class="hljs-title">
-[Install]</span>
-<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre><p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don&#39;t really tell you where to look for that):</p>
-<pre class="hljs"><code>docker <span class="hljs-built_in">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
-
-<span class="hljs-comment"># And then you could just:</span>
-
-mkdir ~/foo
-tar -C ~/foo -xvf dockerimg.tar
-
-<span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
-<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
-so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
-<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
-<p><code>docker save</code> is for <em>images</em>.</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
         <a class="newer-posts" href="/page/7/">&larr; Newer Posts</a>
-    <span class="page-number">Page 8 of 13</span>
+    <span class="page-number">Page 8 of 14</span>
         <a class="older-posts" href="/page/9/">Older Posts &rarr;</a>
 </nav>
 

@@ -47,6 +47,65 @@
 <div id="content-main">
 
 
+  <article class="post tag-react tag-proptypes tag-classnames">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2017/proptypes-for-classnames.html">PropTypes for Classnames</a></h2>
+      <span class="post-meta">
+        <time datetime="2017-02-11">11 February, 2017</time>
+         | tags: <a href="/tag/react/">react</a>, <a href="/tag/proptypes/">proptypes</a>, <a href="/tag/classnames/">classnames</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+It lets you do stuff like</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./styles.css&#39;</span>
+
+<span class="hljs-keyword">const</span> Thing = ({ foo }) =&gt; (
+  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== <span class="hljs-number">2</span> })} /&gt;
+)</code></pre><p>And a whole bunch of other stuff, and it just works. If you write your CSS
+in CSS, you should check it out.</p>
+<p>There is one sort of pain point with it, though. If you have components that
+can take anything that&#39;s <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
+<pre class="hljs"><code><span class="hljs-constant">Stuff.propTypes</span> = {
+  className: <span class="hljs-built_in">string</span>.isRequired
+}</code></pre><p>This doesn&#39;t work, because you&#39;re passing all sorts of stuff in, possibly.</p>
+<p>A solution is to make your own custom PropTypes. You don&#39;t even need to
+get into fancy stuff involving validation, just combine a bunch of other
+PropTypes into your own.</p>
+<p>Let&#39;s say you have a <code>propTypes.js</code> file somewhere where you define custom
+PropTypes.</p>
+<pre class="hljs"><code>import { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+export <span class="hljs-keyword">const</span> classname = PropTypes.oneOfType([
+  PropTypes.<span class="hljs-keyword">object</span>,
+  PropTypes.<span class="hljs-keyword">string</span>,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.<span class="hljs-keyword">bool</span>,
+      PropTypes.<span class="hljs-keyword">object</span>,
+      PropTypes.<span class="hljs-keyword">string</span>
+    ])
+  )
+])</code></pre><p>That&#39;s all you need! Then you can do:</p>
+<pre class="hljs"><code>import { <span class="hljs-built_in">classname</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./propTypes&#39;</span>
+import cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+
+const Stuff = ({ <span class="hljs-built_in">className</span> }) =&gt; (
+  &lt;span <span class="hljs-built_in">className</span>={cn(<span class="hljs-built_in">className</span>)}&gt;
+)
+Stuff.propTypes = {
+  <span class="hljs-built_in">className</span>: <span class="hljs-built_in">classname</span> <span class="hljs-comment">// this is your custom thing</span>
+}</code></pre><p>That should solve all PropTypes warnings and let you throw anything the
+<code>classnames</code> library can handle at your components.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-personal">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/new-years-resolutions.html">new years resolutions</a></h2>
@@ -384,68 +443,8 @@ try, because we can&#39;t all just leave.</p>
   </article>
 
 
-  <article class="post tag-cljs tag-scheme tag-types tag-hs tag-jsx tag-js tag-react">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/two-things-that-might-be-fun.html">Two Things That Might Be Fun</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-11-03">03 November, 2016</time>
-         | tags: <a href="/tag/cljs/">cljs</a>, <a href="/tag/scheme/">scheme</a>, <a href="/tag/types/">types</a>, <a href="/tag/hs/">hs</a>, <a href="/tag/jsx/">jsx</a>, <a href="/tag/js/">js</a>, <a href="/tag/react/">react</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>Two things that I think might be fun to play around with, at some point.</p>
-<p>First: a less intrusive type annotation thing for JS. It&#39;d be similar to ML or
-Haskell style annotations, but maybe use Flow as a sort of backend to actually
-do the type checking? It could look something like this:</p>
-<pre class="hljs"><code>//<span class="hljs-type-annotation">::</span> <span class="hljs-built_in">Int</span> -&gt; <span class="hljs-built_in">Int</span> -&gt; [<span class="hljs-built_in">Int</span>]
-<span class="hljs-keyword">const</span> putIntsInList = (a, b) =&gt; [ a,  b ]
-
-//<span class="hljs-type-annotation">::</span>Str -&gt; Str -&gt; Str // or
-//<span class="hljs-type-annotation">::</span>[<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>]
-<span class="hljs-keyword">const</span> doThingsWithStrings = (a, b) =&gt; <span class="hljs-string"><code>${a} ${b}</code></span></code></pre><p>It could use some sort of regexy thing to basically just detect anywhere there&#39;s
-<code>//::</code>, see what the next thing is, and see if they go together. I don&#39;t know
-much about ASTs or type systems, though. I just think that&#39;d be a lot less
-in-the-way than how TypeScript and Flow currently work. Also, my syntax
-highlighting doesn&#39;t know what template strings are, so. That&#39;s gross.</p>
-<p>Another thing:</p>
-<pre class="hljs"><code><span class="hljs-keyword">import</span> React, { PropTypes } from &#39;react&#39;
-<span class="hljs-keyword">import</span> AnotherComponent from &#39;./AnotherComponent&#39;
-
-const <span class="hljs-type">Something</span> = ({ a, b, <span class="hljs-built_in">c</span> }) =&gt; {
-  <span class="hljs-keyword">if</span> (!a) <span class="hljs-keyword">return</span> null
-
-  <span class="hljs-keyword">return</span> (
-    (div
-      (another-component (whatever &#39;a))
-        (not (null? b)
-          (span (b))
-        (not (null? <span class="hljs-built_in">c</span>)
-          (<span class="hljs-built_in">map</span> (p (<span class="hljs-built_in">c</span>)))))))
-  <span class="hljs-comment">// which would be like</span>
-  <span class="hljs-keyword">return</span> (
-    &lt;div&gt;
-      &lt;<span class="hljs-type">AnotherComponent</span> whatever={a} /&gt;
-      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
-      {<span class="hljs-built_in">c</span> &amp;&amp; <span class="hljs-built_in">c</span>.length &amp;&amp;
-        <span class="hljs-built_in">c</span>.<span class="hljs-built_in">map</span>((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
-      }
-    &lt;/div&gt;
-  )
-}
-
-export <span class="hljs-keyword">default</span> <span class="hljs-type">Something</span></code></pre><p>This a totally made-up syntax for a thing that doesn&#39;t exactly exist, and I
-don&#39;t know how useful this would actually be, since there are already great
-React libraries for ClojureScript out there. Just think it&#39;d be neat to be able
-to to JSX in Scheme. I dunno, just a thought.</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
-    <span class="page-number">Page 1 of 13</span>
+    <span class="page-number">Page 1 of 14</span>
         <a class="older-posts" href="/page/2/">Older Posts &rarr;</a>
 </nav>
 
