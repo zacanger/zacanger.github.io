@@ -8,13 +8,12 @@ tags: react proptypes classnames
 The [classnames](https://npmjs.com/package/classnames) library is nice.
 It lets you do stuff like
 
-```javasript
+```javascript
 import cn from 'classnames'
 import styles from './styles.css'
 
-const Thing = ({ foo }) => (
+const Thing = ({ foo }) =>
   <Stuff className={cn(styles.thing, { [styles.foo]: foo !== 2 })} />
-)
 ```
 
 And a whole bunch of other stuff, and it just works. If you write your CSS
@@ -24,9 +23,7 @@ There is one sort of pain point with it, though. If you have components that
 can take anything that's `classnames`-compatible, PropTypes get a little annoying.
 
 ```javascript
-Stuff.propTypes = {
-  className: string.isRequired
-}
+Stuff.propTypes = { className: string.isRequired }
 ```
 
 This doesn't work, because you're passing all sorts of stuff in, possibly.
@@ -61,9 +58,9 @@ That's all you need! Then you can do:
 import { classname } from './propTypes'
 import cn from 'classnames'
 
-const Stuff = ({ className }) => (
+const Stuff = ({ className }) =>
   <span className={cn(className)}>
-)
+
 Stuff.propTypes = {
   className: classname // this is your custom thing
 }
