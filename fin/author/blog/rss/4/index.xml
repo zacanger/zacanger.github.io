@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 11 Feb 2017 18:58:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[fixing parallels weirdness]]></title><description><![CDATA[<p>at work, parallels kept crashing. what led to this:</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 14 Feb 2017 04:36:28 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[random notes from when reading about postcss]]></title><description><![CDATA[<p>so, it&#39;s basically just a sort of build tool plugin api.</p>
+<p>can be used as a build tool plugin. uhm.</p>
+<p>postcss-cli is a thing.</p>
+<p>i guess probably most of the css things i use are available
+as plugins here anyway. (obviously autoprefixer and cssnext,
+but also probably) stylus (i hope), cssnano/csso, stylelint,
+bem/suit stuff, et-OH MY GOD A SEARCH ON THE WEBSITE SHOWS NO
+STYLUS PLUGINS WHAT oh wait it&#39;s okay a search on npm shows
+two, we&#39;re saved.</p>
+]]></description><link>/2016/postcss.html</link><guid isPermaLink="true">/2016/postcss.html</guid><category><![CDATA[css]]></category><category><![CDATA[postcss]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 21:00:00 GMT</pubDate></item><item><title><![CDATA[fixing parallels weirdness]]></title><description><![CDATA[<p>at work, parallels kept crashing. what led to this:</p>
 <ul>
 <li>took a system update on the mac from the app store</li>
 <li>after rebooting, went over to parallels, which runs windows 10</li>
@@ -2373,153 +2382,4 @@ squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span
     <span class="hljs-keyword">return</span> (...args) =&gt; acc(...args.concat(args))
   }
   <span class="hljs-keyword">return</span> acc
-}</code></pre>]]></description><link>/2016/currying-and-partial-application.html</link><guid isPermaLink="true">/2016/currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 22:00:00 GMT</pubDate></item><item><title><![CDATA[ideas for a better jsx]]></title><description><![CDATA[<p>please note: these aren&#39;t all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
-<p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
-<p>i don&#39;t dislike jsx, i got over that</p>
-<p>pretty sure ryan did, too</p>
-<pre class="hljs"><code><span class="hljs-comment">// JSX</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
-  render() {
-    <span class="hljs-keyword">return</span> (
-      &lt;div className=<span class="hljs-string">&quot;profile-info-container&quot;</span>&gt;
-
-        &lt;div className=<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>&gt;
-          &lt;img className=<span class="hljs-string">&quot;profile-image&quot;</span> src=<span class="hljs-string">&quot;<a href="https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460">https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460</a>&quot;</span> /&gt;
-        &lt;/div&gt;
-
-        &lt;div className=<span class="hljs-string">&quot;name-info-container&quot;</span>&gt;
-          &lt;h2 className=<span class="hljs-string">&quot;display-name&quot;</span>&gt;<span class="hljs-type">Ryan</span> <span class="hljs-type">Walsh</span>&lt;/h2&gt;
-          &lt;h3 className=<span class="hljs-string">&quot;username&quot;</span>&gt;r-walsh&lt;/h3&gt;
-        &lt;/div&gt;
-
-        &lt;table className=<span class="hljs-string">&quot;profile-guide-info&quot;</span>&gt;
-          &lt;tr className=<span class="hljs-string">&quot;number-container&quot;</span>&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">12</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">20</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-            &lt;th className=<span class="hljs-string">&quot;guide-info-number&quot;</span>&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;<span class="hljs-number">47</span>&lt;/a&gt;&lt;/span&gt;
-            &lt;/th&gt;
-          &lt;/tr&gt;
-
-          &lt;tr&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-authored&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-pencil&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-favorites&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-heart&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-            &lt;td&gt;
-              &lt;span className=<span class="hljs-string">&quot;profile-followers&quot;</span>&gt;&lt;a href=<span class="hljs-string">&quot;/profile&quot;</span>&gt;&lt;i className=<span class="hljs-string">&quot;fa fa-eye&quot;</span>&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
-            &lt;/td&gt;
-          &lt;/tr&gt;
-        &lt;/table&gt;
-
-      &lt;/div&gt;
-    )
-  }
-}
-
-<span class="hljs-comment">// Other nonsense</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> {</span>
-  render() {
-    <span class="hljs-keyword">return</span> (
-      div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info-container&#39;] } ) {
-
-        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-string">&quot;profile-image-wrapper&quot;</span>] } ) {
-          img( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-image&#39;], src: <span class="hljs-symbol">&#39;https</span>:<span class="hljs-comment">//avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460&#39; } ) {}</span>
-        }
-
-        div( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;name</span>-info-container&#39; } ) {
-          h2( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-string">&quot;display-name&quot;</span> } ) { <span class="hljs-type">John</span> <span class="hljs-type">Doe</span> }
-          h3( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> <span class="hljs-symbol">&#39;usernam</span>e&#39; } ) { jdoe }
-        }
-
-        table( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-guide-info&#39;] } ) {
-          tr( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;number</span>-container&#39;] } ) {
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-
-            th( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;guide</span>-info-number&#39;] } ) {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } )
-            }
-          }
-
-          tr() {
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-
-            td() {
-              span( { <span class="hljs-class"><span class="hljs-keyword">class</span>:</span> [<span class="hljs-symbol">&#39;profile</span>-authored&#39;] } ) {}
-            }
-          }
-        }
-      }
-    )
-  }
-}
-
-<span class="hljs-comment">// why not like this?</span>
-export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>{</span>
-  render() {
-    <span class="hljs-keyword">return</span> ({
-      div : {
-        <span class="hljs-class"><span class="hljs-keyword">class</span> :</span> [<span class="hljs-symbol">&#39;fo</span>o&#39;, <span class="hljs-symbol">&#39;ba</span>r&#39;]
-      , p : {
-          str : <span class="hljs-symbol">&#39;Bespoke</span> scenester retro bitters <span class="hljs-type">Pitchfork</span> <span class="hljs-number">8</span>-bit mixtape <span class="hljs-type">PBR</span>&amp;<span class="hljs-type">B</span> mlkshk iphone wire-rimmed glasses forage <span class="hljs-type">Helvetica</span> put a bird on it intelligentsia semiotics leggings normcore. <span class="hljs-type">Flexitarian</span> <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> mustache carles kickstarter <span class="hljs-type">Echo</span> <span class="hljs-type">Park</span> <span class="hljs-type">Blue</span> <span class="hljs-type">Bottle</span> actually tumblr beard literally tote bag <span class="hljs-type">Pitchfork</span> cray shabby <span class="hljs-type">Portland</span> stumptown asymmetrical.&#39;
-        }
-      }
-    , footer : {
-        span : {
-          str : <code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${datespan} ${company}. &lt;span class=&quot;hljs-type&quot;&gt;All&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Rights&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;Reserved&lt;/span&gt;.</code>
-}}})}
-
-<span class="hljs-comment">// or this?</span>
-const n = notJSX
-function notJSXparser(){
-  <span class="hljs-keyword">return</span> n(<span class="hljs-symbol">&#39;bod</span>y&#39;, [
-    n(<span class="hljs-symbol">&#39;h</span>1&#39;, {<span class="hljs-symbol">&#39;this</span> is a website&#39;},
-      n(&#39;p&#39;, {<span class="hljs-symbol">&#39;this</span> is a lot of text! texytext, text. texting. txet.&#39;},
-        n(<span class="hljs-symbol">&#39;foote</span>r&#39;, {<code>&lt;span class=&quot;hljs-type&quot;&gt;Copyright&lt;/span&gt; ${stuff}</code>})
-      )
-    )
-  ])
-}
-
-<span class="hljs-comment">// how they do it in EVE&#39;s UI (<span class="hljs-doctag">note:</span> they use typescript and an in-house custom lib they call &#39;microReact&#39;)</span>
-const page = {
-  t          : <span class="hljs-symbol">&#39;spa</span>n&#39; <span class="hljs-comment">// the tag type; defauts to &#39;div&#39;</span>
-, c          : <span class="hljs-symbol">&#39;col</span>-<span class="hljs-number">12</span>&#39; <span class="hljs-comment">// className</span>
-, text       : <span class="hljs-symbol">&#39;some</span> content&#39;
-, children   : [{
-    <span class="hljs-comment">// array of further nodes</span>
-  }]
-, top        : <span class="hljs-number">10</span>
-, width      : <span class="hljs-number">100</span> <span class="hljs-comment">// more styles can go here, like react&#39;s style object basically</span>
-, click      : someHandler
-, svg        : <span class="hljs-literal">true</span> <span class="hljs-comment">// to add svg properties... why? idk. just &#39;cuz, i guess.</span>
-, cx         : <span class="hljs-number">4</span>
-, cy         : <span class="hljs-number">4</span>
-, postRender : someDomManipulationFunction <span class="hljs-comment">// on insertion and on update</span>
-}
-
-<span class="hljs-comment">// how jsx actually kinda works (reactelement anyway) under the hood:</span>
-let someEl = {
-  <span class="hljs-class"><span class="hljs-keyword">type</span>  :</span> <span class="hljs-symbol">&#39;di</span>v&#39;
-, props : {}
-, ref   : <span class="hljs-literal">null</span>
-, key   : <span class="hljs-literal">null</span>
-}</code></pre>]]></description><link>/2016/better-jsx.html</link><guid isPermaLink="true">/2016/better-jsx.html</guid><category><![CDATA[jsx]]></category><category><![CDATA[react]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 20:00:00 GMT</pubDate></item></channel></rss>
+}</code></pre>]]></description><link>/2016/currying-and-partial-application.html</link><guid isPermaLink="true">/2016/currying-and-partial-application.html</guid><category><![CDATA[currying]]></category><category><![CDATA[fp]]></category><category><![CDATA[partial-application]]></category><category><![CDATA[functional-programming]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 05 May 2016 22:00:00 GMT</pubDate></item></channel></rss>

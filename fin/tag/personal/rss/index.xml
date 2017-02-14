@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 11 Feb 2017 18:58:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[new years resolutions]]></title><description><![CDATA[<h2 id="things-i-hope-to-maybe-do-in-2017">things i hope to maybe do in 2017</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Tue, 14 Feb 2017 04:36:28 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
+I&#39;ve been consistent with them for several months at the least.</p>
+<p>I may add things to this list, but won&#39;t delete any.</p>
+<p>The checklist is using GFM, which this blog generator doesn&#39;t understand. (That&#39;s on the list.)</p>
+<h2 id="things-i-hope-to-maybe-do-in-2017">things i hope to maybe do in 2017</h2>
+<ul>
+<li>[ ] Work less at work<ul>
+<li>[ ] Mainly, stop working on weekends and in the middle of the night and stuff</li>
+</ul>
+</li>
+<li>[ ] Get familiar these languages to write real-world stuff<ul>
+<li>[ ] Racket</li>
+<li>[ ] ClojureScript</li>
+<li>[ ] Haskell</li>
+</ul>
+</li>
+<li>[ ] Learn more about <code>sh</code> and POSIX compat in general<ul>
+<li>[ ] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
+<li>[ ] Also weed out my dotfiles, they&#39;re ridiculous</li>
+</ul>
+</li>
+<li>[ ] At least record the acoustic album that&#39;s been written and sitting there for ages<ul>
+<li>[ ] Maybe get Windows working enough to finish up the electro album thing</li>
+</ul>
+</li>
+<li>[ ] Be healther<ul>
+<li>[ ] Switch to vaping, for real this time</li>
+<li>[ ] Maybe eat better?<ul>
+<li>[x] Less pizza, at least</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[ ] Buy a car</li>
+<li>[ ] Finish paying off debts, so close<ul>
+<li>[ ] Also try not to tap into savings so much for stupid things</li>
+</ul>
+</li>
+<li>[ ] Actually finish anything ever<ul>
+<li>[ ] Various unfinished small projects</li>
+<li>[ ] Finish Pharaoh rewrite early on</li>
+</ul>
+</li>
+<li>[ ] Make progress on learning Korean, for real this time</li>
+<li>[ ] Try really hard to not write any untested code</li>
+<li>[ ] Make a real effort to talk to real humans in real life</li>
+<li>[ ] Take the time to move all things using Facebook auth away from this, so I can finally delete my Facebook</li>
+<li>[ ] Change how this blog is built, so it&#39;s more flexible, and maybe using something fun like Frog (using GFM).<ul>
+<li>[ ] Also, blog more (at least, clear out my <code>drafts</code> dir).</li>
+</ul>
+</li>
+<li>[ ] Be making more money<ul>
+<li>[ ] Preferably where I am now, but somewhere else if that doesn&#39;t work out</li>
+<li>[ ] Also start actually emailing recruiters back</li>
+</ul>
+</li>
+<li>[ ] Switch to Mutt or some other purely text-based email client</li>
+</ul>
+]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 31 Dec 2017 06:59:59 GMT</pubDate></item><item><title><![CDATA[new years resolutions]]></title><description><![CDATA[<h2 id="things-i-hope-to-maybe-do-in-2017">things i hope to maybe do in 2017</h2>
 <ul>
 <li>Work less at work<ul>
 <li>Mainly, stop working on weekends and in the middle of the night and stuff</li>
