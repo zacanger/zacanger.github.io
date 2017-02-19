@@ -29,7 +29,7 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Maybe get Windows working enough to finish up the electro album thing
 * [ ] Be healther
   * [ ] Switch to vaping, for real this time
-  * [ ] Maybe eat better?
+  * [x] Maybe eat better?
     * [x] Less pizza, at least
 * [ ] Buy a car
 * [ ] Finish paying off debts, so close
@@ -39,8 +39,9 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Finish Pharaoh rewrite early on
 * [ ] Make progress on learning Korean, for real this time
 * [ ] Try really hard to not write any untested code
-* [ ] Make a real effort to talk to real humans in real life
-* [ ] Take the time to move all things using Facebook auth away from this, so I can finally delete my Facebook
+* [x] Make a real effort to talk to real humans in real life
+* [x] Take the time to move all things using Facebook auth away from this
+* [x] Delete Facebook
 * [ ] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
   * [ ] Also, blog more (at least, clear out my `drafts` dir).
 * [ ] Be making more money
