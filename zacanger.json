@@ -21,6 +21,10 @@
       "url": "http://npm.im/zacanger",
       "summary": "My CV, in JSON, in your terminal, in colour"
     },{
+      "name": "zeelib",
+      "url": "http://npm.im/zeelib",
+      "summary": "A small lib of FP, Node, and DOM utils."
+    },{
       "name": "alert-node",
       "url": "http://npm.im/alert-node",
       "summary": "Cross-platform alert in Node"
