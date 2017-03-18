@@ -26,7 +26,7 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
   * [ ] Also weed out my dotfiles, they're ridiculous
 * [ ] At least record the acoustic album that's been written and sitting there for ages
-  * [ ] Maybe get Windows working enough to finish up the electro album thing
+* [ ] Maybe get Windows working enough to finish up the electro album thing
 * [ ] Be healther
   * [ ] Switch to vaping, for real this time
   * [x] Maybe eat better?
@@ -35,10 +35,10 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [ ] Finish paying off debts, so close
   * [ ] Also try not to tap into savings so much for stupid things
 * [ ] Actually finish anything ever
-  * [ ] Various unfinished small projects
+  * [x] Various unfinished small projects
   * [ ] Finish Pharaoh rewrite early on
-* [ ] Make progress on learning Korean, for real this time
-* [ ] Try really hard to not write any untested code
+* [x] Make progress on learning Korean, for real this time
+* [x] Try really hard to not write any untested code
 * [x] Make a real effort to talk to real humans in real life
 * [x] Take the time to move all things using Facebook auth away from this
 * [x] Delete Facebook

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 19 Feb 2017 01:09:54 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Mar 2017 01:33:28 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, but won&#39;t delete any.</p>
@@ -21,10 +21,8 @@ I&#39;ve been consistent with them for several months at the least.</p>
 <li>[ ] Also weed out my dotfiles, they&#39;re ridiculous</li>
 </ul>
 </li>
-<li>[ ] At least record the acoustic album that&#39;s been written and sitting there for ages<ul>
+<li>[ ] At least record the acoustic album that&#39;s been written and sitting there for ages</li>
 <li>[ ] Maybe get Windows working enough to finish up the electro album thing</li>
-</ul>
-</li>
 <li>[ ] Be healther<ul>
 <li>[ ] Switch to vaping, for real this time</li>
 <li>[x] Maybe eat better?<ul>
@@ -39,12 +37,12 @@ I&#39;ve been consistent with them for several months at the least.</p>
 </ul>
 </li>
 <li>[ ] Actually finish anything ever<ul>
-<li>[ ] Various unfinished small projects</li>
+<li>[x] Various unfinished small projects</li>
 <li>[ ] Finish Pharaoh rewrite early on</li>
 </ul>
 </li>
-<li>[ ] Make progress on learning Korean, for real this time</li>
-<li>[ ] Try really hard to not write any untested code</li>
+<li>[x] Make progress on learning Korean, for real this time</li>
+<li>[x] Try really hard to not write any untested code</li>
 <li>[x] Make a real effort to talk to real humans in real life</li>
 <li>[x] Take the time to move all things using Facebook auth away from this</li>
 <li>[x] Delete Facebook</li>
