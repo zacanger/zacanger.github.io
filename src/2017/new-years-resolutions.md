@@ -34,6 +34,12 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [ ] Buy a car
 * [ ] Finish paying off debts, so close
   * [ ] Also try not to tap into savings so much for stupid things
+* [ ] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
+  * [ ] Also, blog more (at least, clear out my `drafts` dir).
+* [ ] Be making more money
+  * [ ] Preferably where I am now, but somewhere else if that doesn't work out
+  * [ ] Also start actually emailing recruiters back
+* [ ] Switch to Mutt or some other purely text-based email client
 * [ ] Actually finish anything ever
   * [x] Various unfinished small projects
   * [ ] Finish Pharaoh rewrite early on
@@ -42,9 +48,3 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [x] Make a real effort to talk to real humans in real life
 * [x] Take the time to move all things using Facebook auth away from this
 * [x] Delete Facebook
-* [ ] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
-  * [ ] Also, blog more (at least, clear out my `drafts` dir).
-* [ ] Be making more money
-  * [ ] Preferably where I am now, but somewhere else if that doesn't work out
-  * [ ] Also start actually emailing recruiters back
-* [ ] Switch to Mutt or some other purely text-based email client
