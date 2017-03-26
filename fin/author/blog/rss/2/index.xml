@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Mar 2017 17:26:51 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[principles and tips]]></title><description><![CDATA[<p>I&#39;m not very experienced, and sometimes I&#39;m pretty sure I&#39;m not very good at
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 26 Mar 2017 21:58:02 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[visual studio oddities]]></title><description><![CDATA[<h2 id="story-">Story:</h2>
+<p>Manager: &#39;Hey there&#39;s this thing, can you do it? Shouldn&#39;t take long.&#39;</p>
+<p>Me: &#39;Sure, I guess.&#39;</p>
+<p>Manager: &#39;It&#39;s in Angular.&#39;</p>
+<p>Me: &#39;Urgh, right, okay, no prob.&#39;</p>
+<p>Me: &#39;In [C# app]?&#39;</p>
+<p>Manager: &#39;Yeah.&#39;</p>
+<p>Me: Spends five hours fighting Visual Studio.</p>
+<p>True story.</p>
+<p>Some Visual Studio oddities:</p>
+<ul>
+<li>undo is ctrl-z, but</li>
+<li>redo is shift-alt-backspace.</li>
+<li>there&#39;s no &#39;revert&#39; (which even basic text editors have)</li>
+<li>shift-tab only works if you have multiple lines selected</li>
+<li>jump-to-matching-symbol (<code>%</code> in vim) only works sometimes</li>
+<li>there&#39;s no search-in-open-buffers, i think</li>
+<li>commenting out code: <code>ctrl-k ctrl-c</code></li>
+<li>selecting text and hitting quotes will delete the text, not wrap in quotes</li>
+<li>line-numbers are off by default</li>
+<li>menus upon menus upon menus, each one slower than the last</li>
+</ul>
+<p>I&#39;m sure it&#39;s a really great IDE for C# people, but goddamn, it&#39;s slow.</p>
+<p>It also has that horrible malware problem where you need to have Windows to use it.</p>
+]]></description><link>/2016/visual-studio-oddities.html</link><guid isPermaLink="true">/2016/visual-studio-oddities.html</guid><category><![CDATA[visual-studio]]></category><category><![CDATA[windows]]></category><category><![CDATA[ms]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 22 Aug 2016 22:20:00 GMT</pubDate></item><item><title><![CDATA[principles and tips]]></title><description><![CDATA[<p>I&#39;m not very experienced, and sometimes I&#39;m pretty sure I&#39;m not very good at
 programming, but I have some principles I try to stick to that help, I think.
 They&#39;re not complicated. Also some tips. These are all in no particular order.
 And kind of stream-of-consciousness.</p>
@@ -693,6 +717,4 @@ nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre>]]
 <p><code>Environment health has transitioned from Degraded to Warning. Command failed on 1 out of 2 instances. Configuration update in progress on 1 instance. 0 out of 2 instances completed (running for 9 minutes).</code> WHAT COMMAND?</p>
 <p><code>No agents connected after instance start. Please check the image has TeamCity agent configured and it can connect to the server using http://foo.bar address. Start the instance manually to check for agent again.</code> (What actually happened? Any errors? Network? Permissions? Anything? No?)</p>
 <p><code>Incompatible Runner: Command Line</code> (on a Debian instance. Fuck you.)</p>
-]]></description><link>/2016/teamcity-and-aws-fuck-you.html</link><guid isPermaLink="true">/2016/teamcity-and-aws-fuck-you.html</guid><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 30 Jun 2016 01:52:28 GMT</pubDate></item><item><title><![CDATA[just two gifs]]></title><description><![CDATA[<p><img src="assets/img/daniel-jump.gif" alt="jumping">
-<img src="assets/img/daniel-jumpjump.gif" alt="jumpjumping"></p>
-]]></description><link>/2016/daniel-jumping-gifs.html</link><guid isPermaLink="true">/2016/daniel-jumping-gifs.html</guid><category><![CDATA[gifs]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 29 Jun 2016 16:09:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/teamcity-and-aws-fuck-you.html</link><guid isPermaLink="true">/2016/teamcity-and-aws-fuck-you.html</guid><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 30 Jun 2016 01:52:28 GMT</pubDate></item></channel></rss>
