@@ -37,7 +37,7 @@ Some of these thoughts probably apply to all developers. Some don't.
 6. Don't work (for your employer) on the weekends. Work on side projects, if you
    want. Or do other things. Go out to brunch. Climb a mountain. Learn a Primus
    song on bass. Get drunk. Just don't work for the person who pays you to work
-   during the week. If the seem to expect you to be working when you're not at
+   during the week. If they seem to expect you to be working when you're not at
    work, start looking for another job.
 7. Learn other languages. HTML and CSS are not programming languages, so they
    don't count. JS is actually a really great language (so don't take shit from
