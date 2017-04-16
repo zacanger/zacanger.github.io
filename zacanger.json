@@ -15,7 +15,7 @@
 
   "summary": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, and keeping software and development free, open, transparent, and accessible.",
 
-  "notable projects": [
+  "projects": [
     {
       "name": "zacanger",
       "url": "http://npm.im/zacanger",
@@ -91,24 +91,26 @@
 
   "languages and technologies": {
     "proficient": [
-      "javascript",
-      "react",
-      "(neo)vim",
+      "(n)vim",
       "bash/sh",
-      "linux (specifically debian)",
       "css/stylus/sass/less",
+      "javascript",
+      "linux (specifically debian)",
       "node",
-      "docker",
-      "angular (1.x)"
+      "react"
+    ],
+    "familiar": [
+      "angular (1.x)",
+      "aws",
+      "docker"
     ],
     "learning": [
-      "ruby",
-      "python",
-      "haskell",
       "clojure(script)",
+      "haskell",
+      "python",
+      "ruby",
       "scheme (racket)",
       "soft skills",
-      "aws",
       "vue"
     ]
   },
