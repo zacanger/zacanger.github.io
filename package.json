@@ -10,7 +10,7 @@
   "license": "WTFPL",
   "main": "index.js",
   "scripts": {
-    "start": "forever start -a -l f.log -e e.log -o o.log index.js && forever start ip.js"
+    "start": "forever start -a -l f.log -e e.log -o o.log index.js"
   },
   "homepage": "https://github.com/zacanger/dotcom#readme",
   "repository": {
