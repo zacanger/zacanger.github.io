@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 26 Mar 2017 22:04:30 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[visual studio oddities]]></title><description><![CDATA[<h2 id="story-">Story:</h2>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 26 Apr 2017 04:08:57 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[things that suck about js]]></title><description><![CDATA[<p>asked some people what they dislike about js, just out of curiosity.
+results are predictable.</p>
+<p>in no particular order:</p>
+<ul>
+<li>events (dom events, event cycle, event loop)</li>
+<li>js fatigue</li>
+<li>this (context)</li>
+<li>es6 classes/oo idea prevalence</li>
+<li>mobile safari even existing</li>
+<li>internet explorer/edge</li>
+<li>no type system</li>
+<li>everything DOM related</li>
+<li>no real immutable values</li>
+<li>lack of neat syntax tools found in new languages (simple shit like range operators)</li>
+<li>the way everyone else writes it</li>
+</ul>
+]]></description><link>/2016/things-that-suck-about-js.html</link><guid isPermaLink="true">/2016/things-that-suck-about-js.html</guid><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 23 Aug 2016 00:22:00 GMT</pubDate></item><item><title><![CDATA[visual studio oddities]]></title><description><![CDATA[<h2 id="story-">Story:</h2>
 <p>Manager: &#39;Hey there&#39;s this thing, can you do it? Shouldn&#39;t take long.&#39;</p>
 <p>Me: &#39;Sure, I guess.&#39;</p>
 <p>Manager: &#39;It&#39;s in Angular.&#39;</p>
@@ -712,9 +728,4 @@ done
 &quot; &gt; ~/docker-cleanup.<span class="hljs-keyword">sh</span>
 
 chmod +x ~/docker-cleanup.<span class="hljs-keyword">sh</span>
-nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 Jul 2016 15:59:29 GMT</pubDate></item><item><title><![CDATA[crappy error messages]]></title><description><![CDATA[<p>teamcity and aws have the worst error messages.</p>
-<p>things that don&#39;t count as real error messages:</p>
-<p><code>Environment health has transitioned from Degraded to Warning. Command failed on 1 out of 2 instances. Configuration update in progress on 1 instance. 0 out of 2 instances completed (running for 9 minutes).</code> WHAT COMMAND?</p>
-<p><code>No agents connected after instance start. Please check the image has TeamCity agent configured and it can connect to the server using http://foo.bar address. Start the instance manually to check for agent again.</code> (What actually happened? Any errors? Network? Permissions? Anything? No?)</p>
-<p><code>Incompatible Runner: Command Line</code> (on a Debian instance. Fuck you.)</p>
-]]></description><link>/2016/teamcity-and-aws-fuck-you.html</link><guid isPermaLink="true">/2016/teamcity-and-aws-fuck-you.html</guid><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 30 Jun 2016 01:52:28 GMT</pubDate></item></channel></rss>
+nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 Jul 2016 15:59:29 GMT</pubDate></item></channel></rss>

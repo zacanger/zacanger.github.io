@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 26 Mar 2017 22:04:30 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 26 Apr 2017 04:08:57 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, but won&#39;t delete any.</p>
@@ -57,7 +57,79 @@ I&#39;ve been consistent with them for several months at the least.</p>
 <li>[x] Take the time to move all things using Facebook auth away from this</li>
 <li>[x] Delete Facebook</li>
 </ul>
-]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 31 Dec 2017 06:59:59 GMT</pubDate></item><item><title><![CDATA[Recommendations For New Web Devs]]></title><description><![CDATA[<h1 id="some-recommendations-for-new-web-developers">Some Recommendations for New (Web) Developers</h1>
+]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 31 Dec 2017 06:59:59 GMT</pubDate></item><item><title><![CDATA[WTF is Set?]]></title><description><![CDATA[<h1 id="wtf-is-set-">WTF is Set?</h1>
+<p>Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn&#39;t know what to do about template strings.</p>
+<p>So, someone asked in a Slack channel how they might clean up the following code:</p>
+<pre class="hljs"><code>getNames (contacts) {
+  <span class="hljs-built_in">let</span> contacts_<span class="hljs-built_in">set</span> = []
+
+  contacts.forEach((contact) =&gt; {
+    <span class="hljs-built_in">let</span> firstName = get(contact, <span class="hljs-string">&#39;contactInfo.firstName&#39;</span>)
+    <span class="hljs-built_in">let</span> lastName  = get(contact, <span class="hljs-string">&#39;contactInfo.lastName&#39;</span>)
+    <span class="hljs-built_in">let</span> fullName = `<span class="hljs-variable">${firstName}</span> <span class="hljs-variable">${lastName}</span>`
+
+    <span class="hljs-keyword">if</span> (contacts_set.includes(fullName)) {
+      <span class="hljs-built_in">return</span>
+    } <span class="hljs-keyword">else</span> {
+      contacts_set.push(fullName)
+    }
+
+    <span class="hljs-built_in">set</span>(this, <span class="hljs-string">&#39;contactsSet&#39;</span>, contactsSet)
+  })
+}</code></pre><p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don&#39;t
+know Ember so don&#39;t ask me.</p>
+<p>And I said, how about this?</p>
+<pre class="hljs"><code><span class="hljs-attribute">getNames</span>: <span class="hljs-function"><span class="hljs-params">(contacts)</span> =&gt;</span>
+  [...<span class="hljs-keyword">new</span> Set(
+    contacts.map(<span class="hljs-function"><span class="hljs-params">({ contactInfo: { firstName, lastName }})</span> =&gt;</span>
+      `<span class="javascript">${firstName} ${lastName}</span>`))]</code></pre><p>I like this version because it&#39;s very concise and still readable (to me).
+It also doesn&#39;t do mutation-y stuff, which is a good thing.</p>
+<p>And then someone else asked:</p>
+<blockquote>
+<p>Can some one eli5 what <code>Set</code> is that&#39;s referenced above?</p>
+</blockquote>
+<p>Which made me realise that a lot of folks still aren&#39;t using a lot of the nice
+new things from ES2015, so I explained a bit. Here&#39;s how I understand it.</p>
+<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map
+is also new in 2015. Set is to Array as Map is to Object, kinda.</p>
+<p>For practical usage Set is basically Array but unique, and with different
+methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There&#39;s a lot more
+info <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">on MDN</a>.</p>
+<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works
+(because thing inside <code>new Set()</code> results in an array).</p>
+<p>In that case <code>Set</code> isn&#39;t being used for too much besides just the fact that it&#39;s
+<code>Set</code> (so it only holds unique values). Someone else pointed out in the same
+channel that maybe it&#39;s not the best idea if you have a lot of values, because
+then you&#39;re creating another thing, which is totally true.</p>
+<p>There&#39;s a bit more background
+<a href="https://en.wikipedia.org/wiki/Set_(mathematics">here</a>) on what JS&#39;s <code>Set</code> is
+suppose to be kind of like.</p>
+<p>And underneath it sorta looks vaguely like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">class</span> Set {
+  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span> () </span>{
+    <span class="hljs-keyword">this</span>.storage = []
+  }
+  add (a) {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.storage.includes(a)) {
+      <span class="hljs-keyword">this</span>.storage.push(a)
+    }
+  }
+  has (a) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.storage.includes(a)
+  }
+  remove (a) {
+    <span class="hljs-keyword">this</span>.storage.splice(<span class="hljs-keyword">this</span>.storage.indexOf(a), <span class="hljs-number">1</span>)
+  }
+}</code></pre><p>That&#39;s a lot of stuff, but mostly you can think of <code>Set</code> as a thing that&#39;s like
+<code>Array</code> but it only holds unique things.</p>
+<p>There&#39;s also a <code>WeakSet</code> which can only hold objects. I haven&#39;t really found a
+valid use case for <code>WeakSet</code> and <code>WeakMap</code> yet, personally.</p>
+<p><code>Set</code> turns out to be pretty useful. I&#39;ve used it a few times <a href="https://jane.com">at
+work</a> (with appropriate polyfills) without any problems, and I
+use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my
+sort-of-sometimes-popular utility library. Definitely play around with it!</p>
+]]></description><link>/2017/wtf-is-set.html</link><guid isPermaLink="true">/2017/wtf-is-set.html</guid><category><![CDATA[js]]></category><category><![CDATA[es2015]]></category><category><![CDATA[set]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 26 Apr 2017 05:00:00 GMT</pubDate></item><item><title><![CDATA[Recommendations For New Web Devs]]></title><description><![CDATA[<h1 id="some-recommendations-for-new-web-developers">Some Recommendations for New (Web) Developers</h1>
 <p>Some of these thoughts probably apply to all developers. Some don&#39;t.</p>
 <ol>
 <li>Learn an editor. It doesn&#39;t matter which editor. Just learn one. Be good at
@@ -1313,20 +1385,4 @@ to leave that up to you. Have fun with it!</p>
 <p>If you&#39;re interested in doing this kind of stuff in Node, be sure to check back!
 I&#39;ve got two more tutorials on writing command-line apps in Node, which will go
 progressively more in depth, on the way</p>
-]]></description><link>/2016/a-basic-cli-app-in-node.html</link><guid isPermaLink="true">/2016/a-basic-cli-app-in-node.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 25 Aug 2016 03:42:00 GMT</pubDate></item><item><title><![CDATA[things that suck about js]]></title><description><![CDATA[<p>asked some people what they dislike about js, just out of curiosity.
-results are predictable.</p>
-<p>in no particular order:</p>
-<ul>
-<li>events (dom events, event cycle, event loop)</li>
-<li>js fatigue</li>
-<li>this (context)</li>
-<li>es6 classes/oo idea prevalence</li>
-<li>mobile safari even existing</li>
-<li>internet explorer/edge</li>
-<li>no type system</li>
-<li>everything DOM related</li>
-<li>no real immutable values</li>
-<li>lack of neat syntax tools found in new languages (simple shit like range operators)</li>
-<li>the way everyone else writes it</li>
-</ul>
-]]></description><link>/2016/things-that-suck-about-js.html</link><guid isPermaLink="true">/2016/things-that-suck-about-js.html</guid><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 23 Aug 2016 00:22:00 GMT</pubDate></item></channel></rss>
+]]></description><link>/2016/a-basic-cli-app-in-node.html</link><guid isPermaLink="true">/2016/a-basic-cli-app-in-node.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 25 Aug 2016 03:42:00 GMT</pubDate></item></channel></rss>

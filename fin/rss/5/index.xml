@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 26 Mar 2017 22:04:30 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 26 Apr 2017 04:08:57 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[bootcamp analogies]]></title><description><![CDATA[<p>bootcamps are like a three-month crash-course on building features and creating value
+for yourself and your future employer very quickly. and also on learning. as in,
+learning to learn stuff on your own.</p>
+<p>mentoring at a bootcamp is kind of a three-month course on talking/people skills.
+most obviously, there&#39;s the explaining code you&#39;ve never seen before to people who have
+no idea what you&#39;re saying and might not even speak the same language (natively).</p>
+<p>working at a bootcamp is like being thrown headfirst into both education and jr dev
+roles, which can be overwhelming but also awesome.</p>
+<p>hanging out at a bootcamp after finishing is like going back to a high school reunion
+after going from nerd to hugely successful nerd, waving it in everyone&#39;s face, except
+everyone is that same nerd so it&#39;s kinda more like an encouraging wave than a &quot;see,
+told you i&#39;d amount to something&quot; kind of wave.</p>
+<p>just some thoughts i had while trying to avoid having my skin ripped off by the
+pressure-washer-like shower that i just took. i need to be better at plumbing.</p>
+]]></description><link>/2016/bootcamp-analogies.html</link><guid isPermaLink="true">/2016/bootcamp-analogies.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 07 May 2016 17:20:00 GMT</pubDate></item><item><title><![CDATA[currying and partial application]]></title><description><![CDATA[<pre class="hljs"><code><span class="hljs-comment">// Prototype&#39;s version?</span>
 <span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> fn   = <span class="hljs-keyword">this</span>
     , args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)

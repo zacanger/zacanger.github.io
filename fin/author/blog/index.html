@@ -121,6 +121,94 @@ I&#39;ve been consistent with them for several months at the least.</p>
   </article>
 
 
+  <article class="post tag-js tag-es2015 tag-set">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2017/wtf-is-set.html">WTF is Set?</a></h2>
+      <span class="post-meta">
+        <time datetime="2017-04-25">25 April, 2017</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/es2015/">es2015</a>, <a href="/tag/set/">set</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="wtf-is-set-">WTF is Set?</h1>
+<p>Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn&#39;t know what to do about template strings.</p>
+<p>So, someone asked in a Slack channel how they might clean up the following code:</p>
+<pre class="hljs"><code>getNames (contacts) {
+  <span class="hljs-built_in">let</span> contacts_<span class="hljs-built_in">set</span> = []
+
+  contacts.forEach((contact) =&gt; {
+    <span class="hljs-built_in">let</span> firstName = get(contact, <span class="hljs-string">&#39;contactInfo.firstName&#39;</span>)
+    <span class="hljs-built_in">let</span> lastName  = get(contact, <span class="hljs-string">&#39;contactInfo.lastName&#39;</span>)
+    <span class="hljs-built_in">let</span> fullName = `<span class="hljs-variable">${firstName}</span> <span class="hljs-variable">${lastName}</span>`
+
+    <span class="hljs-keyword">if</span> (contacts_set.includes(fullName)) {
+      <span class="hljs-built_in">return</span>
+    } <span class="hljs-keyword">else</span> {
+      contacts_set.push(fullName)
+    }
+
+    <span class="hljs-built_in">set</span>(this, <span class="hljs-string">&#39;contactsSet&#39;</span>, contactsSet)
+  })
+}</code></pre><p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don&#39;t
+know Ember so don&#39;t ask me.</p>
+<p>And I said, how about this?</p>
+<pre class="hljs"><code><span class="hljs-attribute">getNames</span>: <span class="hljs-function"><span class="hljs-params">(contacts)</span> =&gt;</span>
+  [...<span class="hljs-keyword">new</span> Set(
+    contacts.map(<span class="hljs-function"><span class="hljs-params">({ contactInfo: { firstName, lastName }})</span> =&gt;</span>
+      `<span class="javascript">${firstName} ${lastName}</span>`))]</code></pre><p>I like this version because it&#39;s very concise and still readable (to me).
+It also doesn&#39;t do mutation-y stuff, which is a good thing.</p>
+<p>And then someone else asked:</p>
+<blockquote>
+<p>Can some one eli5 what <code>Set</code> is that&#39;s referenced above?</p>
+</blockquote>
+<p>Which made me realise that a lot of folks still aren&#39;t using a lot of the nice
+new things from ES2015, so I explained a bit. Here&#39;s how I understand it.</p>
+<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map
+is also new in 2015. Set is to Array as Map is to Object, kinda.</p>
+<p>For practical usage Set is basically Array but unique, and with different
+methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There&#39;s a lot more
+info <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">on MDN</a>.</p>
+<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works
+(because thing inside <code>new Set()</code> results in an array).</p>
+<p>In that case <code>Set</code> isn&#39;t being used for too much besides just the fact that it&#39;s
+<code>Set</code> (so it only holds unique values). Someone else pointed out in the same
+channel that maybe it&#39;s not the best idea if you have a lot of values, because
+then you&#39;re creating another thing, which is totally true.</p>
+<p>There&#39;s a bit more background
+<a href="https://en.wikipedia.org/wiki/Set_(mathematics">here</a>) on what JS&#39;s <code>Set</code> is
+suppose to be kind of like.</p>
+<p>And underneath it sorta looks vaguely like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">class</span> Set {
+  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span> () </span>{
+    <span class="hljs-keyword">this</span>.storage = []
+  }
+  add (a) {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.storage.includes(a)) {
+      <span class="hljs-keyword">this</span>.storage.push(a)
+    }
+  }
+  has (a) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.storage.includes(a)
+  }
+  remove (a) {
+    <span class="hljs-keyword">this</span>.storage.splice(<span class="hljs-keyword">this</span>.storage.indexOf(a), <span class="hljs-number">1</span>)
+  }
+}</code></pre><p>That&#39;s a lot of stuff, but mostly you can think of <code>Set</code> as a thing that&#39;s like
+<code>Array</code> but it only holds unique things.</p>
+<p>There&#39;s also a <code>WeakSet</code> which can only hold objects. I haven&#39;t really found a
+valid use case for <code>WeakSet</code> and <code>WeakMap</code> yet, personally.</p>
+<p><code>Set</code> turns out to be pretty useful. I&#39;ve used it a few times <a href="https://jane.com">at
+work</a> (with appropriate polyfills) without any problems, and I
+use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my
+sort-of-sometimes-popular utility library. Definitely play around with it!</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-devmtn tag-thoughts">
     <header class="post-header">
       <h2 class="post-title"><a href="/2017/recommendations-for-new-web-devs.html">Recommendations For New Web Devs</a></h2>
@@ -308,138 +396,6 @@ Stuff.propTypes = {
 </li>
 <li>Switch to Mutt or some other purely text-based email client</li>
 </ul>
-</p>
-    </section>
-  </article>
-
-
-  <article class="post tag-fp">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/category-theory-for-js-devs.html">Category Theory Notes</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-11-26">26 November, 2016</time>
-         | tags: <a href="/tag/fp/">fp</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><h1 id="category-theory-for-js-devs">Category Theory for JS Devs</h1>
-<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this series</a>.</p>
-<h2 id="contracts">Contracts</h2>
-<p>Basics of type checking.</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> str = a =&gt; {
-  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string">&#39;string&#39;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected a string&#39;</span>)
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
-}</code></pre><h2 id="guarded-functions-and-categories">Guarded Functions and Categories</h2>
-<p>Functions that have contracts on input or output are called <em>guarded</em> functions.</p>
-<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
-<p>Maps between categories are functors.</p>
-<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded) functions.</p>
-<p>Function that returns a contract:</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> typeOf = type =&gt; a =&gt; {
-  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string"><code>&lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;</code></span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string"><code>Expected &lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;!</code></span>)
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
-}</code></pre><p>And basic usage:</p>
-<pre class="hljs"><code>const bool = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;boolean&#39;</span>)</span></span>
-const num  = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;number&#39;</span>)</span></span>
-<span class="hljs-comment">// etc.</span>
-<span class="hljs-comment">// Obviously, for arrays you&#39;d need to use Array.isArray()</span></code></pre><p>Then we could do something like</p>
-<pre class="hljs"><code>const increment = <span class="hljs-operator">a</span> =&gt; {
-  <span class="hljs-operator">a</span> = <span class="hljs-built_in">num</span>(<span class="hljs-operator">a</span>)
-  <span class="hljs-constant">return</span> <span class="hljs-operator">a</span> + <span class="hljs-number">1</span>
-}</code></pre><p>Before I go further I should mention that yes, I have heard of Flow and TypeScript.</p>
-<pre class="hljs"><code>const increment = (<span class="hljs-tag">a</span>: number) =&gt; <span class="hljs-tag">a</span> + <span class="hljs-number">1</span></code></pre><p>I assume this video series will get to actual type systems at some point, though
-it was made before TypeScript and Flow were written, so it won&#39;t be mentioning those.</p>
-<h2 id="array-contracts">Array Contracts</h2>
-<p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> arr = a =&gt; {
-  <span class="hljs-keyword">if</span> ({}.toString.call(a) !== <span class="hljs-string">&#39;[object Array]&#39;</span>) <span class="hljs-keyword">throw</span> TypeError(<span class="hljs-string">&#39;Expected array!&#39;</span>)
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
-}</code></pre><p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
-<h2 id="functors">Functors</h2>
-<p>Takes a maps the contract over the things array. Will throw if they&#39;re not all
-correct. Ensure that your array is, for example, all Strings, or whatever.</p>
-<pre class="hljs"><code>const arrayOf = contract =&gt; things =&gt; <span class="hljs-function"><span class="hljs-title">arr</span><span class="hljs-params">(things)</span></span>.<span class="hljs-function"><span class="hljs-title">map</span><span class="hljs-params">(c)</span></span></code></pre><p>This acts on the category&#39;s <em>objects</em> and <em>morphisms</em> both, and produces new
-objects and new morphisms.</p>
-<h2 id="maybe">Maybe</h2>
-<p>The <em>Maybe</em> functor.</p>
-<p><code>Maybe</code> is a Monad, but I guess we&#39;re only thinking of its Functor-ness for this
-video?</p>
-<p>Anyway here&#39;s some code.</p>
-<pre class="hljs"><code><span class="hljs-keyword">const</span> Maybe = () =&gt; {}
-Maybe.prototype.getOrElse = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{
-  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Some) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
-}
-<span class="hljs-comment">// the above: maybe something getOrElse what to do if none</span>
-
-<span class="hljs-keyword">const</span> None = () =&gt; {}
-None.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype) <span class="hljs-comment">// all instances of None are an instance of Maybe</span>
-None.prototype.toString = () =&gt; <span class="hljs-string">&#39;None&#39;</span>
-<span class="hljs-keyword">const</span> none = <span class="hljs-keyword">new</span> None()
-
-<span class="hljs-keyword">const</span> Some = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">this</span>.a = a }
-Some.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype)
-Some.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string"><code>Some(thisa)</code></span> }
-<span class="hljs-keyword">const</span> some = a =&gt; <span class="hljs-keyword">new</span> Some(a)
-
-<span class="hljs-keyword">const</span> maybe = c =&gt; m =&gt; {
-  <span class="hljs-keyword">if</span> (m <span class="hljs-keyword">instanceof</span> None) <span class="hljs-keyword">return</span> m
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m instance <span class="hljs-keyword">of</span> Some) <span class="hljs-keyword">return</span> some((m.a))
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected None or Some a!&#39;</span>)
-}</code></pre><h2 id="unit-and-flatten">Unit and Flatten</h2>
-<pre class="hljs"><code>const arrayOfUnit = contract =&gt; <span class="hljs-list">(
-  <span class="hljs-keyword">a</span> =&gt; {
-    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
-    return arrayOf<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">([a])</span>
-  }
-)</span>
-
-const maybeUnit = contract =&gt; <span class="hljs-list">(
-  <span class="hljs-keyword">a</span> =&gt; {
-    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
-    return maybe<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">(<span class="hljs-keyword">some</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>)</span>
-  }
-)</span>
-
-const arrayOfFlatten = c =&gt; <span class="hljs-list">(
-  <span class="hljs-keyword">a</span> =&gt; {
-    a = arrayOf<span class="hljs-list">(<span class="hljs-keyword">arrayOf</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
-    const r = []
-    const l = a.length
-    for <span class="hljs-list">(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; l; ++i) {</span>
-      r = r.concat<span class="hljs-list">(<span class="hljs-keyword">a</span>[i])</span> // ew wtf is this guy doing?
-    }
-  }
-)</span>
-
-const maybeFlatten = c =&gt; <span class="hljs-list">(
-  <span class="hljs-keyword">a</span> =&gt; {
-    a = maybe<span class="hljs-list">(<span class="hljs-keyword">maybe</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
-    if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof Some)</span> {
-      a = a.x
-    } else if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof None)</span> {
-      a = a // why? if it<span class="hljs-quoted">&#39;s</span> not Some, it <em>must</em> be None.
-    }
-    return maybe<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
-  }
-)</span>
-
-// oh god what is even happening right now
-Array.unit = a =&gt; [a]
-Maybe.unit = some
-Array.prototype.flatten = function <span class="hljs-list">(<span class="hljs-keyword">c</span> = any)</span> { return arrayOfFlatten<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">this</span>)</span> }
-// he literally has if <span class="hljs-list">(<span class="hljs-keyword">c</span> === void <span class="hljs-number">0</span>)</span> c = any
-// but this isn<span class="hljs-quoted">&#39;t</span> the <span class="hljs-number">90</span>s so
-
-// apply given functor twice to a contract
-const twice = f =&gt; c =&gt; f<span class="hljs-list">(<span class="hljs-keyword">f</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>
-const once = f =&gt; f // what the actual fuck, this is id..</span></span></code></pre><p>Okay, I&#39;m done, I tried. there are like 20 more videos in this series but it&#39;s
-so badly done and there are so many mistakes and the guy talks so slowly that
-I just can&#39;t do this anymore.</p>
-<p>If anyone knows of a decent intro to category theory for JS devs, please let
-me know.</p>
 </p>
     </section>
   </article>
