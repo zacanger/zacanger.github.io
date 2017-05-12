@@ -33,12 +33,12 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
     * [x] Less pizza, at least
 * [ ] Buy a car
 * [ ] Finish paying off debts, so close
-  * [ ] Also try not to tap into savings so much for stupid things
+  * [x] Also try not to tap into savings so much for stupid things
 * [ ] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
   * [ ] Also, blog more (at least, clear out my `drafts` dir).
-* [ ] Be making more money
-  * [ ] Preferably where I am now, but somewhere else if that doesn't work out
-  * [ ] Also start actually emailing recruiters back
+* [x] Be making more money
+  * [x] Preferably where I am now, but somewhere else if that doesn't work out
+  * [x] Also start actually emailing recruiters back
 * [ ] Switch to Mutt or some other purely text-based email client
 * [ ] Actually finish anything ever
   * [x] Various unfinished small projects
