@@ -266,7 +266,7 @@ All done!</p>
 do to make this script a bit better. Firstly, it&#39;s annoying to have to always
 type <code>http://</code> before a URL, so maybe we should automatically add that on.</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> url = process.argv[<span class="hljs-number">2</span>]
-<span class="hljs-keyword">const</span> src = url.includes(<span class="hljs-string">&#39;http://&#39;</span> || <span class="hljs-string">&#39;https://&#39;</span>) ? url : `http:<span class="hljs-comment">//${url}`</span></code></pre><p>All this extra bit is doing is checking if the passed in argument aleady has a
+<span class="hljs-keyword">const</span> src = (url.includes(<span class="hljs-string">&#39;http://&#39;</span>) url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `http:<span class="hljs-comment">//${url}`</span></code></pre><p>All this extra bit is doing is checking if the passed in argument aleady has a
 scheme, and if it doesn&#39;t, just sticking on on the beginning. If you&#39;re not
 familiar with template literals, check out the previous tutorials and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs
 on
@@ -396,7 +396,7 @@ const
 , conv     = <span class="hljs-operator">a</span> =&gt; toMd(<span class="hljs-operator">a</span>, opts)
 , <span class="hljs-operator">wrap</span>     = <span class="hljs-operator">a</span> =&gt; wrapper(<span class="hljs-operator">a</span>)
 , <span class="hljs-built_in">log</span>      = <span class="hljs-operator">a</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-operator">a</span>)
-, src      = url.includes(<span class="hljs-string">&#39;http://&#39;</span> || <span class="hljs-string">&#39;https://&#39;</span>) ? url : `<span class="hljs-keyword">http</span>://${url}`
+, src      = url.includes((<span class="hljs-string">&#39;http://&#39;</span>) || url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `<span class="hljs-keyword">http</span>://${url}`
 
 const main = <span class="hljs-operator">a</span> =&gt; <span class="hljs-built_in">get</span>(<span class="hljs-operator">a</span>, res =&gt; {
   let b = <span class="hljs-string">&#39;&#39;</span>
@@ -407,6 +407,8 @@ const main = <span class="hljs-operator">a</span> =&gt; <span class="hljs-built_
 <span class="hljs-keyword">if</span> (!module.parent) main(src)</code></pre><p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
 Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
 Github</a>.</p>
+<p>The full version of this module has been published at
+<a href="http://npm.im/html2txt">html2txt</a>.</p>
 </p>
     </section>
   </article>
@@ -605,11 +607,7 @@ about right now, but it&#39;s <a href="https://github.com/zacanger/lilnote/blob/
 easy</a> to do.)</p>
 <p>Let&#39;s add another couple of declarations:</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">n</span> = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)</code></pre><p>We&#39;re using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring
-assignment</a>
-in that <code>resolve</code> line&mdash;it&#39;s the same as saying <code>var path = require(&#39;path&#39;)
-; var file = path.resolve(&#39;./notes.json&#39;)</code>.</p>
-<p>We&#39;ll also have a variable here for our read-in notes.</p>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)</code></pre><p>We&#39;ll also have a variable here for our read-in notes.</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)</code></pre><p>And since we&#39;ll be using <code>console.log</code> in a few places, let&#39;s just make that a
 little shorter:</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-built_in">log</span> = console.<span class="hljs-built_in">log</span></code></pre><p>Your file should now look something like this:</p>

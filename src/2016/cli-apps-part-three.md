@@ -196,7 +196,7 @@ type `http://` before a URL, so maybe we should automatically add that on.
 
 ```javascript
 const url = process.argv[2]
-const src = url.includes('http://' || 'https://') ? url : \`http://${url}\`
+const src = (url.includes('http://') url.includes('https://')) ? url : \`http://${url}\`
 ```
 
 All this extra bit is doing is checking if the passed in argument aleady has a
@@ -402,7 +402,7 @@ const
 , conv     = a => toMd(a, opts)
 , wrap     = a => wrapper(a)
 , log      = a => console.log(a)
-, src      = url.includes('http://' || 'https://') ? url : \`http://${url}\`
+, src      = url.includes(('http://') || url.includes('https://')) ? url : \`http://${url}\`
 
 const main = a => get(a, res => {
   let b = ''
@@ -416,3 +416,6 @@ if (!module.parent) main(src)
 Thanks for reading! If you note any problems, please hit me up [on
 Twitter](https://twitter.com/zacanger) or put in an issue [on
 Github](https://github.com/zacanger/blog/issues).
+
+The full version of this module has been published at
+[html2txt](http://npm.im/html2txt).

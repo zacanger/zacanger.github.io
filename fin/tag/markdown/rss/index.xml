@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 12 May 2017 18:10:17 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[html2text in node tutorial]]></title><description><![CDATA[<p>Okay, ready to build another command-line app in Node?</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 17 May 2017 04:12:38 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[html2text in node tutorial]]></title><description><![CDATA[<p>Okay, ready to build another command-line app in Node?</p>
 <p>If you haven&#39;t seen my last two posts, you should check them out, since I&#39;m not
 going to cover a lot of the basics again. They&#39;re both on writing small cli apps
 in Node, with no dependencies.</p>
@@ -133,7 +133,7 @@ All done!</p>
 do to make this script a bit better. Firstly, it&#39;s annoying to have to always
 type <code>http://</code> before a URL, so maybe we should automatically add that on.</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> url = process.argv[<span class="hljs-number">2</span>]
-<span class="hljs-keyword">const</span> src = url.includes(<span class="hljs-string">&#39;http://&#39;</span> || <span class="hljs-string">&#39;https://&#39;</span>) ? url : `http:<span class="hljs-comment">//${url}`</span></code></pre><p>All this extra bit is doing is checking if the passed in argument aleady has a
+<span class="hljs-keyword">const</span> src = (url.includes(<span class="hljs-string">&#39;http://&#39;</span>) url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `http:<span class="hljs-comment">//${url}`</span></code></pre><p>All this extra bit is doing is checking if the passed in argument aleady has a
 scheme, and if it doesn&#39;t, just sticking on on the beginning. If you&#39;re not
 familiar with template literals, check out the previous tutorials and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs
 on
@@ -263,7 +263,7 @@ const
 , conv     = <span class="hljs-operator">a</span> =&gt; toMd(<span class="hljs-operator">a</span>, opts)
 , <span class="hljs-operator">wrap</span>     = <span class="hljs-operator">a</span> =&gt; wrapper(<span class="hljs-operator">a</span>)
 , <span class="hljs-built_in">log</span>      = <span class="hljs-operator">a</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-operator">a</span>)
-, src      = url.includes(<span class="hljs-string">&#39;http://&#39;</span> || <span class="hljs-string">&#39;https://&#39;</span>) ? url : `<span class="hljs-keyword">http</span>://${url}`
+, src      = url.includes((<span class="hljs-string">&#39;http://&#39;</span>) || url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `<span class="hljs-keyword">http</span>://${url}`
 
 const main = <span class="hljs-operator">a</span> =&gt; <span class="hljs-built_in">get</span>(<span class="hljs-operator">a</span>, res =&gt; {
   let b = <span class="hljs-string">&#39;&#39;</span>
@@ -274,6 +274,8 @@ const main = <span class="hljs-operator">a</span> =&gt; <span class="hljs-built_
 <span class="hljs-keyword">if</span> (!module.parent) main(src)</code></pre><p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
 Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
 Github</a>.</p>
+<p>The full version of this module has been published at
+<a href="http://npm.im/html2txt">html2txt</a>.</p>
 ]]></description><link>/2016/cli-apps-part-three.html</link><guid isPermaLink="true">/2016/cli-apps-part-three.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><category><![CDATA[html]]></category><category><![CDATA[markdown]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 28 Sep 2016 02:36:00 GMT</pubDate></item><item><title><![CDATA[notes from my personal project at devmountain]]></title><description><![CDATA[<h1 id="this-is-probably-a-mess">this is probably a mess</h1>
 <p>a whole bunch of basically totally disorganised notes from when i was working
 on my &#39;personal project&#39; at devmountain.</p>

@@ -197,11 +197,7 @@ about right now, but it&#39;s <a href="https://github.com/zacanger/lilnote/blob/
 easy</a> to do.)</p>
 <p>Let&#39;s add another couple of declarations:</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">n</span> = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
-<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)</code></pre><p>We&#39;re using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring
-assignment</a>
-in that <code>resolve</code> line&mdash;it&#39;s the same as saying <code>var path = require(&#39;path&#39;)
-; var file = path.resolve(&#39;./notes.json&#39;)</code>.</p>
-<p>We&#39;ll also have a variable here for our read-in notes.</p>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)</code></pre><p>We&#39;ll also have a variable here for our read-in notes.</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)</code></pre><p>And since we&#39;ll be using <code>console.log</code> in a few places, let&#39;s just make that a
 little shorter:</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-built_in">log</span> = console.<span class="hljs-built_in">log</span></code></pre><p>Your file should now look something like this:</p>

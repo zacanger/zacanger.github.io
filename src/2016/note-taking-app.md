@@ -186,11 +186,6 @@ const n = './notes.json'
 const file = fs.readFileSync(n)
 ```
 
-We're using [destructuring
-assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
-in that `resolve` line&mdash;it's the same as saying `var path = require('path')
-; var file = path.resolve('./notes.json')`.
-
 We'll also have a variable here for our read-in notes.
 
 ```javascript
