@@ -1,5 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Wed, 17 May 2017 04:12:38 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[things that suck about js]]></title><description><![CDATA[<p>asked some people what they dislike about js, just out of curiosity.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 20 May 2017 03:14:59 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[a basic command-line app in node]]></title><description><![CDATA[<p>I&#39;m going to walk through a super basic app in Node that you can
+run in your terminal. I&#39;ve got a more in-depth tutorial coming up soon,
+but wanted to get this idea out there tonight.</p>
+<p><a href="http://ryanwalsh.io">Someone</a> brought up the idea of a React component
+generator the other day, and I immediately thought <em>Bash script</em>. Well, that&#39;s
+pretty easy.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/bin/bash
+</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;
+import React from &#39;react&#39;
+
+const <span class="hljs-variable">$1</span> = () =&gt; (
+  &lt;div&gt;<span class="hljs-variable">$1</span>&lt;/div&gt;
+)
+
+export default <span class="hljs-variable">$1</span>
+&quot;</span> &gt; <span class="hljs-variable">$1</span>.js</code></pre><p>There you go, a basic pure component generator script. This could be a little
+more complex, handle some content, handle generating a class instead of a
+function, and whatever, but that&#39;s the basic idea, in Bash.</p>
+<blockquote>
+<p>Keep in mind, none of this is React-specific. All we&#39;re doing is handling
+arguments and spitting out a file.</p>
+</blockquote>
+<p>The idea here is that you just call this script from somewhere and it gives you
+a component already laid out for you. It&#39;s not too fancy, but it&#39;s useful.</p>
+<pre class="hljs"><code>$ ./my-script.sh Foo
+
+$ cat Foo.js
+
+<span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> Foo = () =&gt; (
+  &lt;div&gt;Foo&lt;/div&gt;
+)
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> Foo</code></pre><p>That could save a little bit of time. I use something similar for generating an
+<code>index.html</code> for React apps.</p>
+<p>This is a lot like using snippets in your editor, except it doesn&#39;t rely on you
+having that editor and those snippets handy. You could pass this around to anyone
+who uses any editor, on any computer, and get the same result. You could upload
+it to somewhere and just <code>curl my-script.sh | bash</code> and not even need to have the
+file around. Pretty handy, I think.</p>
+<p>But... what about in JS? I mean, we&#39;re JavaScript devs, right?</p>
+<p>It&#39;s still pretty straightforward in Node, as it happens.</p>
+<p>We only need one file to get going. I&#39;ll call mine <del>compgen</del> rcg.js, for React
+Component Generator.</p>
+<blockquote>
+<p>I apologize in advance, some of the syntax highlighting will look a little
+odd... apparently the highlighting library I use doesn&#39;t understand template
+strings.</p>
+</blockquote>
+<pre class="hljs"><code>touch rcg.js     # <span class="hljs-operator"><span class="hljs-keyword">create</span> a <span class="hljs-keyword">new</span> <span class="hljs-keyword">file</span>
+chmod +x rcg.js  # <span class="hljs-keyword">set</span> an executable <span class="hljs-built_in">bit</span> <span class="hljs-keyword">on</span> the <span class="hljs-keyword">file</span>
+vi rcg.js        # <span class="hljs-keyword">open</span> it <span class="hljs-keyword">for</span> editing</span></code></pre><p>(Obviously substitute your editor for <code>vi</code>.)</p>
+<p>What&#39;s the first thing any executable script needs? A shebang! We&#39;ll also go
+ahead and use <code>process</code>. If you don&#39;t know <code>process</code>, open Node in a terminal
+(<code>node</code>) and just type in <code>process</code>. It&#39;s pretty cool. The bit we want is
+<code>.argv</code>, which is an array of all arguments passed. It always has <code>node</code> and the
+file that&#39;s calling it as the first two elements, so we don&#39;t need those.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]</code></pre><p>What we&#39;re going for here is a script we can call like <code>./rcg.js function Foo</code>,
+or with a <code>class</code> parameter instead.</p>
+<p>The next thing we&#39;ll need to do is actually sketch out these components. I&#39;ll be
+using template literals. If you don&#39;t have a recent version of Node, you should
+update. If you can&#39;t update, you&#39;ll have to use string concatenation instead (so
+really, you should just update). To update (on Mac or Linux; on Windows you
+should just go to <a href="http://nodejs.org">the website</a> and download a new version),
+just <code>npm i -g n &amp;&amp; n latest</code>.</p>
+<p>Let&#39;s write out what a pure (function) component looks like, first.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span></code></pre><p>It doesn&#39;t have a whole lot going on, I know. This is just a quick file
+generator, it can&#39;t write your code for you. :P</p>
+<p>If you can&#39;t update node, that&#39;d look something like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> pureComponent = <span class="hljs-string">&#39;import React from \&#39;</span>react\<span class="hljs-string">&#39;&#39;</span> +
+<span class="hljs-string">&#39;function &#39;</span> + component + <span class="hljs-string">&#39;(){&#39;</span> +
+  <span class="hljs-string">&#39;return &lt;div&gt;&#39;</span> + component + <span class="hljs-string">&#39;&lt;/div&gt;&#39;</span> +
+<span class="hljs-string">&#39;}&#39;</span> +
+<span class="hljs-string">&#39;module.exports = &#39;</span> + component</code></pre><p>(Kind of annoying, right?)</p>
+<p>So now, let&#39;s get one for a class (I won&#39;t go through doing this one with an old
+version of Node, nor with <code>React.createClass</code>&mdash;just with ES2015 classes).</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span></code></pre><p>Lovely! Obviously this should be more complex; if your class only has a render
+function that returns JSX, just use a function instead.</p>
+<p>Great, now you have a bunch of stuff in a file that doesn&#39;t do anything! Let&#39;s
+handle arguments and make it actually do things.</p>
+<p>There are a lot of great libraries for parsing options, and I&#39;ll list a few of
+them in the next blog post. For now, we&#39;ll just use <code>if</code> statements.</p>
+<pre class="hljs"><code><span class="hljs-keyword">let</span> toWrite <span class="hljs-comment">// this is what we&#39;ll end up writing to a file</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">function</span>&#39;) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">function</span>&#39; &amp;&amp; <span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  console.log(&#39;please pass <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">of</span> <span class="hljs-title">component</span> <span class="hljs-title">as</span> <span class="hljs-title">first</span> <span class="hljs-title">argument</span>&#39;)</span>
+}</code></pre><p>That&#39;s a little sloppy&mdash;intentionally! I&#39;m hoping you take some time to
+write this out a little better than just copying and pasting from this blog
+post.</p>
+<p>There&#39;s one major bit left: actually writing a file. We&#39;ll need Node&#39;s <code>fs</code> for
+this.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)</code></pre><p>Now, at the bottom of our file, let&#39;s actually do the fun bit.</p>
+<pre class="hljs"><code>writeFile<span class="hljs-list">(`${component}.js`, toWrite, <span class="hljs-quoted">&#39;utf8</span>&#39;, err =&gt; {
+  if <span class="hljs-list">(<span class="hljs-keyword">err</span>)</span> console.log<span class="hljs-list">(<span class="hljs-keyword">err</span>)</span>
+})</span></code></pre><p>Now your whole file should look something like this:</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]
+<span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+
+<span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">let</span> toWrite
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;function&#39;</span>) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;class&#39;</span>) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (type !== <span class="hljs-string">&#39;function&#39;</span> &amp;&amp; type !== <span class="hljs-string">&#39;class&#39;</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;please pass type of component as first argument&#39;</span>)
+}
+
+writeFile(<span class="hljs-string">`${component}.js`,</span> toWrite, <span class="hljs-string">&#39;utf8&#39;</span>, err =&gt; {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
+})</code></pre><p>Boom! You&#39;ve made a command-line app! You can drop this anywhere in your <code>$PATH</code>
+and call it from anywhere to generate a component for you! (<code>$PATH</code> is where
+your system looks for files to execute. If you don&#39;t have something like a
+<code>~/bin</code> directory, maybe <code>mv rcg.js /usr/local/bin</code>. If you don&#39;t want to move it
+somewhere like that, you can always either do <code>./rcg.js</code> or <code>node rcg</code>.)</p>
+<p>That&#39;s it! This script is not super clean. There are a few little things that
+can be done to make it a lot better, like using a <code>switch</code> statement to handle
+arguments, handling unexpected arguments, not overwritting an existing file,
+passing more options, and trimming extra lines from the generated files, and not
+keeping your templates in the same file as all the rest of the things. I&#39;m going
+to leave that up to you. Have fun with it!</p>
+<p>If you&#39;re interested in doing this kind of stuff in Node, be sure to check back!
+I&#39;ve got two more tutorials on writing command-line apps in Node, which will go
+progressively more in depth, on the way</p>
+]]></description><link>/2016/a-basic-cli-app-in-node.html</link><guid isPermaLink="true">/2016/a-basic-cli-app-in-node.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 25 Aug 2016 03:42:00 GMT</pubDate></item><item><title><![CDATA[things that suck about js]]></title><description><![CDATA[<p>asked some people what they dislike about js, just out of curiosity.
 results are predictable.</p>
 <p>in no particular order:</p>
 <ul>
@@ -614,118 +790,4 @@ computers without my dotfiles, i don&#39;t think they&#39;re really a waste of t
 </span>, idF   = () =&gt; a =&gt; a
 , <span class="hljs-keyword">addF </span> = a =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; a + <span class="hljs-keyword">b
 </span>, cur   = <span class="hljs-preprocessor">fn</span> =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)
-</span>, rCur  = <span class="hljs-preprocessor">fn</span> =&gt; <span class="hljs-keyword">b </span>=&gt; a =&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)</span></code></pre>]]></description><link>/2016/july-12-meetup.html</link><guid isPermaLink="true">/2016/july-12-meetup.html</guid><category><![CDATA[fp]]></category><category><![CDATA[meetup]]></category><category><![CDATA[notes]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 13 Jul 2016 02:39:25 GMT</pubDate></item><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
-set up as a build agent for TeamCity, running stuff in Docker.</p>
-<pre class="hljs"><code>#!/usr/bin/env bash
-
-# start with a t2.large (or maybe medium) ec2 instance
-# ubuntu, preferably 16.x
-# needs to have semi-<span class="hljs-keyword">open</span> network access and public IP
-# to be able to <span class="hljs-keyword">update</span> packages and talk to docker and your
-# build server
-# after running this and registering the agent <span class="hljs-keyword">on</span> the TC
-# server, just <span class="hljs-keyword">use</span> the agent push
-# or, download the <span class="hljs-keyword">zip</span> and scp it up
-
-# new ubuntu instances won&#39;t have pw <span class="hljs-keyword">on</span> default user (ubuntu)
-sudo <span class="hljs-keyword">su</span>
-
-apt-get <span class="hljs-keyword">update</span>
-
-apt-key adv --keyserver hkp:<span class="hljs-comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span>
-
-<span class="hljs-keyword">mkdir</span> -p /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
-touch /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
-echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/apt/sources.list.d/docker.list</span>
-echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
-
-<span class="hljs-keyword">if</span> [ command -v lxc-docker ] ; then
-  apt-get purge lxc-docker -<span class="hljs-literal">y</span>
-fi
-
-echo &quot;
-## <span class="hljs-keyword">Note</span>, this <span class="hljs-keyword">file</span> is written <span class="hljs-keyword">by</span> cloud-init <span class="hljs-keyword">on</span> first <span class="hljs-keyword">boot</span> of <span class="hljs-keyword">an</span> instance
-## modifications made here will not survive a re-bundle.
-## <span class="hljs-keyword">if</span> you wish to make changes you can:
-## a.) add &#39;apt_preserve_sources_list: true&#39; to /etc/cloud/cloud.cfg
-##     or <span class="hljs-keyword">do</span> the same <span class="hljs-keyword">in</span> user-data
-## b.) add sources <span class="hljs-keyword">in</span> /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-literal">d</span>
-## c.) make changes to template <span class="hljs-keyword">file</span> /etc/cloud/templates/sources.<span class="hljs-keyword">list</span>.tmpl
-#
-
-# See http:<span class="hljs-comment">//help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span>
-# newer versions of the distribution.
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
-
-## Major bug fix updates produced after the final release of the
-## distribution.
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
-
-## <span class="hljs-keyword">N</span>.B. software from this repository is ENTIRELY UNSUPPORTED <span class="hljs-keyword">by</span> the Ubuntu
-## team. Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span> universe WILL NOT receive any
-## review or updates from the Ubuntu security team.
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
-
-## <span class="hljs-keyword">N</span>.B. software from this repository is ENTIRELY UNSUPPORTED <span class="hljs-keyword">by</span> the Ubuntu
-## team, and may not be under a free licence. Please satisfy yourself <span class="hljs-keyword">as</span> to
-## your rights to <span class="hljs-keyword">use</span> the software. Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span>
-## multiverse WILL NOT receive any review or updates from the Ubuntu
-## security team.
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
-
-## Uncomment the following <span class="hljs-keyword">two</span> lines to add software from the &#39;backports&#39;
-## repository.
-## <span class="hljs-keyword">N</span>.B. software from this repository may not have been tested <span class="hljs-keyword">as</span>
-## extensively <span class="hljs-keyword">as</span> that contained <span class="hljs-keyword">in</span> the main release, although it includes
-## newer versions of some applications <span class="hljs-keyword">which</span> may provide useful features.
-## Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span> backports WILL NOT receive any review
-## or updates from the Ubuntu security team.
-deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
-deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
-
-## Uncomment the following <span class="hljs-keyword">two</span> lines to add software from Canonical&#39;<span class="hljs-literal">s</span>
-## &#39;partner&#39; repository.
-## This software is not part of Ubuntu, but is offered <span class="hljs-keyword">by</span> Canonical and the
-## respective vendors <span class="hljs-keyword">as</span> a service to Ubuntu users.
-# deb http:<span class="hljs-comment">//archive.canonical.com/ubuntu xenial partner</span>
-# deb-src http:<span class="hljs-comment">//archive.canonical.com/ubuntu xenial partner</span>
-
-deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security main</span>
-deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security main</span>
-deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security universe</span>
-deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security universe</span>
-# deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security multiverse</span>
-# deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security multiverse</span>
-&quot; &gt; /etc/apt/sources.<span class="hljs-keyword">list</span>
-
-apt-get install -y apt-transport-https <span class="hljs-keyword">ca</span>-certificates
-apt-get install -y linux-image-extra-$(uname -r) --fix-missing --allow-unauthenticated
-apt-get install -y default-jdk unzip docker-engine --fix-missing --allow-unauthenticated
-apt-get dist-upgrade -y --allow-unauthenticated --fix-<span class="hljs-literal">missing</span>
-apt-get autoremove
-apt-get purge
-
-systemctl daemon-reload
-systemctl enable docker
-systemctl start docker
-
-echo &quot;
-#!/usr/bin/env bash
-
-<span class="hljs-keyword">while</span> true
-<span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">sleep</span> 86400
-  docker rmi <code>docker images -aq</code>
-done
-&quot; &gt; ~/docker-cleanup.<span class="hljs-keyword">sh</span>
-
-chmod +x ~/docker-cleanup.<span class="hljs-keyword">sh</span>
-nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 Jul 2016 15:59:29 GMT</pubDate></item></channel></rss>
+</span>, rCur  = <span class="hljs-preprocessor">fn</span> =&gt; <span class="hljs-keyword">b </span>=&gt; a =&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)</span></code></pre>]]></description><link>/2016/july-12-meetup.html</link><guid isPermaLink="true">/2016/july-12-meetup.html</guid><category><![CDATA[fp]]></category><category><![CDATA[meetup]]></category><category><![CDATA[notes]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 13 Jul 2016 02:39:25 GMT</pubDate></item></channel></rss>
