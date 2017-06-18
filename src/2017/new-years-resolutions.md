@@ -22,9 +22,9 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Racket
   * [ ] ClojureScript
   * [ ] Haskell
-* [ ] Learn more about `sh` and POSIX compat in general
+* [x] Learn more about `sh` and POSIX compat in general
   * [ ] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
-  * [ ] Also weed out my dotfiles, they're ridiculous
+  * [x] Also weed out my dotfiles, they're ridiculous
 * [ ] At least record the acoustic album that's been written and sitting there for ages
 * [ ] Maybe get Windows working enough to finish up the electro album thing
 * [ ] Be healther
@@ -48,3 +48,4 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [x] Make a real effort to talk to real humans in real life
 * [x] Take the time to move all things using Facebook auth away from this
 * [x] Delete Facebook
+* [x] Get more tattoos

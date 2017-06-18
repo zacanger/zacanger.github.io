@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 20 May 2017 03:14:59 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sun, 18 Jun 2017 02:06:44 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, but won&#39;t delete any.</p>
@@ -16,9 +16,9 @@ I&#39;ve been consistent with them for several months at the least.</p>
 <li>[ ] Haskell</li>
 </ul>
 </li>
-<li>[ ] Learn more about <code>sh</code> and POSIX compat in general<ul>
+<li>[x] Learn more about <code>sh</code> and POSIX compat in general<ul>
 <li>[ ] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
-<li>[ ] Also weed out my dotfiles, they&#39;re ridiculous</li>
+<li>[x] Also weed out my dotfiles, they&#39;re ridiculous</li>
 </ul>
 </li>
 <li>[ ] At least record the acoustic album that&#39;s been written and sitting there for ages</li>
@@ -56,6 +56,7 @@ I&#39;ve been consistent with them for several months at the least.</p>
 <li>[x] Make a real effort to talk to real humans in real life</li>
 <li>[x] Take the time to move all things using Facebook auth away from this</li>
 <li>[x] Delete Facebook</li>
+<li>[x] Get more tattoos</li>
 </ul>
 ]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 31 Dec 2017 06:59:59 GMT</pubDate></item><item><title><![CDATA[a short rant about languages and people]]></title><description><![CDATA[<p>I wrote this on <a href="https://mastodon.social/@zacanger">Mastodon</a> but decided
 to cross-post for whatever reason.</p>
