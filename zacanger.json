@@ -120,13 +120,13 @@
       "name": "Jane.com",
       "position": "Front-end developer",
       "dates": "2016-Present",
-      "summary": "Front-end and infrastructure (ops-ish).",
-      "technologies": "React, CSS, *nix, Koa, Express, Redux, AWS, Docker, NGINX, Angular."
+      "summary": "Worked on product teams building front-end apps including working on the React re-write of Jane.com and internal apps. Worked on an infrastructure team on deployments, CI, and testing.",
+      "technologies": "React, CSS and Styled-Components, Linux, Koa, Express, Redux, AWS, Docker, Graphql and Apollo, Flow, Typescript, NGINX, and Angular."
     },{
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
       "dates": "2016",
-      "summary": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects.",
+      "summary": "Mentored student group; planned/carried out lectures; developed/maintained curriculum and internal projects.",
       "technologies": "Node, Express, Angular, Chromium (extensions), CSS/preprocessors, MongoDB/Mongoose, build systems, Linux."
     },{
       "name": "RLH Guitars",
