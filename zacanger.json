@@ -13,7 +13,7 @@
 
   "writing": "http://blog.zacanger.com",
 
-  "summary": "I'm an enthusiastic, always-curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new technologies, development, and design, with a strong preference for web technologies and doing things the UNIX way. I'm passionate about building better interfaces and smoother interactions, opening up the web to more people, keeping it open for everyone, and keeping software and development free, open, transparent, and accessible.",
+  "summary": "I'm an enthusiastic, curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new development technologies, with a strong preference for the web and UNIX-like environments. I'm passionate about building better interfaces and smoother processes, and keeping software and development free, open, transparent, and accessible.",
 
   "projects": [
     {
@@ -126,7 +126,7 @@
       "name": "DevMountain",
       "position": "Mentor and Junior Developer",
       "dates": "2016",
-      "summary": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects",
+      "summary": "Mentored stuent group; planned/carried out lectures; developed/maintained curriculum and internal projects.",
       "technologies": "Node, Express, Angular, Chromium (extensions), CSS/preprocessors, MongoDB/Mongoose, build systems, Linux."
     },{
       "name": "RLH Guitars",
