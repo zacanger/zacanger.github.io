@@ -20,7 +20,7 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Mainly, stop working on weekends and in the middle of the night and stuff
 * [ ] Get familiar these languages to write real-world stuff
   * [ ] Racket
-  * [ ] ClojureScript
+  * [x] ClojureScript
   * [ ] Haskell
 * [x] Learn more about `sh` and POSIX compat in general
   * [ ] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
@@ -31,15 +31,13 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [ ] Switch to vaping, for real this time
   * [x] Maybe eat better?
     * [x] Less pizza, at least
-* [ ] Buy a car
-* [ ] Finish paying off debts, so close
+* [x] Finish paying off debts, so close
   * [x] Also try not to tap into savings so much for stupid things
 * [ ] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
   * [ ] Also, blog more (at least, clear out my `drafts` dir).
 * [x] Be making more money
   * [x] Preferably where I am now, but somewhere else if that doesn't work out
   * [x] Also start actually emailing recruiters back
-* [ ] Switch to Mutt or some other purely text-based email client
 * [ ] Actually finish anything ever
   * [x] Various unfinished small projects
   * [ ] Finish Pharaoh rewrite early on
