@@ -10,7 +10,8 @@ I'm re-posting NY resolutions as a checklist, post-dated for the end of this yea
 Some things will be ongoing tasks, and won't be checked off until I feel like
 I've been consistent with them for several months at the least.
 
-I may add things to this list, but won't delete any.
+I may add things to this list, or remove ones that I've straight-up decided were
+a bad idea (like buying a car).
 
 The checklist is using GFM, which this blog generator doesn't understand. (That's on the list.)
 
