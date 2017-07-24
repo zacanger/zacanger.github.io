@@ -39,9 +39,8 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [x] Be making more money
   * [x] Preferably where I am now, but somewhere else if that doesn't work out
   * [x] Also start actually emailing recruiters back
-* [ ] Actually finish anything ever
+* [x] Actually finish anything ever
   * [x] Various unfinished small projects
-  * [ ] Finish Pharaoh rewrite early on
 * [x] Make progress on learning Korean, for real this time
 * [x] Try really hard to not write any untested code
 * [x] Make a real effort to talk to real humans in real life
