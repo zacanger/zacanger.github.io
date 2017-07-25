@@ -10,7 +10,11 @@
         padding: 0;
         margin: 0;
         background: #222;
-        font-family: "Lato", "Helvetica Neue", sans-serif;
+        font-family: "Lato", "Cardo", "Merriweather", serif;
+      }
+
+      .instructions {
+        color: #eee;
       }
 
       .phone-container { width: 100%; }
@@ -146,18 +150,20 @@
     </style>
 
     <script type="text/javascript">
-      let loaded = 0
-      const getIframeSrc = () => {
-        if (!loaded) {
-          document.getElementById('if').src = window.location.hash.substring(1)
-          loaded = 1
+      const setIframeSrc = (v) => {
+        if (!v.startsWith('http')) {
+          v = `http://${v}`
         }
+        document.getElementById('if').src = v
       }
     </script>
 
   </head>
 
   <body>
+    <span class="instructions">Enter a url below to preview</span>
+    <br>
+    <input type="text" onchange="setIframeSrc(this.value)">
     <div class="container dark">
       <div class="phone-container">
         <div class="phone-shape small">
@@ -171,7 +177,7 @@
             <span class="speaker"></span>
           </div>
           <div class="phone-screen">
-            <iframe id="if" src="" onload="getIframeSrc()"></iframe>
+            <iframe id="if" src=""></iframe>
           </div>
           <div class="circle-button"></div>
         </div>
