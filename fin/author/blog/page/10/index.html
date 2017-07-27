@@ -48,6 +48,99 @@
 <div id="content-main">
 
 
+  <article class="post tag-docker">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/docker.html">docker notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-26">26 May, 2016</time>
+         | tags: <a href="/tag/docker/">docker</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>So this is a <code>Dockerfile</code>:</p>
+<pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
+<span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get install build-essential curl
+</span><span class="hljs-built_in">RUN</span> <span class="bash">curl <a href="https://gist.githubusercontent.com/isaacs/">https://gist.githubusercontent.com/isaacs/</a><span class="hljs-number">579814</span>/raw/<span class="hljs-number">24</span>f5f02b5<span class="hljs-built_in">cd</span>1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
+</span><span class="hljs-built_in">EXPOSE</span> <span class="hljs-number">4010</span> <span class="hljs-comment"># port to expose</span>
+ENTRYPOINT [<span class="hljs-string">&quot;node&quot;</span>] <span class="hljs-comment"># thing to run when we start the image, i think</span></code></pre><p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
+<p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
+<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
+<p>Some other Dockerfile commands (?):</p>
+<pre class="hljs"><code><span class="hljs-built_in">WORKDIR</span> <span class="bash">/<span class="hljs-built_in">set</span>/working/directory/to/here/i/guess
+</span><span class="hljs-built_in">COPY</span> <span class="bash">thisthing /to/here
+</span><span class="hljs-built_in">CMD</span> <span class="bash">[<span class="hljs-string">&quot;array&quot;</span>, <span class="hljs-string">&quot;of&quot;</span>, <span class="hljs-string">&quot;commands&quot;</span>, <span class="hljs-string">&quot;like&quot;</span>, <span class="hljs-string">&quot;npm&quot;</span>, <span class="hljs-string">&quot;start&quot;</span>]
+</span><span class="hljs-built_in">ADD</span> <span class="bash">. . <span class="hljs-comment"># add files/dirs from cwd to image</span></span></code></pre><p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p 80:4010</code> looks obvious.</p>
+<p>Some commands:</p>
+<pre class="hljs"><code>docker ps <span class="hljs-comment"># get container id</span>
+docker logs containerid
+docer exec -<span class="hljs-keyword">it</span> containerid /bin/bash <span class="hljs-comment"># enter the container</span></code></pre><p>It&#39;s totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
+<p>There&#39;s also a <code>node:versionnumber</code> image I think?</p>
+<p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
+then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
+<p>To limit usage: <code>-m &quot;256M&quot; --memory-swap &quot;2G&quot;</code></p>
+<p>An example:</p>
+<pre class="hljs"><code>docker run \
+-<span class="ruby">e <span class="hljs-string">&quot;NODE_ENV=production&quot;</span> \
+</span>-<span class="ruby">u <span class="hljs-string">&quot;app&quot;</span> \
+</span>-<span class="ruby">m <span class="hljs-string">&quot;256M&quot;</span> --memory-swap <span class="hljs-string">&quot;2G&quot;</span> \
+</span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
+</span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
+</span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
+<p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
+<p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
+<p>Compose is like fig, but from Docker.</p>
+<pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
+docker-compose up -<span class="hljs-keyword">d</span>
+docker-compose <span class="hljs-keyword">stop</span>, <span class="hljs-keyword">kill</span>, rm</span></code></pre><p>All of these just go off a YAML file, I guess.</p>
+<p>Okay, based on Node&#39;s official docs we can do:</p>
+<pre class="hljs"><code>FROM <span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title">:6</span>.<span class="hljs-number">2.0</span>
+EXPOSE <span class="hljs-number">4010</span>
+
+<span class="hljs-comment"># and then</span>
+
+docker build -t jane-com .
+docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env default)</code></p>
+<p>And if you need systemd in the mix, try something like:</p>
+<pre class="hljs"><code><span class="hljs-comment">;; once docker is installed, there should already be</span>
+<span class="hljs-comment">;; a systemd service for it. so you can just systemctl start docker</span>
+<span class="hljs-comment">;; and systemctl enable docker and that SHOULD be it</span>
+<span class="hljs-title">
+[Unit]</span>
+<span class="hljs-setting">Description=<span class="hljs-value">This is our Node service</span></span>
+<span class="hljs-setting">Requires=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-setting">After=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-title">
+[Service]</span>
+<span class="hljs-setting">Restart=<span class="hljs-value">always</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker kill ournodecontainer</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker rm ournodecontainer</span></span>
+<span class="hljs-setting">ExecStart=<span class="hljs-value">/usr/bin/docker run --name=ournodecontainer ournode/container</span></span>
+<span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
+<span class="hljs-title">
+[Install]</span>
+<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre><p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don&#39;t really tell you where to look for that):</p>
+<pre class="hljs"><code>docker <span class="hljs-built_in">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
+
+<span class="hljs-comment"># And then you could just:</span>
+
+mkdir ~/foo
+tar -C ~/foo -xvf dockerimg.tar
+
+<span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
+<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
+<p><code>docker save</code> is for <em>images</em>.</p>
+</p>
+    </section>
+  </article>
+
+
   <article class="post tag-devmtn">
     <header class="post-header">
       <h2 class="post-title"><a href="/2016/alum-meetup.html">devmountain alumni meetup notes</a></h2>
@@ -789,58 +882,9 @@ two, we&#39;re saved.</p>
   </article>
 
 
-  <article class="post tag-mac">
-    <header class="post-header">
-      <h2 class="post-title"><a href="/2016/parallels-weirdness.html">fixing parallels weirdness</a></h2>
-      <span class="post-meta">
-        <time datetime="2016-05-22">22 May, 2016</time>
-         | tags: <a href="/tag/mac/">mac</a></span>
-
-      <br>
-
-    </header>
-    <section class="post-content">
-      <p><p>at work, parallels kept crashing. what led to this:</p>
-<ul>
-<li>took a system update on the mac from the app store</li>
-<li>after rebooting, went over to parallels, which runs windows 10</li>
-<li>that needed an update too apparently, so took that</li>
-<li>after rebooting the virtual windows, didn&#39;t think about it for a while</li>
-<li>went back to it, went to un-suspend or whatever you&#39;d call it, and it crashed</li>
-<li>happened several times, tried force quitting, killing all related processes, rebooting the mac, no luck</li>
-<li>the fix on the kb was totally unrelated. running prd_client_app manually gave the following:</li>
-</ul>
-<pre class="hljs"><code>May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">33</span>  pdfm-bootstrap[<span class="hljs-number">84883</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84847</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span>
-[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $
-[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $ .<span class="hljs-regexp">/./</span>prl_client_app
-objc[<span class="hljs-number">84919</span>]: Class YRKSpinningProgressIndicator is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/PDControlCenter.framework/</span>Versions<span class="hljs-regexp">/A/</span>PDControlCenter and <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks/libPrlGui<span class="hljs-number">.2</span>.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class DeallocHook is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class MethodInfo is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class PreviewItem is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class QLResponder is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-objc[<span class="hljs-number">84919</span>]: Class SSBaseDelegate is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84957</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Is executed with params <span class="hljs-string">&#39;start&#39;</span>
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84969</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Loading pids from <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84970</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: prl_event_tap already started with pid <span class="hljs-number">84870</span> and alive
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84971</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Starting prl_naptd...
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84977</span>] &lt;Warning&gt;: agent[<span class="hljs-number">84958</span>]: prl_naptd not started
-<span class="hljs-string">error:</span> failed to execute <span class="hljs-string">subprocess:</span> -<span class="hljs-number">2</span>
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84980</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Dump pids to <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
-May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84981</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span></code></pre><p>most of that is probably irrelevant, apparently that class is implemented in both thingy
-is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
-anyway, the thing that actually ended up working was:</p>
-<p><code>sudo &quot;/Applications/Parallels Desktop.app/Contents/MacOS/inittool&quot; init -b &quot;/Applications/Parallels Desktop.app&quot;</code></p>
-<p>note: run that as sudo from your normal user, don&#39;t <code>sudo su</code> and then do it.</p>
-<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
-if anyone else can&#39;t get anything to work, maybe that&#39;ll help.</p>
-</p>
-    </section>
-  </article>
-
-
   <nav class="pagination" role="navigation">
         <a class="newer-posts" href="/author/blog/page/9/">&larr; Newer Posts</a>
-    <span class="page-number">Page 10 of 14</span>
+    <span class="page-number">Page 10 of 15</span>
         <a class="older-posts" href="/author/blog/page/11/">Older Posts &rarr;</a>
 </nav>
 

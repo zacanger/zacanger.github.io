@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 27 Jul 2017 17:59:46 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[So You Want To Learn vim]]></title><description><![CDATA[<h1 id="so-you-want-to-learn-vim">So You Want To Learn vim</h1>
+<h2 id="why-read-this-">Why Read This?</h2>
+<p>Why am I qualified to talk about this? There are <em>so many</em> Intro To Vim
+posts/articles/whatever out there, so why should you read this one?</p>
+<p>This isn&#39;t going to be a basic Vim tutorial. It&#39;s more of a guide to Vim guides.</p>
+<p>I&#39;ve been using Vim full-time for around two years now, and used a lot of other
+editors before Vim. It took me a while to figure out what I wanted in an editor,
+and when I did figure it out it turned out Vim was what I needed. I&#39;m not a Vim
+expert, but I&#39;m solid enough with it that I can be much more productive in Vim
+than in any other editor. I&#39;m writing this post in Vim because it&#39;s far more
+comfortable for me now than some other thing with buttons and menus and pointing
+and clicking and all that.</p>
+<h2 id="do-you-really-want-to-learn-vim-">Do You Really Want To Learn Vim?</h2>
+<p>Are you sure? Why do you want to learn Vim? Is it because someone told you your
+editor isn&#39;t a <em>real</em> editor and <em>real</em> programmers use Vim (or Emacs)? That&#39;s
+bullshit. Real programmers use whatever tools help them be productive. If you&#39;re
+already good with your editor, and it suits your needs, stick with it. You
+should learn Vim if you&#39;re not happy with what you&#39;re using now. It doesn&#39;t
+matter if you use Atom or Emacs or Eclipse or whatever. If you know your editor
+well and can get stuff done in it, don&#39;t switch editors just because you think
+you should.</p>
+<p>That being said, I love Vim, and if you want to learn it, and have the time to
+get moving with it, I think you should. I&#39;ve used loads of editors in the past
+(Nano, Notepad++, Kilo/OpenEmacs, Hipper, Atom, LightTable, WebStorm, Visual
+Studio, VS Code, TextAdept, Sublime Text, and probably others). They all have
+their good parts and their bad parts. So does Vim, but for me the good far
+outweighs the bad with Vim.</p>
+<h2 id="where-you-should-start">Where You Should Start</h2>
+<p>There are <em>loads</em> of resources for learning Vim out there. A lot of them take
+the form of games and such. Ignore all those. They&#39;ll only teach you the basics,
+usually just of navigation and maybe two modes. They won&#39;t help you <em>understand</em>
+Vim, they&#39;ll just teach you enough to be able to open it, enter text, move
+around, and quit. If that&#39;s all you need in an editor, switch to Notepad or
+Nano.</p>
+<h3 id="vimtutor">Vimtutor</h3>
+<p>Start with <code>vimtutor</code>. If you&#39;re on Linux, BSD, or Mac, you probably already
+have it installed. Just type <code>vimtutor</code> in a terminal, and do the whole thing.</p>
+<h3 id="reading">Reading</h3>
+<p>Then read
+<a href="https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118">this</a>.
+It explains a lot about how to <em>think</em> about using Vim.</p>
+<p><a href="http://www.moolenaar.net/habits.html">This bit</a>, from the guy who wrote Vim
+originally, is also worth a read.</p>
+<p>Then go <a href="https://github.com/mhinz/vim-galore">read this</a>. There&#39;s a <em>lot</em> of
+information there. You don&#39;t need to remember it all, but it&#39;s a handy
+reference.</p>
+<p>If you get stuck at any point, use the built-in help (with <code>:h thing</code>, like <code>:h
+reg</code>). The help in Vim is <em>great</em>, probably better than any other editor&#39;s. You
+should get in the habit of checking the help before Googling something, because
+the help is probably more accurate, and is also closer at hand.</p>
+<h3 id="which-vim-">Which Vim?</h3>
+<p>Most OSs will come with some version of Vim already installed (the exception
+being Windows). Chances are it&#39;s a stripped-down and/or old version, though. I
+use and highly recommend <a href="https://github.com/neovim/neovim/">Neovim</a>, but if
+that&#39;s not available or up to date for your system, make sure you&#39;re on Vim 8.
+Vim 7.x is pretty old, and missing a lot of the nice things that are in Neovim
+and now in Vim 8.</p>
+<p>There are graphical versions of Vim &mdash; Gvim, MacVim, GUI wrappers for
+Neovim, etc. You can use those if you want, there&#39;s nothing wrong with them. I
+don&#39;t see the point in them personally, because they don&#39;t add anything except
+some menus and buttons which all do things you can just do in Vim anyway.</p>
+<h3 id="other-editors">Other Editors</h3>
+<p>You can also get started in some other editor. Every good editor has a Vim
+plugin, and I actually recommend starting this way if you&#39;re not comfortable
+switching all at once. I used Vim plugins in LightTable, Atom, and TextAdept for
+a few months before actually making the switch, and it made things a bit easier.</p>
+<h3 id="configuration">Configuration</h3>
+<p>It&#39;s really easy to get lost in configuration, for any editor (or any tool, I
+guess). Vim is just as bad as the rest. Some people, myself included, spend way
+too much time tweaking their configs. I don&#39;t recommend starting with someone
+else&#39;s configs, though. They&#39;ll have opinions that don&#39;t align with yours, and
+their <code>.vimrc</code> will be built for how <em>they</em> do things not how <em>you</em> do. I <em>do</em>
+recommend cruising GitHub and looking at people&#39;s dotfiles for ideas, but don&#39;t
+go with some preconfigured setup that you don&#39;t understand.</p>
+<p>I use this <a href="https://github.com/zacanger/z/blob/master/.vimrc">very minimal
+vimrc</a> sometimes, when I need
+to, and here&#39;s my (kinda messy)
+<a href="https://github.com/zacanger/z/blob/master/.config/nvim/init.vim">init.vim</a> for
+Neovim.</p>
+<p>You will need a plugin manager, eventually. I use NeoBundle, which I think is
+Neovim-specific. I hear really good things about Vundle for Vim. Pathogen and
+Dein are also out there, but I haven&#39;t tried either of them.</p>
+<h2 id="other-stuff">Other Stuff</h2>
+<p>You might end up on systems that don&#39;t have Vim (like in containers). They will
+probably have <code>vi</code>, though. A lot of the stuff you&#39;re used to doing in Vim might
+not work in vi, but some of it will. You should read up a little bit on
+<a href="http://wiki.c2.com/?ViEditor">vi</a> just in case. Also read the bit on how to
+pronounce it.</p>
+<p>Read <a href="https://sanctum.geek.nz/arabesque/vim-koans">this post</a> (and everything
+else on that blog). Seriously. Even to an intermediate user, there&#39;s a lot of
+good stuff to be learned.</p>
+]]></description><link>/2017/so-you-want-to-learn-vim.html</link><guid isPermaLink="true">/2017/so-you-want-to-learn-vim.html</guid><category><![CDATA[vim]]></category><category><![CDATA[learning]]></category><category><![CDATA[education]]></category><category><![CDATA[editor]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 27 Jul 2017 17:59:00 GMT</pubDate></item></channel></rss>
