@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Thu, 27 Jul 2017 18:32:45 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 29 Jul 2017 04:55:03 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, or remove ones that I&#39;ve straight-up decided were
@@ -18,7 +18,7 @@ a bad idea (like buying a car).</p>
 </ul>
 </li>
 <li>[x] Learn more about <code>sh</code> and POSIX compat in general<ul>
-<li>[ ] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
+<li>[x] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
 <li>[x] Also weed out my dotfiles, they&#39;re ridiculous</li>
 </ul>
 </li>
@@ -37,7 +37,7 @@ a bad idea (like buying a car).</p>
 </ul>
 </li>
 <li>[ ] Change how this blog is built, so it&#39;s more flexible, and maybe using something fun like Frog (using GFM).<ul>
-<li>[ ] Also, blog more (at least, clear out my <code>drafts</code> dir).</li>
+<li>[x] Also, blog more (at least, clear out my <code>drafts</code> dir).</li>
 </ul>
 </li>
 <li>[x] Be making more money<ul>
