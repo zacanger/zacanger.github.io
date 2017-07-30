@@ -45,9 +45,13 @@
       "url": "http://npm.im/lilnote",
       "summary": "A tiny note-taking app that stores notes in JSON"
     },{
-      "name": "Pharaoh",
-      "url": "http://npm.im/pharaoh",
-      "summary": "A editor built for live broadcasting of code; installable as an executable from NPM."
+      "name": "koa-simple-static",
+      "url": "http://npm.im/koa-simple-static",
+      "summary": "Simple caching static file server middleware for Koa 2."
+    },{
+      "name": "angr.vim",
+      "url": "https://github.com/zacanger/angr.vim",
+      "summary": "Pleasant, mild, dark colorscheme for Vim"
     },{
       "name": "z",
       "url": "https://github.com/zacanger/z.git",
