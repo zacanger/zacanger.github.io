@@ -25,6 +25,10 @@
       "url": "http://npm.im/zeelib",
       "summary": "A small lib of FP, Node, and DOM utils."
     },{
+      "name": "jsdoctap",
+      "url": "http://npm.im/jsdoctap",
+      "summary": "Doctests using JSDoc examples and node-tap"
+    },{
       "name": "alert-node",
       "url": "http://npm.im/alert-node",
       "summary": "Cross-platform alert in Node"
