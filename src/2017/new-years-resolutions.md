@@ -19,7 +19,8 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 
 * [ ] Work less at work
   * [ ] Mainly, stop working on weekends and in the middle of the night and stuff
-* [ ] Get familiar enough with ClojureScrip to write something real-world
+* [ ] Get familiar enough with ClojureScript to write something real-world
+* [ ] Same, with Haskell
 * [x] Learn more about `sh` and POSIX compat in general
   * [x] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
   * [x] Also weed out my dotfiles, they're ridiculous
