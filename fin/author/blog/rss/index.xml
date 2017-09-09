@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 05 Aug 2017 19:29:38 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 09 Sep 2017 05:10:17 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, or remove ones that I&#39;ve straight-up decided were
@@ -11,7 +11,8 @@ a bad idea (like buying a car).</p>
 <li>[ ] Mainly, stop working on weekends and in the middle of the night and stuff</li>
 </ul>
 </li>
-<li>[ ] Get familiar enough with ClojureScrip to write something real-world</li>
+<li>[ ] Get familiar enough with ClojureScript to write something real-world</li>
+<li>[ ] Same, with Haskell</li>
 <li>[x] Learn more about <code>sh</code> and POSIX compat in general<ul>
 <li>[x] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
 <li>[x] Also weed out my dotfiles, they&#39;re ridiculous</li>
