@@ -26,6 +26,7 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
   * [x] Also weed out my dotfiles, they're ridiculous
 * [ ] At least record the acoustic album that's been written and sitting there for ages
 * [ ] Maybe get Windows working enough to finish up the electro album thing
+* [x] Start learning to play the cello
 * [ ] Be healther
   * [ ] Switch to vaping, for real this time
   * [x] Maybe eat better?
