@@ -147,7 +147,7 @@ dl dt {
 
 code, tt {
   padding: 1px 3px;
-  font-family: "Hack", monospace;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
   font-size: 0.85em;
   white-space: pre;
   border: 1px solid #444;
@@ -162,7 +162,7 @@ pre {
   border: 1px solid #444444;
   width: 100%;
   padding: 10px;
-  font-family: "Hack", monospace;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
   font-size: 0.9em;
   white-space: pre;
   overflow: auto;
