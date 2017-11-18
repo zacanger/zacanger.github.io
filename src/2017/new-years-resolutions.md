@@ -1,6 +1,6 @@
 ---
 title: 2017 todo list
-published_at: 2017-12-30 23:59:59
+published_at: 2017-12-31 23:59:59
 author: zacanger
 tags: personal
 ---
@@ -19,8 +19,8 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 
 * [ ] Work less at work
   * [ ] Mainly, stop working on weekends and in the middle of the night and stuff
-* [ ] Get familiar enough with ClojureScript to write something real-world
-* [ ] Same, with Haskell
+* [ ] Get familiar enough with Clojure/ClojureScript to write something real-world
+* [ ] Same, with Haskell/Purescript
 * [x] Learn more about `sh` and POSIX compat in general
   * [x] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
   * [x] Also weed out my dotfiles, they're ridiculous
@@ -28,7 +28,7 @@ The checklist is using GFM, which this blog generator doesn't understand. (That'
 * [ ] Maybe get Windows working enough to finish up the electro album thing
 * [x] Start learning to play the cello
 * [ ] Be healther
-  * [ ] Switch to vaping, for real this time
+  * [x] Switch to vaping, for real this time
   * [x] Maybe eat better?
     * [x] Less pizza, at least
 * [x] Finish paying off debts, so close

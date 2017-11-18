@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Fri, 15 Sep 2017 03:22:44 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/rss/index.xml" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2017 todo list]]></title><description><![CDATA[<p>I&#39;m re-posting NY resolutions as a checklist, post-dated for the end of this year.</p>
 <p>Some things will be ongoing tasks, and won&#39;t be checked off until I feel like
 I&#39;ve been consistent with them for several months at the least.</p>
 <p>I may add things to this list, or remove ones that I&#39;ve straight-up decided were
@@ -11,8 +11,8 @@ a bad idea (like buying a car).</p>
 <li>[ ] Mainly, stop working on weekends and in the middle of the night and stuff</li>
 </ul>
 </li>
-<li>[ ] Get familiar enough with ClojureScript to write something real-world</li>
-<li>[ ] Same, with Haskell</li>
+<li>[ ] Get familiar enough with Clojure/ClojureScript to write something real-world</li>
+<li>[ ] Same, with Haskell/Purescript</li>
 <li>[x] Learn more about <code>sh</code> and POSIX compat in general<ul>
 <li>[x] Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
 <li>[x] Also weed out my dotfiles, they&#39;re ridiculous</li>
@@ -22,7 +22,7 @@ a bad idea (like buying a car).</p>
 <li>[ ] Maybe get Windows working enough to finish up the electro album thing</li>
 <li>[x] Start learning to play the cello</li>
 <li>[ ] Be healther<ul>
-<li>[ ] Switch to vaping, for real this time</li>
+<li>[x] Switch to vaping, for real this time</li>
 <li>[x] Maybe eat better?<ul>
 <li>[x] Less pizza, at least</li>
 </ul>
@@ -53,7 +53,7 @@ a bad idea (like buying a car).</p>
 <li>[x] Delete Facebook</li>
 <li>[x] Get more tattoos</li>
 </ul>
-]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 31 Dec 2017 06:59:59 GMT</pubDate></item><item><title><![CDATA[So You Want To Learn vim]]></title><description><![CDATA[<h1 id="so-you-want-to-learn-vim">So You Want To Learn vim</h1>
+]]></description><link>/2017/new-years-resolutions.html</link><guid isPermaLink="true">/2017/new-years-resolutions.html</guid><category><![CDATA[personal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 01 Jan 2018 06:59:59 GMT</pubDate></item><item><title><![CDATA[So You Want To Learn vim]]></title><description><![CDATA[<h1 id="so-you-want-to-learn-vim">So You Want To Learn vim</h1>
 <h2 id="why-read-this-">Why Read This?</h2>
 <p>Why am I qualified to talk about this? There are <em>so many</em> Intro To Vim
 posts/articles/whatever out there, so why should you read this one?</p>
