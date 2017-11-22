@@ -4,23 +4,21 @@ import Footer from './footer'
 import { string, node, any } from 'prop-types'
 import formatDate from './format-date'
 
-class Body extends React.Component {
-  render () {
-    const { post, children } = this.props
-    const date = post ? formatDate(post.created) : ''
+const Body = (props) => {
+  const { post, children } = props
+  const date = post ? formatDate(post.created) : ''
+  const view = React.cloneElement(children, props)
 
-    const view = React.cloneElement(children, this.props)
-
-    return (
-      <body>
-        <Header {...this.props}
-          title={post.title}
-          description={date} />
-        {view}
-        <Footer {...this.props} />
-      </body>
-    )
-  }
+  return (
+    <body>
+      <Header {...props}
+        title={post.title}
+        description={date}
+      />
+      {view}
+      <Footer {...props} />
+    </body>
+  )
 }
 
 Body.propTypes = {

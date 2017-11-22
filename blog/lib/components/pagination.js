@@ -1,38 +1,20 @@
 import React from 'react'
 import { any, string } from 'prop-types'
 
-class Pagination extends React.Component {
-  render () {
-    let previous
-    let next
-    if (typeof this.props.previous === 'number') {
-      previous = (
-        <a href={this.props.baseUrl + 'page/' + this.props.previous}>
-          Previous
-        </a>
-      )
+const Pagination = ({ baseUrl, previous = false, next = false }) => (
+  <div>
+    {typeof previous === 'number' &&
+      <a style={{ marginRight: '8px' }} href={`${baseUrl}page/${previous}`}>
+        Previous
+      </a>
     }
-    if (typeof this.props.next === 'number') {
-      next = (
-        <a href={this.props.baseUrl + 'page/' + this.props.next}>
-          Next
-        </a>
-      )
+    {typeof next === 'number' &&
+      <a href={`${baseUrl}page/${next}`}>
+        Next
+      </a>
     }
-
-    return (
-      <div>
-        {previous}
-        {next}
-      </div>
-    )
-  }
-}
-
-Pagination.defaultProps = {
-  next: false,
-  previous: false
-}
+  </div>
+)
 
 Pagination.propTypes = {
   next: any,
