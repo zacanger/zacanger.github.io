@@ -1,0 +1,1177 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>notes from my personal project at devmountain | Zac Anger&#x27;s Blog</title><meta name="description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,electron,nwjs,markdown,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="notes from my personal project at devmountain"/><meta name="twitter:description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="notes from my personal project at devmountain"/><meta property="og:description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><style type="text/css">/* base.css */
+* { box-sizing: border-box }
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: 'Merriweather', Athelas, Georgia, serif;
+  line-height: 1.625;
+  margin: 0;
+  color: #311;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 5px, #ccc 5px, #ccc);
+}
+
+a:hover {
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h3,
+h4, h5, h6 {
+  font-size: 1rem;
+}
+
+h1 {
+  letter-spacing: .2em;
+  font-size: .7rem;
+  font-size: .8rem;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+h3, h4, h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+p, dl, ol, ul, blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+code, pre, samp {
+  font-family: 'Hasklig', 'Hack', 'Fira Code', 'Fantasque Sans Mono', monospace;
+}
+
+pre {
+  font-size: 70%;
+  padding-left: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: scroll;
+  border-left: 4px solid rgba(0, 0, 0, .0625);
+}
+
+hr {
+  border: 0;
+  border-bottom: 4px solid rgba(0, 0, 0, .0625);
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+code {
+  font-size: 80%;
+  background-size: 100% 8px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: linear-gradient(transparent 4px, rgba(0, 0, 0, .125) 4px);
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 0;
+  line-height: 2rem;
+}
+
+th {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-align: left;
+  border-bottom: 2px solid;
+}
+
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, .0625);
+}
+
+tr:last-child td {
+  border: 0;
+}
+
+
+/* zeess */
+@charset "utf-8";
+@viewport {
+  width: device-width;
+}
+@at-root {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-webkit-viewport {
+  width: device-width;
+}
+
+/** zeess https://github.com/zacanger/zeess license: wtfpl **/
+
+/* a little reset */
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+html, body, ul, ol, li, form, fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+fieldset, img {
+  border: 0;
+}
+legend {
+  color: #000;
+}
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+textarea, select {
+  font-size: 110%;
+  line-height: 1.1;
+}
+abbr, acronym {
+  border-bottom: .1em dotted;
+  cursor: help;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+figure {
+  margin: 0;
+}
+svg {
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+dfn {
+  font-style: italic;
+}
+audio, canvas, video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  outline: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-stretch: normal;
+}
+
+/* 1.5rem = 15px */
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+  outline: none;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+}
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Merriweather", "Cardo", serif;
+  color: #303330;
+  background: #fff;
+  padding: 1rem;
+  max-width: 900px;
+  margin-left: 2rem;
+}
+iframe {
+  border: 0;
+}
+
+/* semanticky things */
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: 900px;
+}
+article {
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  padding: 2rem;
+}
+header {
+  margin-bottom: 2rem;
+}
+footer {
+  margin-top: 2rem;
+}
+blockquote, q {
+  quotes: none;
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+h1 {
+  font-size: 4.0rem;
+  line-height: 1.2;
+  letter-spacing: -.1rem;
+}
+h2 {
+  font-size: 3.6rem;
+  line-height: 1.25;
+  letter-spacing: -.1rem;
+}
+h3 {
+  font-size: 3.2rem;
+  line-height: 1.3;
+  letter-spacing: -.1rem;
+}
+h4 {
+  font-size: 2.4rem;
+  line-height: 1.35;
+  letter-spacing: -.08rem;
+}
+h5 {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -.05rem;
+}
+h6 {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+small {
+  font-size: 1.3rem;
+}
+em, i {
+  font-style: italic;
+}
+strong, b {
+  font-weight: 600;
+}
+
+/* Links */
+
+a {
+  -webkit-transition: color .4s;
+  transition: color .4s;
+  color: #265C83;
+}
+a:link, a:visited {
+  color: #265C83;
+}
+a:hover {
+  color: #7FDBFF;
+}
+a:active {
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  color: #007BE6;
+}
+
+/* Lists, nav, and spacing */
+
+p, ul, ol, dl, blockquote, hr, pre, table, form, fieldset, figure, address {
+  margin-bottom: 2rem;
+}
+ul {
+  list-style: circle inside;
+  padding-left: 1rem;
+  margin-top: 0;
+}
+ol {
+  list-style: decimal inside;
+}
+ul ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 80%;
+}
+ol, ul {
+  margin-left: 2rem;
+}
+li ol, li ul {
+  margin-bottom: 0;
+}
+nav {
+  text-align: center;
+}
+nav ul {
+  list-style: none;
+  margin-left: 0;
+  text-align: center;
+}
+nav ul li {
+  display: inline;
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
+nav ul li:first-child {
+  margin-left: 0;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+p {
+  margin-top: 1rem;
+}
+p, ul {
+  margin-bottom: 2.5rem;
+}
+
+/* hr is _very important_. */
+
+hr {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  border-top: 1px solid #ccc;
+  border-width: 0;
+  box-sizing: content-box;
+  height: 0;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+/* pre, code, etc. */
+
+
+/* being extra nice to people who have nice typefaces */
+
+code, kbd, samp, var, output {
+  font-family: "Fira Code", "Hasklig", "Hack", "Fantasque Sans Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 1.4rem;
+}
+pre {
+  border-left: 1.8px solid #96bbe2;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  overflow: auto;
+  padding-left: 0.6rem;
+}
+pre code {
+  border: 0;
+  line-height: 1.2;
+  padding: 0;
+}
+code {
+  border: 1.8px solid #ccc;
+  border-radius: 2px;
+  display: inline-block;
+  line-height: 1.2;
+  padding: 3px 6px 2px;
+}
+
+/* tabley stuff */
+
+th {
+  font-weight: 600;
+}
+td, th {
+  border-bottom: 1px solid #ccc;
+  padding: 0.8rem;
+}
+thead th {
+  border-bottom-width: 2px;
+  padding-bottom: 0.6rem;
+}
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* inputs and things are really just awful */
+
+[hidden], template {
+  display: none;
+}
+[role="button"] {
+  cursor: pointer;
+}
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+input::-moz-focus-inner, button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  display: none;
+}
+input:-webkit-autofill {
+  color: #fff !important;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+  vertical-align: top;
+}
+button, input, textarea, select {
+  -webkit-font-smoothing: inherit;
+}
+a, area, button, [role="button"], input, label, select, summary, textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+input, textarea, select, button {
+  display: block;
+  padding: 0.6rem;
+}
+input[type="submit"], input[type="reset"], input[type="button"], button {
+  background: #f2f2f2;
+  border-radius: 2px;
+  color: #8c8c8c;
+  cursor: pointer;
+  display: inline;
+  margin-bottom: 1.2rem;
+  margin-right: 0.4rem;
+  padding: 0.4rem 1.4rem;
+  text-align: center;
+}
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover {
+  background: #d9d9d9;
+  color: #000;
+}
+input[type="submit"][disabled], input[type="reset"][disabled], button[disabled], html input[disabled] {
+  background: #e6e6e6;
+  color: #b3b3b3;
+  cursor: default;
+}
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="phone"], input[type="tel"], input[type="number"], input[type="datetime"], input[type="date"], input[type="month"], input[type="color"], input[type="time"], input[type="search"], input[type="range"], input[type="file"], input[type="datetime-local"], select, textarea {
+  border: 1px solid #ccc;
+  margin-bottom: 1.2rem;
+  padding: 0.4rem 0.6rem;
+}
+input[type="checkbox"], input[type="radio"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  line-height: 1.8;
+  margin-right: 0.6rem;
+  margin-top: 0.8rem;
+  padding: 0;
+}
+button, [type=submit], input[type="submit"], input[type="button"], input[type="reset"] {
+  -moz-appearance: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  -webkit-transition: all 60ms ease-in-out;
+  -webkit-user-select: none;
+  appearance: none;
+  background: #333030;
+  border-radius: 4px;
+  border: 0 none;
+  color: #f2f2f2;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 10px;
+  overflow: hidden;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: none;
+  transition: all 60ms ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+}
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, [type=submit]:hover {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  opacity: .85;
+}
+button:active, [type=submit]:active {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  -webkit-transform: scale(0.97);
+  transform: scale(0.97);
+  opacity: .75;
+}
+button:focus, [type=submit]:focus {
+  outline: none;
+}
+
+/* img */
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Media queries? Okay, fine… */
+
+@media (max-width: 767px) {
+  body {
+    padding: 18px;
+  }
+  article {
+    border-radius: 0;
+    margin: -18px;
+    padding: 18px;
+  }
+  textarea, input, select {
+    max-width: 100%;
+  }
+  fieldset {
+    min-width: 0;
+  }
+  section {
+    width: auto;
+  }
+  fieldset, x:-moz-any-link {
+    display: table-cell;
+  }
+}
+@media (min-width: 550px) {
+  h1 {
+    font-size: 4.0rem;
+  }
+  h2 {
+    font-size: 3.6rem;
+  }
+  h3 {
+    font-size: 2.2rem;
+  }
+  h4 {
+    font-size: 2.4rem;
+  }
+  h5 {
+    font-size: 1.8rem;
+  }
+  h6 {
+    font-size: 1.6rem;
+  }
+}
+@media print {
+  pre, blockquote {
+    border: 1px solid #999 !important;
+    page-break-inside: avoid !important;
+  }
+  tr, img {
+    page-break-inside: avoid !important;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: .5cm !important;
+  }
+  p, h2, h3 {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+  h2, h3 {
+    page-break-after: avoid !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+  p a[href]:after {
+    content: " (" attr(href) ")" !important;
+  }
+  p abbr[title]:after {
+    content: " (" attr(title) ")" !important;
+  }
+  p a[href^="javascript:"]:after, p a[href^="#"]:after {
+    content: "" !important;
+  }
+  p a, p abbr {
+    word-wrap: break-word !important;
+    text-decoration: underline !important;
+  }
+}
+
+
+/* screen.css */
+/* general */
+html {
+  height: 100%;
+  max-height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.3em;
+}
+
+::-moz-selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+::selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.2em;
+  letter-spacing: -2px;
+  text-indent: -3px;
+  font-weight: 700;
+  font-family: "Cardo", serif;
+}
+
+h2 {
+  font-size: 2.1rem;
+  line-height: 1.2em;
+  letter-spacing: -1px;
+  text-indent: -2px;
+  font-weight: 400;
+}
+
+h3 { font-size: 1.6rem; font-weight: 400; }
+h4 { font-size: 1.4rem; font-weight: 400; }
+h5 { font-size: 1.2rem; font-weight: 400; }
+h6 { font-size: 1.1rem; font-weight: 400; }
+a { color: #94c498; text-decoration: none; }
+a:hover { color: #64dbbb; text-decoration: underline; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #94c498; }
+p, ul, ol { margin: 1.6em 0; }
+ol ol, ul ul, ul ol, ol ul { margin: 0.4em 0; }
+blockquote p { margin: 0.8em 0; font-style: italic; }
+blockquote small:before { content: '\2014   \A0'; }
+blockquote cite { font-weight:bold; }
+blockquote cite a { font-weight: normal; }
+dl { margin: 1.6em 0; }
+dl dd { margin-left: 200px; margin-bottom: 1em }
+mark { background-color: #ffc336; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #483f62;
+  margin: 3.2em 0;
+  padding: 0;
+}
+
+blockquote {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  padding: 0 0 0 1.6em;
+  border-left: #666666 0.4em solid;
+  color: #666666;
+  font-family: "Cardo", serif;
+  font-style: italic;
+}
+
+blockquote small {
+  display: inline-block;
+  margin: 0.8em 0 0.8em 1.5em;;
+  font-size:0.9em;
+  color: #ccc;
+}
+
+dl dt {
+  float: left;
+  width: 180px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-bottom: 1em
+}
+
+code, tt {
+  padding: 1px 3px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.85em;
+  white-space: pre;
+  border: 1px solid #444;
+  border-radius: 2px;
+}
+
+pre {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  border: 1px solid #444444;
+  width: 100%;
+  padding: 10px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.9em;
+  white-space: pre;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+pre code, tt {
+  font-size: inherit;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+kbd {
+  display: inline-block;
+  margin-bottom: 0.4em;
+  padding: 1px 8px;
+  border: #ccc 1px solid;
+  color: #666;
+  text-shadow: #fff 0 1px 0;
+  font-size: 0.9em;
+  font-weight: bold;
+  background: #f4f4f4;
+  border-radius: 4px;
+  box-shadow:
+  0 1px 0 rgba(0, 0, 0, 0.2),
+  0 1px 0 0 #fff inset;
+}
+
+table {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  width:100%;
+  max-width: 100%;
+  background-color: transparent;
+}
+
+table th, table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #efefef;
+}
+
+table th { color: #000; }
+table tbody + tbody { border-top: 2px solid #efefef; }
+table table table { background-color: #fff; }
+
+table caption + thead tr:first-child th,
+table caption + thead tr:first-child td,
+table colgroup + thead tr:first-child th,
+table colgroup + thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+  background-color: #f6f6f6;
+}
+
+table.plain {
+  tbody > tr:nth-child(odd) > td,
+  tbody > tr:nth-child(odd) > th {
+    background: transparent;
+  }
+}
+
+
+/* classes */
+.post-card {
+  margin-bottom: 3em;
+}
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>notes from my personal project at devmountain</h2><div>Wednesday, May 18, 2016</div></header><div><div><h1>this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working
+on my 'personal project' at devmountain.</p>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
+for people who actually cared about writing. turns out no one really wants that.
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+cool.</p>
+<p>requirements for this: make a mean stack app, basically.</p>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+and more importantly here's the mess of notes i took while doing stuff with that.</p>
+<hr>
+<h2>Planner</h2>
+<p>At DevMountain, for projects, you're encouraged (required, really) to use a planning
+paper, which is basically a big sheet of paper divided up into sections that represent
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+the bottom.</p>
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
+there was a PDF version floating around so I threw a little app up using that (converted to
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
+able to easily just save all my notes out (they were all just in a big text file anyway, on
+my server). Note: I'd initially planned on using my earlier app from my 'no-server' project
+(something we do at DevMountain early on, just an Angular app that can actually use a server
+so long as it's a BaaS and not one we've spent time doing, because we don't actually know how
+to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
+<p>Anyway, these are the contents from my planning thing.</p>
+<h3>Ideas and Users</h3>
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
+ADHD social media style of content-creation and likes and shares that's taken
+over the popular idea of the blog, but instead around long-form writing; essays,
+meaningful stories, and such. the target audience here is the moderately
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+out in coffee shops too much.</p>
+<h3>Features</h3>
+<ul>
+<li>mvp: oh wait, that's already done. well, except for getting it to work in the
+desktop client, which is the entire idea here.</li>
+<li>the rest:
+<ul>
+<li>a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.</li>
+<li>comments.</li>
+<li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
+</ul>
+<h3>Views</h3>
+<ol>
+<li>the existing markdown editor (however, likely revamped to move away from
+plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one's own posts as
+someone else's).</li>
+<li>the 'social' view: a feed, no 'content-based' sorting, just purely ordered
+chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they'll be isolated (data-wise), so it may be smarter to
+load them in dynamically (see: discourse [not discuz, they're ruby], but don't
+do that stupid thing where half the page disappears, that's some annoying-ass
+bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an
+archive file, delete account.</li>
+</ol>
+<h3>Controllers</h3>
+<ul>
+<li>browser, main, and nav (see existing codebase)</li>
+<li>not controllers, but...</li>
+<li>services: files (existing)</li>
+<li>filters: filename and cut (existing)
+<ul>
+<li>by tag (feed view)</li>
+<li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
+</ul>
+<h3>Endpoints</h3>
+<p>Those are a thing, yes.</p>
+<h3>Schemas</h3>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// possible schemas ??</span>
+
+<span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose'</span>)
+
+<span class="hljs-keyword">const</span> user = mongoose.Schema({
+  <span class="hljs-attr">username</span> : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">pass</span>     : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>, <span class="hljs-attr">minlength</span> : <span class="hljs-number">6</span>}
+, <span class="hljs-attr">post</span>     : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'post'</span>}]
+, <span class="hljs-attr">comments</span> : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'comment'</span>}]
+})
+
+<span class="hljs-keyword">const</span> post = mongoose.Schema({
+  <span class="hljs-attr">title</span>    : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">content</span>  : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">tags</span>     : <span class="hljs-built_in">Array</span>
+, <span class="hljs-attr">date</span>     : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">Number</span>, <span class="hljs-attr">default</span> : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()}
+, <span class="hljs-attr">author</span>   : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'user'</span>}]
+, <span class="hljs-attr">comments</span> : [{mongoose.Types.ObjectID, <span class="hljs-attr">ref</span> : <span class="hljs-string">'comment'</span>}]
+})
+
+<span class="hljs-keyword">const</span> comment = mongoose.Schema({
+  <span class="hljs-attr">date</span>    : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">Number</span>, <span class="hljs-attr">default</span>  : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()}
+, <span class="hljs-attr">content</span> : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">post</span>    : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'posts'</span>}]
+, <span class="hljs-attr">author</span>  : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'user'</span>}]
+})
+
+mongoose.model(<span class="hljs-string">'user'</span>, user)
+mongoose.model(<span class="hljs-string">'post'</span>, post)
+mongoose.model(<span class="hljs-string">'comment'</span>, comment)
+</code></pre>
+<h3>Other Thoughts:</h3>
+<p>this would be relatively easy to throw up in a web browser. blogging platforms
+are a dime a dozen, especially ones built on node. the idea here isn't to make
+another tumblr, but to bring actual writing back to the web. sort of like
+medium, but without all the twitter. a key part of that is having it NOT be in a
+browser. right now the goal is to put all this in an electron shell, but i'm not
+going to focus super hardcore on that right this moment. if i can get everything
+else in place and rock-solid first, then i'll stuff it all in electron. if not,
+then i'll just write up a manifest file and call it a chrome app. either way,
+fuck y'all, it's already got nigh on a thousand installs....</p>
+<hr>
+<h2>The Presentation Speech</h2>
+<p>This is what I'd planned to say when presenting my app. I think instead
+I just kind of mumbled a little bit about how neat CodeMirror is and how
+annoying it was to struggle with the <code>'node-integration'</code> issue with
+Electron.</p>
+<h3>Markdown</h3>
+<p>…is a lightweight markup language which makes writing for the web a much quicker
+and easier process than if using a rich text editor (like Word), which wouldn't
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
+<code>&lt;strong&gt;</code>, in Markdown you'd use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
+Github are usually written in an implementation of Markdown called Github
+Flavoured Markdown, which shows just how popular the format has grown. Stack
+Overflow, the Discourse comment system, and various blog systems including
+Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
+<p>vi is possibly the most influential editor of, like, ever. it was written in
+1976, and either vi or one of its descendants (usually vim, which stands for 'vi
+improved') has been on almost every unix-based system since then, including
+every computer in this building (except the microsoft machines -- and even on
+those, if you have git-bash or something similar). vim's power comes from how
+easily and quickly it can manipulate large chunks of text. For example, typing
+in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
+<p>So, putting these things together makes for a really great tool for writing. Not
+necessarily writing Tweets or Facebook posts, but writing longer texts, like
+articles or essays. That's the purpose of this app. It's not a social blog. It's
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+minus… teenagers.</p>
+<p>Since the editor component itself is based around CodeMirror, it's very
+extensible, which is exciting because it leaves so much open for future
+development. For example, if we wanted to make this a Javascript editor instead,
+we could just change a few lines and now we have the right syntax highlighting,
+automatic indentation, et cetera.</p>
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
+from the beginning it was really meant to be a desktop tool; browsers are
+distracting, this not so much.</p>
+<p>Aaaand here's the code.</p>
+<hr>
+<h2>misc notes</h2>
+<p>All this stuff was just thrown in another file.
+It's mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
+<p>check https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md
+before trying to get any other browser-shit going on--we'll want to move things
+into their own windows, i feel; chromeless might be a good idea, at least for
+the editor view</p>
+<pre><code class="hljs">const BrowserWindow = require(<span class="hljs-string">'electron'</span>).BrowserWindow
+let win = <span class="hljs-keyword">new</span> BrowserWindow({<span class="hljs-string">width :</span> <span class="hljs-number">1900</span>, <span class="hljs-string">height :</span> <span class="hljs-number">1600</span>, <span class="hljs-string">frame :</span> <span class="hljs-literal">false</span>})
+</code></pre>
+<p>so basically it's just a new browser window, frame as false, but we want to
+probably lock the px to whatever screen we're working with, if CSS continues to
+fail miserably.</p>
+<p>-- note: check how atom manages to not fuck that up. except those bits where
+they do.</p>
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+clickables, one assumes).</p>
+<ul>
+<li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
+<li>downloadItem.setSavePath(path)</li>
+<li>downloadItem.cancel()</li>
+<li>downloadItem.getURL() // origin url</li>
+<li>file.path = real (fs) path</li>
+</ul>
+<h3>printing</h3>
+<pre><code class="hljs language-javascript">webContents.printToPDF(opts, cb) <span class="hljs-comment">// where:</span>
+opts:
+  marginsType: <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> (<span class="hljs-number">0</span> <span class="hljs-keyword">default</span>)
+  pageSize: <span class="hljs-string">'A4'</span>, <span class="hljs-string">'A3'</span>, <span class="hljs-string">'Legal'</span>, <span class="hljs-string">'Letter'</span>, <span class="hljs-string">'Tabloid'</span>
+  printBackground: <span class="hljs-literal">false</span> (duh)
+  landscape: <span class="hljs-literal">false</span> (is portrait)
+cb <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>)</span>{<span class="hljs-keyword">if</span> err etc, data = content buffer}
+
+empty opts = <span class="hljs-string">`{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`</span>
+
+<span class="hljs-comment">// sample from electron docs</span>
+<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).BrowserWindow
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">let</span> win = <span class="hljs-keyword">new</span> BrowserWindow({<span class="hljs-attr">width</span>: <span class="hljs-number">800</span>, <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>})
+win.loadURL(<span class="hljs-string">'http://github.com'</span>)
+win.webContents.on(<span class="hljs-string">'did-finish-load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Use default printing options</span>
+  win.webContents.printToPDF({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, data</span>) </span>{
+    <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error
+    }
+    fs.writeFile(<span class="hljs-string">'/tmp/print.pdf'</span>, data, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">throw</span> error
+      }
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done did dat'</span>)
+    })
+  })
+})
+</code></pre>
+<ul>
+<li>main process is a normal node script</li>
+<li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
+<li>electron's built-in modules don't need <code>require('asdf')</code>; set
+<code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
+<li>shell.openExternal(url) opens in eg xdg-browser</li>
+<li>shell.openItem('/FULL/path/to/item') = xdg-open</li>
+</ul>
+<h3>menus</h3>
+<ul>
+<li>new MenuItem(opts):
+<ul>
+<li>id: string, unique within menu</li>
+<li>submenu</li>
+<li>checked: bool</li>
+<li>visible: bool</li>
+<li>enabled: bool</li>
+<li>label: string</li>
+<li>type: normal, separator, submenu, checkbox, or radio</li>
+<li>role: action; if specified, next thing will be ignored</li>
+<li>click: function -- click(menuItem, browserWindow) -- this is that 'next thing'</li>
+</ul>
+</li>
+<li>recommended to set role:
+<ul>
+<li>undo</li>
+<li>redo</li>
+<li>cut</li>
+<li>copy</li>
+<li>paste</li>
+<li>selectall</li>
+<li>minimize</li>
+<li>close</li>
+</ul>
+</li>
+</ul>
+<p>electron-rebuild would automatically take care of headers &amp; native node module
+builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
+<p>the 'npm' way: same as usual, except env variables:</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">export</span>
+  <span class="hljs-attribute">npm_config_disturl</span>=https://atom.io/download/atom-shell
+  <span class="hljs-attribute">npm_config_target</span>=0.33.1 # ???
+  <span class="hljs-attribute">npm_config_arch</span>=x64
+  <span class="hljs-attribute">npm_config_runtime</span>=electron
+<span class="hljs-attribute">HOME</span>=~/.electron-gyp npm install module-name # home equals? what?
+</code></pre>
+<p>one important thing: nw.js's url in the package file? nah, bro, electron don't
+do that shit. so manually creating the browser window and loading HTML is the
+right way with electron.</p>
+</div><p><a href="https://github.com/zacanger/blog/issues/new?title=notes from my personal project at devmountain" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

@@ -1,0 +1,1168 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Elm (notes) | Zac Anger&#x27;s Blog</title><meta name="description" content="Differences from JS:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,haskell,fp,programming,javascript,elm,lang"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Elm (notes)"/><meta name="twitter:description" content="Differences from JS:"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Elm (notes)"/><meta property="og:description" content="Differences from JS:"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><style type="text/css">/* base.css */
+* { box-sizing: border-box }
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: 'Merriweather', Athelas, Georgia, serif;
+  line-height: 1.625;
+  margin: 0;
+  color: #311;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 5px, #ccc 5px, #ccc);
+}
+
+a:hover {
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h3,
+h4, h5, h6 {
+  font-size: 1rem;
+}
+
+h1 {
+  letter-spacing: .2em;
+  font-size: .7rem;
+  font-size: .8rem;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+h3, h4, h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+p, dl, ol, ul, blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+code, pre, samp {
+  font-family: 'Hasklig', 'Hack', 'Fira Code', 'Fantasque Sans Mono', monospace;
+}
+
+pre {
+  font-size: 70%;
+  padding-left: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: scroll;
+  border-left: 4px solid rgba(0, 0, 0, .0625);
+}
+
+hr {
+  border: 0;
+  border-bottom: 4px solid rgba(0, 0, 0, .0625);
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+code {
+  font-size: 80%;
+  background-size: 100% 8px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: linear-gradient(transparent 4px, rgba(0, 0, 0, .125) 4px);
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 0;
+  line-height: 2rem;
+}
+
+th {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-align: left;
+  border-bottom: 2px solid;
+}
+
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, .0625);
+}
+
+tr:last-child td {
+  border: 0;
+}
+
+
+/* zeess */
+@charset "utf-8";
+@viewport {
+  width: device-width;
+}
+@at-root {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-webkit-viewport {
+  width: device-width;
+}
+
+/** zeess https://github.com/zacanger/zeess license: wtfpl **/
+
+/* a little reset */
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+html, body, ul, ol, li, form, fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+fieldset, img {
+  border: 0;
+}
+legend {
+  color: #000;
+}
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+textarea, select {
+  font-size: 110%;
+  line-height: 1.1;
+}
+abbr, acronym {
+  border-bottom: .1em dotted;
+  cursor: help;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+figure {
+  margin: 0;
+}
+svg {
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+dfn {
+  font-style: italic;
+}
+audio, canvas, video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  outline: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-stretch: normal;
+}
+
+/* 1.5rem = 15px */
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+  outline: none;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+}
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Merriweather", "Cardo", serif;
+  color: #303330;
+  background: #fff;
+  padding: 1rem;
+  max-width: 900px;
+  margin-left: 2rem;
+}
+iframe {
+  border: 0;
+}
+
+/* semanticky things */
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: 900px;
+}
+article {
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  padding: 2rem;
+}
+header {
+  margin-bottom: 2rem;
+}
+footer {
+  margin-top: 2rem;
+}
+blockquote, q {
+  quotes: none;
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+h1 {
+  font-size: 4.0rem;
+  line-height: 1.2;
+  letter-spacing: -.1rem;
+}
+h2 {
+  font-size: 3.6rem;
+  line-height: 1.25;
+  letter-spacing: -.1rem;
+}
+h3 {
+  font-size: 3.2rem;
+  line-height: 1.3;
+  letter-spacing: -.1rem;
+}
+h4 {
+  font-size: 2.4rem;
+  line-height: 1.35;
+  letter-spacing: -.08rem;
+}
+h5 {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -.05rem;
+}
+h6 {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+small {
+  font-size: 1.3rem;
+}
+em, i {
+  font-style: italic;
+}
+strong, b {
+  font-weight: 600;
+}
+
+/* Links */
+
+a {
+  -webkit-transition: color .4s;
+  transition: color .4s;
+  color: #265C83;
+}
+a:link, a:visited {
+  color: #265C83;
+}
+a:hover {
+  color: #7FDBFF;
+}
+a:active {
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  color: #007BE6;
+}
+
+/* Lists, nav, and spacing */
+
+p, ul, ol, dl, blockquote, hr, pre, table, form, fieldset, figure, address {
+  margin-bottom: 2rem;
+}
+ul {
+  list-style: circle inside;
+  padding-left: 1rem;
+  margin-top: 0;
+}
+ol {
+  list-style: decimal inside;
+}
+ul ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 80%;
+}
+ol, ul {
+  margin-left: 2rem;
+}
+li ol, li ul {
+  margin-bottom: 0;
+}
+nav {
+  text-align: center;
+}
+nav ul {
+  list-style: none;
+  margin-left: 0;
+  text-align: center;
+}
+nav ul li {
+  display: inline;
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
+nav ul li:first-child {
+  margin-left: 0;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+p {
+  margin-top: 1rem;
+}
+p, ul {
+  margin-bottom: 2.5rem;
+}
+
+/* hr is _very important_. */
+
+hr {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  border-top: 1px solid #ccc;
+  border-width: 0;
+  box-sizing: content-box;
+  height: 0;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+/* pre, code, etc. */
+
+
+/* being extra nice to people who have nice typefaces */
+
+code, kbd, samp, var, output {
+  font-family: "Fira Code", "Hasklig", "Hack", "Fantasque Sans Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 1.4rem;
+}
+pre {
+  border-left: 1.8px solid #96bbe2;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  overflow: auto;
+  padding-left: 0.6rem;
+}
+pre code {
+  border: 0;
+  line-height: 1.2;
+  padding: 0;
+}
+code {
+  border: 1.8px solid #ccc;
+  border-radius: 2px;
+  display: inline-block;
+  line-height: 1.2;
+  padding: 3px 6px 2px;
+}
+
+/* tabley stuff */
+
+th {
+  font-weight: 600;
+}
+td, th {
+  border-bottom: 1px solid #ccc;
+  padding: 0.8rem;
+}
+thead th {
+  border-bottom-width: 2px;
+  padding-bottom: 0.6rem;
+}
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* inputs and things are really just awful */
+
+[hidden], template {
+  display: none;
+}
+[role="button"] {
+  cursor: pointer;
+}
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+input::-moz-focus-inner, button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  display: none;
+}
+input:-webkit-autofill {
+  color: #fff !important;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+  vertical-align: top;
+}
+button, input, textarea, select {
+  -webkit-font-smoothing: inherit;
+}
+a, area, button, [role="button"], input, label, select, summary, textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+input, textarea, select, button {
+  display: block;
+  padding: 0.6rem;
+}
+input[type="submit"], input[type="reset"], input[type="button"], button {
+  background: #f2f2f2;
+  border-radius: 2px;
+  color: #8c8c8c;
+  cursor: pointer;
+  display: inline;
+  margin-bottom: 1.2rem;
+  margin-right: 0.4rem;
+  padding: 0.4rem 1.4rem;
+  text-align: center;
+}
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover {
+  background: #d9d9d9;
+  color: #000;
+}
+input[type="submit"][disabled], input[type="reset"][disabled], button[disabled], html input[disabled] {
+  background: #e6e6e6;
+  color: #b3b3b3;
+  cursor: default;
+}
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="phone"], input[type="tel"], input[type="number"], input[type="datetime"], input[type="date"], input[type="month"], input[type="color"], input[type="time"], input[type="search"], input[type="range"], input[type="file"], input[type="datetime-local"], select, textarea {
+  border: 1px solid #ccc;
+  margin-bottom: 1.2rem;
+  padding: 0.4rem 0.6rem;
+}
+input[type="checkbox"], input[type="radio"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  line-height: 1.8;
+  margin-right: 0.6rem;
+  margin-top: 0.8rem;
+  padding: 0;
+}
+button, [type=submit], input[type="submit"], input[type="button"], input[type="reset"] {
+  -moz-appearance: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  -webkit-transition: all 60ms ease-in-out;
+  -webkit-user-select: none;
+  appearance: none;
+  background: #333030;
+  border-radius: 4px;
+  border: 0 none;
+  color: #f2f2f2;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 10px;
+  overflow: hidden;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: none;
+  transition: all 60ms ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+}
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, [type=submit]:hover {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  opacity: .85;
+}
+button:active, [type=submit]:active {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  -webkit-transform: scale(0.97);
+  transform: scale(0.97);
+  opacity: .75;
+}
+button:focus, [type=submit]:focus {
+  outline: none;
+}
+
+/* img */
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Media queries? Okay, fine… */
+
+@media (max-width: 767px) {
+  body {
+    padding: 18px;
+  }
+  article {
+    border-radius: 0;
+    margin: -18px;
+    padding: 18px;
+  }
+  textarea, input, select {
+    max-width: 100%;
+  }
+  fieldset {
+    min-width: 0;
+  }
+  section {
+    width: auto;
+  }
+  fieldset, x:-moz-any-link {
+    display: table-cell;
+  }
+}
+@media (min-width: 550px) {
+  h1 {
+    font-size: 4.0rem;
+  }
+  h2 {
+    font-size: 3.6rem;
+  }
+  h3 {
+    font-size: 2.2rem;
+  }
+  h4 {
+    font-size: 2.4rem;
+  }
+  h5 {
+    font-size: 1.8rem;
+  }
+  h6 {
+    font-size: 1.6rem;
+  }
+}
+@media print {
+  pre, blockquote {
+    border: 1px solid #999 !important;
+    page-break-inside: avoid !important;
+  }
+  tr, img {
+    page-break-inside: avoid !important;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: .5cm !important;
+  }
+  p, h2, h3 {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+  h2, h3 {
+    page-break-after: avoid !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+  p a[href]:after {
+    content: " (" attr(href) ")" !important;
+  }
+  p abbr[title]:after {
+    content: " (" attr(title) ")" !important;
+  }
+  p a[href^="javascript:"]:after, p a[href^="#"]:after {
+    content: "" !important;
+  }
+  p a, p abbr {
+    word-wrap: break-word !important;
+    text-decoration: underline !important;
+  }
+}
+
+
+/* screen.css */
+/* general */
+html {
+  height: 100%;
+  max-height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.3em;
+}
+
+::-moz-selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+::selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.2em;
+  letter-spacing: -2px;
+  text-indent: -3px;
+  font-weight: 700;
+  font-family: "Cardo", serif;
+}
+
+h2 {
+  font-size: 2.1rem;
+  line-height: 1.2em;
+  letter-spacing: -1px;
+  text-indent: -2px;
+  font-weight: 400;
+}
+
+h3 { font-size: 1.6rem; font-weight: 400; }
+h4 { font-size: 1.4rem; font-weight: 400; }
+h5 { font-size: 1.2rem; font-weight: 400; }
+h6 { font-size: 1.1rem; font-weight: 400; }
+a { color: #94c498; text-decoration: none; }
+a:hover { color: #64dbbb; text-decoration: underline; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #94c498; }
+p, ul, ol { margin: 1.6em 0; }
+ol ol, ul ul, ul ol, ol ul { margin: 0.4em 0; }
+blockquote p { margin: 0.8em 0; font-style: italic; }
+blockquote small:before { content: '\2014   \A0'; }
+blockquote cite { font-weight:bold; }
+blockquote cite a { font-weight: normal; }
+dl { margin: 1.6em 0; }
+dl dd { margin-left: 200px; margin-bottom: 1em }
+mark { background-color: #ffc336; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #483f62;
+  margin: 3.2em 0;
+  padding: 0;
+}
+
+blockquote {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  padding: 0 0 0 1.6em;
+  border-left: #666666 0.4em solid;
+  color: #666666;
+  font-family: "Cardo", serif;
+  font-style: italic;
+}
+
+blockquote small {
+  display: inline-block;
+  margin: 0.8em 0 0.8em 1.5em;;
+  font-size:0.9em;
+  color: #ccc;
+}
+
+dl dt {
+  float: left;
+  width: 180px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-bottom: 1em
+}
+
+code, tt {
+  padding: 1px 3px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.85em;
+  white-space: pre;
+  border: 1px solid #444;
+  border-radius: 2px;
+}
+
+pre {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  border: 1px solid #444444;
+  width: 100%;
+  padding: 10px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.9em;
+  white-space: pre;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+pre code, tt {
+  font-size: inherit;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+kbd {
+  display: inline-block;
+  margin-bottom: 0.4em;
+  padding: 1px 8px;
+  border: #ccc 1px solid;
+  color: #666;
+  text-shadow: #fff 0 1px 0;
+  font-size: 0.9em;
+  font-weight: bold;
+  background: #f4f4f4;
+  border-radius: 4px;
+  box-shadow:
+  0 1px 0 rgba(0, 0, 0, 0.2),
+  0 1px 0 0 #fff inset;
+}
+
+table {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  width:100%;
+  max-width: 100%;
+  background-color: transparent;
+}
+
+table th, table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #efefef;
+}
+
+table th { color: #000; }
+table tbody + tbody { border-top: 2px solid #efefef; }
+table table table { background-color: #fff; }
+
+table caption + thead tr:first-child th,
+table caption + thead tr:first-child td,
+table colgroup + thead tr:first-child th,
+table colgroup + thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+  background-color: #f6f6f6;
+}
+
+table.plain {
+  tbody > tr:nth-child(odd) > td,
+  tbody > tr:nth-child(odd) > th {
+    background: transparent;
+  }
+}
+
+
+/* classes */
+.post-card {
+  margin-bottom: 3em;
+}
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Elm (notes)</h2><div>Wednesday, January 13, 2016</div></header><div><div><p>Differences from JS:</p>
+<ul>
+<li>Elm has multiline string support, with <em>triple</em> sets of quotes, eg &quot;&quot;&quot;multiline string&quot;&quot;&quot;</li>
+<li>Elm <em>cannot</em> use single quotes for <em>strings</em>. Elm uses single quotes to denote <em>characters</em>.</li>
+<li>Booleans are uppercase.</li>
+<li>Objects use <code>=</code> instead of <code>:</code>, so <code>{key: value, key2: value2}</code> in JS would be <code>{key = value, key2 = value2}</code> in Elm.</li>
+<li><code>point.x = 42</code> in JS would be <code>{point | x = 42}</code> in Elm.</li>
+<li>Functions are greatly simplified. <code>function(foo, bar){return foo+bar}</code> in js would be <code>\foo bar -&gt; foo + bar</code> in Elm.</li>
+<li>Math is a little simpler: <code>Math.max(2,4)</code> is just <code>max 2 4</code>. Same with <code>min</code>. <code>Math.pow</code> is just <code>^</code>, eg <code>Math.min(1, Math.pow(2, 4))</code> is <code>min 1 (2^4)</code>.</li>
+<li><code>numbers.map(Math.sqrt)</code> would be <code>List.map sqrt numbers</code>. <code>points.map(function(p){return p.x})</code> becomes <code>List.map .x points</code>.</li>
+<li><code>2 &lt; 4 ? 'WHAT' : 'how?'</code>, <code>if 2 &lt; 4 then &quot;WHAT&quot; else &quot;how?&quot;</code></li>
+<li><code>var foo = 72</code>; <code>let foo = 72 in...</code></li>
+<li>No return statements; everything is an expression.</li>
+<li><code>String.length &quot;asdf&quot;</code> rather than 'asdf.length'</li>
+</ul>
+<p>Mostly it looks pretty neat, but there's virtually nothing out there for actually <em>learning</em> it, so I'm already kind of over it....</p>
+<p>Note that the 'EventLog.elm' in this directory doesn't actually need the start-app package anymore; turns out it's really easy to just wire the damn thing up all on your own.</p>
+<hr>
+<p><code>type</code> defines and names a new type. <code>type alias</code> gives a name to an existing type, like <code>alias</code> would in Bash.</p>
+<p>Elm doesn't come witih an HTML module by default/in elm-core, so <code>elm package install evancz/elm-html</code>.</p>
+<p>The repl doesn't support type annotations.</p>
+<p>There's an official list of packages at http://package.elm-lang.org/ -- useful, since you have to install everything with the <code>user/repo</code> syntax.</p>
+<p>Anything wrapped with <code>Debug.log &quot;anything&quot;</code> will go out to the Js console.</p>
+<p>Seeing as so much stuff hasn't been updated for 0.16, there is actually an environment manager one could use, here: <a href="https://github.com/sonnym/elmenv">https://github.com/sonnym/elmenv</a> .</p>
+<p>The <code>=&gt;</code> in Elm is not what you think it is. It's a shorthand for <code>(,)</code>, which is useful in situations like <code>[&quot;color&quot; =&gt; &quot;red&quot;, &quot;padding&quot; =&gt; &quot;2px&quot;]</code>, to avoid annoying things like <code>[(&quot;color&quot;, &quot;red&quot;), (&quot;padding&quot;, &quot;2px&quot;)]</code>.</p>
+<p><code>()</code> is an empty tuple, so it's like <code>null</code>, basically.</p>
+<p><code>&lt;|</code> takes lower priority than functions expressed by adjacency, so it can be used instead of parens. So, <code>max 2 (sqrt x)</code> is the same as <code>max 3 &lt;| sqrt x</code>.</p>
+<p>To run native code that we didn't install with <code>elm package</code>, <code>&quot;native-modules&quot;: true</code> needs to be in the <code>elm-package.json</code> file.</p>
+<hr>
+<p>Some additional style tips:</p>
+<ul>
+<li>Line length &lt;= 80</li>
+<li>2 sp indentation (duh)</li>
+<li>no trailing spaces (duh)</li>
+<li>newline (duh)</li>
+<li>do write type annotations</li>
+<li>do write records (etc.) with spaces between special chars</li>
+<li>on compilation, use <code>elm-make --warn</code>; get rid of the warnings</li>
+<li>for totally fresh compilation, <code>rm elm-stuff/build-artifacts</code></li>
+<li>for any block &gt; 1 line, drop it down on the first line
+<ul>
+<li>
+<p>means more indentation and more lines, but is more readable</p>
+</li>
+<li>
+<p>do the same for accompanying block, even if short</p>
+<ul>
+<li>same reason as for the above</li>
+</ul>
+<p>type alias Foo =<br>
+{ thisWhatever : Float<br>
+, thinyMajiggy : Float<br>
+}</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>That's good!</p>
+<pre><code class="hljs">bar = {  
+  thing = 100  
+  stuff = 9  
+}  
+</code></pre>
+<p>That's no good!</p>
+<p>Avoid nested declarations. So use type aliases for this. (So we don't get shit like <code>type alias Bar = { something : { name: String, stuff: Float } }</code>).</p>
+<pre><code class="hljs">quux =  
+  [ &quot;okay&quot;  
+  , &quot;things&quot;  
+  , &quot;are&quot;  
+  , &quot;logical&quot;  
+  ]  
+</code></pre>
+<p>good!</p>
+<p>bad:</p>
+<pre><code class="hljs">baz = [&quot;okay&quot;, &quot;nope&quot;, &quot;gross&quot;]
+
+lol = [  
+  &quot;stuffs&quot;,  
+  &quot;thingses&quot;,  
+&quot;et ceteras&quot;  
+]  
+
+
+doStuff this that =  
+  let  
+    something =  
+      mix this that  
+        ]&gt; andDoThings  
+    thingsome =  
+      mix this that  
+  in  
+    [ something  
+    , thingsome  
+    ]  
+</code></pre>
+<p>GOOD!</p>
+<p>BAD:</p>
+<pre><code class="hljs">doWhatever you me =  
+  let something = andDoThings (mix you me)  
+      thingsome = mix me you  
+  in [ something, thingsome ]  
+</code></pre>
+<p>use newlines for 'then' and 'else'</p>
+<p>use newlines for the bits of a case</p>
+<p>import modules in the following order:</p>
+<ol>
+<li>non-exposing imports</li>
+<li>explicitly exposing imports</li>
+<li>imports exposing evertything</li>
+</ol>
+<p>... and by 'order' i mean preference order. like:</p>
+<pre><code class="hljs">import Woot  
+import Aw exposing (We, Tried)  
+import OhDear exposing (..)  
+</code></pre>
+<p>In declarations, use a newline after <code>=</code>, and use <code>|&gt;</code>, on newlines.</p>
+<p>All of <code>elm-html</code>'s elements are functions, with two lists as parameters. We can concat the child list with <code>++</code> (for flexibility), but when rendering we ought to map over it.</p>
+<pre><code class="hljs">consChildren : Modal -&gt; Html  
+consChildren model =  
+  div  
+  [  
+  ]  
+  &lt;| [ Header.render model.title ]  
+  ++ renderMaybe model.subTitle  
+  ++ [ Footer.render model.footerThings ]  
+
+mapChildren : List Thing -&gt; Html  
+mapChildren : things =  
+  div  
+  [  
+  ]  
+  &lt;| List.map renderThing Things  
+</code></pre>
+<p>That's quite a bit more annyoing than</p>
+<pre><code class="hljs">[ Header.render model.title  
+, renderSubTitle model.subTitle  
+, Footer.render model.footerThings  
+]  
+</code></pre>
+<p>... but I hear it's worth it, since with great concat comes great flexibility.</p>
+<hr>
+<h4>I GUESS AN ACTUAL SYNTAX REFERENCE MIGHT BE USEFUL, SO HERE'S A REALLY SHORT RUN-DOWN ON ELM. OKAY.</h4>
+<pre><code class="hljs">-- comment  
+
+{-  
+multiline comment  
+  {-  
+    with another multiline comment  
+    inside of it  
+  -}  
+-}  
+
+{--} -- by removing that '}', we can toggle between commented and uncommented  
+add x y = x + y  
+--}  
+
+-- bool  
+True  : Bool  
+False : Bool  
+
+4     : number -- Int OR Float, depending on usage  
+1.6   : Float  
+'z'   : Char  
+'zac' : String  
+
+&quot;&quot;&quot;  
+This is a multiline string.  
+It's handy for things that need their own quotation marks.  
+One could see how &quot;JSON&quot; might &quot;need&quot; it.  
+&quot;&quot;&quot;  
+
+&quot;zac&quot; ++ &quot; anger&quot; -- string concatenation  
+
+-- lists: all these things are equivalent:  
+[1..4]  
+[1,2,3,4]  
+1 :: [2,3,4]  
+1 :: 2 :: 3 :: 4 :: []  
+
+if foo &gt; 4 then &quot;HI!&quot; else &quot;bye...&quot;  
+
+-- records are kind of like objects in js, but without all the stupid bits  
+point = { x = 2, y = 2 }  
+point.x -- access it  
+{ point | x = 4 } -- update it  
+
+-- functions  
+square n =  
+  n^2  
+hypotenuse a b =  
+  sqrt (sqare a + square b)  
+distance (a,b) (x,y) =  
+  hypotenuse (a-x) (b-y)  
+
+-- and anonymous functions  
+square =  
+  \n -&gt; n^2  
+squares =  
+  Listmap (\n -&gt; n^2 [1..100])  
+
+let  
+  foo = 8  
+  y   = 8 -- this is indent-significant!  
+in  
+  foo + bar  
+
+isPositive : Int -&gt; Bool -- type annotation: takes Int, returns Bool  
+
+isPositive number = number &gt; 0 -- function definition  
+
+someFunc : Int -&gt; Int -&gt; Int -- takes two Ints, returns Int  
+
+somefunc a b =  
+  let sum    = a + b -- define intermediate values let  
+      square = sum * sum  
+  in  square         -- and use them in (in)  
+
+transformTuple : (Int, Int) -&gt; (Float, Float) -- tuples  
+
+transformTuple(a, b) =  
+  (toFloat a, toFloat b)  
+
+(,,,) 1 2 3 -- shorthand for creating tuples  
+
+-- chained functions, infix operators, so  
+filled red (square 40) -- is identical to  
+square 40  
+  |&gt; filled red  
+
+rotate (degrees 60) ((move (100, 100) (filled red (square 40)))) -- looks a little lispy, neh?  
+square 40 -- here's a much less... ah... _parenthetical_ way of doing ^that^  
+  |&gt; filled red  
+  |&gt; move (100, 100)  
+  |&gt; rotate (Degrees 60)  
+</code></pre>
+<p>In every Elm file, there are default imports, things I'd basically <em>have</em> to bring in no matter what -- elm-core stuff, I suppose, like the core-est of the core.</p>
+<pre><code class="hljs">import Basics exposing (..)  
+import List   exposing ( List, (..) )  
+import Maybe  exposing ( Maybe( Just, Nothing ) )  
+import Result exposing ( Result(Ok, Err) )  
+import Signal exposing ( Signal )  
+</code></pre>
+<p>That's the basic shtuff, right there.</p>
+<p><a href="http://elm-lang.org/try">Elm's little online editor thing</a> is pretty nifty.</p>
+<p>Elm has some built-in handlers for ports:</p>
+<ul>
+<li><code>title</code> sets page title, ignores empty strings</li>
+<li><code>log</code> puts to (js) console</li>
+<li><code>redirect</code> also ignores empty strings</li>
+<li><code>favicon</code></li>
+<li><code>stdout</code> to node stdout, devtools console</li>
+<li><code>stderr</code> as well</li>
+</ul>
+</div><p><a href="https://github.com/zacanger/blog/issues/new?title=Elm (notes)" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
