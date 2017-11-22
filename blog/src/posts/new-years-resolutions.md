@@ -1,5 +1,5 @@
 ---
-title: 2017 todo list
+title: 2017 Todo List
 created: 2017-12-31
 tags:
   - personal

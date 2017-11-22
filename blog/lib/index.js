@@ -4,7 +4,7 @@ import App from './components/app'
 import PostList from './components/post-list'
 import Post from './components/post'
 
-module.exports = function render (locals, callback) {
+export default (locals, callback) => {
   let view = false
   const params = {}
 
