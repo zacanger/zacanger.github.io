@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[idea: series on design for devs]]></title><description><![CDATA[<p>I&#39;ve wanted to do something like this for a while (since December-ish), but
+haven&#39;t had the time. I have some minor design experience (not a lot), and tend
+to read more about interaction design, HCI, and other random
+non-programming-but-still-computer-and-person-working-together-related topics
+than I do about programming.</p>
+<p>Would anyone be interested in seeing something like that? This is a short list
+of things I might cover:</p>
+<ul>
+<li>A11Y</li>
+<li>Typography</li>
+<li>Colour theory</li>
+<li>Whitespace</li>
+<li>Scalable design (math; see Basscss)</li>
+<li>Styleguides (writing, maintaining, conforming)</li>
+<li>Image manipulation (mostly what <em>not</em> to do)</li>
+<li>Importance and longevity of simplicity</li>
+<li>KISS</li>
+<li><a href="http://jxnblk.com/principles/">Principles</a></li>
+</ul>
+<p>Please <a href="https://twitter.com/@zacanger">tweet at me</a> if you think you&#39;d be into
+it, or have any suggestions/additions/whatever.</p>
+]]></description><link>/2016/design-for-devs.html</link><guid isPermaLink="true">/2016/design-for-devs.html</guid><category><![CDATA[design]]></category><category><![CDATA[idea]]></category><category><![CDATA[dev]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 00:42:58 GMT</pubDate></item></channel></rss>

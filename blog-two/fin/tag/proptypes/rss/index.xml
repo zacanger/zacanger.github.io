@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[PropTypes for Classnames]]></title><description><![CDATA[<p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+It lets you do stuff like</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./styles.css&#39;</span>
+
+<span class="hljs-keyword">const</span> Thing = ({ foo }) =&gt;
+  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== <span class="hljs-number">2</span> })} /&gt;</code></pre><p>And a whole bunch of other stuff, and it just works. If you write your CSS
+in CSS, you should check it out.</p>
+<p>There is one sort of pain point with it, though. If you have components that
+can take anything that&#39;s <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
+<pre class="hljs"><code><span class="hljs-constant">Stuff.propTypes</span> = { className: <span class="hljs-built_in">string</span>.isRequired }</code></pre><p>This doesn&#39;t work, because you&#39;re passing all sorts of stuff in, possibly.</p>
+<p>A solution is to make your own custom PropTypes. You don&#39;t even need to
+get into fancy stuff involving validation, just combine a bunch of other
+PropTypes into your own.</p>
+<p>Let&#39;s say you have a <code>propTypes.js</code> file somewhere where you define custom
+PropTypes.</p>
+<pre class="hljs"><code>import { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+export <span class="hljs-keyword">const</span> classname = PropTypes.oneOfType([
+  PropTypes.<span class="hljs-keyword">object</span>,
+  PropTypes.<span class="hljs-keyword">string</span>,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.<span class="hljs-keyword">bool</span>,
+      PropTypes.<span class="hljs-keyword">object</span>,
+      PropTypes.<span class="hljs-keyword">string</span>
+    ])
+  )
+])</code></pre><p>That&#39;s all you need! Then you can do:</p>
+<pre class="hljs"><code>import { <span class="hljs-built_in">classname</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./propTypes&#39;</span>
+import cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+
+const Stuff = ({ <span class="hljs-built_in">className</span> }) =&gt;
+  &lt;span <span class="hljs-built_in">className</span>={cn(<span class="hljs-built_in">className</span>)}&gt;
+
+Stuff.propTypes = {
+  <span class="hljs-built_in">className</span>: <span class="hljs-built_in">classname</span> <span class="hljs-comment">// this is your custom thing</span>
+}</code></pre><p>That should solve all PropTypes warnings and let you throw anything the
+<code>classnames</code> library can handle at your components.</p>
+]]></description><link>/2017/proptypes-for-classnames.html</link><guid isPermaLink="true">/2017/proptypes-for-classnames.html</guid><category><![CDATA[react]]></category><category><![CDATA[proptypes]]></category><category><![CDATA[classnames]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 11 Feb 2017 17:30:00 GMT</pubDate></item></channel></rss>

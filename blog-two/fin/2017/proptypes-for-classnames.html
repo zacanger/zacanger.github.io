@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2017/proptypes-for-classnames.html" />
+</head>
+<body class="author-template author-blog post-template tag-react tag-proptypes tag-classnames">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-react tag-proptypes tag-classnames">
+
+
+    <h2 class="post-title"><a href="/2017/proptypes-for-classnames.html">PropTypes for Classnames</a></h2>
+    <span class="post-meta">
+      <time datetime="2017-02-11">11 February, 2017</time>
+       | tags: <a href="/tag/react/">react</a>, <a href="/tag/proptypes/">proptypes</a>, <a href="/tag/classnames/">classnames</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+It lets you do stuff like</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./styles.css&#39;</span>
+
+<span class="hljs-keyword">const</span> Thing = ({ foo }) =&gt;
+  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== <span class="hljs-number">2</span> })} /&gt;</code></pre><p>And a whole bunch of other stuff, and it just works. If you write your CSS
+in CSS, you should check it out.</p>
+<p>There is one sort of pain point with it, though. If you have components that
+can take anything that&#39;s <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
+<pre class="hljs"><code><span class="hljs-constant">Stuff.propTypes</span> = { className: <span class="hljs-built_in">string</span>.isRequired }</code></pre><p>This doesn&#39;t work, because you&#39;re passing all sorts of stuff in, possibly.</p>
+<p>A solution is to make your own custom PropTypes. You don&#39;t even need to
+get into fancy stuff involving validation, just combine a bunch of other
+PropTypes into your own.</p>
+<p>Let&#39;s say you have a <code>propTypes.js</code> file somewhere where you define custom
+PropTypes.</p>
+<pre class="hljs"><code>import { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+export <span class="hljs-keyword">const</span> classname = PropTypes.oneOfType([
+  PropTypes.<span class="hljs-keyword">object</span>,
+  PropTypes.<span class="hljs-keyword">string</span>,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.<span class="hljs-keyword">bool</span>,
+      PropTypes.<span class="hljs-keyword">object</span>,
+      PropTypes.<span class="hljs-keyword">string</span>
+    ])
+  )
+])</code></pre><p>That&#39;s all you need! Then you can do:</p>
+<pre class="hljs"><code>import { <span class="hljs-built_in">classname</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./propTypes&#39;</span>
+import cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+
+const Stuff = ({ <span class="hljs-built_in">className</span> }) =&gt;
+  &lt;span <span class="hljs-built_in">className</span>={cn(<span class="hljs-built_in">className</span>)}&gt;
+
+Stuff.propTypes = {
+  <span class="hljs-built_in">className</span>: <span class="hljs-built_in">classname</span> <span class="hljs-comment">// this is your custom thing</span>
+}</code></pre><p>That should solve all PropTypes warnings and let you throw anything the
+<code>classnames</code> library can handle at your components.</p>
+
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=PropTypes for Classnames&url=http://blog.zacanger.com/2017/proptypes-for-classnames.html"
+          title="Tweet this post."
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/redux-one.html" />
+</head>
+<body class="author-template author-blog post-template tag-redux">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-redux">
+
+
+    <h2 class="post-title"><a href="/2016/redux-one.html">redux notes, part one</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-08-02">02 August, 2016</time>
+       | tags: <a href="/tag/redux/">redux</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
+<p>The store is an object that holds state. There&#39;s only ever one store in Redux,
+with many reducers that act on it.</p>
+<p><code>getState()</code> returns the state from the store.</p>
+<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
+<p>There&#39;s also a <code>replaceReducer</code> but unless you&#39;re writing hot middlware or
+something you probably won&#39;t touch this one.</p>
+<p>State can by any type, though obviously it&#39;s probably best to just use an
+object here.</p>
+<p>Actions are always objects, and they always have a <code>type</code>.</p>
+<pre class="hljs"><code>store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;do-stuff&#39;</span>})</span></span>
+<span class="hljs-comment">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
+store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;DO_OTHER_STUFF&#39;</span>, stuff: <span class="hljs-string">&#39;[things to do here, maybe]&#39;</span>})</span></span></code></pre><p>Action creators are functions that create actions based on any sorts of
+arguments.</p>
+<pre class="hljs"><code><span class="hljs-title">const</span> sendSomeData = &#39;send-some-<span class="hljs-typedef"><span class="hljs-keyword">data</span>&#39;</span>
+<span class="hljs-title">const</span> sendSomeDataActionCreator = <span class="hljs-typedef"><span class="hljs-keyword">data</span> =&gt; <span class="hljs-container">({
+  <span class="hljs-title">type</span> : <span class="hljs-title">sendSomeData</span>
+, <span class="hljs-title">data</span>
+})</span></span></code></pre><p>A &#39;bound&#39; action creator would be one that creates the action and immediately
+dispatches it. This might be familiar to folks who&#39;ve worked with Flux before.</p>
+<p>This is how you might have something like this in Flux:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> sendMoreData = data =&gt; {
+  <span class="hljs-keyword">const</span> doIt = {
+    type : sendMoreData,
+    data
+  }
+  dispatch(doIt)
+}</code></pre><p>And this is how it&#39;d work in Redux:</p>
+<pre class="hljs"><code><span class="hljs-comment">// assuming you already have the dispatch and action creator, you&#39;d just</span>
+const boundSendMoreData = data =&gt;
+  <span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">(sendMoreData(data)</span></span>)</code></pre><p>There&#39;s also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
+has <code>connect()</code>.</p>
+<p>Async actions should go through middleware to be turned into regular actions
+before being dispatched.</p>
+<p>Reducers always take state and an action and return state.
+<code>reducer (state, action) =&gt; state</code>
+These are what they sound like&mdash;reducing functions.
+The state a reducer takes is your existing (or previous, I guess) state.
+Reducers are pure functions.</p>
+<p>A dispatch is a function that takes an action (or an async action). It may then
+dispatch an action (or actions) which will affect the store.
+There&#39;s a base <code>dispatch</code> that always sends an action to the reducer.</p>
+<p>Middleware are about what you&#39;d expect&mdash;functions (HOF) that take a
+dispatch function and return a dispatch function.</p>
+<p>There are &#39;store enhancers&#39; that are higher-order functions that take a store
+creator and return a different store creator. They&#39;re basically kind of a
+middleware for the store creator. You probably won&#39;t directly use one, ever.
+Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
+
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=redux notes, part one&url=http://blog.zacanger.com/2016/redux-one.html"
+          title="Tweet this post."
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

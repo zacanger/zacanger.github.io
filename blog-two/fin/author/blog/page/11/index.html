@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - Page 11 - angr</title>
+  <meta name="description" content="">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/author/blog/page/11/index.html" />
+<link rel="prev" href="http://blog.zacanger.com//author/blog/page/10/" />
+<link rel="next" href="http://blog.zacanger.com//author/blog/page/12/" />
+</head>
+<body class="author-template author-blog paged archive-template">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+
+  <article class="post tag-mac">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/parallels-weirdness.html">fixing parallels weirdness</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-22">22 May, 2016</time>
+         | tags: <a href="/tag/mac/">mac</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>at work, parallels kept crashing. what led to this:</p>
+<ul>
+<li>took a system update on the mac from the app store</li>
+<li>after rebooting, went over to parallels, which runs windows 10</li>
+<li>that needed an update too apparently, so took that</li>
+<li>after rebooting the virtual windows, didn&#39;t think about it for a while</li>
+<li>went back to it, went to un-suspend or whatever you&#39;d call it, and it crashed</li>
+<li>happened several times, tried force quitting, killing all related processes, rebooting the mac, no luck</li>
+<li>the fix on the kb was totally unrelated. running prd_client_app manually gave the following:</li>
+</ul>
+<pre class="hljs"><code>May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">33</span>  pdfm-bootstrap[<span class="hljs-number">84883</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84847</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span>
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $ .<span class="hljs-regexp">/./</span>prl_client_app
+objc[<span class="hljs-number">84919</span>]: Class YRKSpinningProgressIndicator is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/PDControlCenter.framework/</span>Versions<span class="hljs-regexp">/A/</span>PDControlCenter and <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks/libPrlGui<span class="hljs-number">.2</span>.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class DeallocHook is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class MethodInfo is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class PreviewItem is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class QLResponder is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class SSBaseDelegate is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84957</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Is executed with params <span class="hljs-string">&#39;start&#39;</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84969</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Loading pids from <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84970</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: prl_event_tap already started with pid <span class="hljs-number">84870</span> and alive
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84971</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Starting prl_naptd...
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84977</span>] &lt;Warning&gt;: agent[<span class="hljs-number">84958</span>]: prl_naptd not started
+<span class="hljs-string">error:</span> failed to execute <span class="hljs-string">subprocess:</span> -<span class="hljs-number">2</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84980</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Dump pids to <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84981</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span></code></pre><p>most of that is probably irrelevant, apparently that class is implemented in both thingy
+is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
+anyway, the thing that actually ended up working was:</p>
+<p><code>sudo &quot;/Applications/Parallels Desktop.app/Contents/MacOS/inittool&quot; init -b &quot;/Applications/Parallels Desktop.app&quot;</code></p>
+<p>note: run that as sudo from your normal user, don&#39;t <code>sudo su</code> and then do it.</p>
+<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
+if anyone else can&#39;t get anything to work, maybe that&#39;ll help.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-devmtn tag-electron tag-nwjs tag-markdown tag-angular">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/personal-project.html">notes from my personal project at devmountain</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-19">19 May, 2016</time>
+         | tags: <a href="/tag/devmtn/">devmtn</a>, <a href="/tag/electron/">electron</a>, <a href="/tag/nwjs/">nwjs</a>, <a href="/tag/markdown/">markdown</a>, <a href="/tag/angular/">angular</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="this-is-probably-a-mess">this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working
+on my &#39;personal project&#39; at devmountain.</p>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
+for people who actually cared about writing. turns out no one really wants that.
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+cool.</p>
+<p>requirements for this: make a mean stack app, basically.</p>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+and more importantly here&#39;s the mess of notes i took while doing stuff with that.</p>
+<hr>
+<h2 id="planner">Planner</h2>
+<p>At DevMountain, for projects, you&#39;re encouraged (required, really) to use a planning
+paper, which is basically a big sheet of paper divided up into sections that represent
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+the bottom.</p>
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
+there was a PDF version floating around so I threw a little app up using that (converted to
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
+able to easily just save all my notes out (they were all just in a big text file anyway, on
+my server). Note: I&#39;d initially planned on using my earlier app from my &#39;no-server&#39; project
+(something we do at DevMountain early on, just an Angular app that can actually use a server
+so long as it&#39;s a BaaS and not one we&#39;ve spent time doing, because we don&#39;t actually know how
+to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
+<p>Anyway, these are the contents from my planning thing.</p>
+<h3 id="ideas-and-users">Ideas and Users</h3>
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
+ADHD social media style of content-creation and likes and shares that&#39;s taken
+over the popular idea of the blog, but instead around long-form writing; essays,
+meaningful stories, and such. the target audience here is the moderately
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+out in coffee shops too much.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>mvp: oh wait, that&#39;s already done. well, except for getting it to work in the
+desktop client, which is the entire idea here.</li>
+<li>the rest:<ul>
+<li>a clean, simple &#39;feed&#39; (a la jekyll archive pages), filterable by tag and possibly date.</li>
+<li>comments.</li>
+<li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
+</ul>
+<h3 id="views">Views</h3>
+<ol>
+<li>the existing markdown editor (however, likely revamped to move away from
+plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one&#39;s own posts as
+someone else&#39;s).</li>
+<li>the &#39;social&#39; view: a feed, no &#39;content-based&#39; sorting, just purely ordered
+chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they&#39;ll be isolated (data-wise), so it may be smarter to
+load them in dynamically (see: discourse [not discuz, they&#39;re ruby], but don&#39;t
+do that stupid thing where half the page disappears, that&#39;s some annoying-ass
+bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an
+archive file, delete account.</li>
+</ol>
+<h3 id="controllers">Controllers</h3>
+<ul>
+<li>browser, main, and nav (see existing codebase)</li>
+<li>not controllers, but...</li>
+<li>services: files (existing)</li>
+<li>filters: filename and cut (existing)<ul>
+<li>by tag (feed view)</li>
+<li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
+</ul>
+<h3 id="endpoints">Endpoints</h3>
+<p>Those are a thing, yes.</p>
+<h3 id="schemas">Schemas</h3>
+<pre class="hljs"><code>// possible schemas ??
+
+<span class="hljs-keyword">const</span> mongoose = require(&#39;mongoose&#39;)
+
+<span class="hljs-keyword">const</span> user = mongoose.<span class="hljs-type">Schema</span>({
+  username : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, pass     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>, minlength : <span class="hljs-number">6</span>}
+, post     : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;post&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> post = mongoose.<span class="hljs-type">Schema</span>({
+  title    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, content  : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, tags     : <span class="hljs-type">Array</span>
+, date     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default : new <span class="hljs-type">Date</span>()}
+, author   : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectID</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> comment = mongoose.<span class="hljs-type">Schema</span>({
+  date    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default  : new <span class="hljs-type">Date</span>()}
+, content : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, post    : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;posts&#39;}]
+, author  : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+})
+
+mongoose.model(&#39;user&#39;, user)
+mongoose.model(&#39;post&#39;, post)
+mongoose.model(&#39;comment&#39;, comment)</code></pre><h3 id="other-thoughts-">Other Thoughts:</h3>
+<p>this would be relatively easy to throw up in a web browser. blogging platforms
+are a dime a dozen, especially ones built on node. the idea here isn&#39;t to make
+another tumblr, but to bring actual writing back to the web. sort of like
+medium, but without all the twitter. a key part of that is having it NOT be in a
+browser. right now the goal is to put all this in an electron shell, but i&#39;m not
+going to focus super hardcore on that right this moment. if i can get everything
+else in place and rock-solid first, then i&#39;ll stuff it all in electron. if not,
+then i&#39;ll just write up a manifest file and call it a chrome app. either way,
+fuck y&#39;all, it&#39;s already got nigh on a thousand installs....</p>
+<hr>
+<h2 id="the-presentation-speech">The Presentation Speech</h2>
+<p>This is what I&#39;d planned to say when presenting my app. I think instead
+I just kind of mumbled a little bit about how neat CodeMirror is and how
+annoying it was to struggle with the <code>&#39;node-integration&#39;</code> issue with
+Electron.</p>
+<h3 id="markdown">Markdown</h3>
+<p>…is a lightweight markup language which makes writing for the web a much quicker
+and easier process than if using a rich text editor (like Word), which wouldn&#39;t
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
+<code>&lt;strong&gt;</code>, in Markdown you&#39;d use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
+Github are usually written in an implementation of Markdown called Github
+Flavoured Markdown, which shows just how popular the format has grown. Stack
+Overflow, the Discourse comment system, and various blog systems including
+Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
+<p>vi is possibly the most influential editor of, like, ever. it was written in
+1976, and either vi or one of its descendants (usually vim, which stands for &#39;vi
+improved&#39;) has been on almost every unix-based system since then, including
+every computer in this building (except the microsoft machines -- and even on
+those, if you have git-bash or something similar). vim&#39;s power comes from how
+easily and quickly it can manipulate large chunks of text. For example, typing
+in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
+<p>So, putting these things together makes for a really great tool for writing. Not
+necessarily writing Tweets or Facebook posts, but writing longer texts, like
+articles or essays. That&#39;s the purpose of this app. It&#39;s not a social blog. It&#39;s
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+minus… teenagers.</p>
+<p>Since the editor component itself is based around CodeMirror, it&#39;s very
+extensible, which is exciting because it leaves so much open for future
+development. For example, if we wanted to make this a Javascript editor instead,
+we could just change a few lines and now we have the right syntax highlighting,
+automatic indentation, et cetera.</p>
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
+from the beginning it was really meant to be a desktop tool; browsers are
+distracting, this not so much.</p>
+<p>Aaaand here&#39;s the code.</p>
+<hr>
+<h2 id="misc-notes">misc notes</h2>
+<p>All this stuff was just thrown in another file.
+It&#39;s mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
+<p>check <a href="https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md">https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md</a>
+before trying to get any other browser-shit going on--we&#39;ll want to move things
+into their own windows, i feel; chromeless might be a good idea, at least for
+the editor view</p>
+<pre class="hljs"><code>const BrowserWindow = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#39;electron&#39;</span>)</span></span><span class="hljs-class">.BrowserWindow</span>
+let win = new <span class="hljs-function"><span class="hljs-title">BrowserWindow</span><span class="hljs-params">({width : <span class="hljs-number">1900</span>, height : <span class="hljs-number">1600</span>, frame : false})</span></span></code></pre><p>so basically it&#39;s just a new browser window, frame as false, but we want to
+probably lock the px to whatever screen we&#39;re working with, if CSS continues to
+fail miserably.</p>
+<p>-- note: check how atom manages to not fuck that up. except those bits where
+they do.</p>
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+clickables, one assumes).</p>
+<ul>
+<li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
+<li>downloadItem.setSavePath(path)</li>
+<li>downloadItem.cancel()</li>
+<li>downloadItem.getURL() // origin url</li>
+<li>file.path = real (fs) path</li>
+</ul>
+<h3 id="printing">printing</h3>
+<pre class="hljs"><code>webContents.printToPDF(opts, cb) <span class="hljs-comment">// where:</span>
+opts:
+  marginsType: <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> (<span class="hljs-number">0</span> <span class="hljs-keyword">default</span>)
+  pageSize: <span class="hljs-string">&#39;A4&#39;</span>, <span class="hljs-string">&#39;A3&#39;</span>, <span class="hljs-string">&#39;Legal&#39;</span>, <span class="hljs-string">&#39;Letter&#39;</span>, <span class="hljs-string">&#39;Tabloid&#39;</span>
+  printBackground: <span class="hljs-keyword">false</span> (duh)
+  landscape: <span class="hljs-keyword">false</span> (is portrait)
+cb <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{<span class="hljs-keyword">if</span> err etc, data = content buffer}
+
+<span class="hljs-keyword">empty</span> opts = <code>{marginsType: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, printBackground: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, printSelectionOnly: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, landscape: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;}</code>
+
+<span class="hljs-comment">// sample from electron docs</span>
+<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;electron&#39;</span>).BrowserWindow
+<span class="hljs-keyword">const</span> fs = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+<span class="hljs-keyword">let</span> win = <span class="hljs-keyword">new</span> BrowserWindow({width: <span class="hljs-number">800</span>, height: <span class="hljs-number">600</span>})
+win.loadURL(<span class="hljs-string">&#39;<a href="http://github.com">http://github.com</a>&#39;</span>)
+win.webContents.on(<span class="hljs-string">&#39;did-finish-load&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Use default printing options</span>
+  win.webContents.printToPDF({}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+    <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error
+    }
+    fs.writeFile(<span class="hljs-string">&#39;/tmp/print.pdf&#39;</span>, data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">throw</span> error
+      }
+      console.log(<span class="hljs-string">&#39;done did dat&#39;</span>)
+    })
+  })
+})</code></pre><ul>
+<li>main process is a normal node script</li>
+<li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
+<li>electron&#39;s built-in modules don&#39;t need <code>require(&#39;asdf&#39;)</code>; set
+<code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
+<li>shell.openExternal(url) opens in eg xdg-browser</li>
+<li>shell.openItem(&#39;/FULL/path/to/item&#39;) = xdg-open</li>
+</ul>
+<h3 id="menus">menus</h3>
+<ul>
+<li>new MenuItem(opts):<ul>
+<li>id: string, unique within menu</li>
+<li>submenu</li>
+<li>checked: bool</li>
+<li>visible: bool</li>
+<li>enabled: bool</li>
+<li>label: string</li>
+<li>type: normal, separator, submenu, checkbox, or radio</li>
+<li>role: action; if specified, next thing will be ignored</li>
+<li>click: function -- click(menuItem, browserWindow) -- this is that &#39;next thing&#39;</li>
+</ul>
+</li>
+<li>recommended to set role:<ul>
+<li>undo</li>
+<li>redo</li>
+<li>cut</li>
+<li>copy</li>
+<li>paste</li>
+<li>selectall</li>
+<li>minimize</li>
+<li>close</li>
+</ul>
+</li>
+</ul>
+<p>electron-rebuild would automatically take care of headers &amp; native node module
+builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
+<p>the &#39;npm&#39; way: same as usual, except env variables:</p>
+<pre class="hljs"><code><span class="hljs-keyword">export</span>
+  npm_config_disturl=https:<span class="hljs-comment">//atom.io/download/atom-shell</span>
+  npm_config_target=<span class="hljs-number">0.33</span><span class="hljs-number">.1</span> <span class="hljs-preprocessor"># ???</span>
+  npm_config_arch=x64
+  npm_config_runtime=electron
+HOME=~/.electron-gyp npm install module-name <span class="hljs-preprocessor"># home equals? what?</span></code></pre><p>one important thing: nw.js&#39;s url in the package file? nah, bro, electron don&#39;t
+do that shit. so manually creating the browser window and loading HTML is the
+right way with electron.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-devmtn">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/earliest-devmtn-notes.html">earliest devmtn notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-19">19 May, 2016</time>
+         | tags: <a href="/tag/devmtn/">devmtn</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>uh so i just found these in a note book and remembered that
+one day i forgot my laptop charger so i took notes during a lecture
+by hand
+i don&#39;t know what
+idk</p>
+<pre class="hljs"><code>vertical organization <span class="hljs-keyword">is</span> by feature;
+routes, configs, etc. under the same directory.
+this <span class="hljs-keyword">is</span> the devmtn preferred <span class="hljs-keyword">method</span>.
+this works <span class="hljs-keyword">for</span> angular <span class="hljs-keyword">as</span> well.
+keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> root --
+directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
+starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
+heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre></p>
+    </section>
+  </article>
+
+
+  <article class="post tag-sh">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/bash-basix.html">bash basix</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-16">16 May, 2016</time>
+         | tags: <a href="/tag/sh/">sh</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+<ul>
+<li>debugging a bash script: use the <code>-x</code> flag</li>
+<li>semicolons divide commands that are on the same line</li>
+<li>newlines are much more readable</li>
+<li>bash variables: there are local, global, string, integer,
+constant, and array variables.<ul>
+<li>global = env variables.</li>
+<li>local are available only in current shell.</li>
+<li>also predefined vars, like id (try <code>echo $UID</code>).</li>
+<li>capitalised by default. case-sensitive. local ones</li>
+<li>are sometimes done in lowercase, though. can contain</li>
+<li>integers, but can&#39;t <em>start</em> with integers.</li>
+</ul>
+</li>
+<li>to get started with everything: <code>man 1 intro</code></li>
+<li>also <code>git help everyday</code></li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-js tag-streams">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/streams.html">streams</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-15">15 May, 2016</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/streams/">streams</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>bits and pieces of notes on streams</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> foo = fetch(<span class="hljs-string">&#39;/something&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.json())
+.<span class="hljs-keyword">then</span>(d =&gt; d.thingwewant)
+
+<span class="hljs-keyword">const</span> bar = fetch(<span class="hljs-string">&#39;/otherstuff&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.body)
+
+<span class="hljs-keyword">const</span> stream = someTaggedFunctionThing<code>&amp;lt;div&amp;gt;${foo}&amp;lt;/div&amp;gt;
+  &amp;lt;span&amp;gt;${bar}&amp;lt;/span&amp;gt;</code></code></pre><ul>
+<li>streams can be infinite</li>
+<li>you can be aware of the beginning and end of a stream</li>
+<li>unread values are buffered (unlike how events pre-listener(s) are just gone)</li>
+<li>piping</li>
+<li>error-handling (down the pipeline)</li>
+<li>cancellation (up the pipeline)</li>
+<li>flow control (react to the reader speed)</li>
+<li>one reader per stream</li>
+<li>untapped stream can be used like <code>tee</code></li>
+</ul>
+<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code>
+on that if text content expected).</p>
+<p>there may be transform streams implemented in the browser at some point (r/w).</p>
+<p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{} // called immediately
+, pull<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{}  // called when buffer isn<span class="hljs-quoted">&#39;t</span> full<span class="hljs-comment">; called until buffer is full</span>
+, cancel<span class="hljs-list">(<span class="hljs-keyword">reason</span>)</span>{}    // called if stream is cancelled
+}, queuingStrategy)</span>   // how the stream buffers <span class="hljs-list">(<span class="hljs-keyword">default</span> : one item)</span></code></pre><ul>
+<li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream&#39;s buffer</li>
+<li><code>controller.close()</code> ends</li>
+<li><code>controller.error(e)</code> sends <code>e</code> (is a terminal error)</li>
+<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)<ul>
+<li><code>queuingStrategy</code> is used to get this</li>
+</ul>
+</li>
+<li>you could call <code>controller.enqueue()</code> whenever there&#39;s data to send (stream as a push source)</li>
+<li>you could wait until there&#39;s a <code>pull</code> called, then queue up some data (pull source)</li>
+<li>you can do whatever you like (basically)</li>
+<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source
+is good/efficient. won&#39;t break anything if you don&#39;t, though, unless you run out of memory.</li>
+</ul>
+<p>html renders as it&#39;s received (no matter how it gets there). so fetching/compiling/whatevering
+markup on the fly (aka client-side rendering, aka the devil usually) without streams means
+slowness.</p>
+<p>here&#39;s a thing basically just copied out of jake archibald&#39;s blog. it&#39;s like this because we
+don&#39;t have a <code>.pipe()</code> in the browser. we need that.</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{
+    // start and end from cache, middle from network with cache fallback
+    const
+      start = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/start-cached</span>&#39;)</span>
+    , end   = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/end-cached</span>&#39;)</span>
+    , mid   = fetch<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle</span>&#39;)</span>
+        .catch<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle-cached</span>&#39;)</span>)</span>
+      push  = stream =&gt; {
+      const reader = stream.getReader<span class="hljs-list">()</span>
+      return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">function</span> process<span class="hljs-list">(<span class="hljs-keyword">result</span>)</span>{
+        if <span class="hljs-list">(<span class="hljs-keyword">result</span>.done)</span> {
+          return
+        }
+        controller.enqueue<span class="hljs-list">(<span class="hljs-keyword">result</span>.value)</span>
+        return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">process</span>)</span>
+      })</span>
+    }
+
+    start.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; mid)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; end)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; controller.close<span class="hljs-list">()</span>)</span>
+  }
+})</span></code></pre><p>From here down I&#39;ll probably just be taking notes on streams in Node.</p>
+<p>Some important things to remember (for me to remember, that is) -- differences between the
+proposed Stream and Node&#39;s streams:</p>
+<ul>
+<li>Readable<ul>
+<li><code>.read()</code> instead of <code>.on(&#39;readable&#39;)</code></li>
+<li>Also a sync <code>.read()</code></li>
+<li>Cancellation semantics added</li>
+<li><code>desiredSize</code></li>
+<li><code>tee</code>ing built in</li>
+<li><code>data</code> event fully gone (it&#39;s only in Node streams in compatability mode, btw)</li>
+<li><code>pause</code> and <code>resume</code> aren&#39;t a thing</li>
+<li>no <code>unshift</code></li>
+<li>binary/string/object mode switching isn&#39;t a thing</li>
+<li>size parameter is gone (use BYOB readers)</li>
+</ul>
+</li>
+<li>Writable<ul>
+<li>No cork/uncork</li>
+</ul>
+</li>
+<li>Transform<ul>
+<li>now just <code>{readable, writable}</code> rly</li>
+</ul>
+</li>
+<li>other<ul>
+<li>promises instead of cbs</li>
+<li>no enc/dec built-in</li>
+<li><code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><ul>
+<li>so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for
+<code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Okay, so, Node streams.</p>
+<ul>
+<li><code>req</code> and <code>res</code> are streams</li>
+<li><code>.pipe()</code> listens for &#39;data&#39; and &#39;end&#39; from fs streams</li>
+<li><code>.pipe()</code> handles backpressure for ya</li>
+<li>types of streams:<ul>
+<li>readable</li>
+<li>writable</li>
+<li>transform</li>
+<li>duplex</li>
+<li>&#39;classic&#39;</li>
+</ul>
+</li>
+<li>chain pipes, don&#39;t break crap out<ul>
+<li><code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code></li>
+<li>that&#39;s basically the same as <code>one | two | three</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code>//<span class="hljs-comment">
+// readable</span><span class="hljs-comment">
+//</span>
+
+const Readable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Readable
+const rs = <span class="hljs-built_in">new</span> Readable
+rs.push(<span class="hljs-string">&#39;something, and &#39;</span>)
+rs.push(<span class="hljs-string">&#39;something else.&#39;</span>)
+rs.push(<span class="hljs-constant">null</span>)<span class="hljs-comment"> // this tells data consumers that we&#39;re done with rs</span>
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// so the pushes are buffered until a consumer wants them (the pipe to standard out)</span>
+<span class="hljs-comment">
+// instead of buffering:</span>
+let c = <span class="hljs-number">100</span>
+rs.<span class="hljs-title">_read</span> = () =&gt; {
+  rs.push(String.fromCharCode(c++))
+  <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-string">&#39;z&#39;</span>.charCodeAt(<span class="hljs-number">0</span>)) {
+    rs.push(<span class="hljs-constant">null</span>)
+  }
+}
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// ._read can take a size param, the amount (in bytes) that the consumer wants</span><span class="hljs-comment">
+// to call it like that, try <code>node thisfile | head -cN</code> where <code>N</code> is an integer</span><span class="hljs-comment">
+// note that we&#39;d need to set up an error handler here because there&#39;ll be a SIGPIPE</span><span class="hljs-comment">
+// after <code>head</code> (EPIPE in node). that&#39;s not an issue when keeping your business all</span><span class="hljs-comment">
+// in node.</span><span class="hljs-comment">
+// <code>Readable({objectMode : true})</code> to be able to push arbitrary stuff (not just</span><span class="hljs-comment">
+// buffers and strings).</span>
+
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>()
+  console.dir(buf)
+})<span class="hljs-comment">
+// echo stuff, pipe it, eg <code>(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js</code></span><span class="hljs-comment">
+// usually we&#39;d probably pipe a stream into another stream, maybe using through2 or somesuch</span><span class="hljs-comment">
+// the above will return null at the end of what&#39;s being sent, because there&#39;s nothing left</span><span class="hljs-comment">
+// we could do <code>.read(N)</code> where <code>N</code> is bytes. doesn&#39;t work for object streams.</span>
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">2</span>)
+  console.dir(buf)<span class="hljs-comment"> // so we&#39;d get 2-byte chunks here. adding:</span>
+  <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">0</span>)<span class="hljs-comment"> // will get the rest and make this actually work.</span>
+})
+<span class="hljs-comment">
+// YAY, that&#39;s it for readable streams</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// writable</span><span class="hljs-comment">
+//</span>
+
+const Writable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Writable
+const ws = <span class="hljs-built_in">new</span> Writable()
+ws.<span class="hljs-title">_write</span> = (chunk, encoding, next) =&gt; {
+  console.dir(chunk)
+  next()
+}
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.pipe(ws)<span class="hljs-comment">
+// chunk is the data written</span><span class="hljs-comment">
+// encoding (string) is only for when <code>opts.decodeStrings</code> is false and we&#39;ve been given a string</span><span class="hljs-comment">
+// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj</span><span class="hljs-comment">
+// if input stream is string, that&#39;ll be converted to buf. when creating the stream we can do</span>
+const strWs = <span class="hljs-built_in">new</span> Writable({decodeStrings : <span class="hljs-constant">false</span>})<span class="hljs-comment">
+// and if we&#39;re getting in objects</span>
+const objWs = <span class="hljs-built_in">new</span> Writable({objectMode : <span class="hljs-constant">true</span>})
+<span class="hljs-comment">
+// writing is basically as simple as calling .write (as we do with stdout)</span><span class="hljs-comment">
+// you can do a .end() to say we&#39;re done. that can take data to write, right before ending.</span><span class="hljs-comment">
+// write returns false when there&#39;s more data in incoming buff than opts.highWaterMark;</span><span class="hljs-comment">
+// listen for drain event to know when it&#39;s empty</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// transform</span><span class="hljs-comment">
+// these are duplex streams that do exactly what it sounds like. sometimes called &#39;through&#39; streams.</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// duplex</span><span class="hljs-comment">
+// r/w where both ends are two-way. example: <code>x.pipe(y).pipe(x)</code></span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// classic streams</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// we&#39;re on node 6.1.0 as of this writing, and chances are i won&#39;t be doing much node stuff</span><span class="hljs-comment">
+// at all in the forseeable future, so i really don&#39;t care too too much about the legacy</span><span class="hljs-comment">
+// streams api. just <code>require(&#39;readable-stream&#39;)</code> instead of <code>&#39;stream&#39;</code>, if we must support</span><span class="hljs-comment">
+// node or other streams from &lt;=v0.8.</span>
+<span class="hljs-comment">
+// readable example:</span>
+const <span class="hljs-built_in">sin</span> = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;data&#39;</span>, buf =&gt; console.<span class="hljs-built_in">log</span>(buf))
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;end&#39;</span>, () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#39;peace&#39;</span>))<span class="hljs-comment">
+// as soon as a data listener is registered, you&#39;re using compatability mode, so</span><span class="hljs-comment">
+// basically you lose a lot of functionality.</span><span class="hljs-comment">
+// through (the package) lets you use legacy streams with pipe</span><span class="hljs-comment">
+// these also have pause and resume.</span>
+<span class="hljs-comment">
+// writable:</span><span class="hljs-comment">
+// define write(buf), end(buf), and destroy(). end doesn&#39;t HAVE to have (buf), but</span><span class="hljs-comment">
+// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+// streams that are built in to node</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// not gonna take really extensive notes here, for the reasons above and also because</span><span class="hljs-comment">
+// it&#39;s really easy to just go to the api docs and read all of them.</span></code></pre></p>
+    </section>
+  </article>
+
+
+  <nav class="pagination" role="navigation">
+        <a class="newer-posts" href="/author/blog/page/10/">&larr; Newer Posts</a>
+    <span class="page-number">Page 11 of 15</span>
+        <a class="older-posts" href="/author/blog/page/12/">Older Posts &rarr;</a>
+</nav>
+
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

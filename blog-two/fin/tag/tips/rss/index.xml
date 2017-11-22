@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[advice for new devs]]></title><description><![CDATA[<p>So, I went to one of those code bootcamps. I started there just over a year ago,
+and when I finished the course I worked there as a mentor for a cohort (three
+months). Immediately after that, I got what I think is a pretty swell job doing
+development full time, working mostly in technologies that I really like.</p>
+<p>It&#39;s hard to find non-success stories from bootcamps, since generally the people
+who go to these things are people who are really determined to do very well. You
+don&#39;t go and pay $10k-$20k to lock yourself up in a building with a bunch of
+other nerds for twelve or moure hours every day for three months straight unless
+you really want to get something out of it. I think I&#39;m a good example of
+someone who did really well through a bootcamp, though, and the reason I did so
+well comes down to really just one thing, which I think everyone going into
+computing (whether it&#39;s web development, databases, hardware, whatever) really
+should be aware of.</p>
+<blockquote>
+<p>KNOW COMPUTERS</p>
+</blockquote>
+<p>That seems really obvious, right? But as a mentor it was amazing to me how many
+people would come into a course that&#39;s just about making things happen with
+computers, not knowing a lot of the basics of how to <em>use</em> a computer, and
+knowing virtually nothing about how computers actually <em>work</em>. They&#39;re not just
+a thing with a keyboard and a screen and a logo on the back. They&#39;re not just a
+status symbol, though Mac users would like you to think they are. They&#39;re not
+magical, and it&#39;s important to know what they do and how they do it, at least in
+vague terms.</p>
+<p>No junior web dev should really be expected to be familiar with what a page
+cache is, or maybe even how domain names are resolved, but you should at least
+know what a kernel is, what userland actually means, what the implications of
+using your particular filesystem are, what the internet infrastructure kind of
+looks like (at least in vague terms), and how to do some basic things that will
+save you a lot of time later on (general terminal usage is a good place to
+start).</p>
+<p>This is the number one thing that can help you get, and stay, ahead as a student
+and junior dev, in my opinion. And it&#39;s stuff you&#39;ll absolutely <em>have</em> to know
+at some point, and probably mostly won&#39;t be taught, so it&#39;s a good idea to just
+pick up this stuff as early as possible.</p>
+]]></description><link>/2016/advice-for-new-devs.html</link><guid isPermaLink="true">/2016/advice-for-new-devs.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[tips]]></category><category><![CDATA[dev]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 12 Nov 2016 18:26:00 GMT</pubDate></item><item><title><![CDATA[principles and tips]]></title><description><![CDATA[<p>I&#39;m not very experienced, and sometimes I&#39;m pretty sure I&#39;m not very good at
+programming, but I have some principles I try to stick to that help, I think.
+They&#39;re not complicated. Also some tips. These are all in no particular order.
+And kind of stream-of-consciousness.</p>
+<p>Have a changelog. This doesn&#39;t have to be something complicated. It can actually
+be <em>really</em> simple. Here&#39;s a script that&#39;ll do this for you.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/usr/bin/env bash</span>
+range=<span class="hljs-string">&quot;<span class="hljs-variable">${1:-origin..}</span>&quot;</span>
+<span class="hljs-built_in">shift</span> <span class="hljs-number">1</span>
+git <span class="hljs-built_in">log</span> \
+  --no-merges \
+   --format=<span class="hljs-string">&#39;%C(auto,green)* %s%C(auto,reset)%n%w(0,2,2)%+b&#39;</span> \
+   --reverse <span class="hljs-string">&quot;<span class="hljs-variable">$range</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span></code></pre><p>Write tests. Even if they&#39;re not complex, thorough tests, write them. It&#39;s a
+start.</p>
+<p>If you change things and tests break, fix the tests. Try not to break the tests.
+But if you do, and it&#39;s a necessary change, fix the tests to line up with how
+things work now.</p>
+<p>Don&#39;t decrease code coverage. This goes back to &#39;if you write a thing, write a
+test for it.&#39;</p>
+<p>Don&#39;t bring in new libraries/frameworks/whatever unless without good reason.</p>
+<p>Keep all dependencies up to date. If there&#39;s a breaking change, take a day to
+update your code. If there are breaking changes all the time and no easy way to
+update (like codemods), get rid of that dependency.</p>
+<p>Delete code. As much as possible. Don&#39;t keep it around &#39;just in case&#39; or
+something. Get rid of it.</p>
+<p>Don&#39;t write very specific functions. And name your functions appropriately.  No
+<code>getThisSpecificPieceOfData()</code>; instead, <code>getData(specificPiece)</code>. And then, if
+you&#39;re going to be calling it with that specific piece of data, maybe write a
+second function. But have that first one, first. <code>const getThisThing =
+getThings(thisThing)</code>.</p>
+<p>Don&#39;t stress about not knowing something. Either someone else knows it, or
+literally no one around you knows it so you can be the first to figure it out,
+which is cool. (I suck at this not-stressing bit, but I&#39;m trying.)</p>
+<p>No language or framework or library sucks. I mean, okay, some do, but most
+really don&#39;t, they&#39;re just probably not what you&#39;re looking for. Even Angular
+doesn&#39;t <em>suck</em>, it&#39;s just not a good fit for many many webapps. And by the same
+token, not all good things are always good. React is great, but if you&#39;re doing
+a little static site, screw it, just use jQuery. It&#39;s okay. No one will judge
+you too harshly. And if they do, screw them, too.</p>
+<p>Some paradigms are better than others, but no one will ever agree on which ones
+are better, so it&#39;s best to just pretend that OO is great when talking to C#
+people, and that FP is great when talking to Haskell people, or whatever.
+Believe whatever you want to believe, and if you do decide to stick hardcore to
+one way of writing code, make sure you know it <em>really</em> well.</p>
+<p>Use the simplest tool possible. This isn&#39;t my principle, this is a law. But
+people break it all the time, <strong>especially</strong> in the front-end world. If you can
+do it with ten lines of Bash, do it with ten lines of Bash, don&#39;t install five
+dependencies to be able to do it in 40 lines of JS. (If you&#39;re on a computer
+that doesn&#39;t have Bash, change or update your OS. Even Windows has Bash, now.)</p>
+<p>Premature abstractions are just as bad as premature optimizations. Avoid, avoid,
+avoid.</p>
+<p>Being good at using a computer comes first. If you can&#39;t use the basic tools you
+need to do your job, you need to learn that first. That means your hardware,
+your OS, your terminal, your shell, your editor, your browser, whatever. You
+don&#39;t need to go read the source and learn every hotkey and all that, but being
+good with your tools means being faster and more productive, which gives you a
+lot more time for thinking, reading docs, and all the other things that you
+actually do most of the time when writing code.</p>
+<p>Also, type. If you can&#39;t type well, practice. I&#39;m a fast typist&mdash;114 wpm,
+which is pretty fast&mdash;and while it hasn&#39;t made me a <em>better</em> developer,
+being able to type things quickly means I have more time to do all the things
+that aren&#39;t just typing. Like thinking and reading docs.</p>
+<p>Figure out what doesn&#39;t work, and what you don&#39;t like. That&#39;s actually pretty
+easy to do. Just play with a lot of things and learn what sucks, to you.</p>
+<p>No job is worth screwing up your personal life over. If you can&#39;t take a few
+days off for important events without much warning, find a different job. You&#39;re
+a developer. You&#39;re in control, in the current job market.</p>
+<p>Don&#39;t just code. It&#39;s bad for you. Have something else. Music, woodworking,
+fancy-wine-drinking, whatever. You need to get your eyes away from the screen
+for a while, and get your wrists out of that position. You&#39;ll end up blind with
+carpal tunnel if all you do is code all day long.</p>
+<p>If a tool you&#39;re using isn&#39;t working out (that could be a language, framework,
+package manager, OS, cloud provider, whatever), find a way to get rid of it.
+That might take a while (ages, maybe), but it&#39;ll be worth it. Good tools are
+worth using. Don&#39;t get yourself stuck with shitty ones. You can almost always
+find a way to gradually switch over, so it&#39;s not a big immediate change for your
+team or your project or whatever. If you use an editor you don&#39;t like, but
+you&#39;re not sure you&#39;d like anything else better, just try a different editor.
+Maybe try a different one every two weeks, &#39;til you&#39;ve picked one.</p>
+<p>Laptop screens aren&#39;t great. Get a decent monitor for at home. Just do it. It&#39;s
+worth it. Also a decent mouse, if you use a mouse. If you have a laptop with a
+crappy keyboard, treat yourself to a nice keyboard. All these things make a
+difference.</p>
+<p>No language is great.  No one has ever written a language that&#39;s just perfect.
+Anyone who claims their language is provably superior in all ways to your language
+is either an idiot or trying to sell you something. No one will ever write a
+language that&#39;s great for everything in all ways, either. So just find one that
+works kind of okay in a way you feel like you can live with, and go with that.
+Doesn&#39;t matter if that&#39;s Smalltalk, ML, Jelly, or Brainfuck. If you can be
+productive in it and it works for the thing you&#39;re making (and for your team),
+do that, and screw the haters.</p>
+<p>Don&#39;t live on energy drinks, pizza, and IPAs on Friday nights.</p>
+<p>I&#39;m a little off-topic now I guess, so, that&#39;s all.</p>
+]]></description><link>/2016/principles-and-tips.html</link><guid isPermaLink="true">/2016/principles-and-tips.html</guid><category><![CDATA[process]]></category><category><![CDATA[development]]></category><category><![CDATA[principles]]></category><category><![CDATA[tips]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 20 Aug 2016 03:57:00 GMT</pubDate></item></channel></rss>

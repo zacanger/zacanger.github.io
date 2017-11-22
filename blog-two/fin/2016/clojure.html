@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/clojure.html" />
+</head>
+<body class="author-template author-blog post-template tag-clj">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-clj">
+
+
+    <h2 class="post-title"><a href="/2016/clojure.html">clojure</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-06-01">01 June, 2016</time>
+       | tags: <a href="/tag/clj/">clj</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>just a few clojure notes</p>
+<p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
+because really you&#39;re just talking about a different target (jvm vs js vm), rite?
+but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
+with two different names if they were the exact same language and the only actual
+difference was the target vm.</p>
+<p>i&#39;d look this up but i&#39;m on a plane. so.</p>
+<p>some notes!</p>
+<p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code>
+which is called a form.</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> varname varval)</span>
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> me <span class="hljs-string">&quot;zac&quot;</span>)</span></code></pre><p>but there&#39;s also the <code>let</code> keyword which is different. for functions?</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">let</span></span> <span class="hljs-collection">[myname <span class="hljs-string">&quot;zac&quot;</span>]</span>
+  <span class="hljs-list">(<span class="hljs-keyword">println</span> myname)</span>)</span></code></pre><p>oh wait is it <code>def</code> or <code>defn</code>? crud now i&#39;m seeing <code>defn</code>.</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> functionName
+  <span class="hljs-collection">[arguments moreArgs]</span> <span class="hljs-comment">;; comment</span>
+  returnValue)</span>         <span class="hljs-comment">;; the above could be just [] if no args</span>
+
+<span class="hljs-comment">;; so maybe</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> multiplier
+  <span class="hljs-collection">[a b]</span>
+  <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword">multiplier</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fnName
+  <span class="hljs-list">(<span class="hljs-collection">[ifThisPatternIsMatched]</span> returnThis)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[elseIfThisOne sureWhyNot]</span> returnThisInstead)</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fooBar
+  <span class="hljs-list">(<span class="hljs-collection">[a]</span> a)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> a b)</span>)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b c]</span> <span class="hljs-list">(/ <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span> c)</span>)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b c d]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> <span class="hljs-list">(/ a b)</span> c d)</span>)</span>)</span>
+
+<span class="hljs-comment">;; so [] are args, () are forms, {} are keys or something?</span>
+<span class="hljs-comment">;; no, keys are with :, so {} are just... i don&#39;t know, yet.</span>
+
+<span class="hljs-comment">;; and a private function just has a - after it, i think? like</span>
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn-</span></span> thisIsNotPublic
+  <span class="hljs-collection">[]</span> <span class="hljs-comment">;; and other stuff -- are in-line comments a thing?</span>
+  )</span></code></pre><p>Testing with lein (what is lein, exactly? I think it&#39;s a package manager?):</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">ns</span></span> project.namespace-test
+  <span class="hljs-list">(<span class="hljs-attribute">:require</span> <span class="hljs-collection">[clojure.text <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>
+            <span class="hljs-collection">[project.namespace <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>)</span>)</span>
+
+<span class="hljs-comment">;; deftest defines a test fn</span>
+<span class="hljs-comment">;; testing for description for it</span>
+<span class="hljs-comment">;; is -- assertion</span>
+
+<span class="hljs-list">(<span class="hljs-keyword">deftest</span> nameOfTest
+  <span class="hljs-list">(<span class="hljs-keyword">testing</span> <span class="hljs-string">&quot;this is what i&#39;m testing&quot;</span>
+    <span class="hljs-list">(<span class="hljs-keyword">is</span> <span class="hljs-list">(<span class="hljs-keyword">true</span>)</span>)</span>)</span>)</span> <span class="hljs-comment">;; i don&#39;t know if this is valid</span></code></pre><p>okay so leiningen is &#39;automation made easy&#39;</p>
+<p>pkg mgmt, testing, pm, etc.?</p>
+<p><code>lein new app &lt;appname&gt;</code></p>
+<p>that will layout a whole project directory for you, damn.</p>
+<p>lein searches maven and clojars for packages, with <code>lein search &lt;packagename&gt;</code>.</p>
+<p>update <code>:dependencies</code> in <code>project.clj</code> (which i think is like a meta file
+package.json-y kinda thing) and do a <code>lein deps</code> to install that stuff.</p>
+<ul>
+<li><code>lein run</code></li>
+<li><code>lein test</code></li>
+<li><code>lein repl</code></li>
+<li><code>lein install</code></li>
+<li><code>lein uberjar</code> -- this packages up the whole rpoject (as a jar, i guess?)</li>
+</ul>
+<p>zipper is a thing that does things but i don&#39;t really have the
+attention span to read this right now.</p>
+<p>did i mention i was on a plane? i wasn&#39;t <em>really</em> on a plane. i&#39;m in an airport.
+for a lot of hours. it&#39;s a long story. sort of. it&#39;s actually a relatively short
+story, but it&#39;s kind of boring. so whatever.</p>
+<p>there are transducers, which are <em>not</em> like a <code>map</code> or <code>functor</code> or whatever.</p>
+<p>these are composable transforms</p>
+<p>did i mention that i&#39;m in an airport? all night, i&#39;ll be here.
+meant to be home by now. in bed. sleeping. having seen the people i really miss,
+hugs all around, had a beer, unpacked, showered maybe, gone to bed.
+i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
+another day of work, sweaty and gross, eurgh.</p>
+<p>on the other hand i met some nice people suck in this zombie airport, so.</p>
+
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=clojure&url=http://blog.zacanger.com/2016/clojure.html"
+          title="Tweet this post."
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

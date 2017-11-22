@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[html2text in node tutorial]]></title><description><![CDATA[<p>Okay, ready to build another command-line app in Node?</p>
+<p>If you haven&#39;t seen my last two posts, you should check them out, since I&#39;m not
+going to cover a lot of the basics again. They&#39;re both on writing small cli apps
+in Node, with no dependencies.</p>
+<ul>
+<li><a href="http://blog.zacanger.com/2016/a-basic-cli-app-in-node.html">React component generator</a></li>
+<li><a href="http://blog.zacanger.com/2016/note-taking-app.html">JSON Note-taking app</a></li>
+</ul>
+<p>And here&#39;s the finished product from the latter:</p>
+<pre class="hljs"><code>#!/usr/bin/env node
+
+&#39;<span class="hljs-keyword">use</span> strict&#39;
+
+<span class="hljs-keyword">const</span> {
+  readFileSync
+, writeFile
+}       = require(&#39;fs&#39;)
+, <span class="hljs-keyword">log</span>   = console.<span class="hljs-literal">log</span>
+, arg   = process.argv[2]
+, <span class="hljs-keyword">n</span>     = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
+, <span class="hljs-keyword">file</span>  = readFileSync(<span class="hljs-keyword">n</span>)
+, <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)
+
+<span class="hljs-keyword">const</span> writeTheFile = () =&gt; {
+  <span class="hljs-keyword">const</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  writeFile(<span class="hljs-keyword">n</span>, taken, &#39;utf8&#39;, <span class="hljs-keyword">err</span> =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+  })
+}
+
+<span class="hljs-keyword">const</span> takeNote = (<span class="hljs-keyword">notes</span>, <span class="hljs-keyword">note</span>) =&gt; {
+  <span class="hljs-keyword">notes</span>.push(<span class="hljs-keyword">note</span>)
+  writeTheFile()
+}
+
+<span class="hljs-keyword">const</span> removeNote = (<span class="hljs-keyword">notes</span>, noteIndex) =&gt; {
+  <span class="hljs-keyword">notes</span>.splice(noteIndex -1, 1)
+  writeTheFile()
+}
+
+<span class="hljs-keyword">const</span> runApp = () =&gt; {
+  <span class="hljs-keyword">if</span> (arg) {
+    switch (arg) {
+      case &#39;-s&#39;:
+        <span class="hljs-literal">log</span>(<span class="hljs-keyword">notes</span>)
+        <span class="hljs-keyword">break</span>
+      case &#39;-r&#39;:
+        <span class="hljs-keyword">const</span> noteIndex = process.argv[3]
+        removeNote(<span class="hljs-keyword">notes</span>, noteIndex)
+        <span class="hljs-keyword">break</span>
+      default:
+        takeNote(<span class="hljs-keyword">notes</span>, arg)
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(&#39;Please pass <span class="hljs-keyword">an</span> argument&#39;)
+  }
+}
+
+<span class="hljs-keyword">if</span> (!module.parent) {
+  runApp()
+}</code></pre><hr>
+<p>What we&#39;re going to build this time is going to be a little more complex. We&#39;re
+going to write a program that downloads a website and turns it into Markdown for
+easy offline reading. This isn&#39;t a new concept, and I actually use a Python script
+called <a href="https://github.com/aaronsw/html2text">html2text</a> for this on an
+almost-daily basis, but just for fun, we&#39;ll do something similar in Node.</p>
+<p>This will also be the first time we&#39;ll be working with external modules, which
+is really the most exciting and awesome thing about Node.</p>
+<p>Our goal here is to have a small tool we can use like this:</p>
+<pre class="hljs"><code>./index<span class="hljs-class">.js</span> zacanger.com</code></pre><p>And it&#39;ll give us back the contents of <code>zacanger.com</code>, in Markdown, ready to
+read in the terminal, pipe to an editor, or whatever.</p>
+<p>First things first: we&#39;ll need a project. Make a new directory and get into it,
+and <code>npm init</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">mkdir</span> html2txt
+<span class="hljs-keyword">cd</span> html2xt
+npm init -<span class="hljs-literal">y</span></code></pre><p>The <code>-y</code> flag just means &quot;don&#39;t ask me questions.&quot; You can skip that flag and
+fill in the info for your <code>package.json</code> if you&#39;d like, or just go back and edit
+it later.</p>
+<p>We&#39;re going to be using a couple of things built-in to Node, so we can go ahead
+and require them now. We&#39;ll need <code>http</code>&#39;s <code>get</code> method, and also a way to work
+with an argument. If you&#39;ve done either of my previous tutorials, you&#39;ll already
+be familiar with Node&#39;s <code>process.argv</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> { <span class="hljs-keyword">get</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;http&#39;</span>)
+<span class="hljs-keyword">const</span> url = process.argv[<span class="hljs-number">2</span>]</code></pre><p>Let&#39;s see if we can&#39;t get some HTML, just as a starting point.</p>
+<pre class="hljs"><code>get<span class="hljs-list">(<span class="hljs-keyword">url</span>, res =&gt; {
+  res.on<span class="hljs-list">(<span class="hljs-quoted">&#39;data</span>&#39;, d =&gt; {
+    console.log<span class="hljs-list">(<span class="hljs-keyword">d</span>)</span>
+  })</span>
+  res.on<span class="hljs-list">(<span class="hljs-quoted">&#39;end</span>&#39;, <span class="hljs-list">()</span> =&gt; {
+    console.log<span class="hljs-list">(<span class="hljs-quoted">&#39;done</span>&#39;)</span>
+  })</span>
+})</span></code></pre><p>Try that out with something like <code>node index.js http://google.com</code>.</p>
+<p>You should see something like <code>&lt;Buffer 3c 21 64 6f 63 74 7</code> (and so on).
+<a href="https://nodejs.org/api/buffer.html">Buffers</a> are great and all, but that&#39;s
+pretty useless for actual reading. Try calling <code>toString</code> on that data and you
+should see some actual HTML (<code>console.log(d.toString())</code>).</p>
+<p>(Note: you may see a 301 page here.)</p>
+<p>Awesome! We now have all the functionality of prepending <code>view-source:</code> to a URL
+in the browser. Let&#39;s do something with that HTML, since it&#39;s probably not how
+you prefer to read stuff.</p>
+<p>There are a lot of great modules out there for working with Markdown. For this
+post, I&#39;ve decided to go with a super simple one without a whole lot of options,
+<a href="https://www.npmjs.com/package/to-markdown">to-markdown</a>. If you&#39;re not super
+familiar with npm, you&#39;re about to learn just about all you need to know to get
+started.</p>
+<p>In your terminal, <code>npm i -S to-markdown</code>. This is a shorthand for the command
+<code>npm install --save to-markdown</code>; most npm commands have shorter versions, and
+it can really save you a lot of time if you get used to using them.</p>
+<p>You should see a bunch of stuff happen in the terminal. If you check your
+<code>package.json</code>, you&#39;ll now see <code>to-markdown</code> in there. It should like something
+like this:</p>
+<pre class="hljs"><code><span class="hljs-collection">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;something&quot;</span>,
+  // probably some other stuff
+  <span class="hljs-string">&quot;dependencies&quot;</span>: <span class="hljs-collection">{
+    <span class="hljs-string">&quot;to-markdown&quot;</span>: <span class="hljs-string">&quot;^3.0.1&quot;</span>
+  }</span>
+}</span></code></pre><p>(Yes, I know you can&#39;t have comments in JSON.)</p>
+<p>Next we&#39;ll need to get that into the program. If you&#39;re using Babel, you can use
+<code>import</code>, but to keep things simple we&#39;ll stick with <code>require</code>.</p>
+<pre class="hljs"><code>const toMarkdown = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#39;to-markdown&#39;</span>)</span></span></code></pre><p>Now try running the HTML through this before logging it out.</p>
+<pre class="hljs"><code><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> toMarkdown = require(&#39;to-markdown&#39;)
+<span class="hljs-comment">// ...</span>
+  res.<span class="hljs-keyword">on</span>(&#39;data&#39;, <span class="hljs-keyword">d</span> =&gt; {
+    console.<span class="hljs-literal">log</span>(toMarkdown(<span class="hljs-keyword">d</span>.<span class="hljs-keyword">toString</span>()))
+  })
+<span class="hljs-comment">// ...</span></code></pre><p>If you run the script again, you should see beautiful, super-readable Markdown!
+All done!</p>
+<hr>
+<p>Well, mostly. This is nice and all, but there are definitely some things we can
+do to make this script a bit better. Firstly, it&#39;s annoying to have to always
+type <code>http://</code> before a URL, so maybe we should automatically add that on.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> url = process.argv[<span class="hljs-number">2</span>]
+<span class="hljs-keyword">const</span> src = (url.includes(<span class="hljs-string">&#39;http://&#39;</span>) url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `http:<span class="hljs-comment">//${url}`</span></code></pre><p>All this extra bit is doing is checking if the passed in argument aleady has a
+scheme, and if it doesn&#39;t, just sticking on on the beginning. If you&#39;re not
+familiar with template literals, check out the previous tutorials and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs
+on
+MDN</a>.</p>
+<p>If you&#39;re not familiar with <code>Array.prototype.includes()</code>, it&#39;s basically a
+shorthand for <code>.indexOf(foo !== -1)</code>.</p>
+<p>Make sure you change the <code>get</code> call to use <code>src</code> instead of <code>url</code>.</p>
+<p>And, as in the previous tutorials, we&#39;ll want to just be able to execute this
+script, without needing to type in <code>node</code> each time, so add a shebang and make
+it exectuable.</p>
+<pre class="hljs"><code><span class="hljs-keyword">chmod</span> +<span class="hljs-keyword">x</span> <span class="hljs-keyword">index</span>.js</code></pre><pre class="hljs"><code>#!<span class="hljs-regexp">/usr/</span>bin/env node
+
+<span class="hljs-keyword">const</span> { <span class="hljs-keyword">get</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;http&#39;</span>)
+<span class="hljs-comment">// ...</span></code></pre><p>Now you should be able to just do something like <code>./index.js zacanger.com</code> and
+see some results.</p>
+<p><code>to-markdown</code> can handle take some options. One of them is to use
+<a href="https://help.github.com/categories/writing-on-github">GitHub-Flavored
+Markdown</a>, which is
+pretty nice since that&#39;s probably what most of us are used to using. To enable
+this, just pass <code>{ gfm: true }</code> in the call to <code>toMarkdown</code>:</p>
+<pre class="hljs"><code><span class="hljs-comment">// ...</span>
+<span class="hljs-tag">console</span><span class="hljs-class">.log</span>(<span class="hljs-function">toMarkdown</span>(d.<span class="hljs-function">toString</span>(), { <span class="hljs-attribute">gfm</span>: true }))
+<span class="hljs-comment">// ...</span></code></pre><p>You may notice some tags are making it through the conversion (<code>script</code>, <code>span</code>,
+<code>div</code>, and probably a few others); I&#39;m not going to go over all of the options
+that <code>to-markdown</code> can take, but you should check out the docs and learn how to
+write filters, if you&#39;re interested. You could also write your own function to
+strip out unwanted elements, and run the Markdown through this:</p>
+<pre class="hljs"><code>const cleanOutStuff = <span class="hljs-keyword">string</span> =&gt;
+  <span class="hljs-keyword">string</span>.<span class="hljs-built_in">replace</span>(/(<span class="hljs-operator">div</span>|script|span)/g, <span class="hljs-string">&#39;&#39;</span>)
+
+console.<span class="hljs-built_in">log</span>(cleanOutStuff(toMarkdown(d.toString(), { gfm: <span class="hljs-constant">true</span> })))</code></pre><p>But it&#39;d probably be easier to just learn the options rather that spinning
+something custom like this.</p>
+<p>One thing that really irks me when I&#39;m reading in the terminal is text that
+doesn&#39;t wrap. Sometimes I&#39;m on a very large screen, and it can get difficult to
+keep track of where I am when the text is too wide. 80 characters is a pretty
+reasonable limit, so why don&#39;t we get this text to wrap there? We&#39;re going to
+use another module for this:
+<a href="https://github.com/substack/node-wordwrap">wordwrap</a>.</p>
+<pre class="hljs"><code>npm <span class="hljs-tag">i</span> -S wordwrap</code></pre><pre class="hljs"><code>const wordwrap = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#39;wordwrap&#39;</span>)</span></span></code></pre><p>This module needs to know how many characters it can put in a line. We could
+just pass it <code>80</code>, but I think maybe we should handle cases where the terminal
+is resized very small but maybe won&#39;t stay that way, so we&#39;re going to find out
+how big the terminal currently is and base our decision on that.
+<code>process.stdout</code> has a way for us to find this out.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> wordwrap = require(<span class="hljs-string">&#39;wordwrap&#39;</span>)
+<span class="hljs-keyword">const</span> { rows } = process.stdout
+<span class="hljs-keyword">const</span> wraplength = (rows &lt; <span class="hljs-number">80</span> ? <span class="hljs-number">80</span> : rows)
+<span class="hljs-keyword">const</span> wrapper = wordwrap(wraplength)</code></pre><p>All we&#39;re doing here is wrapping to either the width of the terminal or 80
+characters, whichever happens to be greater.</p>
+<p>Now we can use that <code>wrapper</code> when we log out the results.</p>
+<pre class="hljs"><code><span class="hljs-tag">console</span><span class="hljs-class">.log</span>(<span class="hljs-tag">wrapper</span>(<span class="hljs-tag">toMarkdown</span>(<span class="hljs-tag">d</span><span class="hljs-class">.toString</span>(), <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">gfm</span>:<span class="hljs-value"> true </span></span></span>})))</code></pre><hr>
+<p>So, awesome! Your script should now do just about everything you want it to do.
+There&#39;s really only one big thing left to do: make it less ugly. That
+<code>console.log</code> is really getting gross, don&#39;t you think? I like to handle this by
+just defining a bunch of functions I can throw together, so I don&#39;t have to have
+all this junk cluttering up my space.</p>
+<pre class="hljs"><code>const opts = { gfm: <span class="hljs-constant">true</span> }
+const <span class="hljs-built_in">convert</span> = <span class="hljs-operator">a</span> =&gt; toMarkdown(<span class="hljs-operator">a</span>, opts)
+const <span class="hljs-operator">wrap</span> = <span class="hljs-operator">a</span> =&gt; wrapper(<span class="hljs-operator">a</span>)
+const <span class="hljs-built_in">log</span> = <span class="hljs-operator">a</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-operator">a</span>)</code></pre><p>I&#39;m using <code>a</code> as a parameter here. You can use something more descriptive if
+you&#39;d like, it really doesn&#39;t matter.</p>
+<p>And I think we should also just wait until we have all the data before logging
+anything, so let&#39;s adjust our HTTP call (and stick it in a function):</p>
+<pre class="hljs"><code>const main = arg =&gt; get<span class="hljs-list">(<span class="hljs-keyword">arg</span>, res =&gt; {
+  let b = &#39;&#39; // <code>b</code> for <code>body</code>
+  res.on<span class="hljs-list">(<span class="hljs-quoted">&#39;data</span>&#39;, d =&gt; b += d.toString)</span>
+  res.on<span class="hljs-list">(<span class="hljs-quoted">&#39;end</span>&#39;, <span class="hljs-list">()</span> =&gt; log<span class="hljs-list">(<span class="hljs-keyword">wrap</span><span class="hljs-list">(<span class="hljs-keyword">convert</span><span class="hljs-list">(<span class="hljs-keyword">b</span>)</span>)</span>)</span>)</span>
+})</span></code></pre><p>Your linter might yell at you saying you can&#39;t return assignment. It&#39;s probably
+right, but nothing&#39;s going to break. If you&#39;re concerned about it, just wrap
+that <code>b += d.toString()</code> in some braces.</p>
+<p>Obviously, this is a function, so we need to call it somewhere.</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">main</span><span class="hljs-params">(src)</span></span></code></pre><p>We&#39;re just passing it our URL that may or may not have <code>http://</code> stuck on to it.</p>
+<hr>
+<p>Now you&#39;re really done! I suggest you go check out <code>to-markdown</code>, play around
+with <code>process</code>, and see what else you can do with this thing. If you make
+something pretty neat, you should consider releasing it! Check out <code>npm help
+adduser</code> and <code>npm help publish</code> to see how you could go about this. (There are
+probably similar modules out there, though, so make sure you&#39;re not stepping on
+anyone&#39;s toes first!)</p>
+<p>I&#39;d also suggest you do some basic error handling, but that&#39;s totally up to you.</p>
+<p>For the previous two tutorials I waited until the following post to show a
+finished version of the script; since this is the last tutorial on writing CLI
+apps in Node that I intend to write, the full script is below, as well as my
+manifest file (<code>package.json</code>).</p>
+<p>Note: I tend to prefer shorter (but hopefully still readable) names for things,
+and a somewhat opinionated code style, so the full script below may differ
+a bit from your results, and that&#39;s totally fine.</p>
+<pre class="hljs"><code>{
+  &quot;<span class="hljs-attribute">name</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;html2txt&quot;</span></span>,
+  &quot;<span class="hljs-attribute">description</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;html2text sorta thing for blog post&quot;</span></span>,
+  &quot;<span class="hljs-attribute">version</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;0.0.1&quot;</span></span>,
+  &quot;<span class="hljs-attribute">author</span>&quot;: <span class="hljs-value">{
+    &quot;<span class="hljs-attribute">name</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;Zac Anger&quot;</span></span>,
+    &quot;<span class="hljs-attribute">email</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;zac@zacanger.com&quot;</span></span>,
+    &quot;<span class="hljs-attribute">url</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;<a href="http://zacanger.com">http://zacanger.com</a>&quot;</span>
+  </span>}</span>,
+  &quot;<span class="hljs-attribute">license</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;WTFPL&quot;</span></span>,
+  &quot;<span class="hljs-attribute">main</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;index.js&quot;</span></span>,
+  &quot;<span class="hljs-attribute">scripts</span>&quot;: <span class="hljs-value">{
+    &quot;<span class="hljs-attribute">start</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;node index&quot;</span>
+  </span>}</span>,
+  &quot;<span class="hljs-attribute">homepage</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;<a href="https://github.com/zacanger/blog#readme">https://github.com/zacanger/blog#readme</a>&quot;</span></span>,
+  &quot;<span class="hljs-attribute">repository</span>&quot;: <span class="hljs-value">{
+    &quot;<span class="hljs-attribute">type</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;git&quot;</span></span>,
+    &quot;<span class="hljs-attribute">url</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;<a href="https://github.com/zacanger/blog.git">https://github.com/zacanger/blog.git</a>&quot;</span>
+  </span>}</span>,
+  &quot;<span class="hljs-attribute">bugs</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;<a href="https://github.com/zacanger/blog/issues">https://github.com/zacanger/blog/issues</a>&quot;</span></span>,
+  &quot;<span class="hljs-attribute">keywords</span>&quot;: <span class="hljs-value">[
+    <span class="hljs-string">&quot;html&quot;</span>,
+    <span class="hljs-string">&quot;markdown&quot;</span>
+  ]</span>,
+  &quot;<span class="hljs-attribute">dependencies</span>&quot;: <span class="hljs-value">{
+    &quot;<span class="hljs-attribute">to-markdown</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;^3.0.1&quot;</span></span>,
+    &quot;<span class="hljs-attribute">wordwrap</span>&quot;: <span class="hljs-value"><span class="hljs-string">&quot;^1.0.0&quot;</span>
+  </span>}</span>,
+  &quot;<span class="hljs-attribute">devDependencies</span>&quot;: <span class="hljs-value">{}
+</span>}</code></pre><pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+const
+  url      = <span class="hljs-built_in">process</span>.argv[<span class="hljs-number">2</span>] || <span class="hljs-string">&#39;zacanger.com&#39;</span>
+, { <span class="hljs-built_in">get</span> }  = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;http&#39;</span>)
+, { rows } = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>
+, <span class="hljs-built_in">len</span>      = (rows &lt; <span class="hljs-number">80</span> ? <span class="hljs-number">80</span> : rows)
+, toMd     = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;to-markdown&#39;</span>)
+, ww       = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;wordwrap&#39;</span>)
+, wrapper  = ww(<span class="hljs-built_in">len</span>)
+, opts     = { gfm: <span class="hljs-constant">true</span> }
+, conv     = <span class="hljs-operator">a</span> =&gt; toMd(<span class="hljs-operator">a</span>, opts)
+, <span class="hljs-operator">wrap</span>     = <span class="hljs-operator">a</span> =&gt; wrapper(<span class="hljs-operator">a</span>)
+, <span class="hljs-built_in">log</span>      = <span class="hljs-operator">a</span> =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-operator">a</span>)
+, src      = url.includes((<span class="hljs-string">&#39;http://&#39;</span>) || url.includes(<span class="hljs-string">&#39;https://&#39;</span>)) ? url : `<span class="hljs-keyword">http</span>://${url}`
+
+const main = <span class="hljs-operator">a</span> =&gt; <span class="hljs-built_in">get</span>(<span class="hljs-operator">a</span>, res =&gt; {
+  let b = <span class="hljs-string">&#39;&#39;</span>
+  res.on(<span class="hljs-string">&#39;data&#39;</span>, d =&gt; {b += d.toString()})
+  res.on(<span class="hljs-string">&#39;end&#39;</span>, () =&gt; <span class="hljs-built_in">log</span>(<span class="hljs-operator">wrap</span>(conv(b))))
+})
+
+<span class="hljs-keyword">if</span> (!module.parent) main(src)</code></pre><p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
+Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
+Github</a>.</p>
+<p>The full version of this module has been published at
+<a href="http://npm.im/html2txt">html2txt</a>.</p>
+]]></description><link>/2016/cli-apps-part-three.html</link><guid isPermaLink="true">/2016/cli-apps-part-three.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><category><![CDATA[html]]></category><category><![CDATA[markdown]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 28 Sep 2016 02:36:00 GMT</pubDate></item><item><title><![CDATA[building command-line apps in node (a note-taking app)]]></title><description><![CDATA[<h1 id="build-a-note-taking-app-for-the-terminal-in-node">Build a Note-Taking App for the Terminal, in Node</h1>
+<p>This is a follow-up to my <a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html">first
+post</a> on writing
+command-line apps in Node. I suggest you read that first, but this post should
+stand on its own if you don&#39;t want to. Below is the little React component
+generator that you&#39;d get if you follow that tutorial.</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> type = process.argv[<span class="hljs-number">2</span>]
+<span class="hljs-keyword">const</span> component = process.argv[<span class="hljs-number">3</span>]
+<span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+
+<span class="hljs-keyword">const</span> help = () =&gt;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`</span>
+  please pass component type <span class="hljs-keyword">and</span> component name
+  <span class="hljs-attribute">example</span>: ./rcg.js <span class="hljs-keyword">function</span> Foo
+<span class="hljs-string">`)</span>
+
+<span class="hljs-keyword">if</span> (!component || !type) {
+  <span class="hljs-keyword">return</span> help()
+}
+
+<span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`.trim()</span>
+
+<span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`.trim()</span>
+
+<span class="hljs-keyword">const</span> doTheThing = kind =&gt; (
+  writeFile(<span class="hljs-string">`${component}.js`,</span> kind, <span class="hljs-string">&#39;utf8&#39;</span>, err =&gt; {
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
+  })
+)
+
+<span class="hljs-keyword">switch</span> (type) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&#39;function&#39;</span>:
+    doTheThing(pureComponent)
+    <span class="hljs-keyword">break</span>
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&#39;class&#39;</span>:
+    doTheThing(classComponent)
+    <span class="hljs-keyword">break</span>
+  <span class="hljs-attribute">default</span>:
+    <span class="hljs-keyword">return</span> help()
+}</code></pre><hr>
+<h2 id="introduction">Introduction</h2>
+<p>I really love writing little command-line utilities in Node. There are other
+languages that may be better for this (Bash, Ruby, Perl), but Node is just more
+<em>fun</em> than those (at least to me). I especially love trying to do simple little
+tools with no dependencies, or wrapping up awesome modules to be used in your
+terminal. The majority of <a href="https://www.npmjs.com/~zacanger">my published modules</a>
+are little tools like this. A lot of folks only think of Node as the thing that
+runs Express, or the thing that lets them test their code without a browser, or
+whatever, though. So, this will be a short tutorial on writing a command-line
+app in Node. At the end of it, you&#39;ll have a totally awesome little app for
+taking notes in JSON. The full version of this app (with a few adjustments and
+additions) is <a href="https://www.npmjs.com/package/lilnote">here</a>, and you can
+install it to use in your terminal with <code>npm i -g lilnote</code>.</p>
+<p>Okay, so, let&#39;s do stuff!</p>
+<h2 id="update-node">Update Node</h2>
+<p>First things first&mdash;make sure Node and npm are up to date. If you&#39;re
+already using at least versions 6 of node and 3 of npm (<code>node -v</code> and <code>npm -v</code>
+to find out), you&#39;re fine. Otherwise, you really should update.</p>
+<p>I recommend using <a href="https://www.npmjs.com/package/n">n</a> for this. If you already
+use NVM, go with that; if you&#39;re on Windows, you&#39;ll likely have to go download
+the new version and manually install it. Otherwise, just <code>npm i -g n &amp;&amp; n latest
+&amp;&amp; npm i -g npm@next</code> (you can leave out the last bit, but it&#39;s nice to have the
+newest version of the coolest tools).</p>
+<h2 id="start-a-project">Start a Project</h2>
+<p>Make a new directory and start a project (<code>mkdir note-taking-app</code>, <code>cd
+note-taking-app</code>, <code>npm init</code>, <code>touch index.js</code>, and <code>chmod +x index.js</code> to make
+it executable).</p>
+<p>You won&#39;t need any dependencies here; the <code>npm init</code> isn&#39;t vital, but if you
+later wanted to add dependencies, publish this (please don&#39;t unless it&#39;s
+significantly different from <a href="https://npmjs.com/package/lilnote">lilnote</a>!), or
+something, it&#39;d be nice to just have this already set up.</p>
+<p>If you want, you can add some fields to your <code>package.json</code> to specifiy that
+it&#39;s a global, command-line sort of app. Add <code>&quot;preferGlobal&quot;: true</code> and <code>&quot;bin&quot;:
+&quot;./index.js&quot;</code> for this.</p>
+<h2 id="write-some-code">Write Some Code</h2>
+<p>Open the <code>index.js</code> in your editor.</p>
+<p>The first thing you&#39;ll need to write is the shebang. This is to let your shell
+know how to execute this file. For a Node script, it should read <code>#!/usr/bin/env
+node</code>. Any time you&#39;re writing an executable script, this goes on the first
+line. You&#39;ll use a similar thing for any language you&#39;d use (for example,
+<code>#!/bin/bash</code> for a Bash script, or <code>#!/usr/bin/ruby</code> for a Ruby script&mdash;
+the <code>env</code> bit says &#39;find out what my computer thinks Node is, and execute that
+script with that thing&#39;&mdash;it&#39;s the same idea as doing <code>which node index.js</code>).</p>
+<p>We&#39;re going to require some stuff. If you happen to be using <code>babel-node</code> or
+using <code>babel-register</code> you could use <code>import</code>s here, but we&#39;ll go with
+<code>require</code>s because this means we can keep our app dependency-free.</p>
+<p>Add <code>&#39;use strict&#39;</code> to the next line. You don&#39;t <em>have</em> to do this, <a href="https://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode">but you
+should</a>.</p>
+<p>We&#39;ll require just one thing to start with: <code>fs</code>, which is built in to Node.</p>
+<p>Our file should currently look like this:</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+<span class="hljs-string">&#39;use strict&#39;</span>
+
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)</code></pre><p>Our app is going to read input from the terminal, so we&#39;ll need to use the
+built-in <code>process</code>. This provides an <code>argv</code>, which is an &#39;argument
+vector&#39;&mdash;an array of all things entered on the command-line, which will
+always start with <code>node</code> and the file that&#39;s being run. So, we&#39;ll use
+<code>process.argv[2]</code>, which will be the first manually entered argument. Sidenote:
+<code>process</code> is an awesome piece of Node, and if you&#39;re not familiar with it, open
+a REPL (just enter <code>node</code> in the terminal) and type in <code>process</code>, and skim
+through that gigantic object.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> arg = process.argv[<span class="hljs-number">2</span>]</code></pre><p>Parsing arguments is tedious and sometimes difficult. There are a
+<a href="https://github.com/tj/commander.js">lot</a> of
+<a href="https://github.com/substack/minimist">awesome</a>
+<a href="https://www.npmjs.com/package/yargs">modules</a> that exist for this, and if you
+keep building cli apps in Node you should definitely investigate these, but for
+this tutorial we&#39;ll parse options manually. In the same way that you should know
+how HTTP works and then maybe use <a href="http://koajs.com">Koa</a> or
+<a href="http://hapijs.com">hapi</a>, you should know how arguments work before deciding on
+a library to handle them.</p>
+<p>We&#39;ll need a couple of other things before we can really get going. We should
+probably do something with that <code>fs</code> module&mdash;let&#39;s use it to specify a
+piece of JSON we&#39;ll work against. I won&#39;t get into how to handle what happens if
+that file doesn&#39;t already exist here, but you can check out <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">lilnote&#39;s source
+code</a> if
+you&#39;re curious. For our purposes, you should <code>touch notes.json</code> in the same
+directory as your app, and put an empty array (<code>[]</code>) in there. (Note: <code>lilnote</code>
+uses a file under the user&#39;s home directory; that&#39;s another thing we won&#39;t worry
+about right now, but it&#39;s <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">pretty
+easy</a> to do.)</p>
+<p>Let&#39;s add another couple of declarations:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">n</span> = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)</code></pre><p>We&#39;ll also have a variable here for our read-in notes.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)</code></pre><p>And since we&#39;ll be using <code>console.log</code> in a few places, let&#39;s just make that a
+little shorter:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> <span class="hljs-built_in">log</span> = console.<span class="hljs-built_in">log</span></code></pre><p>Your file should now look something like this:</p>
+<pre class="hljs"><code>#!/usr/bin/env node
+
+&#39;<span class="hljs-keyword">use</span> strict&#39;
+
+<span class="hljs-keyword">const</span> fs = require(&#39;fs&#39;)
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">log</span> = console.<span class="hljs-literal">log</span>
+<span class="hljs-keyword">const</span> arg = process.argv[2]
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">n</span> = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)</code></pre><p>And your file structure should look something like:</p>
+<pre class="hljs"><code>project-root
+  package<span class="hljs-class">.json</span>
+  index<span class="hljs-class">.js</span>
+  notes.json</code></pre><h2 id="make-it-do-things">Make It Do Things</h2>
+<p>So let&#39;s do stuff! First let&#39;s make a way to record notes taken. This will work
+by just calling your script and treating the first argument as a note.</p>
+<pre class="hljs"><code>./index<span class="hljs-class">.js</span> <span class="hljs-string">&quot;go to the grocery store&quot;</span>
+./index<span class="hljs-class">.js</span> cook
+./index<span class="hljs-class">.js</span> eat
+./index<span class="hljs-class">.js</span> <span class="hljs-string">&quot;wash dishes&quot;</span></code></pre><p>Let&#39;s write a function for this.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> takeNote = (<span class="hljs-keyword">notes</span>, <span class="hljs-keyword">note</span>) =&gt; {
+  <span class="hljs-keyword">notes</span>.push(<span class="hljs-keyword">note</span>)
+  <span class="hljs-keyword">const</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  fs.writeFile(<span class="hljs-keyword">n</span>, taken, &#39;utf8&#39;, <span class="hljs-keyword">err</span> =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+  })
+}</code></pre><p>Note that we&#39;re using function expressions, not function declarations. This
+could also be written as:</p>
+<pre class="hljs"><code>function takeNote (<span class="hljs-keyword">notes</span>, <span class="hljs-keyword">note</span>) {
+  <span class="hljs-keyword">notes</span>.push(<span class="hljs-keyword">note</span>)
+  <span class="hljs-keyword">var</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  fs.writeFile(<span class="hljs-keyword">file</span>, taken, &#39;utf8&#39;, function(<span class="hljs-keyword">err</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+    }
+  })
+}</code></pre><p>These extra parameters to <code>JSON.stringify()</code> make our JSON look decent. Check
+out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">docs on
+MDN</a>
+if you&#39;re not familiar with them.</p>
+<p>We&#39;re taking in the array of notes and a note, and pushing that note to the
+array of notes. Then we&#39;re using <code>writeFile()</code> from <code>fs</code> to write to the <code>file</code>
+we declared earlier, using the <code>taken</code> we declared earlier, with the encoding
+<code>UTF-8</code>. The callback here is in case there&#39;s an error&mdash;if the file doesn&#39;t
+already exist, for example.</p>
+<p>We should handle this function where we process our command-line arguments,
+which we&#39;ll get to in a little bit.</p>
+<p>Let&#39;s also write a function for removing a note by its index in the array.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> removeNote = (<span class="hljs-keyword">notes</span>, noteIndex) =&gt; {
+  <span class="hljs-keyword">notes</span>.splice(noteIndex -1, 1)
+  <span class="hljs-keyword">const</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  fs.writeFile(<span class="hljs-keyword">n</span>, taken, &#39;utf8&#39;, <span class="hljs-keyword">err</span> =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+  })
+}</code></pre><p>Awesome! That&#39;s like 90% of our app right there.</p>
+<p>We should probably handle some arguments so we can actually use this thing.</p>
+<h2 id="make-it-all-work">Make It All Work</h2>
+<p>We&#39;re going to do this with a series of <code>if</code> statements. We could also use a
+<code>switch</code> here, but for a lot of people that&#39;ll seem a little unfamiliar. Let&#39;s
+assume that you&#39;ll use <code>-s</code> to show all notes, and <code>-r</code> to remove a note. We
+should also handle a case where there are no arguments passed.</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> (!arg) {
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(&#39;Please pass <span class="hljs-keyword">an</span> argument&#39;)
+}
+<span class="hljs-keyword">if</span> (arg &amp;&amp; arg === &#39;-r&#39;) {
+  <span class="hljs-keyword">const</span> noteIndex = process.argv[3]
+  <span class="hljs-keyword">return</span> removeNote(<span class="hljs-keyword">notes</span>, noteIndex)
+}
+<span class="hljs-keyword">if</span> (arg &amp;&amp; arg === &#39;-s&#39;) {
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">notes</span>)
+}
+<span class="hljs-keyword">else</span> {
+  <span class="hljs-keyword">return</span> takeNote(<span class="hljs-keyword">notes</span>, arg)
+}</code></pre><p>So, that&#39;s a basic way to handle command-line options. Let&#39;s just wrap that last
+bit in a function and call it at the end. It&#39;s not beautiful, but if you put a
+little bit of work into this, you could have a decent app! Here&#39;s how your whole
+file should look, now:</p>
+<pre class="hljs"><code>#!/usr/bin/env node
+
+&#39;<span class="hljs-keyword">use</span> strict&#39;
+
+<span class="hljs-keyword">const</span> fs = require(&#39;fs&#39;)
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">log</span> = console.<span class="hljs-literal">log</span>
+<span class="hljs-keyword">const</span> arg = process.argv[2]
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">n</span> = &#39;./<span class="hljs-keyword">notes</span>.json&#39;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = fs.readFileSync(<span class="hljs-keyword">n</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">notes</span> = JSON.<span class="hljs-keyword">parse</span>(<span class="hljs-keyword">file</span>)
+
+<span class="hljs-keyword">const</span> takeNote = (<span class="hljs-keyword">notes</span>, <span class="hljs-keyword">note</span>) =&gt; {
+  <span class="hljs-keyword">notes</span>.push(<span class="hljs-keyword">note</span>)
+  <span class="hljs-keyword">const</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  fs.writeFile(<span class="hljs-keyword">n</span>, taken, &#39;utf8&#39;, <span class="hljs-keyword">err</span> =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+  })
+}
+
+<span class="hljs-keyword">const</span> removeNote = (<span class="hljs-keyword">notes</span>, noteIndex) =&gt; {
+  <span class="hljs-keyword">notes</span>.splice(noteIndex -1, 1)
+  <span class="hljs-keyword">const</span> taken = JSON.stringify(<span class="hljs-keyword">notes</span>, null, 2)
+  fs.writeFile(<span class="hljs-keyword">n</span>, taken, &#39;utf8&#39;, <span class="hljs-keyword">err</span> =&gt; {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">err</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">err</span>)
+  })
+}
+
+<span class="hljs-keyword">const</span> runTheApp = () =&gt; {
+  <span class="hljs-keyword">if</span> (!arg) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(&#39;Please pass <span class="hljs-keyword">an</span> argument&#39;)
+  }
+  <span class="hljs-keyword">if</span> (arg &amp;&amp; arg === &#39;-r&#39;) {
+    <span class="hljs-keyword">const</span> noteIndex = process.argv[3]
+    <span class="hljs-keyword">return</span> removeNote(<span class="hljs-keyword">notes</span>, noteIndex)
+  }
+  <span class="hljs-keyword">if</span> (arg &amp;&amp; arg === &#39;-s&#39;) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">log</span>(<span class="hljs-keyword">notes</span>)
+  }
+  <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> takeNote(<span class="hljs-keyword">notes</span>, arg)
+  }
+}
+
+runTheApp()</code></pre><p>This isn&#39;t beautiful, but as with the last post, I&#39;ll leave it to you to clean
+it up, handle funky cases, and whatnot. If you&#39;re having fun with this, check
+back for my next post! Also, if you have any thoughts on fun command-line
+projects in Node but aren&#39;t sure how to get started, hit me up <a href="https://twitter.com/zacanger">on
+Twitter</a> and I&#39;ll see about writing something up!</p>
+]]></description><link>/2016/note-taking-app.html</link><guid isPermaLink="true">/2016/note-taking-app.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 27 Aug 2016 02:45:00 GMT</pubDate></item><item><title><![CDATA[a basic command-line app in node]]></title><description><![CDATA[<p>I&#39;m going to walk through a super basic app in Node that you can
+run in your terminal. I&#39;ve got a more in-depth tutorial coming up soon,
+but wanted to get this idea out there tonight.</p>
+<p><a href="http://ryanwalsh.io">Someone</a> brought up the idea of a React component
+generator the other day, and I immediately thought <em>Bash script</em>. Well, that&#39;s
+pretty easy.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/bin/bash
+</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;
+import React from &#39;react&#39;
+
+const <span class="hljs-variable">$1</span> = () =&gt; (
+  &lt;div&gt;<span class="hljs-variable">$1</span>&lt;/div&gt;
+)
+
+export default <span class="hljs-variable">$1</span>
+&quot;</span> &gt; <span class="hljs-variable">$1</span>.js</code></pre><p>There you go, a basic pure component generator script. This could be a little
+more complex, handle some content, handle generating a class instead of a
+function, and whatever, but that&#39;s the basic idea, in Bash.</p>
+<blockquote>
+<p>Keep in mind, none of this is React-specific. All we&#39;re doing is handling
+arguments and spitting out a file.</p>
+</blockquote>
+<p>The idea here is that you just call this script from somewhere and it gives you
+a component already laid out for you. It&#39;s not too fancy, but it&#39;s useful.</p>
+<pre class="hljs"><code>$ ./my-script.sh Foo
+
+$ cat Foo.js
+
+<span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> Foo = () =&gt; (
+  &lt;div&gt;Foo&lt;/div&gt;
+)
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> Foo</code></pre><p>That could save a little bit of time. I use something similar for generating an
+<code>index.html</code> for React apps.</p>
+<p>This is a lot like using snippets in your editor, except it doesn&#39;t rely on you
+having that editor and those snippets handy. You could pass this around to anyone
+who uses any editor, on any computer, and get the same result. You could upload
+it to somewhere and just <code>curl my-script.sh | bash</code> and not even need to have the
+file around. Pretty handy, I think.</p>
+<p>But... what about in JS? I mean, we&#39;re JavaScript devs, right?</p>
+<p>It&#39;s still pretty straightforward in Node, as it happens.</p>
+<p>We only need one file to get going. I&#39;ll call mine <del>compgen</del> rcg.js, for React
+Component Generator.</p>
+<blockquote>
+<p>I apologize in advance, some of the syntax highlighting will look a little
+odd... apparently the highlighting library I use doesn&#39;t understand template
+strings.</p>
+</blockquote>
+<pre class="hljs"><code>touch rcg.js     # <span class="hljs-operator"><span class="hljs-keyword">create</span> a <span class="hljs-keyword">new</span> <span class="hljs-keyword">file</span>
+chmod +x rcg.js  # <span class="hljs-keyword">set</span> an executable <span class="hljs-built_in">bit</span> <span class="hljs-keyword">on</span> the <span class="hljs-keyword">file</span>
+vi rcg.js        # <span class="hljs-keyword">open</span> it <span class="hljs-keyword">for</span> editing</span></code></pre><p>(Obviously substitute your editor for <code>vi</code>.)</p>
+<p>What&#39;s the first thing any executable script needs? A shebang! We&#39;ll also go
+ahead and use <code>process</code>. If you don&#39;t know <code>process</code>, open Node in a terminal
+(<code>node</code>) and just type in <code>process</code>. It&#39;s pretty cool. The bit we want is
+<code>.argv</code>, which is an array of all arguments passed. It always has <code>node</code> and the
+file that&#39;s calling it as the first two elements, so we don&#39;t need those.</p>
+<pre class="hljs"><code><span class="hljs-shebang">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]</code></pre><p>What we&#39;re going for here is a script we can call like <code>./rcg.js function Foo</code>,
+or with a <code>class</code> parameter instead.</p>
+<p>The next thing we&#39;ll need to do is actually sketch out these components. I&#39;ll be
+using template literals. If you don&#39;t have a recent version of Node, you should
+update. If you can&#39;t update, you&#39;ll have to use string concatenation instead (so
+really, you should just update). To update (on Mac or Linux; on Windows you
+should just go to <a href="http://nodejs.org">the website</a> and download a new version),
+just <code>npm i -g n &amp;&amp; n latest</code>.</p>
+<p>Let&#39;s write out what a pure (function) component looks like, first.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span></code></pre><p>It doesn&#39;t have a whole lot going on, I know. This is just a quick file
+generator, it can&#39;t write your code for you. :P</p>
+<p>If you can&#39;t update node, that&#39;d look something like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> pureComponent = <span class="hljs-string">&#39;import React from \&#39;</span>react\<span class="hljs-string">&#39;&#39;</span> +
+<span class="hljs-string">&#39;function &#39;</span> + component + <span class="hljs-string">&#39;(){&#39;</span> +
+  <span class="hljs-string">&#39;return &lt;div&gt;&#39;</span> + component + <span class="hljs-string">&#39;&lt;/div&gt;&#39;</span> +
+<span class="hljs-string">&#39;}&#39;</span> +
+<span class="hljs-string">&#39;module.exports = &#39;</span> + component</code></pre><p>(Kind of annoying, right?)</p>
+<p>So now, let&#39;s get one for a class (I won&#39;t go through doing this one with an old
+version of Node, nor with <code>React.createClass</code>&mdash;just with ES2015 classes).</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span></code></pre><p>Lovely! Obviously this should be more complex; if your class only has a render
+function that returns JSX, just use a function instead.</p>
+<p>Great, now you have a bunch of stuff in a file that doesn&#39;t do anything! Let&#39;s
+handle arguments and make it actually do things.</p>
+<p>There are a lot of great libraries for parsing options, and I&#39;ll list a few of
+them in the next blog post. For now, we&#39;ll just use <code>if</code> statements.</p>
+<pre class="hljs"><code><span class="hljs-keyword">let</span> toWrite <span class="hljs-comment">// this is what we&#39;ll end up writing to a file</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">function</span>&#39;) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> </span>=== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">function</span>&#39; &amp;&amp; <span class="hljs-class"><span class="hljs-keyword">type</span> !</span>== &#39;<span class="hljs-keyword">class</span>&#39;) {
+  console.log(&#39;please pass <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">of</span> <span class="hljs-title">component</span> <span class="hljs-title">as</span> <span class="hljs-title">first</span> <span class="hljs-title">argument</span>&#39;)</span>
+}</code></pre><p>That&#39;s a little sloppy&mdash;intentionally! I&#39;m hoping you take some time to
+write this out a little better than just copying and pasting from this blog
+post.</p>
+<p>There&#39;s one major bit left: actually writing a file. We&#39;ll need Node&#39;s <code>fs</code> for
+this.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)</code></pre><p>Now, at the bottom of our file, let&#39;s actually do the fun bit.</p>
+<pre class="hljs"><code>writeFile<span class="hljs-list">(`${component}.js`, toWrite, <span class="hljs-quoted">&#39;utf8</span>&#39;, err =&gt; {
+  if <span class="hljs-list">(<span class="hljs-keyword">err</span>)</span> console.log<span class="hljs-list">(<span class="hljs-keyword">err</span>)</span>
+})</span></code></pre><p>Now your whole file should look something like this:</p>
+<pre class="hljs"><code><span class="hljs-comment">#!/usr/bin/env node</span>
+
+<span class="hljs-keyword">const</span> args = process.argv.slice(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> type = args[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]
+<span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+
+<span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ${component}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">$</span>{<span class="hljs-title">component</span>} <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> {</span>
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+<span class="hljs-string">`</span>
+
+<span class="hljs-keyword">let</span> toWrite
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;function&#39;</span>) {
+  toWrite = pureComponent
+}
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#39;class&#39;</span>) {
+  toWrite = classComponent
+}
+<span class="hljs-keyword">if</span> (type !== <span class="hljs-string">&#39;function&#39;</span> &amp;&amp; type !== <span class="hljs-string">&#39;class&#39;</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;please pass type of component as first argument&#39;</span>)
+}
+
+writeFile(<span class="hljs-string">`${component}.js`,</span> toWrite, <span class="hljs-string">&#39;utf8&#39;</span>, err =&gt; {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
+})</code></pre><p>Boom! You&#39;ve made a command-line app! You can drop this anywhere in your <code>$PATH</code>
+and call it from anywhere to generate a component for you! (<code>$PATH</code> is where
+your system looks for files to execute. If you don&#39;t have something like a
+<code>~/bin</code> directory, maybe <code>mv rcg.js /usr/local/bin</code>. If you don&#39;t want to move it
+somewhere like that, you can always either do <code>./rcg.js</code> or <code>node rcg</code>.)</p>
+<p>That&#39;s it! This script is not super clean. There are a few little things that
+can be done to make it a lot better, like using a <code>switch</code> statement to handle
+arguments, handling unexpected arguments, not overwritting an existing file,
+passing more options, and trimming extra lines from the generated files, and not
+keeping your templates in the same file as all the rest of the things. I&#39;m going
+to leave that up to you. Have fun with it!</p>
+<p>If you&#39;re interested in doing this kind of stuff in Node, be sure to check back!
+I&#39;ve got two more tutorials on writing command-line apps in Node, which will go
+progressively more in depth, on the way</p>
+]]></description><link>/2016/a-basic-cli-app-in-node.html</link><guid isPermaLink="true">/2016/a-basic-cli-app-in-node.html</guid><category><![CDATA[node]]></category><category><![CDATA[cli]]></category><category><![CDATA[terminal]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 25 Aug 2016 03:42:00 GMT</pubDate></item></channel></rss>
