@@ -120,14 +120,6 @@ hr {
   margin-bottom: 2em;
 }
 
-code {
-  font-size: 80%;
-  background-size: 100% 8px;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-image: linear-gradient(transparent 4px, rgba(0, 0, 0, .125) 4px);
-}
-
 table {
   width: 100%;
   max-width: 100%;
@@ -462,11 +454,8 @@ pre code {
   padding: 0;
 }
 code {
-  border: 1.8px solid #ccc;
-  border-radius: 2px;
   display: inline-block;
   line-height: 1.2;
-  padding: 3px 6px 2px;
 }
 
 /* tabley stuff */
@@ -818,12 +807,8 @@ dl dt {
 }
 
 code, tt {
-  padding: 1px 3px;
   font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
-  font-size: 0.85em;
   white-space: pre;
-  border: 1px solid #444;
-  border-radius: 2px;
 }
 
 pre {
