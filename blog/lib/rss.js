@@ -15,7 +15,7 @@ const options = {
 
 const feed = new Rss(options)
 
-console.log(`Generating RSS feed for ${data.posts.length}.`)
+console.log(`Generating RSS feed for ${data.posts.length} posts.`)
 
 data.posts.forEach((post) => {
   feed.item({

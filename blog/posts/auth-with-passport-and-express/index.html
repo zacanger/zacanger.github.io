@@ -912,7 +912,7 @@ table.plain {
 .post-card {
   margin-bottom: 3em;
 }
-</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Auth with Passport and Express</h2><div>Friday, January 22, 2016</div></header><div><div><h2>Passport/Flash Issues</h2>
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Auth with Passport and Express</h2><div>23 January, 2016</div></header><div><div><h2>Passport/Flash Issues</h2>
 <p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash') in your app.</code>app.use(flash())`.</p>
 <p>So, make a route in your app/routes/config file, wherever you're keeping those, something like <code>app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})</code>, assuming you have some html with a form that <code>POST</code>s, and input for the email.</p>
 <p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid or gmail or whatever).</p>

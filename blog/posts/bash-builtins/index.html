@@ -912,7 +912,7 @@ table.plain {
 .post-card {
   margin-bottom: 3em;
 }
-</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>bash builtins</h2><div>Wednesday, January 20, 2016</div></header><div><div><p>Let's say that in some hypothetical horrible world, we have a system with no utilities, except the shell we're using, which happens to be GNU Bash. Maybe we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't know. Here's how we can get some basic programs back, just by using Bash builtins.</p>
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>bash builtins</h2><div>21 January, 2016</div></header><div><div><p>Let's say that in some hypothetical horrible world, we have a system with no utilities, except the shell we're using, which happens to be GNU Bash. Maybe we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't know. Here's how we can get some basic programs back, just by using Bash builtins.</p>
 <p><code>type</code> still exists!</p>
 <p>We need an <code>ls</code>. So, <code>echo 'ls() { printf '%s\n' ${1:+${1%/}/}*; }' &gt;&gt; foo.sh</code></p>
 <p><code>source foo.sh</code></p>

@@ -1,8 +1,11 @@
 import React from 'react'
 import { shape, string, bool } from 'prop-types'
+import moment from 'moment'
+import formatDate from './format-date'
 
 const PostCard = ({ post }) => {
-  const date = new Date(post.created).toDateString()
+  const a = new Date(post.created)
+  const date = formatDate(a)
 
   return (
     <div>
