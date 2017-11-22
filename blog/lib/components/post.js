@@ -1,5 +1,5 @@
 import React from 'react'
-import { shape, string } from 'prop-types'
+import { Post as PostType } from './types'
 
 const base = 'https://github.com/zacanger/dotcom/issues/new?title='
 
@@ -15,10 +15,7 @@ const Post = ({ post }) => (
 )
 
 Post.propTypes = {
-  post: shape({
-    html: string.isRequired,
-    title: string.isRequired
-  }).isRequired
+  post: PostType
 }
 
 export default Post

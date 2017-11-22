@@ -263,24 +263,24 @@ win.webContents.on('did-finish-load', function() {
 ### menus
 
 * new MenuItem(opts):
-	* id: string, unique within menu
-	* submenu
-	* checked: bool
-	* visible: bool
-	* enabled: bool
-	* label: string
-	* type: normal, separator, submenu, checkbox, or radio
-	* role: action; if specified, next thing will be ignored
-	* click: function -- click(menuItem, browserWindow) -- this is that 'next thing'
+  * id: string, unique within menu
+  * submenu
+  * checked: bool
+  * visible: bool
+  * enabled: bool
+  * label: string
+  * type: normal, separator, submenu, checkbox, or radio
+  * role: action; if specified, next thing will be ignored
+  * click: function -- click(menuItem, browserWindow) -- this is that 'next thing'
 * recommended to set role:
-	* undo
-	* redo
-	* cut
-	* copy
-	* paste
-	* selectall
-	* minimize
-	* close
+  * undo
+  * redo
+  * cut
+  * copy
+  * paste
+  * selectall
+  * minimize
+  * close
 
 electron-rebuild would automatically take care of headers & native node module
 builds. so, after each `npm i`, do a `./node_modules/.bin/electron-rebuild`
@@ -299,4 +299,3 @@ HOME=~/.electron-gyp npm install module-name # home equals? what?
 one important thing: nw.js's url in the package file? nah, bro, electron don't
 do that shit. so manually creating the browser window and loading HTML is the
 right way with electron.
-

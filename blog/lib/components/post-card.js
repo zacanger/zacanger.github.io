@@ -1,6 +1,5 @@
 import React from 'react'
-import { shape, string, bool } from 'prop-types'
-import moment from 'moment'
+import { Post } from './types'
 import formatDate from './format-date'
 
 const PostCard = ({ post }) => {
@@ -28,13 +27,7 @@ const PostCard = ({ post }) => {
 }
 
 PostCard.propTypes = {
-  post: shape({
-    title: string,
-    subhead: string,
-    excerpt: string,
-    date: string,
-    slug: string
-  })
+  post: Post
 }
 
 export default PostCard
