@@ -40,6 +40,10 @@ const posts = filenames
   .map(mapFiles)
   .sort((a, b) => new Date(b.created) - new Date(a.created))
 
+// const uniq = (arr) => [ ...new Set(arr) ]
+// const flatten = (arr) => Array.isArray(arr) ? [].concat(...arr.map(flatten)) : arr
+// const allTags = uniq(flatten(posts.map(({ tags }) => tags)))
+
 const pageSize = 10
 const pages = Math.ceil(posts.length / pageSize)
 const postRoutes = filenames.map((filename) => '/posts/' + filename.replace(/\.md$/, ''))
