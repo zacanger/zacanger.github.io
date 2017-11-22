@@ -1,0 +1,915 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Zac Anger&#x27;s Blog"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Zac Anger&#x27;s Blog"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><style type="text/css">/* base.css */
+* { box-sizing: border-box }
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: 'Merriweather', Athelas, Georgia, serif;
+  line-height: 1.625;
+  margin: 0;
+  color: #311;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 5px, #ccc 5px, #ccc);
+}
+
+a:hover {
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(transparent, transparent 4px, #0cf 4px, #0cf);
+}
+
+h3,
+h4, h5, h6 {
+  font-size: 1rem;
+}
+
+h1 {
+  letter-spacing: .2em;
+  font-size: .7rem;
+  font-size: .8rem;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+h3, h4, h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+p, dl, ol, ul, blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+code, pre, samp {
+  font-family: 'Hasklig', 'Hack', 'Fira Code', 'Fantasque Sans Mono', monospace;
+}
+
+pre {
+  font-size: 70%;
+  padding-left: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: scroll;
+  border-left: 4px solid rgba(0, 0, 0, .0625);
+}
+
+hr {
+  border: 0;
+  border-bottom: 4px solid rgba(0, 0, 0, .0625);
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+code {
+  font-size: 80%;
+  background-size: 100% 8px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: linear-gradient(transparent 4px, rgba(0, 0, 0, .125) 4px);
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 0;
+  line-height: 2rem;
+}
+
+th {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-align: left;
+  border-bottom: 2px solid;
+}
+
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, .0625);
+}
+
+tr:last-child td {
+  border: 0;
+}
+
+
+/* zeess */
+@charset "utf-8";
+@viewport {
+  width: device-width;
+}
+@at-root {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-webkit-viewport {
+  width: device-width;
+}
+
+/** zeess https://github.com/zacanger/zeess license: wtfpl **/
+
+/* a little reset */
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+html, body, ul, ol, li, form, fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+fieldset, img {
+  border: 0;
+}
+legend {
+  color: #000;
+}
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+textarea, select {
+  font-size: 110%;
+  line-height: 1.1;
+}
+abbr, acronym {
+  border-bottom: .1em dotted;
+  cursor: help;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+figure {
+  margin: 0;
+}
+svg {
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+dfn {
+  font-style: italic;
+}
+audio, canvas, video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  outline: 0 !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-stretch: normal;
+}
+
+/* 1.5rem = 15px */
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+  outline: none;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+}
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Merriweather", "Cardo", serif;
+  color: #303330;
+  background: #fff;
+  padding: 1rem;
+  max-width: 900px;
+  margin-left: 2rem;
+}
+iframe {
+  border: 0;
+}
+
+/* semanticky things */
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: 900px;
+}
+article {
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  padding: 2rem;
+}
+header {
+  margin-bottom: 2rem;
+}
+footer {
+  margin-top: 2rem;
+}
+blockquote, q {
+  quotes: none;
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+h1 {
+  font-size: 4.0rem;
+  line-height: 1.2;
+  letter-spacing: -.1rem;
+}
+h2 {
+  font-size: 3.6rem;
+  line-height: 1.25;
+  letter-spacing: -.1rem;
+}
+h3 {
+  font-size: 3.2rem;
+  line-height: 1.3;
+  letter-spacing: -.1rem;
+}
+h4 {
+  font-size: 2.4rem;
+  line-height: 1.35;
+  letter-spacing: -.08rem;
+}
+h5 {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  letter-spacing: -.05rem;
+}
+h6 {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+small {
+  font-size: 1.3rem;
+}
+em, i {
+  font-style: italic;
+}
+strong, b {
+  font-weight: 600;
+}
+
+/* Links */
+
+a {
+  -webkit-transition: color .4s;
+  transition: color .4s;
+  color: #265C83;
+}
+a:link, a:visited {
+  color: #265C83;
+}
+a:hover {
+  color: #7FDBFF;
+}
+a:active {
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  color: #007BE6;
+}
+
+/* Lists, nav, and spacing */
+
+p, ul, ol, dl, blockquote, hr, pre, table, form, fieldset, figure, address {
+  margin-bottom: 2rem;
+}
+ul {
+  list-style: circle inside;
+  padding-left: 1rem;
+  margin-top: 0;
+}
+ol {
+  list-style: decimal inside;
+}
+ul ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 80%;
+}
+ol, ul {
+  margin-left: 2rem;
+}
+li ol, li ul {
+  margin-bottom: 0;
+}
+nav {
+  text-align: center;
+}
+nav ul {
+  list-style: none;
+  margin-left: 0;
+  text-align: center;
+}
+nav ul li {
+  display: inline;
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
+nav ul li:first-child {
+  margin-left: 0;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+p {
+  margin-top: 1rem;
+}
+p, ul {
+  margin-bottom: 2.5rem;
+}
+
+/* hr is _very important_. */
+
+hr {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  border-top: 1px solid #ccc;
+  border-width: 0;
+  box-sizing: content-box;
+  height: 0;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+/* pre, code, etc. */
+
+
+/* being extra nice to people who have nice typefaces */
+
+code, kbd, samp, var, output {
+  font-family: "Fira Code", "Hasklig", "Hack", "Fantasque Sans Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 1.4rem;
+}
+pre {
+  border-left: 1.8px solid #96bbe2;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  overflow: auto;
+  padding-left: 0.6rem;
+}
+pre code {
+  border: 0;
+  line-height: 1.2;
+  padding: 0;
+}
+code {
+  border: 1.8px solid #ccc;
+  border-radius: 2px;
+  display: inline-block;
+  line-height: 1.2;
+  padding: 3px 6px 2px;
+}
+
+/* tabley stuff */
+
+th {
+  font-weight: 600;
+}
+td, th {
+  border-bottom: 1px solid #ccc;
+  padding: 0.8rem;
+}
+thead th {
+  border-bottom-width: 2px;
+  padding-bottom: 0.6rem;
+}
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* inputs and things are really just awful */
+
+[hidden], template {
+  display: none;
+}
+[role="button"] {
+  cursor: pointer;
+}
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+input::-moz-focus-inner, button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  display: none;
+}
+input:-webkit-autofill {
+  color: #fff !important;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+  vertical-align: top;
+}
+button, input, textarea, select {
+  -webkit-font-smoothing: inherit;
+}
+a, area, button, [role="button"], input, label, select, summary, textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+input, textarea, select, button {
+  display: block;
+  padding: 0.6rem;
+}
+input[type="submit"], input[type="reset"], input[type="button"], button {
+  background: #f2f2f2;
+  border-radius: 2px;
+  color: #8c8c8c;
+  cursor: pointer;
+  display: inline;
+  margin-bottom: 1.2rem;
+  margin-right: 0.4rem;
+  padding: 0.4rem 1.4rem;
+  text-align: center;
+}
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover {
+  background: #d9d9d9;
+  color: #000;
+}
+input[type="submit"][disabled], input[type="reset"][disabled], button[disabled], html input[disabled] {
+  background: #e6e6e6;
+  color: #b3b3b3;
+  cursor: default;
+}
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="phone"], input[type="tel"], input[type="number"], input[type="datetime"], input[type="date"], input[type="month"], input[type="color"], input[type="time"], input[type="search"], input[type="range"], input[type="file"], input[type="datetime-local"], select, textarea {
+  border: 1px solid #ccc;
+  margin-bottom: 1.2rem;
+  padding: 0.4rem 0.6rem;
+}
+input[type="checkbox"], input[type="radio"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  line-height: 1.8;
+  margin-right: 0.6rem;
+  margin-top: 0.8rem;
+  padding: 0;
+}
+button, [type=submit], input[type="submit"], input[type="button"], input[type="reset"] {
+  -moz-appearance: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  -webkit-transition: all 60ms ease-in-out;
+  -webkit-user-select: none;
+  appearance: none;
+  background: #333030;
+  border-radius: 4px;
+  border: 0 none;
+  color: #f2f2f2;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 10px;
+  overflow: hidden;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: none;
+  transition: all 60ms ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+}
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, [type=submit]:hover {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  opacity: .85;
+}
+button:active, [type=submit]:active {
+  -webkit-transition: all 60ms ease;
+  transition: all 60ms ease;
+  -webkit-transform: scale(0.97);
+  transform: scale(0.97);
+  opacity: .75;
+}
+button:focus, [type=submit]:focus {
+  outline: none;
+}
+
+/* img */
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Media queries? Okay, fine… */
+
+@media (max-width: 767px) {
+  body {
+    padding: 18px;
+  }
+  article {
+    border-radius: 0;
+    margin: -18px;
+    padding: 18px;
+  }
+  textarea, input, select {
+    max-width: 100%;
+  }
+  fieldset {
+    min-width: 0;
+  }
+  section {
+    width: auto;
+  }
+  fieldset, x:-moz-any-link {
+    display: table-cell;
+  }
+}
+@media (min-width: 550px) {
+  h1 {
+    font-size: 4.0rem;
+  }
+  h2 {
+    font-size: 3.6rem;
+  }
+  h3 {
+    font-size: 2.2rem;
+  }
+  h4 {
+    font-size: 2.4rem;
+  }
+  h5 {
+    font-size: 1.8rem;
+  }
+  h6 {
+    font-size: 1.6rem;
+  }
+}
+@media print {
+  pre, blockquote {
+    border: 1px solid #999 !important;
+    page-break-inside: avoid !important;
+  }
+  tr, img {
+    page-break-inside: avoid !important;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: .5cm !important;
+  }
+  p, h2, h3 {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+  h2, h3 {
+    page-break-after: avoid !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+  p a[href]:after {
+    content: " (" attr(href) ")" !important;
+  }
+  p abbr[title]:after {
+    content: " (" attr(title) ")" !important;
+  }
+  p a[href^="javascript:"]:after, p a[href^="#"]:after {
+    content: "" !important;
+  }
+  p a, p abbr {
+    word-wrap: break-word !important;
+    text-decoration: underline !important;
+  }
+}
+
+
+/* screen.css */
+/* general */
+html {
+  height: 100%;
+  max-height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.3em;
+}
+
+::-moz-selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+::selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.2em;
+  letter-spacing: -2px;
+  text-indent: -3px;
+  font-weight: 700;
+  font-family: "Cardo", serif;
+}
+
+h2 {
+  font-size: 2.1rem;
+  line-height: 1.2em;
+  letter-spacing: -1px;
+  text-indent: -2px;
+  font-weight: 400;
+}
+
+h3 { font-size: 1.6rem; font-weight: 400; }
+h4 { font-size: 1.4rem; font-weight: 400; }
+h5 { font-size: 1.2rem; font-weight: 400; }
+h6 { font-size: 1.1rem; font-weight: 400; }
+a { color: #94c498; text-decoration: none; }
+a:hover { color: #64dbbb; text-decoration: underline; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #94c498; }
+p, ul, ol { margin: 1.6em 0; }
+ol ol, ul ul, ul ol, ol ul { margin: 0.4em 0; }
+blockquote p { margin: 0.8em 0; font-style: italic; }
+blockquote small:before { content: '\2014   \A0'; }
+blockquote cite { font-weight:bold; }
+blockquote cite a { font-weight: normal; }
+dl { margin: 1.6em 0; }
+dl dd { margin-left: 200px; margin-bottom: 1em }
+mark { background-color: #ffc336; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #483f62;
+  margin: 3.2em 0;
+  padding: 0;
+}
+
+blockquote {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  padding: 0 0 0 1.6em;
+  border-left: #666666 0.4em solid;
+  color: #666666;
+  font-family: "Cardo", serif;
+  font-style: italic;
+}
+
+blockquote small {
+  display: inline-block;
+  margin: 0.8em 0 0.8em 1.5em;;
+  font-size:0.9em;
+  color: #ccc;
+}
+
+dl dt {
+  float: left;
+  width: 180px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-bottom: 1em
+}
+
+code, tt {
+  padding: 1px 3px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.85em;
+  white-space: pre;
+  border: 1px solid #444;
+  border-radius: 2px;
+}
+
+pre {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  border: 1px solid #444444;
+  width: 100%;
+  padding: 10px;
+  font-family: 'Hasklig', 'Fira Code', 'Fantasque Sans Mono', 'Hack', monospace;
+  font-size: 0.9em;
+  white-space: pre;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+pre code, tt {
+  font-size: inherit;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+kbd {
+  display: inline-block;
+  margin-bottom: 0.4em;
+  padding: 1px 8px;
+  border: #ccc 1px solid;
+  color: #666;
+  text-shadow: #fff 0 1px 0;
+  font-size: 0.9em;
+  font-weight: bold;
+  background: #f4f4f4;
+  border-radius: 4px;
+  box-shadow:
+  0 1px 0 rgba(0, 0, 0, 0.2),
+  0 1px 0 0 #fff inset;
+}
+
+table {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1.6em 0;
+  width:100%;
+  max-width: 100%;
+  background-color: transparent;
+}
+
+table th, table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #efefef;
+}
+
+table th { color: #000; }
+table tbody + tbody { border-top: 2px solid #efefef; }
+table table table { background-color: #fff; }
+
+table caption + thead tr:first-child th,
+table caption + thead tr:first-child td,
+table colgroup + thead tr:first-child th,
+table colgroup + thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+  background-color: #f6f6f6;
+}
+
+table.plain {
+  tbody > tr:nth-child(odd) > td,
+  tbody > tr:nth-child(odd) > th {
+    background: transparent;
+  }
+}
+
+
+/* classes */
+.post-card {
+  margin-bottom: 3em;
+}
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1></header><div><ul style="list-style:none;padding-left:0;"><li class="post-card"><div><h2><a href="/blog/posts/not-long-now">not long now... — Wed Oct 07 2015</a></h2><p>I suppose I&#x27;ll be arriving for all that school business soon enough. Maybe, anyway. I believe our bus is about four hours behind schedule at the moment? Three hours? I tell ya what, Greyhound is a freakin&#x27; joke. They&#x27;d&#x27;ve gone out of business long ago, if anyone else was running buses to these parts of the country. Our current driver, though, is just about the nicest I&#x27;ve met. Swell guy. We&#x27;re running a bit behind because of someone who was late arriving from another bus for a transfer... and before that, because of LaWanda (yeah, really) who let us know we were running late and proceeded to take a year and a half to get a move on. And also because some poor dear on this bus got sick. No surprise... this bus (this specific bus, I mean) is filthy, close, claustrophobic... it&#x27;s not pleasant. Our current driver literally started cleaning it as soon as he got out there, while we were at a rest stop; evidently the Greyhound staff, who&#x27;ve needed to boot us out of the bus every six hours or so to service and clean it, were kind of just not doing a single goddamn thing. (This is pretty evident from the state of the restroom--it has neither improved nor even been masked since I switched to this bus in Pittsburgh, and the fellows in the back who&#x27;ve been on it since New York suggest that it&#x27;s been like that since they got on.</p><a href="/blog/posts/not-long-now">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/that-was-fast">That was fast. — Sat Sep 26 2015</a></h2><p>I&#x27;mma go ahead and deploy this now. I&#x27;m doing things the old fashioned way (that is, FTP) because IIS is the worst and it makes me sad. I&#x27;ve decided to stick with bashblog for the moment, only because baker is more than I need. So is bashblog, for that matter, but baker also brings along Bootstrap weight, and that&#x27;s really not something I can see myself needing in blog context. Mostly I write things in Markdown, sometimes peeking in on them with a nifty live preview script to check things; I don&#x27;t need widgets and animations and such, here.</p><a href="/blog/posts/that-was-fast">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/notes-and-things-and-stuff">Notes and Things and Stuff — Sat Sep 26 2015</a></h2><p>I&#x27;ll need to edit this script a bit more. Needing to delete all the filler text isn&#x27;t a HUGE deal... if you use a real editor. I mean. It&#x27;s not a huge deal now, but nano&#x27;s not exactly... powerful. I could actually just ^^ start a mark, and then get to where I need to be, and ^k cut it... it&#x27;s the getting aroudn that doesn&#x27;t work so well. Home and end work sort of as expected, but ^Space^ and M-Space to go forward/back one word? No, thank you.</p><a href="/blog/posts/notes-and-things-and-stuff">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/im-off">I&#x27;M OFF — Tue Oct 06 2015</a></h2><p>which I guess makes it pretty much official. I&#x27;m going to school. With a duffel bag that weighs about 700 pounds, two laptops, and a kind of shaky knowledge of Javascript (but a lot of interest and passion and a decent background in general computing, with some Bash and a wee bit of Python experience).</p><a href="/blog/posts/im-off">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/this-heres-a-test">This Here&#x27;s A Test! — Sat Sep 26 2015</a></h2><p>Well, all right! This is just a little test. I&#x27;ve tried what may well be five or six dozen static site/blog generators over the past few months, and I&#x27;m back at two of the ones I tried first--Bashblog and Baker. They&#x27;re both written in bash, and both pretty simple. I dig bashblog&#x27;s one-file thing, and kind of like the extreme simplicity of the post-editing format, but it&#x27;s a little sloppy and requires some disassembly to actually configure. Baker&#x27;s quite a bit easier to work with, and quite a bit more attractive by default, but it&#x27;s also about three times the size of bashblog. Both of them seem to have Discus/disquszszs/diskust really stuck in there, and I&#x27;m not actually in the mood to sign up for yet another social platform, so... we&#x27;ll have to see about that. OH, and neither one wants to use an alternate implementation of Markdown. not that I mind, there&#x27;s nothing terribly wrong with the original one from John Gruber, but I&#x27;d prefer to at least have that option. There are versions in C and Python that I like (and the C is obviously much faster), as well as the various Javascript implementations that are all the rage these days. It&#x27;d also be nice to work with some extensions. I&#x27;m never sure what&#x27;s kosher in the original because I rarely use it, but I&#x27;m fairly certain I can&#x27;t do tables and syntax hightlighting here.</p><a href="/blog/posts/this-heres-a-test">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/im-at-the-end-of-my-patience">i&#x27;m at the end of my patience — Mon Oct 19 2015</a></h2><p>everyone here is here to learn</p><a href="/blog/posts/im-at-the-end-of-my-patience">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/licensing">Licensing — Sat Oct 03 2015</a></h2><p>I just wanted to take a moment to say that I don&#x27;t actually care even the slightest bit if someone is offended by some things that I might say, especially if those things are as basic and trivial as the word &#x27;fuck.&#x27; This was brought up recently, because my error page happens to be &#x27;rude&#x27; and &#x27;unprofessional.&#x27; (Note: I agree. It&#x27;s very unprofessional to use Internet Explorer, and to interrupt someone at work to criticize something on their website completely unrelated to any client project and ask them to remove it. Also, it&#x27;s not a very nice error page.)</p><a href="/blog/posts/licensing">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/i-cannot-wait">I Cannot Wait — Sat Oct 03 2015</a></h2><p>...to be done with this website, and be done with this &#x27;client.&#x27; It&#x27;s the 4th of October. I&#x27;m literally getting on a bus on the 6th and going most of the way across the country, and will not be spending one tiny bit of effort on this ever again.</p><a href="/blog/posts/i-cannot-wait">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/i-am-sick">I AM SICK — Tue Oct 27 2015</a></h2><p>I really hate being sick. I turn into a whiny annoying bitching asshole. And this time I&#x27;m even more of all of those things because it was one specific person (guess who) who got us sick (us being the rest of the apartment). I mean, look. I&#x27;m not racist, buuutt (yes, here it comes)... this little kid could easily make me racist.</p><a href="/blog/posts/i-am-sick">Read more</a></div></li><li class="post-card"><div><h2><a href="/blog/posts/finally-almost-done-with-angular">Finally almost done with Angular... — Tue Nov 10 2015</a></h2><p>Look. I don&#x27;t have anything against Angular on, like, a philosophical level. Or metaphysical. Or personal. I&#x27;m just not impressed. An MVC framework that makes templating easier and makes a lot of other things much more complicated? Client-side rendering? Bogging down browsers doing the heavy lifting so servers can respond a little faster? Very cool features. Very innovative. The year is 2008 and Javascript is starting to come into its own. Open source front-end libraries and frameworks are starting to pop up. Github was just founded. Angular is epic, right?</p><a href="/blog/posts/finally-almost-done-with-angular">Read more</a></div></li></ul><div><a href="/blog/page/16">Previous</a><a href="/blog/page/18">Next</a></div></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
