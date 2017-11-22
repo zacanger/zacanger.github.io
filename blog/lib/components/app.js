@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from './head'
 import Body from './body'
+import { Post } from './types'
 import { arrayOf, object } from 'prop-types'
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     }
 
     return (
-      <html>
+      <html lang="en">
         <Head {...this.props} post={post} />
         <Body {...this.props} post={post} />
       </html>
@@ -24,7 +25,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  posts: arrayOf(object),
+  posts: arrayOf(Post),
   params: object
 }
 

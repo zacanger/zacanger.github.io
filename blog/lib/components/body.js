@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
-import { string, node, any } from 'prop-types'
+import { string, node } from 'prop-types'
 import formatDate from './format-date'
+import { Post } from './types'
 
 const Body = (props) => {
   const { post, children } = props
@@ -23,7 +24,7 @@ const Body = (props) => {
 
 Body.propTypes = {
   title: string,
-  post: any,
+  post: Post,
   children: node
 }
 

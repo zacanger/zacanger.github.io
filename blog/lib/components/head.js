@@ -1,5 +1,6 @@
 import React from 'react'
-import { string, arrayOf, any } from 'prop-types'
+import { string, arrayOf } from 'prop-types'
+import { Post } from './types'
 
 const socialMeta = ({
   author,
@@ -58,7 +59,7 @@ Head.propTypes = {
   title: string,
   description: string,
   author: string,
-  post: any,
+  post: Post,
   keywords: arrayOf(string)
 }
 

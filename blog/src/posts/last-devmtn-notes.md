@@ -103,9 +103,9 @@ blog post:
 ```javascript
 angularStuff.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/objects', {
-		templateURI : 'view/objects.html'
-	, controller  : 'ObjCtrl'
-	}).otherwise({templateURI : 'view/NOPE.html'})
+    templateURI : 'view/objects.html'
+  , controller  : 'ObjCtrl'
+  }).otherwise({templateURI : 'view/NOPE.html'})
 }])
 ```
 

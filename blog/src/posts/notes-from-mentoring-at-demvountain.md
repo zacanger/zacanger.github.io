@@ -62,10 +62,10 @@ are equally valid. This isn't exactly special, but it means that (importantly) f
 
 ```javascript
 var sum = function(a, b){
-	return a + b
+  return a + b
 }
 var exec = function(fn, a, b){
-	return fn(a, b)
+  return fn(a, b)
 }
 exec(sum, 28, 98)
 ```

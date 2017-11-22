@@ -2,7 +2,8 @@ import React from 'react'
 import { chunk } from 'lodash'
 import PostCard from './post-card'
 import Pagination from './pagination'
-import { object, number, array } from 'prop-types'
+import { object, number, arrayOf } from 'prop-types'
+import { Post } from './types'
 
 const renderPost = (post, i) => (
   <li className="post-card" key={'post-' + i}>
@@ -48,7 +49,7 @@ const PostList = (props) => {
 }
 
 PostList.propTypes = {
-  posts: array,
+  posts: arrayOf(Post),
   params: object,
   pageSize: number
 }
