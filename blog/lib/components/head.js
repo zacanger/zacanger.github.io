@@ -1,8 +1,6 @@
 import React from 'react'
 import { string, arrayOf, any } from 'prop-types'
 
-import styles from './styles.css'
-
 const socialMeta = ({
   author,
   card,
@@ -49,9 +47,9 @@ const Head = ({
         title: post ? post.title : title,
         description
       })}
-      <style type="text/css" dangerouslySetInnerHTML={{ __html: styles }} />
-      <script type="text/javascript" href="/assets/highlight.pack.js" />
-      <link rel="stylesheet" type="text/css" href="/assets/github-gist.css" />
+      <script type="text/javascript" href="/blog/assets/highlight.pack.js" />
+      <link rel="stylesheet" type="text/css" href="/blog/assets/styles.css" />
+      <link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css" />
     </head>
   )
 }
