@@ -912,7 +912,7 @@ table.plain {
 .post-card {
   margin-bottom: 3em;
 }
-</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>SystemJS and JSPM</h2><div>Wednesday, January 13, 2016</div></header><div><div><p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that RequireJS brought to the browser), CommonJS (the kind that most people are more familiar with, the synchronous sort), Node (which basically just uses CommonJS), and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader polyfill</a> on hella steroids. Using plugins, you can load in assets (styles, images, whatevers).</p>
+</style><script type="text/javascript" href="/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>SystemJS and JSPM</h2><div>14 January, 2016</div></header><div><div><p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that RequireJS brought to the browser), CommonJS (the kind that most people are more familiar with, the synchronous sort), Node (which basically just uses CommonJS), and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader polyfill</a> on hella steroids. Using plugins, you can load in assets (styles, images, whatevers).</p>
 <p>To use it in the browser, you'd do something kinda like</p>
 <pre><code class="hljs">System.config({baseUrl: '/app'})  
 System.import('main.js')  
