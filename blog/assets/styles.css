@@ -1,3 +1,23 @@
+@charset "utf-8";
+@viewport {
+  width: device-width;
+}
+@at-root {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-webkit-viewport {
+  width: device-width;
+}
+
 /* base.css */
 * { box-sizing: border-box }
 
@@ -135,7 +155,6 @@ th, td {
 }
 
 th {
-  font-size: .7rem;
   font-weight: 600;
   letter-spacing: .2em;
   text-align: left;
@@ -152,25 +171,7 @@ tr:last-child td {
 
 
 /* zeess */
-@charset "utf-8";
-@viewport {
-  width: device-width;
-}
-@at-root {
-  width: device-width;
-}
-@-moz-viewport {
-  width: device-width;
-}
-@-ms-viewport {
-  width: device-width;
-}
-@-o-viewport {
-  width: device-width;
-}
-@-webkit-viewport {
-  width: device-width;
-}
+
 
 /** zeess https://github.com/zacanger/zeess license: wtfpl **/
 
@@ -509,7 +510,7 @@ a, area, button, [role="button"], input, label, select, summary, textarea {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
-input, textarea, select, button {
+textarea, select, button {
   display: block;
   padding: 0.6rem;
 }
@@ -551,10 +552,7 @@ input[type="checkbox"], input[type="radio"] {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  float: left;
-  line-height: 1.8;
   margin-right: 0.6rem;
-  margin-top: 0.8rem;
   padding: 0;
 }
 button, [type=submit], input[type="submit"], input[type="button"], input[type="reset"] {
