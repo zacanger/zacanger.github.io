@@ -1,7 +1,7 @@
 import React from 'react'
 import { shape, string } from 'prop-types'
 
-const base = 'https://github.com/zacanger/blog/issues/new?title='
+const base = 'https://github.com/zacanger/dotcom/issues/new?title='
 
 const Post = ({ post }) => (
   <div>
