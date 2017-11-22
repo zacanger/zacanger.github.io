@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>angr - Page 8</title>
+  <meta name="description" content="">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/page/8/index.html" />
+<link rel="prev" href="http://blog.zacanger.com/page/7/" />
+<link rel="next" href="http://blog.zacanger.com/page/9/" />
+</head>
+<body class="paged archive-template">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+
+  <article class="post tag-work">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/stack.html">stack</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-24">24 June, 2016</time>
+         | tags: <a href="/tag/work/">work</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>just a list to keep in mind the stuff
+that we use at work</p>
+<p>because it&#39;s sometimes a lot of stuff</p>
+<p>this is just the stuff i encounter at least
+weekly i think, except the design things, which
+i need to learn i guess sometime</p>
+<ul>
+<li><p>windows server</p>
+<ul>
+<li>visual studio</li>
+<li>c#</li>
+<li>.net</li>
+<li>sql server</li>
+</ul>
+</li>
+<li><p>linux servers</p>
+<ul>
+<li>aws s3, ec2, elastic beanstalk, various others</li>
+<li>docker</li>
+<li>sysd?</li>
+<li>koa</li>
+<li>react</li>
+<li>mocha, chai, enzyme</li>
+<li>graphql, apollo?</li>
+<li>redux</li>
+<li>immutable</li>
+<li>typescript</li>
+<li>purescript</li>
+<li>sass</li>
+<li>postcss</li>
+</ul>
+</li>
+<li><p>teamcity</p>
+</li>
+<li><p>sketch</p>
+</li>
+<li>invision</li>
+<li>bittorrent sync?</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-editor tag-design">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/editor-design-notes.html">editor design notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-13">13 June, 2016</time>
+         | tags: <a href="/tag/editor/">editor</a>, <a href="/tag/design/">design</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>ages ago, like multiple months ago, i really wanted to make an editor that was better
+these are a bunch of notes i took on that topic
+there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
+but those can wait for osme other time.</p>
+<p>now, i&#39;m perfectly 100% satisfied with what i get out of a
+<a href="https://github.com/zacanger/z.git">well-configured</a> <a href="https://neovim.io">neovim</a>.</p>
+<hr>
+<h2 id="editor-idea">editor idea</h2>
+<ul>
+<li>libraries, etc: in local storage</li>
+<li>POST to back end</li>
+<li>offline: save to local, queue, push when back online</li>
+<li>do while loop: cash saves, settimeout, push to backend periodically</li>
+<li>alert for unsaved files on exit</li>
+<li>codefolding and tabs.<ul>
+<li>VS Code STILL doesn&#39;t have these basics. Wow.</li>
+</ul>
+</li>
+<li>autosaves, but saves are git commits?<ul>
+<li>easy reversion. integrate with dropbox/gdrive/whatever to keep commits distributed but private.</li>
+</ul>
+</li>
+</ul>
+<h3 id="things-any-programming-editor-cum-environment-should-do">Things any programming editor-cum-environment should do</h3>
+<h4 id="-including-some-really-obvious-ones-but-i-just-want-to-make-it-all-clear-">(including some really obvious ones, but i just want to make it all clear)</h4>
+<ul>
+<li>allow navigation of projects</li>
+<li>enable editing of source code</li>
+<li>detect syntax of languages (through extension is okay)</li>
+<li>integrate with compiler(s)/interpreter(s), CI, REPL(s) (depending on language specificity of the editor)</li>
+<li>allow for community collaborative effort to build/maintain language &amp; feature support</li>
+<li>integrate with modern development tools/environments (browsers, source control, deployment, etc)</li>
+<li>allow for non-code (text, hints, live previews, etc) !!</li>
+<li>allow for collaboration <em>within</em> editor (realtime remote connection) !!</li>
+<li>interpret code as it is typed; show results locally !!</li>
+<li>abstract <em>above</em> just a normal directory tree for navigation/code organization !!</li>
+</ul>
+<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,
+technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research
+before even prototyping.</p>
+<h3 id="notes-from-brett-victor-s-talks-and-such">notes from brett victor&#39;s talks and such</h3>
+<ul>
+<li>Information Design two big rules: Show the data, and show comparisons.</li>
+<li>Larry Tesler: personal vendetta against modes in software. &#39;Don\&#39;t mode me in.&#39;</li>
+<li>He&#39;s the reason we have straight-up WYSIWYG editing and stuff.</li>
+<li>His editor was called &#39;Gypsy.&#39; Click and drag? That&#39;s him.</li>
+<li>Cut, copy, and paste: that&#39;s him.</li>
+<li>That&#39;s funny, kinda, because the best software is still moded.</li>
+<li>This is curious, because to everyone else at the time, modes were just a way of life
+with computing. This wasn&#39;t a problem to anyone else, just to him.</li>
+</ul>
+<h2 id="on-version-control-and-ot-and-eve-in-general">on version control and ot and eve in general</h2>
+<ul>
+<li>Recording changes as they happen is easier than inferring them after the fact.</li>
+<li>Preserving history (the context in which a change was made) is necessary for proper merges.</li>
+<li>Being predictable is more important than being smart.</li>
+<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,
+rather than the whole thing.</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/jdleesmiller/jotgit">Git-backed editor</a> build on Meteor, in Coffeescript.</li>
+<li>Some bits relating to editor design:<ul>
+<li><a href="https://vimeo.com/36579366">bret victor&#39;s &#39;inventing on principle&#39;</a></li>
+<li><a href="http://worrydream.com/LearnableProgramming/">(and his followup to it, so people would stop misinterpreting in)</a></li>
+<li><a href="http://dl.acm.org/citation.cfm?id=2677279">an empirical study of imperative programming assignments</a></li>
+</ul>
+</li>
+<li>Some things about LightTable:<ul>
+<li><a href="https://groups.google.com/forum/#!topic/light-table-discussion/T3DhzWhabok">discussion about writing plugins</a></li>
+<li><a href="https://github.com/mdhaney/lt-plugin-template">plugin template</a></li>
+<li><a href="https://github.com/swannodette/lt-cljs-tutorial">clojurescript tutorial for lighttable users</a></li>
+<li><a href="http://product.reverb.com/2014/05/10/getting-started-programming-light-table/">basics of hacking on lighttable</a></li>
+<li><a href="https://github.com/LightTable/Declassifier">basic walkthrough of plugin build</a></li>
+<li><a href="https://github.com/LightTable/LightTable/wiki/Creating-an-LT-Client-using-LTs&#39;-bundled-Node">using node in lighttable</a></li>
+</ul>
+</li>
+<li>Eve links:<ul>
+<li><a href="http://www.cse.yorku.ca/~wolfgang/papers/layoutALE.pdf">Auckland layout editor for constraint-based UI</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/dbtest12-bloom.pdf">BloomUnit: Declarative Testing for Distributed Programs</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/eurosys10-boom.pdf">BOOM Analytics: Exploring Data-Centric, Declarative Programming for the Cloud</a></li>
+<li><a href="https://4d75d27f-a-62cb3a1a-s-sites.googlegroups.com/site/sinhnish/documents/fluidLayouts.pdf?attachauth=ANoY7crdYgssu75ccg3Gc6sSDm-dxh2rWHL5jLVh7LkNKtUgFpv2GDqK8AVzr1IJ53Dg6eM5StLasOQk-SDN4KWaCi-phlQK30GSum-hbWOzT5VVSiNRJ7U3F_FJ8pBMndIjR60O9bYSSzxu1TJmR6kX4dlEuCL16pituZTrEFj7BNnX-SRU3JajEKY4f9s_mYqR3uTF4GW5Jm2EkHgpEUfSZtCrUJOZVPO4NGg7nc59490937x_VW4%3D&amp;attredirects=0">Compiling Mockups to Flexible UI</a></li>
+<li><a href="http://arxiv.org/pdf/1401.1031v1.pdf">Constraint Solvers for User Interface Layout</a></li>
+<li><a href="http://arxiv.org/pdf/1408.1675.pdf">Database Queries that Explain their Work</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/datalog2011-dedalus.pdf">Dedalus: Datalog in Time and Space</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/vldb14-edelweiss.pdf">Edelweiss: Automatic Storage Reclamation for Distributed Programming</a></li>
+<li><a href="http://p2.berkeley.intel-research.net/papers/EvitaRacedVLDB2008.pdf">Evita Raced: Metacompilation for Declarative Networks</a></li>
+<li><a href="http://faculty.washington.edu/ajko/papers/Lee2011Gidget.pdf">Improves Novice Programmers Learning</a></li>
+<li><a href="http://infoscience.epfl.ch/record/180642/files/EPFL_TH5456.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
+<li><a href="http://lampwww.epfl.ch/~rompf/thesis_120716.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
+<li><a href="http://www.neilconway.org/docs/socc2012_bloom_lattices.pdf">Logic and Lattices for Distributed Programming</a></li>
+<li><a href="https://infosys.uni-saarland.de/publications/DJ11.pdf">OctopusDB: Towards a One Size Fits All Database Architecture</a></li>
+<li><a href="http://db.cs.berkeley.edu/cs286/papers/lookingglass-sigmod2008.pdf">OLTP Through the Looking Glass</a></li>
+<li><a href="http://icwww.epfl.ch/~kuncak/papers/DagandETAL08Opis.pdf">Opis: Reliable Distributed Systems in OCaml</a></li>
+<li><a href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1165&amp;context=hcii">Why Not Questions about Program Behavior</a></li>
+</ul>
+</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-confidence">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/a-tip.html">a tip</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-10">10 June, 2016</time>
+         | tags: <a href="/tag/confidence/">confidence</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>I have, like, an actual kind of tip, for new-ish developers.</p>
+<p>It&#39;s pretty simple. Shouldn&#39;t be too hard to grasp, maybe a little harder to
+implement.</p>
+<blockquote>
+<p>Have confidence in your code.</p>
+</blockquote>
+<p>If you don&#39;t have confidence in your code, then try this:</p>
+<blockquote>
+<p>Write code in which you have confience.</p>
+</blockquote>
+<p>It really sucks to have to walk someone through your  code when you&#39;re not
+sure it&#39;s even doing the things it&#39;s supposed to do, or when you <em>are</em> sure
+it&#39;s doing the right things but doing them in a really gross kind of way.</p>
+<p>I think this is something everyone struggles with. It&#39;s really easy to copy
+and paste stuff from StackOverflow, and everyone does it for a while. I still
+do it sometimes, though usually with a lot of testing and reading before
+actually running that code.</p>
+<p>It&#39;s really easy, as a new dev, to say &quot;Well, I don&#39;t know how to do that thing,
+can you just show me?&quot; And that&#39;s okay, but it&#39;s a lot more okay to say &quot;Hey,
+I spent an hour with the docs, here&#39;s my implementation, here&#39;s the stack trace
+and I couldn&#39;t find anything helpful on the source&#39;s issues or SO, do you have
+any ideas?&quot;</p>
+<p>It takes a while to write code that you don&#39;t hate, but usually even someone
+who&#39;s been programming for a few months knows what good code looks like. It&#39;s
+concise, readable, logical, and consistent. It doesn&#39;t make you cringe.</p>
+<p>I&#39;m not really very good at writing code and feeling great about it. When it
+comes to, say, raw Node or a Bash script, I&#39;m usually better with these things
+than anyone I know on a personal level, and have no problem taking charge and
+just doing things. But when it comes to the things I actually do every day
+(which right now means React, Koa, AWS stuff, Docker, trying to read C#, and
+Sass, mostly) I know I&#39;m not that great. Knowing that I&#39;m not that great means
+I take probably twice as long as I would to get anything done as I would if I
+was the best at that thing in the room, because I know people who know more
+than I do will be looking at my code and will need to fix it.</p>
+<p>That&#39;s not a <strong>bad</strong> thing, but it&#39;s not a good thing either. It means I&#39;m
+programming without confidence, when I&#39;m writing React or Sass. And I&#39;m not
+even <em>bad</em> at either, I just have no confidence when writing these things
+on a project with people who are better at them than I am. That&#39;s something
+that I should get over.</p>
+<p>Anyway, I meant to write this post on the train and post it when I got home,
+but I ended up standing on the train so it&#39;s split, from while waiting for the
+train &#39;til 10:30 PM while sitting at DevMountain, so it&#39;s probably a little
+disjointed.</p>
+<p>The point here is, if you have confidence in what you&#39;re doing, you&#39;ll get
+stuff done quicker and better, and if you don&#39;t have confidence in what you&#39;re
+doing, make it so that you can.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-js tag-fp">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/fff.html">More Notes Taken While Watching MPJ&#x27;s Videos</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-05">05 June, 2016</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/fp/">fp</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>Classes, actually faster than factory functions, by ~twice.
+But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
+<p>Better programmers means better software means better solutions for bigger problems.</p>
+<p>Dear Zac: Please start writing tests. Thanks! Love, Zac.</p>
+<p>&#39;The Overjustification Effect&#39; ... side projects are valuable in multiple ways.
+(I think everyone knew this.)</p>
+<p>Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).</p>
+<p>APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
+brackets and braces, then? Like... wat?</p>
+<ul>
+<li>Five steps to understanding a new code base:<ul>
+<li>Find a mentor who really understands that code base and is willing and able to take the
+time to talk to you about it.</li>
+<li>Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
+etc. for all of it, then go study all those things <em>apart</em> from the current code so you
+know how they&#39;re all supposed to work. Also find out the history of the code.</li>
+<li>Complete a task. A tiny feature or bugfix or something.</li>
+<li>Don&#39;t get stuck. If you&#39;re not getting anything done for more than like a half hour or
+whatever and you can&#39;t figure it out, <em>ask that mentor</em>.</li>
+<li>Code review, review, review code, code, code review.</li>
+</ul>
+</li>
+</ul>
+<h3 id="functors">FUNCTORS</h3>
+<p>I don&#39;t really know what a functor is but apparently map and filter are functors.</p>
+<p>Functors are objects that have a map-type method. Not the method itself.</p>
+<p>A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-docker">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/docker-deployment.html">deploying docker images</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-06-03">03 June, 2016</time>
+         | tags: <a href="/tag/docker/">docker</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="deploying-docker-images">Deploying Docker Images</h1>
+<p>You can use Docker&#39;s repos. That&#39;s the easy way so I won&#39;t talk about it here.
+There are loads of good docs out there on that, and anyway, it&#39;s built into the
+tools. Instead this post deals with deployment of images that you can&#39;t publish
+(like your company&#39;s code).</p>
+<h2 id="the-non-repo-way">The non-repo way</h2>
+<p>This way doesn&#39;t give you any of the nice features of having a repo, but it&#39;s
+also much easier to deal with.</p>
+<p>First export your (running) container. Do a <code>docker ps</code> to get its name or ID,
+then <code>docker export &lt;that-name&gt; &gt; foo.tar</code>.</p>
+<p>Then you&#39;ll want to get it to your server (using <code>sftp</code> or whatever else works
+for you). On the server, do a <code>cat foo.tar | docker import -</code></p>
+<p>Boom, it&#39;s there. You can run it the same way you would normally (like <code>docker
+run -p 80:80 -d foo</code> or whatever).</p>
+<h2 id="the-your-own-repo-way">The your-own-repo way</h2>
+<p>This is a little more difficult, but you get to keep all the benefits of a
+Docker repo without making stuff public.</p>
+<p>Get your own repo with <code>docker run -p 5000:5000 samalba/docker-registry</code>.</p>
+<p>Hurray, once that&#39;s done you&#39;ll have your own Docker registry running!</p>
+<p>Do something like <code>docker login localhost:5000</code> and set up some login
+credentials.</p>
+<p>To push your stuff to it, first tag it with info, like <code>docker tag
+mycompany/theirprivatecode localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Do use this repo, just use <code>docker push
+localhost:5000/mycompany/theirprivatecode</code> instead of pushing to a public repo.</p>
+<p>You&#39;ll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don&#39;t lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>You&#39;ll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don&#39;t lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>Okay, so probably you&#39;ll want to put that somewhere not-on-your-local-machine.
+<code>ssh</code> into your server and do an <code>ssh -R 5000:localhost:5000 -l</code> to forwared
+that port. Then to deploy forreal, just <code>docker pull
+localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Then to run it you should be able to just <code>docker run
+mycompany/theirprivatecode</code>.</p>
+</p>
+    </section>
+  </article>
+
+
+  <nav class="pagination" role="navigation">
+        <a class="newer-posts" href="/page/7/">&larr; Newer Posts</a>
+    <span class="page-number">Page 8 of 15</span>
+        <a class="older-posts" href="/page/9/">Older Posts &rarr;</a>
+</nav>
+
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

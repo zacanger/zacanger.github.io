@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[docker notes]]></title><description><![CDATA[<p>So this is a <code>Dockerfile</code>:</p>
+<pre class="hljs"><code><span class="hljs-built_in">FROM</span> ubuntu:latest
+<span class="hljs-built_in">RUN</span> <span class="bash"><span class="hljs-comment"># any commands, for example</span>
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get update
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
+</span><span class="hljs-built_in">RUN</span> <span class="bash">apt-get install build-essential curl
+</span><span class="hljs-built_in">RUN</span> <span class="bash">curl <a href="https://gist.githubusercontent.com/isaacs/">https://gist.githubusercontent.com/isaacs/</a><span class="hljs-number">579814</span>/raw/<span class="hljs-number">24</span>f5f02b5<span class="hljs-built_in">cd</span>1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
+</span><span class="hljs-built_in">EXPOSE</span> <span class="hljs-number">4010</span> <span class="hljs-comment"># port to expose</span>
+ENTRYPOINT [<span class="hljs-string">&quot;node&quot;</span>] <span class="hljs-comment"># thing to run when we start the image, i think</span></code></pre><p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
+<p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
+<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
+<p>Some other Dockerfile commands (?):</p>
+<pre class="hljs"><code><span class="hljs-built_in">WORKDIR</span> <span class="bash">/<span class="hljs-built_in">set</span>/working/directory/to/here/i/guess
+</span><span class="hljs-built_in">COPY</span> <span class="bash">thisthing /to/here
+</span><span class="hljs-built_in">CMD</span> <span class="bash">[<span class="hljs-string">&quot;array&quot;</span>, <span class="hljs-string">&quot;of&quot;</span>, <span class="hljs-string">&quot;commands&quot;</span>, <span class="hljs-string">&quot;like&quot;</span>, <span class="hljs-string">&quot;npm&quot;</span>, <span class="hljs-string">&quot;start&quot;</span>]
+</span><span class="hljs-built_in">ADD</span> <span class="bash">. . <span class="hljs-comment"># add files/dirs from cwd to image</span></span></code></pre><p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p 80:4010</code> looks obvious.</p>
+<p>Some commands:</p>
+<pre class="hljs"><code>docker ps <span class="hljs-comment"># get container id</span>
+docker logs containerid
+docer exec -<span class="hljs-keyword">it</span> containerid /bin/bash <span class="hljs-comment"># enter the container</span></code></pre><p>It&#39;s totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
+<p>There&#39;s also a <code>node:versionnumber</code> image I think?</p>
+<p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
+then when the image is run, do it with <code>-u &quot;app&quot;</code>.</p>
+<p>To limit usage: <code>-m &quot;256M&quot; --memory-swap &quot;2G&quot;</code></p>
+<p>An example:</p>
+<pre class="hljs"><code>docker run \
+-<span class="ruby">e <span class="hljs-string">&quot;NODE_ENV=production&quot;</span> \
+</span>-<span class="ruby">u <span class="hljs-string">&quot;app&quot;</span> \
+</span>-<span class="ruby">m <span class="hljs-string">&quot;256M&quot;</span> --memory-swap <span class="hljs-string">&quot;2G&quot;</span> \
+</span>-<span class="ruby">w <span class="hljs-string">&quot;/web/jane-com/app&quot;</span> \
+</span>-<span class="ruby">-name <span class="hljs-string">&quot;jane-com&quot;</span> \
+</span>node index.js</code></pre><p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
+<p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
+<p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
+<p>Compose is like fig, but from Docker.</p>
+<pre class="hljs"><code>pip <span class="hljs-operator"><span class="hljs-keyword">install</span> -U docker-compose
+docker-compose up -<span class="hljs-keyword">d</span>
+docker-compose <span class="hljs-keyword">stop</span>, <span class="hljs-keyword">kill</span>, rm</span></code></pre><p>All of these just go off a YAML file, I guess.</p>
+<p>Okay, based on Node&#39;s official docs we can do:</p>
+<pre class="hljs"><code>FROM <span class="hljs-keyword">node</span><span class="hljs-identifier"></span><span class="hljs-title">:6</span>.<span class="hljs-number">2.0</span>
+EXPOSE <span class="hljs-number">4010</span>
+
+<span class="hljs-comment"># and then</span>
+
+docker build -t jane-com .
+docker run -it --rm -name jane-com-docker-running jane-com</code></pre><p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env default)</code></p>
+<p>And if you need systemd in the mix, try something like:</p>
+<pre class="hljs"><code><span class="hljs-comment">;; once docker is installed, there should already be</span>
+<span class="hljs-comment">;; a systemd service for it. so you can just systemctl start docker</span>
+<span class="hljs-comment">;; and systemctl enable docker and that SHOULD be it</span>
+<span class="hljs-title">
+[Unit]</span>
+<span class="hljs-setting">Description=<span class="hljs-value">This is our Node service</span></span>
+<span class="hljs-setting">Requires=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-setting">After=<span class="hljs-value">docker.service</span></span>
+<span class="hljs-title">
+[Service]</span>
+<span class="hljs-setting">Restart=<span class="hljs-value">always</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker kill ournodecontainer</span></span>
+<span class="hljs-setting">ExecStartPre=<span class="hljs-value">/usr/bin/docker rm ournodecontainer</span></span>
+<span class="hljs-setting">ExecStart=<span class="hljs-value">/usr/bin/docker run --name=ournodecontainer ournode/container</span></span>
+<span class="hljs-setting">ExecStop=<span class="hljs-value">/usr/bin/docker stop ournodecontainer</span></span>
+<span class="hljs-title">
+[Install]</span>
+<span class="hljs-setting">WantedBy=<span class="hljs-value">multi-user.target</span></span></code></pre><p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don&#39;t really tell you where to look for that):</p>
+<pre class="hljs"><code>docker <span class="hljs-built_in">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
+
+<span class="hljs-comment"># And then you could just:</span>
+
+mkdir ~/foo
+tar -C ~/foo -xvf dockerimg.tar
+
+<span class="hljs-comment"># (or just use atool&#39;s aunpack, much easier to remember!)</span></code></pre><p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
+so extraneous info (for example, creating files that later get removed) wouldn&#39;t take up extra space.</p>
+<p><code>docker export</code> is for <em>containers</em>, currently running.</p>
+<p><code>docker save</code> is for <em>images</em>.</p>
+]]></description><link>/2016/docker.html</link><guid isPermaLink="true">/2016/docker.html</guid><category><![CDATA[docker]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 26 May 2016 21:00:00 GMT</pubDate></item><item><title><![CDATA[devmountain alumni meetup notes]]></title><description><![CDATA[<p>this was from some reasonably long time ago</p>
+<ul>
+<li><p>Barbara:</p>
+<ul>
+<li>Networking events matter.</li>
+<li>Barbara from DM2 ended up as the only actual webdev at her company</li>
+<li>This kinda means she&#39;s got to be everything from junior dev to PM</li>
+<li>Definitely don&#39;t be self-deprecating about stuff.</li>
+<li>Express interest outright in companies/their products.</li>
+<li>Yeah, sure, don&#39;t talk yourself <em>up</em> too much, but seriously, communicate
+well about what you&#39;ve actually managed to do, because they want to know.</li>
+<li>Know why it is that a company makes the choices it does. Barbara&#39;s
+example: knowing why it was the company she works for uses Angular.</li>
+</ul>
+</li>
+<li><p>Mark:</p>
+<ul>
+<li>Having past projects to talk about <em>really</em> helps. Obviously. Duh.</li>
+<li><a href="https://en.wikipedia.org/wiki/Situation,_Task,_Action,_Result">STAR</a> is a thing,
+and maybe I should actually know what that is, I guess?</li>
+<li>This is basically a totally disheartening little talk. What?</li>
+<li>They asked him to rewrite his whole project in Scala. I&#39;m confused about what
+this guy is actually even talking about. What is this?</li>
+<li>His experience is basically one of being put through hell to get in with
+some SAAS analytics-analytics company (yes, that&#39;s correct, his company
+analyses analytics).</li>
+<li>Actual takeaways: go to meetups, network with people, and talk about <em>why</em>
+you actually want to be doing this.</li>
+<li>Trying out actual interviews (like, with companies where it may or may not
+ever happen, but basically you&#39;re not really counting on that working out
+anyway) can be a lot more helpful than just going over responses on your own
+or in an absolutely-no-pressure kind of situation.</li>
+<li>Oh, wait, okay. As depressing as his little bit was, the actual point of it
+is this: jump through the hoops, because it&#39;ll probably be worth it. Maybe
+the company will pay you for your work on the project (I mean, that&#39;s kinda
+becoming normal now, anyway). Maybe they won&#39;t -- and if they don&#39;t, use that
+project or whatever on your portfolio.</li>
+</ul>
+</li>
+<li><p>Dallin:</p>
+<ul>
+<li>He likes whatever it is that he does now, I guess.</li>
+<li>He has &#39;come to realise more, the many fallacies in his personality.&#39;<ul>
+<li>Yay?</li>
+</ul>
+</li>
+<li>I don&#39;t know that he has any actual advice. Besides, basically, just kinda
+don&#39;t be like him, because he&#39;s more about learning from mistakes than just,
+like, maybe, not trying to make as many.</li>
+<li>He said a lot of other things but I was too busy being really annoyed with
+the damned profiles.devmounta.in project to take any other notes.<ul>
+<li>Seriously, it wouldn&#39;t kill people to check pull requests before making
+huge commits. I give up.</li>
+</ul>
+</li>
+<li>Dallin learned Ruby in a week between getting hired and actually starting work.
+That&#39;s pretty cool. He works mostly in Rails, and I know he does Coffeescript,
+so chances are he learned that on the job (knowing Ruby definitely would&#39;ve
+helped with that).</li>
+</ul>
+</li>
+<li><p>Jeff:</p>
+<ul>
+<li>Don&#39;t make portfolio pieces that aren&#39;t accessible.<ul>
+<li>Example: his Instagram analytics site.</li>
+<li>If this isn&#39;t possible, do a video demo of that project.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/alum-meetup.html</link><guid isPermaLink="true">/2016/alum-meetup.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 25 May 2016 23:39:25 GMT</pubDate></item><item><title><![CDATA[the last of the devmountain notes!]]></title><description><![CDATA[<p>This should be the very last of my random notes from my time going through
+the course at <a href="http://devmounta.in">DevMountain</a>.</p>
+<p>Finally.</p>
+<p>As always, don&#39;t take this stuff too seriously, there&#39;s a fair chance a lot of
+it is not correct, and any opinions have most likely changed maybe probably
+sortakinda.</p>
+<p>These last bits are in chronological order of file modification date. I believe
+this was from during the second week of Angular.</p>
+<hr>
+<h2 id="angular">ANGULAR</h2>
+<p>so, <code>expressions</code>, basically that&#39;s why we&#39;re gonna be mashing those braces
+constantly. it&#39;s kind of like inline scripts, but minus the script tags?</p>
+<p><code>directives</code> are the powerful bit. jqueryish dom extension? apparently something
+we&#39;ll use a lot is <code>ngRepeat</code>, which, if it means writing less html, is a-ok
+with me.</p>
+<pre class="hljs"><code><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-ng-repeat</span>=<span class="hljs-value">&quot;user in users&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">user.name</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">user.properties</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span></code></pre><p>so it&#39;s like how python folks write python everything, including html; we&#39;re
+writing javascriptish markup! it makes sense in those terms. that snippet there
+just created that same div for each user in users; say we have several user
+objects, it&#39;ll just go right ahead and repeat that markup per user.</p>
+<p><code>ngShow</code> determines if an element should be shown or not, based on a boolean.</p>
+<pre class="hljs"><code><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-ng-repeat</span>=<span class="hljs-value">&quot;pizza in boxes&quot;</span> <span class="hljs-attribute">data-ng-show</span>=<span class="hljs-value">&quot;pizza.topping == &#39;peppers&#39;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">pizza.shop</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">pizza.properties</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span></code></pre><p>guess what. your gross-ass hawaiian pie? not in those divs, no sir.</p>
+<p><code>ngSwitch</code> OHH THIS IS USEFUL. we could&#39;ve used this last week.</p>
+<pre class="hljs"><code><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">data-ng-switch</span>=<span class="hljs-value">&quot;pizza.photo&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">pizza.stuff</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>your pie totally looks this goods<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;pepperoni.jpg&quot;</span> <span class="hljs-attribute">data-ng-switch-when</span>=<span class="hljs-value">&quot;pepperoni&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;hawaiian.bmp&quot;</span> <span class="hljs-attribute">data-ng-switch-when</span>=<span class="hljs-value">&quot;gross_as_fuck&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;heaven.png&quot;</span> <span class="hljs-attribute">data-ng-switch-when</span>=<span class="hljs-value">&quot;peppers&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span></code></pre><hr>
+<p>directives straight up from angular are all named <code>ngSomethingStuff</code>; they&#39;re
+used like &quot;ng-something-stuff&quot; (or &quot;data-ng-something-stuff&quot;) in view. they can
+also be comments (?), dom elements, or CSS classes (oh hai jquery what up).</p>
+<p>one could use &#39;operations&#39; within those little handlebars up there (i believe
+we&#39;re calling those <code>expressions</code>, and <code>operations</code> would be our word for
+executable snippets, basically?). so <code>{{pizzza.beInMe()}}</code> is totally valid.</p>
+<p><code>ngModel</code> to create two-way data-binding.</p>
+<p>aaaaand i do believe this example just literally piped a username to uppercase.
+OKAY. <code>{{name | uppercase}}</code> that is, apparently, called a <code>filter</code>, though in
+the interest of correctness (and also just to irk ryan :P) i&#39;ll keep calling
+them pipes, thank you very much.</p>
+<p>hmm. it would seem the guy who wrote this intro to angular is either getting
+paid by google, or currently sitting on someone&#39;s dick there... some of the
+worship is just a wee bit too cloying for real life.</p>
+<p><code>ngApp</code> is the directive to include a partial (to bind an application, in the
+parlance). <code>ngView</code> to actually use it.</p>
+<p><code>.config</code> does (whodathunkit) configuration, basically by d i (?). you <em>could</em>
+pass a function with parameters named after what you&#39;re sourcing that way, but
+it&#39;s not good practice (actually, i hadn&#39;t thought about that before... what
+happens to variables by the time they&#39;ve been through minification, base62, and
+gzip? ⊙▃⊙). instead, you should use an array with the names of the elements that
+should get all shot up in your page, because, y&#39;know, ain&#39;t no one messing with
+your actual data.</p>
+<p><code>routes</code> are a big deal, from what i hear. here&#39;s a simple one from this guy&#39;s
+blog post:</p>
+<pre class="hljs"><code>angularStuff.config([<span class="hljs-string">&#39;$routeProvider&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-variable">$routeProvider</span>) {
+  <span class="hljs-variable">$routeProvider</span>.when(<span class="hljs-string">&#39;/objects&#39;</span>, {
+        templateURI : <span class="hljs-string">&#39;view/objects.html&#39;</span>
+    , controller  : <span class="hljs-string">&#39;ObjCtrl&#39;</span>
+    }).otherwise({templateURI : <span class="hljs-string">&#39;view/NOPE.html&#39;</span>})
+}])</code></pre><p>please forgive me, but i need to take a minute to say some things that should be
+obvious.</p>
+<p>yes, this way of working with partials and configs is pretty sweet, but let&#39;s be
+honest, here, and very straightforward: partials and templating systems and
+whatnot exist solely for the purpose of making things <em>easier</em> on the people
+doing the programming. somehow i feel like going with even more nested
+punctuation is more of an exercise in concrete poetry than a highly advanced and
+developed javascript framework. ugh.</p>
+<p><code>.controller</code> is, like, what you use for controllers. <code>$scope</code> links your
+controllers and their bound views. (?) (or binded, if you&#39;re this fellow.)</p>
+<pre class="hljs"><code>angularThang.controller(<span class="hljs-string">&#39;BTCtrl&#39;</span>, [<span class="hljs-string">&#39;$scope&#39;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-variable">$scope</span>) {
+  <span class="hljs-variable">$scope</span>.objects = [{
+    key  : <span class="hljs-string">&#39;value&#39;</span>
+  , next : <span class="hljs-string">&#39;another&#39;</span>
+  },{
+    key  : <span class="hljs-string">&#39;let\&#39;</span>s do it again<span class="hljs-string">&#39;
+  , next : &#39;</span>okay, now we\<span class="hljs-string">&#39;re done&#39;</span>
+  }]
+}])</code></pre><p><code>$watch</code> calls a listener for a controller on an attribute of its scope (oh boy,
+pronouns, this is fun). <code>$broadcast</code> will trigger an event on a scope, which&#39;ll
+be transmitted to that scope, and <em>all</em> of its children. to trigger a global
+even, you&#39;d use <code>$rootScope</code>. without copying down every example from this
+rather crudely typed out blog post, we&#39;re basically using
+<code>$scope.$watch(stuff)</code>, <code>$scope.$broadcast</code>, <code>$scope.$on</code> etc. so, y&#39;know. extra
+<code>$$$$$$$$</code> for everyone.</p>
+<p>obviously <code>services</code> are gonna be my favourite toy here. there&#39;s an <code>$http</code>
+builtin! (i think... as mentioned, this blogger is probably better at writing
+code that writing words, so... i don&#39;t really know). so you can inject them (oh
+geez, really? we&#39;re going with &#39;inject&#39; here? we couldn&#39;t&#39;ve said &#39;require&#39; or
+&#39;load&#39; or some other generic and often used term that could maybe be <em>slightly</em>
+less confusing in this context?) into your controllers and whatnots and
+fiddlybits, straight up. same goes for custom
+services/external/third-party/whatever, i suppose. basically you&#39;ve just got to
+have some sort of usable api there for other services &amp; fiddlywhatnots to
+access.</p>
+<p><code>$http</code> is a thin wrapper on XHR; <code>$resource</code> is higher level (though without
+any examples of how, all i have to go on is that you can call POST something
+like &#39;save&#39; and get something like &#39;GIMME DAT&#39; or whatever... so... what?). and
+i think <code>$resource</code> is <em>not</em> a builtin, because you&#39;d need to have a dependency
+on <code>ngResource</code> to use it. and here he says we&#39;ve got <code>$httpBackend</code> built in to
+test without a web server, but he doesn&#39;t mention if that&#39;s actually a builtin
+or a core module that would need to be required, nor does he mention whether or
+not it runs a webserver itself or just sends out a fake packet, internally, or
+whatever.</p>
+<hr>
+<p>so, jeremy&#39;s super-boiled-down 10-second run-through of the MVC pattern
+definitely clarified the actual role of the controller. i mean, i kind of
+understood that it&#39;s basically binding models and views, but never really
+understood it as the actual middleman until just now. that is awfully sensible.</p>
+<p>implied, but not stated explicitly: react is less of a bottleneck as a view than
+angular is.</p>
+<p>something to keep in mind: <code>$scope</code> is straight up two-way binding, not sortof
+or sometimes as was implied in the article.</p>
+<p>oh, <code>directive</code> is basically just silly slang for attributes.</p>
+<p>mismatched bits and bobs? not with angular, it&#39;ll just boink up some fresh new
+dom nodes for your loose-ends</p>
+<p>$timeout basically same syntax as setTimeout, except</p>
+<pre class="hljs"><code><span class="hljs-variable">$timeout</span>(<span class="hljs-keyword">function</span>(){
+  <span class="hljs-variable">$scope</span>.thing = <span class="hljs-string">&#39;that&#39;</span>
+}, <span class="hljs-number">10000</span>)</code></pre><p>EVEYTHING that goes IN the html that angular will use is INSIDE of
+ng-controller, attached to its $scope</p>
+<p>so for the  HTML to even give a crap about what&#39;s going on in your javascript,
+it&#39;s gotta be in a $scope. everything that you want angular to actually act on
+had better be {{}} in the html and $scope in your js</p>
+<p>as jeremy explained it, your js as it sits in your files is ALSO basically kind
+of a starting point, because (and see 1.md for more notes on triggering events),
+what angular does is (he said scan for but i understood it as wait for triggers
+from) basically an excuse to go changing things. so your objects, variables,
+whatever are OH MY GOD NOW I KNOW WHAT IMMUTABLE JAVASCRIPT IS A BIG DEAL OKAY
+(no, not because of angular, but because it just hit me how how loose EVERYTHING
+can really be in javascript... wow, no wonder js get so much hate. it probably
+deserves it.)</p>
+<p>ng-repeat makes a miniature scope for the foo part of <code>ng-repeat=&quot;foo in bar&quot;</code>
+-- underneath, i suppose. that&#39;s super slick.</p>
+<pre class="hljs"><code>&lt;input ng-model=<span class="hljs-string">&quot;someFilter&quot;</span>&gt; <span class="hljs-comment">// filter is a keyword to angular, it knows to look for a filter as defined by itself</span>
+&lt;<span class="hljs-keyword">div</span> ng-repeat=<span class="hljs-string">&quot;some in such | filter: someFilter&quot;</span>&gt;
+{{some.stuff}} {{some.things}} <span class="hljs-comment">// okay, and i suppose, it looks like filter is just a builtin that does just that one</span>
+{{some.stuff}} {{some.things}} <span class="hljs-comment">// exact thing... it only shows the thing that you&#39;re inputting/providing as a filter</span>
+{{some.stuff}} {{some.things}} <span class="hljs-comment">// BUT that does not necessarily have to mean actual filtered string fragments.</span>
+{{some.stuff}} {{some.things}} <span class="hljs-comment">// THIS MAKES LIFE EASY.</span>
+&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;<span class="hljs-keyword">div</span> ng-repeat=<span class="hljs-string">&quot;some in such | filter: { name: someFilter location { name: locationNameFilter } }&quot;</span>&gt;
+<span class="hljs-comment">// so basically we&#39;re interactively filtering here, but also filtering by the type of whatchamacallits,</span>
+<span class="hljs-comment">// filtering the objects with a nesting (so, narrowing) way. we could that we need to pass an object,</span>
+<span class="hljs-comment">// and that object ought to have a certain .property, and that key&#39;s value should PROBABLY have a capital A</span>
+<span class="hljs-comment">// or else, y&#39;know, hey angular, throw that shit out.</span>
+<span class="hljs-comment">// that, right there, could be a simple (though obviously not exactly performant...) way to work on that</span>
+<span class="hljs-comment">// little knowledge management problem we have.</span>
+<span class="hljs-comment">// &lt;div ng-init=&quot;whatisUPYO = true&quot;&gt;YO&lt;/div&gt;</span>
+<span class="hljs-comment">// &lt;div ng-init=&quot;heywhatever = false&quot;&gt;YO&lt;/div&gt;</span>
+<span class="hljs-comment">// &lt;div ng-show=&quot;heywhatever&quot;&gt;YOU CAN&#39;T SEE ME&lt;/div&gt;</span>
+<span class="hljs-comment">// &lt;div ng-show=&quot;whatisUPYO&quot;&gt;BUT YOU CAN SEE ME&lt;/div&gt;</span>
+<span class="hljs-comment">// within the ng-thingy&quot;IN HERE THIS PLACE THIS BIT RIGHT HERE&quot; you can</span>
+<span class="hljs-comment">// basically work with any executable javascript code you&#39;d like...</span>
+<span class="hljs-comment">// though that would be an awfully bad idea, i suppose.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// ... we have ng-hide also, which is just ng-show-&quot; = false &quot;</span>
+<span class="hljs-comment">// so you&#39;re basically only hiding if (true/truthy). negates the need for</span>
+<span class="hljs-comment">// double negatives, or some such.</span>
+<span class="hljs-comment">// they&#39;re only really working on css <code>display: none;</code></span>
+<span class="hljs-comment">// ng-if will actually keep something off the dom if it fails, so</span>
+<span class="hljs-comment">// HOLY CRAP ANGULAR HAS A BUILT IN LINK FILTER. FILTER IS NOT JUST FILTER.</span>
+<span class="hljs-comment">// this means you can probably pipe to a whole fucking LOAD of things, and</span>
+<span class="hljs-comment">// seeing as scripting languages basically mostly exist to abstract themselves</span>
+<span class="hljs-comment">// more and more every year until they grow actual intelligences...</span>
+<span class="hljs-comment">// THIS MEANS THIS IS BASICALLY LIKE POSIX PIPES. WHICH MEANS I CAN, WITH A BIT OF WORK</span>
+<span class="hljs-comment">// AND A LOT OF SYNTAX HELP AND PROBABLY ALL SORTS OF FAILURES, ESCAPING, SANITIZING,</span>
+<span class="hljs-comment">// AND TESTING... basically it could become fairly easy to port posix utilities to</span>
+<span class="hljs-comment">// angular. and since that&#39;s written in javascript... that could be extracted and</span>
+<span class="hljs-comment">// maybe combined and turned into its own library for porting posix-compliant shell</span>
+<span class="hljs-comment">// scripts (or, theoretically, any, i guess...) to... the... browser.</span>
+<span class="hljs-comment">// oh gosh. this clarified some things, for sure.</span>
+<span class="hljs-comment">// though i STILL DON&#39;T KNOW WHY WE NEED TO DO TEMPLATING WITH MORE PUNCUATION</span>
+<span class="hljs-comment">// RATHER THAN LESS</span>
+<span class="hljs-comment">// JADE MAKES THINGS EASIER</span>
+<span class="hljs-comment">// SO DOES STYLUS</span>
+<span class="hljs-comment">// SO WHAT THE HELL WHY CAN&#39;T JAVASCRIPT TEMPLATING FOR JAVASCRIPT ACTUALLY BE GOOD</span></code></pre><hr>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span> (<span class="hljs-title">num</span>){</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">num</span> == <span class="hljs-number">0</span>) {
+  <span class="hljs-constant">return</span> <span class="hljs-number">1</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-constant">return</span> (<span class="hljs-built_in">num</span> * factorial(<span class="hljs-built_in">num</span> - <span class="hljs-number">1</span>))
+  }
+}</code></pre><p>ngoptions: says hey, make this array into a selection dropbox kinda thing</p>
+<p>ves) ng-model (and some other diretives) need to have a parent (or both) for expcetionally good looksk to w=be happpy</p>
+<p>factories vs services vs providers; basically down to personal style, though we&#39;ll just go with ryan&#39;s style</p>
+<hr>
+<p>$q is angular&#39;s implementation of promises.</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> myDeferred = $q.defer()
+
+<span class="hljs-keyword">async</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>) </span>{
+  myDeferreed.resolve(val)
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  myDeferred.reject(error)
+})
+
+<span class="hljs-keyword">async</span>(myDeferred.resolve, myDeferred.reject)
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">var</span> myPromise = myDeferred.promise
+myPromise
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;It worked!&#39;</span>, data)
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;NOPE&#39;</span>, error)
+})</code></pre><p>can assign success/failure ops right after creating the deferred (before async()), and can assign as many ops as we like.</p>
+<p>we can also assign ONLY success or failure functions:</p>
+<pre class="hljs"><code>promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;assigning only success here&#39;</span>)
+})
+
+promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;assigning only failure here&#39;</span>)
+}) <span class="hljs-comment">// this is the same as typing out promise.then(null.errorCallback)</span>
+
+promise.finally(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#39;on, and this one will happen whether we fail or succeed.&#39;</span>)
+})</code></pre><p>can chain promises (as values), for example asyncTwo(asyncOne), but like:</p>
+<pre class="hljs"><code>var promise = asyncOne().<span class="hljs-keyword">then</span>(asyncTwo)
+
+<span class="hljs-variable">$q</span>.reject(reason) // will <span class="hljs-keyword">return</span> rejected, with provided reason
+<span class="hljs-variable">$q</span>.<span class="hljs-keyword">when</span>(<span class="hljs-keyword">value</span>) // will <span class="hljs-keyword">return</span> resolved, with provided <span class="hljs-keyword">value</span>.
+<span class="hljs-variable">$q</span>.<span class="hljs-keyword">when</span>(<span class="hljs-keyword">value</span>) // can serve <span class="hljs-keyword">as</span> a wrapper <span class="hljs-keyword">for</span> a <span class="hljs-number">3</span>rd party promise. example:
+$.ajax() //jQuery
+var jqPromise = $.ajax({
+// stuff here })
+var angPromise = <span class="hljs-variable">$q</span>.<span class="hljs-keyword">when</span>(jqPromise)
+
+<span class="hljs-variable">$q</span>.all( [] )
+// <span class="hljs-keyword">in</span> the above, one passes an <span class="hljs-keyword">array</span> <span class="hljs-keyword">of</span> promises <span class="hljs-keyword">to</span> <span class="hljs-variable">$q</span>.all
+
+//
+// angular flow <span class="hljs-keyword">in</span> ten seconds or less:
+// this is according <span class="hljs-keyword">to</span> luke, so it<span class="hljs-string">&#39;s probably correct.
+// $http.get(url)
+// promise.then on that
+// to display it, call that function on the service
+// return that, $scope.that thing
+// {{let&#39;</span>s go ahead and display that.thing however we want that}}
+
+//
+
+// angular hits serious view bottleneck around <span class="hljs-number">1800</span> items.
+
+// node<span class="hljs-string">&#39;s event loop is exactly the same as normal async javascript, just not in a browser
+
+//
+
+$q.defer() // making a promise
+$q.resolve() // start resolving that promise, start invoking chain of .then callback functions,
+             // aka &#39;</span>i<span class="hljs-string">&#39;m done and it worked!&#39;</span>
+
+doThing(){
+  function doThing(){
+    var promise = <span class="hljs-variable">$q</span>.defer
+    // stuff to do
+    // this needs a callback, probably
+      function callback(){
+        promise.resolve([<span class="hljs-string">&#39;stuff&#39;</span>, <span class="hljs-string">&#39;that you got&#39;</span>, <span class="hljs-string">&#39;because you asked for it&#39;</span>])
+      }
+    return promise
+  }
+}
+
+var url = <span class="hljs-string">&#39;http//zacanger.com/blog&quot;
+var promise = $q.defer()
+$http({
+  method: &#39;</span>GET<span class="hljs-string">&#39;
+, url: url
+}).then(function(response){
+  var whatever = response.data
+  // do things
+})</span></code></pre><p>okay, promises are so much simpler and more straightforward than people are probably thinking.
+really, basically, we&#39;re just going over use-cases and examples now. which is totally fine,
+of course.</p>
+<p>note that when we go ahead and send a buncha chained promises, we&#39;re gonna get stuff back
+however it comes back, not in the order we started things. we&#39;d want to sort things after,
+if needed, not (obviously) within promises, because that would make all of that redundant;
+we&#39;d basically be using promises to run some synchronous javascript, at that point.
+dumb.</p>
+<p>JSONP: this is how we get around cross-origin problems.</p>
+<hr>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+  setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    resolve(<span class="hljs-string">&#39;hi&#39;</span>)
+  }, <span class="hljs-number">5000</span>)
+})
+
+<span class="hljs-keyword">return</span> promise
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">whatUp</span>(<span class="hljs-params"></span>)</span>{
+  say(<span class="hljs-string">&#39;BLAHR&#39;</span>)
+}</code></pre><hr>
+<p>this.whatever makes &#39;whatever&#39; (in a service) visible to the controller.</p>
+<p>it&#39;s a good idea to go ahead and be like</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> hello = <span class="hljs-string">&#39;oi!&#39;</span>
+
+<span class="hljs-keyword">this</span>.returnedInfo = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">return</span> hello
+}</code></pre><p>that way... data is made, protected, changed, broken, etc., all in one place.
+just accessed through that nice little function there.  i am so confused about
+bananas</p>
+<hr>
+<pre class="hljs"><code><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>o hello there<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;<a href="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js">https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js</a>&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-app</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&quot;MyApp&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;name&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">ng-cloak</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>howdy,<span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">name</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyApp</span><span class="hljs-params">($scope)</span></span>{$scope.name = <span class="hljs-string">&quot;zacanger&quot;</span>}</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span></code></pre><hr>
+<p>jer.html</p>
+<pre class="hljs"><code><span class="xml"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">&quot;dm7FirstApp&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>jeremy&#39;s example<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&quot;myCtrl&quot;</span>&gt;</span>
+    This is Plain Text
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color: red&quot;</span>&gt;</span>
+      </span><span class="hljs-expression">{{<span class="hljs-variable">name</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    Input box : <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;foo&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>Curly Brackets : </span><span class="hljs-expression">{{<span class="hljs-variable">foo</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;person.name&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;person.cereal&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;person.media&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;person.random&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      Your person is :
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">person.name</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">person.cereal</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">person.media</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">person.random</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Repeat<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+
+    Filter: <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;carfilter.name&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;car in cars | filter: carfilter &quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;car&quot;</span>&gt;</span>
+      </span><span class="hljs-expression">{{<span class="hljs-variable">car.name</span>}}</span><span class="xml"> - Year: </span><span class="hljs-expression">{{<span class="hljs-variable">car.year</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span> <span class="hljs-attribute">ng-init</span>=<span class="hljs-value">&quot;isAwesome = true&quot;</span>&gt;</span>Show/Hide<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;isAwesome&quot;</span>&gt;</span>Yay, you are awesome!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-hide</span>=<span class="hljs-value">&quot;isAwesome&quot;</span>&gt;</span>We&#39;re sorry you&#39;re not awesome<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">&quot;isAdmin&quot;</span>&gt;</span>You must be the boss<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;isAwesome = !isAwesome&quot;</span>&gt;</span>Click Me!<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;<a href="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js">https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js</a>&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">&#39;dm7FirstApp&#39;</span>, []);
+
+      app.controller(<span class="hljs-string">&#39;myCtrl&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($scope, $timeout)</span></span>{
+        $scope.name = <span class="hljs-string">&quot;That lame teacher&quot;</span>
+
+        $scope.cars = [
+          {name: <span class="hljs-string">&quot;Astin Martin&quot;</span>, year: <span class="hljs-number">1972</span>},
+          {name: <span class="hljs-string">&quot;Kia&quot;</span>, year: <span class="hljs-number">1973</span>},
+          {name: <span class="hljs-string">&quot;Jeep&quot;</span>, year: <span class="hljs-number">1975</span>},
+          {name: <span class="hljs-string">&quot;51 Mercury&quot;</span>, year: <span class="hljs-number">1951</span>},
+          {name: <span class="hljs-string">&quot;Tesla&quot;</span>, year: <span class="hljs-number">2008</span>}
+        ]
+
+        $scope.isAwesome = <span class="hljs-literal">true</span>
+        $scope.isAdmin   = <span class="hljs-literal">true</span>
+
+        $scope.clicked = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+          $scope.isAwesome = !$scope.isAwesome
+        }
+
+        $scope.person = {
+          name: <span class="hljs-string">&quot;namless&quot;</span>,
+          cereal: <span class="hljs-string">&quot;air&quot;</span>,
+          media: <span class="hljs-string">&quot;silence&quot;</span>,
+          random: <span class="hljs-string">&quot;nothing&quot;</span>
+        }
+
+        $timeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+          $scope.foo = <span class="hljs-string">&quot;bar&quot;</span>
+
+          $scope.cars[<span class="hljs-number">2</span>].name = <span class="hljs-string">&quot;Monster Truck&quot;</span>
+        }, <span class="hljs-number">3000</span>)
+
+      })
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span></code></pre><hr>
+<p>j_promise_notes.js</p>
+<pre class="hljs"><code>// controller
+angular.module(<span class="hljs-string">&#39;httpApp&#39;</span>).controller(<span class="hljs-string">&#39;myCtrl&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-variable">$scope</span>, myService){
+  <span class="hljs-variable">$scope</span>.test = <span class="hljs-string">&quot;Working&quot;</span>
+
+  <span class="hljs-variable">$scope</span>.isLoading = true
+  var promise = myService.getStarship()
+
+  promise.then(myService.getPilots)
+  .then(function(starshipWithPilots){
+    <span class="hljs-variable">$scope</span>.starship = starshipWithPilots
+  }
+
+  //    promise.then(validateEmails)
+  //           .then(sendEmails)
+  //           .then(reportSuccess)
+  //           .then(askUserForResendOption)
+  //           .then(resendMoreEmails)
+
+})
+
+
+// service
+angular.module(<span class="hljs-string">&#39;httpApp&#39;</span>).service(<span class="hljs-string">&#39;myService&#39;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-variable">$http</span>, <span class="hljs-variable">$q</span>){
+  var baseUrl = <span class="hljs-string">&quot;<a href="http://swapi.co/api/starships/10/?format=json">http://swapi.co/api/starships/10/?format=json</a>&quot;</span>
+  this.getStarshipWithPilots = function(){
+    var deferred = <span class="hljs-variable">$q</span>.defer()
+
+    <span class="hljs-variable">$http</span>({
+      method: <span class="hljs-string">&#39;GET&#39;</span>,
+      url: baseUrl
+    }).then(function(response){
+      var starship = response.data
+
+      var pilotObjs = []
+      var totalPilots = starship.pilots.length
+
+      starship.pilots.forEach(function(pilotUrl){
+        <span class="hljs-variable">$http</span>({
+          method: <span class="hljs-string">&#39;GET&#39;</span>,
+          url: pilotUrl
+        }).then(function(pilotResponse){
+          pilotObjs.push(pilotResponse.data)
+
+          if(pilotObjs.length === totalPilots){
+            starship.pilots = pilotObjs
+            //order pilots alphabetically
+            deferred.resolve(starship)
+          }
+        })
+      })
+    })
+    return deferred.promise
+  }
+
+  this.getStarship = function(){
+    var deferred = <span class="hljs-variable">$q</span>.defer()
+    <span class="hljs-variable">$http</span>({
+      method: <span class="hljs-string">&#39;GET&#39;</span>,
+      url: baseUrl
+    }).then(function(response){
+      var starship = response.data
+      deferred.resolve(starship)
+    })
+    return deferred.promise
+  }
+
+  this.getPilots = function (starship){
+    var deferred = <span class="hljs-variable">$q</span>.defer()
+    var arrayOfPilotUrls = starship.pilots
+    var pilotObjs = []
+    var totalPilots = arrayOfPilotUrls.length
+
+    arrayOfPilotUrls.forEach(function(pilotUrl){
+      <span class="hljs-variable">$http</span>({
+        method: <span class="hljs-string">&#39;GET&#39;</span>,
+        url: pilotUrl
+      }).then(function(pilotResponse){
+        pilotObjs.push(pilotResponse.data)
+
+        if(pilotObjs.length === totalPilots){
+          starship.pilots = pilotObjs
+          //order pilots alphabetically
+          deferred.resolve(starship)
+        }
+      })
+    })
+    return deferred.promise
+  }
+})</code></pre>]]></description><link>/2016/last-devmtn-notes.html</link><guid isPermaLink="true">/2016/last-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 23 May 2016 03:35:27 GMT</pubDate></item><item><title><![CDATA[notes and little bits from the react meetup on 17th nov at devmountain]]></title><description><![CDATA[<h1 id="important-">IMPORTANT:</h1>
+<p>don&#39;t take anything here seriously. i think it&#39;s just interesting to reread
+my initial reaction when i was confronted with everything that is react.</p>
+<hr>
+<h2 id="react-meetup-17-nov-2015">React Meetup, 17 Nov, 2015</h2>
+<p>React:</p>
+<ul>
+<li>Good at managing state.</li>
+<li>which is to say, dynamism</li>
+<li>Components, just like... everything else these days, so that&#39;s totally irrelevant.</li>
+<li>virtual dom, which is not exactly facebook&#39;s anyway.</li>
+<li>unidirectional data flow, which is a mouthful.</li>
+<li>that is, the loop.</li>
+<li>more boilerplate to run that... less boilerplate-replacer built into react?</li>
+</ul>
+<hr>
+<p>Random-ass notes and stuff.</p>
+<p>Erm. Thus far, it&#39;s web architecture 101. Components are a thing. People don&#39;t
+like to refresh whole pages. Etc.</p>
+<p><code>render() == render: function(){}</code></p>
+<p><code>this.setState</code> = important, should always use</p>
+<p>React is a view. But, does server-side rendering. Which is much more up my
+alley, because it&#39;s not making life miserable for users. We can check that out
+when we check out all those other frameworks, for fun.</p>
+<p>React is compiled.</p>
+<p>Redux is a state container. Which actually makes sense now. Because everything
+is state, in React, it seems. So, it abstracts state and manages it
+independently from the front-end, which is how React <em>can</em> do it&#39;s thing on the
+server.</p>
+<p>My god, though, React people are worse than Lisp people. Everything has to be
+about how they do things better, even when they very clearly just do things at a
+totally okay level.</p>
+<p><a href="https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook">OH. It turns out that React looks like PHP to be because it was influenced by XHP</a>.
+Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So
+React is Javascript based on PHP based on Javascript based on XML. So it&#39;s
+totally okay to think that it&#39;s hideous. That&#39;s good.</p>
+<p>app.jsx:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span> <span class="hljs-comment">// same as var React = require(&#39;react&#39;)</span>
+<span class="hljs-literal">import</span> ReactDOM from <span class="hljs-string">&#39;react-dom&#39;</span>
+<span class="hljs-literal">import</span> <span class="hljs-built_in">List</span> from <span class="hljs-string">&#39;./List&#39;</span>
+<span class="hljs-literal">import</span> Friendz from <span class="hljs-string">&#39;./Friendz&#39;</span>
+
+<span class="hljs-keyword">const</span> App = React.createClass({
+  getInitialState(){
+    <span class="hljs-keyword">return</span> (
+      bros: [<span class="hljs-string">&#39;bman&#39;</span>, <span class="hljs-string">&#39;brosef&#39;</span>]
+    )
+  },
+  componentDidMount(){}, <span class="hljs-comment">// onload</span>
+  componentWillMount(){}, <span class="hljs-comment">// not quite on load?</span>
+  addFriend(newFriend){
+    <span class="hljs-keyword">this</span>.setState({
+      friends: <span class="hljs-keyword">this</span>.state.friends.cocat(<span class="hljs-keyword">new</span>, newFriend)
+    })
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;what up {<span class="hljs-keyword">this</span>.state.bros}&lt;/div&gt;
+    )
+  }
+})
+
+ReactDOM.render(
+  &lt;App /&gt;,
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#39;root&#39;</span>)
+)</code></pre><p>miniform.jsx:</p>
+<pre class="hljs"><code>import React <span class="hljs-keyword">from</span> &#39;react&#39;
+
+const Friendz = React.createClass(
+  render() {
+    getInitialState(){
+      return {
+        newFriend: &#39;&#39;
+      }
+    },
+    updateFriend(e){ // <span class="hljs-keyword">for</span> event.
+      this.<span class="hljs-built_in">set</span>State({
+        newFriend: event.target.value
+      })
+    },
+    return (
+      <span class="hljs-variable">&lt;div&gt;</span>
+        <span class="hljs-variable">&lt;input type=&quot;text&quot; /&gt;</span>
+        <span class="hljs-variable">&lt;button onClick={() =&gt;</span> this.props.addFriend} <span class="hljs-keyword">on</span>Change={this.<span class="hljs-keyword">state</span>.newFriend}&gt;add it!<span class="hljs-variable">&lt;/button&gt;</span>
+      <span class="hljs-variable">&lt;/div&gt;</span>
+    )
+  }
+)
+
+export <span class="hljs-keyword">default</span> Friendz</code></pre><p>list.jsx:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">List</span> = React.createClass({
+  render() {
+    <span class="hljs-keyword">const</span> friendsLIs = <span class="hljs-keyword">this</span>.props.friends.map({item, list}) =&gt;
+      <span class="hljs-keyword">return</span> &lt;li key={index}&gt;{item}&lt;/li&gt;
+      <span class="hljs-comment">// return ( ) something...?</span>
+  }
+})
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> <span class="hljs-built_in">List</span> <span class="hljs-comment">// like module.exports = {}</span></code></pre>]]></description><link>/2016/react-meetup-notes.html</link><guid isPermaLink="true">/2016/react-meetup-notes.html</guid><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 21:30:00 GMT</pubDate></item><item><title><![CDATA[random notes from when reading about postcss]]></title><description><![CDATA[<p>so, it&#39;s basically just a sort of build tool plugin api.</p>
+<p>can be used as a build tool plugin. uhm.</p>
+<p>postcss-cli is a thing.</p>
+<p>i guess probably most of the css things i use are available
+as plugins here anyway. (obviously autoprefixer and cssnext,
+but also probably) stylus (i hope), cssnano/csso, stylelint,
+bem/suit stuff, et-OH MY GOD A SEARCH ON THE WEBSITE SHOWS NO
+STYLUS PLUGINS WHAT oh wait it&#39;s okay a search on npm shows
+two, we&#39;re saved.</p>
+]]></description><link>/2016/postcss.html</link><guid isPermaLink="true">/2016/postcss.html</guid><category><![CDATA[css]]></category><category><![CDATA[postcss]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 21:00:00 GMT</pubDate></item><item><title><![CDATA[fixing parallels weirdness]]></title><description><![CDATA[<p>at work, parallels kept crashing. what led to this:</p>
+<ul>
+<li>took a system update on the mac from the app store</li>
+<li>after rebooting, went over to parallels, which runs windows 10</li>
+<li>that needed an update too apparently, so took that</li>
+<li>after rebooting the virtual windows, didn&#39;t think about it for a while</li>
+<li>went back to it, went to un-suspend or whatever you&#39;d call it, and it crashed</li>
+<li>happened several times, tried force quitting, killing all related processes, rebooting the mac, no luck</li>
+<li>the fix on the kb was totally unrelated. running prd_client_app manually gave the following:</li>
+</ul>
+<pre class="hljs"><code>May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">33</span>  pdfm-bootstrap[<span class="hljs-number">84883</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84847</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span>
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $
+[<span class="hljs-string">zach:</span><span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS] <span class="hljs-number">73</span> $ .<span class="hljs-regexp">/./</span>prl_client_app
+objc[<span class="hljs-number">84919</span>]: Class YRKSpinningProgressIndicator is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/PDControlCenter.framework/</span>Versions<span class="hljs-regexp">/A/</span>PDControlCenter and <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks/libPrlGui<span class="hljs-number">.2</span>.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class DeallocHook is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class MethodInfo is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>Frameworks<span class="hljs-regexp">/libPrlGui.2.dylib and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/MacOS/</span>.<span class="hljs-regexp">/./</span>prl_client_app. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class PreviewItem is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class QLResponder is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+objc[<span class="hljs-number">84919</span>]: Class SSBaseDelegate is implemented <span class="hljs-keyword">in</span> both <span class="hljs-regexp">/Applications/</span>Parallels Desktop.app<span class="hljs-regexp">/Contents/</span>MacOS<span class="hljs-regexp">/./</span>.<span class="hljs-regexp">/prl_client_app and /</span>Applications<span class="hljs-regexp">/Parallels Desktop.app/</span>Contents<span class="hljs-regexp">/Resources/</span>libprl_shared_apps.dylib. One of the two will be used. Which one is undefined.
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84957</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Is executed with params <span class="hljs-string">&#39;start&#39;</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84969</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Loading pids from <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84970</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: prl_event_tap already started with pid <span class="hljs-number">84870</span> and alive
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84971</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Starting prl_naptd...
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84977</span>] &lt;Warning&gt;: agent[<span class="hljs-number">84958</span>]: prl_naptd not started
+<span class="hljs-string">error:</span> failed to execute <span class="hljs-string">subprocess:</span> -<span class="hljs-number">2</span>
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84980</span>] &lt;Info&gt;: agent[<span class="hljs-number">84958</span>]: Dump pids to <span class="hljs-regexp">/tmp/</span>.pd<span class="hljs-regexp">/280366361/</span>.prl_agents_pids
+May <span class="hljs-number">19</span> <span class="hljs-number">15</span>:<span class="hljs-number">41</span>:<span class="hljs-number">10</span>  pdfm-bootstrap[<span class="hljs-number">84981</span>] &lt;Notice&gt;: launcher[<span class="hljs-number">84948</span>]: Start finished. <span class="hljs-string">Agents:</span> <span class="hljs-number">0</span>; <span class="hljs-string">Service:</span> <span class="hljs-number">4</span></code></pre><p>most of that is probably irrelevant, apparently that class is implemented in both thingy
+is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
+anyway, the thing that actually ended up working was:</p>
+<p><code>sudo &quot;/Applications/Parallels Desktop.app/Contents/MacOS/inittool&quot; init -b &quot;/Applications/Parallels Desktop.app&quot;</code></p>
+<p>note: run that as sudo from your normal user, don&#39;t <code>sudo su</code> and then do it.</p>
+<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
+if anyone else can&#39;t get anything to work, maybe that&#39;ll help.</p>
+]]></description><link>/2016/parallels-weirdness.html</link><guid isPermaLink="true">/2016/parallels-weirdness.html</guid><category><![CDATA[mac]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 22 May 2016 20:30:56 GMT</pubDate></item><item><title><![CDATA[notes from my personal project at devmountain]]></title><description><![CDATA[<h1 id="this-is-probably-a-mess">this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working
+on my &#39;personal project&#39; at devmountain.</p>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
+for people who actually cared about writing. turns out no one really wants that.
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+cool.</p>
+<p>requirements for this: make a mean stack app, basically.</p>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+and more importantly here&#39;s the mess of notes i took while doing stuff with that.</p>
+<hr>
+<h2 id="planner">Planner</h2>
+<p>At DevMountain, for projects, you&#39;re encouraged (required, really) to use a planning
+paper, which is basically a big sheet of paper divided up into sections that represent
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+the bottom.</p>
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
+there was a PDF version floating around so I threw a little app up using that (converted to
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
+able to easily just save all my notes out (they were all just in a big text file anyway, on
+my server). Note: I&#39;d initially planned on using my earlier app from my &#39;no-server&#39; project
+(something we do at DevMountain early on, just an Angular app that can actually use a server
+so long as it&#39;s a BaaS and not one we&#39;ve spent time doing, because we don&#39;t actually know how
+to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
+<p>Anyway, these are the contents from my planning thing.</p>
+<h3 id="ideas-and-users">Ideas and Users</h3>
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
+ADHD social media style of content-creation and likes and shares that&#39;s taken
+over the popular idea of the blog, but instead around long-form writing; essays,
+meaningful stories, and such. the target audience here is the moderately
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+out in coffee shops too much.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>mvp: oh wait, that&#39;s already done. well, except for getting it to work in the
+desktop client, which is the entire idea here.</li>
+<li>the rest:<ul>
+<li>a clean, simple &#39;feed&#39; (a la jekyll archive pages), filterable by tag and possibly date.</li>
+<li>comments.</li>
+<li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
+</ul>
+<h3 id="views">Views</h3>
+<ol>
+<li>the existing markdown editor (however, likely revamped to move away from
+plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one&#39;s own posts as
+someone else&#39;s).</li>
+<li>the &#39;social&#39; view: a feed, no &#39;content-based&#39; sorting, just purely ordered
+chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they&#39;ll be isolated (data-wise), so it may be smarter to
+load them in dynamically (see: discourse [not discuz, they&#39;re ruby], but don&#39;t
+do that stupid thing where half the page disappears, that&#39;s some annoying-ass
+bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an
+archive file, delete account.</li>
+</ol>
+<h3 id="controllers">Controllers</h3>
+<ul>
+<li>browser, main, and nav (see existing codebase)</li>
+<li>not controllers, but...</li>
+<li>services: files (existing)</li>
+<li>filters: filename and cut (existing)<ul>
+<li>by tag (feed view)</li>
+<li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
+</ul>
+<h3 id="endpoints">Endpoints</h3>
+<p>Those are a thing, yes.</p>
+<h3 id="schemas">Schemas</h3>
+<pre class="hljs"><code>// possible schemas ??
+
+<span class="hljs-keyword">const</span> mongoose = require(&#39;mongoose&#39;)
+
+<span class="hljs-keyword">const</span> user = mongoose.<span class="hljs-type">Schema</span>({
+  username : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, pass     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>, minlength : <span class="hljs-number">6</span>}
+, post     : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;post&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> post = mongoose.<span class="hljs-type">Schema</span>({
+  title    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, content  : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, tags     : <span class="hljs-type">Array</span>
+, date     : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default : new <span class="hljs-type">Date</span>()}
+, author   : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+, comments : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectID</span>, <span class="hljs-keyword">ref</span> : &#39;comment&#39;}]
+})
+
+<span class="hljs-keyword">const</span> comment = mongoose.<span class="hljs-type">Schema</span>({
+  date    : {<span class="hljs-keyword">type</span> : <span class="hljs-type">Number</span>, default  : new <span class="hljs-type">Date</span>()}
+, content : {<span class="hljs-keyword">type</span> : <span class="hljs-type">String</span>, required : <span class="hljs-literal">true</span>}
+, post    : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;posts&#39;}]
+, author  : [{mongoose.<span class="hljs-type">Types</span>.<span class="hljs-type">ObjectId</span>, <span class="hljs-keyword">ref</span> : &#39;user&#39;}]
+})
+
+mongoose.model(&#39;user&#39;, user)
+mongoose.model(&#39;post&#39;, post)
+mongoose.model(&#39;comment&#39;, comment)</code></pre><h3 id="other-thoughts-">Other Thoughts:</h3>
+<p>this would be relatively easy to throw up in a web browser. blogging platforms
+are a dime a dozen, especially ones built on node. the idea here isn&#39;t to make
+another tumblr, but to bring actual writing back to the web. sort of like
+medium, but without all the twitter. a key part of that is having it NOT be in a
+browser. right now the goal is to put all this in an electron shell, but i&#39;m not
+going to focus super hardcore on that right this moment. if i can get everything
+else in place and rock-solid first, then i&#39;ll stuff it all in electron. if not,
+then i&#39;ll just write up a manifest file and call it a chrome app. either way,
+fuck y&#39;all, it&#39;s already got nigh on a thousand installs....</p>
+<hr>
+<h2 id="the-presentation-speech">The Presentation Speech</h2>
+<p>This is what I&#39;d planned to say when presenting my app. I think instead
+I just kind of mumbled a little bit about how neat CodeMirror is and how
+annoying it was to struggle with the <code>&#39;node-integration&#39;</code> issue with
+Electron.</p>
+<h3 id="markdown">Markdown</h3>
+<p>…is a lightweight markup language which makes writing for the web a much quicker
+and easier process than if using a rich text editor (like Word), which wouldn&#39;t
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
+<code>&lt;strong&gt;</code>, in Markdown you&#39;d use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
+Github are usually written in an implementation of Markdown called Github
+Flavoured Markdown, which shows just how popular the format has grown. Stack
+Overflow, the Discourse comment system, and various blog systems including
+Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
+<p>vi is possibly the most influential editor of, like, ever. it was written in
+1976, and either vi or one of its descendants (usually vim, which stands for &#39;vi
+improved&#39;) has been on almost every unix-based system since then, including
+every computer in this building (except the microsoft machines -- and even on
+those, if you have git-bash or something similar). vim&#39;s power comes from how
+easily and quickly it can manipulate large chunks of text. For example, typing
+in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
+<p>So, putting these things together makes for a really great tool for writing. Not
+necessarily writing Tweets or Facebook posts, but writing longer texts, like
+articles or essays. That&#39;s the purpose of this app. It&#39;s not a social blog. It&#39;s
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+minus… teenagers.</p>
+<p>Since the editor component itself is based around CodeMirror, it&#39;s very
+extensible, which is exciting because it leaves so much open for future
+development. For example, if we wanted to make this a Javascript editor instead,
+we could just change a few lines and now we have the right syntax highlighting,
+automatic indentation, et cetera.</p>
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
+from the beginning it was really meant to be a desktop tool; browsers are
+distracting, this not so much.</p>
+<p>Aaaand here&#39;s the code.</p>
+<hr>
+<h2 id="misc-notes">misc notes</h2>
+<p>All this stuff was just thrown in another file.
+It&#39;s mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
+<p>check <a href="https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md">https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md</a>
+before trying to get any other browser-shit going on--we&#39;ll want to move things
+into their own windows, i feel; chromeless might be a good idea, at least for
+the editor view</p>
+<pre class="hljs"><code>const BrowserWindow = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#39;electron&#39;</span>)</span></span><span class="hljs-class">.BrowserWindow</span>
+let win = new <span class="hljs-function"><span class="hljs-title">BrowserWindow</span><span class="hljs-params">({width : <span class="hljs-number">1900</span>, height : <span class="hljs-number">1600</span>, frame : false})</span></span></code></pre><p>so basically it&#39;s just a new browser window, frame as false, but we want to
+probably lock the px to whatever screen we&#39;re working with, if CSS continues to
+fail miserably.</p>
+<p>-- note: check how atom manages to not fuck that up. except those bits where
+they do.</p>
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+clickables, one assumes).</p>
+<ul>
+<li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
+<li>downloadItem.setSavePath(path)</li>
+<li>downloadItem.cancel()</li>
+<li>downloadItem.getURL() // origin url</li>
+<li>file.path = real (fs) path</li>
+</ul>
+<h3 id="printing">printing</h3>
+<pre class="hljs"><code>webContents.printToPDF(opts, cb) <span class="hljs-comment">// where:</span>
+opts:
+  marginsType: <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> (<span class="hljs-number">0</span> <span class="hljs-keyword">default</span>)
+  pageSize: <span class="hljs-string">&#39;A4&#39;</span>, <span class="hljs-string">&#39;A3&#39;</span>, <span class="hljs-string">&#39;Legal&#39;</span>, <span class="hljs-string">&#39;Letter&#39;</span>, <span class="hljs-string">&#39;Tabloid&#39;</span>
+  printBackground: <span class="hljs-keyword">false</span> (duh)
+  landscape: <span class="hljs-keyword">false</span> (is portrait)
+cb <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{<span class="hljs-keyword">if</span> err etc, data = content buffer}
+
+<span class="hljs-keyword">empty</span> opts = <code>{marginsType: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, printBackground: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, printSelectionOnly: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;, landscape: &lt;span class=&quot;hljs-keyword&quot;&gt;false&lt;/span&gt;}</code>
+
+<span class="hljs-comment">// sample from electron docs</span>
+<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;electron&#39;</span>).BrowserWindow
+<span class="hljs-keyword">const</span> fs = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;fs&#39;</span>)
+<span class="hljs-keyword">let</span> win = <span class="hljs-keyword">new</span> BrowserWindow({width: <span class="hljs-number">800</span>, height: <span class="hljs-number">600</span>})
+win.loadURL(<span class="hljs-string">&#39;<a href="http://github.com">http://github.com</a>&#39;</span>)
+win.webContents.on(<span class="hljs-string">&#39;did-finish-load&#39;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Use default printing options</span>
+  win.webContents.printToPDF({}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+    <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error
+    }
+    fs.writeFile(<span class="hljs-string">&#39;/tmp/print.pdf&#39;</span>, data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span> </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">throw</span> error
+      }
+      console.log(<span class="hljs-string">&#39;done did dat&#39;</span>)
+    })
+  })
+})</code></pre><ul>
+<li>main process is a normal node script</li>
+<li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
+<li>electron&#39;s built-in modules don&#39;t need <code>require(&#39;asdf&#39;)</code>; set
+<code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
+<li>shell.openExternal(url) opens in eg xdg-browser</li>
+<li>shell.openItem(&#39;/FULL/path/to/item&#39;) = xdg-open</li>
+</ul>
+<h3 id="menus">menus</h3>
+<ul>
+<li>new MenuItem(opts):<ul>
+<li>id: string, unique within menu</li>
+<li>submenu</li>
+<li>checked: bool</li>
+<li>visible: bool</li>
+<li>enabled: bool</li>
+<li>label: string</li>
+<li>type: normal, separator, submenu, checkbox, or radio</li>
+<li>role: action; if specified, next thing will be ignored</li>
+<li>click: function -- click(menuItem, browserWindow) -- this is that &#39;next thing&#39;</li>
+</ul>
+</li>
+<li>recommended to set role:<ul>
+<li>undo</li>
+<li>redo</li>
+<li>cut</li>
+<li>copy</li>
+<li>paste</li>
+<li>selectall</li>
+<li>minimize</li>
+<li>close</li>
+</ul>
+</li>
+</ul>
+<p>electron-rebuild would automatically take care of headers &amp; native node module
+builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
+<p>the &#39;npm&#39; way: same as usual, except env variables:</p>
+<pre class="hljs"><code><span class="hljs-keyword">export</span>
+  npm_config_disturl=https:<span class="hljs-comment">//atom.io/download/atom-shell</span>
+  npm_config_target=<span class="hljs-number">0.33</span><span class="hljs-number">.1</span> <span class="hljs-preprocessor"># ???</span>
+  npm_config_arch=x64
+  npm_config_runtime=electron
+HOME=~/.electron-gyp npm install module-name <span class="hljs-preprocessor"># home equals? what?</span></code></pre><p>one important thing: nw.js&#39;s url in the package file? nah, bro, electron don&#39;t
+do that shit. so manually creating the browser window and loading HTML is the
+right way with electron.</p>
+]]></description><link>/2016/personal-project.html</link><guid isPermaLink="true">/2016/personal-project.html</guid><category><![CDATA[devmtn]]></category><category><![CDATA[electron]]></category><category><![CDATA[nwjs]]></category><category><![CDATA[markdown]]></category><category><![CDATA[angular]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 20 May 2016 05:00:00 GMT</pubDate></item><item><title><![CDATA[earliest devmtn notes]]></title><description><![CDATA[<p>uh so i just found these in a note book and remembered that
+one day i forgot my laptop charger so i took notes during a lecture
+by hand
+i don&#39;t know what
+idk</p>
+<pre class="hljs"><code>vertical organization <span class="hljs-keyword">is</span> by feature;
+routes, configs, etc. under the same directory.
+this <span class="hljs-keyword">is</span> the devmtn preferred <span class="hljs-keyword">method</span>.
+this works <span class="hljs-keyword">for</span> angular <span class="hljs-keyword">as</span> well.
+keeps app.js, config (routes), index.html <span class="hljs-keyword">in</span> root --
+directives, features, services, &amp; <span class="hljs-literal">shared</span> (assets), (<del>somethingican&#39;tread</del>).
+starting <span class="hljs-keyword">with</span> webpack <span class="hljs-keyword">and</span> angular2, we&#39;ll be moving to <code>require</code>s.
+heroku will (<del>something</del>) <span class="hljs-keyword">with</span> last good git commits -- <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> github pushes</code></pre>]]></description><link>/2016/earliest-devmtn-notes.html</link><guid isPermaLink="true">/2016/earliest-devmtn-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 19 May 2016 18:39:25 GMT</pubDate></item><item><title><![CDATA[bash basix]]></title><description><![CDATA[<h4 id="some-sort-of-notes-sort-of-taken-as-an-aside-during-a-lecture-i-gave-on-the-basics-of-shell-usage">some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage</h4>
+<ul>
+<li>debugging a bash script: use the <code>-x</code> flag</li>
+<li>semicolons divide commands that are on the same line</li>
+<li>newlines are much more readable</li>
+<li>bash variables: there are local, global, string, integer,
+constant, and array variables.<ul>
+<li>global = env variables.</li>
+<li>local are available only in current shell.</li>
+<li>also predefined vars, like id (try <code>echo $UID</code>).</li>
+<li>capitalised by default. case-sensitive. local ones</li>
+<li>are sometimes done in lowercase, though. can contain</li>
+<li>integers, but can&#39;t <em>start</em> with integers.</li>
+</ul>
+</li>
+<li>to get started with everything: <code>man 1 intro</code></li>
+<li>also <code>git help everyday</code></li>
+</ul>
+]]></description><link>/2016/bash-basix.html</link><guid isPermaLink="true">/2016/bash-basix.html</guid><category><![CDATA[sh]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 17 May 2016 04:24:00 GMT</pubDate></item><item><title><![CDATA[streams]]></title><description><![CDATA[<p>bits and pieces of notes on streams</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> foo = fetch(<span class="hljs-string">&#39;/something&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.json())
+.<span class="hljs-keyword">then</span>(d =&gt; d.thingwewant)
+
+<span class="hljs-keyword">const</span> bar = fetch(<span class="hljs-string">&#39;/otherstuff&#39;</span>)
+.<span class="hljs-keyword">then</span>(r =&gt; r.body)
+
+<span class="hljs-keyword">const</span> stream = someTaggedFunctionThing<code>&amp;lt;div&amp;gt;${foo}&amp;lt;/div&amp;gt;
+  &amp;lt;span&amp;gt;${bar}&amp;lt;/span&amp;gt;</code></code></pre><ul>
+<li>streams can be infinite</li>
+<li>you can be aware of the beginning and end of a stream</li>
+<li>unread values are buffered (unlike how events pre-listener(s) are just gone)</li>
+<li>piping</li>
+<li>error-handling (down the pipeline)</li>
+<li>cancellation (up the pipeline)</li>
+<li>flow control (react to the reader speed)</li>
+<li>one reader per stream</li>
+<li>untapped stream can be used like <code>tee</code></li>
+</ul>
+<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code>
+on that if text content expected).</p>
+<p>there may be transform streams implemented in the browser at some point (r/w).</p>
+<p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{} // called immediately
+, pull<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{}  // called when buffer isn<span class="hljs-quoted">&#39;t</span> full<span class="hljs-comment">; called until buffer is full</span>
+, cancel<span class="hljs-list">(<span class="hljs-keyword">reason</span>)</span>{}    // called if stream is cancelled
+}, queuingStrategy)</span>   // how the stream buffers <span class="hljs-list">(<span class="hljs-keyword">default</span> : one item)</span></code></pre><ul>
+<li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream&#39;s buffer</li>
+<li><code>controller.close()</code> ends</li>
+<li><code>controller.error(e)</code> sends <code>e</code> (is a terminal error)</li>
+<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)<ul>
+<li><code>queuingStrategy</code> is used to get this</li>
+</ul>
+</li>
+<li>you could call <code>controller.enqueue()</code> whenever there&#39;s data to send (stream as a push source)</li>
+<li>you could wait until there&#39;s a <code>pull</code> called, then queue up some data (pull source)</li>
+<li>you can do whatever you like (basically)</li>
+<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source
+is good/efficient. won&#39;t break anything if you don&#39;t, though, unless you run out of memory.</li>
+</ul>
+<p>html renders as it&#39;s received (no matter how it gets there). so fetching/compiling/whatevering
+markup on the fly (aka client-side rendering, aka the devil usually) without streams means
+slowness.</p>
+<p>here&#39;s a thing basically just copied out of jake archibald&#39;s blog. it&#39;s like this because we
+don&#39;t have a <code>.pipe()</code> in the browser. we need that.</p>
+<pre class="hljs"><code>const stream = new ReadableStream<span class="hljs-list">({
+  start<span class="hljs-list">(<span class="hljs-keyword">controller</span>)</span>{
+    // start and end from cache, middle from network with cache fallback
+    const
+      start = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/start-cached</span>&#39;)</span>
+    , end   = caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/end-cached</span>&#39;)</span>
+    , mid   = fetch<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle</span>&#39;)</span>
+        .catch<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; caches.match<span class="hljs-list">(<span class="hljs-quoted">&#39;/middle-cached</span>&#39;)</span>)</span>
+      push  = stream =&gt; {
+      const reader = stream.getReader<span class="hljs-list">()</span>
+      return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">function</span> process<span class="hljs-list">(<span class="hljs-keyword">result</span>)</span>{
+        if <span class="hljs-list">(<span class="hljs-keyword">result</span>.done)</span> {
+          return
+        }
+        controller.enqueue<span class="hljs-list">(<span class="hljs-keyword">result</span>.value)</span>
+        return reader.read<span class="hljs-list">()</span>.then<span class="hljs-list">(<span class="hljs-keyword">process</span>)</span>
+      })</span>
+    }
+
+    start.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; mid)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; end)</span>.then<span class="hljs-list">(<span class="hljs-keyword">response</span> =&gt; push<span class="hljs-list">(<span class="hljs-keyword">response</span>.body)</span>)</span>
+    .then<span class="hljs-list">(<span class="hljs-list">()</span> =&gt; controller.close<span class="hljs-list">()</span>)</span>
+  }
+})</span></code></pre><p>From here down I&#39;ll probably just be taking notes on streams in Node.</p>
+<p>Some important things to remember (for me to remember, that is) -- differences between the
+proposed Stream and Node&#39;s streams:</p>
+<ul>
+<li>Readable<ul>
+<li><code>.read()</code> instead of <code>.on(&#39;readable&#39;)</code></li>
+<li>Also a sync <code>.read()</code></li>
+<li>Cancellation semantics added</li>
+<li><code>desiredSize</code></li>
+<li><code>tee</code>ing built in</li>
+<li><code>data</code> event fully gone (it&#39;s only in Node streams in compatability mode, btw)</li>
+<li><code>pause</code> and <code>resume</code> aren&#39;t a thing</li>
+<li>no <code>unshift</code></li>
+<li>binary/string/object mode switching isn&#39;t a thing</li>
+<li>size parameter is gone (use BYOB readers)</li>
+</ul>
+</li>
+<li>Writable<ul>
+<li>No cork/uncork</li>
+</ul>
+</li>
+<li>Transform<ul>
+<li>now just <code>{readable, writable}</code> rly</li>
+</ul>
+</li>
+<li>other<ul>
+<li>promises instead of cbs</li>
+<li>no enc/dec built-in</li>
+<li><code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><ul>
+<li>so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for
+<code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Okay, so, Node streams.</p>
+<ul>
+<li><code>req</code> and <code>res</code> are streams</li>
+<li><code>.pipe()</code> listens for &#39;data&#39; and &#39;end&#39; from fs streams</li>
+<li><code>.pipe()</code> handles backpressure for ya</li>
+<li>types of streams:<ul>
+<li>readable</li>
+<li>writable</li>
+<li>transform</li>
+<li>duplex</li>
+<li>&#39;classic&#39;</li>
+</ul>
+</li>
+<li>chain pipes, don&#39;t break crap out<ul>
+<li><code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code></li>
+<li>that&#39;s basically the same as <code>one | two | three</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code>//<span class="hljs-comment">
+// readable</span><span class="hljs-comment">
+//</span>
+
+const Readable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Readable
+const rs = <span class="hljs-built_in">new</span> Readable
+rs.push(<span class="hljs-string">&#39;something, and &#39;</span>)
+rs.push(<span class="hljs-string">&#39;something else.&#39;</span>)
+rs.push(<span class="hljs-constant">null</span>)<span class="hljs-comment"> // this tells data consumers that we&#39;re done with rs</span>
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// so the pushes are buffered until a consumer wants them (the pipe to standard out)</span>
+<span class="hljs-comment">
+// instead of buffering:</span>
+let c = <span class="hljs-number">100</span>
+rs.<span class="hljs-title">_read</span> = () =&gt; {
+  rs.push(String.fromCharCode(c++))
+  <span class="hljs-keyword">if</span> (c &gt; <span class="hljs-string">&#39;z&#39;</span>.charCodeAt(<span class="hljs-number">0</span>)) {
+    rs.push(<span class="hljs-constant">null</span>)
+  }
+}
+rs.pipe(<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdout</span>)<span class="hljs-comment">
+// ._read can take a size param, the amount (in bytes) that the consumer wants</span><span class="hljs-comment">
+// to call it like that, try <code>node thisfile | head -cN</code> where <code>N</code> is an integer</span><span class="hljs-comment">
+// note that we&#39;d need to set up an error handler here because there&#39;ll be a SIGPIPE</span><span class="hljs-comment">
+// after <code>head</code> (EPIPE in node). that&#39;s not an issue when keeping your business all</span><span class="hljs-comment">
+// in node.</span><span class="hljs-comment">
+// <code>Readable({objectMode : true})</code> to be able to push arbitrary stuff (not just</span><span class="hljs-comment">
+// buffers and strings).</span>
+
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>()
+  console.dir(buf)
+})<span class="hljs-comment">
+// echo stuff, pipe it, eg <code>(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js</code></span><span class="hljs-comment">
+// usually we&#39;d probably pipe a stream into another stream, maybe using through2 or somesuch</span><span class="hljs-comment">
+// the above will return null at the end of what&#39;s being sent, because there&#39;s nothing left</span><span class="hljs-comment">
+// we could do <code>.read(N)</code> where <code>N</code> is bytes. doesn&#39;t work for object streams.</span>
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.on(<span class="hljs-string">&#39;readable&#39;</span>, () =&gt; {
+  let buf = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">2</span>)
+  console.dir(buf)<span class="hljs-comment"> // so we&#39;d get 2-byte chunks here. adding:</span>
+  <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.<span class="hljs-built_in">read</span>(<span class="hljs-number">0</span>)<span class="hljs-comment"> // will get the rest and make this actually work.</span>
+})
+<span class="hljs-comment">
+// YAY, that&#39;s it for readable streams</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// writable</span><span class="hljs-comment">
+//</span>
+
+const Writable = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#39;stream&#39;</span>).Writable
+const ws = <span class="hljs-built_in">new</span> Writable()
+ws.<span class="hljs-title">_write</span> = (chunk, encoding, next) =&gt; {
+  console.dir(chunk)
+  next()
+}
+<span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>.pipe(ws)<span class="hljs-comment">
+// chunk is the data written</span><span class="hljs-comment">
+// encoding (string) is only for when <code>opts.decodeStrings</code> is false and we&#39;ve been given a string</span><span class="hljs-comment">
+// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj</span><span class="hljs-comment">
+// if input stream is string, that&#39;ll be converted to buf. when creating the stream we can do</span>
+const strWs = <span class="hljs-built_in">new</span> Writable({decodeStrings : <span class="hljs-constant">false</span>})<span class="hljs-comment">
+// and if we&#39;re getting in objects</span>
+const objWs = <span class="hljs-built_in">new</span> Writable({objectMode : <span class="hljs-constant">true</span>})
+<span class="hljs-comment">
+// writing is basically as simple as calling .write (as we do with stdout)</span><span class="hljs-comment">
+// you can do a .end() to say we&#39;re done. that can take data to write, right before ending.</span><span class="hljs-comment">
+// write returns false when there&#39;s more data in incoming buff than opts.highWaterMark;</span><span class="hljs-comment">
+// listen for drain event to know when it&#39;s empty</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// transform</span><span class="hljs-comment">
+// these are duplex streams that do exactly what it sounds like. sometimes called &#39;through&#39; streams.</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// duplex</span><span class="hljs-comment">
+// r/w where both ends are two-way. example: <code>x.pipe(y).pipe(x)</code></span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+// classic streams</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// we&#39;re on node 6.1.0 as of this writing, and chances are i won&#39;t be doing much node stuff</span><span class="hljs-comment">
+// at all in the forseeable future, so i really don&#39;t care too too much about the legacy</span><span class="hljs-comment">
+// streams api. just <code>require(&#39;readable-stream&#39;)</code> instead of <code>&#39;stream&#39;</code>, if we must support</span><span class="hljs-comment">
+// node or other streams from &lt;=v0.8.</span>
+<span class="hljs-comment">
+// readable example:</span>
+const <span class="hljs-built_in">sin</span> = <span class="hljs-built_in">process</span>.<span class="hljs-keyword">stdin</span>
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;data&#39;</span>, buf =&gt; console.<span class="hljs-built_in">log</span>(buf))
+<span class="hljs-built_in">sin</span>.on(<span class="hljs-string">&#39;end&#39;</span>, () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#39;peace&#39;</span>))<span class="hljs-comment">
+// as soon as a data listener is registered, you&#39;re using compatability mode, so</span><span class="hljs-comment">
+// basically you lose a lot of functionality.</span><span class="hljs-comment">
+// through (the package) lets you use legacy streams with pipe</span><span class="hljs-comment">
+// these also have pause and resume.</span>
+<span class="hljs-comment">
+// writable:</span><span class="hljs-comment">
+// define write(buf), end(buf), and destroy(). end doesn&#39;t HAVE to have (buf), but</span><span class="hljs-comment">
+// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.</span>
+<span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+// streams that are built in to node</span><span class="hljs-comment">
+//</span><span class="hljs-comment">
+//</span>
+<span class="hljs-comment">
+// not gonna take really extensive notes here, for the reasons above and also because</span><span class="hljs-comment">
+// it&#39;s really easy to just go to the api docs and read all of them.</span></code></pre>]]></description><link>/2016/streams.html</link><guid isPermaLink="true">/2016/streams.html</guid><category><![CDATA[js]]></category><category><![CDATA[streams]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 15 May 2016 23:39:25 GMT</pubDate></item><item><title><![CDATA[api design notes]]></title><description><![CDATA[<p>think in terms of positives, not negatives</p>
+<p>for example &#39;ishidden(true)&#39; is confusing.
+instead to &#39;isvisible&#39;.</p>
+<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
+<p>instead of this, think in terms of enabled/showing</p>
+<p>this is both for myself (because i get confused) and for other people</p>
+<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
+<p>example from ariya hidayat&#39;s blog:
+if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
+take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
+]]></description><link>/2016/api-design-notes.html</link><guid isPermaLink="true">/2016/api-design-notes.html</guid><category><![CDATA[api]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:09:28 GMT</pubDate></item><item><title><![CDATA[React Performance]]></title><description><![CDATA[<ul>
+<li>Take a baseline measurement.<ul>
+<li>There&#39;s no way to measure improvements without something to measure against.</li>
+<li>Chrome&#39;s Timeline thing works well for this.</li>
+<li>Try measuring total elapsed time between the initial paint and the final rendering.</li>
+<li>Make sure the &#39;Paint&#39; and &#39;Screenshot&#39; options are checked.</li>
+</ul>
+</li>
+<li>Obviously the first big one is to just make your production code production code.<ul>
+<li><code>NODE_ENV=production</code>, <code>webpack -p</code>, etc.</li>
+<li>You can do something like this in your Webpack config:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// stuff</span>
+<span class="hljs-string">plugins :</span> [
+  <span class="hljs-keyword">new</span> webpack.DefinePlugin({
+    <span class="hljs-string">&#39;process.env.NODE_ENV&#39;</span> : JSON.stringify(<span class="hljs-string">&#39;production&#39;</span>)
+  })
+, <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin({
+    <span class="hljs-string">compress :</span> {
+      <span class="hljs-string">warnings :</span> <span class="hljs-literal">false</span>
+    }
+  })
+]
+<span class="hljs-comment">// stuff</span></code></pre><ul>
+<li>Reduce calls to <code>React.createClass</code> (if we&#39;re still doing that).<ul>
+<li>Try using React Inline Elements for this.</li>
+<li>We could configure Babel for this like so (this example would go directly in your package.json):</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-string">&quot;babel&quot;</span>: { <span class="hljs-string">&quot;env&quot;</span>: { <span class="hljs-string">&quot;production&quot;</span>: { <span class="hljs-string">&quot;plugins&quot;</span>: [
+  <span class="hljs-string">&quot;transform-react-constant-elements&quot;</span>,
+  <span class="hljs-string">&quot;transform-react-inline-elements&quot;</span>
+] } } }</code></pre><ul>
+<li>Keep checking against the initial benchmark.</li>
+<li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
+<li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
+</ul>
+]]></description><link>/2016/react-performance.html</link><guid isPermaLink="true">/2016/react-performance.html</guid><category><![CDATA[react]]></category><category><![CDATA[performance]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 14 May 2016 22:06:37 GMT</pubDate></item><item><title><![CDATA[fetch]]></title><description><![CDATA[<p>fetch is a thing</p>
+<p>uses promises</p>
+<p>here&#39;s doing stuff with xhr:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest()
+xhr.open(<span class="hljs-string">&#39;GET&#39;</span>, url)
+xhr.responseType = <span class="hljs-string">&#39;json&#39;</span>
+
+xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// do stuff with xhr.response</span>
+}
+
+xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#39;crap&#39;</span>)
+}
+
+xhr.send()</code></pre><p>and the equivalent with fetch:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(url)</span></span>
+.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(res =&gt; res.json()</span></span>)
+.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(data =&gt; /<em> do stuff with data </em>/)</span></span>
+.<span class="hljs-function"><span class="hljs-title">catch</span><span class="hljs-params">(e =&gt; console.error(e)</span></span>)</code></pre><p>granted i&#39;m also using es2015 in the fetch example, which makes it even nicer-looking,
+but whatever.</p>
+<p>using esnext async functions:</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword">async</span><span class="hljs-list">()</span> =&gt; <span class="hljs-collection">{
+  try <span class="hljs-collection">{
+    let res = await fetch<span class="hljs-list">(<span class="hljs-keyword">url</span>)</span>
+    let data = awat res.json<span class="hljs-list">()</span>
+    // do stuff with data
+  }</span> catch<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span> <span class="hljs-collection">{
+    console.error<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span>
+  }</span>
+}</span>)</span><span class="hljs-list">()</span></code></pre><p>xhr is kinda gross. i mean, everyone&#39;s used to it, and it basically works, but... yech.</p>
+<p>fetch is basically complete i think? i mean, evidently it&#39;s even in safari&#39;s dev preview version.</p>
+<p>if it&#39;s made it to safari, it&#39;s probably safe to use.</p>
+<p>fetch keeps req and res separate (they&#39;re constructors).</p>
+<p>request.context lets you tell where the req actually came from (eg link vs loaded asset vs whatever).</p>
+<p>you can throw a <code>no-cors</code> in your request so stuff doesn&#39;t fail (like it would with XHR) without CORS headers.</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(<span class="hljs-string">&#39;//foo.com&#39;</span>, {mode : <span class="hljs-string">&#39;no-cors&#39;</span>})</span></span>.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(response =&gt; console.log(response.type)</span></span>) <span class="hljs-comment">// opaque</span></code></pre><p>can&#39;t actually read the content of response here, but it could be used by something else (add an event listener
+for when it comes back, for example).</p>
+<p>other modes: <code>same-origin</code>, <code>cors</code>, and <code>cors-with-forced-preflight</code>.</p>
+<p>you could also cache that stuff, which is nice.</p>
+<p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access
+it sort of, with <code>responseText</code> while it&#39;s still going on, but it&#39;s going to put it all in mem anyway.</p>
+<pre class="hljs"><code>fetch(url)
+.then(response =&gt; {
+  <span class="hljs-keyword">let</span> foo = &#39;some <span class="hljs-type">string</span>, <span class="hljs-keyword">for</span> example&#39;
+  <span class="hljs-keyword">let</span> reader = response.body.getReader()
+  reader.read().then(<span class="hljs-literal">result</span>) =&gt; {
+    // okay there&#39;s actually a little more to this, but the idea <span class="hljs-keyword">is</span>,
+    // we can have an <span class="hljs-keyword">if</span> <span class="hljs-keyword">in</span> here to check <span class="hljs-keyword">if</span> this bit <span class="hljs-keyword">of</span> the stream
+    // <span class="hljs-keyword">is</span> equal to the thing we want. <span class="hljs-keyword">and</span> then, say
+    reader.cancel(&#39;i guess we\&#39;re done, here&#39;)
+  }
+})
+.then(<span class="hljs-literal">result</span> =&gt; /<em> <span class="hljs-keyword">do</span> stuff </em>/)
+.catch(e =&gt; console.error(e))</code></pre><p><code>response.body</code> is a <code>ReadableStream</code>.</p>
+<p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate
+content on the go, using that, with fetch. You can feed that to the view as you get it.</p>
+<p>I guess fetch didn&#39;t have streams when it first started to be implemented, so they have some
+other readers they stuck in there. So, <code>response</code> (or <code>request</code> actually, too), then</p>
+<ul>
+<li><code>.arrayBuffer()</code></li>
+<li><code>.blob()</code></li>
+<li><code>.formData()</code></li>
+<li><code>.json()</code></li>
+<li>and <code>.text()</code></li>
+</ul>
+<p>Once they&#39;ve been called, you can&#39;t call another one on that same stream (they &#39;drain&#39; the stream). What we could
+do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respone.clone().json().catch() =&gt; response.text())</code>.</p>
+<p>You can check <code>response.headers</code> to decide what you need to do with it.</p>
+<pre class="hljs"><code>fetch(url)
+.<span class="hljs-keyword">then</span>(response =&gt; {
+  <span class="hljs-keyword">if</span> (response.headers.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#39;Content-Type&#39;</span>) === <span class="hljs-string">&#39;application/json&#39;</span>) {
+    <span class="hljs-constant">return</span> response.json()
+  }
+  <span class="hljs-constant">return</span> response.<span class="hljs-keyword">text</span>()
+})</code></pre><p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better
+control over cache, and same-origin requests without credentials (no credentials is fetch&#39;s default).</p>
+<p>You <em>can&#39;t</em> abort a request with fetch before at least the headers come back (yet).</p>
+<p>You can&#39;t track progress (yet), but you can do stuff to do that on your own (by working with <code>Content-Length</code>).</p>
+<p>Sync is in the spec, but doesn&#39;t look like anyone will implement that in the API.</p>
+<p>Oh right, thre are other verbs here. Or just POST?</p>
+<pre class="hljs"><code>fetch(url, {
+  <span class="hljs-keyword">method</span>  : &#39;post&#39;
+, headers : {&#39;<span class="hljs-type">Content</span>-<span class="hljs-type">Type</span>&#39; : &#39;application/x-www-form-urlencoded; charset=<span class="hljs-type">UTF</span>-<span class="hljs-number">8</span>&#39;}
+, body    : &#39;stuff=things&amp;hello=world&#39;
+})
+.then(/<em> etc. </em>/)</code></pre><p>And credentials (like cookies, for example): <code>fetch(url, {credentials : &#39;include&#39;})</code></p>
+<p>There&#39;s a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch
+instead of XHR. Looks pretty nice.</p>
+<p>There are a bunch of other fetch implementations. But it&#39;s already basically in browsers, so Node can&#39;t be
+<em>too</em> far behind... right?</p>
+]]></description><link>/2016/fetch.html</link><guid isPermaLink="true">/2016/fetch.html</guid><category><![CDATA[js]]></category><category><![CDATA[fetch]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 12 May 2016 17:23:31 GMT</pubDate></item><item><title><![CDATA[cs notes]]></title><description><![CDATA[<p>notes on a bunch of stuff</p>
+<h2 id="big-o-">Big O:</h2>
+<ul>
+<li>analyzing the efficiency of algorithms (or code).</li>
+<li>One could figure how much time fn will take given n input(s).</li>
+<li>But really more interested in orders of magnitude than precise differences
+(eg 100ms vs 10000ms, not 100ms vs 110ms).</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// this is <code>O(n)</code>. we go through the input(s) once, in a loop.</span>
+<span class="hljs-keyword">const</span> crossAdd = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">let</span>
+      up = input[i]
+    , dn = input[input.length - <span class="hljs-number">1</span> - i]
+    answer.push(up + dn)
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-comment">// also <code>O(n)</code>.</span>
+<span class="hljs-comment">// we assume the worst, here. and the worst is that</span>
+<span class="hljs-comment">// the last element of <code>haystack</code> would match <code>needle</code>.</span>
+<span class="hljs-keyword">const</span> find = (needle, haystack) =&gt; {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; haystack.length; i++) {
+    <span class="hljs-keyword">if</span> (haystack[i] === needle) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>
+    }
+  }
+}
+
+<span class="hljs-comment">// this is <code>O(n2)</code> (imagine that <code>2</code> is superscript, please).</span>
+<span class="hljs-comment">// we have to basically go through an extra loop every time we need</span>
+<span class="hljs-comment">// to go through one loop.. this is bad.</span>
+<span class="hljs-keyword">const</span> makeTuples = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; i &lt; input.length; j++) {
+      answer.push([input[i], input[j]])
+    }
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&#39;stuff&#39;</span> <span class="hljs-comment">// this would be called <code>O(1)</code>, meaning &#39;constant time&#39;</span>
+
+<span class="hljs-comment">// <code>O(log n)</code> is a good. recursion, for example, can be helpful here.</span>
+<span class="hljs-comment">// this is tough to understand without having any real background in math</span>
+<span class="hljs-comment">// i think what this mens is, so, <code>log n</code> means something like, what you&#39;d need</span>
+<span class="hljs-comment">// to raise 2 by (exponentially) to get to <code>n</code>. so if <code>n = 1024</code>, <code>O(n)</code> is like</span>
+<span class="hljs-comment">// saying <code>fn(1024)</code>, and <code>O(log n)</code> would be like saying <code>fn(32)</code>... or something</span>
+<span class="hljs-comment">// ... sort of? whatever, not gonna stress about it too much right this minute.</span></code></pre><h2 id="sorts">Sorts</h2>
+<ul>
+<li>A bubble sort is <code>O(n2)</code>, because there are two loops:<ul>
+<li>One to check if the indices of two elements ought to be swapped, and</li>
+<li>An outer loop to see if the swap took place</li>
+</ul>
+</li>
+<li>An insertion sort is slightly better.<ul>
+<li>It&#39;d be useful if you&#39;re reasonably confident that what you&#39;re sorting is already
+somewhat close to being sorted.</li>
+<li>This could be anywhere from <code>O(n2)</code> to <code>O(n)</code>.</li>
+</ul>
+</li>
+<li>Merge sort is recursive.<ul>
+<li>The way this works is to take your list, split it, and then call itself (the sort)
+on each half.</li>
+<li>Then that repeats for each smaller bit. Once the list gets down to one, that&#39;s returned.</li>
+<li>Then I guess you&#39;d have another merge going on that&#39;s going over each pair (or set?) of
+lists and merging that, and then on back up, until it&#39;s done.</li>
+<li><code>Array.sort()</code> is usually a merge sort.</li>
+<li>A merge sort will also keep equivalent elements at their original indicies.<ul>
+<li>Apparenty we call that being <em>stable</em>.</li>
+</ul>
+</li>
+<li><code>O(n log n)</code>. Wat.</li>
+</ul>
+</li>
+<li>Quicksort is also recursive.<ul>
+<li>It&#39;s the other one some engines use for <code>Array.prototype.sort</code>.</li>
+<li>Take the last el, and call it your pivot.<ul>
+<li>Everything smaller goes to the &#39;left&#39; of that, everything larger to the right.</li>
+<li>Then the same sort is called on each half.</li>
+<li>Each returns, and then the left, pivot, and right are catenated (in that order).</li>
+<li>When you get to a list of one or zero, it just returns.</li>
+</ul>
+</li>
+<li>This is also <code>O(n log n)</code>.<ul>
+<li>Uses less memory than a merge sort (doesn&#39;t have to create new lists all over the place).</li>
+<li>Performs like crap on an already-sorted list, since it&#39;d be starting with a pivot of the
+largest element, already.<ul>
+<li>You can get around that by doing stuff like checking the 0, length -1, and in the middle,
+and swapping if need be to get a better pivot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+<li>Interfaces?<ul>
+<li>Meaning, we just want to consume that data structure.</li>
+<li>We don&#39;t need to know how it works, just that it acts some specific, expected way.</li>
+</ul>
+</li>
+<li>Sets are nice. We have these in ES6 now.<ul>
+<li>Sets will always at least let you:<ul>
+<li><strong>add</strong> items,</li>
+<li>check if the set <strong>contains</strong> them,</li>
+<li><strong>remove</strong> items,</li>
+<li>and call <strong>toList</strong> (or similar; JS sets have <code>.values()</code> but for an Array you&#39;d want to do
+something like <code>const arr = Array.from(someSet)</code> or <code>const arr = [...someSet]</code>.<ul>
+<li>This won&#39;t come back in any particular order -- sets don&#39;t keep track of that.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What I can really see useful about them is that they don&#39;t allow duplicate values.<ul>
+<li>If you do something like <code>const s = new Set ; s.add(&#39;foo&#39;) ; s.add(&#39;foo&#39;)</code> it won&#39;t yell at you,
+but if you then do <code>s.values()</code> you&#39;ll just see <code>SetIterator { &#39;foo&#39; }</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Maps are basically the same sort of concept as a hash/dictionary/JS object, except without all the
+extra bits that JS objects have (methods, inheritance, etc.).<ul>
+<li>Basically just a collection of key-value pairs, except:<ul>
+<li>Really more like a <em>set</em> of keys, with values associated with them, so</li>
+<li>Again, no duplicates!</li>
+<li>You could have duplicate <em>values</em> though. Just not duplicate keys.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stacks are kinda like what they sound like.<ul>
+<li>Only <code>push</code> and <code>pop</code> type of things.</li>
+<li>LIFO</li>
+<li>So if you have a stack that&#39;s like <code>a b c</code> and you push <code>d</code>, then pop, you&#39;ll get <code>d</code> returned
+(and removed from the stack).</li>
+<li>Frequently have a &#39;peek&#39;-like method for looking at the top of the stack without actualy doing
+anything.</li>
+<li>Easiest way to visualize this is probably just thinking about the order of execution of something
+trivial, like a function that calls two functions, one of which maybe calls another funciton or two.</li>
+</ul>
+</li>
+<li>Queues are FIFO.<ul>
+<li>These would have methods like <code>enqueue</code> (push) and <code>dequeue</code> (pop), and probably a &#39;peek&#39; type of
+thing too.</li>
+<li>With priority queues, things that have a higher priority can be sort of rushed through the line,
+basically, and dequeued earlier.</li>
+</ul>
+</li>
+</ul>
+<h3 id="implementations">Implementations</h3>
+<ul>
+<li>An ArrayList (it&#39;s a Java thing, I guess -- JS has arrays, and we don&#39;t really need to think all that
+much about how they actually do their job because we have GC--wait, does Java not? Oh. Huh. Poor them.)
+addresses specific indices like normal, but when you remove items from the array, you have to, like,
+shrink it back down because you have to think about that bit of memory.<ul>
+<li>So I guess, say you do the equivalent of <code>.splice()</code> or something, you have to actually say &#39;okay, get rid of element [2], then move everything from [3] to the end back one, then get rid of the last one, please&#39; or something.</li>
+</ul>
+</li>
+<li>So, I hear a lot about linked lists. Apparently they&#39;re super important because it&#39;s one of like three
+things any CS grad knows. Almost definitely in Java.<ul>
+<li>A linked list is just a list where each element is aware of the next element.</li>
+<li>So basically it&#39;s a list where each item has two properties:<ul>
+<li>Its actual value, and</li>
+<li>A pointer (or reference) to the next node (element)</li>
+</ul>
+</li>
+<li>A linked list&#39;s <code>add</code> and <code>remove</code> would be <code>O(1)</code>, then, because all you need to do is change the
+pointer on the previous node.<ul>
+<li>Its <code>get</code> would be <code>O(n)</code> though because you need to loop through up &#39;til you get to the right node.</li>
+<li>The ArrayList would be the other way around, it&#39;d have a <code>delete</code> and <code>add</code> of <code>O(n)</code> and a <code>get</code> of <code>O(1)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BST!<ul>
+<li>Each node will have either 0, 1, or 2 subtrees.<ul>
+<li>Every el in the left subtree will be less than the value of the node.</li>
+<li>Every el in the right will be greater.</li>
+</ul>
+</li>
+<li>Just have to change pointers, then, to add.<ul>
+<li>Basically just walk down the tree and find the right spot.</li>
+</ul>
+</li>
+<li>Roughly <code>O(log n)</code> on <code>get</code>, <code>add</code>, and <code>delete</code>.<ul>
+<li>Can be as bad as <code>O(n)</code> if a sorted list is stuck in there.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution to some of the problems of a BST? AVL tree.<ul>
+<li>(It&#39;s got some long name, so we&#39;ll stick with the abbreviation.)<ul>
+<li>This is a &#39;self-balancing binary search tree.&#39;</li>
+</ul>
+</li>
+<li>BSTs can get out of whack.</li>
+<li>An AVL tree is always a valid BST (but not always the other way around).</li>
+<li>Adding works the same, except that you check to see if the node is balanced after adding.</li>
+<li>It&#39;s unbalanced if there&#39;s a height difference greater than one on the subtrees.</li>
+<li>Worst case? <code>O(log n)</code>.</li>
+<li>You could end up in a situation where you need a double rotation.<ul>
+<li>Basically, if the opposite child is heavy during rotation.</li>
+<li>So before you do the (probably initially intended) rotation, you do one on the root
+node of that rotation, opposite-wise.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hash tables have constant-time get, delete, and add (if you&#39;re working with a set or a map).<ul>
+<li>So, you&#39;ve got a key, and you hash that (MD5 or whatever).<ul>
+<li>Now we&#39;ve got a key that points to some addressable space.</li>
+<li>This isn&#39;t really a thing in JS.</li>
+</ul>
+</li>
+<li>This is neat in other languages because you can just work against that space, without
+needing to do the (logic) work of hunting things down, kinda, basically.</li>
+<li>No concept of order.</li>
+<li>Uses a fair bit of memory.</li>
+<li>Needs an idempotent hash (that is, a super-pure function -- exact same output, provided the same
+input, every single time.).</li>
+<li>Hash also has to be very well distributed.</li>
+<li>And fast.</li>
+<li>Almost probably definitely maybe need to use <code>%</code> to get your hash down to a manageable number you can
+actually use (smaller than the largest index of your array).</li>
+</ul>
+</li>
+</ul>
+<h2 id="some-fp-basics">Some FP Basics</h2>
+<ul>
+<li>Purity<ul>
+<li>Don&#39;t you dare touch my state!</li>
+</ul>
+</li>
+<li>HOF</li>
+<li>Vector (or array) programming is especially fp-friendly.<ul>
+<li>It makes sense to expect that you can chain functions together.</li>
+<li>This ends up being much, <em>much</em> more declarative.</li>
+<li>Just think about <code>map</code>, <code>reduce</code>, and <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/cs-notes.html</link><guid isPermaLink="true">/2016/cs-notes.html</guid><category><![CDATA[cs]]></category><category><![CDATA[algorithms]]></category><category><![CDATA[datastructures]]></category><category><![CDATA[sort]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 12 May 2016 17:21:24 GMT</pubDate></item><item><title><![CDATA[Forty Reasons To Wonder Why The Fuck You Love Apple]]></title><description><![CDATA[<p>A response to <a href="http://www.networkworld.com/article/3050934/macs/on-its-40th-anniversary-40-things-we-love-about-apple.html">this
+absurdity</a>.</p>
+<p>These are literally just a summary of each of those slides.</p>
+<ul>
+<li>Apple has a marketing team</li>
+<li>their users are obsessed</li>
+<li>they make decent clones of other products years after those products are the norm</li>
+<li>they don&#39;t know their own target demographic</li>
+<li>they make products</li>
+<li>they make the same products year after year and announce them as if they&#39;re new</li>
+<li>they make inferior products and market them as if they&#39;re worth buying</li>
+<li>they still don&#39;t know their own users</li>
+<li>their users are still obsessed</li>
+<li>they have stores that sell their products</li>
+<li>they put their products in boxes</li>
+<li>they offer short-term care for their products after you buy them</li>
+<li>they have stores that you have to wait to get into</li>
+<li>they make products</li>
+<li>they made products years ago, too</li>
+<li>their products were not the exact same products as other products, years ago</li>
+<li>one of the products they used to make was a printer</li>
+<li>they also used to make... products</li>
+<li>like an idiot, i don&#39;t back up my data. and when a hard drive fails, i prefer to buy a new computer of a different
+brand and then blame an entire major segment of consumer electronics for my own stupidity.</li>
+<li>i noce bought one of their products</li>
+<li>they make overpriced things that don&#39;t offer anything that any other platform doesn&#39;t have, but i by their crap anyway</li>
+<li>their smartphones offer all the same functionality that flip phones have</li>
+<li>they make apps</li>
+<li>at one point the company almost totally failed, but then didn&#39;t</li>
+<li>some people who work at Apple aren&#39;t native English speakers</li>
+<li>i buy their products both for myself and for my kids sometimes</li>
+<li>they made another &#39;new&#39; product that had already been on the market for years</li>
+<li>they even had a marketing team back when CDs were still a thing</li>
+<li>they made a really shitty mouse that everyone hated, aww, look at them trying, so cute</li>
+<li>applescript is such a joke that it wasn&#39;t going to be included in OS X until, whoops, someone put them on the spot
+about it</li>
+<li>there is a voice assistant</li>
+<li>Apple had a version of BASIC which was almost the same but not <em>exactly</em> the same as any of the other BASICs on the
+market at the time</li>
+<li>they had PR person that nobody liked</li>
+<li>their computers can run software, including some games</li>
+<li>they have stores not just where you are but in other places also</li>
+<li>they have both marketing and PR people</li>
+<li>they sometimes sponsor events, in the same way that most large companies sometimes sponsor events</li>
+<li>they sometimes have TV commercials</li>
+<li>there are people who like their products enough to sometimes write about them</li>
+</ul>
+<p>... are you fucking kidding me?</p>
+<p>Here&#39;s a couple of things to like about Macs/Apple. Keep in mind that I don&#39;t own any Apple products, and haven&#39;t owned
+any since before Mac OS X. I have used them regularly over the past several years, though.</p>
+<ul>
+<li>Their hardware doesn&#39;t suck. It&#39;s not great, performance-wise, for the price, but it&#39;s good hardware.<ul>
+<li>Great battery life (due to the fancy it&#39;s-not-in-just-one-place-in-your-laptop battery).</li>
+<li>Great displays (if you pay for the great display).</li>
+<li>The cases (speaking of their laptops, here) are <em>gorgeous</em>.</li>
+<li>They&#39;re super light. Yes, there are Windows laptops that are also super light. Those Windows laptops also probably
+cost less and are more powerful, generally. But you can get a powerful Mac that&#39;s also lightweight (for like $3500).</li>
+<li>The keyboards, while annoyingly different from literally every other type of computer ever, have a nice feel.
+(My current laptop, and the one I used just prior to this one, had equally good keyboards. They&#39;re not only a
+Mac thing.)</li>
+</ul>
+</li>
+<li>Under the hood, Mac OS X is a (gimped) BSD. It&#39;s a PITA sometimes to actually get to the good parts, and it&#39;s a lot
+easier to just throw Linux on a (much cheaper, probably faster) laptop, but it can be made into a really nice
+development environment. It takes some work on any platform (and is virtually impossible on Windows, unless you&#39;re
+developing to target Windows), but on Macs it&#39;s a little more difficult to get to the UNIX-y bits than on a Linux or
+BSD.</li>
+<li>Macs are trendy. People who really believe they &#39;think different&#39; will think you&#39;re cool for having one. Of course,
+all that means is that you believe the same marketing as those people, but they&#39;re not a bad bunch to be kinda lumped
+together with, usually.</li>
+<li>There&#39;s some software (and I&#39;m thinking specifically of design software here) that just isn&#39;t available for other
+platforms. I still can&#39;t accept that it&#39;s a good idea to only target Mac, but The Omni Group has been doing it for
+like 27 years and they&#39;re still around, so I guess it works. This fits in with the whole &#39;we make products for a
+specific type of person and if you are that type of person you NEED to use this product&#39; kind of marketing though.
+There are great design tools available on Windows (Adobe products, for example, or Macaw). There are even great tools
+for Linux. Go ahead and laugh at GIMP and Inkscape -- they&#39;ve been around forever and are <em>incredibly</em> powerful. And
+we (Linux users) also have Scribus, Blender, Lightworks, Krita, Radiance, Darktable (which is hands-down the best RAW
+editor I&#39;ve ever seen), and a host of fantastic video tools -- plus, of course, ImageMagick and everything that
+allows.</li>
+<li>Mac OS X isn&#39;t Windows.<ul>
+<li>I should say that Windows <em>is</em> good at some things. I think. Not the OS itself, but having the OS, it&#39;s probably a
+good idea if you&#39;re really into games, or developing specifically for Microsoft products (VB, C#, whatever).</li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</link><guid isPermaLink="true">/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html</guid><category><![CDATA[apple]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 09 May 2016 18:14:00 GMT</pubDate></item></channel></rss>

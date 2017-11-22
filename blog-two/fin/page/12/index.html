@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>angr - Page 12</title>
+  <meta name="description" content="">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/page/12/index.html" />
+<link rel="prev" href="http://blog.zacanger.com/page/11/" />
+<link rel="next" href="http://blog.zacanger.com/page/13/" />
+</head>
+<body class="paged archive-template">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+
+  <article class="post tag-api tag-design">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/api-design-notes.html">api design notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-14">14 May, 2016</time>
+         | tags: <a href="/tag/api/">api</a>, <a href="/tag/design/">design</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>think in terms of positives, not negatives</p>
+<p>for example &#39;ishidden(true)&#39; is confusing.
+instead to &#39;isvisible&#39;.</p>
+<p>think about ng-show/hide ng-disabled what? this is confusing.</p>
+<p>instead of this, think in terms of enabled/showing</p>
+<p>this is both for myself (because i get confused) and for other people</p>
+<p>evidently it&#39;s not always clear especially to non-native english speakers what the hell is going on</p>
+<p>example from ariya hidayat&#39;s blog:
+if you asked him if <code>A</code> equals <code>a</code> if <code>caseInsensitive</code> is <code>false</code>, that&#39;d
+take a minute of thinking to even understand. instead, why not just <code>caseSensitive</code>?</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-react tag-performance">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/react-performance.html">React Performance</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-14">14 May, 2016</time>
+         | tags: <a href="/tag/react/">react</a>, <a href="/tag/performance/">performance</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><ul>
+<li>Take a baseline measurement.<ul>
+<li>There&#39;s no way to measure improvements without something to measure against.</li>
+<li>Chrome&#39;s Timeline thing works well for this.</li>
+<li>Try measuring total elapsed time between the initial paint and the final rendering.</li>
+<li>Make sure the &#39;Paint&#39; and &#39;Screenshot&#39; options are checked.</li>
+</ul>
+</li>
+<li>Obviously the first big one is to just make your production code production code.<ul>
+<li><code>NODE_ENV=production</code>, <code>webpack -p</code>, etc.</li>
+<li>You can do something like this in your Webpack config:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// stuff</span>
+<span class="hljs-string">plugins :</span> [
+  <span class="hljs-keyword">new</span> webpack.DefinePlugin({
+    <span class="hljs-string">&#39;process.env.NODE_ENV&#39;</span> : JSON.stringify(<span class="hljs-string">&#39;production&#39;</span>)
+  })
+, <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin({
+    <span class="hljs-string">compress :</span> {
+      <span class="hljs-string">warnings :</span> <span class="hljs-literal">false</span>
+    }
+  })
+]
+<span class="hljs-comment">// stuff</span></code></pre><ul>
+<li>Reduce calls to <code>React.createClass</code> (if we&#39;re still doing that).<ul>
+<li>Try using React Inline Elements for this.</li>
+<li>We could configure Babel for this like so (this example would go directly in your package.json):</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-string">&quot;babel&quot;</span>: { <span class="hljs-string">&quot;env&quot;</span>: { <span class="hljs-string">&quot;production&quot;</span>: { <span class="hljs-string">&quot;plugins&quot;</span>: [
+  <span class="hljs-string">&quot;transform-react-constant-elements&quot;</span>,
+  <span class="hljs-string">&quot;transform-react-inline-elements&quot;</span>
+] } } }</code></pre><ul>
+<li>Keep checking against the initial benchmark.</li>
+<li>&#39;babel-plugin-transform-react-remove-prop-types&#39; might also be useful. It removes unwanted/unused React.PropTypes.</li>
+<li>There&#39;s also &#39;babel-preset-react-optimize&#39;</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-js tag-fetch">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/fetch.html">fetch</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-12">12 May, 2016</time>
+         | tags: <a href="/tag/js/">js</a>, <a href="/tag/fetch/">fetch</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>fetch is a thing</p>
+<p>uses promises</p>
+<p>here&#39;s doing stuff with xhr:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest()
+xhr.open(<span class="hljs-string">&#39;GET&#39;</span>, url)
+xhr.responseType = <span class="hljs-string">&#39;json&#39;</span>
+
+xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// do stuff with xhr.response</span>
+}
+
+xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#39;crap&#39;</span>)
+}
+
+xhr.send()</code></pre><p>and the equivalent with fetch:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(url)</span></span>
+.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(res =&gt; res.json()</span></span>)
+.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(data =&gt; /<em> do stuff with data </em>/)</span></span>
+.<span class="hljs-function"><span class="hljs-title">catch</span><span class="hljs-params">(e =&gt; console.error(e)</span></span>)</code></pre><p>granted i&#39;m also using es2015 in the fetch example, which makes it even nicer-looking,
+but whatever.</p>
+<p>using esnext async functions:</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword">async</span><span class="hljs-list">()</span> =&gt; <span class="hljs-collection">{
+  try <span class="hljs-collection">{
+    let res = await fetch<span class="hljs-list">(<span class="hljs-keyword">url</span>)</span>
+    let data = awat res.json<span class="hljs-list">()</span>
+    // do stuff with data
+  }</span> catch<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span> <span class="hljs-collection">{
+    console.error<span class="hljs-list">(<span class="hljs-keyword">e</span>)</span>
+  }</span>
+}</span>)</span><span class="hljs-list">()</span></code></pre><p>xhr is kinda gross. i mean, everyone&#39;s used to it, and it basically works, but... yech.</p>
+<p>fetch is basically complete i think? i mean, evidently it&#39;s even in safari&#39;s dev preview version.</p>
+<p>if it&#39;s made it to safari, it&#39;s probably safe to use.</p>
+<p>fetch keeps req and res separate (they&#39;re constructors).</p>
+<p>request.context lets you tell where the req actually came from (eg link vs loaded asset vs whatever).</p>
+<p>you can throw a <code>no-cors</code> in your request so stuff doesn&#39;t fail (like it would with XHR) without CORS headers.</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">fetch</span><span class="hljs-params">(<span class="hljs-string">&#39;//foo.com&#39;</span>, {mode : <span class="hljs-string">&#39;no-cors&#39;</span>})</span></span>.<span class="hljs-function"><span class="hljs-title">then</span><span class="hljs-params">(response =&gt; console.log(response.type)</span></span>) <span class="hljs-comment">// opaque</span></code></pre><p>can&#39;t actually read the content of response here, but it could be used by something else (add an event listener
+for when it comes back, for example).</p>
+<p>other modes: <code>same-origin</code>, <code>cors</code>, and <code>cors-with-forced-preflight</code>.</p>
+<p>you could also cache that stuff, which is nice.</p>
+<p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access
+it sort of, with <code>responseText</code> while it&#39;s still going on, but it&#39;s going to put it all in mem anyway.</p>
+<pre class="hljs"><code>fetch(url)
+.then(response =&gt; {
+  <span class="hljs-keyword">let</span> foo = &#39;some <span class="hljs-type">string</span>, <span class="hljs-keyword">for</span> example&#39;
+  <span class="hljs-keyword">let</span> reader = response.body.getReader()
+  reader.read().then(<span class="hljs-literal">result</span>) =&gt; {
+    // okay there&#39;s actually a little more to this, but the idea <span class="hljs-keyword">is</span>,
+    // we can have an <span class="hljs-keyword">if</span> <span class="hljs-keyword">in</span> here to check <span class="hljs-keyword">if</span> this bit <span class="hljs-keyword">of</span> the stream
+    // <span class="hljs-keyword">is</span> equal to the thing we want. <span class="hljs-keyword">and</span> then, say
+    reader.cancel(&#39;i guess we\&#39;re done, here&#39;)
+  }
+})
+.then(<span class="hljs-literal">result</span> =&gt; /<em> <span class="hljs-keyword">do</span> stuff </em>/)
+.catch(e =&gt; console.error(e))</code></pre><p><code>response.body</code> is a <code>ReadableStream</code>.</p>
+<p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate
+content on the go, using that, with fetch. You can feed that to the view as you get it.</p>
+<p>I guess fetch didn&#39;t have streams when it first started to be implemented, so they have some
+other readers they stuck in there. So, <code>response</code> (or <code>request</code> actually, too), then</p>
+<ul>
+<li><code>.arrayBuffer()</code></li>
+<li><code>.blob()</code></li>
+<li><code>.formData()</code></li>
+<li><code>.json()</code></li>
+<li>and <code>.text()</code></li>
+</ul>
+<p>Once they&#39;ve been called, you can&#39;t call another one on that same stream (they &#39;drain&#39; the stream). What we could
+do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respone.clone().json().catch() =&gt; response.text())</code>.</p>
+<p>You can check <code>response.headers</code> to decide what you need to do with it.</p>
+<pre class="hljs"><code>fetch(url)
+.<span class="hljs-keyword">then</span>(response =&gt; {
+  <span class="hljs-keyword">if</span> (response.headers.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#39;Content-Type&#39;</span>) === <span class="hljs-string">&#39;application/json&#39;</span>) {
+    <span class="hljs-constant">return</span> response.json()
+  }
+  <span class="hljs-constant">return</span> response.<span class="hljs-keyword">text</span>()
+})</code></pre><p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better
+control over cache, and same-origin requests without credentials (no credentials is fetch&#39;s default).</p>
+<p>You <em>can&#39;t</em> abort a request with fetch before at least the headers come back (yet).</p>
+<p>You can&#39;t track progress (yet), but you can do stuff to do that on your own (by working with <code>Content-Length</code>).</p>
+<p>Sync is in the spec, but doesn&#39;t look like anyone will implement that in the API.</p>
+<p>Oh right, thre are other verbs here. Or just POST?</p>
+<pre class="hljs"><code>fetch(url, {
+  <span class="hljs-keyword">method</span>  : &#39;post&#39;
+, headers : {&#39;<span class="hljs-type">Content</span>-<span class="hljs-type">Type</span>&#39; : &#39;application/x-www-form-urlencoded; charset=<span class="hljs-type">UTF</span>-<span class="hljs-number">8</span>&#39;}
+, body    : &#39;stuff=things&amp;hello=world&#39;
+})
+.then(/<em> etc. </em>/)</code></pre><p>And credentials (like cookies, for example): <code>fetch(url, {credentials : &#39;include&#39;})</code></p>
+<p>There&#39;s a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch
+instead of XHR. Looks pretty nice.</p>
+<p>There are a bunch of other fetch implementations. But it&#39;s already basically in browsers, so Node can&#39;t be
+<em>too</em> far behind... right?</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-cs tag-algorithms tag-datastructures tag-sort">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/cs-notes.html">cs notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-12">12 May, 2016</time>
+         | tags: <a href="/tag/cs/">cs</a>, <a href="/tag/algorithms/">algorithms</a>, <a href="/tag/datastructures/">datastructures</a>, <a href="/tag/sort/">sort</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>notes on a bunch of stuff</p>
+<h2 id="big-o-">Big O:</h2>
+<ul>
+<li>analyzing the efficiency of algorithms (or code).</li>
+<li>One could figure how much time fn will take given n input(s).</li>
+<li>But really more interested in orders of magnitude than precise differences
+(eg 100ms vs 10000ms, not 100ms vs 110ms).</li>
+</ul>
+<pre class="hljs"><code><span class="hljs-comment">// this is <code>O(n)</code>. we go through the input(s) once, in a loop.</span>
+<span class="hljs-keyword">const</span> crossAdd = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">let</span>
+      up = input[i]
+    , dn = input[input.length - <span class="hljs-number">1</span> - i]
+    answer.push(up + dn)
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-comment">// also <code>O(n)</code>.</span>
+<span class="hljs-comment">// we assume the worst, here. and the worst is that</span>
+<span class="hljs-comment">// the last element of <code>haystack</code> would match <code>needle</code>.</span>
+<span class="hljs-keyword">const</span> find = (needle, haystack) =&gt; {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; haystack.length; i++) {
+    <span class="hljs-keyword">if</span> (haystack[i] === needle) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>
+    }
+  }
+}
+
+<span class="hljs-comment">// this is <code>O(n2)</code> (imagine that <code>2</code> is superscript, please).</span>
+<span class="hljs-comment">// we have to basically go through an extra loop every time we need</span>
+<span class="hljs-comment">// to go through one loop.. this is bad.</span>
+<span class="hljs-keyword">const</span> makeTuples = input =&gt; {
+  <span class="hljs-keyword">let</span> answer = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; input.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; i &lt; input.length; j++) {
+      answer.push([input[i], input[j]])
+    }
+  }
+  <span class="hljs-keyword">return</span> answer
+}
+
+<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&#39;stuff&#39;</span> <span class="hljs-comment">// this would be called <code>O(1)</code>, meaning &#39;constant time&#39;</span>
+
+<span class="hljs-comment">// <code>O(log n)</code> is a good. recursion, for example, can be helpful here.</span>
+<span class="hljs-comment">// this is tough to understand without having any real background in math</span>
+<span class="hljs-comment">// i think what this mens is, so, <code>log n</code> means something like, what you&#39;d need</span>
+<span class="hljs-comment">// to raise 2 by (exponentially) to get to <code>n</code>. so if <code>n = 1024</code>, <code>O(n)</code> is like</span>
+<span class="hljs-comment">// saying <code>fn(1024)</code>, and <code>O(log n)</code> would be like saying <code>fn(32)</code>... or something</span>
+<span class="hljs-comment">// ... sort of? whatever, not gonna stress about it too much right this minute.</span></code></pre><h2 id="sorts">Sorts</h2>
+<ul>
+<li>A bubble sort is <code>O(n2)</code>, because there are two loops:<ul>
+<li>One to check if the indices of two elements ought to be swapped, and</li>
+<li>An outer loop to see if the swap took place</li>
+</ul>
+</li>
+<li>An insertion sort is slightly better.<ul>
+<li>It&#39;d be useful if you&#39;re reasonably confident that what you&#39;re sorting is already
+somewhat close to being sorted.</li>
+<li>This could be anywhere from <code>O(n2)</code> to <code>O(n)</code>.</li>
+</ul>
+</li>
+<li>Merge sort is recursive.<ul>
+<li>The way this works is to take your list, split it, and then call itself (the sort)
+on each half.</li>
+<li>Then that repeats for each smaller bit. Once the list gets down to one, that&#39;s returned.</li>
+<li>Then I guess you&#39;d have another merge going on that&#39;s going over each pair (or set?) of
+lists and merging that, and then on back up, until it&#39;s done.</li>
+<li><code>Array.sort()</code> is usually a merge sort.</li>
+<li>A merge sort will also keep equivalent elements at their original indicies.<ul>
+<li>Apparenty we call that being <em>stable</em>.</li>
+</ul>
+</li>
+<li><code>O(n log n)</code>. Wat.</li>
+</ul>
+</li>
+<li>Quicksort is also recursive.<ul>
+<li>It&#39;s the other one some engines use for <code>Array.prototype.sort</code>.</li>
+<li>Take the last el, and call it your pivot.<ul>
+<li>Everything smaller goes to the &#39;left&#39; of that, everything larger to the right.</li>
+<li>Then the same sort is called on each half.</li>
+<li>Each returns, and then the left, pivot, and right are catenated (in that order).</li>
+<li>When you get to a list of one or zero, it just returns.</li>
+</ul>
+</li>
+<li>This is also <code>O(n log n)</code>.<ul>
+<li>Uses less memory than a merge sort (doesn&#39;t have to create new lists all over the place).</li>
+<li>Performs like crap on an already-sorted list, since it&#39;d be starting with a pivot of the
+largest element, already.<ul>
+<li>You can get around that by doing stuff like checking the 0, length -1, and in the middle,
+and swapping if need be to get a better pivot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+<li>Interfaces?<ul>
+<li>Meaning, we just want to consume that data structure.</li>
+<li>We don&#39;t need to know how it works, just that it acts some specific, expected way.</li>
+</ul>
+</li>
+<li>Sets are nice. We have these in ES6 now.<ul>
+<li>Sets will always at least let you:<ul>
+<li><strong>add</strong> items,</li>
+<li>check if the set <strong>contains</strong> them,</li>
+<li><strong>remove</strong> items,</li>
+<li>and call <strong>toList</strong> (or similar; JS sets have <code>.values()</code> but for an Array you&#39;d want to do
+something like <code>const arr = Array.from(someSet)</code> or <code>const arr = [...someSet]</code>.<ul>
+<li>This won&#39;t come back in any particular order -- sets don&#39;t keep track of that.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What I can really see useful about them is that they don&#39;t allow duplicate values.<ul>
+<li>If you do something like <code>const s = new Set ; s.add(&#39;foo&#39;) ; s.add(&#39;foo&#39;)</code> it won&#39;t yell at you,
+but if you then do <code>s.values()</code> you&#39;ll just see <code>SetIterator { &#39;foo&#39; }</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Maps are basically the same sort of concept as a hash/dictionary/JS object, except without all the
+extra bits that JS objects have (methods, inheritance, etc.).<ul>
+<li>Basically just a collection of key-value pairs, except:<ul>
+<li>Really more like a <em>set</em> of keys, with values associated with them, so</li>
+<li>Again, no duplicates!</li>
+<li>You could have duplicate <em>values</em> though. Just not duplicate keys.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stacks are kinda like what they sound like.<ul>
+<li>Only <code>push</code> and <code>pop</code> type of things.</li>
+<li>LIFO</li>
+<li>So if you have a stack that&#39;s like <code>a b c</code> and you push <code>d</code>, then pop, you&#39;ll get <code>d</code> returned
+(and removed from the stack).</li>
+<li>Frequently have a &#39;peek&#39;-like method for looking at the top of the stack without actualy doing
+anything.</li>
+<li>Easiest way to visualize this is probably just thinking about the order of execution of something
+trivial, like a function that calls two functions, one of which maybe calls another funciton or two.</li>
+</ul>
+</li>
+<li>Queues are FIFO.<ul>
+<li>These would have methods like <code>enqueue</code> (push) and <code>dequeue</code> (pop), and probably a &#39;peek&#39; type of
+thing too.</li>
+<li>With priority queues, things that have a higher priority can be sort of rushed through the line,
+basically, and dequeued earlier.</li>
+</ul>
+</li>
+</ul>
+<h3 id="implementations">Implementations</h3>
+<ul>
+<li>An ArrayList (it&#39;s a Java thing, I guess -- JS has arrays, and we don&#39;t really need to think all that
+much about how they actually do their job because we have GC--wait, does Java not? Oh. Huh. Poor them.)
+addresses specific indices like normal, but when you remove items from the array, you have to, like,
+shrink it back down because you have to think about that bit of memory.<ul>
+<li>So I guess, say you do the equivalent of <code>.splice()</code> or something, you have to actually say &#39;okay, get rid of element [2], then move everything from [3] to the end back one, then get rid of the last one, please&#39; or something.</li>
+</ul>
+</li>
+<li>So, I hear a lot about linked lists. Apparently they&#39;re super important because it&#39;s one of like three
+things any CS grad knows. Almost definitely in Java.<ul>
+<li>A linked list is just a list where each element is aware of the next element.</li>
+<li>So basically it&#39;s a list where each item has two properties:<ul>
+<li>Its actual value, and</li>
+<li>A pointer (or reference) to the next node (element)</li>
+</ul>
+</li>
+<li>A linked list&#39;s <code>add</code> and <code>remove</code> would be <code>O(1)</code>, then, because all you need to do is change the
+pointer on the previous node.<ul>
+<li>Its <code>get</code> would be <code>O(n)</code> though because you need to loop through up &#39;til you get to the right node.</li>
+<li>The ArrayList would be the other way around, it&#39;d have a <code>delete</code> and <code>add</code> of <code>O(n)</code> and a <code>get</code> of <code>O(1)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BST!<ul>
+<li>Each node will have either 0, 1, or 2 subtrees.<ul>
+<li>Every el in the left subtree will be less than the value of the node.</li>
+<li>Every el in the right will be greater.</li>
+</ul>
+</li>
+<li>Just have to change pointers, then, to add.<ul>
+<li>Basically just walk down the tree and find the right spot.</li>
+</ul>
+</li>
+<li>Roughly <code>O(log n)</code> on <code>get</code>, <code>add</code>, and <code>delete</code>.<ul>
+<li>Can be as bad as <code>O(n)</code> if a sorted list is stuck in there.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution to some of the problems of a BST? AVL tree.<ul>
+<li>(It&#39;s got some long name, so we&#39;ll stick with the abbreviation.)<ul>
+<li>This is a &#39;self-balancing binary search tree.&#39;</li>
+</ul>
+</li>
+<li>BSTs can get out of whack.</li>
+<li>An AVL tree is always a valid BST (but not always the other way around).</li>
+<li>Adding works the same, except that you check to see if the node is balanced after adding.</li>
+<li>It&#39;s unbalanced if there&#39;s a height difference greater than one on the subtrees.</li>
+<li>Worst case? <code>O(log n)</code>.</li>
+<li>You could end up in a situation where you need a double rotation.<ul>
+<li>Basically, if the opposite child is heavy during rotation.</li>
+<li>So before you do the (probably initially intended) rotation, you do one on the root
+node of that rotation, opposite-wise.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hash tables have constant-time get, delete, and add (if you&#39;re working with a set or a map).<ul>
+<li>So, you&#39;ve got a key, and you hash that (MD5 or whatever).<ul>
+<li>Now we&#39;ve got a key that points to some addressable space.</li>
+<li>This isn&#39;t really a thing in JS.</li>
+</ul>
+</li>
+<li>This is neat in other languages because you can just work against that space, without
+needing to do the (logic) work of hunting things down, kinda, basically.</li>
+<li>No concept of order.</li>
+<li>Uses a fair bit of memory.</li>
+<li>Needs an idempotent hash (that is, a super-pure function -- exact same output, provided the same
+input, every single time.).</li>
+<li>Hash also has to be very well distributed.</li>
+<li>And fast.</li>
+<li>Almost probably definitely maybe need to use <code>%</code> to get your hash down to a manageable number you can
+actually use (smaller than the largest index of your array).</li>
+</ul>
+</li>
+</ul>
+<h2 id="some-fp-basics">Some FP Basics</h2>
+<ul>
+<li>Purity<ul>
+<li>Don&#39;t you dare touch my state!</li>
+</ul>
+</li>
+<li>HOF</li>
+<li>Vector (or array) programming is especially fp-friendly.<ul>
+<li>It makes sense to expect that you can chain functions together.</li>
+<li>This ends up being much, <em>much</em> more declarative.</li>
+<li>Just think about <code>map</code>, <code>reduce</code>, and <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-apple">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/forty-reasons-to-wonder-why-the-fuck-you-love-apple.html">Forty Reasons To Wonder Why The Fuck You Love Apple</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-05-09">09 May, 2016</time>
+         | tags: <a href="/tag/apple/">apple</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>A response to <a href="http://www.networkworld.com/article/3050934/macs/on-its-40th-anniversary-40-things-we-love-about-apple.html">this
+absurdity</a>.</p>
+<p>These are literally just a summary of each of those slides.</p>
+<ul>
+<li>Apple has a marketing team</li>
+<li>their users are obsessed</li>
+<li>they make decent clones of other products years after those products are the norm</li>
+<li>they don&#39;t know their own target demographic</li>
+<li>they make products</li>
+<li>they make the same products year after year and announce them as if they&#39;re new</li>
+<li>they make inferior products and market them as if they&#39;re worth buying</li>
+<li>they still don&#39;t know their own users</li>
+<li>their users are still obsessed</li>
+<li>they have stores that sell their products</li>
+<li>they put their products in boxes</li>
+<li>they offer short-term care for their products after you buy them</li>
+<li>they have stores that you have to wait to get into</li>
+<li>they make products</li>
+<li>they made products years ago, too</li>
+<li>their products were not the exact same products as other products, years ago</li>
+<li>one of the products they used to make was a printer</li>
+<li>they also used to make... products</li>
+<li>like an idiot, i don&#39;t back up my data. and when a hard drive fails, i prefer to buy a new computer of a different
+brand and then blame an entire major segment of consumer electronics for my own stupidity.</li>
+<li>i noce bought one of their products</li>
+<li>they make overpriced things that don&#39;t offer anything that any other platform doesn&#39;t have, but i by their crap anyway</li>
+<li>their smartphones offer all the same functionality that flip phones have</li>
+<li>they make apps</li>
+<li>at one point the company almost totally failed, but then didn&#39;t</li>
+<li>some people who work at Apple aren&#39;t native English speakers</li>
+<li>i buy their products both for myself and for my kids sometimes</li>
+<li>they made another &#39;new&#39; product that had already been on the market for years</li>
+<li>they even had a marketing team back when CDs were still a thing</li>
+<li>they made a really shitty mouse that everyone hated, aww, look at them trying, so cute</li>
+<li>applescript is such a joke that it wasn&#39;t going to be included in OS X until, whoops, someone put them on the spot
+about it</li>
+<li>there is a voice assistant</li>
+<li>Apple had a version of BASIC which was almost the same but not <em>exactly</em> the same as any of the other BASICs on the
+market at the time</li>
+<li>they had PR person that nobody liked</li>
+<li>their computers can run software, including some games</li>
+<li>they have stores not just where you are but in other places also</li>
+<li>they have both marketing and PR people</li>
+<li>they sometimes sponsor events, in the same way that most large companies sometimes sponsor events</li>
+<li>they sometimes have TV commercials</li>
+<li>there are people who like their products enough to sometimes write about them</li>
+</ul>
+<p>... are you fucking kidding me?</p>
+<p>Here&#39;s a couple of things to like about Macs/Apple. Keep in mind that I don&#39;t own any Apple products, and haven&#39;t owned
+any since before Mac OS X. I have used them regularly over the past several years, though.</p>
+<ul>
+<li>Their hardware doesn&#39;t suck. It&#39;s not great, performance-wise, for the price, but it&#39;s good hardware.<ul>
+<li>Great battery life (due to the fancy it&#39;s-not-in-just-one-place-in-your-laptop battery).</li>
+<li>Great displays (if you pay for the great display).</li>
+<li>The cases (speaking of their laptops, here) are <em>gorgeous</em>.</li>
+<li>They&#39;re super light. Yes, there are Windows laptops that are also super light. Those Windows laptops also probably
+cost less and are more powerful, generally. But you can get a powerful Mac that&#39;s also lightweight (for like $3500).</li>
+<li>The keyboards, while annoyingly different from literally every other type of computer ever, have a nice feel.
+(My current laptop, and the one I used just prior to this one, had equally good keyboards. They&#39;re not only a
+Mac thing.)</li>
+</ul>
+</li>
+<li>Under the hood, Mac OS X is a (gimped) BSD. It&#39;s a PITA sometimes to actually get to the good parts, and it&#39;s a lot
+easier to just throw Linux on a (much cheaper, probably faster) laptop, but it can be made into a really nice
+development environment. It takes some work on any platform (and is virtually impossible on Windows, unless you&#39;re
+developing to target Windows), but on Macs it&#39;s a little more difficult to get to the UNIX-y bits than on a Linux or
+BSD.</li>
+<li>Macs are trendy. People who really believe they &#39;think different&#39; will think you&#39;re cool for having one. Of course,
+all that means is that you believe the same marketing as those people, but they&#39;re not a bad bunch to be kinda lumped
+together with, usually.</li>
+<li>There&#39;s some software (and I&#39;m thinking specifically of design software here) that just isn&#39;t available for other
+platforms. I still can&#39;t accept that it&#39;s a good idea to only target Mac, but The Omni Group has been doing it for
+like 27 years and they&#39;re still around, so I guess it works. This fits in with the whole &#39;we make products for a
+specific type of person and if you are that type of person you NEED to use this product&#39; kind of marketing though.
+There are great design tools available on Windows (Adobe products, for example, or Macaw). There are even great tools
+for Linux. Go ahead and laugh at GIMP and Inkscape -- they&#39;ve been around forever and are <em>incredibly</em> powerful. And
+we (Linux users) also have Scribus, Blender, Lightworks, Krita, Radiance, Darktable (which is hands-down the best RAW
+editor I&#39;ve ever seen), and a host of fantastic video tools -- plus, of course, ImageMagick and everything that
+allows.</li>
+<li>Mac OS X isn&#39;t Windows.<ul>
+<li>I should say that Windows <em>is</em> good at some things. I think. Not the OS itself, but having the OS, it&#39;s probably a
+good idea if you&#39;re really into games, or developing specifically for Microsoft products (VB, C#, whatever).</li>
+</ul>
+</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <nav class="pagination" role="navigation">
+        <a class="newer-posts" href="/page/11/">&larr; Newer Posts</a>
+    <span class="page-number">Page 12 of 15</span>
+        <a class="older-posts" href="/page/13/">Older Posts &rarr;</a>
+</nav>
+
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[zac anger - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/author/blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[meet notes i guess]]></title><description><![CDATA[<p>this is all i have</p>
+<pre class="hljs"><code><span class="hljs-label">const</span>
+  id    = a =&gt; a
+, <span class="hljs-keyword">add </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a + <span class="hljs-keyword">b
+</span>, <span class="hljs-keyword">sub </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a - <span class="hljs-keyword">b
+</span>, <span class="hljs-keyword">mul </span>  = (a, <span class="hljs-keyword">b) </span>=&gt; a * <span class="hljs-keyword">b
+</span>, div   = (a, <span class="hljs-keyword">b) </span>=&gt; a / <span class="hljs-keyword">b
+</span>, mol   = (a, <span class="hljs-keyword">b) </span>=&gt; a % <span class="hljs-keyword">b
+</span>, idF   = () =&gt; a =&gt; a
+, <span class="hljs-keyword">addF </span> = a =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; a + <span class="hljs-keyword">b
+</span>, cur   = <span class="hljs-preprocessor">fn</span> =&gt; a =&gt; <span class="hljs-keyword">b </span>=&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)
+</span>, rCur  = <span class="hljs-preprocessor">fn</span> =&gt; <span class="hljs-keyword">b </span>=&gt; a =&gt; <span class="hljs-preprocessor">fn</span>(a, <span class="hljs-keyword">b)</span></code></pre>]]></description><link>/2016/july-12-meetup.html</link><guid isPermaLink="true">/2016/july-12-meetup.html</guid><category><![CDATA[fp]]></category><category><![CDATA[meetup]]></category><category><![CDATA[notes]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 13 Jul 2016 02:39:25 GMT</pubDate></item><item><title><![CDATA[script to set up ec2 build agent for tc]]></title><description><![CDATA[<p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+set up as a build agent for TeamCity, running stuff in Docker.</p>
+<pre class="hljs"><code>#!/usr/bin/env bash
+
+# start with a t2.large (or maybe medium) ec2 instance
+# ubuntu, preferably 16.x
+# needs to have semi-<span class="hljs-keyword">open</span> network access and public IP
+# to be able to <span class="hljs-keyword">update</span> packages and talk to docker and your
+# build server
+# after running this and registering the agent <span class="hljs-keyword">on</span> the TC
+# server, just <span class="hljs-keyword">use</span> the agent push
+# or, download the <span class="hljs-keyword">zip</span> and scp it up
+
+# new ubuntu instances won&#39;t have pw <span class="hljs-keyword">on</span> default user (ubuntu)
+sudo <span class="hljs-keyword">su</span>
+
+apt-get <span class="hljs-keyword">update</span>
+
+apt-key adv --keyserver hkp:<span class="hljs-comment">//p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</span>
+
+<span class="hljs-keyword">mkdir</span> -p /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/
+touch /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-keyword">d</span>/docker.<span class="hljs-keyword">list</span>
+echo &#39;deb https:<span class="hljs-comment">//apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt;&gt; /etc/apt/sources.list.d/docker.list</span>
+echo &#39;apt_preserve_sources_list: true&#39; &gt;&gt; /etc/cloud/cloud.cfg
+
+<span class="hljs-keyword">if</span> [ command -v lxc-docker ] ; then
+  apt-get purge lxc-docker -<span class="hljs-literal">y</span>
+fi
+
+echo &quot;
+## <span class="hljs-keyword">Note</span>, this <span class="hljs-keyword">file</span> is written <span class="hljs-keyword">by</span> cloud-init <span class="hljs-keyword">on</span> first <span class="hljs-keyword">boot</span> of <span class="hljs-keyword">an</span> instance
+## modifications made here will not survive a re-bundle.
+## <span class="hljs-keyword">if</span> you wish to make changes you can:
+## a.) add &#39;apt_preserve_sources_list: true&#39; to /etc/cloud/cloud.cfg
+##     or <span class="hljs-keyword">do</span> the same <span class="hljs-keyword">in</span> user-data
+## b.) add sources <span class="hljs-keyword">in</span> /etc/apt/sources.<span class="hljs-keyword">list</span>.<span class="hljs-literal">d</span>
+## c.) make changes to template <span class="hljs-keyword">file</span> /etc/cloud/templates/sources.<span class="hljs-keyword">list</span>.tmpl
+#
+
+# See http:<span class="hljs-comment">//help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span>
+# newer versions of the distribution.
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
+
+## Major bug fix updates produced after the final release of the
+## distribution.
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
+
+## <span class="hljs-keyword">N</span>.B. software from this repository is ENTIRELY UNSUPPORTED <span class="hljs-keyword">by</span> the Ubuntu
+## team. Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span> universe WILL NOT receive any
+## review or updates from the Ubuntu security team.
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
+
+## <span class="hljs-keyword">N</span>.B. software from this repository is ENTIRELY UNSUPPORTED <span class="hljs-keyword">by</span> the Ubuntu
+## team, and may not be under a free licence. Please satisfy yourself <span class="hljs-keyword">as</span> to
+## your rights to <span class="hljs-keyword">use</span> the software. Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span>
+## multiverse WILL NOT receive any review or updates from the Ubuntu
+## security team.
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
+
+## Uncomment the following <span class="hljs-keyword">two</span> lines to add software from the &#39;backports&#39;
+## repository.
+## <span class="hljs-keyword">N</span>.B. software from this repository may not have been tested <span class="hljs-keyword">as</span>
+## extensively <span class="hljs-keyword">as</span> that contained <span class="hljs-keyword">in</span> the main release, although it includes
+## newer versions of some applications <span class="hljs-keyword">which</span> may provide useful features.
+## Also, please <span class="hljs-keyword">note</span> that software <span class="hljs-keyword">in</span> backports WILL NOT receive any review
+## or updates from the Ubuntu security team.
+deb http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
+deb-src http:<span class="hljs-comment">//us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
+
+## Uncomment the following <span class="hljs-keyword">two</span> lines to add software from Canonical&#39;<span class="hljs-literal">s</span>
+## &#39;partner&#39; repository.
+## This software is not part of Ubuntu, but is offered <span class="hljs-keyword">by</span> Canonical and the
+## respective vendors <span class="hljs-keyword">as</span> a service to Ubuntu users.
+# deb http:<span class="hljs-comment">//archive.canonical.com/ubuntu xenial partner</span>
+# deb-src http:<span class="hljs-comment">//archive.canonical.com/ubuntu xenial partner</span>
+
+deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security main</span>
+deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security main</span>
+deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security universe</span>
+deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security universe</span>
+# deb http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security multiverse</span>
+# deb-src http:<span class="hljs-comment">//security.ubuntu.com/ubuntu xenial-security multiverse</span>
+&quot; &gt; /etc/apt/sources.<span class="hljs-keyword">list</span>
+
+apt-get install -y apt-transport-https <span class="hljs-keyword">ca</span>-certificates
+apt-get install -y linux-image-extra-$(uname -r) --fix-missing --allow-unauthenticated
+apt-get install -y default-jdk unzip docker-engine --fix-missing --allow-unauthenticated
+apt-get dist-upgrade -y --allow-unauthenticated --fix-<span class="hljs-literal">missing</span>
+apt-get autoremove
+apt-get purge
+
+systemctl daemon-reload
+systemctl enable docker
+systemctl start docker
+
+echo &quot;
+#!/usr/bin/env bash
+
+<span class="hljs-keyword">while</span> true
+<span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">sleep</span> 86400
+  docker rmi <code>docker images -aq</code>
+done
+&quot; &gt; ~/docker-cleanup.<span class="hljs-keyword">sh</span>
+
+chmod +x ~/docker-cleanup.<span class="hljs-keyword">sh</span>
+nohup ~/docker-cleanup.<span class="hljs-keyword">sh</span> &amp;</code></pre>]]></description><link>/2016/teamcity-ubuntu-build-agent-setup.html</link><guid isPermaLink="true">/2016/teamcity-ubuntu-build-agent-setup.html</guid><category><![CDATA[ubuntu]]></category><category><![CDATA[docker]]></category><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 06 Jul 2016 15:59:29 GMT</pubDate></item><item><title><![CDATA[crappy error messages]]></title><description><![CDATA[<p>teamcity and aws have the worst error messages.</p>
+<p>things that don&#39;t count as real error messages:</p>
+<p><code>Environment health has transitioned from Degraded to Warning. Command failed on 1 out of 2 instances. Configuration update in progress on 1 instance. 0 out of 2 instances completed (running for 9 minutes).</code> WHAT COMMAND?</p>
+<p><code>No agents connected after instance start. Please check the image has TeamCity agent configured and it can connect to the server using http://foo.bar address. Start the instance manually to check for agent again.</code> (What actually happened? Any errors? Network? Permissions? Anything? No?)</p>
+<p><code>Incompatible Runner: Command Line</code> (on a Debian instance. Fuck you.)</p>
+]]></description><link>/2016/teamcity-and-aws-fuck-you.html</link><guid isPermaLink="true">/2016/teamcity-and-aws-fuck-you.html</guid><category><![CDATA[aws]]></category><category><![CDATA[teamcity]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Thu, 30 Jun 2016 01:52:28 GMT</pubDate></item><item><title><![CDATA[just two gifs]]></title><description><![CDATA[<p><img src="assets/img/daniel-jump.gif" alt="jumping">
+<img src="assets/img/daniel-jumpjump.gif" alt="jumpjumping"></p>
+]]></description><link>/2016/daniel-jumping-gifs.html</link><guid isPermaLink="true">/2016/daniel-jumping-gifs.html</guid><category><![CDATA[gifs]]></category><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 29 Jun 2016 16:09:00 GMT</pubDate></item><item><title><![CDATA[Three Quick Tips for Fresh Bootcamp Grads]]></title><description><![CDATA[<p>This was originally posted
+<a href="https://github.com/lukeschunk/Notebook/blob/master/DailyNotes/Three_Quick_Tips.md">here</a>
+by <a href="https://twitter.com/LukeSchunk">Luke Schunk</a>, but I wanted to repost because
+there&#39;s some good stuff in here, and because he doesn&#39;t actually, like, share
+links to his notes.</p>
+<hr>
+<h2 id="three-quick-tips-for-succeeding-at-a-bootcamp">Three Quick Tips for Succeeding at A Bootcamp</h2>
+<p>I recently graduated from DevMountain, a 12-week immersive web development
+bootcamp with campuses in Provo, Salt Lake, and Dallas. I had an overwhelmingly
+positive experience, and I landed a great job soon after graduation. So for me,
+the bootcamp was a good choice. I&#39;ve noticed this disparity, though, between
+people who attend bootcamps and have a positive experience, and people who have
+a negative one. Oftentimes this negativity is caused by inability to find a job
+after finishing up a bootcamp.</p>
+<p>Here are three tips to help you end up in the column of success stories.</p>
+<h3 id="enjoy-what-you-do">Enjoy What You Do</h3>
+<p>Perhaps this sounds obvious, but I was surprised about how many people signed up
+to go to a bootcamp without having any idea of whether or not they liked
+programming. Some people are lured in by the prospects of landing a shiny new
+job, and I get that. It&#39;s a tempting idea. But, if you don&#39;t enjoy what you&#39;re
+doing, it&#39;s going to be very hard to succeed. Even if you can get through the
+bootcamp and land a job, why would you want to start a career doing something
+you don&#39;t enjoy? I spent several months teaching myself to code before going to
+the bootcamp, so by the time the first day of class came around, I already had a
+healthy enjoyment for programming.</p>
+<h3 id="set-yourself-apart">Set Yourself Apart</h3>
+<p>In a nutshell, the way I landed my job was by learning and doing something that
+almost nobody in my cohort did. I learned ReactJS, which was not taught heavily
+as curriculum at the time I attended DevMountain. Really diving into React on my
+own enabled me to contribute to some open source components at MX (a startup in
+Utah). When I applied for the apprenticeship at MX, they received a slew of
+other talented applicants, but I was able to land the job. This was largely due
+to the fact that they had a rapport with me via back-and-forth communication in
+pull requests, and my open source contributions gave them confidence I could
+contribute to their codebase. There are a lot of ways to set yourself apart -
+learn something different, build something different, contribute to open source,
+etc. Find something that interests you and dive in.</p>
+<h3 id="make-connections">Make Connections</h3>
+<p>I prefer the phrase make-connections over &#39;network&#39;. I hate the idea of
+business-type-people mingling over cocktails and that&#39;s what I used to think of
+when I heard the word network. What I&#39;ve found though, is making connections
+doesn&#39;t have to be uncomfortable. Twitter can be an extremely useful tool for
+chatting with prominent developers in your area, and you can also ask them an
+occasional question. So not only can you make connections and form
+relationships, but also you can get some help from experts in the field. Forming
+relationships on twitter enabled me to speak at my first meetup.</p>
+<p>Twitter isn&#39;t the only way to have success with this. I&#39;ve connected with people
+over linkedin and in person as well. Find what works for you. One last tip on
+this - it&#39;s a lot easier to network when you <em>arent</em> desperate for a job. When
+you reach out to someone while you&#39;re looking for a job, no matter how well your
+intentions are, it might come across like you&#39;re looking for a handout. I
+addressed this by networking very early in the bootcamp, so the pressure of
+finding a job was lifted.</p>
+<p>This isn&#39;t a ground breaking list of tips, but I was surprised to see people who
+failed to do one or multiple of these things. Give it a go, and I wish you the
+best of luck in your new journey as a developer!</p>
+]]></description><link>/2016/three-quick-tips.html</link><guid isPermaLink="true">/2016/three-quick-tips.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:29:00 GMT</pubDate></item><item><title><![CDATA[stack]]></title><description><![CDATA[<p>just a list to keep in mind the stuff
+that we use at work</p>
+<p>because it&#39;s sometimes a lot of stuff</p>
+<p>this is just the stuff i encounter at least
+weekly i think, except the design things, which
+i need to learn i guess sometime</p>
+<ul>
+<li><p>windows server</p>
+<ul>
+<li>visual studio</li>
+<li>c#</li>
+<li>.net</li>
+<li>sql server</li>
+</ul>
+</li>
+<li><p>linux servers</p>
+<ul>
+<li>aws s3, ec2, elastic beanstalk, various others</li>
+<li>docker</li>
+<li>sysd?</li>
+<li>koa</li>
+<li>react</li>
+<li>mocha, chai, enzyme</li>
+<li>graphql, apollo?</li>
+<li>redux</li>
+<li>immutable</li>
+<li>typescript</li>
+<li>purescript</li>
+<li>sass</li>
+<li>postcss</li>
+</ul>
+</li>
+<li><p>teamcity</p>
+</li>
+<li><p>sketch</p>
+</li>
+<li>invision</li>
+<li>bittorrent sync?</li>
+</ul>
+]]></description><link>/2016/stack.html</link><guid isPermaLink="true">/2016/stack.html</guid><category><![CDATA[work]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 24 Jun 2016 08:07:25 GMT</pubDate></item><item><title><![CDATA[editor design notes]]></title><description><![CDATA[<p>ages ago, like multiple months ago, i really wanted to make an editor that was better
+these are a bunch of notes i took on that topic
+there&#39;s a crapton more in the notes taken while working with the group on <a href="http://pharaoh.js.org">pharaoh</a>,
+but those can wait for osme other time.</p>
+<p>now, i&#39;m perfectly 100% satisfied with what i get out of a
+<a href="https://github.com/zacanger/z.git">well-configured</a> <a href="https://neovim.io">neovim</a>.</p>
+<hr>
+<h2 id="editor-idea">editor idea</h2>
+<ul>
+<li>libraries, etc: in local storage</li>
+<li>POST to back end</li>
+<li>offline: save to local, queue, push when back online</li>
+<li>do while loop: cash saves, settimeout, push to backend periodically</li>
+<li>alert for unsaved files on exit</li>
+<li>codefolding and tabs.<ul>
+<li>VS Code STILL doesn&#39;t have these basics. Wow.</li>
+</ul>
+</li>
+<li>autosaves, but saves are git commits?<ul>
+<li>easy reversion. integrate with dropbox/gdrive/whatever to keep commits distributed but private.</li>
+</ul>
+</li>
+</ul>
+<h3 id="things-any-programming-editor-cum-environment-should-do">Things any programming editor-cum-environment should do</h3>
+<h4 id="-including-some-really-obvious-ones-but-i-just-want-to-make-it-all-clear-">(including some really obvious ones, but i just want to make it all clear)</h4>
+<ul>
+<li>allow navigation of projects</li>
+<li>enable editing of source code</li>
+<li>detect syntax of languages (through extension is okay)</li>
+<li>integrate with compiler(s)/interpreter(s), CI, REPL(s) (depending on language specificity of the editor)</li>
+<li>allow for community collaborative effort to build/maintain language &amp; feature support</li>
+<li>integrate with modern development tools/environments (browsers, source control, deployment, etc)</li>
+<li>allow for non-code (text, hints, live previews, etc) !!</li>
+<li>allow for collaboration <em>within</em> editor (realtime remote connection) !!</li>
+<li>interpret code as it is typed; show results locally !!</li>
+<li>abstract <em>above</em> just a normal directory tree for navigation/code organization !!</li>
+</ul>
+<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,
+technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research
+before even prototyping.</p>
+<h3 id="notes-from-brett-victor-s-talks-and-such">notes from brett victor&#39;s talks and such</h3>
+<ul>
+<li>Information Design two big rules: Show the data, and show comparisons.</li>
+<li>Larry Tesler: personal vendetta against modes in software. &#39;Don\&#39;t mode me in.&#39;</li>
+<li>He&#39;s the reason we have straight-up WYSIWYG editing and stuff.</li>
+<li>His editor was called &#39;Gypsy.&#39; Click and drag? That&#39;s him.</li>
+<li>Cut, copy, and paste: that&#39;s him.</li>
+<li>That&#39;s funny, kinda, because the best software is still moded.</li>
+<li>This is curious, because to everyone else at the time, modes were just a way of life
+with computing. This wasn&#39;t a problem to anyone else, just to him.</li>
+</ul>
+<h2 id="on-version-control-and-ot-and-eve-in-general">on version control and ot and eve in general</h2>
+<ul>
+<li>Recording changes as they happen is easier than inferring them after the fact.</li>
+<li>Preserving history (the context in which a change was made) is necessary for proper merges.</li>
+<li>Being predictable is more important than being smart.</li>
+<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,
+rather than the whole thing.</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/jdleesmiller/jotgit">Git-backed editor</a> build on Meteor, in Coffeescript.</li>
+<li>Some bits relating to editor design:<ul>
+<li><a href="https://vimeo.com/36579366">bret victor&#39;s &#39;inventing on principle&#39;</a></li>
+<li><a href="http://worrydream.com/LearnableProgramming/">(and his followup to it, so people would stop misinterpreting in)</a></li>
+<li><a href="http://dl.acm.org/citation.cfm?id=2677279">an empirical study of imperative programming assignments</a></li>
+</ul>
+</li>
+<li>Some things about LightTable:<ul>
+<li><a href="https://groups.google.com/forum/#!topic/light-table-discussion/T3DhzWhabok">discussion about writing plugins</a></li>
+<li><a href="https://github.com/mdhaney/lt-plugin-template">plugin template</a></li>
+<li><a href="https://github.com/swannodette/lt-cljs-tutorial">clojurescript tutorial for lighttable users</a></li>
+<li><a href="http://product.reverb.com/2014/05/10/getting-started-programming-light-table/">basics of hacking on lighttable</a></li>
+<li><a href="https://github.com/LightTable/Declassifier">basic walkthrough of plugin build</a></li>
+<li><a href="https://github.com/LightTable/LightTable/wiki/Creating-an-LT-Client-using-LTs&#39;-bundled-Node">using node in lighttable</a></li>
+</ul>
+</li>
+<li>Eve links:<ul>
+<li><a href="http://www.cse.yorku.ca/~wolfgang/papers/layoutALE.pdf">Auckland layout editor for constraint-based UI</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/dbtest12-bloom.pdf">BloomUnit: Declarative Testing for Distributed Programs</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/eurosys10-boom.pdf">BOOM Analytics: Exploring Data-Centric, Declarative Programming for the Cloud</a></li>
+<li><a href="https://4d75d27f-a-62cb3a1a-s-sites.googlegroups.com/site/sinhnish/documents/fluidLayouts.pdf?attachauth=ANoY7crdYgssu75ccg3Gc6sSDm-dxh2rWHL5jLVh7LkNKtUgFpv2GDqK8AVzr1IJ53Dg6eM5StLasOQk-SDN4KWaCi-phlQK30GSum-hbWOzT5VVSiNRJ7U3F_FJ8pBMndIjR60O9bYSSzxu1TJmR6kX4dlEuCL16pituZTrEFj7BNnX-SRU3JajEKY4f9s_mYqR3uTF4GW5Jm2EkHgpEUfSZtCrUJOZVPO4NGg7nc59490937x_VW4%3D&amp;attredirects=0">Compiling Mockups to Flexible UI</a></li>
+<li><a href="http://arxiv.org/pdf/1401.1031v1.pdf">Constraint Solvers for User Interface Layout</a></li>
+<li><a href="http://arxiv.org/pdf/1408.1675.pdf">Database Queries that Explain their Work</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/datalog2011-dedalus.pdf">Dedalus: Datalog in Time and Space</a></li>
+<li><a href="http://db.cs.berkeley.edu/papers/vldb14-edelweiss.pdf">Edelweiss: Automatic Storage Reclamation for Distributed Programming</a></li>
+<li><a href="http://p2.berkeley.intel-research.net/papers/EvitaRacedVLDB2008.pdf">Evita Raced: Metacompilation for Declarative Networks</a></li>
+<li><a href="http://faculty.washington.edu/ajko/papers/Lee2011Gidget.pdf">Improves Novice Programmers Learning</a></li>
+<li><a href="http://infoscience.epfl.ch/record/180642/files/EPFL_TH5456.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
+<li><a href="http://lampwww.epfl.ch/~rompf/thesis_120716.pdf">Lightweight Modular Staging and Embedded Compilers: Abstraction Without Regret for High-Level High-Performance Programming</a></li>
+<li><a href="http://www.neilconway.org/docs/socc2012_bloom_lattices.pdf">Logic and Lattices for Distributed Programming</a></li>
+<li><a href="https://infosys.uni-saarland.de/publications/DJ11.pdf">OctopusDB: Towards a One Size Fits All Database Architecture</a></li>
+<li><a href="http://db.cs.berkeley.edu/cs286/papers/lookingglass-sigmod2008.pdf">OLTP Through the Looking Glass</a></li>
+<li><a href="http://icwww.epfl.ch/~kuncak/papers/DagandETAL08Opis.pdf">Opis: Reliable Distributed Systems in OCaml</a></li>
+<li><a href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1165&amp;context=hcii">Why Not Questions about Program Behavior</a></li>
+</ul>
+</li>
+</ul>
+]]></description><link>/2016/editor-design-notes.html</link><guid isPermaLink="true">/2016/editor-design-notes.html</guid><category><![CDATA[editor]]></category><category><![CDATA[design]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Tue, 14 Jun 2016 03:27:00 GMT</pubDate></item><item><title><![CDATA[a tip]]></title><description><![CDATA[<p>I have, like, an actual kind of tip, for new-ish developers.</p>
+<p>It&#39;s pretty simple. Shouldn&#39;t be too hard to grasp, maybe a little harder to
+implement.</p>
+<blockquote>
+<p>Have confidence in your code.</p>
+</blockquote>
+<p>If you don&#39;t have confidence in your code, then try this:</p>
+<blockquote>
+<p>Write code in which you have confience.</p>
+</blockquote>
+<p>It really sucks to have to walk someone through your  code when you&#39;re not
+sure it&#39;s even doing the things it&#39;s supposed to do, or when you <em>are</em> sure
+it&#39;s doing the right things but doing them in a really gross kind of way.</p>
+<p>I think this is something everyone struggles with. It&#39;s really easy to copy
+and paste stuff from StackOverflow, and everyone does it for a while. I still
+do it sometimes, though usually with a lot of testing and reading before
+actually running that code.</p>
+<p>It&#39;s really easy, as a new dev, to say &quot;Well, I don&#39;t know how to do that thing,
+can you just show me?&quot; And that&#39;s okay, but it&#39;s a lot more okay to say &quot;Hey,
+I spent an hour with the docs, here&#39;s my implementation, here&#39;s the stack trace
+and I couldn&#39;t find anything helpful on the source&#39;s issues or SO, do you have
+any ideas?&quot;</p>
+<p>It takes a while to write code that you don&#39;t hate, but usually even someone
+who&#39;s been programming for a few months knows what good code looks like. It&#39;s
+concise, readable, logical, and consistent. It doesn&#39;t make you cringe.</p>
+<p>I&#39;m not really very good at writing code and feeling great about it. When it
+comes to, say, raw Node or a Bash script, I&#39;m usually better with these things
+than anyone I know on a personal level, and have no problem taking charge and
+just doing things. But when it comes to the things I actually do every day
+(which right now means React, Koa, AWS stuff, Docker, trying to read C#, and
+Sass, mostly) I know I&#39;m not that great. Knowing that I&#39;m not that great means
+I take probably twice as long as I would to get anything done as I would if I
+was the best at that thing in the room, because I know people who know more
+than I do will be looking at my code and will need to fix it.</p>
+<p>That&#39;s not a <strong>bad</strong> thing, but it&#39;s not a good thing either. It means I&#39;m
+programming without confidence, when I&#39;m writing React or Sass. And I&#39;m not
+even <em>bad</em> at either, I just have no confidence when writing these things
+on a project with people who are better at them than I am. That&#39;s something
+that I should get over.</p>
+<p>Anyway, I meant to write this post on the train and post it when I got home,
+but I ended up standing on the train so it&#39;s split, from while waiting for the
+train &#39;til 10:30 PM while sitting at DevMountain, so it&#39;s probably a little
+disjointed.</p>
+<p>The point here is, if you have confidence in what you&#39;re doing, you&#39;ll get
+stuff done quicker and better, and if you don&#39;t have confidence in what you&#39;re
+doing, make it so that you can.</p>
+]]></description><link>/2016/a-tip.html</link><guid isPermaLink="true">/2016/a-tip.html</guid><category><![CDATA[confidence]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 11 Jun 2016 04:37:00 GMT</pubDate></item><item><title><![CDATA[More Notes Taken While Watching MPJ's Videos]]></title><description><![CDATA[<p>Classes, actually faster than factory functions, by ~twice.
+But... who cares, when you&#39;re talking about a thousandth of a millisecond?</p>
+<p>Better programmers means better software means better solutions for bigger problems.</p>
+<p>Dear Zac: Please start writing tests. Thanks! Love, Zac.</p>
+<p>&#39;The Overjustification Effect&#39; ... side projects are valuable in multiple ways.
+(I think everyone knew this.)</p>
+<p>Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).</p>
+<p>APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
+brackets and braces, then? Like... wat?</p>
+<ul>
+<li>Five steps to understanding a new code base:<ul>
+<li>Find a mentor who really understands that code base and is willing and able to take the
+time to talk to you about it.</li>
+<li>Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
+etc. for all of it, then go study all those things <em>apart</em> from the current code so you
+know how they&#39;re all supposed to work. Also find out the history of the code.</li>
+<li>Complete a task. A tiny feature or bugfix or something.</li>
+<li>Don&#39;t get stuck. If you&#39;re not getting anything done for more than like a half hour or
+whatever and you can&#39;t figure it out, <em>ask that mentor</em>.</li>
+<li>Code review, review, review code, code, code review.</li>
+</ul>
+</li>
+</ul>
+<h3 id="functors">FUNCTORS</h3>
+<p>I don&#39;t really know what a functor is but apparently map and filter are functors.</p>
+<p>Functors are objects that have a map-type method. Not the method itself.</p>
+<p>A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.</p>
+]]></description><link>/2016/fff.html</link><guid isPermaLink="true">/2016/fff.html</guid><category><![CDATA[js]]></category><category><![CDATA[fp]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 06 Jun 2016 03:39:25 GMT</pubDate></item><item><title><![CDATA[deploying docker images]]></title><description><![CDATA[<h1 id="deploying-docker-images">Deploying Docker Images</h1>
+<p>You can use Docker&#39;s repos. That&#39;s the easy way so I won&#39;t talk about it here.
+There are loads of good docs out there on that, and anyway, it&#39;s built into the
+tools. Instead this post deals with deployment of images that you can&#39;t publish
+(like your company&#39;s code).</p>
+<h2 id="the-non-repo-way">The non-repo way</h2>
+<p>This way doesn&#39;t give you any of the nice features of having a repo, but it&#39;s
+also much easier to deal with.</p>
+<p>First export your (running) container. Do a <code>docker ps</code> to get its name or ID,
+then <code>docker export &lt;that-name&gt; &gt; foo.tar</code>.</p>
+<p>Then you&#39;ll want to get it to your server (using <code>sftp</code> or whatever else works
+for you). On the server, do a <code>cat foo.tar | docker import -</code></p>
+<p>Boom, it&#39;s there. You can run it the same way you would normally (like <code>docker
+run -p 80:80 -d foo</code> or whatever).</p>
+<h2 id="the-your-own-repo-way">The your-own-repo way</h2>
+<p>This is a little more difficult, but you get to keep all the benefits of a
+Docker repo without making stuff public.</p>
+<p>Get your own repo with <code>docker run -p 5000:5000 samalba/docker-registry</code>.</p>
+<p>Hurray, once that&#39;s done you&#39;ll have your own Docker registry running!</p>
+<p>Do something like <code>docker login localhost:5000</code> and set up some login
+credentials.</p>
+<p>To push your stuff to it, first tag it with info, like <code>docker tag
+mycompany/theirprivatecode localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Do use this repo, just use <code>docker push
+localhost:5000/mycompany/theirprivatecode</code> instead of pushing to a public repo.</p>
+<p>You&#39;ll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don&#39;t lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>You&#39;ll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don&#39;t lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>Okay, so probably you&#39;ll want to put that somewhere not-on-your-local-machine.
+<code>ssh</code> into your server and do an <code>ssh -R 5000:localhost:5000 -l</code> to forwared
+that port. Then to deploy forreal, just <code>docker pull
+localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Then to run it you should be able to just <code>docker run
+mycompany/theirprivatecode</code>.</p>
+]]></description><link>/2016/docker-deployment.html</link><guid isPermaLink="true">/2016/docker-deployment.html</guid><category><![CDATA[docker]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 03 Jun 2016 20:16:42 GMT</pubDate></item><item><title><![CDATA[http]]></title><description><![CDATA[<p>http: k-v store of urls and resources</p>
+<p>representations: dictionaries of actual resources</p>
+<p>eh?</p>
+<p>example: url: foo.bar/video with:
+representations: various formats and sizes of said video</p>
+<p>methods: possible to define custom</p>
+<p>get, put, and delete are really obvious</p>
+<p>patch: like put, but for small changes</p>
+<p>head: get, but for just meta about the resource</p>
+<p>options: what all can i even do with this thing?
+(useful for... cors, i guess)</p>
+<p>post: kind of a catch-all for whatever else you want to do rly
+it&#39;s not actually intended to be used as the C in CRUD</p>
+<p>i may be rethinking my position on url parameters vs queries</p>
+<p>remembering, from <a href="http://mdkb.zacanger.com/urls">my docs</a>:</p>
+<p><a href="http://www.ietf.org/rfc/rfc2396.txt">URLs</a> are made up of (usually just some) of these parts:
+<code>&lt;scheme&gt;://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;parameters&gt;?&lt;query&gt;#&lt;fragment&gt;</code>.</p>
+<ul>
+<li>The scheme is the <em>protocol</em> (http, https, ftp, git, etc.). It ends with <code>:</code> (not <code>//</code>).</li>
+<li>The username and password are fairly self-explanitory, and we don&#39;t see that a whole whole lot these days, except
+maybe in FTP.</li>
+<li>The host is the part we all know well, like &#39;github&#39; or &#39;google.&#39; It can be a domain name or an IP address.</li>
+<li>The port (80 for HTTP, 443 for HTTPS, etc.) is self-explanitory; defaults to 80.</li>
+<li>The path would be segments (like <code>/doc/search</code> or whatever), and can contain semicolons to separate parameters (like <code>thing=foo;stuff=bar</code>).</li>
+<li>Queries can be before or after parameters, and that&#39;d be something like <code>/?q=foo+bar</code>.</li>
+<li>Fragments are for specific parts of a resource, like <code>somepage.html#somesection</code>.</li>
+<li><code>; / ? : @ &amp; = + $ ,</code> are reserved characters (meaning they have special uses in URLs).</li>
+<li><code>- _ . ! ~ * &#39; ( )</code> are unreserved (you can use them almost wherever you&#39;d like).</li>
+<li><code>{ } | \\ ^ [ ] \</code> ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).</li>
+<li><code>&lt; &gt; # % &quot;</code> don&#39;t use these, at all (except the <code>%</code> and <code>#</code> <em>if</em> you have a valid reason for it, because they do special things in URLs).</li>
+</ul>
+<hr>
+<ul>
+<li>content headers from client to specify what it can be (accept)</li>
+<li>content headers from server to specify what it is (content-type)</li>
+</ul>
+<p>cache-control, last-modified, and etag to control caching</p>
+<p>client will check if-modified-since and if-none-match</p>
+<p>accept-encoding (with gzip or compress) yay</p>
+<p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
+]]></description><link>/2016/http.html</link><guid isPermaLink="true">/2016/http.html</guid><category><![CDATA[http]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 09:03:03 GMT</pubDate></item><item><title><![CDATA[clojure]]></title><description><![CDATA[<p>just a few clojure notes</p>
+<p>i don&#39;t know if any of this is vastly different from cljs? i&#39;d think not,
+because really you&#39;re just talking about a different target (jvm vs js vm), rite?
+but who knows. i mean, normally you wouldn&#39;t talk about clojure and clojurescript
+with two different names if they were the exact same language and the only actual
+difference was the target vm.</p>
+<p>i&#39;d look this up but i&#39;m on a plane. so.</p>
+<p>some notes!</p>
+<p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code>
+which is called a form.</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> varname varval)</span>
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">def</span></span> me <span class="hljs-string">&quot;zac&quot;</span>)</span></code></pre><p>but there&#39;s also the <code>let</code> keyword which is different. for functions?</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">let</span></span> <span class="hljs-collection">[myname <span class="hljs-string">&quot;zac&quot;</span>]</span>
+  <span class="hljs-list">(<span class="hljs-keyword">println</span> myname)</span>)</span></code></pre><p>oh wait is it <code>def</code> or <code>defn</code>? crud now i&#39;m seeing <code>defn</code>.</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> functionName
+  <span class="hljs-collection">[arguments moreArgs]</span> <span class="hljs-comment">;; comment</span>
+  returnValue)</span>         <span class="hljs-comment">;; the above could be just [] if no args</span>
+
+<span class="hljs-comment">;; so maybe</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> multiplier
+  <span class="hljs-collection">[a b]</span>
+  <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword">multiplier</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fnName
+  <span class="hljs-list">(<span class="hljs-collection">[ifThisPatternIsMatched]</span> returnThis)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[elseIfThisOne sureWhyNot]</span> returnThisInstead)</span>)</span>
+
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn</span></span> fooBar
+  <span class="hljs-list">(<span class="hljs-collection">[a]</span> a)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> a b)</span>)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b c]</span> <span class="hljs-list">(/ <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"><em></span></span> a b)</span> c)</span>)</span>
+  <span class="hljs-list">(<span class="hljs-collection">[a b c d]</span> <span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in"></em></span></span> <span class="hljs-list">(/ a b)</span> c d)</span>)</span>)</span>
+
+<span class="hljs-comment">;; so [] are args, () are forms, {} are keys or something?</span>
+<span class="hljs-comment">;; no, keys are with :, so {} are just... i don&#39;t know, yet.</span>
+
+<span class="hljs-comment">;; and a private function just has a - after it, i think? like</span>
+<span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">defn-</span></span> thisIsNotPublic
+  <span class="hljs-collection">[]</span> <span class="hljs-comment">;; and other stuff -- are in-line comments a thing?</span>
+  )</span></code></pre><p>Testing with lein (what is lein, exactly? I think it&#39;s a package manager?):</p>
+<pre class="hljs"><code><span class="hljs-list">(<span class="hljs-keyword"><span class="hljs-built_in">ns</span></span> project.namespace-test
+  <span class="hljs-list">(<span class="hljs-attribute">:require</span> <span class="hljs-collection">[clojure.text <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>
+            <span class="hljs-collection">[project.namespace <span class="hljs-attribute">:refer</span> <span class="hljs-attribute">:all</span>]</span>)</span>)</span>
+
+<span class="hljs-comment">;; deftest defines a test fn</span>
+<span class="hljs-comment">;; testing for description for it</span>
+<span class="hljs-comment">;; is -- assertion</span>
+
+<span class="hljs-list">(<span class="hljs-keyword">deftest</span> nameOfTest
+  <span class="hljs-list">(<span class="hljs-keyword">testing</span> <span class="hljs-string">&quot;this is what i&#39;m testing&quot;</span>
+    <span class="hljs-list">(<span class="hljs-keyword">is</span> <span class="hljs-list">(<span class="hljs-keyword">true</span>)</span>)</span>)</span>)</span> <span class="hljs-comment">;; i don&#39;t know if this is valid</span></code></pre><p>okay so leiningen is &#39;automation made easy&#39;</p>
+<p>pkg mgmt, testing, pm, etc.?</p>
+<p><code>lein new app &lt;appname&gt;</code></p>
+<p>that will layout a whole project directory for you, damn.</p>
+<p>lein searches maven and clojars for packages, with <code>lein search &lt;packagename&gt;</code>.</p>
+<p>update <code>:dependencies</code> in <code>project.clj</code> (which i think is like a meta file
+package.json-y kinda thing) and do a <code>lein deps</code> to install that stuff.</p>
+<ul>
+<li><code>lein run</code></li>
+<li><code>lein test</code></li>
+<li><code>lein repl</code></li>
+<li><code>lein install</code></li>
+<li><code>lein uberjar</code> -- this packages up the whole rpoject (as a jar, i guess?)</li>
+</ul>
+<p>zipper is a thing that does things but i don&#39;t really have the
+attention span to read this right now.</p>
+<p>did i mention i was on a plane? i wasn&#39;t <em>really</em> on a plane. i&#39;m in an airport.
+for a lot of hours. it&#39;s a long story. sort of. it&#39;s actually a relatively short
+story, but it&#39;s kind of boring. so whatever.</p>
+<p>there are transducers, which are <em>not</em> like a <code>map</code> or <code>functor</code> or whatever.</p>
+<p>these are composable transforms</p>
+<p>did i mention that i&#39;m in an airport? all night, i&#39;ll be here.
+meant to be home by now. in bed. sleeping. having seen the people i really miss,
+hugs all around, had a beer, unpacked, showered maybe, gone to bed.
+i&#39;ll be home, instead, by maybe noon-ish tomorrow possibly, having missed
+another day of work, sweaty and gross, eurgh.</p>
+<p>on the other hand i met some nice people suck in this zombie airport, so.</p>
+]]></description><link>/2016/clojure.html</link><guid isPermaLink="true">/2016/clojure.html</guid><category><![CDATA[clj]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 07:00:00 GMT</pubDate></item><item><title><![CDATA[how to be slightly more productive]]></title><description><![CDATA[<p>one of my pet peeves is seeing people who make software for a living doing
+things in incredibly slow/unproductive ways. i know everyone has their own
+ways of being awesome, and most of those ways are much more awesome ways than
+the ways in which i am okay at things, but still, there are better ways, and
+most developers i&#39;ve seen just have <em>no</em> idea how much time they waste.</p>
+<p>so here are just some tiny little tips. none of these are big news, none
+are esoteric, none are risky, all require a little bit of work but make things
+a lot faster in a very short period of time.</p>
+<h2 id="bash-things">bash things</h2>
+<p>you can use zsh, and that&#39;s a thing, and it doesn&#39;t suck, okay, but it pays
+to be good at bash. bash is everywhere. it&#39;s the default shell on just about
+every system. zsh gives you nice things, but you can get all the same nice
+things in bash with just a tiny bit of work.</p>
+<p>the number one most useful thing to do with bash is aliases, i think.
+it&#39;s generally recommended that you use functions if you can, but there&#39;s
+really no harm in using aliases. try these out, for example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">alias</span> <span class="hljs-title">ns</span>=<span class="hljs-comment">&#39;npm start&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nt</span>=<span class="hljs-comment">&#39;npm test&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nis</span>=<span class="hljs-comment">&#39;npm i -S&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">nid</span>=<span class="hljs-comment">&#39;npm i -D&#39;</span>
+<span class="hljs-keyword">alias</span> <span class="hljs-title">bn</span>=<span class="hljs-comment">&#39;babel-node&#39;</span></code></pre><p>throw these at the bottom of your <code>~/.bashrc</code> (or <code>~/.bash_profile</code> on a mac).</p>
+<h2 id="npm">npm</h2>
+<p>for that matter, there&#39;s the aliases up there... npm has a bunch built-in.
+for example, you never need to type out <code>npm install --save-dev</code>
+-- just do <code>npm i -S</code>.</p>
+<p>npm gives you a million things. just read the docs sometime. or the help screens.</p>
+<h2 id="the-terminal">the terminal</h2>
+<p>use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow
+(or option-arrow on mac) to get around between words. use these things.</p>
+<p>set your prompt up to tell you nice stuff. i <em>highly</em> recommend using liquidprompt
+(<code>apt-get install -y liquidprompt</code> or <code>brew install liquidprompt</code>), but you can
+also do all these things manually (check
+<a href="https://github.com/zacanger/z/blob/master/.bashrc#L127">my dotfiles</a> for examples).</p>
+<p>pick a bookmarking system and stick with it. <a href="https://github.com/wting/autojump">there</a>
+<a href="https://github.com/rupa/z">are</a> a <a href="https://github.com/shyiko/commacd">bunch</a> of them
+out there (many many more, just search). or export aliases to move to places. or you
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/g.sh">can</a>
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/ga.sh">use</a>
+<a href="https://github.com/zacanger/z/blob/master/.bash_functions/gt.sh">mine</a> if you&#39;d like.</p>
+<h2 id="markdown">markdown</h2>
+<p>if you don&#39;t use it, use it. if you still click around in microsoft word or google docs,
+goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
+lightweight-markup authoring format out there. it&#39;s the only way to write, really.</p>
+<h2 id="your-editor">your editor</h2>
+<p>i don&#39;t care what your editor is. i really don&#39;t. i know just enough about lisp
+to not even hate emacs users. i do dislike VS Code, but mostly because of the
+idiotic and transparent licensing scheme. and also because it&#39;s not a very
+good editor. but the built-in debugger isn&#39;t bad (you can get all the same things
+from other tools, but it is better than the ones that you can get for most other
+editors for node).</p>
+<p>whatever your editor is, take a week to learn it really well. in my case, finally
+just spending some time getting <em>fluid</em> with vim has made a huge difference.
+i no longer have any other editors installed (and i tried a lot of them! i loved
+<a href="http://lighttable.com/">LightTable</a> and <a href="http://foicica.com/textadept/">Textadept</a>
+especially, and also really liked atom (but it&#39;s <em>slow</em>); brackets was a waste of
+my time, sublime was okay but nonfree and there&#39;s textadept so whatever, see above
+for notes on VS code; actual IDEs i tent to avoid because they&#39;re just overwhelmingly
+large and in the way all the time, to me). that doesn&#39;t mean vim&#39;s the <em>best</em> editor
+(though it totally is), it just means it&#39;s the one i decided i wanted use, and it&#39;s
+the absolute best tool that i have now because i&#39;m pretty quick with it.</p>
+<p>even if you use vs code or brackets (i&#39;d advise you not to do so, but it&#39;s up to
+you...), just take the time to learn your editor well. learn its plugin/extension/
+whatever system, find or write a theme that makes things really easy on you, check
+out <a href="https://medium.com/@evnbr/coding-in-color-3a6db2743a1e#.5rffb0gto">semantic highlighting</a>
+and give that a shot for a week, find a way to open a terminal in your editor
+(because you DO need that) if it&#39;s a graphical editor, learn keybinds, learn
+configs, and make it work for you. that sounds like a lot of work put into something
+that&#39;s not directly <strong>work</strong>, but it&#39;s work invested in yourself being better
+at using your tools.</p>
+<p>laurie voss, the cto of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a>
+that one of the most important things you can do is be good at your editor.
+he&#39;s obviously right. he&#39;s laurie voss.</p>
+<h2 id="use-git">use git</h2>
+<p>this should be obvious. but, i mean, really use it. use it enough that you
+learn how to use a gitconfig, templates, etc., and try out lots of different
+extensions and wrappers for git (like hub, legit, ghcli, etc.). do stuff with
+git. get really comfortable with git. it&#39;s important. other version control also
+matters sometimes in some businesses but really really really spend some time
+learning git.</p>
+<h2 id="configs">configs</h2>
+<p>(<a href="https://github.com/zacanger/z">like these</a>)</p>
+<p>organize yours. store them somewhere, like in a repo. because when your current
+computer dies (and it will), it&#39;ll take you weeks to get things feeling decent
+if you have to recreate everything manually. granted, most people don&#39;t have
+dotfiles nearly as extensive as those, but you don&#39;t need to -- i&#39;m a little bit
+of a hoarder. disk space is cheap. whatever.</p>
+<h2 id="stop-reading-blogs">stop reading blogs</h2>
+<p>k.</p>
+]]></description><link>/2016/how-to-be-slightly-more-productive.html</link><guid isPermaLink="true">/2016/how-to-be-slightly-more-productive.html</guid><category><![CDATA[sh]]></category><category><![CDATA[npm]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 01 Jun 2016 05:55:55 GMT</pubDate></item><item><title><![CDATA[bookmarklets]]></title><description><![CDATA[<p>I want to take one short blogs post just to share my bookmarklets.</p>
+<p>If you don&#39;t know what that means, don&#39;t worry.</p>
+<p>There once was a time when browser extensions/add-ons didn&#39;t exist, and a
+slightly later time when they did exist but still really sucked. And, I mean,
+you can still get a lot more out of arbitrary JS than you can out of an
+extension, usually.</p>
+<p>Bookmarklets are little bits of JS saved as a bookmark. When you click or
+navigate to that bookmark, the browser just executes it. You can do some pretty
+nifty things with them. I have <a href="https://pinboard.in/u:zacanger">45748 bookmarks saved on Pinboard</a>,
+and the only bookmarks I have in my browsers are little snippets of JavaScript.</p>
+<p>I&#39;m not going to post all of them here (I have about 150), just some of the most
+useful ones.</p>
+<p>You can save any bit of JS you&#39;d like as a bookmark. Just prepend <code>javascript:</code>
+to some code, as in <code>javascript:console.log(&#39;foo&#39;);alert(&#39;bar&#39;);</code>.</p>
+<hr>
+<p>a little text editor thing</p>
+<pre class="hljs"><code>data:text/html, &lt;title&gt;pad&lt;<span class="hljs-variable">%2Ftitle</span>&gt; &lt;<span class="hljs-keyword">link</span> href<span class="hljs-variable">%3D</span><span class="hljs-string">&#39;http%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DSource%2BCode%2BPro%3A400%2C700&#39;</span> rel<span class="hljs-variable">%3D</span><span class="hljs-string">&#39;stylesheet&#39;</span> type<span class="hljs-variable">%3D</span><span class="hljs-string">&#39;text%2Fcss&#39;</span>&gt; &lt;body contenteditable style<span class="hljs-variable">%3D</span><span class="hljs-string">&quot; background-color<span class="hljs-variable">%3A</span> <span class="hljs-variable">%2335322f</span><span class="hljs-variable">%3B</span> color<span class="hljs-variable">%3A</span> <span class="hljs-variable">%23cbc5c1</span><span class="hljs-variable">%3B</span> font-family<span class="hljs-variable">%3A</span> &#39;Source Code Pro&#39;<span class="hljs-variable">%2C</span> monospace<span class="hljs-variable">%3B</span> font-size<span class="hljs-variable">%3A</span> 1.5em<span class="hljs-variable">%3B</span> line-height<span class="hljs-variable">%3A</span> 1.5<span class="hljs-variable">%3B</span> max-width<span class="hljs-variable">%3A</span> 28em<span class="hljs-variable">%3B</span> margin<span class="hljs-variable">%3A</span> 0 auto<span class="hljs-variable">%3B</span> padding<span class="hljs-variable">%3A</span> 4em 1.3em<span class="hljs-variable">%3B</span> -webkit-font-smoothing<span class="hljs-variable">%3A</span> antialiased<span class="hljs-variable">%3B</span> &quot;</span> spellcheck<span class="hljs-variable">%3D</span><span class="hljs-string">&quot;false&quot;</span>&gt; &lt;h1 style<span class="hljs-variable">%3D</span><span class="hljs-string">&quot;line-height<span class="hljs-variable">%3A</span> 1.2<span class="hljs-variable">%3B</span>&quot;</span>&gt;pad&lt;<span class="hljs-variable">%2Fh1</span>&gt; &lt;p&gt;<span class="hljs-keyword">write</span> stuff here&lt;br <span class="hljs-variable">%2F</span>&gt;<span class="hljs-keyword">do</span> it</code></pre><p>element outliner (helps when doing css)</p>
+<pre class="hljs"><code>javascrip<span class="hljs-variable">t:</span>[].forEach.<span class="hljs-built_in">call</span>(document.querySelectorAll(<span class="hljs-string">&#39;<em>&#39;</span>),<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a)</span>{<span class="hljs-title">a</span>.<span class="hljs-title">style</span>.<span class="hljs-title">outline</span>=&#39;1<span class="hljs-title">px</span> <span class="hljs-title">solid</span> #&#39;+<span class="hljs-params">(~~(Math.random()</span></em><span class="hljs-params">(1&lt;&lt;24)</span>)).<span class="hljs-title">toString</span><span class="hljs-params">(16)</span>})</span></code></pre><p>switch to view-source (same as ctrl-u in chromium)</p>
+<pre class="hljs"><code><span class="hljs-string">javascript:</span>location=<span class="hljs-string">&#39;<a href="http://viewsource.in/">http://viewsource.in/</a>&#39;</span>+location</code></pre><p>view rendered html on github that isn&#39;t in a gh-pages branch</p>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">void</span>(<span class="hljs-string">&#39;<a href="http://htmlpreview.github.io/">http://htmlpreview.github.io/</a>&#39;</span>==<span class="hljs-built_in">window</span>.location?alert(<span class="hljs-string">&#39;Drag me to your bookmarks bar!&#39;</span>):<span class="hljs-built_in">window</span>.location=<span class="hljs-string">&#39;<a href="http://htmlpreview.github.io/?">http://htmlpreview.github.io/?</a>&#39;</span>+<span class="hljs-built_in">window</span>.location)</code></pre><p>switch from github to the gh-pages (foo.github.io) page</p>
+<pre class="hljs"><code>javascript:(function()<span class="hljs-variable">%20</span>{<span class="hljs-variable">%20var</span><span class="hljs-variable">%20host</span><span class="hljs-variable">%20</span>=<span class="hljs-variable">%20location</span>.host.<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;.&#39;</span>);<span class="hljs-variable">%20var</span><span class="hljs-variable">%20path</span><span class="hljs-variable">%20</span>=<span class="hljs-variable">%20location</span>.pathname.slice(<span class="hljs-number">1</span>).<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;/&#39;</span>);<span class="hljs-variable">%20window</span>.location<span class="hljs-variable">%20</span>=<span class="hljs-variable">%20host</span>[<span class="hljs-number">2</span>]<span class="hljs-variable">%20</span>===<span class="hljs-variable">%20</span><span class="hljs-string">&#39;io&#39;</span><span class="hljs-variable">%20</span>?<span class="hljs-variable">%20</span><span class="hljs-string">&#39;<a href="https://github.com/">https://github.com/</a>&#39;</span><span class="hljs-variable">%20</span>+<span class="hljs-variable">%20host</span>[<span class="hljs-number">0</span>]<span class="hljs-variable">%20</span>+<span class="hljs-variable">%20</span><span class="hljs-string">&#39;/&#39;</span><span class="hljs-variable">%20</span>+<span class="hljs-variable">%20path</span>[<span class="hljs-number">0</span>]<span class="hljs-variable">%20</span>:<span class="hljs-variable">%20</span><span class="hljs-string">&#39;http://&#39;</span><span class="hljs-variable">%20</span>+<span class="hljs-variable">%20path</span>[<span class="hljs-number">0</span>]<span class="hljs-variable">%20</span>+<span class="hljs-variable">%20</span><span class="hljs-string">&#39;.github.io/&#39;</span><span class="hljs-variable">%20</span>+<span class="hljs-variable">%20path</span>[<span class="hljs-number">1</span>];<span class="hljs-variable">%20</span>})();</code></pre><p>go to referrer (where you just came from)</p>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">document</span>.referrer) alert(<span class="hljs-string">&quot;No referrer!&quot;</span>); <span class="hljs-keyword">else</span> <span class="hljs-built_in">document</span>.location = <span class="hljs-built_in">document</span>.referrer; <span class="hljs-keyword">void</span> <span class="hljs-number">0</span></code></pre><p>view current page as markdown</p>
+<pre class="hljs"><code><span class="hljs-keyword">javascript</span>:(function()<span class="hljs-number">%7</span>Bfunction<span class="hljs-number">%20</span>callback()<span class="hljs-number">%7</span>B(function(<span class="hljs-number">%24</span>)<span class="hljs-number">%7</span>Bvar<span class="hljs-number">%20</span>jQuery<span class="hljs-number">%3</span>D<span class="hljs-number">%24</span><span class="hljs-number">%3</span>B<span class="hljs-number">%24</span>(&#39;link<span class="hljs-number">%5</span>Brel<span class="hljs-number">%3</span>Dstylesheet<span class="hljs-number">%5</span>D&#39;).add(&#39;style&#39;).remove()<span class="hljs-number">%3</span>B<span class="hljs-number">%24</span>(&#39;<span class="hljs-number">%5</span>Bstyle<span class="hljs-number">%5</span>D&#39;).attr(&#39;style&#39;<span class="hljs-number">%2</span>C<span class="hljs-number">%20</span>&#39;&#39;)<span class="hljs-number">%3</span>B<span class="hljs-number">%24</span>(&#39;head&#39;).append(&#39;<span class="hljs-number">%3</span>Clink<span class="hljs-number">%20</span>rel<span class="hljs-number">%3</span>D<span class="hljs-number">%22</span>stylesheet<span class="hljs-number">%22</span><span class="hljs-number">%20</span>href<span class="hljs-number">%3</span>D<span class="hljs-number">%22</span>http<span class="hljs-number">%3</span>A<span class="hljs-number">%2</span>F<span class="hljs-number">%2</span>Fmrcoles.com<span class="hljs-number">%2</span>Fmedia<span class="hljs-number">%2</span>Ftest<span class="hljs-number">%2</span>Fmarkdown-css<span class="hljs-number">%2</span>Fmarkdown.css<span class="hljs-number">%22</span><span class="hljs-number">%20</span>type<span class="hljs-number">%3</span>D<span class="hljs-number">%22</span>text<span class="hljs-number">%2</span>Fcss<span class="hljs-number">%22</span><span class="hljs-number">%20</span><span class="hljs-number">%2</span>F<span class="hljs-number">%3</span>E&#39;)<span class="hljs-number">%3</span>B<span class="hljs-number">%24</span>(&#39;body&#39;).addClass(&#39;markdown&#39;).css(<span class="hljs-number">%7</span>Bwidth<span class="hljs-number">%3</span>A<span class="hljs-number">%20</span>&#39;600px&#39;<span class="hljs-number">%2</span>C<span class="hljs-number">%20</span>margin<span class="hljs-number">%3</span>A<span class="hljs-number">%20</span>&#39;2em<span class="hljs-number">%20</span>auto&#39;<span class="hljs-number">%2</span>C<span class="hljs-number">%20</span>&#39;word-wrap&#39;<span class="hljs-number">%3</span>A<span class="hljs-number">%20</span>&#39;break-word&#39;<span class="hljs-number">%7</span>D)<span class="hljs-number">%3</span>B<span class="hljs-number">%24</span>(&#39;a<span class="hljs-number">%20</span>img&#39;).css(<span class="hljs-number">%7</span>B&#39;max-height&#39;<span class="hljs-number">%3</span>A<span class="hljs-number">%20</span>&#39;1em&#39;<span class="hljs-number">%2</span>C<span class="hljs-number">%20</span>&#39;max-width&#39;<span class="hljs-number">%3</span>A<span class="hljs-number">%20</span>&#39;1em&#39;<span class="hljs-number">%7</span>D)<span class="hljs-number">%7</span>D)(jQuery.noConflict(true))<span class="hljs-number">%7</span>Dvar<span class="hljs-number">%20</span>s<span class="hljs-number">%3</span>Ddocument.createElement(<span class="hljs-number">%22</span>script<span class="hljs-number">%22</span>)<span class="hljs-number">%3</span>Bs.src<span class="hljs-number">%3</span>D<span class="hljs-number">%22</span>https<span class="hljs-number">%3</span>A<span class="hljs-number">%2</span>F<span class="hljs-number">%2</span>Fajax.googleapis.com<span class="hljs-number">%2</span>Fajax<span class="hljs-number">%2</span>Flibs<span class="hljs-number">%2</span>Fjquery<span class="hljs-number">%2</span>F1.7.1<span class="hljs-number">%2</span>Fjquery.min.js<span class="hljs-number">%22</span><span class="hljs-number">%3</span>Bif(s.addEventListener)<span class="hljs-number">%7</span>Bs.addEventListener(<span class="hljs-number">%22</span>load<span class="hljs-number">%22</span><span class="hljs-number">%2</span>Ccallback<span class="hljs-number">%2</span>Cfalse)<span class="hljs-number">%7</span>Delse<span class="hljs-number">%20</span>if(s.readyState)<span class="hljs-number">%7</span>Bs.onreadystatechange<span class="hljs-number">%3</span>Dcallback<span class="hljs-number">%7</span>Ddocument.body.appendChild(s)<span class="hljs-number">%3</span>B<span class="hljs-number">%7</span>D)()</code></pre><p>open an ace editor (javascript)</p>
+<pre class="hljs"><code>data:text/html, <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/css&quot;</span>&gt;</span><span class="css"><span class="hljs-id">#e</span><span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>;<span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;<span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;<span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;<span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;}</span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;e&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;<a href="http://ace.c9.io/build/src-noconflict/ace.js">http://ace.c9.io/build/src-noconflict/ace.js</a>&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf-8&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;<a href="http://ace.c9.io/build/src-noconflict/ext-language_tools.js">http://ace.c9.io/build/src-noconflict/ext-language_tools.js</a>&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf-8&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript"><span class="hljs-keyword">var</span> e=ace.edit(<span class="hljs-string">&quot;e&quot;</span>);e.setTheme(<span class="hljs-string">&quot;ace/theme/monokai&quot;</span>);e.setOptions({enableBasicAutocompletion:<span class="hljs-literal">true</span>});e.getSession().setMode(<span class="hljs-string">&quot;ace/mode/javascript&quot;</span>);addEventListener(<span class="hljs-string">&quot;keydown&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{<span class="hljs-keyword">if</span>(evt.ctrlKey &amp;&amp; evt.keyCode==<span class="hljs-number">13</span>) <span class="hljs-built_in">eval</span>(e.getSession().getValue());});<span class="hljs-keyword">var</span> link=<span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&quot;link&quot;</span>);link.type=<span class="hljs-string">&quot;image/x-icon&quot;</span>;link.rel=<span class="hljs-string">&quot;shortcut icon&quot;</span>;link.href=<span class="hljs-string">&quot;<a href="https://raw.githubusercontent.com/diegocard/diegocard.github.io/master/images/icon.png">https://raw.githubusercontent.com/diegocard/diegocard.github.io/master/images/icon.png</a>&quot;</span>;<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;head&quot;</span>)[<span class="hljs-number">0</span>].appendChild(link);</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre><p>go up (eg from foo.bar/quux/baz.html to foo.bar/quux)</p>
+<pre class="hljs"><code>javascript:(function(f,a,c,e,t,i,o,u,<span class="hljs-keyword">s</span>){a=f.href;c=f.pathname;e=a.<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;#&#39;</span>)[<span class="hljs-number">0</span>];t=e.<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;?&#39;</span>)[<span class="hljs-number">0</span>];i=f.host.<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;.&#39;</span>);o=i.<span class="hljs-keyword">length</span>==<span class="hljs-number">2</span>?<span class="hljs-string">&#39;www.&#39;</span>:<span class="hljs-string">&#39;&#39;</span>;u=i.slice(o==<span class="hljs-string">&#39;&#39;</span>&amp;&amp;isNaN((i.slice(-<span class="hljs-number">1</span>)+<span class="hljs-string">&#39;&#39;</span>).<span class="hljs-keyword">split</span>(<span class="hljs-string">&#39;:&#39;</span>)[<span class="hljs-number">0</span>])?<span class="hljs-number">1</span>:<span class="hljs-number">0</span>).<span class="hljs-keyword">join</span>(<span class="hljs-string">&#39;.&#39;</span>);<span class="hljs-keyword">s</span>=e!=a?e:t!=a?t:c.substring(<span class="hljs-number">0</span>,c.substring(<span class="hljs-number">0</span>,c.<span class="hljs-keyword">length</span>-<span class="hljs-number">1</span>).lastIndexOf(<span class="hljs-string">&#39;/&#39;</span>)+<span class="hljs-number">1</span>);f.href=<span class="hljs-keyword">s</span>?<span class="hljs-keyword">s</span>:f.protocol+<span class="hljs-string">&#39;//&#39;</span>+o+u})(top.location)</code></pre><p>check the current page on the internet archive</p>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">void</span>((<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{location.href=%<span class="hljs-number">22</span>http:<span class="hljs-comment">//web.archive.org/web/*/%22+location.href;})())</span></code></pre><p>tiny little element inspector (useful on for example mobile browsers that don&#39;t
+have devtools)</p>
+<pre class="hljs"><code>javascript:(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>)</span>{<span class="hljs-keyword">var</span>%<span class="hljs-number">20</span>I=d.createElement(<span class="hljs-string">&#39;input&#39;</span>),S=I.style;I.type=<span class="hljs-string">&#39;text&#39;</span>;S.width=<span class="hljs-string">&#39;256px&#39;</span>;S.padding=<span class="hljs-string">&#39;2px&#39;</span>;S.border=<span class="hljs-string">&#39;4px%20solid%20#fff&#39;</span>;S.borderRadius=<span class="hljs-string">&#39;8px&#39;</span>;S.boxShadow=<span class="hljs-string">&#39;1px%201px%203px%201px%20rgba(0,0,0,0.7)&#39;</span>;S.background=<span class="hljs-string">&#39;#000&#39;</span>;S.color=<span class="hljs-string">&#39;#fff&#39;</span>;S.fontSize=<span class="hljs-string">&#39;13px&#39;</span>;S.textShadow=<span class="hljs-string">&#39;none&#39;</span>;S.position=<span class="hljs-string">&#39;fixed&#39;</span>;S.top=S.right=<span class="hljs-string">&#39;3px&#39;</span>;S.zIndex=<span class="hljs-string">&#39;999999&#39;</span>;d.body.appendChild(I);<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#39;mousemove&#39;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{<span class="hljs-keyword">var</span>%<span class="hljs-number">20</span>E=d.elementFromPoint(e.x,e.y);<span class="hljs-keyword">var</span>%<span class="hljs-number">20</span>A=[];A[<span class="hljs-number">0</span>]=E.tagName;<span class="hljs-keyword">if</span>(E.id){A[<span class="hljs-number">1</span>]=<span class="hljs-string">&#39;#&#39;</span>+E.id;}<span class="hljs-keyword">if</span>(E.className){A[<span class="hljs-number">2</span>]=<span class="hljs-string">&#39;.&#39;</span>+E.className.split(<span class="hljs-string">&#39;%20&#39;</span>).join(<span class="hljs-string">&#39;.&#39;</span>);}I.value=A.join(<span class="hljs-string">&#39;&#39;</span>);},<span class="hljs-literal">true</span>)})(<span class="hljs-built_in">document</span>);</code></pre><p>show password field text</p>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">var</span>%20e=document.getElementsByTagName(&#39;<span class="hljs-keyword">input</span>&#39;);<span class="hljs-keyword">for</span>(i=0;i&lt;<span class="hljs-keyword">e</span>.length;i++){<span class="hljs-keyword">if</span>(<span class="hljs-keyword">e</span>[i].<span class="hljs-keyword">type</span>==&#39;password&#39;){<span class="hljs-keyword">e</span>[i].<span class="hljs-keyword">type</span>=&#39;text&#39;;}}void(0);</code></pre><p>replace text that contains urls with actual clickable links</p>
+<pre class="hljs"><code>javascript:(function(){var<span class="hljs-variable">%20D</span>=document;<span class="hljs-variable">%20D</span>.body.normalize();<span class="hljs-variable">%20F</span>(D.body);<span class="hljs-variable">%20function</span><span class="hljs-variable">%20F</span>(n){var<span class="hljs-variable">%20u</span>,A,M,R,c,<span class="hljs-keyword">x</span>;<span class="hljs-variable">%20if</span>(n.nodeType==<span class="hljs-number">3</span>){<span class="hljs-variable">%20u</span>=n.data.search(<span class="hljs-regexp">/https?\:\/\/[^\s]*[^.,;&#39;%22&gt;\s)]]/</span>);<span class="hljs-variable">%20if</span>(u&gt;=<span class="hljs-number">0</span>)<span class="hljs-variable">%20</span>{<span class="hljs-variable">%20M</span>=n.splitText(u);<span class="hljs-variable">%20R</span>=M.splitText(RegExp.lastMatch.<span class="hljs-keyword">length</span>);<span class="hljs-variable">%20A</span>=document.createElement(<span class="hljs-variable">%22A</span><span class="hljs-variable">%22</span>);<span class="hljs-variable">%20A</span>.href=M.data;<span class="hljs-variable">%20A</span>.appendChild(M);<span class="hljs-variable">%20R</span>.parentNode.insertBefore(A,R);<span class="hljs-variable">%20</span>}<span class="hljs-variable">%20</span>}<span class="hljs-keyword">else</span><span class="hljs-variable">%20if</span>(n.tagName!=<span class="hljs-variable">%22STYLE</span><span class="hljs-variable">%22</span><span class="hljs-variable">%20</span>&amp;&amp;<span class="hljs-variable">%20n</span>.tagName!=<span class="hljs-variable">%22SCRIPT</span><span class="hljs-variable">%22</span><span class="hljs-variable">%20</span>&amp;&amp;<span class="hljs-variable">%20n</span>.tagName!=<span class="hljs-variable">%22A</span><span class="hljs-variable">%22</span>)<span class="hljs-keyword">for</span>(c=<span class="hljs-number">0</span>;<span class="hljs-keyword">x</span>=n.childNodes[c];++c)F(<span class="hljs-keyword">x</span>);<span class="hljs-variable">%20</span>}<span class="hljs-variable">%20</span>})();</code></pre><p>search for links in the current page</p>
+<pre class="hljs"><code>javascript:(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">var</span> x,n,nD,z,i; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">htmlEscape</span>(<span class="hljs-params">s</span>)</span>{s=s.replace(<span class="hljs-regexp">/&amp;/g</span>,<span class="hljs-string">&#39;&amp;amp;&#39;</span>);s=s.replace(<span class="hljs-regexp">/&gt;/g</span>,<span class="hljs-string">&#39;&amp;gt;&#39;</span>);s=s.replace(<span class="hljs-regexp">/&lt;/g</span>,<span class="hljs-string">&#39;&amp;lt;&#39;</span>);<span class="hljs-keyword">return</span> s;} <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attrQuoteEscape</span>(<span class="hljs-params">s</span>)</span>{s=s.replace(<span class="hljs-regexp">/&amp;/g</span>,<span class="hljs-string">&#39;&amp;amp;&#39;</span>); s=s.replace(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&#39;&amp;quot;&#39;</span>);<span class="hljs-keyword">return</span> s;} x=prompt(<span class="hljs-string">&quot;show links with this word/phrase in link text or target url (leave blank to list all links):&quot;</span>, <span class="hljs-string">&quot;&quot;</span>); n=<span class="hljs-number">0</span>; <span class="hljs-keyword">if</span>(x!=<span class="hljs-literal">null</span>) { x=x.toLowerCase(); nD = <span class="hljs-built_in">window</span>.open().document; nD.writeln(<span class="hljs-string">&#39;&lt;html&gt;&lt;head&gt;&lt;title&gt;Links containing &quot;&#39;</span>+htmlEscape(x)+<span class="hljs-string">&#39;&quot;&lt;/title&gt;&lt;base target=&quot;_blank&quot;&gt;&lt;/head&gt;&lt;body&gt;&#39;</span>); nD.writeln(<span class="hljs-string">&#39;Links on &lt;a href=&quot;&#39;</span>+attrQuoteEscape(location.href)+<span class="hljs-string">&#39;&quot;&gt;&#39;</span>+htmlEscape(location.href)+<span class="hljs-string">&#39;&lt;/a&gt;&lt;br&gt; with link text or target url containing &amp;quot;&#39;</span> + htmlEscape(x) + <span class="hljs-string">&#39;&amp;quot;&lt;br&gt;&lt;hr&gt;&#39;</span>); z = <span class="hljs-built_in">document</span>.links; <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; z.length; ++i) { <span class="hljs-keyword">if</span> ((z[i].innerHTML &amp;&amp; z[i].innerHTML.toLowerCase().indexOf(x) != -<span class="hljs-number">1</span>) || z[i].href.toLowerCase().indexOf(x) != -<span class="hljs-number">1</span> ) { nD.writeln(++n + <span class="hljs-string">&#39;. &lt;a href=&quot;&#39;</span> + attrQuoteEscape(z[i].href) + <span class="hljs-string">&#39;&quot;&gt;&#39;</span> + (z[i].innerHTML || htmlEscape(z[i].href)) + <span class="hljs-string">&#39;&lt;/a&gt;&lt;br&gt;&#39;</span>); } } nD.writeln(<span class="hljs-string">&#39;&lt;hr&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span>); nD.close(); } })();</code></pre><p>show the urls for any links on the page (including image links)</p>
+<pre class="hljs"><code>javascript:(<span class="hljs-keyword">function</span>(){var<span class="hljs-decorator">%20i</span>,c,x,h;<span class="hljs-decorator">%20for</span>(i=<span class="hljs-number">0</span>;x=document.links[i];++i)<span class="hljs-decorator">%20</span>{<span class="hljs-decorator">%20h</span>=x.href;<span class="hljs-decorator">%20x</span>.title+=<span class="hljs-decorator">%22</span><span class="hljs-decorator">%20</span><span class="hljs-decorator">%22</span><span class="hljs-decorator">%20</span>+<span class="hljs-decorator">%20x</span>.innerHTML;<span class="hljs-decorator">%20while</span>(c=x.firstChild)x.removeChild(c);<span class="hljs-decorator">%20x</span>.appendChild(document.createTextNode(h));<span class="hljs-decorator">%20</span>}<span class="hljs-decorator">%20</span>})()</code></pre><p>get rid of all presentational crap on the page</p>
+<pre class="hljs"><code><span class="hljs-keyword">javascript</span>:(function(){function<span class="hljs-number">%20</span>R(w){try{var<span class="hljs-number">%20</span>d=w.document,j,i,t,T,N,b,r=1,C;for(j=0;t=[<span class="hljs-number">%22</span>object<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>embed<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>applet<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>iframe<span class="hljs-number">%22</span>][j];++j){T=d.getElementsByTagName(t);for(i=T.length-1;(i+1)&amp;&amp;(N=T[i]);--i)if(j!=3||!R((C=N.contentWindow)?C:N.contentDocument.defaultView)){b=d.createElement(<span class="hljs-number">%22</span>div<span class="hljs-number">%22</span>);b.style.width=N.width;<span class="hljs-number">%20</span>b.style.height=N.height;b.innerHTML=<span class="hljs-number">%22</span>&lt;del&gt;<span class="hljs-number">%22</span>+(j==3?<span class="hljs-number">%22</span>third-party<span class="hljs-number">%20</span><span class="hljs-number">%22</span>+t:t)+<span class="hljs-number">%22</span>&lt;/del&gt;<span class="hljs-number">%22</span>;N.parentNode.replaceChild(b,N);}}}catch(E){r=0}return<span class="hljs-number">%20</span>r}R(self);var<span class="hljs-number">%20</span>i,x;for(i=0;x=frames[i];++i)R(x)})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>newSS,<span class="hljs-number">%20</span>styles=&#39;<em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>background:<span class="hljs-number">%20</span>white<span class="hljs-number">%20</span>!<span class="hljs-number">%20</span>important;<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>black<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>:link,<span class="hljs-number">%20</span>:link<span class="hljs-number">%20</span></em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>#0000EE<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>:visited,<span class="hljs-number">%20</span>:visited<span class="hljs-number">%20</span><em><span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>color:<span class="hljs-number">%20</span>#551A8B<span class="hljs-number">%20</span>!important<span class="hljs-number">%20</span>}&#39;;<span class="hljs-number">%20</span>if(document.createStyleSheet)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>document.createStyleSheet(<span class="hljs-number">%22</span>javascript:&#39;<span class="hljs-number">%22</span>+styles+<span class="hljs-number">%22</span>&#39;<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>else<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>newSS=document.createElement(&#39;link&#39;);<span class="hljs-number">%20</span>newSS.rel=&#39;stylesheet&#39;;<span class="hljs-number">%20</span>newSS.href=&#39;data:text/css,&#39;+escape(styles);<span class="hljs-number">%20</span>document.getElementsByTagName(<span class="hljs-number">%22</span>head<span class="hljs-number">%22</span>)[0].appendChild(newSS);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>d=document;<span class="hljs-number">%20</span>function<span class="hljs-number">%20</span>K(N,w)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>nn<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>d.createElement(w),<span class="hljs-number">%20</span>C<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>N.childNodes,<span class="hljs-number">%20</span>i;<span class="hljs-number">%20</span>for(i=C.length-1;i&gt;=0;--i)<span class="hljs-number">%20</span>nn.insertBefore(C[i],nn.childNodes[0]);<span class="hljs-number">%20</span>N.parentNode.replaceChild(nn,N);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>function<span class="hljs-number">%20</span>Z(t,w)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>T<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>document.getElementsByTagName(t),<span class="hljs-number">%20</span>j;<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(j=T.length-1;j&gt;=0;--j)<span class="hljs-number">%20</span>K(T[j],w);<span class="hljs-number">%20</span>}<span class="hljs-number">%20</span>Z(<span class="hljs-number">%22</span>blink<span class="hljs-number">%22</span>,<span class="hljs-number">%20</span><span class="hljs-number">%22</span>span<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>Z(<span class="hljs-number">%22</span>marquee<span class="hljs-number">%22</span>,<span class="hljs-number">%20</span><span class="hljs-number">%22</span>div<span class="hljs-number">%22</span>);<span class="hljs-number">%20</span>})();<span class="hljs-number">%20</span>javascript:(function(){var<span class="hljs-number">%20</span>H=[<span class="hljs-number">%22</span>mouseover<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>mouseout<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>unload<span class="hljs-number">%22</span>,<span class="hljs-number">%22</span>resize<span class="hljs-number">%22</span>],o=window.opera;<span class="hljs-number">%20</span>if(document.addEventListener/</em>MOZ<em>/&amp;&amp;!o)<span class="hljs-number">%20</span>for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)document.addEventListener(H[j],function(e){e.stopPropagation();},true);<span class="hljs-number">%20</span>else<span class="hljs-number">%20</span>if(window.captureEvents/</em>NS4<em>/&amp;&amp;!o)<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>document.captureEvents(-1/</em><span class="hljs-literal">ALL</span><em>/);for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)window[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]=null;}<span class="hljs-number">%20</span>else/</em>IE<em>/<span class="hljs-number">%20</span>{function<span class="hljs-number">%20</span>R(N){var<span class="hljs-number">%20</span>i,x;for(j<span class="hljs-number">%20</span>in<span class="hljs-number">%20</span>H)if(N[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]/</em>NOT<span class="hljs-number">%20</span>TEXTNODE*/)N[<span class="hljs-number">%22</span><span class="hljs-literal">on</span><span class="hljs-number">%22</span>+H[j]]=null;for(i=0;x=N.childNodes[i];++i)R(x);}R(document);}})();<span class="hljs-number">%20</span>javascript:(function()<span class="hljs-number">%20</span>{<span class="hljs-number">%20</span>var<span class="hljs-number">%20</span>c,<span class="hljs-number">%20</span>tID,<span class="hljs-number">%20</span>iID;<span class="hljs-number">%20</span>tID<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>setTimeout(function(){},<span class="hljs-number">%200</span>);<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(c=1;<span class="hljs-number">%20</span>c&lt;1000<span class="hljs-number">%20</span>&amp;&amp;<span class="hljs-number">%20</span>c&lt;=tID;<span class="hljs-number">%20</span>++c)<span class="hljs-number">%20</span>clearTimeout(tID<span class="hljs-number">%20</span>-<span class="hljs-number">%20</span>c);<span class="hljs-number">%20</span>iID<span class="hljs-number">%20</span>=<span class="hljs-number">%20</span>setInterval(function(){},1000);<span class="hljs-number">%20</span>for<span class="hljs-number">%20</span>(c=0;<span class="hljs-number">%20</span>c&lt;1000<span class="hljs-number">%20</span>&amp;&amp;<span class="hljs-number">%20</span>c&lt;=iID;<span class="hljs-number">%20</span>++c)<span class="hljs-number">%20</span>clearInterval(iID<span class="hljs-number">%20</span>-<span class="hljs-number">%20</span>c);<span class="hljs-number">%20</span>})();</code></pre><p>and, just for fun</p>
+<pre class="hljs"><code>javascript:<span class="hljs-keyword">var</span> setTitle=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-number">0</span>!=<span class="hljs-built_in">document</span>.title.indexOf(<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0&quot;</span>)&amp;&amp;(<span class="hljs-built_in">document</span>.title=<span class="hljs-string">&quot;%E0%B2%A0_%E0%B2%A0 &quot;</span>+<span class="hljs-built_in">document</span>.title)};<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;load&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{titleChange=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;changed&quot;</span>),setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{setTitle()},<span class="hljs-number">20</span>)};<span class="hljs-keyword">var</span> e=<span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;title&quot;</span>)[<span class="hljs-number">0</span>];e.addEventListener(<span class="hljs-string">&quot;DOMSubtreeModified&quot;</span>,titleChange,!<span class="hljs-number">1</span>),setTitle()},!<span class="hljs-number">1</span>),setTitle();</code></pre>]]></description><link>/2016/bookmarklets.html</link><guid isPermaLink="true">/2016/bookmarklets.html</guid><category><![CDATA[bookmarklets]]></category><category><![CDATA[js]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 30 May 2016 05:30:30 GMT</pubDate></item><item><title><![CDATA[Actually The Last Of The Notes]]></title><description><![CDATA[<h2 id="wait-i-found-more-notes">WAIT I FOUND MORE NOTES</h2>
+<p>These should be the very last of the notes taken while at DevMountain. I stuck
+in like two comments somewhere just because there was something actually
+incorrect, but as usual, please don&#39;t take anything in here seriously, there&#39;s a
+pretty good chance I didn&#39;t know what I was talking about when I wrote a lot of
+this.</p>
+<hr>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">format</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> args = [].slice.call(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">var</span> initial = args.shift()
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params">text, replacement</span>)</span>{
+    <span class="hljs-keyword">return</span> text.replace(<span class="hljs-string">&#39;%s&#39;</span>, replacement)
+  }
+  <span class="hljs-keyword">return</span> args.reduce(replacer, initial)
+}</code></pre><p>this is my implementation, called format.js, stolen mostly from bevacqua. it&#39;s
+like util.format(), but for not-node.</p>
+<p>so, you can pass arguments to console.log and console.error that will be passed
+to util.format()</p>
+<p>so %s for strings, %d for numbers, and %j for objects are valid</p>
+<pre class="hljs"><code>console.<span class="hljs-function"><span class="hljs-title">trace</span><span class="hljs-params">(label)</span></span>
+console.<span class="hljs-function"><span class="hljs-title">time</span><span class="hljs-params">(label)</span></span> and console.<span class="hljs-function"><span class="hljs-title">timeEnd</span><span class="hljs-params">(label)</span></span>
+console.<span class="hljs-function"><span class="hljs-title">assert</span><span class="hljs-params">(expression, arguments)</span></span>
+console.<span class="hljs-function"><span class="hljs-title">dir</span><span class="hljs-params">(object)</span></span></code></pre><hr>
+<p>Don&#39;t use Mongoose. Mongoose actually does have all the problems I thought it
+had. Try Mongolayer at least once. <a href="https://github.com/simpleviewinc/mongolayer">https://github.com/simpleviewinc/mongolayer</a>
+<code>npm i --save mongolayer</code></p>
+<p>Recursive populates, create vs insert fixed, find/create and save using
+different syntax fixed, and each document only having the fields added to it,
+rather than being a whole new instance of the schema fixed. Records getting
+default values instead of not filling that field fixed. Plus other things.</p>
+<hr>
+<p>Generators DO look just like infinite loops. I&#39;m not wrong. Turns out that&#39;s
+because they are infinite loops, but that&#39;s okay, because they&#39;re basically kind
+of backgrounded until called. You hit it up with an iterator, get what you need,
+and then it goes back to sleep. So, in a way, maybe that&#39;s kind of like a
+builtin thing that you&#39;d imagine needs to be an infinite loop, but isn&#39;t in the
+way because you only poke it when you need it. (Like Math.random(), kinda?)
+That&#39;s my interpretation, anyway.</p>
+<hr>
+<h2 id="notes-on-mongo-schema-design">Notes on Mongo schema design</h2>
+<h4 id="-in-a-one-to-n-sort-of-situation-">(in a one-to-n sort of situation...)</h4>
+<ul>
+<li>Embed N if low cardinality &amp; don&#39;t need to access embedded N standalone (outside parent object&#39;s context) (array of documents)<ul>
+<li>Array of refs to N objects if cardinality is one-to-many, or if N objects should need to stand alone (array of refs)</li>
+<li>Ref to One from the N objects if cardinality is very high (parent ref in the N-side document)</li>
+</ul>
+</li>
+</ul>
+<h4 id="the-six-rules-of-thumb-according-to-mongodb-">the six rules of thumb, according to mongodb:</h4>
+<pre class="hljs"><code><span class="hljs-number">1</span>. favour embedding unless there <span class="hljs-keyword">is</span> a compelling reason <span class="hljs-keyword">not</span> <span class="hljs-keyword">to</span>
+<span class="hljs-number">1</span>. needing <span class="hljs-keyword">to</span> <span class="hljs-keyword">access</span> an object <span class="hljs-keyword">on</span> its own <span class="hljs-keyword">is</span> a compelling reason
+<span class="hljs-number">1</span>. arrays should <span class="hljs-keyword">not</span> grow. more than a couple hundred <span class="hljs-keyword">on</span> the <span class="hljs-attribute">&#39;many</span>&#39; side, don<span class="hljs-attribute">&#39;t</span> embed. <span class="hljs-keyword">if</span> there are more than a couple thousand, don<span class="hljs-attribute">&#39;t</span> <span class="hljs-keyword">use</span> an <span class="hljs-keyword">array</span> <span class="hljs-keyword">of</span> objectid refs.
+<span class="hljs-number">1</span>. don<span class="hljs-attribute">&#39;t</span> fear application-level joins.
+<span class="hljs-number">1</span>. keep r/w ratio <span class="hljs-keyword">in</span> mind <span class="hljs-keyword">when</span> denormalizing. mostly read <span class="hljs-keyword">is</span> a good candidate. frequently updated means it<span class="hljs-attribute">&#39;s</span> <span class="hljs-keyword">not</span> worth it.
+<span class="hljs-number">1</span>. structure your models around how you will <span class="hljs-keyword">access</span> data. how the app queries <span class="hljs-keyword">and</span> updates are very important here.</code></pre><hr>
+<p>Type <em>introspection</em> is a feature of languages where, at runtime (which, for the
+sake of keeping it in my head, we&#39;ll say is when said language goes from source
+to not-source, whether that&#39;s a binary or a browser window, or whatever... (Java
+bytecode doesn&#39;t count, I&#39;m not even sure where it falls on the range of
+&#39;scripting&#39; to &#39;compiled&#39;)  a program can take a peek inside and see what the
+<em>type</em> of an <em>object</em> is.</p>
+<p>So:</p>
+<pre class="hljs"><code><span class="hljs-literal">A</span>=Class.new
+B=Class.new <span class="hljs-literal">A</span>
+<span class="hljs-literal">a</span>=<span class="hljs-literal">A</span>.new
+b=B.new
+<span class="hljs-literal">a</span>.instance_of? <span class="hljs-literal">A</span>
+=&gt; <span class="hljs-literal">true</span>
+b.instance_of? <span class="hljs-literal">A</span>
+=&gt; <span class="hljs-literal">false</span>
+b.kind_of? <span class="hljs-literal">A</span>
+=&gt; <span class="hljs-literal">true</span></code></pre><pre class="hljs"><code><span class="hljs-keyword">if</span> (<span class="hljs-variable">$obj</span> instanceof Cat) {
+    // hey look, it<span class="hljs-string">&#39;s a cat!
+}</span></code></pre><pre class="hljs"><code>thingy = <span class="hljs-function"><span class="hljs-title">whatever</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>
+blingy = <span class="hljs-function"><span class="hljs-title">blahhh</span><span class="hljs-params">(<span class="hljs-number">17</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">type</span><span class="hljs-params">(thingy)</span></span>
+&lt;type <span class="hljs-string">&#39;whatever&#39;</span>&gt;
+<span class="hljs-function"><span class="hljs-title">isinstance</span><span class="hljs-params">(thingy, type(whatever)</span></span>)
+True
+<span class="hljs-function"><span class="hljs-title">isinstance</span><span class="hljs-params">(thingy, type(blingy)</span></span>)
+False</code></pre><p>Python also has <code>hasattr</code>, which is nifty.</p>
+<hr>
+<h2 id="cron-in-node">Cron in Node</h2>
+<p><code>node-schedule</code> seems quite popular. It&#39;s a &#39;cron-like&#39; and &#39;not-cron-like&#39;
+scheduler. I believe that means it&#39;s a scheduler, but it&#39;s time based instead of
+interval based (because <code>setInterval</code> exists). Node-schedule is for in-process
+scheduling, so once your script has executed, it&#39;s gone (and then cron makes a
+lot more sense, because otherwise you&#39;d have to write a script just to start
+node-schedule to do whatever it is that you need done at whatever time and/or
+date).</p>
+<hr>
+<p>Gulp:</p>
+<pre class="hljs"><code>gulp.task(<span class="hljs-string">&#39;nameOfTask&#39;</span>, [<span class="hljs-string">&#39;arraywithTasksToExecute&#39;</span>, <span class="hljs-string">&#39;beforeThisTaskHappens&#39;</span>, <span class="hljs-string">&#39;whichAreOptionalReally&#39;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{})</code></pre><hr>
+<h2 id="electron-vs-node-webkit">Electron vs Node Webkit</h2>
+<ul>
+<li>Electron: <code>main</code> in <code>package.json</code> is the <code>app.js</code> or whatever to run.</li>
+<li>nw.js: <code>main</code> is the <code>index.html</code> to display.</li>
+<li>nw.js: can specify options about window, such as toolbar, width, and height.</li>
+<li>electron: you do that in the app.js or whatever.</li>
+<li>electron&#39;s menus are available on the main process. for dynamic updates to menus from within the app (rendering process), need to use ipc (built-in to electron).</li>
+<li>nw: call set menu, and set stuff. it&#39;s all bundled anyway, so whatever.</li>
+<li>nw: shell calls are totally fine.</li>
+<li>electron: need to spawn child procs with the <code>pipe</code> stdio option.</li>
+</ul>
+<p>A package for nw.js is a zip archive wit hthe extension &#39;nw.&#39; There must be a
+package.json, which includes the &#39;main&#39; key (html to open on load), and name of
+package (similar to node modules).</p>
+<p>&#39;nodejs&#39; field on package.json is boolean; set false to disable node running
+there (purely client-side). node-main is the path to the script for node to run
+(so we could have nodde run the server, and nwjs working with its own files, and
+there _shouldn&#39;t- be conflict.)</p>
+<ul>
+<li>user-agent (should be pretty obvious.)</li>
+<li>remote enalbes calling node in remote pages, whitelist of hostnames.</li>
+<li>chromium-args (literally).</li>
+<li>js-flags (string) for example:<code>{&quot;name&quot;: &quot;test&quot;, &quot;main&quot;: &quot;index.html&quot;, &quot;js-flags&quot;: etc function etc}</code></li>
+<li><p>inject-js-start and inject-js-end (THESE ARE THE IMPORTANT BITS, PAY ATTENTION HERE!)</p>
+<ul>
+<li>start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.</li>
+<li>end: same, but it&#39;s excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.</li>
+</ul>
+</li>
+<li><p>window:</p>
+<ul>
+<li>title str</li>
+<li>width/height int</li>
+<li>tooolbar bool</li>
+<li>icon str (path to the icon)</li>
+<li>position  str (null, center, or mouse)</li>
+<li><code>min_width</code>, <code>min_height</code>, <code>max_width</code>, <code>max_height</code> int</li>
+<li><code>as_desktop</code> bool show as x server desktop background window</li>
+<li>resizable bool<ul>
+<li>always-on-top bool</li>
+</ul>
+</li>
+<li>visible-on-all-workspaces bool</li>
+<li>fullscreen bool</li>
+<li><code>show_in_taskbar</code> bool</li>
+<li>frame bool (sets frameless; avoid if setting fullscreen to true!)</li>
+<li>show bool (false would mean hidden startup [tray?])</li>
+<li>kiosk bool (fullscreen, prevents mouse-driven leaving app; alt-f4 still works, and ctrl-q probably does as well)</li>
+<li>transparent bool (would need composition support) (if true, set with rgba as in css)</li>
+</ul>
+</li>
+<li><p>webkit</p>
+<ul>
+<li>plugin bool (defaults false, for loading media plugins)</li>
+<li>java bool (fuck no, leave that shit where it is)</li>
+<li>page-cache bool</li>
+</ul>
+</li>
+</ul>
+<p>More on nw stuff:</p>
+<p>whether a .nw file (renamed zip) or project directory, the package.json needs to
+be in the root, and if it&#39;s the .nw, that needs to be the actual project
+directory contents, not a directory containing them.</p>
+<p><code>console.log</code> redirects to dev tools (same with console.warn and console.error)</p>
+<p>the <code>process</code> object:</p>
+<ul>
+<li><code>process.versions[&#39;node-webkit&#39;]</code> is set with nw&#39;s version<ul>
+<li><code>process.versions[&#39;chromium&#39;]</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)</li>
+<li><code>process.mainModule</code> is set to the <em>start</em> page, eg <code>index.html</code>--this is whatever&#39;s under <code>main</code> in the package.json, UNLESS there&#39;s a specified <code>node-main</code> field there.</li>
+</ul>
+</li>
+</ul>
+<p><code>__dirname</code> can only be called by node modules (with <code>require()</code>). webkit doesn&#39;t have that (not in devtools either). a hacky fix:</p>
+<p><code>exports.dirname = __dirname</code> in a file, then require that (eg <code>var dirname = require(&#39;./dirnamefile&#39;).dirname; console.log(dirname)</code> would return dirname).</p>
+<hr>
+<h1 id="misc-node-things">MISC NODE THINGS</h1>
+<p>What the hell is an event emitter, anyway? Oh, okay. So. Here&#39;s an example.
+<code>net.Server</code> emits an event when a peer connects. <code>fs.readStream</code> emits an event
+when a file is opened. <code>events.EventEmitter</code> objects! This can be accessed
+directly by requiring <code>events</code>.</p>
+<p>Functions can be executed when an event is emitted--these are called
+<strong>listeners</strong> (not something silly like emitter methods or whatever, that would
+just be nonsense). In those functions, <code>this</code> is the <code>EventEmitter</code> to which the
+listener is attached.</p>
+<p>Something worth noting: <em>HANDLE EVENTEMITTER ERRORS</em>. Errors are special events
+in node, and if there&#39;s no listener for it, node&#39;ll just print a stack trace and
+exit. So always always always be aware, and do something like <code>.on(&#39;error&#39;, fn)</code>
+to make sure you&#39;re handling errors the way you <strong>want</strong> to handle them, rather
+than just letting shit crash and die.</p>
+<hr>
+<p>Gulp core&#39;s api is THIS SIMPLE. Check this out.</p>
+<pre class="hljs"><code>.<span class="hljs-function"><span class="hljs-title">src</span><span class="hljs-params">(globs [, options])</span></span>   <span class="hljs-comment">// takes glob, returns stream in</span>
+.<span class="hljs-function"><span class="hljs-title">dest</span><span class="hljs-params">(path)</span></span>               <span class="hljs-comment">// takes path, returns stream out</span>
+.<span class="hljs-function"><span class="hljs-title">task</span><span class="hljs-params">(name [, deps], fn)</span></span>  <span class="hljs-comment">// defines task</span>
+.<span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">(tasks... [, cb])</span></span>     <span class="hljs-comment">// runs task</span>
+.<span class="hljs-function"><span class="hljs-title">watch</span><span class="hljs-params">(glob [, opts], cb)</span></span> <span class="hljs-comment">// watches fs</span></code></pre><p>That&#39;s IT. The entire codebase is actually readable in a relatively short amount
+of time. Fuckin&#39; beautiful.</p>
+<p>Clearly that doesn&#39;t include <code>.pipe()</code>, but pipe isn&#39;t exactly an api thing I
+think. It&#39;s a pipe. That&#39;d be like saying &#39;oh yeah, you need to learn |, that&#39;s
+a really important thing&#39; or whatever. Sure, it&#39;s the most vital and fundamental
+thing about *n*x, but it&#39;s not a thing you learn, I guess.</p>
+<p>(note : pipe is from node, not gulp-specific)</p>
+<hr>
+<p>Regarding ES6 <code>let</code> and <code>const</code>: <code>let</code> would be mutable. <code>const</code> is basically
+exactly what it sounds like.</p>
+<p>(note : not exactly)</p>
+<hr>
+<p>React things:</p>
+<p><code>componentWillMount()</code> is triggered <em>once</em>, before any rendering.</p>
+<p><code>componentDidMount()</code> is triggered <em>after</em> initial rendering. Access to DOM, here!</p>
+<p><code>componentWillReceiveProps(object nextProps)</code> triggers after component receives new props.</p>
+<p><code>shouldComponentUpdate(object nextProps, object nextState)</code> optimize rendering, return false if no need to update.</p>
+<p><code>componentWillUpdate(same as above, there ^^ )</code> triggered after shouldEtc,etc..., and before <code>render()</code>.</p>
+<p><code>compnentDidUpdate()</code> after rendering. Modify the DOM here.</p>
+<p><code>componentWillUnmount()</code> just before component unmounted from DOM--do cleanup here.</p>
+<p><code>displayName</code> good for debug especially. ES6 classes, derived from class name.</p>
+<p><code>getInitialState()</code> equivalent of constructor in classes.</p>
+<p><code>getDefaultProps()</code> same, bro.</p>
+<p><code>mixins</code> array</p>
+<p><code>statics</code> properties and methods for component</p>
+<hr>
+<p>Webpack: <code>preLoaders</code> gets executed before <code>loaders</code>, regardless of order; this
+still goes in under <code>module:{}</code>.  <code>jshint-loader</code> works in here! That&#39;ll just
+look for your standard <code>.jshintrc</code>.</p>
+<p>Eslint would be better for React, especially because of <code>eslint-plugin-react</code>.
+Eslint also has autofixing (--fix) for some stuff.</p>
+<p>With eslint we&#39;d just include that as an npm script, eg <code>npm run lint</code> with
+<code>&quot;lint&quot;: &quot;eslint . --ext .js --ext .jsx --fix&quot;</code>.</p>
+<p>Eslint also follows an <code>.eslintignore</code>, and an <code>.eslintrc</code>. Rules have
+<em>severity</em>: 0 for disabled, 1 for warning, 2 for error. Some rules take an
+<em>array</em> instead, like <code>&quot;quotes&quot;: [2, &quot;single&quot;]</code>.</p>
+<p>When there&#39;s a lint error with Eslint, npm will give you an <code>ELIFECYCLE</code> error.
+To hide that, we could do <code>npm run lint --silent</code>; alternatively, the same npm
+script above could have <code>|| true</code> appended, but if we invoke that from somewhere
+else, it&#39;ll pass even when there are failures.</p>
+<p><code>jscs</code>, with <code>jscs-loader</code>, follows <code>.jscsrc</code>.</p>
+<p>And, lastly, there&#39;s always EditorConfig and the <code>.editorconfig</code> file.</p>
+<hr>
+<p>Flux: really just an architecture pattern that means it has a <em>unidirectional
+data flow</em>. Like, seriously, that&#39;s all. Here&#39;s an example diagram: <code>Actions -&gt;
+Data Stores -&gt; Components (Views)</code>. That&#39;s <em>it</em>. All Flux really is is a way of
+<em>thinking</em> about things. That&#39;s why there are libraries that <em>implement</em> Flux
+patterns, like Alt.</p>
+<p>Another example diagram:</p>
+<pre class="hljs"><code>  Stores &lt;- - <span class="hljs-string">\</span>
+ |              Components
+ |(listens)      |
+ <span class="hljs-string">\</span>               / <span class="hljs-function"><span class="hljs-params">(calls)</span>
+  --&gt;</span> Actions &lt;--</code></pre><hr>
+<p>Some React Vocab:</p>
+<p>As of some...time, <em>all</em> React custom components <em>must</em> be Uppercase, like This,
+to differentiate from standard xml/html. See <a href="https://gist.github.com/sebmarkbage/f1f4ba40816e7d7848ad">this
+gist</a> for more info on
+that.</p>
+<p>There are five main types in React (and that&#39;s a horrible word to use, can we
+think of something better? Kinds of elements? Things? Idk...).</p>
+<p>React Elements are the primary... thing. A <code>ReactElement</code> has four properties:
+type, props, key, ref. No methods, nothing on prototype. Created like <code>var foo =
+React.createElement(&#39;div&#39;).</code> You pass these to <code>React.render</code>, with a DOM element
+(HTML or SVG), like <code>React.render(foo, document.body)</code>. To add properties to it,
+pass a properties object as the second argument. Children to the third. (Note
+that if using JSX, that&#39;s a bit less verbose.</p>
+<p><code>ReactElement</code>-<em>factory</em> is a function that generates <code>ReactElement</code> with
+specific <code>type</code> property. <code>function createFactory(type){return
+React.createElement.bind(null, type)}</code>; <code>var div = React.createFactory(&#39;div&#39;);
+var foo = div({className: &#39;my-div&#39;}); React.render(foo, document.body)</code>. Common
+HTML tags have built-in factories in React (like <code>var quux = React.DOM.ul</code> or
+<code>var bar = React.DOM.li</code>). But, again, JSX negates the need for factories.</p>
+<p><code>ReactNode</code> could be <code>ReactElement</code>, string, number, or array of ReactNodes
+(<code>ReactFragment</code>). This is a property of other <code>ReactElement</code>s used to represent
+children. Kind of basically create a tree of REs.</p>
+<p><code>ReactComponent</code> would be where the real meat of React can be found. Here we can
+create whatsits in React, and then sort of encapsulate them with their own
+little embedded <em>state</em>. And remember, in React, everything is state. And
+everything is a really ugly bit of PHP that wants to be Javascript. So, <code>var
+thingy = React.createElement(SomeComponent)</code> or <code>var thingy = &lt;Some Component
+/&gt;</code></p>
+<pre class="hljs"><code>React.render = (ReactElement, HTMLElement | SVGElement) =&gt; ReactComponent
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactNode</span> </span>= ReactElement | ReactFragment | ReactText
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactElement</span> </span>= ReactComponentElement | ReactDOMElement
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactDOMElement</span> </span>= {
+    <span class="hljs-class"><span class="hljs-keyword">type</span>: <span class="hljs-title">string</span>,</span>
+    props: {
+        children: ReactNodeList,
+        className: string,
+        etc.
+    },
+    key : string | boolean | number | <span class="hljs-keyword">null</span>,
+    ref : string | <span class="hljs-keyword">null</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactComponentElement</span>&lt;TProps&gt; </span>= {
+    <span class="hljs-class"><span class="hljs-keyword">type</span>: <span class="hljs-title">ReacetClass</span>&lt;TProps&gt;,</span>
+    props: TProps,
+    key : string | boolean | number | <span class="hljs-keyword">null</span>,
+    ref : string | <span class="hljs-keyword">null</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactFragment</span> </span>= Array&lt;ReactNode | ReactEmpty&gt;
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactNodeList</span> </span>= ReactNode | ReactEmpty
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactText</span> <span class="hljs-title">string</span> | <span class="hljs-title">number</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactEmpty</span> </span>= <span class="hljs-keyword">null</span> | undefined | boolean
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReacetClass</span>&lt;TProps&gt; </span>= (TProps) =&gt; ReactComponent&lt;TProps&gt;
+
+<span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">ReactComponent</span>&lt;TProps&gt; </span>= {
+    props: TProps,
+    render: () =&gt; ReactElement
+}</code></pre><hr>
+<h4 id="waterfall-model-">Waterfall Model:</h4>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">Requirements</span> ==&gt;</span>
+<span class="hljs-function">  <span class="hljs-title">Design</span>       ==&gt;</span>
+<span class="hljs-function">    <span class="hljs-title">Implementation</span> ==&gt;</span>
+<span class="hljs-function">        <span class="hljs-title">Verification</span> ==&gt;</span>
+            Maintenance</code></pre><p>Also known as:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-title">Denial</span> ==&gt;</span>
+<span class="hljs-function">  <span class="hljs-title">Bargaining</span> ==&gt;</span>
+<span class="hljs-function">    <span class="hljs-title">Anger</span>      ==&gt;</span>
+<span class="hljs-function">      <span class="hljs-title">Depression</span> ==&gt;</span>
+          Acceptance</code></pre><hr>
+<p>TO DISPLAY BRACES (<code>{{}}</code>) IN ANGULAR, YOU NEED TO WRAP THEM IN A WHATEVER
+(<code>&lt;span&gt;</code>, <code>&lt;p&gt;</code>, whatever) AND GIVE THAT TAG THE ATTRIBUTE <code>ng-non-bindable</code>,
+LIKE IN <code>&lt;code ng-non-bindable&gt;{{show.things}}&lt;/code&gt;</code>.</p>
+<hr>
+<p>Dates/times in JS:</p>
+<pre class="hljs"><code><span class="hljs-tag">var</span> myDate  = new <span class="hljs-function"><span class="hljs-title">Date</span><span class="hljs-params">(<span class="hljs-string">&#39;December 31, 2015 11:58:30&#39;</span>)</span></span>
+  , myEpoch = myDate.<span class="hljs-function"><span class="hljs-title">getTime</span><span class="hljs-params">()</span></span>/<span class="hljs-number">1000.0</span>
+console.<span class="hljs-function"><span class="hljs-title">log</span><span class="hljs-params">(myEpoch)</span></span>
+
+<span class="hljs-tag">var</span> yourDate  = new <span class="hljs-function"><span class="hljs-title">Date</span><span class="hljs-params">(<span class="hljs-number">1451631690</span> * <span class="hljs-number">1000</span>)</span></span>
+console.<span class="hljs-function"><span class="hljs-title">log</span><span class="hljs-params">(yourDate.toGMTString()</span></span> + <span class="hljs-string">&#39; &#39;</span> + yourDate.<span class="hljs-function"><span class="hljs-title">toLocaleString</span><span class="hljs-params">()</span></span>)</code></pre><hr>
+<pre class="hljs"><code>_.isString(<span class="hljs-keyword">str</span>) = (<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">str</span> === <span class="hljs-string">&#39;string</span>&#39;) = (toString.call(<span class="hljs-keyword">str</span>) === &#39;[object <span class="hljs-built_in">String</span>]&#39;)
+<span class="hljs-comment">// underscore&#39;s okay, typeof is okay, but this one here is the shiznit, fo sho</span></code></pre><hr>
+<p>A transpiler is a compiler. It takes code that can&#39;t be run on whatever engine
+it&#39;s targetting, and compiles it so it works. The only actual difference is that
+when funky-code-X is compiled into normal-code-Y, it stays at around the same
+level of abstraction. So, turning JSX or ES6 into ES5 doesn&#39;t really make a vast
+difference in terms of performance, and it&#39;s not like Javascript is a low-level
+language that we&#39;re compiling to, using Babel--we&#39;re just basically
+cross-piling. Hence the &#39;trans&#39; prefix.</p>
+<hr>
+<pre class="hljs"><code><span class="hljs-comment">/<em> hides the element so it&#39;s just <em>gone</em> </em>/</span>
+<span class="hljs-class">.thing</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>;}</span>
+<span class="hljs-comment">/<em> hides its attributes and stuff, but the tag is still there, so it might take up space </em>/</span>
+<span class="hljs-class">.stuff</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">visibility</span>:<span class="hljs-value"> hidden</span></span>;}</span></code></pre><p>NPM -- local (to project) <code>.npmrc</code> <em>must</em> be <code>0600</code>! Otherwise NPM ignores them.
+Idea being that they should only be readable and writable by the single user
+account. The local <code>.npmrc</code> can be overridden by arguments (such as <code>npm config
+set foo:port 9999</code>_).</p>
+]]></description><link>/2016/actually-last-notes.html</link><guid isPermaLink="true">/2016/actually-last-notes.html</guid><category><![CDATA[devmtn]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Mon, 30 May 2016 02:00:00 GMT</pubDate></item></channel></rss>

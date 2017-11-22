@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>zac anger - angr</title>
+  <meta name="description" content="JS Dev, Nix Hacker, Musician">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/2016/hs-meetup-9-1.html" />
+</head>
+<body class="author-template author-blog post-template tag-haskell">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+  <article class="post tag-haskell">
+
+
+    <h2 class="post-title"><a href="/2016/hs-meetup-9-1.html">haskell meetup, 1 sept 2016</a></h2>
+    <span class="post-meta">
+      <time datetime="2016-09-01">01 September, 2016</time>
+       | tags: <a href="/tag/haskell/">haskell</a></span>
+
+    <br>
+
+    <section class="post-content">
+      <p>just a few random notes. most of this was way over my head.</p>
+<p><a href="https://github.com/pinealservo/mamedb">https://github.com/pinealservo/mamedb</a></p>
+<p>xml-conduit -- xml parsing</p>
+<p>hasql - postgres lib</p>
+<p>maybe keep all types etc in own file</p>
+<p>cabal files: main-is Main.hs, list other of <em>our</em> modules.</p>
+<p>build-depends are dependencies. install with stack.</p>
+<p>stack build is like npm i</p>
+<p>$$ -- ?
+$= -- ?</p>
+<p>combinators from conduit</p>
+<p>conduit is a streaming library thing</p>
+<p>better than lazy io</p>
+<p>there&#39;s also pipes, another group of streaming abstractions</p>
+<p>also iostreams -- uses io</p>
+<p>in:</p>
+<pre class="hljs"><code>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
+parseMame = <span class="hljs-keyword">void</span> $ tagIgnoreAttrs <span class="hljs-string">&quot;mame&quot;</span> $ manyYield parseMachine</code></pre><p>void is explicitly discarding the value</p>
+<p>you can use the -&gt; typeclass to build things, and use them as arrows,
+including in type signatures.</p>
+<p>in <code>rId &lt;- insertRom -&lt; rom</code>,
+rom is input to insertrom ; insertrom&#39;s output is romid</p>
+<p>stack ghci: ghci but for project</p>
+<p>:r -- reload loaded module</p>
+<p>11 -- oom</p>
+
+    </section>
+
+    <footer class="post-footer">
+
+      <section class="share">
+        <a
+          class="icon-twitter"
+          href="http://twitter.com/share?text=haskell meetup, 1 sept 2016&url=http://blog.zacanger.com/2016/hs-meetup-9-1.html"
+          title="Tweet this post."
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+      </section>
+
+    </footer>
+
+
+  </article>
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

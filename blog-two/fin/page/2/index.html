@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>angr - Page 2</title>
+  <meta name="description" content="">
+  <meta name="author" content="Zac Anger">
+  <meta name="keywords" content="blog, javascript, js, programming, web development, design, music">
+  <meta name="distribution" content="Global">
+  <meta name="revisit-after" content="10 Days">
+  <meta name="rating" content="General">
+  <meta name="refresh" content="10 Days">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/highlight/styles/tomorrow-night-eighties.css">
+  <script type="text/javascript" src="/assets/css/highlight/highlight.pack.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
+
+  <meta name="generator" content="Ghost ?" />
+<link rel="alternate" type="application/rss+xml" title="angr" href="/rss/index.xml">
+<link rel="canonical" href="http://blog.zacanger.com/page/2/index.html" />
+<link rel="prev" href="http://blog.zacanger.com/" />
+<link rel="next" href="http://blog.zacanger.com/page/3/" />
+</head>
+<body class="paged archive-template">
+  <div id="content">
+    <div id="content-left">
+      <div class="vertical">
+        <div class="blog-title-wrap">
+        <a id="blog-logo" href="http://blog.zacanger.com"><img src="http://zacanger.com/logo.svg" alt="Blog Logo"></a>
+        <h1 class="blog-title"><a href="http://blog.zacanger.com">angr</a></h1>
+        </div>
+        <div class="blog-description-wrap">
+        <h2 class="blog-description">writings from zac anger</h2>
+        <h2 class="blog-description"><a href="http://zacanger.com/blog">old blog</a></h2>
+        </div>
+    </div>
+    </div>
+
+    
+<div id="content-main">
+
+
+  <article class="post tag-react tag-proptypes tag-classnames">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2017/proptypes-for-classnames.html">PropTypes for Classnames</a></h2>
+      <span class="post-meta">
+        <time datetime="2017-02-11">11 February, 2017</time>
+         | tags: <a href="/tag/react/">react</a>, <a href="/tag/proptypes/">proptypes</a>, <a href="/tag/classnames/">classnames</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+It lets you do stuff like</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./styles.css&#39;</span>
+
+<span class="hljs-keyword">const</span> Thing = ({ foo }) =&gt;
+  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== <span class="hljs-number">2</span> })} /&gt;</code></pre><p>And a whole bunch of other stuff, and it just works. If you write your CSS
+in CSS, you should check it out.</p>
+<p>There is one sort of pain point with it, though. If you have components that
+can take anything that&#39;s <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
+<pre class="hljs"><code><span class="hljs-constant">Stuff.propTypes</span> = { className: <span class="hljs-built_in">string</span>.isRequired }</code></pre><p>This doesn&#39;t work, because you&#39;re passing all sorts of stuff in, possibly.</p>
+<p>A solution is to make your own custom PropTypes. You don&#39;t even need to
+get into fancy stuff involving validation, just combine a bunch of other
+PropTypes into your own.</p>
+<p>Let&#39;s say you have a <code>propTypes.js</code> file somewhere where you define custom
+PropTypes.</p>
+<pre class="hljs"><code>import { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+
+export <span class="hljs-keyword">const</span> classname = PropTypes.oneOfType([
+  PropTypes.<span class="hljs-keyword">object</span>,
+  PropTypes.<span class="hljs-keyword">string</span>,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.<span class="hljs-keyword">bool</span>,
+      PropTypes.<span class="hljs-keyword">object</span>,
+      PropTypes.<span class="hljs-keyword">string</span>
+    ])
+  )
+])</code></pre><p>That&#39;s all you need! Then you can do:</p>
+<pre class="hljs"><code>import { <span class="hljs-built_in">classname</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./propTypes&#39;</span>
+import cn <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;classnames&#39;</span>
+
+const Stuff = ({ <span class="hljs-built_in">className</span> }) =&gt;
+  &lt;span <span class="hljs-built_in">className</span>={cn(<span class="hljs-built_in">className</span>)}&gt;
+
+Stuff.propTypes = {
+  <span class="hljs-built_in">className</span>: <span class="hljs-built_in">classname</span> <span class="hljs-comment">// this is your custom thing</span>
+}</code></pre><p>That should solve all PropTypes warnings and let you throw anything the
+<code>classnames</code> library can handle at your components.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-personal">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/new-years-resolutions.html">new years resolutions</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-12-31">31 December, 2016</time>
+         | tags: <a href="/tag/personal/">personal</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h2 id="things-i-hope-to-maybe-do-in-2017">things i hope to maybe do in 2017</h2>
+<ul>
+<li>Work less at work<ul>
+<li>Mainly, stop working on weekends and in the middle of the night and stuff</li>
+</ul>
+</li>
+<li>Get familiar enough with Racket, ClojureScript, and Haskell to write real-world stuff</li>
+<li>Learn more about <code>sh</code> and POSIX compat in general<ul>
+<li>Also convert as much of my dotfiles as possible to use <code>sh</code> instead of <code>bash</code></li>
+<li>Also weed out my dotfiles, they&#39;re ridiculous</li>
+</ul>
+</li>
+<li>At least record the acoustic album that&#39;s been written and sitting there for ages<ul>
+<li>Maybe get Windows working enough to finish up the electro album thing</li>
+</ul>
+</li>
+<li>Be slightly healther, at least<ul>
+<li>Switch to vaping, for real this time</li>
+<li>Maybe eat better?<ul>
+<li>Less pizza, at least</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Buy a car</li>
+<li>Finish paying off debts, so close<ul>
+<li>Also try not to tap into savings so much for stupid things</li>
+</ul>
+</li>
+<li>Actually finish anything ever<ul>
+<li>Various unfinished small projects</li>
+<li>Finish Pharaoh rewrite early on</li>
+</ul>
+</li>
+<li>Make progress on learning Korean, for real this time</li>
+<li>Try really hard to not write any untested code</li>
+<li>Make a real effort to talk to real humans in real life</li>
+<li>Take the time to move all things using Facebook auth away from this, so I can finally delete my Facebook</li>
+<li>Change how this blog is built, so it&#39;s more flexible, and maybe using something fun like Frog<ul>
+<li>Also, blog more (at least, clear out my <code>drafts</code> dir).</li>
+</ul>
+</li>
+<li>Be making more money<ul>
+<li>Preferably where I am now, but somewhere else if that doesn&#39;t work out</li>
+<li>Also start actually emailing recruiters back</li>
+</ul>
+</li>
+<li>Switch to Mutt or some other purely text-based email client</li>
+</ul>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-fp">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/category-theory-for-js-devs.html">Category Theory Notes</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-11-26">26 November, 2016</time>
+         | tags: <a href="/tag/fp/">fp</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><h1 id="category-theory-for-js-devs">Category Theory for JS Devs</h1>
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this series</a>.</p>
+<h2 id="contracts">Contracts</h2>
+<p>Basics of type checking.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> str = a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string">&#39;string&#39;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected a string&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><h2 id="guarded-functions-and-categories">Guarded Functions and Categories</h2>
+<p>Functions that have contracts on input or output are called <em>guarded</em> functions.</p>
+<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
+<p>Maps between categories are functors.</p>
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded) functions.</p>
+<p>Function that returns a contract:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> typeOf = type =&gt; a =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a !== <span class="hljs-string"><code>&lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;</code></span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string"><code>Expected &lt;span class=&quot;hljs-subst&quot;&gt;${type}&lt;/span&gt;!</code></span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>And basic usage:</p>
+<pre class="hljs"><code>const bool = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;boolean&#39;</span>)</span></span>
+const num  = <span class="hljs-function"><span class="hljs-title">typeOf</span><span class="hljs-params">(<span class="hljs-string">&#39;number&#39;</span>)</span></span>
+<span class="hljs-comment">// etc.</span>
+<span class="hljs-comment">// Obviously, for arrays you&#39;d need to use Array.isArray()</span></code></pre><p>Then we could do something like</p>
+<pre class="hljs"><code>const increment = <span class="hljs-operator">a</span> =&gt; {
+  <span class="hljs-operator">a</span> = <span class="hljs-built_in">num</span>(<span class="hljs-operator">a</span>)
+  <span class="hljs-constant">return</span> <span class="hljs-operator">a</span> + <span class="hljs-number">1</span>
+}</code></pre><p>Before I go further I should mention that yes, I have heard of Flow and TypeScript.</p>
+<pre class="hljs"><code>const increment = (<span class="hljs-tag">a</span>: number) =&gt; <span class="hljs-tag">a</span> + <span class="hljs-number">1</span></code></pre><p>I assume this video series will get to actual type systems at some point, though
+it was made before TypeScript and Flow were written, so it won&#39;t be mentioning those.</p>
+<h2 id="array-contracts">Array Contracts</h2>
+<p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> arr = a =&gt; {
+  <span class="hljs-keyword">if</span> ({}.toString.call(a) !== <span class="hljs-string">&#39;[object Array]&#39;</span>) <span class="hljs-keyword">throw</span> TypeError(<span class="hljs-string">&#39;Expected array!&#39;</span>)
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}</code></pre><p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
+<h2 id="functors">Functors</h2>
+<p>Takes a maps the contract over the things array. Will throw if they&#39;re not all
+correct. Ensure that your array is, for example, all Strings, or whatever.</p>
+<pre class="hljs"><code>const arrayOf = contract =&gt; things =&gt; <span class="hljs-function"><span class="hljs-title">arr</span><span class="hljs-params">(things)</span></span>.<span class="hljs-function"><span class="hljs-title">map</span><span class="hljs-params">(c)</span></span></code></pre><p>This acts on the category&#39;s <em>objects</em> and <em>morphisms</em> both, and produces new
+objects and new morphisms.</p>
+<h2 id="maybe">Maybe</h2>
+<p>The <em>Maybe</em> functor.</p>
+<p><code>Maybe</code> is a Monad, but I guess we&#39;re only thinking of its Functor-ness for this
+video?</p>
+<p>Anyway here&#39;s some code.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Maybe = () =&gt; {}
+Maybe.prototype.getOrElse = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Some) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> a
+}
+<span class="hljs-comment">// the above: maybe something getOrElse what to do if none</span>
+
+<span class="hljs-keyword">const</span> None = () =&gt; {}
+None.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype) <span class="hljs-comment">// all instances of None are an instance of Maybe</span>
+None.prototype.toString = () =&gt; <span class="hljs-string">&#39;None&#39;</span>
+<span class="hljs-keyword">const</span> none = <span class="hljs-keyword">new</span> None()
+
+<span class="hljs-keyword">const</span> Some = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>{ <span class="hljs-keyword">this</span>.a = a }
+Some.prototype = <span class="hljs-built_in">Object</span>.create(Maybe.prototype)
+Some.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string"><code>Some(thisa)</code></span> }
+<span class="hljs-keyword">const</span> some = a =&gt; <span class="hljs-keyword">new</span> Some(a)
+
+<span class="hljs-keyword">const</span> maybe = c =&gt; m =&gt; {
+  <span class="hljs-keyword">if</span> (m <span class="hljs-keyword">instanceof</span> None) <span class="hljs-keyword">return</span> m
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m instance <span class="hljs-keyword">of</span> Some) <span class="hljs-keyword">return</span> some((m.a))
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#39;Expected None or Some a!&#39;</span>)
+}</code></pre><h2 id="unit-and-flatten">Unit and Flatten</h2>
+<pre class="hljs"><code>const arrayOfUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return arrayOf<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">([a])</span>
+  }
+)</span>
+
+const maybeUnit = contract =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = contract<span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">contract</span>)</span><span class="hljs-list">(<span class="hljs-keyword">some</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>)</span>
+  }
+)</span>
+
+const arrayOfFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = arrayOf<span class="hljs-list">(<span class="hljs-keyword">arrayOf</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    const r = []
+    const l = a.length
+    for <span class="hljs-list">(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; l; ++i) {</span>
+      r = r.concat<span class="hljs-list">(<span class="hljs-keyword">a</span>[i])</span> // ew wtf is this guy doing?
+    }
+  }
+)</span>
+
+const maybeFlatten = c =&gt; <span class="hljs-list">(
+  <span class="hljs-keyword">a</span> =&gt; {
+    a = maybe<span class="hljs-list">(<span class="hljs-keyword">maybe</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+    if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof Some)</span> {
+      a = a.x
+    } else if <span class="hljs-list">(<span class="hljs-keyword">a</span> instanceof None)</span> {
+      a = a // why? if it<span class="hljs-quoted">&#39;s</span> not Some, it <em>must</em> be None.
+    }
+    return maybe<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">a</span>)</span>
+  }
+)</span>
+
+// oh god what is even happening right now
+Array.unit = a =&gt; [a]
+Maybe.unit = some
+Array.prototype.flatten = function <span class="hljs-list">(<span class="hljs-keyword">c</span> = any)</span> { return arrayOfFlatten<span class="hljs-list">(<span class="hljs-keyword">c</span>)</span><span class="hljs-list">(<span class="hljs-keyword">this</span>)</span> }
+// he literally has if <span class="hljs-list">(<span class="hljs-keyword">c</span> === void <span class="hljs-number">0</span>)</span> c = any
+// but this isn<span class="hljs-quoted">&#39;t</span> the <span class="hljs-number">90</span>s so
+
+// apply given functor twice to a contract
+const twice = f =&gt; c =&gt; f<span class="hljs-list">(<span class="hljs-keyword">f</span><span class="hljs-list">(<span class="hljs-keyword">c</span>)</span>
+const once = f =&gt; f // what the actual fuck, this is id..</span></span></code></pre><p>Okay, I&#39;m done, I tried. there are like 20 more videos in this series but it&#39;s
+so badly done and there are so many mistakes and the guy talks so slowly that
+I just can&#39;t do this anymore.</p>
+<p>If anyone knows of a decent intro to category theory for JS devs, please let
+me know.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-devmtn tag-tips tag-dev">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/advice-for-new-devs.html">advice for new devs</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-11-12">12 November, 2016</time>
+         | tags: <a href="/tag/devmtn/">devmtn</a>, <a href="/tag/tips/">tips</a>, <a href="/tag/dev/">dev</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>So, I went to one of those code bootcamps. I started there just over a year ago,
+and when I finished the course I worked there as a mentor for a cohort (three
+months). Immediately after that, I got what I think is a pretty swell job doing
+development full time, working mostly in technologies that I really like.</p>
+<p>It&#39;s hard to find non-success stories from bootcamps, since generally the people
+who go to these things are people who are really determined to do very well. You
+don&#39;t go and pay $10k-$20k to lock yourself up in a building with a bunch of
+other nerds for twelve or moure hours every day for three months straight unless
+you really want to get something out of it. I think I&#39;m a good example of
+someone who did really well through a bootcamp, though, and the reason I did so
+well comes down to really just one thing, which I think everyone going into
+computing (whether it&#39;s web development, databases, hardware, whatever) really
+should be aware of.</p>
+<blockquote>
+<p>KNOW COMPUTERS</p>
+</blockquote>
+<p>That seems really obvious, right? But as a mentor it was amazing to me how many
+people would come into a course that&#39;s just about making things happen with
+computers, not knowing a lot of the basics of how to <em>use</em> a computer, and
+knowing virtually nothing about how computers actually <em>work</em>. They&#39;re not just
+a thing with a keyboard and a screen and a logo on the back. They&#39;re not just a
+status symbol, though Mac users would like you to think they are. They&#39;re not
+magical, and it&#39;s important to know what they do and how they do it, at least in
+vague terms.</p>
+<p>No junior web dev should really be expected to be familiar with what a page
+cache is, or maybe even how domain names are resolved, but you should at least
+know what a kernel is, what userland actually means, what the implications of
+using your particular filesystem are, what the internet infrastructure kind of
+looks like (at least in vague terms), and how to do some basic things that will
+save you a lot of time later on (general terminal usage is a good place to
+start).</p>
+<p>This is the number one thing that can help you get, and stay, ahead as a student
+and junior dev, in my opinion. And it&#39;s stuff you&#39;ll absolutely <em>have</em> to know
+at some point, and probably mostly won&#39;t be taught, so it&#39;s a good idea to just
+pick up this stuff as early as possible.</p>
+</p>
+    </section>
+  </article>
+
+
+  <article class="post tag-politics">
+    <header class="post-header">
+      <h2 class="post-title"><a href="/2016/shitshow.html">shitshow</a></h2>
+      <span class="post-meta">
+        <time datetime="2016-11-09">09 November, 2016</time>
+         | tags: <a href="/tag/politics/">politics</a></span>
+
+      <br>
+
+    </header>
+    <section class="post-content">
+      <p><p>This is an elaboration on a
+<a href="https://twitter.com/zacanger/status/796205243474157569">tweet</a> from last night.</p>
+<p>I was born male, and I identify as male. That&#39;s pretty convenient for me.
+I&#39;m white, which is probably very convenient for me.
+I make a conscious effort to be aware of my privilege, but I probably fuck up
+sometimes. I hope that whenever that happens, someone will call me out on it.</p>
+<p>I was born in Baltimore, and went to a public school that I think was less than
+half white. That turned out to be a nice thing, because I never really
+understood what the big deal was about skin colour. My parents tell me I
+literally didn&#39;t understand that some people might think there was a difference
+between people with different coloured skin. And why would I? I was a kid,
+that&#39;s not a thing I should have to know.</p>
+<p>My family moved to southern Pennsylvania when I was 11. South-Central PA is
+overwhemingly white, and has a large boomer population. One could easily go
+months at a time without seeing a black person, especially if one was
+homeschooled (which I was, because the local schools were some of the worst in
+the state).</p>
+<p>When I was 19, I was working in the coffee shop in a local grocery store. I had
+just voted for the first time. Obama became President. The next morning, I went
+to work around 6:30, sold a newspaper to an older guy around 7. He sat down on a
+nearby bench and said to me &quot;Can you believe they put a n----- in the White
+House?&quot; This wasn&#39;t my first time encountering racism, but it was the first time
+I realised just how open people in that area were about it.</p>
+<p>I worked at a guitar shop for a while. The guy who owned it was a stereotypical
+redneck, something straight out of a Far Side comic. To him, anyone non-white
+was nothing but an epithet, women existed to be objectified, and if he got a
+hint that someone wasn&#39;t straight, they wouldn&#39;t be allowed in his shop. Most of
+his days were spent smoking pot and looking at pictures of girls on the computer
+in his office.</p>
+<p>I moved to Utah about a year ago. I didn&#39;t intend to stay here, because Utah is
+all of the bad things people say about it. It&#39;s also all of the good things
+people say about it&mdash;there are mountains and things, and if you&#39;re into
+that that&#39;s pretty nice&mdash;but it&#39;s extremely white, extremely Mormon,
+extremely dry, and extremely boring. It&#39;s a lot of the things I hated about
+Pennsylvania, except drier and with Mormons instead of Evangelicals.</p>
+<p>I kind of thought, though, that being out here would be a bit of an escape from
+the &#39;culture&#39; in Pennsylvania. James Carville
+<a href="https://en.wikipedia.org/wiki/Pennsyltucky">described PA</a> as being Philadelphia
+and Pittsburgh with Alabama in between, and that&#39;s pretty accurate. Utah&#39;s more
+like Salt Lake City and then a bunch of nothing mixed with Mormons, which isn&#39;t
+actually any better. Mormons are a little more laid-back about their racism and
+mysogyny, but it&#39;s still there. They&#39;re just encouraged not to show it off,
+because the LDS church doesn&#39;t want that public image. It&#39;s pretty clear based
+on their politics, though.</p>
+<p>This election was not about anything except for hatred. A common statement is
+that Trump just &#39;tells it like it is,&#39; but that&#39;s known to be bullshit. He&#39;s
+been the most dishonest Presidential candidate in the history of fact-checking,
+and Clinton has been one of the most factually accurate, ever, period. Straight
+talk has nothing to do with anything. There have also been numbers that say that
+Trump supports think the economy will do better under Trump, but generally folks
+actually worried about the economy will vote Democrat, probably because the
+economy tends to do better under Democrats.</p>
+<p>Trump winning the electoral vote last night has nothing to do with policy. It
+was a message from the worst kind of people in this country that they want to be
+heard and want to be taken seriously. That they&#39;re afraid of people who don&#39;t
+look like them or have the same beliefs as them. People like that old man at the
+coffee shop, or Randy from the guitar shop, or Carmine, my boss at my last job
+in Pennsylvania. People who think they should have the right to openly
+discriminate against other people, people who are so unconcerned with facts that
+they sound exactly like characters in Idiocracy (link), calling people &#39;faggot&#39;
+for being educated on a topic.</p>
+<p>I&#39;m a cis white male, and I&#39;m sorry that a bunch of cis white males did this to
+this country. It&#39;s going to be really rough, especially at first when we have a
+red house and senate. We, collectively, all the people that have fought for
+LGBTQA rights and less discrimination and tried to defend against ignorance and
+won Clinton the popular vote, we need to hold on and survive this and support
+each other. We need to call each other out on our biases and abuse of
+privilege We need to not give up. We need to show each other, the country, and
+the world that America is not a country of hate.</p>
+<p>There are folks on Twitter saying that this will be easy, that love and
+happiness and just get through it, and that&#39;s bullshit. This won&#39;t be easy. This
+is serious and dangerous and terrifying. This is bad news all around. But let&#39;s
+try, because we can&#39;t all just leave.</p>
+</p>
+    </section>
+  </article>
+
+
+  <nav class="pagination" role="navigation">
+        <a class="newer-posts" href="/">&larr; Newer Posts</a>
+    <span class="page-number">Page 2 of 15</span>
+        <a class="older-posts" href="/page/3/">Older Posts &rarr;</a>
+</nav>
+
+
+</div>
+
+
+    <footer class="site-footer">
+      <a class="subscribe icon-feed" href="http://blog.zacanger.com/rss/index.xml"><span class="tooltip">Subscribe!</span></a>
+      <div class="">
+        <section class="copyright">content by <a href="http://zacanger.com">zac anger</a>.</section>
+        <section class="poweredby">
+          <a href="http://zacanger.com/LICENSE.txt">under the WTFPL</a> &middot;
+          <a href="https://twitter.com/@zacanger">twitter</a> &middot;
+          <a href="https://github.com/zacanger">github</a>
+        </section>
+      </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </div>
+</body>
+</html>

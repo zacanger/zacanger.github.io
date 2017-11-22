@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[redux notes, part three]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
+<p>Just want to take a second to go over some syntax before going on more about
+Redux. A lot of folks who&#39;re new to React might also be new to new JavaScript,
+so some things might be looking a little unusual.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> foo = <span class="hljs-string">&#39;bar&#39;</span> <span class="hljs-comment">// is roughly the same as</span>
+<span class="hljs-keyword">var</span> foo = <span class="hljs-string">&#39;bar&#39;</span> <span class="hljs-comment">// EXCEPT that you could not then do</span>
+foo = <span class="hljs-string">&#39;baz&#39;</span> <span class="hljs-comment">// because you&#39;d be reassigning a const which is not okay.</span>
+<span class="hljs-keyword">let</span> asdf = <span class="hljs-string">&#39;ghjkl&#39;</span> <span class="hljs-comment">// is a lot more like var</span>
+asdf = <span class="hljs-string">&#39;qwerty&#39;</span> <span class="hljs-comment">// no errors</span>
+
+import React from <span class="hljs-string">&#39;react&#39;</span> <span class="hljs-comment">// is kinda like</span>
+<span class="hljs-keyword">const</span> React = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;react&#39;</span>) <span class="hljs-comment">// except it&#39;s actually just a part of the language now</span>
+import { resolve } from <span class="hljs-string">&#39;path&#39;</span> <span class="hljs-comment">// is like</span>
+<span class="hljs-keyword">const</span> { resolve } = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;path&#39;</span>) <span class="hljs-comment">// which is like</span>
+<span class="hljs-keyword">var</span> path = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#39;path&#39;</span>)
+<span class="hljs-keyword">var</span> resolve = path.resolve
+
+export <span class="hljs-keyword">const</span> whatever = () =&gt; {} <span class="hljs-comment">// is like</span>
+module.exports.whatever = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{}
+
+export <span class="hljs-keyword">default</span> MyThing <span class="hljs-comment">// is like</span>
+module.exports = MyThing
+
+<span class="hljs-keyword">const</span>
+  a = <span class="hljs-string">&#39;a&#39;</span>
+, b = <span class="hljs-string">&#39;b&#39;</span>
+, c = <span class="hljs-string">&#39;c&#39;</span>
+, o = { a, b, c } <span class="hljs-comment">// is the same as</span>
+
+<span class="hljs-keyword">var</span> a = <span class="hljs-string">&#39;a&#39;</span>
+<span class="hljs-keyword">var</span> b = <span class="hljs-string">&#39;b&#39;</span>
+<span class="hljs-keyword">var</span> c = <span class="hljs-string">&#39;c&#39;</span>
+<span class="hljs-keyword">var</span> o = {
+  a : a
+, b : b
+, c : c
+}
+
+<span class="hljs-keyword">const</span> someFunc = param =&gt; param <span class="hljs-comment">// is roughly the same as</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">someFunc</span><span class="hljs-params">(param)</span> </span>{
+  <span class="hljs-keyword">return</span> param
+}
+<span class="hljs-comment">// though there <em>are</em> important differences</span></code></pre><p>If you&#39;re not at all familiar with ES2015, you should really go get comfortable
+with it. I put together a repo a while ago for that, full of examples and notes.
+Check it out <a href="https://github.com/zacanger/es6-and-builds/tree/master">here</a>.
+(Also if you want, check out my semi-maintained bunch of examples and resources
+for learning React <a href="https://github.com/zacanger/react-bits">here</a>.)</p>
+<hr>
+<p><code>react-redux</code> (not a part of Redux itself, since it&#39;s supposed to be
+framework/library agnostic... ish) is something you&#39;ll need for writing React
+apps using Redux. It sort of enforces the presentational/container (or
+dumb/smart) way of structuring your components.</p>
+<p>Note&mdash;you don&#39;t <em>need</em> <code>react-redux</code> to be able to use Redux with React, it
+just helps. A lot.</p>
+<p>I won&#39;t go into the whole presentational/container component thing, there are a
+lot of blogs posts and such out there on that topic, but it&#39;s basically what it
+sounds like; you have components that handle how things look and components that
+handle how things work.</p>
+<p><code>react-redux</code> gives you this <code>connect()</code> function which is pretty handy. You can
+do a lot of the stuff it does by hand using <code>store.subscribe()</code>, but then you
+start needing to worry about <code>shouldComponentUpdate</code> and all this stuff, and
+it&#39;s all kind of annoying.</p>
+<p>When wrapping a &#39;dumb&#39; component up in a &#39;smart&#39; component, there are two
+functions you usually throw in there. One is called <code>mapStateToProps</code>, and the
+other is <code>mapDispatchToProps</code>. I&#39;d suggest you take a good look at the <a href="https://github.com/reactjs/react-redux">official
+docs</a> on <code>react-redux</code> to get a good
+feel for how it all works, but setting up a container component turns out to be
+pretty straightforward.</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react-redux&#39;</span>
+<span class="hljs-keyword">import</span> { someReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./wherever/your/reducers/are&#39;</span>
+<span class="hljs-keyword">import</span> AComponent <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./AComponent&#39;</span>
+
+<span class="hljs-keyword">const</span> mapStateToProps = (state, ownProps) =&gt; ({
+  <span class="hljs-attribute">somethingInState</span>: someReducer(state, ownProps.maybeSomeProperty.Here)
+})
+
+<span class="hljs-keyword">const</span> mapDispatchToProps = (dispatch, ownProps) =&gt; ({
+  <span class="hljs-attribute">something</span>: probablyAnActionOrOtherFunction
+})
+
+<span class="hljs-keyword">const</span> AComponentThatIsNowConnected = connect(
+  mapStateToProps
+, mapDispatchToProps
+)(AComponent)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> AComponentThatIsNowConnected</code></pre><p><code>mapDispatchToProps</code> is a little tricky, so I&#39;d really suggest just checking out
+<a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md">the docs</a>.</p>
+<p>There&#39;s one other important bit, and that&#39;s this thing called <code>Provider</code>. It&#39;s a
+component that makes the store available to all your container components
+without you needing to actually pass it down everywhere. It uses this funky
+<a href="https://facebook.github.io/react/docs/context.html">context</a> thing under the
+hood. You don&#39;t need to put it everywhere, you just wrap a root component in it.</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react&#39;</span>
+<span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react-dom&#39;</span>
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;react-redux&#39;</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;redux&#39;</span>
+<span class="hljs-keyword">import</span> reducers <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./reducers&#39;</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;./App&#39;</span>
+
+<span class="hljs-keyword">const</span> store = createStore(reducers)
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#39;root&#39;</span>)
+
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;
+, root
+)</code></pre><p>This can trip you up when testing! You don&#39;t need to do much to work around it,
+but it can be annoying the first time you see all these random errors. Try
+something like:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> test from <span class="hljs-string">&#39;ava&#39;</span> <span class="hljs-comment">// seriously awesome test runner</span>
+<span class="hljs-literal">import</span> React from <span class="hljs-string">&#39;react&#39;</span>
+<span class="hljs-literal">import</span> { mount } from <span class="hljs-string">&#39;enzyme&#39;</span> <span class="hljs-comment">// seriously awesome testing thing for React</span>
+<span class="hljs-literal">import</span> { createStore } from <span class="hljs-string">&#39;redux&#39;</span>
+<span class="hljs-literal">import</span> { Provider } from <span class="hljs-string">&#39;react-redux&#39;</span>
+<span class="hljs-literal">import</span> MyComponent from <span class="hljs-string">&#39;./MyComponent&#39;</span>
+
+test.beforeEach(<span class="hljs-string">&#39;Set up &lt;MyComponent /&gt;&#39;</span>, t =&gt; {
+  <span class="hljs-keyword">const</span> store = createStore(() =&gt; ({}))
+  t.context = mount(
+    &lt;Provider store={store}&gt;
+      &lt;MyComponent
+        some=<span class="hljs-string">&#39;props&#39;</span>
+      /&gt;
+    &lt;/Provider&gt;
+  )
+})
+
+<span class="hljs-comment">// and then you can do</span>
+test(<span class="hljs-string">&#39;&lt;MyComponent /&gt; isn\&#39;t broken!&#39;</span>, t =&gt; {
+  t.<span class="hljs-keyword">is</span>(t.context.prop(<span class="hljs-string">&#39;some&#39;</span>), <span class="hljs-string">&#39;props&#39;</span>)
+})
+<span class="hljs-comment">// and it won&#39;t throw errors about not finding a store and stuff!</span></code></pre>]]></description><link>/2016/redux-three.html</link><guid isPermaLink="true">/2016/redux-three.html</guid><category><![CDATA[redux]]></category><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sun, 07 Aug 2016 03:29:00 GMT</pubDate></item><item><title><![CDATA[redux notes, part two]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
+<p>All your data moves in one direction. This is the same as in Flux. You will
+always go through the same steps in redux:</p>
+<ul>
+<li>Action (call <code>store.dispatch()</code> with an object that describes something
+happening)</li>
+<li>Reducer (pure function called based on the action that was dispatched that
+calculates next state)</li>
+<li>Your root reducer combines a bunch of reducers&#39; outputs into one state tree
+(assuming you have a root reducer, which you probably do)</li>
+<li>The store saves the state tree as returned by the above&mdash;now that&#39;s your
+state (and at this point anything you subscribed with will be invoked)</li>
+</ul>
+<p>All your state in redux is just an object&mdash;just one object. It&#39;s probably a
+good idea to try to keep that as shallow as possible, and reference things by
+keys (IDs), rather than deeply nesting stuff.</p>
+<p>Reducers are just functions. They take your existing state (state previous to
+acting on it) and an action and output state (new state).</p>
+<pre class="hljs"><code>const someReducer = <span class="hljs-function"><span class="hljs-params">(oldState, action)</span> =&gt;</span> newState</code></pre><p>It&#39;s a reducing function just like you&#39;d pass to <code>Array.reduce()</code>, it it should
+always be a pure function. Don&#39;t mutate arguments, call non-pure functions, make
+API calls, or anything like that in a reducer. If you don&#39;t know what a pure
+function is, it&#39;s actually super simple:</p>
+<blockquote>
+<p>Given the same arguments, a pure function will always have the same output.
+This means it&#39;s a function who&#39;s result relies solely on its arguments.</p>
+</blockquote>
+<p>One thing you should get in the habit of doing is using &#39;default arguments.&#39;
+This is new in ES2015, and saves you a bit of code. This means you could have
+some initial state:</p>
+<pre class="hljs"><code>const initState = {
+  <span class="hljs-string">something     :</span> <span class="hljs-string">&#39;a&#39;</span>
+, <span class="hljs-string">somethingElse :</span> <span class="hljs-string">&#39;b&#39;</span>
+}</code></pre><p>And instead of needing to write</p>
+<pre class="hljs"><code>const reducer = (<span class="hljs-keyword">state</span>, action) =&gt; {
+  if (typeof <span class="hljs-keyword">state</span> === &#39;undefined&#39;) {
+    return initState
+  }
+  // do stuff
+}</code></pre><p>You can just do</p>
+<pre class="hljs"><code>const reducer = (<span class="hljs-keyword">state</span> = initState, action) =&gt; // do stuff</code></pre><p>Reducers are frequently switch statements. This might seem a little weird at
+first, since most JS folks avoid switch statements (I think some linters even
+warn about them, saying they&#39;re &#39;confusing&#39;), but it makes sense in reducers
+since you can handle various actions in one function. Remember, an action is
+just an object: <code>{type: &#39;do_thing&#39;}</code> with possible other fields: <code>{type:
+&#39;do_thing&#39;, to: &#39;stuff&#39;}</code>.</p>
+<pre class="hljs"><code>const someReducer = (<span class="hljs-keyword">state</span> = initState, action) {
+  switch (action.type) {
+    case do_stuff:
+      return Object.assign({}, <span class="hljs-keyword">state</span>, {something: action.<span class="hljs-keyword">to</span>})
+    <span class="hljs-keyword">default</span>:
+      return <span class="hljs-keyword">state</span>
+  }
+}</code></pre><p>Note the <code>Object.assign()</code>&mdash;we don&#39;t mutate state, we return a new state
+based on the old state and the action. You&#39;ll probably want to use a polyfill
+for <code>.assign()</code>, but chances are you&#39;re already using Babel anyway. You could
+also use something from Lodash, Underscore, or some other library.</p>
+<p>It&#39;s always a good idea to return <code>state</code> (which is our old state) as a default,
+in case we get sent some unexpected action.</p>
+<p>It&#39;s also a good idea to split your reducers and compose them:</p>
+<pre class="hljs"><code>const firstReducer = (<span class="hljs-keyword">state</span> = {}, action) =&gt; {
+  switch (action.type) {
+    case something:
+      return stuff
+    <span class="hljs-keyword">default</span>:
+      return <span class="hljs-keyword">state</span>
+  }
+}
+
+const secondReducer = (<span class="hljs-keyword">state</span> = initState, action) =&gt; {
+  switch (action.type) {
+    case whatever:
+      return firstReducer(<span class="hljs-keyword">state</span>.field, action)
+    <span class="hljs-keyword">default</span>
+      return <span class="hljs-keyword">state</span>
+  }
+}</code></pre><p>This means that <code>firstReducer</code> only needs to get the state that it actually
+cares about, when it needs to do something. Also note that defaut state is an
+empty object there. It could be anything you want it to be, just make sure it&#39;s
+the shape your reducer expects to act on.</p>
+<p>When you have a lot of reducers, you can use <code>combineReducers</code>:</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> { combineReducers } from <span class="hljs-string">&#39;redux&#39;</span>
+
+<span class="hljs-keyword">const</span> lotsOfReducers = combineReducers({
+  firstReducer
+, secondReducer
+<span class="hljs-comment">// , etc.</span>
+})
+
+<span class="hljs-literal">export</span> <span class="hljs-keyword">default</span> lotsOfReducers</code></pre><p>And you can do this as many times as you like, in as many files as you need.</p>
+<p>All you&#39;re doing with reducers is taking in the state as it exists, taking in an
+action, and outputing the new state. What you&#39;re operating against is the store.</p>
+<p>The Store is a really important bit. It holds all the state of your app. This
+is different from Flux, where you&#39;d have a lot of little stores. In Redux
+there&#39;s only one. It&#39;s accessed similiarly&mdash;you have <code>getState()</code>, you
+dispatch actions, and you can have listeners subscribe to changes. To create a
+store in Redux, you just use <code>createStore</code>.</p>
+<pre class="hljs"><code><span class="hljs-literal">import</span> { createStore } from <span class="hljs-string">&#39;redux&#39;</span>
+<span class="hljs-literal">import</span> someReducer from <span class="hljs-string">&#39;./someFile&#39;</span>
+<span class="hljs-keyword">const</span> store = createStore(someReducer)
+<span class="hljs-comment">// createStore can take your initial state, too</span>
+<span class="hljs-keyword">const</span> store = createStore(someReducer, initialState)
+<span class="hljs-comment">// and for creating a store as simply as possible (mocking in testing, etc.):</span>
+<span class="hljs-keyword">const</span> store = createStore(() =&gt; ({})) <span class="hljs-comment">// your store is just an empty object, now</span></code></pre><p><code>store.subscribe()</code> returns a function for _un_subscribing. So you can do
+something like:</p>
+<pre class="hljs"><code>const unsubscribe = store.<span class="hljs-function"><span class="hljs-title">subscribe</span><span class="hljs-params">(someListener)</span></span>
+<span class="hljs-function"><span class="hljs-title">unsubscribe</span><span class="hljs-params">()</span></span></code></pre>]]></description><link>/2016/redux-two.html</link><guid isPermaLink="true">/2016/redux-two.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Sat, 06 Aug 2016 14:37:00 GMT</pubDate></item><item><title><![CDATA[redux notes, part one]]></title><description><![CDATA[<p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
+it&#39;s not, and because those docs themselves are pretty overwhelming when
+you&#39;re first trying out Redux, I&#39;m going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
+couple of blog posts.</p>
+<hr>
+<p>The store is an object that holds state. There&#39;s only ever one store in Redux,
+with many reducers that act on it.</p>
+<p><code>getState()</code> returns the state from the store.</p>
+<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
+<p>There&#39;s also a <code>replaceReducer</code> but unless you&#39;re writing hot middlware or
+something you probably won&#39;t touch this one.</p>
+<p>State can by any type, though obviously it&#39;s probably best to just use an
+object here.</p>
+<p>Actions are always objects, and they always have a <code>type</code>.</p>
+<pre class="hljs"><code>store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;do-stuff&#39;</span>})</span></span>
+<span class="hljs-comment">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
+store.<span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">({type: <span class="hljs-string">&#39;DO_OTHER_STUFF&#39;</span>, stuff: <span class="hljs-string">&#39;[things to do here, maybe]&#39;</span>})</span></span></code></pre><p>Action creators are functions that create actions based on any sorts of
+arguments.</p>
+<pre class="hljs"><code><span class="hljs-title">const</span> sendSomeData = &#39;send-some-<span class="hljs-typedef"><span class="hljs-keyword">data</span>&#39;</span>
+<span class="hljs-title">const</span> sendSomeDataActionCreator = <span class="hljs-typedef"><span class="hljs-keyword">data</span> =&gt; <span class="hljs-container">({
+  <span class="hljs-title">type</span> : <span class="hljs-title">sendSomeData</span>
+, <span class="hljs-title">data</span>
+})</span></span></code></pre><p>A &#39;bound&#39; action creator would be one that creates the action and immediately
+dispatches it. This might be familiar to folks who&#39;ve worked with Flux before.</p>
+<p>This is how you might have something like this in Flux:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> sendMoreData = data =&gt; {
+  <span class="hljs-keyword">const</span> doIt = {
+    type : sendMoreData,
+    data
+  }
+  dispatch(doIt)
+}</code></pre><p>And this is how it&#39;d work in Redux:</p>
+<pre class="hljs"><code><span class="hljs-comment">// assuming you already have the dispatch and action creator, you&#39;d just</span>
+const boundSendMoreData = data =&gt;
+  <span class="hljs-function"><span class="hljs-title">dispatch</span><span class="hljs-params">(sendMoreData(data)</span></span>)</code></pre><p>There&#39;s also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
+has <code>connect()</code>.</p>
+<p>Async actions should go through middleware to be turned into regular actions
+before being dispatched.</p>
+<p>Reducers always take state and an action and return state.
+<code>reducer (state, action) =&gt; state</code>
+These are what they sound like&mdash;reducing functions.
+The state a reducer takes is your existing (or previous, I guess) state.
+Reducers are pure functions.</p>
+<p>A dispatch is a function that takes an action (or an async action). It may then
+dispatch an action (or actions) which will affect the store.
+There&#39;s a base <code>dispatch</code> that always sends an action to the reducer.</p>
+<p>Middleware are about what you&#39;d expect&mdash;functions (HOF) that take a
+dispatch function and return a dispatch function.</p>
+<p>There are &#39;store enhancers&#39; that are higher-order functions that take a store
+creator and return a different store creator. They&#39;re basically kind of a
+middleware for the store creator. You probably won&#39;t directly use one, ever.
+Instead you&#39;ll just use the regular store creator (<code>createStore</code>).</p>
+]]></description><link>/2016/redux-one.html</link><guid isPermaLink="true">/2016/redux-one.html</guid><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Wed, 03 Aug 2016 01:10:00 GMT</pubDate></item><item><title><![CDATA[redux in two lines]]></title><description><![CDATA[<p>Okay, not actually Redux in two lines, just the idea behind it
+And really one of those is basically the idea of React, I guess.</p>
+<pre class="hljs"><code>const render = <span class="hljs-keyword">state</span> =&gt; ui
+const reducer = (oldState, action) =&gt; newState</code></pre>]]></description><link>/2016/redux-in-two-lines.html</link><guid isPermaLink="true">/2016/redux-in-two-lines.html</guid><category><![CDATA[react]]></category><category><![CDATA[redux]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 29 Jul 2016 07:09:37 GMT</pubDate></item></channel></rss>

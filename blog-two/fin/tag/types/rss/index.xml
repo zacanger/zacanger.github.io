@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[undefined - angr]]></title><description><![CDATA[writings from zac anger]]></description><link>http://blog.zacanger.com/</link><generator>Ghost</generator><lastBuildDate>Sat, 18 Nov 2017 16:01:42 GMT</lastBuildDate><atom:link href="http://blog.zacanger.com/tag/undefined/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Two Things That Might Be Fun]]></title><description><![CDATA[<p>Two things that I think might be fun to play around with, at some point.</p>
+<p>First: a less intrusive type annotation thing for JS. It&#39;d be similar to ML or
+Haskell style annotations, but maybe use Flow as a sort of backend to actually
+do the type checking? It could look something like this:</p>
+<pre class="hljs"><code>//<span class="hljs-type-annotation">::</span> <span class="hljs-built_in">Int</span> -&gt; <span class="hljs-built_in">Int</span> -&gt; [<span class="hljs-built_in">Int</span>]
+<span class="hljs-keyword">const</span> putIntsInList = (a, b) =&gt; [ a,  b ]
+
+//<span class="hljs-type-annotation">::</span>Str -&gt; Str -&gt; Str // or
+//<span class="hljs-type-annotation">::</span>[<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>] -&gt; [<span class="hljs-built_in">Char</span>]
+<span class="hljs-keyword">const</span> doThingsWithStrings = (a, b) =&gt; <span class="hljs-string"><code>${a} ${b}</code></span></code></pre><p>It could use some sort of regexy thing to basically just detect anywhere there&#39;s
+<code>//::</code>, see what the next thing is, and see if they go together. I don&#39;t know
+much about ASTs or type systems, though. I just think that&#39;d be a lot less
+in-the-way than how TypeScript and Flow currently work. Also, my syntax
+highlighting doesn&#39;t know what template strings are, so. That&#39;s gross.</p>
+<p>Another thing:</p>
+<pre class="hljs"><code><span class="hljs-keyword">import</span> React, { PropTypes } from &#39;react&#39;
+<span class="hljs-keyword">import</span> AnotherComponent from &#39;./AnotherComponent&#39;
+
+const <span class="hljs-type">Something</span> = ({ a, b, <span class="hljs-built_in">c</span> }) =&gt; {
+  <span class="hljs-keyword">if</span> (!a) <span class="hljs-keyword">return</span> null
+
+  <span class="hljs-keyword">return</span> (
+    (div
+      (another-component (whatever &#39;a))
+        (not (null? b)
+          (span (b))
+        (not (null? <span class="hljs-built_in">c</span>)
+          (<span class="hljs-built_in">map</span> (p (<span class="hljs-built_in">c</span>)))))))
+  <span class="hljs-comment">// which would be like</span>
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;<span class="hljs-type">AnotherComponent</span> whatever={a} /&gt;
+      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
+      {<span class="hljs-built_in">c</span> &amp;&amp; <span class="hljs-built_in">c</span>.length &amp;&amp;
+        <span class="hljs-built_in">c</span>.<span class="hljs-built_in">map</span>((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
+      }
+    &lt;/div&gt;
+  )
+}
+
+export <span class="hljs-keyword">default</span> <span class="hljs-type">Something</span></code></pre><p>This a totally made-up syntax for a thing that doesn&#39;t exactly exist, and I
+don&#39;t know how useful this would actually be, since there are already great
+React libraries for ClojureScript out there. Just think it&#39;d be neat to be able
+to to JSX in Scheme. I dunno, just a thought.</p>
+]]></description><link>/2016/two-things-that-might-be-fun.html</link><guid isPermaLink="true">/2016/two-things-that-might-be-fun.html</guid><category><![CDATA[cljs]]></category><category><![CDATA[scheme]]></category><category><![CDATA[types]]></category><category><![CDATA[hs]]></category><category><![CDATA[jsx]]></category><category><![CDATA[js]]></category><category><![CDATA[react]]></category><dc:creator><![CDATA[zac anger]]></dc:creator><pubDate>Fri, 04 Nov 2016 03:40:00 GMT</pubDate></item></channel></rss>
