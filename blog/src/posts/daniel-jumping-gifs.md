@@ -6,6 +6,5 @@ tags:
   - work
 ---
 
-![jumping](assets/img/daniel-jump.gif)
-![jumpjumping](assets/img/daniel-jumpjump.gif)
-
+![jumping](http://zacanger.com/blog/assets/img/daniel-jump.gif)
+![jumpjumping](http://zacanger.com/blog/assets/img/daniel-jumpjump.gif)
