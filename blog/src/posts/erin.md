@@ -9,4 +9,4 @@ tags:
 
 is funny
 
-![erin has eyebrows](http://zacanger.com/blog/erin-eyebrows.gif)
+![erin has eyebrows](http://zacanger.com/blog/assets/img/erin-eyebrows.gif)

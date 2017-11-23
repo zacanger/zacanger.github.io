@@ -13,7 +13,7 @@ tags:
 ---
 
 
-[![DevMountain Sign](http://zacanger.com/blog/devmtn-sign.jpg)](https://www.instagram.com/p/-SlGTAxf6W/?taken-by=zacanger)
+[![DevMountain Sign](http://zacanger.com/blog/assets/img/devmtn-sign.jpg)](https://www.instagram.com/p/-SlGTAxf6W/?taken-by=zacanger)
 
 --------
 
