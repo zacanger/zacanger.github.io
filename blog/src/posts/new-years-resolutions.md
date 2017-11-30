@@ -5,15 +5,9 @@ tags:
   - personal
 ---
 
-I'm re-posting NY resolutions as a checklist, post-dated for the end of this year.
-
-Some things will be ongoing tasks, and won't be checked off until I feel like
-I've been consistent with them for several months at the least.
-
-I may add things to this list, or remove ones that I've straight-up decided were
-a bad idea (like buying a car).
-
-The checklist is using GFM, which this blog generator doesn't understand. (That's on the list.)
+These were my NY resolutions for 2017, as a checklist. This post has been
+modified several times, mostly just to check things off, but also to rearrange
+and edit some items.
 
 ## things i hope to maybe do in 2017
 
