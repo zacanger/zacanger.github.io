@@ -1,9 +1,7 @@
-require('babel-register')
+import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin'
+import data from './lib/data'
 
-const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
-const data = require('./lib/data')
-
-module.exports = {
+export default {
   entry: './lib/index.js',
   output: {
     filename: 'bundle.js',
