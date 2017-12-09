@@ -11,12 +11,12 @@ and edit some items.
 
 ## things i hope to maybe do in 2017
 
-* [ ] Work less at work
-  * [ ] Mainly, stop working on weekends and in the middle of the night and stuff
 * [ ] Get familiar enough with Clojure/ClojureScript to write something real-world
 * [ ] Same, with Haskell/Purescript
 * [ ] At least record the acoustic album that's been written and sitting there for ages
 * [ ] Maybe get Windows working enough to finish up the electro album thing
+* [x] Work less at work
+  * [x] Mainly, stop working on weekends and in the middle of the night and stuff
 * [x] Learn more about `sh` and POSIX compat in general
   * [x] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
   * [x] Also weed out my dotfiles, they're ridiculous
