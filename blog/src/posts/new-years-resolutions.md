@@ -7,7 +7,7 @@ tags:
 
 These were my NY resolutions for 2017, as a checklist. This post has been
 modified several times, mostly just to check things off, but also to rearrange
-and edit some items.
+and edit some items. Some leftover items will probably end up on 2018's list.
 
 ## things i hope to maybe do in 2017
 
