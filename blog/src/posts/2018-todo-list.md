@@ -16,15 +16,19 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
 * [ ] Finish the acoustic album
 * [ ] Finish the electro tunes
 * [ ] Eat healthier, cook more for myself, and order less
+* [ ] Shop less
 * [ ] Exercise more
 * [ ] Finish more side projects
 * [ ] Get out of the house more
 * [ ] Get down to 0 nic (vaping)
 * [ ] Continue improving my Korean to the point where I can hold conversations
 * [ ] Be better at owning my own data
-  * This means things like maybe maintaining my own bookmarks, not using the
-    work Mac when I'm at home, switching to a more free mobile OS, removing
-    myself from social networks run by shitty companies (LinkedIn, Twitter,
-    Tumblr), any maybe other stuff. TODO: flesh this out.
+  * [ ] Maybe maintain my own bookmarks (move off of Pinboard)
+  * [ ] Use the work Mac only for work
+  * [ ] Switch to a more free mobile OS
+  * [ ] Remove accounts on shitty services:
+    * [ ] LinkedIn
+    * [ ] Tumblr
+    * [ ] Twitter
 * [ ] Drink less Utah beer (Utah beer is watered down, but still all the
   calories)
