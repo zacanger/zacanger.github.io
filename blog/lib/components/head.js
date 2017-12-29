@@ -8,19 +8,28 @@ const socialMeta = ({
   description,
   image,
   title = 'Zac Anger\'s Blog'
-}) => [
-  <meta name="twitter:card" content={card} />,
-  <meta name="twitter:site" content={author} />,
-  <meta name="twitter:creator" content={author} />,
-  <meta name="twitter:title" content={title} />,
-  <meta name="twitter:description" content={description} />,
-  <meta name="twitter:image" content={image} />,
-  <meta property="og:type" content="article" />,
-  <meta property="og:title" content={title} />,
-  <meta property="og:description" content={description} />,
-  <meta property="og:site_name" content="http://zacanger.com/blog" />,
-  <meta property="og:image" content={image} />
-]
+}) => (
+  <React.Fragment>
+    <meta name="twitter:card" content={card} />
+    <meta name="twitter:site" content={author} />
+    <meta name="twitter:creator" content={author} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="http://zacanger.com/blog" />
+    <meta property="og:image" content={image} />
+  </React.Fragment>
+)
+socialMeta.propTypes = {
+  author: string,
+  card: string,
+  description: string,
+  image: string,
+  title: string
+}
 
 const Head = ({
   title,
