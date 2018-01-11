@@ -70,3 +70,22 @@ Stuff.propTypes = {
 
 That should solve all PropTypes warnings and let you throw anything the
 `classnames` library can handle at your components.
+
+----
+
+Edit 10th January, 2018:
+
+Bonus: a Flow type for this library (TypeScript should be similar):
+
+```javascript
+// @flow
+
+type classes =
+  | { [className: string]: * }
+  | string
+  | false
+  | void
+  | null
+
+type classnames = (...args: Array<classes | classes[]>) => string
+```
