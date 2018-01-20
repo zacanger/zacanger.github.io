@@ -11,7 +11,7 @@
 
   "avatar": "http://zacanger.com/logo.svg",
 
-  "writing": "http://blog.zacanger.com",
+  "writing": "http://zacanger.com/blog",
 
   "summary": "I'm an enthusiastic, curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new development technologies, with a strong preference for the web and UNIX-like environments. I'm passionate about building better interfaces and smoother processes, and keeping software and development free, open, transparent, and accessible.",
 
@@ -45,9 +45,9 @@
       "url": "http://npm.im/hyperterm-mild-dark",
       "summary": "Mild dark theme for the HyperTerm terminal"
     },{
-      "name": "lilnote",
-      "url": "http://npm.im/lilnote",
-      "summary": "A tiny note-taking app that stores notes in JSON"
+      "name": "angrplayr",
+      "url": "http://npm.im/angrplayr",
+      "summary": "Console music player in Node."
     },{
       "name": "koa-simple-static",
       "url": "http://npm.im/koa-simple-static",
