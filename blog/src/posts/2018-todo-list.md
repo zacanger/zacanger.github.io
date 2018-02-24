@@ -17,9 +17,9 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
 * [ ] Same, with Haskell/Purescript
 * [ ] Finish the acoustic album
 * [ ] Finish the electro tunes
-* [ ] Eat healthier, cook more for myself, and order less
+* [x] Eat healthier, cook more for myself, and order less
 * [ ] Shop less
-* [ ] Exercise more
+* [x] Exercise more
 * [ ] Finish more side projects
 * [ ] Get out of the house more
 * [ ] Get down to 0 nic (vaping)
@@ -28,9 +28,6 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
   * [ ] Maybe maintain my own bookmarks (move off of Pinboard)
   * [ ] Use the work Mac only for work
   * [ ] Switch to a more free mobile OS
-  * [ ] Remove accounts on shitty services:
-    * [ ] LinkedIn
-    * [ ] Tumblr
-    * [ ] Twitter
-* [ ] Drink less Utah beer (Utah beer is watered down, but still all the
+  * [ ] Remove accounts on shitty services, maybe
+* [x] Drink less Utah beer (Utah beer is watered down, but still all the
   calories)
