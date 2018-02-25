@@ -137,3 +137,6 @@ Procfile text
 
 package-lock.json -diff
 rss.xml -diff
+
+blog/posts/**/* -diff
+*.js linguist-language=JSX
