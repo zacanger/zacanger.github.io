@@ -22,7 +22,7 @@
     "website"
   ],
   "dependencies": {
-    "boring-cluster": "1.1.0",
+    "boring-cluster": "2.0.1",
     "express": "4.16.2",
     "forever": "0.15.3"
   },
