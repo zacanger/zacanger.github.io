@@ -60,6 +60,14 @@
       "name": "z",
       "url": "https://github.com/zacanger/z.git",
       "summary": "My own configuration files, scripts, cheatsheets, and manpages."
+    },{
+      "name": "Loonaverse.co",
+      "url": "http://loonaverse.co",
+      "summary": "Aggregator for social media posts about k-pop group Loona"
+    },{
+      "name": "styled-reset",
+      "url": "http://npm.im/styled-reset",
+      "summary": "Reset.css for styled-components"
     }
   ],
 
