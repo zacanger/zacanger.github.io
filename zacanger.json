@@ -4,26 +4,21 @@
     "legal": "Zachary E. Unger",
     "handle": "zacanger"
   },
-  "status": "Happily employed.",
+  "status": "Happily employed",
   "website": "http://zacanger.com",
   "avatar": "http://zacanger.com/logo.svg",
   "writing": "http://zacanger.com/blog",
-  "summary": "I'm an enthusiastic, curious individual with a varied history in a broad spectrum of fields. I've worked solo and in teams in a wide variety of professions and environments. I'm especially interested in new development technologies, with a strong preference for the web and UNIX-like environments. I'm passionate about building better interfaces and smoother processes, and keeping software and development free, open, transparent, and accessible.",
+  "summary": "Web and Linux enthusaist with experience with a broad range of technologies. Interested in environments that encourage constant learning and professional growth. Passionate about building better interfaces and smoother processes, and keeping software and development free and open.",
   "projects": [
     {
-      "name": "zacanger",
-      "url": "http://npm.im/zacanger",
-      "summary": "My CV, in JSON, in your terminal, in colour"
+      "name": "lnx",
+      "url": "http://npm.im/lnx",
+      "summary": "Command line bookmark (link) manager"
     },
     {
       "name": "zeelib",
       "url": "http://npm.im/zeelib",
       "summary": "A small lib of FP, Node, and DOM utils."
-    },
-    {
-      "name": "jsdoctap",
-      "url": "http://npm.im/jsdoctap",
-      "summary": "Test runner for doctests using JSDoc examples and node-tap."
     },
     {
       "name": "alert-node",
@@ -34,11 +29,6 @@
       "name": "luvi",
       "url": "http://npm.im/luvi",
       "summary": "Dev server with nifty extras and easy config and API."
-    },
-    {
-      "name": "hey-you",
-      "url": "http://npm.im/hey-you",
-      "summary": "A very nice little desktop widget."
     },
     {
       "name": "hyperterm-mild-dark",
@@ -124,11 +114,11 @@
   ],
   "languages and technologies": {
     "proficient": [
-      "(n)vim",
+      "vim/nvim",
       "bash/sh",
-      "css/stylus/sass/less",
+      "css, css-in-js, css preprocessors",
       "javascript",
-      "linux (specifically debian)",
+      "linux (debian, ubuntu, arch)",
       "node",
       "react"
     ],
@@ -143,17 +133,16 @@
       "python",
       "ruby",
       "scheme (racket)",
-      "soft skills",
-      "vue"
+      "'soft' skills"
     ]
   },
   "relevant experience": [
     {
       "name": "Jane.com",
-      "position": "Front-end developer",
+      "position": "Software Engineer",
       "dates": "2016-Present",
-      "summary": "Worked on product teams building front-end apps including working on the React re-write of Jane.com and internal apps. Worked on an infrastructure team on deployments, CI, and testing.",
-      "technologies": "React, CSS and Styled-Components, Linux, Koa, Express, Redux, AWS, Docker, Graphql and Apollo, Flow, Typescript, NGINX, and Angular."
+      "summary": "Worked on product teams building front-end apps including the React re-write of Jane.com and internal apps. Worked on infrastructure teams on deployments, CI/CD, and testing.",
+      "technologies": "React, CSS and Styled-Components, Linux, Koa, Express, Redux, AWS, Docker, Graphql and Apollo, Flow, Typescript, NGINX, Angular, TeamCity, CircleCI."
     },
     {
       "name": "DevMountain",
