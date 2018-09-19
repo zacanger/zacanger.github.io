@@ -5,6 +5,9 @@ Interested in environments that encourage constant learning and professional
 growth. Passionate about building better interfaces and smoother processes, and
 keeping software and development free and open. He/him.
 
+This document is available as HTML, plain text, and JSON at
+http://zacanger.com/cv
+
 ## Languages and Technologies
 
 * Familiar/proficient:
