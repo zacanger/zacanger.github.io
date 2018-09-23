@@ -31,8 +31,8 @@ http://zacanger.com/cv
 
 * Frontend Developer, Software Engineer, Infrastructure Engineer Jane.com, 2016-Present
   * Worked on product teams building front-end apps including the React re-write
-    of Jane.com and internal apps. Worked on infrastructure teams on
-    deployments, CI/CD, and testing.
+    of Jane.com and internal apps. Worked on infrastructure teams on CI/CD,
+    monitoring, testing, and developer tooling.
   * Used React, CSS and Styled-Components, Linux, Koa, Express, Redux, AWS,
     Docker, Graphql and Apollo, Flow, Typescript, Nginx, Angular, TeamCity,
     CircleCI.
