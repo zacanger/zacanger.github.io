@@ -34,5 +34,5 @@ app
   .get('/wp-admin', lolHandler)
   .get('/wp-login.php', lolHandler)
   .get('/wp-uploads', lolHandler)
-  .use((req, res) => { res.sendFile(`${__dirname}/404/index.html`) })
+  .use((req, res) => { res.sendFile(`${__dirname}/404.html`) })
   .listen(port, () => { console.log(`zacanger ${cluster.worker.id} listening on ${port}`) })
