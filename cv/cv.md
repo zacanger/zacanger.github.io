@@ -5,8 +5,8 @@ Interested in environments that encourage constant learning and professional
 growth. Passionate about building better interfaces and smoother processes, and
 keeping software and development free and open. He/him.
 
-This document is available as HTML, plain text, and JSON at
-http://zacanger.com/cv
+This document is available as [HTML](https://zacanger.com/cv) and
+[plain text](https://github.com/zacanger/dotcom/blob/master/cv/cv.md).
 
 ## Languages and Technologies
 
@@ -46,7 +46,7 @@ http://zacanger.com/cv
 
 ## Links
 
-* [zacanger.com](http://zacanger.com)
+* [zacanger.com](https://zacanger.com)
 * [zac@zacanger.com](mailto:zac@zacanger.com)
 * [GitHub](https://github.com/zacanger)
 * [Twitter](https://twitter.com/zacanger)
