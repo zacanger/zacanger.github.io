@@ -29,8 +29,7 @@ http://zacanger.com/cv
 
 ## Relevant Experience and Education:
 
-* Infrastructure Engineer, Jane.com, 2018-Present
-* Software Engineer, Jane.com, 2016-2018
+* Frontend Developer, Software Engineer, Infrastructure Engineer Jane.com, 2016-Present
   * Worked on product teams building front-end apps including the React re-write
     of Jane.com and internal apps. Worked on infrastructure teams on
     deployments, CI/CD, and testing.
