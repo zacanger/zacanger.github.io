@@ -22,10 +22,10 @@
     "website"
   ],
   "dependencies": {
-    "boring-cluster": "3.0.0",
+    "boring-cluster": "4.0.0",
     "express": "4.16.3",
     "forever": "0.15.3",
-    "zacanger": "1.2.0"
+    "zacanger": "1.2.1"
   },
   "devDependencies": {},
   "private": true
