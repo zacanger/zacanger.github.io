@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>email from node | Zac Anger&#x27;s Blog</title><meta name="description" content="nodemailer and nodemailer-smtp-transport"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,email,node"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="email from node"/><meta name="twitter:description" content="nodemailer and nodemailer-smtp-transport"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="email from node"/><meta property="og:description" content="nodemailer and nodemailer-smtp-transport"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>email from node</h2><div>28 January, 2016</div></header><div><div><p><code>nodemailer</code> and <code>nodemailer-smtp-transport</code></p>
+<pre><code class="hljs">var transporter = nodemailer.createTransport(
+  smtpTransport('smtps://foo@thing.com:asdf@bar.com'))
+var transport = nodemailer.createTransport(smtpTransport({
+  host: 'host'
+, port: foo
+, auth: {
+    user: 'username'
+  , pass: 'password'
+  }
+}))
+transporter.sendMail(mailOptions, function(err, info){
+  if(error){res.send(error)}
+  else{res.send(info)}
+})
+</code></pre>
+<p>using a service, we're just sending the bare instructions there from the front-end,
+so sendgrid or whatever would take care of the actual compiling, rendering, and all
+that nonsense. (remember the blogs on tinyletter or whatever, about how to even make
+your email acceptable? hmmm....)</p>
+<p>sendgrid, mandrill, and mailgun are the big ones. sendgrid is a little less likely
+to throw your emails in spam. 12k per month or something like that (with daily cap
+of maybe 400-ish) for free. they have a slight delay when you sign up, maybe a few
+hours. obvs we'd likely want to do our own server/service for large-scale, but the
+analytics available on these things are worth it...? (see: pb:tag/analytics.)</p>
+<p>to use sendgrid we'd need to <code>npm i -S sendgrid</code>. then we're using fs.readFile(), i
+suppose, to work with things on the disk. (note that this could also be in streams,
+and it could also be in a db....) sendgrid can work with some templating on the
+back end, though it evidently doesn't inline your css for you.... ah, i see,
+it looks like zurb's got a tool for that (of course--they've got a tool for
+everything). i think tinyletter has one, too.</p>
+<p>there are yeoman generators for all this stuff. why do the dirty work yourself?</p>
+<p>zero and rabbit are things. i guess rabbitmq is currently the more popular one?</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=email from node" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

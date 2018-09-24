@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>ideas for a better jsx | Zac Anger&#x27;s Blog</title><meta name="description" content="please note: these aren&#x27;t all my ideas, some are from ryan walsh"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,jsx,react,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="ideas for a better jsx"/><meta name="twitter:description" content="please note: these aren&#x27;t all my ideas, some are from ryan walsh"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="ideas for a better jsx"/><meta property="og:description" content="please note: these aren&#x27;t all my ideas, some are from ryan walsh"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>ideas for a better jsx</h2><div>05 May, 2016</div></header><div><div><p>please note: these aren't all my ideas, some are from <a href="http://ryanwalsh.io">ryan walsh</a></p>
+<p>also, all of this was from back when both myself and ryan were just starting to learn react</p>
+<p>i don't dislike jsx, i got over that</p>
+<p>pretty sure ryan did, too</p>
+<pre><code class="hljs language-jsx"><span class="hljs-comment">// JSX</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileInfo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-info-container"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-image-wrapper"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-image"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"name-info-container"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"display-name"</span>&gt;</span>Ryan Walsh<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"username"</span>&gt;</span>r-walsh<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-guide-info"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"number-container"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"guide-info-number"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-authored"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"guide-info-number"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-favorites"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"guide-info-number"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-followers"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span>47<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+
+          <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-authored"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"fa fa-pencil"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-favorites"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"fa fa-heart"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile-followers"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/profile"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"fa fa-eye"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    )
+  }
+}
+
+// Other nonsense
+export default class ProfileInfo extends React.Component {
+  render() {
+    return (
+      div( { class: ['profile-guide-info-container'] } ) {
+
+        div( { class: ["profile-image-wrapper"] } ) {
+          img( { class: ['profile-image'], src: 'https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460' } ) {}
+        }
+
+        div( { class: 'name-info-container' } ) {
+          h2( { class: "display-name" } ) { John Doe }
+          h3( { class: 'username' } ) { jdoe }
+        }
+
+        table( { class: ['profile-guide-info'] } ) {
+          tr( { class: ['number-container'] } ) {
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
+            }
+
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
+            }
+
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
+            }
+          }
+
+          tr() {
+            td() {
+              span( { class: ['profile-authored'] } ) {}
+            }
+
+            td() {
+              span( { class: ['profile-authored'] } ) {}
+            }
+
+            td() {
+              span( { class: ['profile-authored'] } ) {}
+            }
+          }
+        }
+      }
+    )
+  }
+}
+
+// why not like this?
+export default class ProfileInfo extends React.Component{
+  render() {
+    return ({
+      div : {
+        class : ['foo', 'bar']
+      , p : {
+          str : 'Bespoke scenester retro bitters Pitchfork 8-bit mixtape PBR&amp;B mlkshk iphone wire-rimmed glasses forage Helvetica put a bird on it intelligentsia semiotics leggings normcore. Flexitarian Echo Park mustache carles kickstarter Echo Park Blue Bottle actually tumblr beard literally tote bag Pitchfork cray shabby Portland stumptown asymmetrical.'
+        }
+      }
+    , footer : {
+        span : {
+          str : `Copyright ${datespan} ${company}. All Rights Reserved.`
+}}})}
+
+// or this?
+const n = notJSX
+function notJSXparser(){
+  return n('body', [
+    n('h1', {'this is a website'},
+      n('p', {'this is a lot of text! texytext, text. texting. txet.'},
+        n('footer', {`Copyright ${stuff}`})
+      )
+    )
+  ])
+}
+
+// how they do it in EVE's UI (note: they use typescript and an in-house custom lib they call 'microReact')
+const page = {
+  t          : 'span' // the tag type; defauts to 'div'
+, c          : 'col-12' // className
+, text       : 'some content'
+, children   : [{
+    // array of further nodes
+  }]
+, top        : 10
+, width      : 100 // more styles can go here, like react's style object basically
+, click      : someHandler
+, svg        : true // to add svg properties... why? idk. just 'cuz, i guess.
+, cx         : 4
+, cy         : 4
+, postRender : someDomManipulationFunction // on insertion and on update
+}
+
+// how jsx actually kinda works (reactelement anyway) under the hood:
+let someEl = {
+  type  : 'div'
+, props : {}
+, ref   : null
+, key   : null
+}
+</span></code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=ideas for a better jsx" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>PropTypes for Classnames | Zac Anger&#x27;s Blog</title><meta name="description" content="The classnames library is nice.
+It lets you do stuff like"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,react,proptypes,classnames"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="PropTypes for Classnames"/><meta name="twitter:description" content="The classnames library is nice.
+It lets you do stuff like"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="PropTypes for Classnames"/><meta property="og:description" content="The classnames library is nice.
+It lets you do stuff like"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>PropTypes for Classnames</h2><div>11 February, 2017</div></header><div><div><p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+It lets you do stuff like</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">'./styles.css'</span>
+
+<span class="hljs-keyword">const</span> Thing = <span class="hljs-function">(<span class="hljs-params">{ foo }</span>) =&gt;</span>
+  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== <span class="hljs-number">2</span> })} /&gt;
+</code></pre>
+<p>And a whole bunch of other stuff, and it just works. If you write your CSS
+in CSS, you should check it out.</p>
+<p>There is one sort of pain point with it, though. If you have components that
+can take anything that's <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
+<pre><code class="hljs language-javascript">Stuff.propTypes = { <span class="hljs-attr">className</span>: string.isRequired }
+</code></pre>
+<p>This doesn't work, because you're passing all sorts of stuff in, possibly.</p>
+<p>A solution is to make your own custom PropTypes. You don't even need to
+get into fancy stuff involving validation, just combine a bunch of other
+PropTypes into your own.</p>
+<p>Let's say you have a <code>propTypes.js</code> file somewhere where you define custom
+PropTypes.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> classname = PropTypes.oneOfType([
+  PropTypes.object,
+  PropTypes.string,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.bool,
+      PropTypes.object,
+      PropTypes.string
+    ])
+  )
+])
+</code></pre>
+<p>That's all you need! Then you can do:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { classname } <span class="hljs-keyword">from</span> <span class="hljs-string">'./propTypes'</span>
+<span class="hljs-keyword">import</span> cn <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
+
+<span class="hljs-keyword">const</span> Stuff = <span class="hljs-function">(<span class="hljs-params">{ className }</span>) =&gt;</span>
+  &lt;span className={cn(className)}&gt;
+
+Stuff.propTypes = {
+  <span class="hljs-attr">className</span>: classname <span class="hljs-comment">// this is your custom thing</span>
+}
+</code></pre>
+<p>That should solve all PropTypes warnings and let you throw anything the
+<code>classnames</code> library can handle at your components.</p>
+<hr>
+<p>Edit 10th January, 2018:</p>
+<p>Bonus: a Flow type for this library (TypeScript should be similar):</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// @flow</span>
+
+type classes =
+  | { [className: string]: * }
+  | string
+  | <span class="hljs-literal">false</span>
+  | <span class="hljs-keyword">void</span>
+  | <span class="hljs-literal">null</span>
+
+type classnames = <span class="hljs-function">(<span class="hljs-params">...args: <span class="hljs-built_in">Array</span>&lt;classes | classes[]&gt;</span>) =&gt;</span> string
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=PropTypes for Classnames" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

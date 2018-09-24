@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>currying and partial application | Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,currying,fp,partial-application,functional-programming,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="currying and partial application"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="currying and partial application"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>currying and partial application</h2><div>05 May, 2016</div></header><div><div><pre><code class="hljs language-javascript"><span class="hljs-comment">// Prototype's version?</span>
+<span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> fn   = <span class="hljs-keyword">this</span>
+    , args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-keyword">this</span>, args.concat(<span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)))
+  }
+}
+
+<span class="hljs-comment">// Functional's version?</span>
+<span class="hljs-built_in">Function</span>.prototype.partial = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> fn   = <span class="hljs-keyword">this</span>
+    , args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> arg = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; args.length &amp;&amp; arg &lt; <span class="hljs-built_in">arguments</span>.length; i++) {
+      <span class="hljs-keyword">if</span> (args[i] === <span class="hljs-literal">undefined</span>) {
+        args [i] = <span class="hljs-built_in">arguments</span>[arg++]
+      }
+      <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-keyword">this</span>, args)
+    }
+  }
+}
+
+<span class="hljs-comment">// from angus croll's blog</span>
+<span class="hljs-comment">// note, the toArray is because the `arguments` array is actually and object</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toArray</span>(<span class="hljs-params">enumm</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.prototype.slice.call(enumm)
+}
+<span class="hljs-comment">// toArray is superfluous now, though, because we can just do</span>
+<span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">arguments</span>)
+<span class="hljs-comment">//</span>
+<span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &lt; <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+  }
+  <span class="hljs-keyword">var</span> __ method = <span class="hljs-keyword">this</span>
+    , args      = toArray(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> __method.apply(<span class="hljs-keyword">this</span>, args.concat(toArray(<span class="hljs-built_in">arguments</span>)))
+  }
+}
+<span class="hljs-comment">// and an example from his blog, using the above</span>
+<span class="hljs-keyword">const</span>
+  converter = <span class="hljs-function">(<span class="hljs-params">ratio, symbol, input</span>) =&gt;</span> [(input * ratio).toFixed(<span class="hljs-number">1</span>), symbol].join(<span class="hljs-string">' '</span>)
+, kgToLb    = converter.curry(<span class="hljs-number">2.2</span>, <span class="hljs-string">'lbs'</span>)
+, liToPi    = converter.curry(<span class="hljs-number">1.98</span>, <span class="hljs-string">'pints'</span>)
+, miToKm    = converter.curry(<span class="hljs-number">1.62</span>, <span class="hljs-string">'km'</span>)
+
+
+<span class="hljs-comment">// note that these are all examples of partial application,</span>
+<span class="hljs-comment">// not true currying as one would have in a purely functional language</span>
+<span class="hljs-comment">// see:</span>
+<span class="hljs-keyword">const</span> foo = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b
+foo.partiallyApply(<span class="hljs-number">2</span>) <span class="hljs-comment">// b =&gt; 2 + b</span>
+foo.curry() <span class="hljs-comment">// a =&gt; b =&gt; a + b</span>
+foo.curry()(<span class="hljs-number">2</span>) <span class="hljs-comment">// foo.partiallyApply(2)</span>
+
+<span class="hljs-built_in">Function</span>.prototype.curry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span>
+    method = <span class="hljs-keyword">this</span>
+  , i      = <span class="hljs-number">0</span>
+  , len    = <span class="hljs-keyword">this</span>.length
+  , args   = []
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    args.push(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>])
+    <span class="hljs-keyword">if</span> (++i &lt; len) {
+      <span class="hljs-keyword">return</span> f
+    } <span class="hljs-keyword">else</span> {
+      method.apply(<span class="hljs-keyword">this</span>, args)
+    }
+  }
+  <span class="hljs-keyword">return</span> f
+}
+
+<span class="hljs-comment">// here's a super simplistic adding thingy</span>
+<span class="hljs-keyword">const</span> adder = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-keyword">typeof</span>(b) !== <span class="hljs-string">'undefined'</span> ? a + b : <span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> a + c
+<span class="hljs-comment">// i think the es6 is right for this? in es5 also:</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adder</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> b !== <span class="hljs-string">'undefined'</span>) {
+    <span class="hljs-keyword">return</span> a + b
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>)</span>{
+      <span class="hljs-keyword">return</span> a + c
+    }
+  }
+}
+
+<span class="hljs-comment">// the real difference between partial application and currying:</span>
+<span class="hljs-comment">// a curried function will accept ONLY one argument at a time.</span>
+<span class="hljs-comment">// it will continue accepting one argument each time it's called right</span>
+<span class="hljs-comment">// up until it's got enough, then will finally be executed for realz.</span>
+
+<span class="hljs-comment">// so: a function that can take a function as input, and an int for</span>
+<span class="hljs-comment">// the max args. should be able to call like so:</span>
+curry(fn, n, ...args) <span class="hljs-comment">// ... that is,</span>
+curry(fn, n, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// or</span>
+curry(fn, n)(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>) <span class="hljs-comment">// or</span>
+curry(fn, n)(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// and we should get the same results each way.</span>
+<span class="hljs-comment">// so</span>
+curry(fn, n, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) == curry(fn, n, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+
+<span class="hljs-comment">// notes on the below:</span>
+<span class="hljs-comment">// fn.apply(a, [1, 2, 3]) is kinda the same as doing</span>
+<span class="hljs-comment">// fn.call(a, 1, 2, 3), where `a` is `this`</span>
+<span class="hljs-keyword">const</span> argsArr = <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">Array</span>.from(args)
+
+<span class="hljs-keyword">const</span> curry = <span class="hljs-function">(<span class="hljs-params">fn, n</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> args = argsArr(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">if</span> (n === args.length <span class="hljs-number">-2</span>) {
+    <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-literal">undefined</span>, args.slice(<span class="hljs-number">2</span>))
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">return</span> curry.apply(<span class="hljs-literal">undefined</span>, args.concat(<span class="hljs-built_in">arguments</span>))
+    }
+  }
+}
+<span class="hljs-comment">// so try:</span>
+<span class="hljs-keyword">const</span> addFour = <span class="hljs-function">(<span class="hljs-params">a, b, c, d</span>) =&gt;</span> a + b + c + d
+curry(addFour, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">16</span>)(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+
+<span class="hljs-comment">// modified to use Function.length</span>
+<span class="hljs-keyword">const</span> newCurry = <span class="hljs-function">(<span class="hljs-params">fn, n</span>) =&gt;</span> {
+  <span class="hljs-keyword">let</span> args = argsArr(<span class="hljs-built_in">arguments</span>)
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(n) == <span class="hljs-string">'undefined'</span>) {
+    args[<span class="hljs-number">1</span>] = fn.length
+  }
+  <span class="hljs-keyword">if</span> (n === args.length - <span class="hljs-number">2</span>) {
+    <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-literal">undefined</span>, args.slice(<span class="hljs-number">2</span>))
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> newCurry.apply(<span class="hljs-literal">undefined</span>, args.concat(argsArr(<span class="hljs-built_in">arguments</span>)))
+  }
+}
+
+
+<span class="hljs-comment">// okay, so, from some other blog</span>
+<span class="hljs-keyword">const</span> objs = [{<span class="hljs-attr">id</span> : <span class="hljs-number">1</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">2</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">3</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">4</span>}]
+objs.map(<span class="hljs-function"><span class="hljs-params">o</span> =&gt;</span> o.id)
+<span class="hljs-comment">// this is actualy a lot cleaner than his example, because he's doing it like</span>
+<span class="hljs-keyword">var</span> objs = [{<span class="hljs-attr">id</span> : <span class="hljs-number">1</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">2</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">3</span>}, {<span class="hljs-attr">id</span> : <span class="hljs-number">4</span>}]
+objs.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">o</span>)</span>{<span class="hljs-keyword">return</span> o.id})
+<span class="hljs-comment">// but we'll see where this goes, anyway</span>
+<span class="hljs-keyword">const</span> curry = <span class="hljs-built_in">require</span>(<span class="hljs-string">'curry'</span>) <span class="hljs-comment">// npm i -S curry</span>
+<span class="hljs-keyword">const</span> get = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">property, object</span>)</span>{<span class="hljs-keyword">return</span> object[property]})
+objs.map(get(<span class="hljs-string">'id'</span>))
+<span class="hljs-comment">// meh.</span>
+<span class="hljs-keyword">const</span> getIDs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">objects</span>)</span>{
+  <span class="hljs-keyword">return</span> objects.map(get(<span class="hljs-string">'id'</span>))
+}
+getIDs(objs)
+<span class="hljs-comment">// double meh.</span>
+<span class="hljs-keyword">const</span> map    = curry(<span class="hljs-function">(<span class="hljs-params">fn, val</span>) =&gt;</span> val.map(fn))
+    , getIDs = map(get(<span class="hljs-string">'id'</span>))
+
+<span class="hljs-comment">// still not sure this is actually cleaner xD</span>
+<span class="hljs-comment">// let's keep going with his examples (translated to ES2015, though)</span>
+<span class="hljs-comment">// some sample data (we'll pretend this is JSON we're getting from somewhere):</span>
+<span class="hljs-keyword">const</span> sampleData = {
+  <span class="hljs-string">"user"</span>  : <span class="hljs-string">"z"</span>
+  , <span class="hljs-string">"posts"</span> : [
+    {<span class="hljs-string">"title"</span> : <span class="hljs-string">"title!"</span>     , <span class="hljs-string">"contents"</span> : <span class="hljs-string">"asdf"</span>  }
+  , {<span class="hljs-string">"title"</span> : <span class="hljs-string">"something!"</span> , <span class="hljs-string">"contents"</span> : <span class="hljs-string">"ghjkl;"</span>}
+  ]
+}
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>).get(<span class="hljs-string">'something.whatever/that/data.json'</span>)
+.then(<span class="hljs-built_in">JSON</span>.parse)
+.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.posts)
+.then(<span class="hljs-function"><span class="hljs-params">posts</span> =&gt;</span> posts.map(<span class="hljs-function"><span class="hljs-params">post</span> =&gt;</span> post.title))
+<span class="hljs-comment">// or, using the curry stuff</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>).get(<span class="hljs-string">'something.whatever/that/data.json'</span>)
+.then(<span class="hljs-built_in">JSON</span>.parse)
+.then(get(<span class="hljs-string">'posts'</span>))
+.then(map(get(<span class="hljs-string">'title'</span>)))
+<span class="hljs-comment">// uh</span>
+<span class="hljs-comment">// okay</span>
+<span class="hljs-comment">// i don't see that this is any better, here.</span>
+<span class="hljs-comment">// oh wait, he wrote a follow-up!</span>
+
+<span class="hljs-comment">// shit. i think some of this might be wrong.</span>
+<span class="hljs-comment">// there's no `arguments`! i knew about `this`, but not `arguments`.</span>
+<span class="hljs-comment">// (talking about when using `=&gt;`, i mean.)</span>
+<span class="hljs-comment">// not really a big deal, just in the above, we need to use `...args` instead.</span>
+<span class="hljs-comment">// for example,</span>
+<span class="hljs-keyword">let</span> sum = <span class="hljs-function">(<span class="hljs-params">...nums</span>) =&gt;</span> nums.reduce(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b)
+
+
+
+<span class="hljs-comment">// examples:</span>
+<span class="hljs-comment">// in es5:</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatter</span>(<span class="hljs-params">tag, text</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;'</span> + tag + <span class="hljs-string">'&gt;'</span> + text + <span class="hljs-string">'&lt;/'</span> + tag + <span class="hljs-string">'&gt;'</span>
+}
+<span class="hljs-keyword">var</span> p = formatter.bind(<span class="hljs-literal">undefined</span>, <span class="hljs-string">'p'</span>)
+p(<span class="hljs-string">'some content!'</span>)
+<span class="hljs-comment">// in es6:</span>
+<span class="hljs-keyword">const</span> formatter = <span class="hljs-function">(<span class="hljs-params">tag, text</span>) =&gt;</span> <span class="hljs-string">`&lt;<span class="hljs-subst">${tag}</span>&gt;<span class="hljs-subst">${text}</span>&lt;/<span class="hljs-subst">${tag}</span>&gt;`</span>
+<span class="hljs-keyword">const</span> p = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> formatter(<span class="hljs-string">'p'</span>, text)
+<span class="hljs-comment">// accepting addtional arguments (more text):</span>
+<span class="hljs-keyword">const</span> fmt = <span class="hljs-function">(<span class="hljs-params">tag, text, moar</span>) =&gt;</span> <span class="hljs-string">`&lt;<span class="hljs-subst">${tag}</span>&gt;<span class="hljs-subst">${text}</span><span class="hljs-subst">${moar}</span>&lt;/<span class="hljs-subst">${tag}</span>&gt;`</span>
+<span class="hljs-keyword">const</span> span = ...args =&gt; fmt(<span class="hljs-string">'span'</span>, ...args)
+
+<span class="hljs-comment">// okay, that's cute because it just lets you specify however many you want, but...</span>
+<span class="hljs-keyword">const</span> cur = <span class="hljs-function">(<span class="hljs-params">fn, ...argsOne</span>) =&gt;</span> (...argsTwo) =&gt; fn(...argsOne, ...argsTwo)
+<span class="hljs-comment">// or, allowing placeholders, as in underscore:</span>
+<span class="hljs-keyword">const</span> curMore = <span class="hljs-function">(<span class="hljs-params">fn, ...argsOne</span>) =&gt;</span> {
+  <span class="hljs-keyword">let</span> i = argsOne.indexOf(_)
+  <span class="hljs-keyword">let</span> argsOne = (i === <span class="hljs-number">-1</span>) ? [] : argsOne.splice(i).slice(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...argsTwo</span>) =&gt;</span> fn(...argsOne, ...argsTwo, ...argsThree)
+}
+<span class="hljs-comment">// which can then be used like:</span>
+<span class="hljs-keyword">const</span> lessTen = curMore(subtract, _, <span class="hljs-number">10</span>) <span class="hljs-comment">// assuming we've defined a `subtract` somewhere</span>
+
+
+
+<span class="hljs-comment">// from brian lonsdorf's blog/medium, a better `curry` (better in that</span>
+<span class="hljs-comment">// it should be easier to debug).</span>
+<span class="hljs-comment">// note: very definitely es5. and redifines toString().</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">fx</span>)</span>{
+  <span class="hljs-keyword">var</span> arity = fx.length
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f1</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">0</span>)
+    <span class="hljs-keyword">if</span> (args.length &gt;= arity) {
+      <span class="hljs-keyword">return</span> fx.apply(<span class="hljs-literal">null</span>, args)
+    }
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f2</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> f1.apply(<span class="hljs-literal">null</span>, args.concat(<span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">0</span>)))
+    }
+    f2.toString = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> fToString(fx) + <span class="hljs-string">'('</span> + args.join(<span class="hljs-string">', '</span>) + <span class="hljs-string">')'</span>
+    }
+    <span class="hljs-keyword">return</span> f2
+  }
+  f1.toString = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> fToString(fx)
+  }
+  <span class="hljs-keyword">return</span> f1
+}
+<span class="hljs-comment">// and a compose from the same:</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compose</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> fns = <span class="hljs-built_in">arguments</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">result</span>)</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = fns.length - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">-1</span>; i--) {
+      <span class="hljs-keyword">try</span> {
+        result = fns[i].call(<span class="hljs-keyword">this</span>, result)
+      } <span class="hljs-keyword">catch</span>(e) {
+        e.message = f.toString() + <span class="hljs-string">' failed at '</span> fns[i].toString()
+        <span class="hljs-keyword">throw</span>(e)
+      }
+    }
+    f.toString = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'compose('</span>+[].slice.call(fns).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>)</span>{ <span class="hljs-keyword">return</span> f.toString() }).join(<span class="hljs-string">', '</span>)+<span class="hljs-string">')'</span>;
+    }
+    <span class="hljs-keyword">return</span> result
+  }
+  <span class="hljs-keyword">return</span> f
+}
+
+
+
+<span class="hljs-comment">// from reginald braithwaite's blog</span>
+<span class="hljs-comment">// * arity: number of arguments a function accepts</span>
+<span class="hljs-comment">//   * nullary function takes no arguments</span>
+<span class="hljs-comment">//   * unary function accepts one</span>
+<span class="hljs-comment">//   * polyadic function accepts more than one</span>
+<span class="hljs-comment">//   * binary accepts two</span>
+<span class="hljs-comment">//   * ternary function accepts three</span>
+<span class="hljs-comment">//   * variadic function accepts a variable number of arguments</span>
+
+<span class="hljs-comment">// a map fn</span>
+<span class="hljs-keyword">const</span> __ map = [].map
+<span class="hljs-keyword">const</span> square = <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * n
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>(<span class="hljs-params">list, unary</span>)</span>{
+  <span class="hljs-keyword">return</span> __map.call(list, unaryFn)
+}
+map([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], square)
+
+<span class="hljs-comment">// this is fine as long as map gets both arguments (is fully applied)</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapWrap</span>(<span class="hljs-params">unaryFn</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">list</span>)</span>{
+    <span class="hljs-keyword">return</span> map(list, unaryFn)
+  }
+}
+mapWrap(square)([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+
+<span class="hljs-keyword">const</span> squareAll = mapWrap(square)
+squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+
+<span class="hljs-comment">// woot! that's fine, but annoying to write. so, a function to wrap functions:</span>
+<span class="hljs-comment">// const wrapper = unaryFn =&gt; list =&gt; map(list, unaryFn) // can become:</span>
+<span class="hljs-comment">// const wrapper = second =&gt; first =&gt; binaryFn(first, second) // can become:</span>
+<span class="hljs-keyword">const</span> rightCurry = <span class="hljs-function"><span class="hljs-params">binaryFn</span> =&gt;</span> secondArgument =&gt; <span class="hljs-function"><span class="hljs-params">firstArgument</span> =&gt;</span> binaryFn(firstArgument, secondArgument)
+<span class="hljs-comment">// which can be used like</span>
+<span class="hljs-keyword">const</span> rightCurryMap = rightCurry(map)
+<span class="hljs-keyword">const</span> squareAll     = rightCurryMap(square)
+squareAll([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// calling this rightCurry because it takes any binary function and curries into a chain</span>
+<span class="hljs-comment">// of unary functions, starting with the second argument. a curry that starts on the left</span>
+<span class="hljs-comment">// is more common, and it's usually what people mean.</span>
+<span class="hljs-keyword">const</span> curry = <span class="hljs-function"><span class="hljs-params">binaryFn</span> =&gt;</span> firstArg =&gt; <span class="hljs-function"><span class="hljs-params">secondArg</span> =&gt;</span> binaryFn(firstArg, secondArg)
+<span class="hljs-keyword">const</span> cMap  = curry(map)
+<span class="hljs-keyword">const</span> twice         = <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n + n <span class="hljs-comment">// why did i write this down?</span>
+<span class="hljs-comment">// whether one goes with a leftmost or rightmost curry could depend on which things</span>
+<span class="hljs-comment">// you might need to name and/or reuse</span>
+
+<span class="hljs-comment">// okay so apparently a pattern like this:</span>
+<span class="hljs-keyword">const</span> squareAll = rightCurry(map)(square)
+<span class="hljs-keyword">const</span> doubleAll = rightCurry(map)(twice)
+<span class="hljs-comment">// is called a:</span>
+<span class="hljs-comment">// rightmost unary partial application of the map function</span>
+<span class="hljs-comment">// which means it starts from the right, takes one arg, applies not all of the args, and works on the map fn</span>
+
+<span class="hljs-comment">// the wrong way to build a first-class function to do this would be:</span>
+<span class="hljs-keyword">const</span> rightUnPartApp = <span class="hljs-function">(<span class="hljs-params">binaryFn, secondArg</span>) =&gt;</span> rightCurr(binaryFn)(secondArg)
+<span class="hljs-comment">// and a better way might be</span>
+<span class="hljs-keyword">const</span> lastApplication = <span class="hljs-function">(<span class="hljs-params">binaryFn, secondArg</span>) =&gt;</span> firstArg =&gt; binaryFn(firstArg, secondArg)
+<span class="hljs-comment">// which means we could do</span>
+<span class="hljs-keyword">const</span> squareAll = lastApplication(map, square)
+<span class="hljs-keyword">const</span> doubleAll = lastApplication(map, twice)
+<span class="hljs-comment">// and so, we could do</span>
+<span class="hljs-keyword">const</span> firstApp = <span class="hljs-function">(<span class="hljs-params">binaryFn, firstArg</span>) =&gt;</span> secondArg =&gt; binaryFn(firstArg, secondArg)
+
+<span class="hljs-comment">// SO. wat.</span>
+<span class="hljs-comment">// Currying : decomposition of a polyadic function into a chain of nested unary functions. Thus,</span>
+<span class="hljs-comment">// decomposed, you can partially apply one or more arguments, although the curry operation itself</span>
+<span class="hljs-comment">// does not apply any arguments to the function.</span>
+<span class="hljs-comment">// Partial application : conversion of a polyadic function into a function taking fewer arguments</span>
+<span class="hljs-comment">// by providing one or more arguments in advance.</span>
+
+
+
+
+<span class="hljs-comment">// this is approximately the same as wu.js's .autoCurry() (which has been removed??)</span>
+<span class="hljs-comment">// (es5, obvs. todo: simplify, basically just by making it es6.)</span>
+<span class="hljs-keyword">var</span> autoCurry = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  <span class="hljs-keyword">var</span>
+    toArray = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toArray</span>(<span class="hljs-params">arr, from</span>)</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.prototype.slice.call(arr, <span class="hljs-keyword">from</span> || <span class="hljs-number">0</span>)
+  }
+
+, curry = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">fn</span>) </span>{
+    <span class="hljs-keyword">var</span> args = toArray(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curried</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-keyword">this</span>, args.concat(toArray(<span class="hljs-built_in">arguments</span>)))
+    }
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">autoCurry</span>(<span class="hljs-params">fn, numArgs</span>)</span>{
+    numArgs = numArgs || fn.length
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">autoCurried</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &lt; numArgs) {
+        <span class="hljs-keyword">return</span> numArgs - <span class="hljs-built_in">arguments</span>.length &gt; <span class="hljs-number">0</span> ?
+        autoCurry(curry.apply(<span class="hljs-keyword">this</span>, [fn].concat(toArray(<span class="hljs-built_in">arguments</span>)))
+      , numArgs - <span class="hljs-built_in">arguments</span>.length)           :
+        curry.apply(<span class="hljs-keyword">this</span>, [fn].concat(toArray(<span class="hljs-built_in">arguments</span>)))
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)
+      }
+    }
+  }
+
+}())
+
+
+<span class="hljs-comment">// one more</span>
+<span class="hljs-keyword">const</span> curry = <span class="hljs-function"><span class="hljs-params">fn</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> length = fn.length
+  <span class="hljs-keyword">const</span> acc = <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (args.length === length) <span class="hljs-keyword">return</span> fn(...args)
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> acc(...args.concat(args))
+  }
+  <span class="hljs-keyword">return</span> acc
+}
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=currying and partial application" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

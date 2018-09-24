@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Promises | Zac Anger&#x27;s Blog</title><meta name="description" content="Important things:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,promises,es6,es2015,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Promises"/><meta name="twitter:description" content="Important things:"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Promises"/><meta property="og:description" content="Important things:"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Promises</h2><div>05 May, 2016</div></header><div><div><p>Important things:</p>
+<ul>
+<li>The actual promise is immutable (nothing can change that)</li>
+<li>There's a guarantee that we'll get something back</li>
+<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
+<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
+<li>A promise will have one of three states:
+<ul>
+<li>Pending (until something happens)</li>
+<li>Fulfilled (if the first handler is called)</li>
+<li>Rejected (if the second handler is called)</li>
+</ul>
+</li>
+<li>It can only be 'settled' (either resolved or rejected) once.</li>
+<li>Can't cancel a promise.</li>
+<li>No way to check the status (if pending, fulfilled, or rejected).</li>
+<li>An immediately-resolved promise can be created like <code>Promise.resolve('something')</code>.</li>
+<li>An immediately-rejected promise can be created like <code>Promise.reject('something')</code>.</li>
+<li>Attach a <code>then()</code> to consume the promise.</li>
+<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
+<li>It can actually take a rejection callback too.</li>
+<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
+<li>You can chain <code>.then()</code>s.</li>
+<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
+<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
+<li><code>throw</code>ing will automatically reject that promise.</li>
+<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.
+<ul>
+<li>Otherwise (if any are rejected) it will reject.</li>
+</ul>
+</li>
+<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
+<li>Don't program with promises using same patterns as with callbacks.
+<ul>
+<li>(Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
+</ul>
+</li>
+<li>Don't nest promises. Use a <code>.all</code> instead.</li>
+</ul>
+<p>Examples:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (something) {
+    resolve(value)
+  } <span class="hljs-keyword">else</span> {
+    reject(reason)
+  }
+})
+
+<span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">'something'</span>)
+p.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+<span class="hljs-keyword">const</span> p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> resolve(<span class="hljs-string">'asdf'</span>), <span class="hljs-number">2000</span>)
+})
+p2.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+  res += <span class="hljs-string">'ghjkl;'</span>
+  <span class="hljs-built_in">console</span>.log(res)
+})
+p2.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res)) <span class="hljs-comment">// this is still 'asdf'</span>
+
+somePromise.then(
+  <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'fulfilled'</span>, val)
+, err =&gt; <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'rejected'</span>, err))
+
+pr.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'fulfilled'</span>, val))
+  .then(<span class="hljs-literal">null</span>, err =&gt; <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'rejected'</span>, err))
+
+<span class="hljs-keyword">const</span> throwProm = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">res, rej</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (something) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'rejected'</span>)
+  } <span class="hljs-keyword">else</span> {
+  resolve(stuff)
+  }
+})
+throwProm
+.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> val + <span class="hljs-number">8</span>)
+.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hey'</span>, val))
+.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'err'</span>, err.message))
+
+<span class="hljs-keyword">const</span> fulProm = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">res, rej</span>) =&gt;</span> res(<span class="hljs-number">8</span>))
+fulProm
+.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> val + <span class="hljs-number">8</span>)
+.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'failure'</span>)})
+.then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'yay'</span>, val))
+.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'error'</span>, err.message))
+
+one()
+.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.all([res, two(res)]))
+  .then(<span class="hljs-function"><span class="hljs-params">results</span> =&gt;</span> <span class="hljs-comment">/* stuff */</span>)
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-comment">/* handle err */</span>)
+
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=Promises" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

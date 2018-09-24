@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>the last of the devmountain notes! | Zac Anger&#x27;s Blog</title><meta name="description" content="This should be the very last of my random notes from my time going through
+the course at DevMountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="the last of the devmountain notes!"/><meta name="twitter:description" content="This should be the very last of my random notes from my time going through
+the course at DevMountain."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="the last of the devmountain notes!"/><meta property="og:description" content="This should be the very last of my random notes from my time going through
+the course at DevMountain."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>the last of the devmountain notes!</h2><div>22 May, 2016</div></header><div><div><p>This should be the very last of my random notes from my time going through
+the course at <a href="http://devmounta.in">DevMountain</a>.</p>
+<p>Finally.</p>
+<p>As always, don't take this stuff too seriously, there's a fair chance a lot of
+it is not correct, and any opinions have most likely changed maybe probably
+sortakinda.</p>
+<p>These last bits are in chronological order of file modification date. I believe
+this was from during the second week of Angular.</p>
+<hr>
+<h2>ANGULAR</h2>
+<p>so, <code>expressions</code>, basically that's why we're gonna be mashing those braces
+constantly. it's kind of like inline scripts, but minus the script tags?</p>
+<p><code>directives</code> are the powerful bit. jqueryish dom extension? apparently something
+we'll use a lot is <code>ngRepeat</code>, which, if it means writing less html, is a-ok
+with me.</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-ng-repeat</span>=<span class="hljs-string">"user in users"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>{{user.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{user.properties}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>so it's like how python folks write python everything, including html; we're
+writing javascriptish markup! it makes sense in those terms. that snippet there
+just created that same div for each user in users; say we have several user
+objects, it'll just go right ahead and repeat that markup per user.</p>
+<p><code>ngShow</code> determines if an element should be shown or not, based on a boolean.</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-ng-repeat</span>=<span class="hljs-string">"pizza in boxes"</span> <span class="hljs-attr">data-ng-show</span>=<span class="hljs-string">"pizza.topping == 'peppers'"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>{{pizza.shop}}<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{pizza.properties}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>guess what. your gross-ass hawaiian pie? not in those divs, no sir.</p>
+<p><code>ngSwitch</code> OHH THIS IS USEFUL. we could've used this last week.</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-ng-switch</span>=<span class="hljs-string">"pizza.photo"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{{pizza.stuff}}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>your pie totally looks this goods<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"pepperoni.jpg"</span> <span class="hljs-attr">data-ng-switch-when</span>=<span class="hljs-string">"pepperoni"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"hawaiian.bmp"</span> <span class="hljs-attr">data-ng-switch-when</span>=<span class="hljs-string">"gross_as_fuck"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"heaven.png"</span> <span class="hljs-attr">data-ng-switch-when</span>=<span class="hljs-string">"peppers"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<hr>
+<p>directives straight up from angular are all named <code>ngSomethingStuff</code>; they're
+used like &quot;ng-something-stuff&quot; (or &quot;data-ng-something-stuff&quot;) in view. they can
+also be comments (?), dom elements, or CSS classes (oh hai jquery what up).</p>
+<p>one could use 'operations' within those little handlebars up there (i believe
+we're calling those <code>expressions</code>, and <code>operations</code> would be our word for
+executable snippets, basically?). so <code>{{pizzza.beInMe()}}</code> is totally valid.</p>
+<p><code>ngModel</code> to create two-way data-binding.</p>
+<p>aaaaand i do believe this example just literally piped a username to uppercase.
+OKAY. <code>{{name | uppercase}}</code> that is, apparently, called a <code>filter</code>, though in
+the interest of correctness (and also just to irk ryan :P) i'll keep calling
+them pipes, thank you very much.</p>
+<p>hmm. it would seem the guy who wrote this intro to angular is either getting
+paid by google, or currently sitting on someone's dick there... some of the
+worship is just a wee bit too cloying for real life.</p>
+<p><code>ngApp</code> is the directive to include a partial (to bind an application, in the
+parlance). <code>ngView</code> to actually use it.</p>
+<p><code>.config</code> does (whodathunkit) configuration, basically by d i (?). you <em>could</em>
+pass a function with parameters named after what you're sourcing that way, but
+it's not good practice (actually, i hadn't thought about that before... what
+happens to variables by the time they've been through minification, base62, and
+gzip? ⊙▃⊙). instead, you should use an array with the names of the elements that
+should get all shot up in your page, because, y'know, ain't no one messing with
+your actual data.</p>
+<p><code>routes</code> are a big deal, from what i hear. here's a simple one from this guy's
+blog post:</p>
+<pre><code class="hljs language-javascript">angularStuff.config([<span class="hljs-string">'$routeProvider'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$routeProvider</span>) </span>{
+  $routeProvider.when(<span class="hljs-string">'/objects'</span>, {
+    <span class="hljs-attr">templateURI</span> : <span class="hljs-string">'view/objects.html'</span>
+  , <span class="hljs-attr">controller</span>  : <span class="hljs-string">'ObjCtrl'</span>
+  }).otherwise({<span class="hljs-attr">templateURI</span> : <span class="hljs-string">'view/NOPE.html'</span>})
+}])
+</code></pre>
+<p>please forgive me, but i need to take a minute to say some things that should be
+obvious.</p>
+<p>yes, this way of working with partials and configs is pretty sweet, but let's be
+honest, here, and very straightforward: partials and templating systems and
+whatnot exist solely for the purpose of making things <em>easier</em> on the people
+doing the programming. somehow i feel like going with even more nested
+punctuation is more of an exercise in concrete poetry than a highly advanced and
+developed javascript framework. ugh.</p>
+<p><code>.controller</code> is, like, what you use for controllers. <code>$scope</code> links your
+controllers and their bound views. (?) (or binded, if you're this fellow.)</p>
+<pre><code class="hljs language-javascript">angularThang.controller(<span class="hljs-string">'BTCtrl'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
+  $scope.objects = [{
+    <span class="hljs-attr">key</span>  : <span class="hljs-string">'value'</span>
+  , <span class="hljs-attr">next</span> : <span class="hljs-string">'another'</span>
+  },{
+    <span class="hljs-attr">key</span>  : <span class="hljs-string">'let\'s do it again'</span>
+  , <span class="hljs-attr">next</span> : <span class="hljs-string">'okay, now we\'re done'</span>
+  }]
+}])
+</code></pre>
+<p><code>$watch</code> calls a listener for a controller on an attribute of its scope (oh boy,
+pronouns, this is fun). <code>$broadcast</code> will trigger an event on a scope, which'll
+be transmitted to that scope, and <em>all</em> of its children. to trigger a global
+even, you'd use <code>$rootScope</code>. without copying down every example from this
+rather crudely typed out blog post, we're basically using
+<code>$scope.$watch(stuff)</code>, <code>$scope.$broadcast</code>, <code>$scope.$on</code> etc. so, y'know. extra
+<code>$$$$$$$$</code> for everyone.</p>
+<p>obviously <code>services</code> are gonna be my favourite toy here. there's an <code>$http</code>
+builtin! (i think... as mentioned, this blogger is probably better at writing
+code that writing words, so... i don't really know). so you can inject them (oh
+geez, really? we're going with 'inject' here? we couldn't've said 'require' or
+'load' or some other generic and often used term that could maybe be <em>slightly</em>
+less confusing in this context?) into your controllers and whatnots and
+fiddlybits, straight up. same goes for custom
+services/external/third-party/whatever, i suppose. basically you've just got to
+have some sort of usable api there for other services &amp; fiddlywhatnots to
+access.</p>
+<p><code>$http</code> is a thin wrapper on XHR; <code>$resource</code> is higher level (though without
+any examples of how, all i have to go on is that you can call POST something
+like 'save' and get something like 'GIMME DAT' or whatever... so... what?). and
+i think <code>$resource</code> is <em>not</em> a builtin, because you'd need to have a dependency
+on <code>ngResource</code> to use it. and here he says we've got <code>$httpBackend</code> built in to
+test without a web server, but he doesn't mention if that's actually a builtin
+or a core module that would need to be required, nor does he mention whether or
+not it runs a webserver itself or just sends out a fake packet, internally, or
+whatever.</p>
+<hr>
+<p>so, jeremy's super-boiled-down 10-second run-through of the MVC pattern
+definitely clarified the actual role of the controller. i mean, i kind of
+understood that it's basically binding models and views, but never really
+understood it as the actual middleman until just now. that is awfully sensible.</p>
+<p>implied, but not stated explicitly: react is less of a bottleneck as a view than
+angular is.</p>
+<p>something to keep in mind: <code>$scope</code> is straight up two-way binding, not sortof
+or sometimes as was implied in the article.</p>
+<p>oh, <code>directive</code> is basically just silly slang for attributes.</p>
+<p>mismatched bits and bobs? not with angular, it'll just boink up some fresh new
+dom nodes for your loose-ends</p>
+<p>$timeout basically same syntax as setTimeout, except</p>
+<pre><code class="hljs language-javascript">$timeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $scope.thing = <span class="hljs-string">'that'</span>
+}, <span class="hljs-number">10000</span>)
+</code></pre>
+<p>EVEYTHING that goes IN the html that angular will use is INSIDE of
+ng-controller, attached to its $scope</p>
+<p>so for the  HTML to even give a crap about what's going on in your javascript,
+it's gotta be in a $scope. everything that you want angular to actually act on
+had better be {{}} in the html and $scope in your js</p>
+<p>as jeremy explained it, your js as it sits in your files is ALSO basically kind
+of a starting point, because (and see 1.md for more notes on triggering events),
+what angular does is (he said scan for but i understood it as wait for triggers
+from) basically an excuse to go changing things. so your objects, variables,
+whatever are OH MY GOD NOW I KNOW WHAT IMMUTABLE JAVASCRIPT IS A BIG DEAL OKAY
+(no, not because of angular, but because it just hit me how how loose EVERYTHING
+can really be in javascript... wow, no wonder js get so much hate. it probably
+deserves it.)</p>
+<p>ng-repeat makes a miniature scope for the foo part of <code>ng-repeat=&quot;foo in bar&quot;</code>
+-- underneath, i suppose. that's super slick.</p>
+<pre><code class="hljs language-text">&lt;input ng-model=&quot;someFilter&quot;&gt; // filter is a keyword to angular, it knows to look for a filter as defined by itself
+&lt;div ng-repeat=&quot;some in such | filter: someFilter&quot;&gt;
+{{some.stuff}} {{some.things}} // okay, and i suppose, it looks like filter is just a builtin that does just that one
+{{some.stuff}} {{some.things}} // exact thing... it only shows the thing that you're inputting/providing as a filter
+{{some.stuff}} {{some.things}} // BUT that does not necessarily have to mean actual filtered string fragments.
+{{some.stuff}} {{some.things}} // THIS MAKES LIFE EASY.
+&lt;/div&gt;
+&lt;div ng-repeat=&quot;some in such | filter: { name: someFilter location { name: locationNameFilter } }&quot;&gt;
+// so basically we're interactively filtering here, but also filtering by the type of whatchamacallits,
+// filtering the objects with a nesting (so, narrowing) way. we could that we need to pass an object,
+// and that object ought to have a certain .property, and that key's value should PROBABLY have a capital A
+// or else, y'know, hey angular, throw that shit out.
+// that, right there, could be a simple (though obviously not exactly performant...) way to work on that
+// little knowledge management problem we have.
+// &lt;div ng-init=&quot;whatisUPYO = true&quot;&gt;YO&lt;/div&gt;
+// &lt;div ng-init=&quot;heywhatever = false&quot;&gt;YO&lt;/div&gt;
+// &lt;div ng-show=&quot;heywhatever&quot;&gt;YOU CAN'T SEE ME&lt;/div&gt;
+// &lt;div ng-show=&quot;whatisUPYO&quot;&gt;BUT YOU CAN SEE ME&lt;/div&gt;
+// within the ng-thingy&quot;IN HERE THIS PLACE THIS BIT RIGHT HERE&quot; you can
+// basically work with any executable javascript code you'd like...
+// though that would be an awfully bad idea, i suppose.
+//
+// ... we have ng-hide also, which is just ng-show-&quot; = false &quot;
+// so you're basically only hiding if (true/truthy). negates the need for
+// double negatives, or some such.
+// they're only really working on css `display: none;`
+// ng-if will actually keep something off the dom if it fails, so
+// HOLY CRAP ANGULAR HAS A BUILT IN LINK FILTER. FILTER IS NOT JUST FILTER.
+// this means you can probably pipe to a whole fucking LOAD of things, and
+// seeing as scripting languages basically mostly exist to abstract themselves
+// more and more every year until they grow actual intelligences...
+// THIS MEANS THIS IS BASICALLY LIKE POSIX PIPES. WHICH MEANS I CAN, WITH A BIT OF WORK
+// AND A LOT OF SYNTAX HELP AND PROBABLY ALL SORTS OF FAILURES, ESCAPING, SANITIZING,
+// AND TESTING... basically it could become fairly easy to port posix utilities to
+// angular. and since that's written in javascript... that could be extracted and
+// maybe combined and turned into its own library for porting posix-compliant shell
+// scripts (or, theoretically, any, i guess...) to... the... browser.
+// oh gosh. this clarified some things, for sure.
+// though i STILL DON'T KNOW WHY WE NEED TO DO TEMPLATING WITH MORE PUNCUATION
+// RATHER THAN LESS
+// JADE MAKES THINGS EASIER
+// SO DOES STYLUS
+// SO WHAT THE HELL WHY CAN'T JAVASCRIPT TEMPLATING FOR JAVASCRIPT ACTUALLY BE GOOD
+
+</code></pre>
+<hr>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span> (<span class="hljs-params">num</span>)</span>{
+  <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> (num * factorial(num - <span class="hljs-number">1</span>))
+  }
+}
+</code></pre>
+<p>ngoptions: says hey, make this array into a selection dropbox kinda thing</p>
+<p>ves) ng-model (and some other diretives) need to have a parent (or both) for expcetionally good looksk to w=be happpy</p>
+<p>factories vs services vs providers; basically down to personal style, though we'll just go with ryan's style</p>
+<hr>
+<p>$q is angular's implementation of promises.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myDeferred = $q.defer()
+
+<span class="hljs-keyword">async</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>) </span>{
+  myDeferreed.resolve(val)
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  myDeferred.reject(error)
+})
+
+<span class="hljs-keyword">async</span>(myDeferred.resolve, myDeferred.reject)
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">var</span> myPromise = myDeferred.promise
+myPromise
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'It worked!'</span>, data)
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'NOPE'</span>, error)
+})
+</code></pre>
+<p>can assign success/failure ops right after creating the deferred (before async()), and can assign as many ops as we like.</p>
+<p>we can also assign ONLY success or failure functions:</p>
+<pre><code class="hljs language-javascript">promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'assigning only success here'</span>)
+})
+
+promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'assigning only failure here'</span>)
+}) <span class="hljs-comment">// this is the same as typing out promise.then(null.errorCallback)</span>
+
+promise.finally(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'on, and this one will happen whether we fail or succeed.'</span>)
+})
+</code></pre>
+<p>can chain promises (as values), for example asyncTwo(asyncOne), but like:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> promise = asyncOne().then(asyncTwo)
+
+$q.reject(reason) <span class="hljs-comment">// will return rejected, with provided reason</span>
+$q.when(value) <span class="hljs-comment">// will return resolved, with provided value.</span>
+$q.when(value) <span class="hljs-comment">// can serve as a wrapper for a 3rd party promise. example:</span>
+$.ajax() <span class="hljs-comment">//jQuery</span>
+<span class="hljs-keyword">var</span> jqPromise = $.ajax({
+<span class="hljs-comment">// stuff here })</span>
+<span class="hljs-keyword">var</span> angPromise = $q.when(jqPromise)
+
+$q.all( [] )
+<span class="hljs-comment">// in the above, one passes an array of promises to $q.all</span>
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// angular flow in ten seconds or less:</span>
+<span class="hljs-comment">// this is according to luke, so it's probably correct.</span>
+<span class="hljs-comment">// $http.get(url)</span>
+<span class="hljs-comment">// promise.then on that</span>
+<span class="hljs-comment">// to display it, call that function on the service</span>
+<span class="hljs-comment">// return that, $scope.that thing</span>
+<span class="hljs-comment">// {{let's go ahead and display that.thing however we want that}}</span>
+
+<span class="hljs-comment">//</span>
+
+<span class="hljs-comment">// angular hits serious view bottleneck around 1800 items.</span>
+
+<span class="hljs-comment">// node's event loop is exactly the same as normal async javascript, just not in a browser</span>
+
+<span class="hljs-comment">//</span>
+
+$q.defer() <span class="hljs-comment">// making a promise</span>
+$q.resolve() <span class="hljs-comment">// start resolving that promise, start invoking chain of .then callback functions,</span>
+             <span class="hljs-comment">// aka 'i'm done and it worked!'</span>
+
+doThing(){
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doThing</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> promise = $q.defer
+    <span class="hljs-comment">// stuff to do</span>
+    <span class="hljs-comment">// this needs a callback, probably</span>
+      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params"></span>)</span>{
+        promise.resolve([<span class="hljs-string">'stuff'</span>, <span class="hljs-string">'that you got'</span>, <span class="hljs-string">'because you asked for it'</span>])
+      }
+    <span class="hljs-keyword">return</span> promise
+  }
+}
+
+<span class="hljs-keyword">var</span> url = <span class="hljs-string">'http//zacanger.com/blog"
+var promise = $q.defer()
+$http({
+  method: '</span>GET<span class="hljs-string">'
+, url: url
+}).then(function(response){
+  var whatever = response.data
+  // do things
+})
+</span></code></pre>
+<p>okay, promises are so much simpler and more straightforward than people are probably thinking.
+really, basically, we're just going over use-cases and examples now. which is totally fine,
+of course.</p>
+<p>note that when we go ahead and send a buncha chained promises, we're gonna get stuff back
+however it comes back, not in the order we started things. we'd want to sort things after,
+if needed, not (obviously) within promises, because that would make all of that redundant;
+we'd basically be using promises to run some synchronous javascript, at that point.
+dumb.</p>
+<p>JSONP: this is how we get around cross-origin problems.</p>
+<hr>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{
+  setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    resolve(<span class="hljs-string">'hi'</span>)
+  }, <span class="hljs-number">5000</span>)
+})
+
+<span class="hljs-keyword">return</span> promise
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">whatUp</span>(<span class="hljs-params"></span>)</span>{
+  say(<span class="hljs-string">'BLAHR'</span>)
+}
+</code></pre>
+<hr>
+<p>this.whatever makes 'whatever' (in a service) visible to the controller.</p>
+<p>it's a good idea to go ahead and be like</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hello = <span class="hljs-string">'oi!'</span>
+
+<span class="hljs-keyword">this</span>.returnedInfo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">return</span> hello
+}
+</code></pre>
+<p>that way... data is made, protected, changed, broken, etc., all in one place.
+just accessed through that nice little function there.  i am so confused about
+bananas</p>
+<hr>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>o hello there<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-app</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"MyApp"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">ng-cloak</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>howdy,<span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{{name}}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyApp</span><span class="hljs-params">($scope)</span></span>{$scope.name = <span class="hljs-string">"zacanger"</span>}</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<hr>
+<p>jer.html</p>
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"dm7FirstApp"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jeremy's example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"myCtrl"</span>&gt;</span>
+    This is Plain Text
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background-color: red"</span>&gt;</span>
+      {{name}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    Input box : <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"foo"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Curly Brackets : {{foo}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"person.name"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"person.cereal"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"person.media"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"person.random"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      Your person is :
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{person.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{person.cereal}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{person.media}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{person.random}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Repeat<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+
+    Filter: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"carfilter.name"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"car in cars | filter: carfilter "</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"car"</span>&gt;</span>
+      {{car.name}} - Year: {{car.year}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">ng-init</span>=<span class="hljs-string">"isAwesome = true"</span>&gt;</span>Show/Hide<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-show</span>=<span class="hljs-string">"isAwesome"</span>&gt;</span>Yay, you are awesome!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-hide</span>=<span class="hljs-string">"isAwesome"</span>&gt;</span>We're sorry you're not awesome<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-if</span>=<span class="hljs-string">"isAdmin"</span>&gt;</span>You must be the boss<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"isAwesome = !isAwesome"</span>&gt;</span>Click Me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">'dm7FirstApp'</span>, []);
+
+      app.controller(<span class="hljs-string">'myCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($scope, $timeout)</span></span>{
+        $scope.name = <span class="hljs-string">"That lame teacher"</span>
+
+        $scope.cars = [
+          {name: <span class="hljs-string">"Astin Martin"</span>, year: <span class="hljs-number">1972</span>},
+          {name: <span class="hljs-string">"Kia"</span>, year: <span class="hljs-number">1973</span>},
+          {name: <span class="hljs-string">"Jeep"</span>, year: <span class="hljs-number">1975</span>},
+          {name: <span class="hljs-string">"51 Mercury"</span>, year: <span class="hljs-number">1951</span>},
+          {name: <span class="hljs-string">"Tesla"</span>, year: <span class="hljs-number">2008</span>}
+        ]
+
+        $scope.isAwesome = <span class="hljs-literal">true</span>
+        $scope.isAdmin   = <span class="hljs-literal">true</span>
+
+        $scope.clicked = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+          $scope.isAwesome = !$scope.isAwesome
+        }
+
+        $scope.person = {
+          name: <span class="hljs-string">"namless"</span>,
+          cereal: <span class="hljs-string">"air"</span>,
+          media: <span class="hljs-string">"silence"</span>,
+          random: <span class="hljs-string">"nothing"</span>
+        }
+
+        $timeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+          $scope.foo = <span class="hljs-string">"bar"</span>
+
+          $scope.cars[<span class="hljs-number">2</span>].name = <span class="hljs-string">"Monster Truck"</span>
+        }, <span class="hljs-number">3000</span>)
+
+      })
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<hr>
+<p>j_promise_notes.js</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// controller</span>
+angular.module(<span class="hljs-string">'httpApp'</span>).controller(<span class="hljs-string">'myCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope, myService</span>)</span>{
+  $scope.test = <span class="hljs-string">"Working"</span>
+
+  $scope.isLoading = <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">var</span> promise = myService.getStarship()
+
+  promise.then(myService.getPilots)
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">starshipWithPilots</span>)</span>{
+    $scope.starship = starshipWithPilots
+  }
+
+  <span class="hljs-comment">//    promise.then(validateEmails)</span>
+  <span class="hljs-comment">//           .then(sendEmails)</span>
+  <span class="hljs-comment">//           .then(reportSuccess)</span>
+  <span class="hljs-comment">//           .then(askUserForResendOption)</span>
+  <span class="hljs-comment">//           .then(resendMoreEmails)</span>
+
+})
+
+
+<span class="hljs-comment">// service</span>
+angular.module(<span class="hljs-string">'httpApp'</span>).service(<span class="hljs-string">'myService'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$http, $q</span>)</span>{
+  <span class="hljs-keyword">var</span> baseUrl = <span class="hljs-string">"http://swapi.co/api/starships/10/?format=json"</span>
+  <span class="hljs-keyword">this</span>.getStarshipWithPilots = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> deferred = $q.defer()
+
+    $http({
+      <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+      <span class="hljs-attr">url</span>: baseUrl
+    }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+      <span class="hljs-keyword">var</span> starship = response.data
+
+      <span class="hljs-keyword">var</span> pilotObjs = []
+      <span class="hljs-keyword">var</span> totalPilots = starship.pilots.length
+
+      starship.pilots.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pilotUrl</span>)</span>{
+        $http({
+          <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+          <span class="hljs-attr">url</span>: pilotUrl
+        }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pilotResponse</span>)</span>{
+          pilotObjs.push(pilotResponse.data)
+
+          <span class="hljs-keyword">if</span>(pilotObjs.length === totalPilots){
+            starship.pilots = pilotObjs
+            <span class="hljs-comment">//order pilots alphabetically</span>
+            deferred.resolve(starship)
+          }
+        })
+      })
+    })
+    <span class="hljs-keyword">return</span> deferred.promise
+  }
+
+  <span class="hljs-keyword">this</span>.getStarship = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> deferred = $q.defer()
+    $http({
+      <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+      <span class="hljs-attr">url</span>: baseUrl
+    }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+      <span class="hljs-keyword">var</span> starship = response.data
+      deferred.resolve(starship)
+    })
+    <span class="hljs-keyword">return</span> deferred.promise
+  }
+
+  <span class="hljs-keyword">this</span>.getPilots = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">starship</span>)</span>{
+    <span class="hljs-keyword">var</span> deferred = $q.defer()
+    <span class="hljs-keyword">var</span> arrayOfPilotUrls = starship.pilots
+    <span class="hljs-keyword">var</span> pilotObjs = []
+    <span class="hljs-keyword">var</span> totalPilots = arrayOfPilotUrls.length
+
+    arrayOfPilotUrls.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pilotUrl</span>)</span>{
+      $http({
+        <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+        <span class="hljs-attr">url</span>: pilotUrl
+      }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pilotResponse</span>)</span>{
+        pilotObjs.push(pilotResponse.data)
+
+        <span class="hljs-keyword">if</span>(pilotObjs.length === totalPilots){
+          starship.pilots = pilotObjs
+          <span class="hljs-comment">//order pilots alphabetically</span>
+          deferred.resolve(starship)
+        }
+      })
+    })
+    <span class="hljs-keyword">return</span> deferred.promise
+  }
+})
+
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=the last of the devmountain notes!" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

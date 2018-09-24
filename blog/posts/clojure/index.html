@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>clojure | Zac Anger&#x27;s Blog</title><meta name="description" content="just a few clojure notes"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,clj"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="clojure"/><meta name="twitter:description" content="just a few clojure notes"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="clojure"/><meta property="og:description" content="just a few clojure notes"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>clojure</h2><div>01 June, 2016</div></header><div><div><p>just a few clojure notes</p>
+<p>i don't know if any of this is vastly different from cljs? i'd think not,
+because really you're just talking about a different target (jvm vs js vm), rite?
+but who knows. i mean, normally you wouldn't talk about clojure and clojurescript
+with two different names if they were the exact same language and the only actual
+difference was the target vm.</p>
+<p>i'd look this up but i'm on a plane. so.</p>
+<p>some notes!</p>
+<p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code>
+which is called a form.</p>
+<pre><code class="hljs language-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> varname varval)
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> me <span class="hljs-string">"zac"</span>)
+</code></pre>
+<p>but there's also the <code>let</code> keyword which is different. for functions?</p>
+<pre><code class="hljs language-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [myname <span class="hljs-string">"zac"</span>]
+  (<span class="hljs-name">println</span> myname))
+</code></pre>
+<p>oh wait is it <code>def</code> or <code>defn</code>? crud now i'm seeing <code>defn</code>.</p>
+<pre><code class="hljs language-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> functionName
+  [arguments moreArgs] <span class="hljs-comment">;; comment</span>
+  returnValue)         <span class="hljs-comment">;; the above could be just [] if no args</span>
+
+<span class="hljs-comment">;; so maybe</span>
+
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> multiplier
+  [a b]
+  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a b))
+
+(<span class="hljs-name">multiplier</span> <span class="hljs-number">4</span> <span class="hljs-number">4</span>)
+
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fnName
+  ([ifThisPatternIsMatched] returnThis)
+  ([elseIfThisOne sureWhyNot] returnThisInstead))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> fooBar
+  ([a] a)
+  ([a b] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a b))
+  ([a b c] (/ (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> a b) c))
+  ([a b c d] (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> (/ a b) c d)))
+
+<span class="hljs-comment">;; so [] are args, () are forms, {} are keys or something?</span>
+<span class="hljs-comment">;; no, keys are with :, so {} are just... i don't know, yet.</span>
+
+<span class="hljs-comment">;; and a private function just has a - after it, i think? like</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">defn-</span></span> thisIsNotPublic
+  [] <span class="hljs-comment">;; and other stuff -- are in-line comments a thing?</span>
+  )
+</code></pre>
+<p>Testing with lein (what is lein, exactly? I think it's a package manager?):</p>
+<pre><code class="hljs language-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">ns</span></span> project.namespace-test
+  (<span class="hljs-symbol">:require</span> [clojure.text <span class="hljs-symbol">:refer</span> <span class="hljs-symbol">:all</span>]
+            [project.namespace <span class="hljs-symbol">:refer</span> <span class="hljs-symbol">:all</span>]))
+
+<span class="hljs-comment">;; deftest defines a test fn</span>
+<span class="hljs-comment">;; testing for description for it</span>
+<span class="hljs-comment">;; is -- assertion</span>
+
+(<span class="hljs-name">deftest</span> nameOfTest
+  (<span class="hljs-name">testing</span> <span class="hljs-string">"this is what i'm testing"</span>
+    (<span class="hljs-name">is</span> (<span class="hljs-name">true</span>)))) <span class="hljs-comment">;; i don't know if this is valid</span>
+</code></pre>
+<p>okay so leiningen is 'automation made easy'</p>
+<p>pkg mgmt, testing, pm, etc.?</p>
+<p><code>lein new app &lt;appname&gt;</code></p>
+<p>that will layout a whole project directory for you, damn.</p>
+<p>lein searches maven and clojars for packages, with <code>lein search &lt;packagename&gt;</code>.</p>
+<p>update <code>:dependencies</code> in <code>project.clj</code> (which i think is like a meta file
+package.json-y kinda thing) and do a <code>lein deps</code> to install that stuff.</p>
+<ul>
+<li><code>lein run</code></li>
+<li><code>lein test</code></li>
+<li><code>lein repl</code></li>
+<li><code>lein install</code></li>
+<li><code>lein uberjar</code> -- this packages up the whole rpoject (as a jar, i guess?)</li>
+</ul>
+<p>zipper is a thing that does things but i don't really have the
+attention span to read this right now.</p>
+<p>did i mention i was on a plane? i wasn't <em>really</em> on a plane. i'm in an airport.
+for a lot of hours. it's a long story. sort of. it's actually a relatively short
+story, but it's kind of boring. so whatever.</p>
+<p>there are transducers, which are <em>not</em> like a <code>map</code> or <code>functor</code> or whatever.</p>
+<p>these are composable transforms</p>
+<p>did i mention that i'm in an airport? all night, i'll be here.
+meant to be home by now. in bed. sleeping. having seen the people i really miss,
+hugs all around, had a beer, unpacked, showered maybe, gone to bed.
+i'll be home, instead, by maybe noon-ish tomorrow possibly, having missed
+another day of work, sweaty and gross, eurgh.</p>
+<p>on the other hand i met some nice people suck in this zombie airport, so.</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=clojure" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

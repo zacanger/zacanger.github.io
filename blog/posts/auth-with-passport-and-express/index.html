@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Auth with Passport and Express | Zac Anger&#x27;s Blog</title><meta name="description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app.app.use(flash())`."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,passport,express,node,auth,authentication,local,login"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Auth with Passport and Express"/><meta name="twitter:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app.app.use(flash())`."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Auth with Passport and Express"/><meta property="og:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app.app.use(flash())`."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Auth with Passport and Express</h2><div>23 January, 2016</div></header><div><div><h2>Passport/Flash Issues</h2>
+<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash') in your app.</code>app.use(flash())`.</p>
+<p>So, make a route in your app/routes/config file, wherever you're keeping those, something like <code>app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})</code>, assuming you have some html with a form that <code>POST</code>s, and input for the email.</p>
+<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid or gmail or whatever).</p>
+<pre><code class="hljs">app.post('/forgot', function(req, res, next){
+  async.waterfall([
+    function(done){
+      crypto.randomBytes(20, function(err, buf){
+        var token = buf.toString('hex')
+        done(err, token)
+      })
+    },
+    function(token, done){
+      User.findOne({email: req.body.email}, function(err, user){
+        if(!user){
+          req.flash('error', 'no account!')
+          return res.redirect('/forgot')
+        }
+        user.resetPasswordToken   = token
+        user.resetPasswordExpires = Date.now() + 3600000
+        user.save(function(err){
+          done(err, token, user)
+        })
+      })
+    },
+    function(token, user, done){
+      var smptTransport = nodemailer.createTransport('SMTP', {
+        service: 'foo',
+        auth: {user: 'your username for the service', pass: 'your pass for the service'}
+      })
+      var mailOptions = {
+        to: user.email,
+        from: 'learny-app@thing.bar',
+        subject: 'reset yer passwerd, yo'.
+        text: 'hey, click the thingy and stuff, right here, to reset yer passwerd: http://' + req.headers.post + '/forgot/' + token '\n' + ' .'
+      }
+      smtpTransport.sendMail(mailOptions, function(err){
+        req.flash('info', 'email sent to ' + user.email + ' to reset yer passwyrd.')
+        done(err, 'done')
+      })
+    }
+  ],
+  function(err){
+    if(err) return next(err)
+    res.redirect('/forgot')
+  })
+})
+app.get('/reset/:token', function(req, res{
+  User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: $gt: Date.now()}), function(err, user){
+    if(!user){
+      req.flash('error', 'invalid password reset token')
+      return res.redirect('/forgot')
+    }
+    res.render('reset', {
+      user.req.user
+    })
+  })
+})
+app.post('/reset/:token', function(req, res){
+  async.waterfall([
+    function(done) {
+      User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}}, function(err, user){
+        if(!user){
+          req.flash('error', 'nope, nope nope.')
+          return res.redirect('back')
+        }
+        user.password = req.body.password
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+        user.save(function(err){
+          req.logIn(user, function(err){
+            done(err, user)
+          })
+        })
+      })
+    },
+    function(user, done){
+      var smtpTransport = nodemailer.createTransport('SMTP', {
+        service: 'quux',
+        auth: {
+          user: 'same as above',
+          pass: 'same as above'
+        }
+      })
+      var mailOptions = {
+        to: user.email,
+        from: 'learnythingy@stuff.baz',
+        subject: 'changed pw!',
+        text: 'heyo,\n\n' +
+          'account ' + user.email + ''s password was changed \n'
+      }
+      smtpTransport.sendMail(mailOptions, function(err){
+        req.flash('success', 'pw changed')
+        done(err)
+      })
+    }
+  ], function(err){
+    res.redirect('/')
+  })
+})
+</code></pre>
+<hr>
+<h2>Passport with Express and Flash--what's going on, here? (Take two.)</h2>
+<p>So, a flash message is just a variable, yes? A very temporary variable. It's stored in a session, and only available once--for the next request. If we attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So, here's an example of how that might work:</p>
+<pre><code class="hljs">router.post('/signup', passport.authenticate('local-login', {
+  successRedirect : '/profile'
+, failureRedirect : '/signup'
+, failureFlash    : 'true' // just allowing flash messages, here
+}))
+// passport handles auth:
+passport.use('local-signup', new LocalStrategy({
+  usernameField     : 'email'
+, passwordField     : 'password'
+, passReqToCallback : true // we can pass the whole request, now
+},
+function(req, email, password, done){
+process.nextTick(function(){
+    User.findOne({'email' : email}, function(err, user){
+        if (err){
+          return done(err)
+        }
+        if (user){
+          return done(null, false, req.flash('loginMessage', 'sorry, no'))
+          } else {
+            var user            = new User()
+            user.local.email    = email
+            user.local.password = user.generateHash(password)
+            user.save(function(err){
+              if (err){
+                throw err
+              }
+              return done(null, user)
+})}})})})) // hey, look, it's lisp!
+// now back in our router...
+router.get('/signup', function(req, res){
+  res.render('signup', { message : req.flash('signupMessage')})
+})
+</code></pre>
+<p>This is basically where we are right now. Everything <em>looks</em> like it should work, but it totally doesn't. I think what we need here is to fix the session.</p>
+<pre><code class="hljs">app.use(session({
+  secret            : config.sessionSecret
+, resave            : false
+, saveUninitialized : true
+, cookie            : {secure : true} // _this_ is a problem!
+}))
+</code></pre>
+<p>On a local machine, there's no HTTPS.</p>
+<hr>
+<p>Stack says:</p>
+<pre><code class="hljs">app.post('/login', passport.authenticate('local', {
+  successRedirect: '/loggedin',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+</code></pre>
+<p>Three things might happen here:</p>
+<ul>
+<li>Internal error, which Express will handle, spit out a 500</li>
+<li>Invalid auth (no user, password != user.password, whatever):
+<ul>
+<li>Here we <em>don't</em> generate an error, we just pass <code>false</code> as the user object:
+<ul>
+<li><code>next(null, false)</code>… this triggers the <code>failureRedirect</code>, which will be a generated 401 by default.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Or, maybe there's a real user (<code>next(null, user)</code>), in which case we go to the <code>successRedirect</code>, yay!</li>
+</ul>
+<p>In the second case, a message could be passed as well, like <code>next(null, false, {message: 'sorry, you lose!'})</code>.<br>
+If there's that <code>failureFlash</code> up there (which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed, the message is stored in the session so you can access it for a template or whatever.</p>
+<p>Another option here would be to do things the long way (manually):</p>
+<pre><code class="hljs">app.post('/login', function(req, res, next){
+  passport.authenticate('local', function(err, user, info){
+    if(err){
+      return next(err) // generated 500 error
+    } // and now we generate some JSON to spit back regarding
+    if(!user){ // auth status
+      return res.send({success:false, message:'auth failed, yo!'})
+    }
+    return res.send({success:true, message:'hooray, you\'re in!'})
+  })(req, res, next)
+})
+</code></pre>
+<p>Yet <em>another</em> potential problem here is how things are being dealth with in the front end.<br>
+Requests from the browser act according to the response. If the browser's sending, for<br>
+example, with AJAX, using jQuery (this is a very specific example, I know), then the jQuery<br>
+will be expecting JSON back, will be <em>getting</em> HTML, won't know what to do with it, and<br>
+maybe you won't know what's going on here, because you maybe don't have a <code>.fail()</code> in your<br>
+call.<br>
+…and this is getting <em>really</em> specific, based on just two things I'm reading on Stack Overflow, so let's ditch that path, shall we? And just show a quick code sample:</p>
+<pre><code class="hljs">app.post('/login/ajax', passport.authenticate('local-login'))
+// login form sent here
+app.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+// custom cb something kinda along these lines, maybe?
+app.post('/login', function(req, res, next){
+  passport.authenticate('local-login', function(err, user, info){
+    switch (req.accepts('html', 'json')){
+      case 'html':
+        if(err){return next(err)}
+        if(!user){return res.redirect('/login')}
+        req.logIn(user, function(err){
+          if(err){return next(err)}
+          return res.redirect('/profile)
+        })
+        break
+      case 'json':
+        if(err){return next(err)}
+        if(!user){return res.status(401).send({&quot;okay&quot;:false})}
+        req.logIn(user, function(err){
+          if(err){return res.status(401).send({&quot;okay&quot;:false})}
+          return res.send({&quot;okay&quot;:true})
+        })
+        break
+      default:
+        res.status(406).send()
+    }
+  })(req, res, next)
+})
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=Auth with Passport and Express" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

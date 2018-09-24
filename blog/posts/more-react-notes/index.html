@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>More React Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="The big, big difference between props and state: state is private to components.
+A parent component (or any other component) can never manipulate the state of another (with setState or whatever)."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,react"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="More React Notes"/><meta name="twitter:description" content="The big, big difference between props and state: state is private to components.
+A parent component (or any other component) can never manipulate the state of another (with setState or whatever)."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="More React Notes"/><meta property="og:description" content="The big, big difference between props and state: state is private to components.
+A parent component (or any other component) can never manipulate the state of another (with setState or whatever)."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>More React Notes</h2><div>27 April, 2016</div></header><div><div><h2>Lifecycle &amp;Co.</h2>
+<ul>
+<li>The three phases of life:
+<ul>
+<li>Mounting</li>
+<li>Updating</li>
+<li>Unmounting</li>
+</ul>
+</li>
+<li>Mounting:
+<ul>
+<li><code>getInitialState()</code>, before component is mounted.</li>
+<li><code>componentWillMount()</code>, <em>immediately</em> before mounting.</li>
+<li><code>componentDidMount()</code>, <em>immediately</em> after mounting. DOM-node-dependant initialisation happens here.</li>
+</ul>
+</li>
+<li>Updating:
+<ul>
+<li><code>componentWillReceiveProps()</code>, invoked when mounted component receives new props from parent. Use this
+when changing state (<code>this.setState()</code>).</li>
+<li><code>shouldComponentUpdate()</code>, invoked when component 'decides' whether or not to push updates to the DOM.
+Return <code>false</code> from this if we don't want React to update.</li>
+<li><code>componentDidUpdate()</code>, invoked <em>immediately</em> after updating.</li>
+</ul>
+</li>
+<li>Unmounting:
+<ul>
+<li><code>componentWillUnmount()</code>, <em>immediately</em> before component unmounts and is destroyed. Clean-up goes here.</li>
+</ul>
+</li>
+<li>While mounted, <code>component.forceUpdate()</code> is also available. This is for any mounted component whose state
+has changed without <code>this.setState()</code>.</li>
+</ul>
+<p>The big, big difference between <code>props</code> and <code>state</code>: state is private to components.
+A parent component (or any other component) can never manipulate the state of another (with <code>setState</code> or whatever).</p>
+<ul>
+<li>So:
+<ul>
+<li>parent passes new props to child</li>
+<li>child handles new props with <code>componentWillReceiveProps</code>
+<ul>
+<li>calls <code>setState</code> if necessary</li>
+</ul>
+</li>
+<li>child handles new state in <code>componentWillUpdate</code>
+<ul>
+<li>if component is stateful, <code>componentWIllReceiveProps</code> will be enough here</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Defaults set in <code>getInitialState</code> will be used for initial rendering.</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=More React Notes" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
