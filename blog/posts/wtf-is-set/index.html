@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>WTF is Set? | Zac Anger&#x27;s Blog</title><meta name="description" content="Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn&#x27;t know what to do about template strings."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,es2015,set"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="WTF is Set?"/><meta name="twitter:description" content="Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn&#x27;t know what to do about template strings."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="WTF is Set?"/><meta property="og:description" content="Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn&#x27;t know what to do about template strings."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>WTF is Set?</h2><div>25 April, 2017</div></header><div><div><h1>WTF is Set?</h1>
+<p>Please excuse the funky syntax highlighting in this post. Apparently
+the thing my blog uses for that doesn't know what to do about template strings.</p>
+<p>So, someone asked in a Slack channel how they might clean up the following code:</p>
+<pre><code class="hljs language-JavaScript">getNames (contacts) {
+  <span class="hljs-keyword">let</span> contacts_set = []
+
+  contacts.forEach(<span class="hljs-function">(<span class="hljs-params">contact</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> firstName = get(contact, <span class="hljs-string">'contactInfo.firstName'</span>)
+    <span class="hljs-keyword">let</span> lastName  = get(contact, <span class="hljs-string">'contactInfo.lastName'</span>)
+    <span class="hljs-keyword">let</span> fullName = <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>
+
+    <span class="hljs-keyword">if</span> (contacts_set.includes(fullName)) {
+      <span class="hljs-keyword">return</span>
+    } <span class="hljs-keyword">else</span> {
+      contacts_set.push(fullName)
+    }
+
+    set(<span class="hljs-keyword">this</span>, <span class="hljs-string">'contactsSet'</span>, contactsSet)
+  })
+}
+</code></pre>
+<p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
+know Ember so don't ask me.</p>
+<p>And I said, how about this?</p>
+<pre><code class="hljs language-JavaScript">getNames: <span class="hljs-function">(<span class="hljs-params">contacts</span>) =&gt;</span>
+  [...new <span class="hljs-built_in">Set</span>(
+    contacts.map(<span class="hljs-function">(<span class="hljs-params">{ contactInfo: { firstName, lastName }}</span>) =&gt;</span>
+      <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>))]
+</code></pre>
+<p>I like this version because it's very concise and still readable (to me).
+It also doesn't do mutation-y stuff, which is a good thing.</p>
+<p>And then someone else asked:</p>
+<blockquote>
+<p>Can some one eli5 what <code>Set</code> is that's referenced above?</p>
+</blockquote>
+<p>Which made me realise that a lot of folks still aren't using a lot of the nice
+new things from ES2015, so I explained a bit. Here's how I understand it.</p>
+<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map
+is also new in 2015. Set is to Array as Map is to Object, kinda.</p>
+<p>For practical usage Set is basically Array but unique, and with different
+methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There's a lot more
+info <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">on MDN</a>.</p>
+<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works
+(because thing inside <code>new Set()</code> results in an array).</p>
+<p>In that case <code>Set</code> isn't being used for too much besides just the fact that it's
+<code>Set</code> (so it only holds unique values). Someone else pointed out in the same
+channel that maybe it's not the best idea if you have a lot of values, because
+then you're creating another thing, which is totally true.</p>
+<p>There's a bit more background
+<a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is
+suppose to be kind of like.</p>
+<p>And underneath it sorta looks vaguely like this:</p>
+<pre><code class="hljs language-JavaScript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Set</span> </span>{
+  <span class="hljs-keyword">constructor</span> () {
+    <span class="hljs-keyword">this</span>.storage = []
+  }
+  add (a) {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.storage.includes(a)) {
+      <span class="hljs-keyword">this</span>.storage.push(a)
+    }
+  }
+  has (a) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.storage.includes(a)
+  }
+  remove (a) {
+    <span class="hljs-keyword">this</span>.storage.splice(<span class="hljs-keyword">this</span>.storage.indexOf(a), <span class="hljs-number">1</span>)
+  }
+}
+</code></pre>
+<p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like
+<code>Array</code> but it only holds unique things.</p>
+<p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a
+valid use case for <code>WeakSet</code> and <code>WeakMap</code> yet, personally.</p>
+<p><code>Set</code> turns out to be pretty useful. I've used it a few times <a href="https://jane.com">at
+work</a> (with appropriate polyfills) without any problems, and I
+use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my
+sort-of-sometimes-popular utility library. Definitely play around with it!</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=WTF is Set?" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

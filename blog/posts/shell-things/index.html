@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>shell things | Zac Anger&#x27;s Blog</title><meta name="description" content="Just some tidbits."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,sh,bash,shell,sed,vi,vim"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="shell things"/><meta name="twitter:description" content="Just some tidbits."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="shell things"/><meta property="og:description" content="Just some tidbits."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>shell things</h2><div>24 January, 2016</div></header><div><div><p>Just some tidbits.</p>
+<p>Renaming all files in <code>cwd</code> to have a certain extension:</p>
+<pre><code class="hljs">for i in *
+do
+  mv $i $i.ext
+done
+</code></pre>
+<p>Or with sed: <code>find . -name &quot;file&quot; | sed 's/.*/mv &amp; &amp;.ext/' | sh</code></p>
+<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command <code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command above, just in vi, basically).</p>
+<hr>
+<p>Doing the same thing, but with files of a certain extension:</p>
+<pre><code class="hljs">for i in *.txt
+do
+  x=`basename $i .old`
+  mv $i $x.ext
+done
+</code></pre>
+<p>Or with sed: <code>find . -name &quot;*.old&quot; | sed 's/\(.*\.\)\(.*\)mv &amp; \1ext/' | sh</code>.</p>
+<p>Or in vi: <code>ls -a file* &gt; a</code>; <code>vi a</code>; <code>:%s/\.old$/\.ext/</code>; <code>sh a</code>.</p>
+<hr>
+<p><code>:!./%</code> runs your current file from vi.</p>
+<hr>
+<p>This little script is pretty nice. It's a much shorter version of something I modified from soem blog somewhere (check my dotfiles for the full thing, which I called <a href="https://github.com/zacanger/z/blob/master/bin/sh/writescripts">writescripts</a>):</p>
+<pre><code class="hljs">if [ ! -f $1 ] ; then
+  echo &quot;#!/usr/bin/env bash&quot; &gt; $1
+fi
+
+while [ 1 ] ;
+do
+  $EDITOR $1
+  chmod 755 $1
+  ./$1
+  read dummy
+done
+</code></pre>
+<p><code>paste</code> is <em>really</em> useful, and you should learn it.</p>
+<p>that's all, for now, i think.</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=shell things" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

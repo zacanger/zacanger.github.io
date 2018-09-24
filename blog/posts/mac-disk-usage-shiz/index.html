@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>mac disk usage shiz | Zac Anger&#x27;s Blog</title><meta name="description" content="i don&#x27;t have a mac. so. whatever. but here&#x27;s how to find out
+where all your disk space went, if you do have a mac."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,mac,apple"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="mac disk usage shiz"/><meta name="twitter:description" content="i don&#x27;t have a mac. so. whatever. but here&#x27;s how to find out
+where all your disk space went, if you do have a mac."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="mac disk usage shiz"/><meta property="og:description" content="i don&#x27;t have a mac. so. whatever. but here&#x27;s how to find out
+where all your disk space went, if you do have a mac."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>mac disk usage shiz</h2><div>17 February, 2016</div></header><div><div><p>i don't have a mac. so. whatever. but here's how to find out
+where all your disk space went, if you do have a mac.</p>
+<ul>
+<li>
+<p>to find large files from the mac os x finder:</p>
+<ul>
+<li>command-h to go home</li>
+<li>command-f to find</li>
+<li>in the 'find' options:
+<ul>
+<li>'kind', set to 'other' (anything not 'media' or 'apps,' i think)</li>
+<li>'file size', set to 'greater than', (set amount and unit)
+<ul>
+<li>maybe try 10 GB, work down from there? (5 GB, 1 GB, 500 MB, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>commands you can enter in the terminal:</p>
+<ul>
+<li><code>du -h . | grep ^[5-9][0-9][0-9.]M</code>
+<ul>
+<li>
+<h1>will list all directories by total size of contents, if larger than 500mb</h1>
+</li>
+</ul>
+</li>
+<li><code>du -h . | grep [0-9][0-9]G</code>
+<ul>
+<li>
+<h1>same thing, but will only find directories over 10GB</h1>
+</li>
+</ul>
+</li>
+<li><code>du -h . | sort -nr</code>
+<ul>
+<li>
+<h1>shows all directories from current, sorted by size (smallest to largest);</h1>
+</li>
+<li>better in smaller-ish directories (du's already kinda slow, and sort is even slower)</li>
+</ul>
+</li>
+<li><code>find . -maxdepth 1 -mindepth 1 -type d -exec du -hs {} \;</code>
+<ul>
+<li>
+<h1>shows all directories, ordered by name, with size of directory printed next to it</h1>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>some graphical os x programs to visualise disk usage:</p>
+<ul>
+<li><a href="http://downloads.sourceforge.net/project/grandperspectiv/grandperspective/1.5.1/GrandPerspective-1_5_1.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fgrandperspectiv%2Ffiles%2Fgrandperspective%2F1.5.1%2F&amp;ts=1454688889&amp;use_mirror=superb-dca2">most commonly recommended treemap-style disk-usage visualising tool</a></li>
+<li><a href="https://www.omnigroup.com/download/latest/OmniDiskSweeper">shows files ordered by desc. size, allows deletion (use caution!)</a></li>
+<li><a href="http://www.jgoodies.com/download/jdiskreport/jdiskreport-1_4_1-mac.zip">free, highly recommended, cross-platform, web version--but requires java</a></li>
+<li><a href="http://www.derlien.com/download.php?file=dix1.0universal">simpler interface, treemaps-style, hasn't been updated in a while, might not run on newer os x</a></li>
+<li><a href="http://download.piriform.com/mac/CCMacSetup111.dmg">must-have tool on windows, cleans out cache, duplicate files, empty dirs, etc., seems there's a mac version</a></li>
+<li><a href="http://www.spacegremlinapp.com/mac/SpaceGremlinPro2.0.3.zip">another treesize type of viewer, paid, but with a free demo</a></li>
+<li><a href="https://nektony.com/downloads">this company's apps are all commercial</a>
+<ul>
+<li>they have a suite (disk analyzer/scanner, uninstaller, duplicate finder, hidden file viewer, etc.)</li>
+<li><a href="https://nektony.com/download/mac-cleanup-suite/mac-cleanup-suite.dmg">and they have a free trial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=mac disk usage shiz" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

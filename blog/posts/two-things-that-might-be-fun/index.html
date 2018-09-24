@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Two Things That Might Be Fun | Zac Anger&#x27;s Blog</title><meta name="description" content="Two things that I think might be fun to play around with, at some point."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,cljs,clj,scheme,types,hs,jsx,js,react"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Two Things That Might Be Fun"/><meta name="twitter:description" content="Two things that I think might be fun to play around with, at some point."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Two Things That Might Be Fun"/><meta property="og:description" content="Two things that I think might be fun to play around with, at some point."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Two Things That Might Be Fun</h2><div>03 November, 2016</div></header><div><div><p>Two things that I think might be fun to play around with, at some point.</p>
+<p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or
+Haskell style annotations, but maybe use Flow as a sort of backend to actually
+do the type checking? It could look something like this:</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">//:: Int -&gt; Int -&gt; [Int]</span>
+<span class="hljs-keyword">const</span> putIntsInList = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> [ a,  b ]
+
+<span class="hljs-comment">//::Str -&gt; Str -&gt; Str // or</span>
+<span class="hljs-comment">//::[Char] -&gt; [Char] -&gt; [Char]</span>
+<span class="hljs-keyword">const</span> doThingsWithStrings = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${a}</span> <span class="hljs-subst">${b}</span>`</span>
+</code></pre>
+<p>It could use some sort of regexy thing to basically just detect anywhere there's
+<code>//::</code>, see what the next thing is, and see if they go together. I don't know
+much about ASTs or type systems, though. I just think that'd be a lot less
+in-the-way than how TypeScript and Flow currently work. Also, my syntax
+highlighting doesn't know what template strings are, so. That's gross.</p>
+<p>Another thing:</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> React, { PropTypes } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> AnotherComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./AnotherComponent'</span>
+
+<span class="hljs-keyword">const</span> Something = <span class="hljs-function">(<span class="hljs-params">{ a, b, c }</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (!a) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+
+  <span class="hljs-keyword">return</span> (
+    (div
+      (another-component (whatever <span class="hljs-string">'a))
+        (not (null? b)
+          (span (b))
+        (not (null? c)
+          (map (p (c)))))))
+  // which would be like
+  return (
+    &lt;div&gt;
+      &lt;AnotherComponent whatever={a} /&gt;
+      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
+      {c &amp;&amp; c.length &amp;&amp;
+        c.map((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
+      }
+    &lt;/div&gt;
+  )
+}
+
+export default Something
+</span></code></pre>
+<p>This a totally made-up syntax for a thing that doesn't exactly exist, and I
+don't know how useful this would actually be, since there are already great
+React libraries for ClojureScript out there. Just think it'd be neat to be able
+to to JSX in Scheme. I dunno, just a thought.</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=Two Things That Might Be Fun" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

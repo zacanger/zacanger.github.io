@@ -1,0 +1,980 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>fizzbuzz | Zac Anger&#x27;s Blog</title><meta name="description" content="i like to collect fizzbuzz solutions. that&#x27;s a little weird, i guess. but fun."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,fizzbuzz"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="fizzbuzz"/><meta name="twitter:description" content="i like to collect fizzbuzz solutions. that&#x27;s a little weird, i guess. but fun."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="fizzbuzz"/><meta property="og:description" content="i like to collect fizzbuzz solutions. that&#x27;s a little weird, i guess. but fun."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>fizzbuzz</h2><div>07 May, 2016</div></header><div><div><h1>fizzbuzz!</h1>
+<p>i like to collect fizzbuzz solutions. that's a little weird, i guess. but fun.</p>
+<p>fizzbuzz is kind of the stereotypical pointless toy problem/whiteboarding problem.</p>
+<p>if you're not familiar, here's the standard definition of the problem:</p>
+<p>write a program that prints numbers from 1 to 100, but for multiples of
+three print 'fizz,' for multiples of five print 'buzz,' and for multiples
+of both three and five print 'fizzbuzz.'</p>
+<p>and some good reading on fizzbuzz:</p>
+<ul>
+<li>http://c2.com/cgi/wiki?FizzBuzzTest</li>
+<li>http://blog.codinghorror.com/why-cant-programmers-program/</li>
+<li>https://www.rosettacode.org/wiki/FizzBuzz</li>
+<li>http://www.tomdalling.com/blog/software-design/fizzbuzz-in-too-much-detail/</li>
+</ul>
+<p>i keep a bunch of solutions in js <a href="https://github.com/zacanger/pineapple-curry/tree/solutions/fizzbuzz">here</a>.</p>
+<p>here are some of them (including some other languages).</p>
+<h2>in c</h2>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Fizzbuzz from 1 through 100.\n"</span>);
+  <span class="hljs-keyword">int</span> hundred;
+  <span class="hljs-keyword">for</span> (hundred = <span class="hljs-number">1</span>; hundred &lt;= <span class="hljs-number">100</span>; hundred++){
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>, hundred);
+    <span class="hljs-keyword">if</span> (hundred % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>) {
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Fizz"</span>);
+    } <span class="hljs-keyword">if</span> (hundred % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>) {
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Buzz\n"</span>);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2>coffeescript</h2>
+<pre><code class="hljs language-coffeescript"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">1.</span><span class="hljs-number">.100</span>]
+  str = <span class="hljs-string">''</span>
+  str += <span class="hljs-string">'Fizz'</span> <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> <span class="hljs-keyword">is</span> <span class="hljs-number">0</span>
+  str += <span class="hljs-string">'Buzz'</span> <span class="hljs-keyword">if</span> i % <span class="hljs-number">5</span> <span class="hljs-keyword">is</span> <span class="hljs-number">0</span>
+  <span class="hljs-built_in">console</span>.log (<span class="hljs-keyword">if</span> str.length <span class="hljs-keyword">is</span> <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> i <span class="hljs-keyword">else</span> str)
+</code></pre>
+<h2>php</h2>
+<pre><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fizzbuzz</span><span class="hljs-params">($num)</span> </span>{
+  <span class="hljs-keyword">if</span> ($num % <span class="hljs-number">15</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">"FizzBuzz"</span> . PHP_EOL);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($num % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">"Buzz"</span> . PHP_EOL);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ($num % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">"Fizz"</span> . PHP_EOL);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">print</span>($num . PHP_EOL);
+  }
+}
+
+<span class="hljs-keyword">for</span> ($i = <span class="hljs-number">0</span>; $i &lt;=<span class="hljs-number">100</span>; $i++)
+{
+  fizzbuzz($i);
+}
+
+</code></pre>
+<h2>ruby</h2>
+<pre><code class="hljs language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fizz_buzz</span><span class="hljs-params">(num)</span></span>
+  result = <span class="hljs-string">''</span>
+  result += <span class="hljs-string">'Fizz'</span> <span class="hljs-keyword">if</span> num % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>
+  result += <span class="hljs-string">"Buzz"</span> <span class="hljs-keyword">if</span> num % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>
+  puts(result.empty? ? num : result)
+<span class="hljs-keyword">end</span>
+
+(<span class="hljs-number">1</span>..<span class="hljs-number">100</span>).each{<span class="hljs-params">|x|</span>
+  fizz_buzz(x)
+}
+
+<span class="hljs-comment">####</span>
+
+fizz = [<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">"Fizz"</span>].lazy.cycle
+buzz = [<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">"Buzz"</span>].lazy.cycle
+nums = (<span class="hljs-number">1</span>..Float::INFINITY).lazy
+
+fizzbuzz = nums.zip(fizz,buzz).map <span class="hljs-keyword">do</span> <span class="hljs-params">|n,f,b|</span>
+  (f.empty? &amp;&amp; b.empty?) ? n.to_s : f + b
+<span class="hljs-keyword">end</span>
+
+puts fizzbuzz.take(<span class="hljs-number">100</span>).to_a
+
+<span class="hljs-comment">####</span>
+
+<span class="hljs-number">1</span>.upto(<span class="hljs-number">100</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+  fizz = (i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>)
+  buzz = (i % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>)
+  puts <span class="hljs-keyword">case</span>
+    <span class="hljs-keyword">when</span> fizz &amp;&amp; buzz <span class="hljs-keyword">then</span> <span class="hljs-string">'FizzBuzz'</span>
+    <span class="hljs-keyword">when</span> fizz <span class="hljs-keyword">then</span> <span class="hljs-string">'Fizz'</span>
+    <span class="hljs-keyword">when</span> buzz <span class="hljs-keyword">then</span> <span class="hljs-string">'Buzz'</span>
+    <span class="hljs-keyword">else</span> i
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">####</span>
+
+<span class="hljs-number">1</span>.upto(<span class="hljs-number">100</span>) <span class="hljs-keyword">do</span> <span class="hljs-params">|i|</span>
+  <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span> &amp;&amp; i % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>
+    puts <span class="hljs-string">'FizzBuzz'</span>
+  <span class="hljs-keyword">elsif</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>
+    puts <span class="hljs-string">'Fizz'</span>
+  <span class="hljs-keyword">elsif</span> i % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>
+    puts <span class="hljs-string">'Buzz'</span>
+  <span class="hljs-keyword">else</span>
+    puts i
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+</code></pre>
+<h2>python</h2>
+<pre><code class="hljs language-python">i=<span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:i+=<span class="hljs-number">1</span>;<span class="hljs-keyword">print</span><span class="hljs-string">""</span>.join(<span class="hljs-string">"BzuzzizF"</span>[::<span class="hljs-number">2</span>*j]<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span>(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)<span class="hljs-keyword">if</span> <span class="hljs-number">1</span>&gt;i%(<span class="hljs-number">4</span>+j))<span class="hljs-keyword">or</span> i
+
+
+print([<span class="hljs-string">"FizzBuzz"</span> <span class="hljs-keyword">if</span> x%<span class="hljs-number">15</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Fizz"</span> <span class="hljs-keyword">if</span> x%<span class="hljs-number">3</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Buzz"</span> <span class="hljs-keyword">if</span> x % <span class="hljs-number">5</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">101</span>)])
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fizz_buzz</span><span class="hljs-params">(num)</span>:</span>
+    <span class="hljs-keyword">if</span> num % <span class="hljs-number">15</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">print</span> <span class="hljs-string">"FizzBuzz"</span>
+    <span class="hljs-keyword">elif</span> num % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">print</span> <span class="hljs-string">"Buzz"</span>
+    <span class="hljs-keyword">elif</span> num % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">print</span> <span class="hljs-string">"Fizz"</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">print</span> num
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> xrange(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>):
+    fizz_buzz(i)
+
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fizz_buzz</span><span class="hljs-params">(num)</span>:</span>
+    <span class="hljs-keyword">if</span> num % <span class="hljs-number">15</span> == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"FizzBuzz"</span>)
+    <span class="hljs-keyword">elif</span> num % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"Buzz"</span>)
+    <span class="hljs-keyword">elif</span> num % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"Fizz"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(num)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>):
+    fizz_buzz(i)
+
+</code></pre>
+<h2>haskell</h2>
+<pre><code class="hljs language-haskell"><span class="hljs-comment">-- i wrote this one</span>
+<span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = printAll $ map fizzBuzz [<span class="hljs-number">1.</span><span class="hljs-number">.100</span>]
+  <span class="hljs-keyword">where</span>
+    printAll [] = return ()
+    printAll (x:xs) = putStrLn x &gt;&gt; printAll xs
+
+<span class="hljs-title">fizzBuzz</span> :: <span class="hljs-type">Integer</span> -&gt; <span class="hljs-type">String</span>
+<span class="hljs-title">fizzBuzz</span> n | n `mod` <span class="hljs-number">15</span> == <span class="hljs-number">0</span> = <span class="hljs-string">"FizzBuzz"</span>
+           | n `mod` <span class="hljs-number">5</span>  == <span class="hljs-number">0</span> = <span class="hljs-string">"Fizz"</span>
+           | n `mod` <span class="hljs-number">3</span>  == <span class="hljs-number">0</span> = <span class="hljs-string">"Buzz"</span>
+           | otherwise       = show n
+
+
+
+<span class="hljs-comment">-- i did not write these. found around.</span>
+
+[max(show x)(concat[n|(f,n)&lt;-[(<span class="hljs-number">3</span>,<span class="hljs-string">"Fizz"</span>),(<span class="hljs-number">5</span>,<span class="hljs-string">"Buzz"</span>)],mod x f==<span class="hljs-number">0</span>])|x&lt;-[<span class="hljs-number">1.</span><span class="hljs-number">.100</span>]]
+
+<span class="hljs-comment">-- gh:ryoia</span>
+<span class="hljs-comment">-- i like this one. it's a lot like how i thought it was supposed to be</span>
+<span class="hljs-comment">-- which means i can read it, except it's cleaner so i can see a simple way</span>
+<span class="hljs-comment">-- to improve on my own super limited hs</span>
+<span class="hljs-keyword">module</span> FizzBuzz <span class="hljs-keyword">where</span>
+
+<span class="hljs-title">divBy</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Bool</span>
+<span class="hljs-title">divBy</span> d x = x `mod` d == <span class="hljs-number">0</span>
+
+<span class="hljs-title">fizzBuzz</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">String</span>
+<span class="hljs-title">fizzBuzz</span> x
+  | divBy <span class="hljs-number">15</span> x = <span class="hljs-string">"FizzBuzz"</span>
+  | divBy <span class="hljs-number">5</span>  x = <span class="hljs-string">"Buzz"</span>
+  | divBy <span class="hljs-number">3</span>  x = <span class="hljs-string">"Fizz"</span>
+  | otherwise  = show x
+
+
+<span class="hljs-comment">-- the below are from haskellquiz</span>
+
+<span class="hljs-comment">-- a FizzBuzz (and FizzBuzzBaz) solution by Aaron Contorer.</span>
+<span class="hljs-comment">-- This implementation is designed for extensibility,</span>
+<span class="hljs-comment">-- as the list of tags can be easily edited, loaded from a file, etc.</span>
+<span class="hljs-comment">-- Number range is set &gt;100 so as to demonstrate the FizzBuzzBaz case.</span>
+<span class="hljs-title">fizzBuzz</span> i = <span class="hljs-keyword">if</span> null desc <span class="hljs-keyword">then</span> show i <span class="hljs-keyword">else</span> desc <span class="hljs-keyword">where</span>
+  desc = concat [label | (j,label) &lt;- tags, <span class="hljs-number">0</span> == rem i j]
+  tags = [ (<span class="hljs-number">3</span>,<span class="hljs-string">"Fizz"</span>), (<span class="hljs-number">5</span>,<span class="hljs-string">"Buzz"</span>), (<span class="hljs-number">7</span>,<span class="hljs-string">"Baz"</span>) ]
+
+<span class="hljs-title">main</span> = mapM_ (putStrLn . fizzBuzz) [<span class="hljs-number">1.</span><span class="hljs-number">.120</span>]
+
+
+<span class="hljs-comment">-- don't know if this works, but looks not nice.</span>
+<span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
+
+  main :: <span class="hljs-type">IO</span> ()
+  main = <span class="hljs-keyword">do</span>
+    mapM_ (putStrLn) [fizzBuzz x | x &lt; [<span class="hljs-number">0.</span><span class="hljs-number">.100</span>]]
+
+    fizz :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">String</span>
+    fizz x = <span class="hljs-keyword">if</span> x `mod` <span class="hljs-number">3</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> <span class="hljs-string">"fizz"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">""</span>
+
+    buzz :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">String</span>
+    buzz x = <span class="hljs-keyword">if</span> x `mod` <span class="hljs-number">5</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> <span class="hljs-string">"buzz"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">""</span>
+
+    fizzBuzz :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">String</span>
+    fizzBuzz x = <span class="hljs-keyword">if</span> fizz(x) ++ buzz(x) == <span class="hljs-string">""</span>
+                    <span class="hljs-keyword">then</span> show x
+                    <span class="hljs-keyword">else</span> fizz(x) ++ buzz(x)
+
+
+<span class="hljs-comment">{-
+Fizz comes before Buzz comes before an integer. Fizz and Buzz stick to each other, but hide integers.
+The lists for Fizz and Buzz are infinite, but zipping together with a finite list of integers,
+the result is finite.
+-}</span>
+
+<span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = mapM_ putStrLn $ zipWith3 join (loop <span class="hljs-number">3</span> <span class="hljs-string">"Fizz"</span>) (loop <span class="hljs-number">5</span> <span class="hljs-string">"Buzz"</span>) [<span class="hljs-number">1.</span><span class="hljs-number">.100</span>]
+  <span class="hljs-keyword">where</span>
+    xor s t = <span class="hljs-keyword">if</span> null s <span class="hljs-keyword">then</span> t <span class="hljs-keyword">else</span> s
+    loop n s = cycle $ replicate (n<span class="hljs-number">-1</span>) [] ++ [s]
+    join s t n = xor (s ++ t) (show n)
+
+<span class="hljs-comment">{-
+If one has enabled all warnings as errors, then the integers need an explicit type, as shown below.
+The hiding logic can also be implemented by filtering for the first non-null element of a list:
+-}</span>
+
+<span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
+  <span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
+
+  main :: <span class="hljs-type">IO</span> ()
+  main = sequence_ $ zipWith3 join (loop <span class="hljs-number">3</span> <span class="hljs-string">"Fizz"</span>) (loop <span class="hljs-number">5</span> <span class="hljs-string">"Buzz"</span>) [<span class="hljs-number">1.</span><span class="hljs-number">.100</span> :: <span class="hljs-type">Int</span>]
+    <span class="hljs-keyword">where</span>
+      loop n s = cycle $ replicate (n<span class="hljs-number">-1</span>) <span class="hljs-string">""</span> ++ [s]
+      join s t n = putStrLn . head $ filter (not . null) [s ++ t, show n]
+
+</code></pre>
+<h2>javascript</h2>
+<pre><code class="hljs language-javascript">
+<span class="hljs-keyword">for</span>(x=<span class="hljs-number">0</span>;x++&lt;100;)console.log(x%3||'fizz',x%5||'buzz')
+
+////
+
+var
+  words = []
+, func = null
+, l    = 100
+
+var conditions = {
+  1  : {
+    true  : null
+  , false : function(i) {
+      return function() {
+        console.log(i)
+      }
+    }
+  }
+, 3  : {
+    true  : function() {
+      return func;
+    }
+  , false : function() {
+      return function() {
+        console.log('fizz')
+      }
+    }
+  }
+, 5  : {
+    true  : function() {
+      return func
+    }
+  , false : function() {
+      return function() {
+        console.log('buzz')
+      }
+    }
+  }
+, 15 : {
+    true  : function() {
+      return func
+    }
+  , false : function() {
+      return function() {
+        console.log('fizzbuzz')
+      }
+    }
+  }
+}
+
+for (l = 1; l &lt; 100; l++) {
+  for (var thing in conditions) {
+    var result = l % thing
+    func = conditions[thing][!!result](l)
+  }
+  func()
+}
+
+////
+
+Object.keys(new Int8Array(100))
+.map(x      =&gt; ((++x % 3  ==  0) ? f = 'fizz' : x))
+.map((x, i) =&gt; ((++i % 5  ==  0) ? b = 'buzz' : x))
+.map((x, i) =&gt; ((++i % 15 === 0) ? f + b : x))
+
+////
+
+// this is basically the same as the usual solution, just sorta recursive also
+const fizzBuzz = num =&gt; {
+  if (num % 3 === 0 &amp;&amp; num % 5 === 0) {
+    console.log('FizzBuzz')
+  } else if (num % 3 === 0) {
+    console.log('Fizz')
+  } else if (num % 5 === 0) {
+    console.log('Buzz')
+  } else {
+    console.log(num)
+  }
+  if (num &lt; 100) {
+    let newNum = num + 1
+    fizzBuzz(newNum)
+  }
+}
+fizzBuzz(1)
+
+////
+
+function fizzbuzz(num, fizz, buzz) {
+  for (var i = 1; i &lt;= num; i++) {
+    if (i % (fizz * buzz) === 0) {
+      console.log('FizzBuzz')
+    } else if (i % buzz === 0) {
+      console.log('Buzz')
+    } else if (i % fizz === 0) {
+      console.log('Fizz')
+    } else {
+      console.log(i)
+    }
+  }
+}
+fizzbuzz(100, 3, 5)
+
+////
+
+for (let i = 1; i &lt;= 100; i++) {
+  let
+    mod3   = i % 3 === 0
+  , mod5   = i % 5 === 0
+  , result = mod3 &amp;&amp; mod5 ? 'fizzbuzz' : mod3 ? 'fizz' : mod5 ? 'buzz' : i
+  console.log(result)
+}
+
+////
+
+let counter = 0
+
+while (counter &lt; 100) {
+  counter = counter + 1
+  if (counter % 3 === 0 &amp;&amp; counter % 5 === 0) {
+    console.log('FizzBuzz')
+  } else if (counter % 3 === 0) {
+    console.log('Fizz')
+  } else if (counter % 5 === 0) {
+    console.log('Buzz')
+  } else {
+    console.log(counter)
+  }
+}
+
+////
+
+let
+  div = ((n, s) =&gt; i =&gt; i % n ? '' : s)
+, f = div(3,'fizz')
+, b = div(5,'buzz')
+, loop = fn =&gt; i =&gt; i &gt; 0 &amp;&amp; loop(fn)(i - 1) || fn(i)
+, fizzbuzz = loop(i =&gt; console.log(f(i) + b(i) || i))
+fizzbuzz(100)
+
+// (or)
+
+let
+  div = ((n, s) =&gt; i =&gt; i % n ? '' : s)
+, f = div(3,'fizz')
+, b = div(5,'buzz')
+, fizzbuzz = i =&gt; i &gt; 0 &amp;&amp; fizzbuzz((i - 1)) || console.log(f(i) + b(i) || i)
+fizzbuzz(100)
+
+////
+
+// this may or may not continue to work in firefox
+// it may not ever work anywhere else; list comprehensions were
+// removed from es2015 drafts.
+console.log(
+  [for (i of Array(100).keys())
+    (++i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i]
+  .join('\n')
+)
+
+////
+
+
+for(i=0;++i&lt;101;)console.log((i%3?'':'Fizz')+(i%5?'':'Buzz')||i)
+
+////
+
+for(i=1;i&lt;101;i++)console.log((x=(i%3?'':'Fizz')+(i%5?'':'Buzz'))?x:i)
+
+////
+
+a=b=!![]+![],a--,c=b+b;while(++a)e=!(a%(c+c+b)),alert(!(a%(c+b))?e?"FizzBuzz":"Fizz":e?"Buzz":a);
+
+////
+
+for (let i = 1; i &lt; 101; i++) {
+  console.log([i, 'fizz', 'buzz', 'fizzbuzz'][(i % 3 === 0) + 2 * ( i % 5 === 0)])
+}
+
+////
+
+const numGen = i =&gt; i ? numGen(i - 1).concat(i) : []
+
+numGen(100).map(n =&gt; n % 3 ?
+      (n % 5 ? n : 'Buzz') :
+      (n % 5 ? 'Fizz' : 'FizzBuzz'))
+
+////
+
+for (let i = 1; i &lt;= 100; i++) {
+  let
+    fizz = (!(i%3)) ? 'Fizz' : ''
+  , buzz = (!(i%5)) ? fizz + 'Buzz' : fizz
+  console.log((buzz) ? buzz : i)
+}
+
+////
+
+let o, i
+
+for (i = 1; i &lt;= 100; i++) {
+  o = ''
+  i % 3 === 0 ? o += 'fizz' : o
+  i % 5 === 0 ? o += 'buzz' : o
+  o === '' ? o = i : o
+  console.log(o)
+}
+
+////
+
+for (let i = 1; i &lt;= 100; i++) {
+  console.log({
+    truefalse : 'Fizz'
+  , falsetrue : 'Buzz'
+  , truetrue  : 'FizzBuzz'
+  }[(i % 3 == 0) + '' + ( i % 5 == 0)] || i)
+}
+
+////
+
+(function numGen(i){
+  return i ? numGen(i - 1).concat(i) : []
+})(100).map(function(n){
+  return n % 3 ?
+    (n % 5 ? n : 'Buzz') :
+    (n % 5 ? 'Fizz' : 'FizzBuzz')
+}).join(' ')
+
+////
+
+let f, b, fb, n
+
+for (n = 1; n &lt;= 100; n++) {
+  f  = !(n % 3)
+  b  = !(n % 5)
+  fb = f &amp;&amp; b
+  console.log(
+    fb ? 'fizzbuzz' :
+   (f  ? 'fizz'     :
+    b  ? 'buzz'     :
+    n))
+}
+
+////
+
+const fizzBuzz = () =&gt; {
+  let i, output
+  for (i = 1; i &lt; 101; i += 1) {
+    output = ''
+    if (!(i % 3)) {
+      output += 'Fizz'
+    }
+    if (!(i % 5)) {
+      output += 'Buzz'
+    }
+    console.log(output || i)
+  }
+}
+
+////
+
+const word = x =&gt; {
+  if (!(x % 15)) {
+    return 'fizzbuzz'
+  } else if (!(x % 3)) {
+    return 'fiz'
+  } else if (!(x % 5)) {
+    return 'buzz'
+  } else {
+    return x
+  }
+}
+
+const fb = max =&gt; Array
+  .apply(null, {length : max + 1})
+  .map(Number.call, Number)
+  .splice(1)
+  .map(word)
+
+////
+
+function* FizzBuzz() {
+  let idx = 0
+  while (true) {
+    let val = ''
+    idx++
+    if (idx % 3 === 0) {
+      val += 'Fizz'
+    }
+    if (idx % 5 === 0) {
+      val += 'Buzz'
+    }
+    yield val || idx
+  }
+}
+
+let fb = FizzBuzz()
+
+for (let i = 0; i &lt; 100; i++) {
+  console.log(fb.next().val)
+}
+
+////
+
+const range = n =&gt; [...Array(n).keys()]
+
+const fbTest = n =&gt; {
+  let
+    by3 = n % 3 === 0
+  , by5 = n % 5 === 0
+
+  return by3 &amp;&amp; by5 ? 'fizz buzz' :
+                by3 ? 'fizz'      :
+                by5 ? 'buzz'      :
+                n
+}
+
+const fizzBuzz = n =&gt; range(n).map(x =&gt; fbTest(x + 1)).join(', ')
+
+console.log(fizzBuzz(100))
+
+////
+
+// this (or a slight variation on this) is easily the most common solution
+
+function fizz_buzz(num){
+  if (num % 15 == 0) {
+    console.log('FizzBuzz')
+  } else if (num % 5 == 0) {
+    console.log('Buzz')
+  } else if (num % 3 == 0) {
+    console.log('Fizz')
+  } else {
+    console.log(num)
+  }
+}
+
+for (let i = 0; i &lt;= 100; i++) {
+  fizz_buzz(i)
+}
+
+////
+
+#!/usr/bin/env node
+
+const max = process.argv[2]
+
+let FizzBuzz = function* (){
+  let num = 1
+  while (num &lt;= max){
+    let value = num
+    num++
+    if (value % 15 === 0) {
+      value = 'FizzBuzz'
+    } else if (value % 3 === 0) {
+      value = 'Fizz'
+    } else if (value % 5 === 0) {
+      value = 'Buzz'
+    }
+    yield value
+  }
+}()
+
+for (let n of FizzBuzz){
+  console.log(n)
+}
+
+////
+
+const fb = n =&gt; {
+  switch(true) {
+    case item % 15 === 0:
+      console.log('fizbuzz')
+      break
+    case item % 3 === 0:
+      console.log('fizz')
+      break
+    case item % 5 === 0:
+      console.log('buzz')
+      break
+    default:
+      console.log(n)
+      break
+  }
+}
+
+const nums = Array.apply(null, Array(100)).map(() =&gt; Math.round(Math.random() * 100) + 1)
+
+nums.map(fb)
+
+////
+
+const a = {fizz : 3, buzz : 5}
+
+for (let b = 1; b &lt;= 100; b++) {
+  let c = ''
+  for (let d in a) {
+    c += b % a[d] ? '' : d
+  }
+  console.log(c ? c : b)
+}
+
+// this is nice because you can fizz buzz bing boom zing easily
+const a = {
+  fizz : 3
+, buzz : 5
+, bing : 7
+, boom : 11
+, zing : 13
+}
+
+for (let b = 1; b &lt;= 1000; b++) {
+  let c = ''
+  for (let d in a) {
+    c += b % a[d] ? '' : d
+  }
+  console.log(c ? c : b)
+}
+
+////
+
+// this is cheating
+alert('1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz 31 32 Fizz 34 Buzz Fizz 37 38 Fizz Buzz 41 Fizz 43 44 FizzBuzz 46 47 Fizz 49 Buzz Fizz 52 53 Fizz Buzz 56 Fizz 58 59 FizzBuzz 61 62 Fizz 64 Buzz Fizz 67 68 Fizz Buzz 71 Fizz 73 74 FizzBuzz 76 77 Fizz 79 Buzz Fizz 82 83 Fizz Buzz 86 Fizz 88 89 FizzBuzz 91 92 Fizz 94 Buzz Fizz 97 98 Fizz Buzz')
+
+////
+
+#!/usr/bin/env node
+
+const max = +process.argv[2]
+
+let FizzBuzz = {
+  [Symbol.iterator]() {
+    let num = 1
+    return {
+      next() {
+        if (num &gt; max) {
+          return {
+            done : true
+          }
+        }
+        let value = num
+        if (value % 15 === 0) {
+          value = 'FizzBuzz'
+        } else if (value % 3 === 0) {
+          value = 'Fizz'
+        } else if (value % 5 === 0) {
+          value = 'Buzz'
+        }
+        num++
+        return {
+          done  : false
+        , value : value
+        }
+      }
+    }
+  }
+}
+
+for (let n of FizzBuzz) {
+  console.log(n)
+}
+
+////
+
+function fizzbuzz() {
+  let
+    i      = 1
+  , result = []
+
+  ;(function loop() {
+    let str = ''
+    str += fizz(i)
+    str += buzz(i)
+    result.push(ifFalsy(str, i))
+    if (isLt100(i++)) {
+      loop()
+    }
+  })()
+  print(result.join(', '))
+}
+
+function fizz(num) {
+  return isDivBy3(num) ? 'fizz' : ''
+}
+
+function buzz(num) {
+  return isDivBy5(num) ? 'buzz' : ''
+}
+
+function isDivBy3(num) {
+  return num % 3 === 0
+}
+
+function isDivBy5(num) {
+  return num % 5 === 0
+}
+
+function isLt100(num) {
+  return num &lt; 100
+}
+
+function ifFalsy(value, fallback) {
+  return !value ? fallback : value
+}
+
+function print(str) {
+  console.log(str)
+}
+
+fizzbuzz()
+
+////
+
+const NumbersFromOne = {
+  *[Symbol.iterator] () {
+    for (let i = 1;; ++i) {
+      yield i
+    }
+  }
+}
+
+const take = function* (numberToTake, iterable) {
+  let remaining = numberToTake
+
+  for (let value of iterable) {
+    if (remaining-- &lt;= 0) {
+      break
+    }
+    yield value
+  }
+}
+
+const replaceEvery = function* (period, replacement, iterable) {
+  let count = period
+
+  for (let value of iterable) {
+    if (--count === 0) {
+      yield replacement
+      count = period
+    }
+    else yield value
+  }
+}
+
+const
+  oneTo100 = take(100, NumbersFromOne)
+, fizz     = replaceEvery(3, 'fizz', oneTo100)
+, buzz     = replaceEvery(5, 'buzz', fizz)
+, fizzbuzz = replaceEvery(15, 'fizzbuzz', buzz)
+
+console.log(...fizzbuzz)
+
+////
+
+// with tests
+function fizzbuzz(value) {
+  if (value % 15 == 0) {
+    return 'fizzbuzz'
+  } else if (value % 3 == 0) {
+    return 'fizz'
+  } else if (value % 5 == 0) {
+    return 'buzz'
+  }
+
+  return value
+}
+
+function assertEquals(expected, actual) {
+  if (expected !== actual) {
+    console.error('Expected ' + actual + ' to equal ' + expected)
+  }
+}
+
+;[15, 30, 45, 60].forEach(value =&gt; {
+  assertEquals('fizzbuzz', fizzbuzz(value))
+})
+
+;[3, 6, 9, 12, 18, 21, 24, 27, 33].forEach(value =&gt; {
+  assertEquals('fizz', fizzbuzz(value))
+})
+
+;[5, 10, 20, 25, 35, 40].forEach(value =&gt; {
+  assertEquals('buzz', fizzbuzz(value))
+})
+
+;[1, 2, 4, 7, 8, 11].forEach(value =&gt; {
+  assertEquals(value, fizzbuzz(value))
+})
+
+for (let i = 1; i &lt;= 100; i++) {
+  console.log(fizzbuzz(i))
+}
+
+////
+
+// this one is CLOSE but not quite there!
+_=$=+!![];$__=((_$={})+'')[_+$+_+$+_];__$=((![])+'')[$];_$_=((_$={})+'')
+[_+$+_+$+_+$];____=[][$__+((_$={})+'')[$]+(($)/(![])+'')[$]+$__+__$+_$_];$__$=(!![]+"")
+[$+$+$]+([][(![]+"")[$+$+$]+(+[]+{})[$+$]+(!![]+"")[$]+(!![]+"")[+[]]]+"")[($+$)+""+
+($+$+$)]+(![]+"")[$]+(![]+"")[$+$];$_$_=____()[$-$][$__$]("\"\\"+($)+($+$+$+$+$+$+$)+
+($+$)+"\"");_$=(![]+'')[$-$]+([][[]]+[])[$+$+$+$+$]+$_$_+$_$_;$_=(_+{})[$+$+$]+(!![]+'')
+[_+$]+$_$_+$_$_;_--,$$=$+$;____()[$-$][$__$]((![]+"")[+[]]+(+[]+{})[$+$]+(!![]+"")[$]+
+"(;++_;)$$$=!(_%("+($$+$$+$)+")),____()[+[]][__$+((![])+'')["+($+$)+"]+((!![])+'')["+
+($+$+$)+"]+((!![])+'')[+!![]]+_$_](!(_%("+($$+$)+"))?$$$?_$+$_:_$:$$$?$_:_);");
+
+</code></pre>
+<h2>and finally, in html and css</h2>
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>fizzbuzz<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+      <span class="hljs-selector-tag">ul</span> { <span class="hljs-attribute">list-style-type</span>: none; }
+      <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child(3n)</span>, <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child(5n)</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0px</span>; }
+      <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child(3n)</span><span class="hljs-selector-pseudo">:before</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">content</span>: <span class="hljs-string">"Fizz"</span>; }
+      <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child(5n)</span><span class="hljs-selector-pseudo">:after</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">content</span>: <span class="hljs-string">"Buzz"</span>; }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>14<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>19<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>21<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>25<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>26<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>28<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>30<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>31<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>33<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>35<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>37<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>38<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>39<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>40<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>41<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>42<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>43<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>44<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>45<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>46<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>47<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>48<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>49<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>50<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>51<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>52<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>53<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>54<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>55<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>56<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>57<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>58<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>59<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>60<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>61<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>62<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>63<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>64<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>65<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>66<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>67<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>68<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>69<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>70<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>71<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>72<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>73<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>74<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>75<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>76<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>77<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>78<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>79<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>80<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>81<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>82<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>83<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>84<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>85<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>86<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>87<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>88<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>89<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>90<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>91<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>92<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>93<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>94<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>95<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>96<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>97<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>98<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>99<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>100<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=fizzbuzz" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

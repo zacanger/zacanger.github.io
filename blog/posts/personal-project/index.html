@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>notes from my personal project at devmountain | Zac Anger&#x27;s Blog</title><meta name="description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,electron,nwjs,markdown,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="notes from my personal project at devmountain"/><meta name="twitter:description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="notes from my personal project at devmountain"/><meta property="og:description" content="a whole bunch of basically totally disorganised notes from when i was working
+on my &#x27;personal project&#x27; at devmountain."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>notes from my personal project at devmountain</h2><div>19 May, 2016</div></header><div><div><h1>this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working
+on my 'personal project' at devmountain.</p>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
+for people who actually cared about writing. turns out no one really wants that.
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+cool.</p>
+<p>requirements for this: make a mean stack app, basically.</p>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+and more importantly here's the mess of notes i took while doing stuff with that.</p>
+<hr>
+<h2>Planner</h2>
+<p>At DevMountain, for projects, you're encouraged (required, really) to use a planning
+paper, which is basically a big sheet of paper divided up into sections that represent
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+the bottom.</p>
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
+there was a PDF version floating around so I threw a little app up using that (converted to
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
+able to easily just save all my notes out (they were all just in a big text file anyway, on
+my server). Note: I'd initially planned on using my earlier app from my 'no-server' project
+(something we do at DevMountain early on, just an Angular app that can actually use a server
+so long as it's a BaaS and not one we've spent time doing, because we don't actually know how
+to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
+<p>Anyway, these are the contents from my planning thing.</p>
+<h3>Ideas and Users</h3>
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
+ADHD social media style of content-creation and likes and shares that's taken
+over the popular idea of the blog, but instead around long-form writing; essays,
+meaningful stories, and such. the target audience here is the moderately
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+out in coffee shops too much.</p>
+<h3>Features</h3>
+<ul>
+<li>mvp: oh wait, that's already done. well, except for getting it to work in the
+desktop client, which is the entire idea here.</li>
+<li>the rest:
+<ul>
+<li>a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.</li>
+<li>comments.</li>
+<li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
+</ul>
+<h3>Views</h3>
+<ol>
+<li>the existing markdown editor (however, likely revamped to move away from
+plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one's own posts as
+someone else's).</li>
+<li>the 'social' view: a feed, no 'content-based' sorting, just purely ordered
+chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they'll be isolated (data-wise), so it may be smarter to
+load them in dynamically (see: discourse [not discuz, they're ruby], but don't
+do that stupid thing where half the page disappears, that's some annoying-ass
+bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an
+archive file, delete account.</li>
+</ol>
+<h3>Controllers</h3>
+<ul>
+<li>browser, main, and nav (see existing codebase)</li>
+<li>not controllers, but...</li>
+<li>services: files (existing)</li>
+<li>filters: filename and cut (existing)
+<ul>
+<li>by tag (feed view)</li>
+<li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
+</ul>
+<h3>Endpoints</h3>
+<p>Those are a thing, yes.</p>
+<h3>Schemas</h3>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// possible schemas ??</span>
+
+<span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose'</span>)
+
+<span class="hljs-keyword">const</span> user = mongoose.Schema({
+  <span class="hljs-attr">username</span> : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">pass</span>     : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>, <span class="hljs-attr">minlength</span> : <span class="hljs-number">6</span>}
+, <span class="hljs-attr">post</span>     : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'post'</span>}]
+, <span class="hljs-attr">comments</span> : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'comment'</span>}]
+})
+
+<span class="hljs-keyword">const</span> post = mongoose.Schema({
+  <span class="hljs-attr">title</span>    : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">content</span>  : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">tags</span>     : <span class="hljs-built_in">Array</span>
+, <span class="hljs-attr">date</span>     : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">Number</span>, <span class="hljs-attr">default</span> : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()}
+, <span class="hljs-attr">author</span>   : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'user'</span>}]
+, <span class="hljs-attr">comments</span> : [{mongoose.Types.ObjectID, <span class="hljs-attr">ref</span> : <span class="hljs-string">'comment'</span>}]
+})
+
+<span class="hljs-keyword">const</span> comment = mongoose.Schema({
+  <span class="hljs-attr">date</span>    : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">Number</span>, <span class="hljs-attr">default</span>  : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()}
+, <span class="hljs-attr">content</span> : {<span class="hljs-attr">type</span> : <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span> : <span class="hljs-literal">true</span>}
+, <span class="hljs-attr">post</span>    : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'posts'</span>}]
+, <span class="hljs-attr">author</span>  : [{mongoose.Types.ObjectId, <span class="hljs-attr">ref</span> : <span class="hljs-string">'user'</span>}]
+})
+
+mongoose.model(<span class="hljs-string">'user'</span>, user)
+mongoose.model(<span class="hljs-string">'post'</span>, post)
+mongoose.model(<span class="hljs-string">'comment'</span>, comment)
+</code></pre>
+<h3>Other Thoughts:</h3>
+<p>this would be relatively easy to throw up in a web browser. blogging platforms
+are a dime a dozen, especially ones built on node. the idea here isn't to make
+another tumblr, but to bring actual writing back to the web. sort of like
+medium, but without all the twitter. a key part of that is having it NOT be in a
+browser. right now the goal is to put all this in an electron shell, but i'm not
+going to focus super hardcore on that right this moment. if i can get everything
+else in place and rock-solid first, then i'll stuff it all in electron. if not,
+then i'll just write up a manifest file and call it a chrome app. either way,
+fuck y'all, it's already got nigh on a thousand installs....</p>
+<hr>
+<h2>The Presentation Speech</h2>
+<p>This is what I'd planned to say when presenting my app. I think instead
+I just kind of mumbled a little bit about how neat CodeMirror is and how
+annoying it was to struggle with the <code>'node-integration'</code> issue with
+Electron.</p>
+<h3>Markdown</h3>
+<p>…is a lightweight markup language which makes writing for the web a much quicker
+and easier process than if using a rich text editor (like Word), which wouldn't
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
+<code>&lt;strong&gt;</code>, in Markdown you'd use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
+Github are usually written in an implementation of Markdown called Github
+Flavoured Markdown, which shows just how popular the format has grown. Stack
+Overflow, the Discourse comment system, and various blog systems including
+Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
+<p>vi is possibly the most influential editor of, like, ever. it was written in
+1976, and either vi or one of its descendants (usually vim, which stands for 'vi
+improved') has been on almost every unix-based system since then, including
+every computer in this building (except the microsoft machines -- and even on
+those, if you have git-bash or something similar). vim's power comes from how
+easily and quickly it can manipulate large chunks of text. For example, typing
+in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
+<p>So, putting these things together makes for a really great tool for writing. Not
+necessarily writing Tweets or Facebook posts, but writing longer texts, like
+articles or essays. That's the purpose of this app. It's not a social blog. It's
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+minus… teenagers.</p>
+<p>Since the editor component itself is based around CodeMirror, it's very
+extensible, which is exciting because it leaves so much open for future
+development. For example, if we wanted to make this a Javascript editor instead,
+we could just change a few lines and now we have the right syntax highlighting,
+automatic indentation, et cetera.</p>
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
+from the beginning it was really meant to be a desktop tool; browsers are
+distracting, this not so much.</p>
+<p>Aaaand here's the code.</p>
+<hr>
+<h2>misc notes</h2>
+<p>All this stuff was just thrown in another file.
+It's mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
+<p>check https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md
+before trying to get any other browser-shit going on--we'll want to move things
+into their own windows, i feel; chromeless might be a good idea, at least for
+the editor view</p>
+<pre><code class="hljs">const BrowserWindow = require(<span class="hljs-string">'electron'</span>).BrowserWindow
+let win = <span class="hljs-keyword">new</span> BrowserWindow({<span class="hljs-string">width :</span> <span class="hljs-number">1900</span>, <span class="hljs-string">height :</span> <span class="hljs-number">1600</span>, <span class="hljs-string">frame :</span> <span class="hljs-literal">false</span>})
+</code></pre>
+<p>so basically it's just a new browser window, frame as false, but we want to
+probably lock the px to whatever screen we're working with, if CSS continues to
+fail miserably.</p>
+<p>-- note: check how atom manages to not fuck that up. except those bits where
+they do.</p>
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+clickables, one assumes).</p>
+<ul>
+<li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
+<li>downloadItem.setSavePath(path)</li>
+<li>downloadItem.cancel()</li>
+<li>downloadItem.getURL() // origin url</li>
+<li>file.path = real (fs) path</li>
+</ul>
+<h3>printing</h3>
+<pre><code class="hljs language-javascript">webContents.printToPDF(opts, cb) <span class="hljs-comment">// where:</span>
+opts:
+  marginsType: <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> (<span class="hljs-number">0</span> <span class="hljs-keyword">default</span>)
+  pageSize: <span class="hljs-string">'A4'</span>, <span class="hljs-string">'A3'</span>, <span class="hljs-string">'Legal'</span>, <span class="hljs-string">'Letter'</span>, <span class="hljs-string">'Tabloid'</span>
+  printBackground: <span class="hljs-literal">false</span> (duh)
+  landscape: <span class="hljs-literal">false</span> (is portrait)
+cb <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>)</span>{<span class="hljs-keyword">if</span> err etc, data = content buffer}
+
+empty opts = <span class="hljs-string">`{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`</span>
+
+<span class="hljs-comment">// sample from electron docs</span>
+<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).BrowserWindow
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">let</span> win = <span class="hljs-keyword">new</span> BrowserWindow({<span class="hljs-attr">width</span>: <span class="hljs-number">800</span>, <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>})
+win.loadURL(<span class="hljs-string">'http://github.com'</span>)
+win.webContents.on(<span class="hljs-string">'did-finish-load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Use default printing options</span>
+  win.webContents.printToPDF({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, data</span>) </span>{
+    <span class="hljs-keyword">if</span> (error) {
+    <span class="hljs-keyword">throw</span> error
+    }
+    fs.writeFile(<span class="hljs-string">'/tmp/print.pdf'</span>, data, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">throw</span> error
+      }
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done did dat'</span>)
+    })
+  })
+})
+</code></pre>
+<ul>
+<li>main process is a normal node script</li>
+<li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
+<li>electron's built-in modules don't need <code>require('asdf')</code>; set
+<code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
+<li>shell.openExternal(url) opens in eg xdg-browser</li>
+<li>shell.openItem('/FULL/path/to/item') = xdg-open</li>
+</ul>
+<h3>menus</h3>
+<ul>
+<li>new MenuItem(opts):
+<ul>
+<li>id: string, unique within menu</li>
+<li>submenu</li>
+<li>checked: bool</li>
+<li>visible: bool</li>
+<li>enabled: bool</li>
+<li>label: string</li>
+<li>type: normal, separator, submenu, checkbox, or radio</li>
+<li>role: action; if specified, next thing will be ignored</li>
+<li>click: function -- click(menuItem, browserWindow) -- this is that 'next thing'</li>
+</ul>
+</li>
+<li>recommended to set role:
+<ul>
+<li>undo</li>
+<li>redo</li>
+<li>cut</li>
+<li>copy</li>
+<li>paste</li>
+<li>selectall</li>
+<li>minimize</li>
+<li>close</li>
+</ul>
+</li>
+</ul>
+<p>electron-rebuild would automatically take care of headers &amp; native node module
+builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
+<p>the 'npm' way: same as usual, except env variables:</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">export</span>
+  <span class="hljs-attribute">npm_config_disturl</span>=https://atom.io/download/atom-shell
+  <span class="hljs-attribute">npm_config_target</span>=0.33.1 # ???
+  <span class="hljs-attribute">npm_config_arch</span>=x64
+  <span class="hljs-attribute">npm_config_runtime</span>=electron
+<span class="hljs-attribute">HOME</span>=~/.electron-gyp npm install module-name # home equals? what?
+</code></pre>
+<p>one important thing: nw.js's url in the package file? nah, bro, electron don't
+do that shit. so manually creating the browser window and loading HTML is the
+right way with electron.</p>
+</div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=notes from my personal project at devmountain" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
