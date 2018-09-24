@@ -9,8 +9,8 @@ const { title, description, author } = data
 const options = {
   title,
   description,
-  site_url: 'http://zacanger.com/blog',
-  image_url: 'http://zacanger.com/logo'
+  site_url: 'https://zacanger.com/blog',
+  image_url: 'https://zacanger.com/logo.png'
 }
 
 const feed = new Rss(options)
@@ -22,7 +22,7 @@ data.posts.forEach((post) => {
     title: post.title,
     // description: post.excerpt,
     date: post.created,
-    url: `http://zacanger.com/blog/posts/${post.slug}`,
+    url: `https://zacanger.com/blog/posts/${post.slug}`,
     guid: post.slug,
     categories: post.tags,
     author
