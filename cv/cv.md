@@ -6,7 +6,7 @@ growth. Passionate about building better interfaces and smoother processes, and
 keeping software and development free and open. He/him.
 
 This document is available as [HTML](https://zacanger.com/cv) and
-[plain text](https://github.com/zacanger/dotcom/blob/master/cv/cv.md).
+[plain text](https://github.com/zacanger/zacanger.github.io/blob/master/cv/cv.md).
 
 ## Languages and Technologies
 
