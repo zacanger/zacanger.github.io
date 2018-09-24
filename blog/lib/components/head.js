@@ -19,7 +19,7 @@ const socialMeta = ({
     <meta property="og:type" content="article" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="http://zacanger.com/blog" />
+    <meta property="og:site_name" content="https://zacanger.com/blog" />
     <meta property="og:image" content={image} />
   </React.Fragment>
 )
@@ -53,7 +53,7 @@ const Head = ({
       {socialMeta({
         author: '@zacanger',
         card: 'summary',
-        image: 'http://zacanger.com/logo.png',
+        image: 'https://zacanger.com/logo.png',
         title: post ? post.title : title,
         description
       })}
