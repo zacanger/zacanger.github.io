@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>purescript things | Zac Anger&#x27;s Blog</title><meta name="description" content="What are @ and =&gt;?"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,purescript"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="purescript things"/><meta name="twitter:description" content="What are @ and =&gt;?"/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="purescript things"/><meta property="og:description" content="What are @ and =&gt;?"/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>purescript things</h2><div>19 August, 2016</div></header><div><div><p>What are <code>@</code> and <code>=&gt;</code>?</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>purescript things | Zac Anger&#x27;s Blog</title><meta name="description" content="What are @ and =&gt;?"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,purescript"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="purescript things"/><meta name="twitter:description" content="What are @ and =&gt;?"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="purescript things"/><meta property="og:description" content="What are @ and =&gt;?"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>purescript things</h2><div>19 August, 2016</div></header><div><div><p>What are <code>@</code> and <code>=&gt;</code>?</p>
 <p>What is fixity? Is this the same as precedence?</p>
 <pre><code class="hljs language-haskell"><span class="hljs-title">foo</span> :: [a] <span class="hljs-comment">-- in haskell would be</span>
 <span class="hljs-title">foo</span> :: <span class="hljs-keyword">forall</span> a. <span class="hljs-type">Array</span> a <span class="hljs-comment">-- in purescript, i think?</span>
@@ -31,61 +31,4 @@ i</p>
 <p>To export stuff: <code>module Foo (a, b, c) where</code>.
 That's like <code>export { a, b, c }</code> in JS, I think.
 <code>module Foo (..)</code> exports everything, I think.</p>
-<h2>what</h2>
-<pre><code class="hljs">z ± psci
-PSCi requires the purescript-psci-support package to be installed.
-You can <span class="hljs-keyword">install</span> it <span class="hljs-keyword">using</span> Bower <span class="hljs-keyword">as</span> <span class="hljs-keyword">follows</span>:
-
-  bower i purescript-psci-support <span class="hljs-comment">--save-dev</span>
-
-<span class="hljs-keyword">For</span> <span class="hljs-keyword">help</span> getting started, visit <span class="hljs-keyword">http</span>://wiki.purescript.org/PSCi
-
-z ± a bower_components/ | ag psci
-purescript-psci-support/
-
-z ± jq .devDependencies &lt; bower.json
-{
-  <span class="hljs-string">"purescript-spec"</span>: <span class="hljs-string">"^0.8.0"</span>,
-  <span class="hljs-string">"purescript-psci-support"</span>: <span class="hljs-string">"^1.0.0"</span>
-}
-
-z ±
-
-z ± pulp psci
-PSCi, <span class="hljs-keyword">version</span> <span class="hljs-number">0.9</span><span class="hljs-number">.3</span>
-<span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> <span class="hljs-keyword">help</span>
-
-&gt; :l <span class="hljs-keyword">Main</span>
-Unrecognized directive. <span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> help.
-&gt; <span class="hljs-keyword">import</span> <span class="hljs-keyword">Main</span>
-&gt; :t <span class="hljs-keyword">Main</span>
-<span class="hljs-keyword">Error</span> <span class="hljs-keyword">found</span>:
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">module</span> $PSCI
-<span class="hljs-keyword">at</span>  line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">1</span> - line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">2</span>
-
-  <span class="hljs-keyword">Unknown</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">constructor</span> <span class="hljs-keyword">Main</span>
-
-
-See https://github.com/purescript/purescript/wiki/<span class="hljs-keyword">Error</span>-Code-UnknownName <span class="hljs-keyword">for</span> more information,
-<span class="hljs-keyword">or</span> <span class="hljs-keyword">to</span> contribute <span class="hljs-keyword">content</span> related <span class="hljs-keyword">to</span> this error.
-
-
-&gt; :i <span class="hljs-keyword">Main</span>
-Unrecognized directive. <span class="hljs-keyword">Type</span> :? <span class="hljs-keyword">for</span> help.
-&gt; :t Module.Thing.functionThatIKnowIsThere
-<span class="hljs-keyword">Error</span> <span class="hljs-keyword">found</span>:
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">module</span> $PSCI
-<span class="hljs-keyword">at</span>  line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">1</span> - line <span class="hljs-number">1</span>, <span class="hljs-keyword">column</span> <span class="hljs-number">15</span>
-
-  <span class="hljs-keyword">Unknown</span> <span class="hljs-keyword">module</span> Module.Thing
-
-
-See https://github.com/purescript/purescript/wiki/<span class="hljs-keyword">Error</span>-Code-UnknownName <span class="hljs-keyword">for</span> more information,
-<span class="hljs-keyword">or</span> <span class="hljs-keyword">to</span> contribute <span class="hljs-keyword">content</span> related <span class="hljs-keyword">to</span> this error.
-
-
-&gt; :q
-See ya!
-</code></pre>
-<p>kbai</p>
 </div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=purescript things" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>

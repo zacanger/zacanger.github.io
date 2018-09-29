@@ -1,69 +1,69 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>ES-Next Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,es7,es8,ecmascript,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="ES-Next Notes"/><meta name="twitter:description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta name="twitter:image" content="http://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="ES-Next Notes"/><meta property="og:description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta property="og:site_name" content="http://zacanger.com/blog"/><meta property="og:image" content="http://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>ES-Next Notes</h2><div>05 February, 2016</div></header><div><div><p>That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and es-the-number-after-that notes.</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>ES-Next Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,es7,es8,ecmascript,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="ES-Next Notes"/><meta name="twitter:description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="ES-Next Notes"/><meta property="og:description" content="That is, es-next-next notes. Like, es7-or-whatever-we&#x27;re-calling-it-today, and es-the-number-after-that notes."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><script type="text/javascript" href="/blog/assets/highlight.pack.js"></script><link rel="stylesheet" type="text/css" href="/blog/assets/styles.css"/><link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>ES-Next Notes</h2><div>05 February, 2016</div></header><div><div><p>That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and es-the-number-after-that notes.</p>
 <p>What <s>will</s> might we get?</p>
-<pre><code class="hljs">Array.prototype.includes // so, for example, instead of:
-if(someArr.indexOf(val) &gt; -1) // we can do:
-if(someArr.includes(val))
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">Array</span>.prototype.includes <span class="hljs-comment">// so, for example, instead of:</span>
+<span class="hljs-keyword">if</span>(someArr.indexOf(val) &gt; <span class="hljs-number">-1</span>) <span class="hljs-comment">// we can do:</span>
+<span class="hljs-keyword">if</span>(someArr.includes(val))
 
-// you know how we have destructuring with arrays in es6? what about objects?
-let {x,y,...z} = {x:1,y:2,a:3,b:4}
-x // 1
-y // 2
-z // {a:3, b:4}
-// and...
-let q = {x,y,...z}
-q // {x:1,y:2,a:3,b:4}
+<span class="hljs-comment">// you know how we have destructuring with arrays in es6? what about objects?</span>
+<span class="hljs-keyword">let</span> {x,y,...z} = {<span class="hljs-attr">x</span>:<span class="hljs-number">1</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">2</span>,<span class="hljs-attr">a</span>:<span class="hljs-number">3</span>,<span class="hljs-attr">b</span>:<span class="hljs-number">4</span>}
+x <span class="hljs-comment">// 1</span>
+y <span class="hljs-comment">// 2</span>
+z <span class="hljs-comment">// {a:3, b:4}</span>
+<span class="hljs-comment">// and...</span>
+<span class="hljs-keyword">let</span> q = {x,y,...z}
+q <span class="hljs-comment">// {x:1,y:2,a:3,b:4}</span>
 
-// decorators (for modifying/annotating classes on creation)
-function foo(target, name, descriptor){
+<span class="hljs-comment">// decorators (for modifying/annotating classes on creation)</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">target, name, descriptor</span>)</span>{
   descriptor.something = whatever
-  return descriptor
+  <span class="hljs-keyword">return</span> descriptor
 }
-class Bar {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> </span>{
   @foo
-  quux() {return `this thing is ${this.baz} asdf lkadjfklal`}
+  quux() {<span class="hljs-keyword">return</span> <span class="hljs-string">`this thing is <span class="hljs-subst">${<span class="hljs-keyword">this</span>.baz}</span> asdf lkadjfklal`</span>}
 }
-// so, quux is gonna conform to whatever we said in foo()
+<span class="hljs-comment">// so, quux is gonna conform to whatever we said in foo()</span>
 
-// we get exponents!
-Math.pow(x,y) // no more! now just
+<span class="hljs-comment">// we get exponents!</span>
+<span class="hljs-built_in">Math</span>.pow(x,y) <span class="hljs-comment">// no more! now just</span>
 x ** y
 
-// simd! (limited to 128 bits though--256 and maybe 512 in the future?)
-let foo = SIMD.float64x2.load(oneArr, 0)
-let bar = SIMD.float64x2.load(twoArr, 0)
-let res = SIMD.float64x3.add(x,y)
-SIMD.float64x2.store(treArr, 0, res)
-// this will make calc with typed arrs &amp; typed objs sooo much faster
+<span class="hljs-comment">// simd! (limited to 128 bits though--256 and maybe 512 in the future?)</span>
+<span class="hljs-keyword">let</span> foo = SIMD.float64x2.load(oneArr, <span class="hljs-number">0</span>)
+<span class="hljs-keyword">let</span> bar = SIMD.float64x2.load(twoArr, <span class="hljs-number">0</span>)
+<span class="hljs-keyword">let</span> res = SIMD.float64x3.add(x,y)
+SIMD.float64x2.store(treArr, <span class="hljs-number">0</span>, res)
+<span class="hljs-comment">// this will make calc with typed arrs &amp; typed objs sooo much faster</span>
 
-// es-next-next (es8?) may have type annotations!
-// oh, and macros?! howlly craaeep.
+<span class="hljs-comment">// es-next-next (es8?) may have type annotations!</span>
+<span class="hljs-comment">// oh, and macros?! howlly craaeep.</span>
 
-// async functions and generators, with possible syntax like:
-async function* whatever(){
-  yield 1
-  yield 2
-  yield 3
+<span class="hljs-comment">// async functions and generators, with possible syntax like:</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">whatever</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>
 }
-async function things(){
-  for(var asdf on whatever()){
-    console.log(asdf)
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">things</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> asdf on whatever()){
+    <span class="hljs-built_in">console</span>.log(asdf)
   }
 }
-// Object.values, Object.entries, Object.getOwnPropertyDescriptors
-// Typed Objects, so like
-var Asdf = new StructType({
-    x : int32
-, y : int32
+<span class="hljs-comment">// Object.values, Object.entries, Object.getOwnPropertyDescriptors</span>
+<span class="hljs-comment">// Typed Objects, so like</span>
+<span class="hljs-keyword">var</span> Asdf = <span class="hljs-keyword">new</span> StructType({
+    <span class="hljs-attr">x</span> : int32
+, <span class="hljs-attr">y</span> : int32
 })
-var Ghjkl = new Asdf({
-  x : 99
-, y : 120
+<span class="hljs-keyword">var</span> Ghjkl = <span class="hljs-keyword">new</span> Asdf({
+  <span class="hljs-attr">x</span> : <span class="hljs-number">99</span>
+, <span class="hljs-attr">y</span> : <span class="hljs-number">120</span>
 })
-// trailing commas... which is kinda dumb, actually, in a few ways.
-// .toJSON (Set.prototype)
-// String.prototype.at
-// String.prototype.padLeft, .padRight, .trimLeft, .trimRight
-// Regexp.escape ?!
-::forEach(x =&gt; return(x)) // BINDING/METHOD EXTRACTION!
+<span class="hljs-comment">// trailing commas... which is kinda dumb, actually, in a few ways.</span>
+<span class="hljs-comment">// .toJSON (Set.prototype)</span>
+<span class="hljs-comment">// String.prototype.at</span>
+<span class="hljs-comment">// String.prototype.padLeft, .padRight, .trimLeft, .trimRight</span>
+<span class="hljs-comment">// Regexp.escape ?!</span>
+::forEach(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-keyword">return</span>(x)) <span class="hljs-comment">// BINDING/METHOD EXTRACTION!</span>
 </code></pre>
 </div><p><a href="https://github.com/zacanger/dotcom/issues/new?title=ES-Next Notes" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
