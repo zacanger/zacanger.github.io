@@ -7,8 +7,6 @@ tags:
   - notes
 ---
 
-this is all i have
-
 ```javascript
 const
   id    = a => a

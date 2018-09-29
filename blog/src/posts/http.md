@@ -60,4 +60,3 @@ client will check if-modified-since and if-none-match
 accept-encoding (with gzip or compress) yay
 
 on server, max-age and etag ; send 304 if if-no-match matches etag
-

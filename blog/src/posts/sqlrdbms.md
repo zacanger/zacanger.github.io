@@ -61,6 +61,7 @@ These will be in SQLite, specifically.
 
 
 #### Joins
+
 This is a big deal, so it gets its own subsection.
 
 * Joins are the big performance issue. Things take a long time to find, when they're in multiple tables. (_This isn't from the lecture, but I'd place 5 joins as a limit for my own usage, and even that is getting pretty gross...._)

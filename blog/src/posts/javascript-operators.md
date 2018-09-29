@@ -20,9 +20,7 @@ taking a peek at the spec or MDN or whatever, especially it looks like actual
 standards are going to be getting actual changes within actual human lifespans
 now.
 
-
 --------
-
 
 ### BITWISE:
 
@@ -34,7 +32,6 @@ now.
 * `>>` -- sign-propagating right shift
 * `>>>` -- zero-fill right shift
 
-
 ### LOGICAL:
 
 * `&&` -- AND
@@ -44,7 +41,6 @@ now.
   takes the syntax `condition ? expression1 : expression2`, where the first expression
   is run if the condition is true, and the second is run if the condition is false. example:
   `age > 21 ? alert('here\'s your beer!') : alert('go home, kid.')`
-
 
 ### ASSIGNMENT:
 
@@ -63,7 +59,6 @@ now.
 * destructuring assignment: for assigning properties or elements of an object or array,
   using object- or array-like syntax. examples: `[a,b,c] = [1,2,3]`; `{a,b,c}={a:1,b:2,c:3}`
 
-
 ### EQUALITY:
 
 * `==` -- equality
@@ -71,14 +66,12 @@ now.
 * `===` -- identity (strict equality)
 * `!==` -- nonidentity
 
-
 ### POSTFIX/PREFIX:
 
 * `foo++` -- postfix increment
 * `foo--` -- postfix decrement
 * `++bar` -- prefix increment
 * `--bar` -- prefix decrement
-
 
 ### UNARY:
 
@@ -88,7 +81,6 @@ now.
 * `+` -- converts operand to Number
 * `-` -- converts operand to Number, negates it
 * also see bitwise NOT and logical NOT
-
 
 ### ARITHMETIC:
 
@@ -101,16 +93,13 @@ now.
   * not implemented in current standard (ES2015)
   * proposed for ES7/ES2016--in stage 3 (implementation) as of feb 2016
 
-
 ### COMPARISON/RELATIONAL:
 
 * `in` -- determines if object has given property
 * `instanceof` -- determines if obj is an instance of another object
 * `<`, `>`, `<=`, `>=` -- work as expected
 
-
 --------
-
 
 ## PRECEDENCE
 

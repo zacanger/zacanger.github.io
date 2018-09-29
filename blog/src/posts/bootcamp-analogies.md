@@ -20,7 +20,3 @@ hanging out at a bootcamp after finishing is like going back to a high school re
 after going from nerd to hugely successful nerd, waving it in everyone's face, except
 everyone is that same nerd so it's kinda more like an encouraging wave than a "see,
 told you i'd amount to something" kind of wave.
-
-just some thoughts i had while trying to avoid having my skin ripped off by the
-pressure-washer-like shower that i just took. i need to be better at plumbing.
-

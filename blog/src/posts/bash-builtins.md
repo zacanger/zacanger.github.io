@@ -10,7 +10,6 @@ tags:
   - disaster-recovery
 ---
 
-
 Let's say that in some hypothetical horrible world, we have a system with no utilities, except the shell we're using, which happens to be GNU Bash. Maybe we were dumb and did something like `rm -rf --no-preserve-root /`, I don't know. Here's how we can get some basic programs back, just by using Bash builtins.
 
 `type` still exists!

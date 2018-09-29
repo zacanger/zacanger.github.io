@@ -23,28 +23,28 @@ Hapi was started in 2011, and was originally built on Express. The original auth
 
 Making things happen:
 
-```
+```javascript
 // express
 const express = require('express')
-, app = express()
-, port = 3000
+const app = express()
+const port = 3000
 // etc, we already know all this
 app.listen(port) // http.createServer() basically
 
 // koa
 const koa = require('koa')
-, app = koa()
-, port = 3000
-const server = app.listen(port, function(){
-console.log('listening on ' + port)
+const app = koa()
+const port = 3000
+const server = app.listen(port, () => {
+  console.log('listening on ' + port)
 }) // well, THAT looks super familiar, huh?
 
 //hapi
 const Hapi = require('hapi')
-, server = new Hapi.Server()
-server.connection({port:3000})
+const server = new Hapi.Server()
+server.connection({ port: 3000 })
 server.start(() => {
-console.log('server over yonder on ', server.info.uri)
+  console.log('server over yonder on ', server.info.uri)
 }) // that takes a weee bit more work, there.
 ```
 
@@ -52,51 +52,49 @@ routing:
 ```javascript
 app.get('/', function(req, res){res.send('hi')})
 
-app.use(function *(){this.body = 'hi'}) // so, koa uses es6 generators.
+app.use(function *() {this.body = 'hi'}) // so, koa uses es6 generators.
 // the context (this) is node's `request` and `response`, wrapped up
 // `this.body` can be string, buffer, stream, object, or null
 
 server.route({
-method : 'GET',
-path: '/',
-handler: function(request, reply){
-reply('hi') // holy boilerplate, batman
-}
+  method : 'GET',
+  path: '/',
+  handler: (request, reply) => {
+    reply('hi') // holy boilerplate, batman
+  }
 })
-
 ```
 
-* * *
+--------
 
 How about a little API practice?
 
-```
-var express   = require('express')
-, app       = express()
-, router    = express.Router()
+```javascript
+const express = require('express')
+const app = express()
+const router = express.Router()
 
 router.route('/items')
-.get(function(req, res, next){res.send('get')})
-.post(function(req, res, next){res.send('post')})
+  .get((req, res, next) => {res.send('get')})
+  .post((req, res, next) => {res.send('post')})
 
 router.route('/items/:id')
-.get(function(req, res, next){res.send('get ' + req.params.id)})
-.put(function(req, res, next){res.send('put ' + req.params.id)})
-.delete(function(req, res, next){res.send('delete ' + req.params.id)})
+  .get((req, res, next) => {res.send('get ' + req.params.id)})
+  .put((req, res, next) => {res.send('put ' + req.params.id)})
+  .delete((req, res, next) => {res.send('delete ' + req.params.id)})
 
 app.use('/api', router)
-app.get('/', function(req, res){res.send('hi')})
+app.get('/', (req, res) => {res.send('hi')})
 
-var server = app.listen(3000, function(){console.log('listening')})
-
+const server = app.listen(3000, () => {console.log('listening')})
 ```
 
 Nothing new there.
 
-```
-var koa   = require('koa')
-, route = require('koa-route')
-, app   = koa()
+```javascript
+const koa = require('koa')
+const route = require('koa-route')
+const app = koa()
 
 app.use(route.get('/api/items', function*(){this.body = 'Get'}))
 app.use(route.get('/api/items/:id', function*(id){this.body = 'Get id: ' + id}
@@ -104,41 +102,40 @@ app.use(route.put('/api/items/:id', function*(id){this.body = 'put ' + id}))
 app.use(route.delete('/api/items/:id', function*(id){this.body = 'Delete Id '}))
 app.use(function*(){this.body = 'are you lost?'})
 
-var server = app.listen(3000, function(){console.log 'listening on 3000'})
-
+const server = app.listen(3000, () => {console.log 'listening on 3000'})
 ```
 
 So, that's pretty nice. Can you see why I like Koa?
 
-```
-var Hapi   = require('hapi')
-, server = new Hapi.Server(3000)
+```javascript
+const Hapi = require('hapi')
+const server = new Hapi.Server(3000)
 
 server.route([
-{
-method: 'GET',
-path: 'api/items',
-handlder: function(request, reply){
-reply('get item id ')
-}
-},
-{
-method: 'GET',
-path   : '/api/items/{id},'
-handler: function(request, reply){
-reply('get item id ' + request.params.id)
-} // same thing here for all the other methods
-}
+  {
+    method: 'GET',
+    path: 'api/items',
+    handlder: (request, reply) => {
+      reply('get item id ')
+    }
+  },
+  {
+    method: 'GET',
+    path   : '/api/items/{id},'
+    handler: (request, reply) => {
+      reply('get item id ' + request.params.id)
+    } // same thing here for all the other methods
+  }
 ])
-server.start(function(){console.log 'listening 300'})
 
+server.start(() => {console.log 'listening on 3000'})
 ```
 
 Note that the Hapi version of things definitely takes a lot more code, but that's also intentional. (Remember, Hapi's meant to be easily changed for any team and/or project, so a lot of things are very manual; you also wouldn't usually use Hapi for small projects like in the examples.) Errors in Hapi are also a little more helpful, since it goes ahead and automatically provides HTTP error codes for you... in JSON, no less.
 
 So, thoughts:
 
-Express is the standard.Everyone knows it, because it's been around forever. It's very mature, stable, got a lot of users and a lot of backers and contributors. It's got a nice little built-in router. It does _not_ have error handling, it's pretty damn opinionated, it's rather big these days, and there's so much out there _for_ it that it's easy to get lost in all the middleware and options and whatnot.
+Express is the standard. Everyone knows it, because it's been around forever. It's very mature, stable, got a lot of users and a lot of backers and contributors. It's got a nice little built-in router. It does _not_ have error handling, it's pretty damn opinionated, it's rather big these days, and there's so much out there _for_ it that it's easy to get lost in all the middleware and options and whatnot.
 
 Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too, _now_, but that was a recent switch for them, I think), which is really nice. Because it's so small, it's a lot easier to just go ahead and write your own middleware. Like Express, though, that can lead to a decision problem.
 
@@ -147,39 +144,38 @@ Hapi definitely has their corporate backing game on point. That's great for them
 I think it's probably pretty easy to see why I favour Koa. For what it's worth, just as an example, here's what it takes to get a server running in raw Node:
 
 ```
-var http = require('http')
-, url = require('url')
-, path = require('path')
-, fs = require('fs')
-, port = process.argv[2] || 4444
+const http = require('http')
+const url = require('url')
+const path = require('path')
+const fs = require('fs')
+const port = process.argv[2] || 4444
 
-http.createServer(function(request, response){
-var uri = url.parse(request.url).pathname
-, filename = path.join(process.cwd(), uri)
-fs.exists(filename, function(exists){
-if (!exists) {
-response.writeHead(404, {'Content-Type': 'text/plain'})
-response.write('404 Not Found\n')
-response.end()
-return
-}
-if (fs.statSync(filename).isDirectory()) filename += 'index.html'
-fs.readFile(filename, 'binary', function(err, file){
-if (err) {
-response.writeHead(500, {'Content-Type': 'text/plain'})
-response.write(err + '\n')
-response.end()
-return
-}
-response.writeHead(200)
-response.write(file, 'binary')
-response.end()
+http.createServer((request, response) => {
+  const uri = url.parse(request.url).pathname
+  const filename = path.join(process.cwd(), uri)
+  fs.exists(filename, (exists) => {
+    if (!exists) {
+      response.writeHead(404, {'Content-Type': 'text/plain'})
+      response.write('404 Not Found\n')
+      response.end()
+      return
+    }
+    if (fs.statSync(filename).isDirectory()) filename += 'index.html'
+    fs.readFile(filename, 'binary', (err, file) => {
+      if (err) {
+        response.writeHead(500, {'Content-Type': 'text/plain'})
+        response.write(err + '\n')
+        response.end()
+        return
+      }
+      response.writeHead(200)
+      response.write(file, 'binary')
+      response.end()
+    })
+  })
+}).listen(parseInt(port, 10), () => {
+  console.log('server up on ' + port)
 })
-})
-}).listen(parseInt(port, 10))
-
-console.log('server up on ' + port)
-
 ```
 
 No options. No nothing. If your file you want to serve isn't called 'index.html,' that kinda sucks for you. I keep this around in my `~/bin` (with `#! /usr/bin/env node` at the top, executable) for running super quick servers when I'm just playing with things. The point of showing that bit, though, was to emphasise just how fantastic it is to even have things like Express. And keep in mind, there are more than just these three options. You've got Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and a load of things built on some combination of Socket.io and one middleware framework or another. Go play with options, they're all fun.

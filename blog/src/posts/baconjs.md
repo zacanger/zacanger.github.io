@@ -20,7 +20,6 @@ Bacon is a JS lib for FRP, like Rx, but not MS.
 
 Here's some jQuery, because I don't know why.
 
-
     var go = $('#clickMe').asEventStream('click')
     go.onValue (
       () => $('#output').append('clicked!'))
@@ -41,7 +40,6 @@ Ohh, okay, so the 'take' and 'skip' combinators are new. They do what they sound
 arrays, but with streams.
 
 --------
-
 
 Since we're avoiding side-effects (yo, this is functional programming), we instead use _event switching_. What that
 means is, _when x, do y_; for our case (at least right now?), on event _x_, start event-stream _y_. With Bacon,

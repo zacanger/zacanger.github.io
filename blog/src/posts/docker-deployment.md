@@ -59,4 +59,3 @@ localhost:5000/mycompany/theirprivatecode`.
 
 Then to run it you should be able to just `docker run
 mycompany/theirprivatecode`.
-

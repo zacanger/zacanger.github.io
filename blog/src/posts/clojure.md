@@ -117,5 +117,4 @@ hugs all around, had a beer, unpacked, showered maybe, gone to bed.
 i'll be home, instead, by maybe noon-ish tomorrow possibly, having missed
 another day of work, sweaty and gross, eurgh.
 
-on the other hand i met some nice people suck in this zombie airport, so.
-
+on the other hand i met some nice people stuck in this zombie airport, so.

@@ -18,6 +18,6 @@ in no particular order:
 * internet explorer/edge
 * no type system
 * everything DOM related
-* no real immutable values
+* no real immutable data structures
 * lack of neat syntax tools found in new languages (simple shit like range operators)
 * the way everyone else writes it

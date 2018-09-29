@@ -138,4 +138,3 @@ so extraneous info (for example, creating files that later get removed) wouldn't
 `docker export` is for _containers_, currently running.
 
 `docker save` is for _images_.
-

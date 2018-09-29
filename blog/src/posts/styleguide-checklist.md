@@ -9,7 +9,7 @@ tags:
   - ux
 ---
 
-## STYLEGUIDE CHECKLIST
+## Styleguide Checklist
 
 * Principles
   * Design/brand guidelines

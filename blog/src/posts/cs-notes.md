@@ -11,6 +11,7 @@ tags:
 notes on a bunch of stuff
 
 ## Big O:
+
 * analyzing the efficiency of algorithms (or code).
 * One could figure how much time fn will take given n input(s).
 * But really more interested in orders of magnitude than precise differences
