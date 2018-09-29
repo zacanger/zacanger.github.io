@@ -57,7 +57,6 @@ const Head = ({
         title: post ? post.title : title,
         description
       })}
-      <script type="text/javascript" href="/blog/assets/highlight.pack.js" />
       <link rel="stylesheet" type="text/css" href="/blog/assets/styles.css" />
       <link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css" />
     </head>
