@@ -163,7 +163,7 @@ package (similar to node modules).
 'nodejs' field on package.json is boolean; set false to disable node running
 there (purely client-side). node-main is the path to the script for node to run
 (so we could have nodde run the server, and nwjs working with its own files, and
-there _shouldn't- be conflict.)
+there _shouldn't_ be conflict.)
 
 - user-agent (should be pretty obvious.)
 - remote enalbes calling node in remote pages, whitelist of hostnames.
@@ -484,4 +484,3 @@ NPM -- local (to project) `.npmrc` _must_ be `0600`! Otherwise NPM ignores them.
 Idea being that they should only be readable and writable by the single user
 account. The local `.npmrc` can be overridden by arguments (such as `npm config
 set foo:port 9999`_).
-

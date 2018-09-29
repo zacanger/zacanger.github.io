@@ -22,4 +22,3 @@ evidently it's not always clear especially to non-native english speakers what t
 example from ariya hidayat's blog:
 if you asked him if `A` equals `a` if `caseInsensitive` is `false`, that'd
 take a minute of thinking to even understand. instead, why not just `caseSensitive`?
-

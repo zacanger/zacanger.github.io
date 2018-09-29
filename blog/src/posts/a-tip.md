@@ -59,4 +59,3 @@ disjointed.
 The point here is, if you have confidence in what you're doing, you'll get
 stuff done quicker and better, and if you don't have confidence in what you're
 doing, make it so that you can.
-

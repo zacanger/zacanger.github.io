@@ -22,4 +22,3 @@ tags:
   * integers, but can't _start_ with integers.
 * to get started with everything: `man 1 intro`
 * also `git help everyday`
-

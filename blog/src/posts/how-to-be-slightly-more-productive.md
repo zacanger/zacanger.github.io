@@ -19,6 +19,7 @@ are esoteric, none are risky, all require a little bit of work but make things
 a lot faster in a very short period of time.
 
 ## bash things
+
 you can use zsh, and that's a thing, and it doesn't suck, okay, but it pays
 to be good at bash. bash is everywhere. it's the default shell on just about
 every system. zsh gives you nice things, but you can get all the same nice
@@ -39,6 +40,7 @@ alias bn='babel-node'
 throw these at the bottom of your `~/.bashrc` (or `~/.bash_profile` on a mac).
 
 ## npm
+
 for that matter, there's the aliases up there... npm has a bunch built-in.
 for example, you never need to type out `npm install --save-dev`
 -- just do `npm i -S`.
@@ -62,11 +64,13 @@ out there (many many more, just search). or export aliases to move to places. or
 [mine](https://github.com/zacanger/z/blob/master/.bash_functions/gt.sh) if you'd like.
 
 ## markdown
+
 if you don't use it, use it. if you still click around in microsoft word or google docs,
 goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
 lightweight-markup authoring format out there. it's the only way to write, really.
 
 ## your editor
+
 i don't care what your editor is. i really don't. i know just enough about lisp
 to not even hate emacs users. i do dislike VS Code, but mostly because of the
 idiotic and transparent licensing scheme. and also because it's not a very
@@ -100,6 +104,7 @@ that one of the most important things you can do is be good at your editor.
 he's obviously right. he's laurie voss.
 
 ## use git
+
 this should be obvious. but, i mean, really use it. use it enough that you
 learn how to use a gitconfig, templates, etc., and try out lots of different
 extensions and wrappers for git (like hub, legit, ghcli, etc.). do stuff with
@@ -108,6 +113,7 @@ matters sometimes in some businesses but really really really spend some time
 learning git.
 
 ## configs
+
 ([like these](https://github.com/zacanger/z))
 
 organize yours. store them somewhere, like in a repo. because when your current
@@ -117,5 +123,5 @@ dotfiles nearly as extensive as those, but you don't need to -- i'm a little bit
 of a hoarder. disk space is cheap. whatever.
 
 ## stop reading blogs
-k.
 
+k.

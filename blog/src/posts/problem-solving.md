@@ -13,6 +13,9 @@ tags:
 * Develop an effective action plan.
 * Execute until the problem is solved, making modifications as necessary.
 
-If you start collecting and analysing data without first clarifying the question you are trying to answer, you're probably doing  yourself more harm than good. You'll end up drowning in a flood of information and realise only later that most fo that research was a waste of time.
+If you start collecting and analysing data without first clarifying the question
+you are trying to answer, you're probably doing yourself more harm than good.
+You'll end up drowning in a flood of information and realise only later that
+most fo that research was a waste of time.
 
 _Ken Watanbe_

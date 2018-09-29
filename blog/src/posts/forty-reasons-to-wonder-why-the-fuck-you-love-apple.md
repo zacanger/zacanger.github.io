@@ -87,4 +87,3 @@ any since before Mac OS X. I have used them regularly over the past several year
 * Mac OS X isn't Windows.
   * I should say that Windows _is_ good at some things. I think. Not the OS itself, but having the OS, it's probably a
     good idea if you're really into games, or developing specifically for Microsoft products (VB, C#, whatever).
-

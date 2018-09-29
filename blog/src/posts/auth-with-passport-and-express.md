@@ -13,7 +13,7 @@ tags:
 
 ## Passport/Flash Issues
 
-`npm i -S express-flash`, and `var flash = require('express-flash') in your app. `app.use(flash())`.
+`npm i -S express-flash`, and `var flash = require('express-flash')` in your app. `app.use(flash())`.
 
 So, make a route in your app/routes/config file, wherever you're keeping those, something like `app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})`, assuming you have some html with a form that `POST`s, and input for the email.
 

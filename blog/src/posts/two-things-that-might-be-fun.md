@@ -67,4 +67,4 @@ export default Something
 This a totally made-up syntax for a thing that doesn't exactly exist, and I
 don't know how useful this would actually be, since there are already great
 React libraries for ClojureScript out there. Just think it'd be neat to be able
-to to JSX in Scheme. I dunno, just a thought.
+to to JSX in Scheme.

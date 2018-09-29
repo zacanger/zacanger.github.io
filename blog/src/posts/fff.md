@@ -39,4 +39,3 @@ I don't really know what a functor is but apparently map and filter are functors
 Functors are objects that have a map-type method. Not the method itself.
 
 A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.
-

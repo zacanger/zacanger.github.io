@@ -152,5 +152,3 @@ instead of XHR. Looks pretty nice.
 
 There are a bunch of other fetch implementations. But it's already basically in browsers, so Node can't be
 _too_ far behind... right?
-
-
