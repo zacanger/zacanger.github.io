@@ -1,7 +1,7 @@
 import React from 'react'
 import { Post as PostType } from './types'
 
-const base = 'https://github.com/zacanger/dotcom/issues/new?title='
+const base = 'https://github.com/zacanger/zacanger.github.io/issues/new?title='
 
 const Post = ({ post }) => (
   <div>
