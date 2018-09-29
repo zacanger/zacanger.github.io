@@ -57,8 +57,7 @@ const Head = ({
         title: post ? post.title : title,
         description
       })}
-      <link rel="stylesheet" type="text/css" href="/blog/assets/styles.css" />
-      <link rel="stylesheet" type="text/css" href="/blog/assets/github-gist.css" />
+      <link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css" />
     </head>
   )
 }
