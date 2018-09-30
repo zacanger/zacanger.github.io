@@ -5,12 +5,12 @@ const Pagination = ({ baseUrl, previous = false, next = false }) => (
   <div>
     {typeof previous === 'number' &&
       <a style={{ marginRight: '8px' }} href={`${baseUrl}page/${previous}`}>
-        Previous
+        Newer
       </a>
     }
     {typeof next === 'number' &&
       <a href={`${baseUrl}page/${next}`}>
-        Next
+        Older
       </a>
     }
   </div>
