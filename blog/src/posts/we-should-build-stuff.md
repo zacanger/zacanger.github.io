@@ -15,4 +15,8 @@ i know Abstract exists and that's awesome, but it's only one very narrow, specif
 
 i want to help people make cool stuff, and it pisses me off that the best advice i can offer people is "learn git and get bitbucket because you get free private repos" and also "stop using microsoft products, you can't diff a docx"
 
-anyway i don't have a point, i'm just annoyed that programmers have all these cool toys and we haven't done anything useful for anyone else with them, we've just made our own lives better.
+i don't have a point, i'm just annoyed that programmers have all these cool toys and we haven't done anything useful for anyone else with them, we've just made our own lives better.
+
+IF YOU HAVE IDEAS let me know. can we version control audio? diff images in a way that makes sense? give graphic designers the power to make images that are optimized for different platforms? let writers check their writing for insensitive language or easily export pretty PDFs and word documents? idk, but i think it's pretty shitty that we engineers can do all that shit for ourselves and not find ways to share that with anyone else.
+
+developers made rsync friendly (dropbox). what if we could do the same with git? imagemagick? static analysis? i don't know what that would look like, but those are products i would care about, because they'd be helping people get work done.
