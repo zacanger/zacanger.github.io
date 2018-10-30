@@ -20,3 +20,13 @@ i don't have a point, i'm just annoyed that programmers have all these cool toys
 IF YOU HAVE IDEAS let me know. can we version control audio? diff images in a way that makes sense? give graphic designers the power to make images that are optimized for different platforms? let writers check their writing for insensitive language or easily export pretty PDFs and word documents? idk, but i think it's pretty shitty that we engineers can do all that shit for ourselves and not find ways to share that with anyone else.
 
 developers made rsync friendly (dropbox). what if we could do the same with git? imagemagick? static analysis? i don't know what that would look like, but those are products i would care about, because they'd be helping people get work done.
+
+some ideas:
+
+MS Word, but build on pandoc for incredibly easy file conversions, and also git for easy change management ('i liked this edit, but not this one'), and an 'advanced mode' which just goes into vim's normal mode. we could build this!
+
+figma and invision are at least partially built in JS, CSS, and in figma's case some WASM. why don't they have really good visual diffing integrated? why hasn't anyone build something for this?
+
+audio files are hard. midi is a mess. i don't know what to do here, but to start with, just using open formats would help. no more VST 2.x crap, no more FLPs, use something build on plain text that can be parsed by other tools. free software DAWs are actually pretty damn good, and have been for ten years or more.
+
+idk. we need better tools for people who aren't programmers, and they need a better business model than MS Word and any fucking Adobe subscription. FOSS with a paid service (think npm) seems to work pretty ok. if you have any big ideas, get in touch.
