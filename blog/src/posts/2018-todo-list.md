@@ -13,21 +13,21 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
 
 * [x] Learn about generative art, and make things. It would be especially cool
   to be able to generate based on music.
-* [ ] Get familiar enough with Clojure/ClojureScript to write something real-world
-* [ ] Same, with Haskell/Purescript
-* [ ] Finish the acoustic album
+* [ ] Get familiar enough with Haskell/Purescript, Clojure(script), and/or
+  Golang to write something real-world
+* [x] Finish the acoustic album
 * [x] Finish the electro tunes
 * [x] Eat healthier, cook more for myself, and order less
-* [ ] Shop less
+* [x] Shop less
 * [x] Exercise more
 * [x] Finish more side projects
-* [ ] Get out of the house more
+* [x] Get out of the house more
 * [ ] Get down to 0 nic (vaping)
 * [ ] Continue improving my Korean to the point where I can hold conversations
 * [ ] Be better at owning my own data
   * [ ] Maybe maintain my own bookmarks (move off of Pinboard)
-  * [x] Use the work Mac only for work
   * [ ] Switch to a more free mobile OS
-  * [ ] Remove accounts on shitty services, maybe
+  * [x] Use the work Mac only for work
+  * [x] Remove accounts on shitty services, maybe
 * [x] Drink less Utah beer (Utah beer is watered down, but still all the
   calories)
