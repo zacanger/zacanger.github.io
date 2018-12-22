@@ -22,7 +22,7 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
 * [x] Exercise more
 * [x] Finish more side projects
 * [x] Get out of the house more
-* [ ] Get down to 0 nic (vaping)
+* [x] Get down to 0 nic (vaping)
 * [ ] Continue improving my Korean to the point where I can hold conversations
 * [ ] Be better at owning my own data
   * [ ] Maybe maintain my own bookmarks (move off of Pinboard)
