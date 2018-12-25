@@ -1,12 +1,12 @@
 ---
 title: 2018 Todo List
-created: 2018-12-31
+created: 2018-12-24
 tags:
   - personal
 ---
 
-New Year's Resolutions for 2018! Post-dated to the end of the year so I can
-check things off as I go and keep reminding myself to keep up with stuff.
+New Year's Resolutions for 2018! Post-dated to the almost end of the year so I
+can check things off as I go and keep reminding myself to keep up with stuff.
 
 A few things are leftovers from [last
 year](http://zacanger.com/blog/posts/new-years-resolutions/).
