@@ -11,6 +11,7 @@ can check things off as I go and keep reminding myself to keep up with stuff.
 A few things are leftovers from [last
 year](http://zacanger.com/blog/posts/new-years-resolutions/).
 
+* [x] Record 'West'
 * [x] Learn about generative art, and make things. It would be especially cool
   to be able to generate based on music.
 * [ ] Get familiar enough with Haskell/Purescript, Clojure(script), and/or
