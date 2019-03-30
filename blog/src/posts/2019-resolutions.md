@@ -7,7 +7,4 @@ tags:
 
 New Year's Resolutions for 2019!
 
-* [ ] Write something real world in Golang
-* [ ] Continue improving my Korean to the point where I can hold conversations
-* [ ] Fully quit vaping
 * [ ] Survive
