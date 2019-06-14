@@ -16,7 +16,7 @@ If you don't have confidence in your code, then try this:
 
 > Write code in which you have confience.
 
-It really sucks to have to walk someone through your  code when you're not
+It really sucks to have to walk someone through your code when you're not
 sure it's even doing the things it's supposed to do, or when you _are_ sure
 it's doing the right things but doing them in a really gross kind of way.
 
