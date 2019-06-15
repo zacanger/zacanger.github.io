@@ -9,9 +9,6 @@ tags:
 
 # WTF is Set?
 
-Please excuse the funky syntax highlighting in this post. Apparently
-the thing my blog uses for that doesn't know what to do about template strings.
-
 So, someone asked in a Slack channel how they might clean up the following code:
 
 ```JavaScript

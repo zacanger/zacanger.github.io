@@ -854,9 +854,8 @@ table tbody > tr:nth-child(odd) > th {
 
 /* classes */
 .post-card {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
-
 
 /**
  * GitHub Gist Theme

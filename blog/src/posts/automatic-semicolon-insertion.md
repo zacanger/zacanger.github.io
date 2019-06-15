@@ -8,7 +8,6 @@ tags:
   - rant
 ---
 
-
 This is a simplified version of the [section from the spec that deals with ASI](http://www.ecma-international.org/ecma-262/5.1/#sec-7.9), because I'm really tired of all the idiocy and debate about this. It's not a big deal whether you use semicolons everywhere or don't, but the vitriol from those who use them everywhere really needs to end, and from what I can tell it's almost entirely based on this idea that ASI is complicated. ASI is _really simple_, and its rules are a lot easier to remember than stupidity like `++foo` vs `foo++`, or the rules for `this`. The actual spec's ASI section is less than two pages, but it can be simplified further, into probably less than a page.
 
 --------
@@ -39,7 +38,7 @@ Exception number four is pretty obvious, and no one has a problem with that.
 
 Exception number three is also pretty obvious, because you're talking about being in a block. Not rocket science.
 
-Exception number three:  
+Exception number three:
 If you're writing something like this, you need some mental help:
 
     i

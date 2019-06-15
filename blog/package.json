@@ -2,17 +2,17 @@
   "name": "blog",
   "description": "Zac Anger's blog.",
   "version": "1.0.0",
+  "private": true,
   "author": "Zac Anger",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "build": "run-s build:webpack clean build:rss build:css",
+    "build": "run-s build:webpack build:css",
     "build:css": "./build-css.sh",
-    "build:rss": "node lib/rss.js",
     "build:webpack": "NODE_ENV=production webpack -p",
-    "clean": "if [ -f bundle.js ] ; then rm bundle.js ; fi",
-    "prebuild": "npm run test",
-    "reset": "rm -r posts page index.html",
+    "clean": "rm -f index.html && rm -f bundle.js && rm -rf page posts && mkdir -p page && mkdir -p posts",
+    "postbuild": "rm -f bundle.js",
+    "prebuild": "sortpack && run-s clean test",
     "start": "webpack-dev-server --progress --colors",
     "test": "npm run test:lint",
     "test:lint": "eslint -c .eslintrc.json lib/ webpack.config.js"
@@ -69,10 +69,9 @@
     "prop-types": "15.6.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "rss": "1.2.2",
+    "sortpack": "1.2.0",
     "static-site-generator-webpack-plugin": "3.4.1",
     "webpack": "3.12.0",
     "webpack-dev-server": "3.0.0"
-  },
-  "private": true
+  }
 }

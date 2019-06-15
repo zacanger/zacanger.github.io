@@ -69,10 +69,6 @@ It's still pretty straightforward in Node, as it happens.
 We only need one file to get going. I'll call mine ~~compgen~~ rcg.js, for React
 Component Generator.
 
-> I apologize in advance, some of the syntax highlighting will look a little
-> odd... apparently the highlighting library I use doesn't understand template
-> strings.
-
 ```shell
 touch rcg.js     # create a new file
 chmod +x rcg.js  # set an executable bit on the file
@@ -108,13 +104,13 @@ just `npm i -g n && n latest`.
 Let's write out what a pure (function) component looks like, first.
 
 ```javascript
-const pureComponent = \`
+const pureComponent = `
 import React from 'react'
 
 const ${component} = () => <div>${component}</div>
 
 export default ${component}
-\`
+`
 ```
 
 It doesn't have a whole lot going on, I know. This is just a quick file
@@ -136,7 +132,7 @@ So now, let's get one for a class (I won't go through doing this one with an old
 version of Node, nor with `React.createClass`&mdash;just with ES2015 classes).
 
 ```javascript
-const classComponent = \`
+const classComponent = `
 import React, { Component } from 'react'
 
 export default class ${component} extends Component {
@@ -146,7 +142,7 @@ export default class ${component} extends Component {
     )
   }
 }
-\`
+`
 ```
 
 Lovely! Obviously this should be more complex; if your class only has a render
@@ -185,7 +181,7 @@ const { writeFile } = require('fs')
 Now, at the bottom of our file, let's actually do the fun bit.
 
 ```javascript
-writeFile(\`${component}.js\`, toWrite, 'utf8', err => {
+writeFile(`${component}.js`, toWrite, 'utf8', err => {
   if (err) console.log(err)
 })
 ```
@@ -200,15 +196,15 @@ const type = args[0]
 const component = args[1]
 const { writeFile } = require('fs')
 
-const pureComponent = \`
+const pureComponent = `
 import React from 'react'
 
 const ${component} = () => <div>${component}</div>
 
 export default ${component}
-\`
+`
 
-const classComponent = \`
+const classComponent = `
 import React, { Component } from 'react'
 
 export default class ${component} extends Component {
@@ -218,7 +214,7 @@ export default class ${component} extends Component {
     )
   }
 }
-\`
+`
 
 let toWrite
 if (type === 'function') {
@@ -231,7 +227,7 @@ if (type !== 'function' && type !== 'class') {
   console.log('please pass type of component as first argument')
 }
 
-writeFile(\`${component}.js\`, toWrite, 'utf8', err => {
+writeFile(`${component}.js`, toWrite, 'utf8', err => {
   if (err) console.log(err)
 })
 ```

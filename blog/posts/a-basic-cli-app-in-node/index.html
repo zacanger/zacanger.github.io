@@ -4,7 +4,7 @@ but wanted to get this idea out there tonight."/><meta name="author" content="Za
 run in your terminal. I&#x27;ve got a more in-depth tutorial coming up soon,
 but wanted to get this idea out there tonight."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="a basic command-line app in node"/><meta property="og:description" content="I&#x27;m going to walk through a super basic app in Node that you can
 run in your terminal. I&#x27;ve got a more in-depth tutorial coming up soon,
-but wanted to get this idea out there tonight."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>a basic command-line app in node</h2><div>24 August, 2016</div></header><div><div><p>I'm going to walk through a super basic app in Node that you can
+but wanted to get this idea out there tonight."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>a basic command-line app in node</h2><div>24 August, 2016</div></header><div><p>I'm going to walk through a super basic app in Node that you can
 run in your terminal. I've got a more in-depth tutorial coming up soon,
 but wanted to get this idea out there tonight.</p>
 <p><a href="http://ryanwalsh.io">Someone</a> brought up the idea of a React component
@@ -54,11 +54,6 @@ file around. Pretty handy, I think.</p>
 <p>It's still pretty straightforward in Node, as it happens.</p>
 <p>We only need one file to get going. I'll call mine <s>compgen</s> rcg.js, for React
 Component Generator.</p>
-<blockquote>
-<p>I apologize in advance, some of the syntax highlighting will look a little
-odd... apparently the highlighting library I use doesn't understand template
-strings.</p>
-</blockquote>
 <pre><code class="hljs language-shell">touch rcg.js     # create a new file
 chmod +x rcg.js  # set an executable bit on the file
 vi rcg.js        # open it for editing
@@ -84,14 +79,14 @@ really, you should just update). To update (on Mac or Linux; on Windows you
 should just go to <a href="http://nodejs.org">the website</a> and download a new version),
 just <code>npm i -g n &amp;&amp; n latest</code>.</p>
 <p>Let's write out what a pure (function) component looks like, first.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> pureComponent = \<span class="hljs-string">`
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`
 import React from 'react'
 
 const <span class="hljs-subst">${component}</span> = () =&gt; &lt;div&gt;<span class="hljs-subst">${component}</span>&lt;/div&gt;
 
 export default <span class="hljs-subst">${component}</span>
-\`
-</span></code></pre>
+`</span>
+</code></pre>
 <p>It doesn't have a whole lot going on, I know. This is just a quick file
 generator, it can't write your code for you. :P</p>
 <p>If you can't update node, that'd look something like this:</p>
@@ -104,7 +99,7 @@ generator, it can't write your code for you. :P</p>
 <p>(Kind of annoying, right?)</p>
 <p>So now, let's get one for a class (I won't go through doing this one with an old
 version of Node, nor with <code>React.createClass</code>—just with ES2015 classes).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> classComponent = \<span class="hljs-string">`
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`
 import React, { Component } from 'react'
 
 export default class <span class="hljs-subst">${component}</span> extends Component {
@@ -114,8 +109,8 @@ export default class <span class="hljs-subst">${component}</span> extends Compon
     )
   }
 }
-\`
-</span></code></pre>
+`</span>
+</code></pre>
 <p>Lovely! Obviously this should be more complex; if your class only has a render
 function that returns JSX, just use a function instead.</p>
 <p>Great, now you have a bunch of stuff in a file that doesn't do anything! Let's
@@ -141,10 +136,10 @@ this.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
 </code></pre>
 <p>Now, at the bottom of our file, let's actually do the fun bit.</p>
-<pre><code class="hljs language-javascript">writeFile(\<span class="hljs-string">`<span class="hljs-subst">${component}</span>.js\`, toWrite, 'utf8', err =&gt; {
-  if (err) console.log(err)
+<pre><code class="hljs language-javascript">writeFile(<span class="hljs-string">`<span class="hljs-subst">${component}</span>.js`</span>, toWrite, <span class="hljs-string">'utf8'</span>, err =&gt; {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
 })
-</span></code></pre>
+</code></pre>
 <p>Now your whole file should look something like this:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
 
@@ -153,15 +148,15 @@ this.</p>
 <span class="hljs-keyword">const</span> component = args[<span class="hljs-number">1</span>]
 <span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
 
-<span class="hljs-keyword">const</span> pureComponent = \<span class="hljs-string">`
+<span class="hljs-keyword">const</span> pureComponent = <span class="hljs-string">`
 import React from 'react'
 
 const <span class="hljs-subst">${component}</span> = () =&gt; &lt;div&gt;<span class="hljs-subst">${component}</span>&lt;/div&gt;
 
 export default <span class="hljs-subst">${component}</span>
-\`
+`</span>
 
-const classComponent = \`
+<span class="hljs-keyword">const</span> classComponent = <span class="hljs-string">`
 import React, { Component } from 'react'
 
 export default class <span class="hljs-subst">${component}</span> extends Component {
@@ -171,23 +166,23 @@ export default class <span class="hljs-subst">${component}</span> extends Compon
     )
   }
 }
-\`
+`</span>
 
-let toWrite
-if (type === 'function') {
+<span class="hljs-keyword">let</span> toWrite
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">'function'</span>) {
   toWrite = pureComponent
 }
-if (type === 'class') {
+<span class="hljs-keyword">if</span> (type === <span class="hljs-string">'class'</span>) {
   toWrite = classComponent
 }
-if (type !== 'function' &amp;&amp; type !== 'class') {
-  console.log('please pass type of component as first argument')
+<span class="hljs-keyword">if</span> (type !== <span class="hljs-string">'function'</span> &amp;&amp; type !== <span class="hljs-string">'class'</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'please pass type of component as first argument'</span>)
 }
 
-writeFile(\`<span class="hljs-subst">${component}</span>.js\`, toWrite, 'utf8', err =&gt; {
-  if (err) console.log(err)
+writeFile(<span class="hljs-string">`<span class="hljs-subst">${component}</span>.js`</span>, toWrite, <span class="hljs-string">'utf8'</span>, err =&gt; {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(err)
 })
-</span></code></pre>
+</code></pre>
 <p>Boom! You've made a command-line app! You can drop this anywhere in your <code>$PATH</code>
 and call it from anywhere to generate a component for you! (<code>$PATH</code> is where
 your system looks for files to execute. If you don't have something like a
@@ -202,4 +197,4 @@ to leave that up to you. Have fun with it!</p>
 <p>If you're interested in doing this kind of stuff in Node, be sure to check back!
 I've got two more tutorials on writing command-line apps in Node, which will go
 progressively more in depth, on the way</p>
-</div><p><a href="https://github.com/zacanger/zacanger.github.io/issues/new?title=a basic command-line app in node" target="_blank">Submit a bug report</a></p></div><footer>Made by <a href="/">Zac Anger</a><br/><br/><a href="/blog/rss.xml">Feed</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger">GitHub</a> · <a href="https://twitter.com/zacanger">Twitter</a> · <a href="https://mastodon.social/@zacanger">Mastodon</a></footer></body></html>
+</div><footer><a href="/">Zac Anger</a> · <a href="/LICENSE.txt">License</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
