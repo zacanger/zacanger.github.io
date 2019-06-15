@@ -10,7 +10,7 @@
     "build": "run-s build:webpack build:css",
     "build:css": "./build-css.sh",
     "build:webpack": "NODE_ENV=production webpack -p",
-    "clean": "rm -f index.html && rm -f bundle.js && rm -rf page posts && mkdir -p page && mkdir -p posts",
+    "clean": "rm -f index.html && rm -f bundle.js && rm -rf posts && mkdir -p posts",
     "postbuild": "rm -f bundle.js",
     "prebuild": "sortpack && run-s clean test",
     "start": "webpack-dev-server --progress --colors",
