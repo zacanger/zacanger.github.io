@@ -1,11 +1,9 @@
 ---
-title: Use Boring Stuff
+title: Use Boring Stuff (It's Okay!)
 created: 2019-02-10
 tags:
   - linux
 ---
-
-# Use Boring Stuff (It's Okay!)
 
 (copy-pasted from a mastodon thread.)
 

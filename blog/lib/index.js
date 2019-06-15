@@ -8,10 +8,7 @@ export default (locals, callback) => {
   let view = false
   const params = {}
 
-  if (locals.path.match(/^\/$|^\/page/)) {
-    if (locals.path.match(/^\/page/)) {
-      params.page = locals.path.replace(/^\/page\//, '')
-    }
+  if (locals.path.match(/^\/$/)) {
     view = <PostList />
   } else if (locals.path.match(/^\/posts/)) {
     params.post = locals.path.replace(/^\/posts\//, '')

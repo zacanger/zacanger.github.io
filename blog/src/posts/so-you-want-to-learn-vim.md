@@ -8,8 +8,6 @@ tags:
   - editor
 ---
 
-# So You Want To Learn vim
-
 ## Why Read This?
 
 Why am I qualified to talk about this? There are _so many_ Intro To Vim

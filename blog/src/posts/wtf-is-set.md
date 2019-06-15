@@ -7,8 +7,6 @@ tags:
   - set
 ---
 
-# WTF is Set?
-
 So, someone asked in a Slack channel how they might clean up the following code:
 
 ```JavaScript

@@ -7,7 +7,7 @@ tags:
   - terminal
 ---
 
-# Build a Note-Taking App for the Terminal, in Node
+## Build a Note-Taking App for the Terminal, in Node
 
 This is a follow-up to my [first
 post](blog.zacanger.com/2016/a-basic-cli-app-in-node.html) on writing

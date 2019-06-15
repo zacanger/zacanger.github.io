@@ -6,8 +6,6 @@ tags:
   - thoughts
 ---
 
-# Some Recommendations for New (Web) Developers
-
 Some of these thoughts probably apply to all developers. Some don't.
 
 0. Learn an editor. It doesn't matter which editor. Just learn one. Be good at
