@@ -1,21 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>git workflows</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body { font-family: 'Merriweather', serif; }
+      h1, h2, h3 { font-family: 'Lato', sans-serif; }
+      .remark-code, .remark-inline-code { font-family: 'Hack', monospace; }
+      img { max-height: 80%; max-width: 80%; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
 # Rust
 
-----
+---
 
 # Go
 
 Go is super hip right now!
 
-----
+---
 
 # Go is Fast
 
-Not as fast as Rust, but frequently faster than C. 
+Not as fast as Rust, but frequently faster than C.
 
 <https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/rust-go.html>
 <https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/rust.html>
 
-----
+---
 
 # Go is Easy
 
@@ -29,7 +43,7 @@ Not as fast as Rust, but frequently faster than C.
   * The borrow checker is possibly the coolest thing in programming
     language development since the early 90s
 
-----
+---
 
 # Example
 
@@ -51,7 +65,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-----
+---
 
 # Go is Convenient
 
@@ -68,7 +82,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
   * K8S
   * Runs on Lambda
 
-----
+---
 
 # Go is Concurrent
 
@@ -92,7 +106,7 @@ func main() {
 }
 ```
 
-----
+---
 
 # We Should Not Rewrite Everything In Go
 
@@ -104,7 +118,7 @@ func main() {
   * This isn't really a bad thing! But it's weird!
 * Is Go 2 ever going to be a thing?
 
-----
+---
 
 # Errors Example
 
@@ -120,7 +134,7 @@ if err != nil {
 // we did the thing!
 ```
 
-----
+---
 
 # We're Already Using Go
 
@@ -131,10 +145,18 @@ if err != nil {
 * Probably some AWS services
 * Who knows, maybe other things
 
-----
+---
 
 # The Last Slide
 
 Go is like JS (or Ruby, or Python). It's not the most beautiful, elegant
 language with the best APIs, but it's mostly kinda okay, and if you're building
 anything in this decade, you're already using it whether you like it or not.
+    </textarea>
+    <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      remark.create()
+    </script>
+  </body>
+</html>
