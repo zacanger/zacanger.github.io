@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>git workflows</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body { font-family: 'Merriweather', serif; }
+      h1, h2, h3 { font-family: 'Lato', sans-serif; }
+      .remark-code, .remark-inline-code { font-family: 'Hack', monospace; }
+      img { max-height: 80%; max-width: 80%; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+# git workflows
+
+---
+
+## goals
+
+* know what's in production
+* reduce conflicts
+* point in time snapshots (release branches, tags)
+* code reviews
+
+---
+
+## git flow
+
+* master
+* develop
+* feature/bug/refactor branches
+* hotfixes are a special case
+* release branches or git tags
+
+---
+
+![](gitflow-advanced.svg)
+
+---
+
+![](gitflow-log.png)
+
+---
+
+![](firefox-branches.png)
+
+---
+
+## trunk + feature branches
+
+* master
+* feature/bug/refactor/hotfix branches
+* git tags
+
+---
+
+![](feature-branch.png)
+
+---
+
+![](trunkbased-log.png)
+
+---
+
+## rebasing
+
+* squashing is just common courtesy
+* `git rebase -i HEAD~n`
+
+---
+
+![](no-rebase.png)
+
+---
+
+![](rebasing.png)
+
+---
+
+## semver
+
+* semantic versioning
+  * versions have meaning
+  * easy for people and tools to parse
+* `vx.x.1` - patch (bugfix, dependency update, etc)
+* `vx.1.x` - non-breaking feature addition
+* `v1.x.x` - broke the API
+
+---
+
+## releasing
+
+* tags!
+* just pointers, they don't change anything
+* `git tag -a 'v1.1.1' -m "It's the best release yet!"`
+
+---
+
+## github things
+
+![](checks.png)
+
+---
+
+## more github things
+
+![](fixes.png)
+
+---
+
+## github has so many things now
+
+![](gh-templates.png)
+
+---
+
+## suggestions
+
+* required code reviews before merging
+* automated checks (pep8, etc)
+* no commits directly to develop/master
+* no releases directly from a branch (always a tag)
+    </textarea>
+    <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      remark.create()
+    </script>
+  </body>
+</html>
