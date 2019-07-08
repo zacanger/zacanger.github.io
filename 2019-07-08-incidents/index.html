@@ -79,15 +79,15 @@ if everything is a P0, nothing is a P0
 
 # severity
 
-0. everything is on fire oh god
+* **P0** everything is on fire oh god
   * maybe multiple engineers under tech lead
   * communications lead necessary
-1. one thing is kinda on fire
-  * one engineer
-  * maybe no communications lead
-2. something looks like it might catch fire soon
-  * not really an incident
-3. look at this sometime next sprint
+* **P1** one thing is on fire
+  * maybe just tech lead on engineering
+  * communications lead necessary if customers/stakeholders affected
+* **P2** something looks like it might catch fire soon
+  * probably no incident commander or communicatoins lead
+* **P3** look at this sometime next sprint
   * definitely not an incident
 
 ---
@@ -131,11 +131,40 @@ wonder if they're doing it right.
 
 * no access to boxes in prod
 * no changes through the AWS console or CLI
-* everything goes through CI (including DB changes)
+* everything goes through CI
   * services
+  * client applications
   * db
   * infrastructure (terraform, kubernetes)
+* no cheating (if the tests don't pass, it doesn't go out)
+  * having 0 tests and a green build doesn't count
 
+---
+
+# less incidents!
+
+* better autoscaling
+* better CI/CD process
+* move pieces to different layers (example: rate limiting close to the edge)
+* circuit breakers
+
+---
+
+# less "incidents!"
+
+* if it will self correct (scaling)
+* if it has nothing to do with us and we can't fix it (someone on IE 8)
+* if it's an exception we can just expect to happen sometimes
+
+### _then it's not an incident_
+
+---
+
+# takeaways
+
+we don't suck!
+
+but we could be better
     </textarea>
     <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
