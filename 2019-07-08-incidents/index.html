@@ -43,6 +43,8 @@
                 /        \
                /          \
       [Tech Lead]        [Communications Lead]
+        /    \
+    other engineers
 
 ```
 
@@ -79,15 +81,19 @@ if everything is a P0, nothing is a P0
 
 # severity
 
-* **P0** everything is on fire oh god
+* **P0**
+  * _everything is on fire oh god_
   * maybe multiple engineers under tech lead
   * communications lead necessary
-* **P1** one thing is on fire
+* **P1**
+  * _one thing is on fire_
   * maybe just tech lead on engineering
   * communications lead necessary if customers/stakeholders affected
-* **P2** something looks like it might catch fire soon
+* **P2**
+  * _something looks like it might catch fire soon_
   * probably no incident commander or communicatoins lead
-* **P3** look at this sometime next sprint
+* **P3**
+  * _look at this sometime next sprint_
   * definitely not an incident
 
 ---
@@ -96,17 +102,17 @@ if everything is a P0, nothing is a P0
 
 ---
 
-# games!
+# games
 
 * chaos engineering
-  * simian army (chaos monkey)
-  * i could just kill stuff in prod
-* bad prd releases
+  * chaos monkey
+  * manually just killing stuff sometimes
 * bad stg releases
+* bad prd releases
 
 ---
 
-# tools!
+# tools
 
 * victorops (on call should matter!)
 * newrelic (we pay them a lot of money, let's use them better!)
@@ -116,15 +122,7 @@ if everything is a P0, nothing is a P0
 
 ---
 
-# training!
-
-* not just on the tools
-* cross-training
-  * limit the bus factor
-
----
-
-# restrictions!
+# restrictions
 
 if there's only one process for making changes in production, no one has to
 wonder if they're doing it right.
@@ -136,12 +134,21 @@ wonder if they're doing it right.
   * client applications
   * db
   * infrastructure (terraform, kubernetes)
-* no cheating (if the tests don't pass, it doesn't go out)
+* no cheating
+  * if the tests don't pass, it doesn't go out
   * having 0 tests and a green build doesn't count
 
 ---
 
-# less incidents!
+# training
+
+* on the tools
+* on the process
+* on other teams (cross-training — limit the bus factor)
+
+---
+
+# less incidents
 
 * better autoscaling
 * better CI/CD process
@@ -150,7 +157,7 @@ wonder if they're doing it right.
 
 ---
 
-# less "incidents!"
+# less "incidents"
 
 * if it will self correct (scaling)
 * if it has nothing to do with us and we can't fix it (someone on IE 8)
