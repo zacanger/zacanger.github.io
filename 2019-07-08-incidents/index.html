@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>incidents</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body { font-family: 'Merriweather', serif; }
+      h1, h2, h3 { font-family: 'Lato', sans-serif; }
+      .remark-code, .remark-inline-code { font-family: 'Hack', monospace; }
+      img { max-height: 80%; max-width: 80%; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+# incidents
+
+---
+
+# goals
+
+* fast MTTD (mean time to detection)
+* high MTTF (mean time to failure) (uptime)
+* high MTBF (mean time between failures)
+* low MTTF (mean time to recovery)
+
+---
+
+# goals
+
+* less panic
+* less people doing things all at once
+* more coordination
+* more (and clearer) communication
+
+---
+
+# roles
+
+```
+            --------------------
+            |Incident Commander|
+            --------------------
+                /        \
+               /          \
+      [Tech Lead]        [Communications Lead]
+
+```
+
+---
+
+# incident commander
+
+* does not fix the problem (but has some knowledge of the system)
+* keeps up to date with everything that's going on
+* handles internal (engineering) communication
+
+---
+
+# tech lead
+
+* fixes the problem
+* keeps incident commander updated
+* runs major changes by the IC
+
+---
+
+# communications lead
+
+* external communications (link to marketing, CxOs, etc)
+* keeps IC updated with what stakeholders/customers are saying
+
+---
+
+# severity
+
+if everything is a P0, nothing is a P0
+
+---
+
+# severity
+
+0. everything is on fire oh god
+  * maybe multiple engineers under tech lead
+  * communications lead necessary
+1. one thing is kinda on fire
+  * one engineer
+  * maybe no communications lead
+2. something looks like it might catch fire soon
+  * not really an incident
+3. look at this sometime next sprint
+  * definitely not an incident
+
+---
+
+# how can we do this?
+
+---
+
+# games!
+
+* chaos engineering
+  * simian army (chaos monkey)
+  * i could just kill stuff in prod
+* bad prd releases
+* bad stg releases
+
+---
+
+# tools!
+
+* victorops (on call should matter!)
+* newrelic (we pay them a lot of money, let's use them better!)
+* logging (sumologic -> efk)
+* chatops (we all live in slack anyway)
+* documentation (how should incident reports work? runbooks?)
+
+---
+
+# training!
+
+* not just on the tools
+* cross-training
+  * limit the bus factor
+
+---
+
+# restrictions!
+
+if there's only one process for making changes in production, no one has to
+wonder if they're doing it right.
+
+* no access to boxes in prod
+* no changes through the AWS console or CLI
+* everything goes through CI (including DB changes)
+  * services
+  * db
+  * infrastructure (terraform, kubernetes)
+
+    </textarea>
+    <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      remark.create()
+    </script>
+  </body>
+</html>
