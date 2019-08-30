@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "author": "Zac Anger",
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "main": "index.js",
   "scripts": {
     "build": "run-s build:webpack build:css",
