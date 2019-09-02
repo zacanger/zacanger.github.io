@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Go</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body { font-family: 'Merriweather', serif; }
+      h1, h2, h3 { font-family: 'Lato', sans-serif; }
+      .remark-code, .remark-inline-code { font-family: 'Hack', monospace; }
+      img { max-height: 80%; max-width: 80%; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+# Rust
+
+---
+
+(jk)
+
+---
+
+# Go
+
+Go is super hip right now!
+
+---
+
+# Go is Fast
+
+Not as fast as Rust, but frequently faster than C.
+
+* <https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/rust-go.html>
+* <https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/rust.html>
+
+---
+
+# Go is Easy
+
+* Feels like C and Python got smashed together
+* Simple naming convention:
+  * `camelCaseFunction`: it's private!
+  * `PascalCaseFunction`: it's public!
+* Simple syntax, no talk of "Monads" and "Borrow Checkers"
+  * I like monads and monoids and applicative functors and
+    I'm not even good at math
+  * The borrow checker is possibly the coolest thing in programming
+    language development since the early 90s
+
+---
+
+# Example
+
+```go
+package main
+
+import (
+	"io"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":80", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "hello, world")
+}
+```
+
+---
+
+# Go is Convenient
+
+* Built-in cross compilation for every platform that matters
+  * And lots of platforms that don't!
+* Toolchain includes cross-compilation, formatting, linting, testing, C FFI,
+  documentation generation, magical API usage updating, running without
+  compilation, finding bugs in dependencies, and lots more
+
+* Static binaries!
+* Libraries for _everything_
+* The languager of the cloud
+  * Docker
+  * K8S
+  * Runs on Lambda
+
+---
+
+# Go is Concurrent
+
+* Built in `chan` primitive (channels)
+* `goroutines` (get it, they're coroutines, but with a `g`)
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  someStringsIGuess := make(chan string)
+
+  go func() {
+    someStringsIGuess <- "hello!"
+  }()
+
+  firstString := <- someStringsIGuess
+  fmt.Println(firstString)
+}
+```
+
+---
+
+# We Should Not Rewrite Everything In Go
+
+* Still young
+* No generics
+  * This is a major pain point and everyone hates it
+* Package management seems to change every week
+* No exceptions, errors are first-class values
+  * This isn't really a bad thing! But it's weird!
+* Is Go 2 ever going to be a thing?
+
+---
+
+# Errors Example
+
+```go
+if result, err := somePackage.DoThing(); err != nil {
+  // we did the thing!
+}
+
+result, err := somePackage.DoAnotherThing();
+if err != nil {
+  panic(err);
+}
+// we did the thing!
+```
+
+---
+
+# We're Already Using Go
+
+* Docker
+* Kubernetes
+* Benchmarking and load testing programs
+* Terraform and Packer
+* Probably some AWS services
+* Who knows, maybe other things
+
+---
+
+# The Last Slide
+
+Go is like JS (or Ruby, or Python). It's not the most beautiful, elegant
+language with the best APIs, but it's mostly kinda okay, and if you're building
+anything in this decade, you're already using it whether you like it or not.
+    </textarea>
+    <script type="text/javascript" src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      remark.create()
+    </script>
+  </body>
+</html>
