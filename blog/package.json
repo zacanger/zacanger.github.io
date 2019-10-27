@@ -7,8 +7,9 @@
   "license": "LGPL-3.0",
   "main": "index.js",
   "scripts": {
-    "build": "run-s build:webpack build:css",
+    "build": "run-s build:webpack build:css build:rss",
     "build:css": "./build-css.sh",
+    "build:rss": "node lib/rss.js",
     "build:webpack": "NODE_ENV=production webpack -p",
     "clean": "rm -f index.html && rm -f bundle.js && rm -rf posts && mkdir -p posts",
     "postbuild": "rm -f bundle.js",
@@ -34,6 +35,9 @@
     "web development",
     "writing"
   ],
+  "dependencies": {
+    "rss": "1.2.2"
+  },
   "devDependencies": {
     "autoprefixer": "9.1.5",
     "babel-cli": "6.26.0",
