@@ -1,5 +1,5 @@
 ---
-title: So You Want To Learn vim
+title: So You Want To Learn Vim
 created: 2017-07-27
 tags:
   - vim
