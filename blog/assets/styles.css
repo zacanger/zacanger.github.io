@@ -300,6 +300,7 @@ header {
 }
 footer {
   margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 blockquote, q {
   quotes: none;
