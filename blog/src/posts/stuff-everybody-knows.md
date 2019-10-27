@@ -1,5 +1,5 @@
 ---
-title: stuff everybody knows
+title: Stuff Everybody Knows
 created: 2016-04-09
 tags:
   - talks

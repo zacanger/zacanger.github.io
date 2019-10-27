@@ -1,5 +1,5 @@
 ---
-title: a tip
+title: A Tip
 created: 2016-06-10
 tags:
   - confidence

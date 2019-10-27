@@ -1,5 +1,5 @@
 ---
-title: principles and tips
+title: Principles and Tips
 created: 2016-08-19
 tags:
   - process

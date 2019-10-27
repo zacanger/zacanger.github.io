@@ -1,5 +1,5 @@
 ---
-title: a basic command-line app in node
+title: A Basic Command-Line App In Node
 created: 2016-08-24
 tags:
   - node

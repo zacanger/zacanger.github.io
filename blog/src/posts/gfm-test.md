@@ -1,5 +1,5 @@
 ---
-title: gfm test
+title: GFM Test
 created: 2017-11-19
 tags:
   - test

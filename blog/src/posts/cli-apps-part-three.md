@@ -1,5 +1,5 @@
 ---
-title: html2text in node tutorial
+title: Html2text in Node Tutorial
 created: 2016-09-27
 tags:
   - node
