@@ -710,6 +710,7 @@ body {
   font-weight: 300;
   font-size: 1.6rem;
   line-height: 1.3em;
+  padding: 1rem;
 }
 
 ::-moz-selection {
