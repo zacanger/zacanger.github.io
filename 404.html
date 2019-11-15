@@ -2,47 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>there's nothing here</title>
+  <title>There's Nothing Here</title>
   <style type="text/css">
+    @viewport {
+      width: device-width
+    }
+    @-o-viewport {
+      width: device-width
+    }
+    *, :after, :before {
+      box-sizing: inherit;
+      outline: 0 !important;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-stretch: normal
+    }
+    body, html {
+      height: 100%;
+      width: 100%
+    }
     html {
-      font-family: monospace;
-      padding: 30px 10px;
-      font-size: 20px;
-      line-height: 1.4;
-      color: #737373;
-      background: #c1c1c1;
-      -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-font-smoothing: subpixel-antialiased;
+      -webkit-text-size-adjust: 100%;
+      box-sizing: border-box;
+      font-size: 62.5%;
+      text-rendering: optimizeLegibility;
+      margin: 0;
+      padding: 0;
     }
     body {
-      width: 700px;
-      padding: 30px 20px 50px;
-      border: 1px solid #b3b3b3;
-      border-radius: 4px;
-      margin: 0 auto;
-      box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #eee;
-      background:#ebebeb;
+      font-size: 1.5em;
+      font-weight: 400;
+      font-family: Merriweather, Cardo, serif;
+      color: #303330;
+      background: #fff;
+      padding: 1rem;
+      max-width: 700px;
+      line-height: 1.6;
+      margin: 0;
     }
     h1 {
-      margin: 0 10px;
-      font-size: 50px;
-      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: -.1rem;
+      font-weight: 400;
+      font-size: 2.5rem;
+      line-height: 1.2
     }
-    h1 span {color: #bbb; }
-    p { margin: 1em 0; }
-    .container {
-      max-width: 600px;
-      width: 80%;
-      margin: 0 auto;
+    a, a:link, a:visited {
+      transition: color .2s ease-in-out;
+      color: #265c83
+    }
+    a:hover {
+      color: #7fdbff
+    }
+    a:active {
+      transition: color .2s ease-in-out;
+      color: #007be6
+    }
+    p {
+      margin-top: 1rem
+    }
+    @media (max-width: 767px) {
+      x:-moz-any-link {
+        display: table-cell
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>404 <span>:(</span></h1>
-    <p>it looks like the page you're trying to view doesn't exist.</p>
-    </p>
-    <p>go back <a href="https://zacanger.com">home</a>?</p>
-  </div>
+  <h1>404 <span>:(</span></h1>
+  <p>It looks like the page you're trying to view doesn't exist.</p>
+  </p>
+  <p>Go back <a href="https://zacanger.com">home</a>?</p>
 </body>
 </html>
