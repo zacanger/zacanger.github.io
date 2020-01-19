@@ -3,20 +3,20 @@
   <span class="hljs-keyword">let</span> contacts_set = []
 
   contacts.forEach(<span class="hljs-function">(<span class="hljs-params">contact</span>) =&gt;</span> {
-    <span class="hljs-keyword">let</span> firstName = get(contact, <span class="hljs-string">'contactInfo.firstName'</span>)
-    <span class="hljs-keyword">let</span> lastName  = get(contact, <span class="hljs-string">'contactInfo.lastName'</span>)
-    <span class="hljs-keyword">let</span> fullName = <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>
+    <span class="hljs-keyword">let</span> firstName = <span class="hljs-keyword">get</span>(contact, 'contactInfo.firstName')
+    let lastName  = <span class="hljs-keyword">get</span>(contact, 'contactInfo.lastName')
+    let fullName = `${firstName} ${lastName}<span class="hljs-string">`
 
-    <span class="hljs-keyword">if</span> (contacts_set.includes(fullName)) {
-      <span class="hljs-keyword">return</span>
-    } <span class="hljs-keyword">else</span> {
+    if (contacts_set.includes(fullName)) {
+      return
+    } else {
       contacts_set.push(fullName)
     }
 
-    set(<span class="hljs-keyword">this</span>, <span class="hljs-string">'contactsSet'</span>, contactsSet)
+    set(this, 'contactsSet', contactsSet)
   })
 }
-</code></pre>
+</span></code></pre>
 <p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
 know Ember so don't ask me.</p>
 <p>And I said, how about this?</p>

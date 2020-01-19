@@ -8,8 +8,8 @@ in Node, with no dependencies.</p>
 </ul>
 <p>And here's the finished product from the latter:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
-<span class="hljs-meta">
-'use strict'</span>
+
+<span class="hljs-meta">'use strict'</span>
 
 <span class="hljs-keyword">const</span> {
   readFileSync
@@ -48,7 +48,7 @@ in Node, with no dependencies.</p>
         <span class="hljs-keyword">const</span> noteIndex = process.argv[<span class="hljs-number">3</span>]
         removeNote(notes, noteIndex)
         <span class="hljs-keyword">break</span>
-      <span class="hljs-keyword">default</span>:
+      <span class="hljs-attr">default</span>:
         takeNote(notes, arg)
     }
   } <span class="hljs-keyword">else</span> {
@@ -86,11 +86,11 @@ it later.</p>
 and require them now. We'll need <code>http</code>'s <code>get</code> method, and also a way to work
 with an argument. If you've done either of my previous tutorials, you'll already
 be familiar with Node's <code>process.argv</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> { get } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
-<span class="hljs-keyword">const</span> url = process.argv[<span class="hljs-number">2</span>]
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> { <span class="hljs-keyword">get</span> } = require('http')
+const url = process.argv[2]
 </code></pre>
 <p>Let's see if we can't get some HTML, just as a starting point.</p>
-<pre><code class="hljs language-javascript">get(url, res =&gt; {
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">get</span>(url, res =&gt; {
   res.on(<span class="hljs-string">'data'</span>, d =&gt; {
     <span class="hljs-built_in">console</span>.log(d)
   })
@@ -121,7 +121,7 @@ it can really save you a lot of time if you get used to using them.</p>
 like this:</p>
 <pre><code class="hljs language-json">{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"something"</span>,
-  // probably some other stuff
+  <span class="hljs-comment">// probably some other stuff</span>
   <span class="hljs-attr">"dependencies"</span>: {
     <span class="hljs-attr">"to-markdown"</span>: <span class="hljs-string">"^3.0.1"</span>
   }
@@ -165,8 +165,8 @@ it exectuable.</p>
 </code></pre>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
 
-<span class="hljs-keyword">const</span> { get } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
-<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> { <span class="hljs-keyword">get</span> } = require('http')
+// ...
 </code></pre>
 <p>Now you should be able to just do something like <code>./index.js zacanger.com</code> and
 see some results.</p>
@@ -231,7 +231,7 @@ all this junk cluttering up my space.</p>
 you'd like, it really doesn't matter.</p>
 <p>And I think we should also just wait until we have all the data before logging
 anything, so let's adjust our HTTP call (and stick it in a function):</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> main = <span class="hljs-function"><span class="hljs-params">arg</span> =&gt;</span> get(arg, res =&gt; {
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> main = <span class="hljs-function"><span class="hljs-params">arg</span> =&gt;</span> <span class="hljs-keyword">get</span>(arg, res =&gt; {
   <span class="hljs-keyword">let</span> b = <span class="hljs-string">''</span> <span class="hljs-comment">// `b` for `body`</span>
   res.on(<span class="hljs-string">'data'</span>, d =&gt; b += d.toString)
   res.on(<span class="hljs-string">'end'</span>, () =&gt; log(wrap(convert(b))))

@@ -117,8 +117,8 @@ should</a>.</p>
 <p>We'll require just one thing to start with: <code>fs</code>, which is built in to Node.</p>
 <p>Our file should currently look like this:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
-<span class="hljs-meta">
-'use strict'</span>
+
+<span class="hljs-meta">'use strict'</span>
 
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
 </code></pre>
@@ -164,8 +164,8 @@ little shorter:</p>
 </code></pre>
 <p>Your file should now look something like this:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
-<span class="hljs-meta">
-'use strict'</span>
+
+<span class="hljs-meta">'use strict'</span>
 
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
 <span class="hljs-keyword">const</span> log = <span class="hljs-built_in">console</span>.log
@@ -175,10 +175,10 @@ little shorter:</p>
 <span class="hljs-keyword">const</span> notes = <span class="hljs-built_in">JSON</span>.parse(file)
 </code></pre>
 <p>And your file structure should look something like:</p>
-<pre><code class="hljs">project-root
-  package<span class="hljs-selector-class">.json</span>
-  index<span class="hljs-selector-class">.js</span>
-  notes<span class="hljs-selector-class">.json</span>
+<pre><code class="hljs"><span class="hljs-selector-tag">project-root</span>
+  <span class="hljs-selector-tag">package</span><span class="hljs-selector-class">.json</span>
+  <span class="hljs-selector-tag">index</span><span class="hljs-selector-class">.js</span>
+  <span class="hljs-selector-tag">notes</span><span class="hljs-selector-class">.json</span>
 </code></pre>
 <h2>Make It Do Things</h2>
 <p>So let's do stuff! First let's make a way to record notes taken. This will work
@@ -255,8 +255,8 @@ bit in a function and call it at the end. It's not beautiful, but if you put a
 little bit of work into this, you could have a decent app! Here's how your whole
 file should look, now:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
-<span class="hljs-meta">
-'use strict'</span>
+
+<span class="hljs-meta">'use strict'</span>
 
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
 <span class="hljs-keyword">const</span> log = <span class="hljs-built_in">console</span>.log

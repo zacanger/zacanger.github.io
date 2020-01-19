@@ -2,24 +2,24 @@ import React from 'react'
 import { object, node, any } from 'prop-types'
 
 class Data extends React.Component {
-  getChildContext () {
+  getChildContext() {
     return {
-      data: this.props.data
+      data: this.props.data,
     }
   }
 
-  render () {
+  render() {
     return this.props.children
   }
 }
 
 Data.childContextTypes = {
-  data: object.isRequired
+  data: object.isRequired,
 }
 
 Data.propTypes = {
   data: any,
-  children: node
+  children: node,
 }
 
 export default Data

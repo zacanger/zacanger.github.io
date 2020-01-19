@@ -90,7 +90,7 @@ server.route([
   {
     <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
     <span class="hljs-attr">path</span>   : <span class="hljs-string">'/api/items/{id},'</span>
-    handler: <span class="hljs-function">(<span class="hljs-params">request, reply</span>) =&gt;</span> {
+    <span class="hljs-attr">handler</span>: <span class="hljs-function">(<span class="hljs-params">request, reply</span>) =&gt;</span> {
       reply(<span class="hljs-string">'get item id '</span> + request.params.id)
     } <span class="hljs-comment">// same thing here for all the other methods</span>
   }
@@ -104,37 +104,37 @@ server.start(<span class="hljs-function"><span class="hljs-params">()</span> =&g
 <p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too, <em>now</em>, but that was a recent switch for them, I think), which is really nice. Because it's so small, it's a lot easier to just go ahead and write your own middleware. Like Express, though, that can lead to a decision problem.</p>
 <p>Hapi definitely has their corporate backing game on point. That's great for them, because that means it <em>has</em> to be stable. It's very consistent and reusable. It's also a whole goddamn lot of code to write, compared to the other two. If we're working on a large, complex app, maybe that'd be worth it, but for smaller apps (like, probably, most of the ones any of us will ever write on our own or in small teams), it's just too much. If you're doing something really big, something like... oh, I dunno, some giant retailer, let's call them 'Mal Wart,' if you've got to run this huge multinational enterprise system, then maybe Hapi actually would be really great for you.</p>
 <p>I think it's probably pretty easy to see why I favour Koa. For what it's worth, just as an example, here's what it takes to get a server running in raw Node:</p>
-<pre><code class="hljs"><span class="hljs-keyword">const</span> http = require(<span class="hljs-string">'http'</span>)
-<span class="hljs-keyword">const</span> url = require(<span class="hljs-string">'url'</span>)
-<span class="hljs-keyword">const</span> path = require(<span class="hljs-string">'path'</span>)
-<span class="hljs-keyword">const</span> fs = require(<span class="hljs-string">'fs'</span>)
-<span class="hljs-keyword">const</span> port = <span class="hljs-built_in">process</span>.argv[<span class="hljs-number">2</span>] || <span class="hljs-number">4444</span>
+<pre><code class="hljs"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
+<span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> port = process.argv[<span class="hljs-number">2</span>] || <span class="hljs-number">4444</span>
 
-http.createServer((request, response) =&gt; {
+http.createServer(<span class="hljs-function">(<span class="hljs-params">request, response</span>) =&gt;</span> {
   <span class="hljs-keyword">const</span> uri = url.parse(request.url).pathname
-  <span class="hljs-keyword">const</span> filename = path.join(<span class="hljs-built_in">process</span>.cwd(), uri)
-  fs.<span class="hljs-built_in">exists</span>(filename, (<span class="hljs-built_in">exists</span>) =&gt; {
-    <span class="hljs-built_in">if</span> (!<span class="hljs-built_in">exists</span>) {
+  <span class="hljs-keyword">const</span> filename = path.join(process.cwd(), uri)
+  fs.exists(filename, <span class="hljs-function">(<span class="hljs-params">exists</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!exists) {
       response.writeHead(<span class="hljs-number">404</span>, {<span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/plain'</span>})
-      response.<span class="hljs-built_in">write</span>(<span class="hljs-string">'404 Not Found\n'</span>)
-      response.<span class="hljs-built_in">end</span>()
-      <span class="hljs-built_in">return</span>
+      response.write(<span class="hljs-string">'404 Not Found\n'</span>)
+      response.end()
+      <span class="hljs-keyword">return</span>
     }
-    <span class="hljs-built_in">if</span> (fs.statSync(filename).<span class="hljs-built_in">isDirectory</span>()) filename += <span class="hljs-string">'index.html'</span>
-    fs.readFile(filename, <span class="hljs-string">'binary'</span>, (err, file) =&gt; {
-      <span class="hljs-built_in">if</span> (err) {
+    <span class="hljs-keyword">if</span> (fs.statSync(filename).isDirectory()) filename += <span class="hljs-string">'index.html'</span>
+    fs.readFile(filename, <span class="hljs-string">'binary'</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (err) {
         response.writeHead(<span class="hljs-number">500</span>, {<span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/plain'</span>})
-        response.<span class="hljs-built_in">write</span>(err + <span class="hljs-string">'\n'</span>)
-        response.<span class="hljs-built_in">end</span>()
-        <span class="hljs-built_in">return</span>
+        response.write(err + <span class="hljs-string">'\n'</span>)
+        response.end()
+        <span class="hljs-keyword">return</span>
       }
       response.writeHead(<span class="hljs-number">200</span>)
-      response.<span class="hljs-built_in">write</span>(file, <span class="hljs-string">'binary'</span>)
-      response.<span class="hljs-built_in">end</span>()
+      response.write(file, <span class="hljs-string">'binary'</span>)
+      response.end()
     })
   })
-}).<span class="hljs-built_in">listen</span>(<span class="hljs-built_in">parseInt</span>(port, <span class="hljs-number">10</span>), () =&gt; {
-  console.log(<span class="hljs-string">'server up on '</span> + port)
+}).listen(<span class="hljs-built_in">parseInt</span>(port, <span class="hljs-number">10</span>), <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'server up on '</span> + port)
 })
 </code></pre>
 <p>No options. No nothing. If your file you want to serve isn't called 'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with <code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers when I'm just playing with things. The point of showing that bit, though, was to emphasise just how fantastic it is to even have things like Express. And keep in mind, there are more than just these three options. You've got Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and a load of things built on some combination of Socket.io and one middleware framework or another. Go play with options, they're all fun.</p>

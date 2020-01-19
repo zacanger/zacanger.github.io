@@ -6,21 +6,19 @@ export default {
   output: {
     filename: 'bundle.js',
     path: __dirname,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: 'babel-loader',
+      },
+    ],
   },
-  plugins: [
-    new StaticSiteGeneratorPlugin('bundle.js', data.routes, data)
-  ],
+  plugins: [new StaticSiteGeneratorPlugin('bundle.js', data.routes, data)],
   node: {
-    fs: 'empty'
-  }
+    fs: 'empty',
+  },
 }

@@ -7,7 +7,7 @@ const socialMeta = ({
   card,
   description,
   image,
-  title = 'Zac Anger\'s Blog'
+  title = "Zac Anger's Blog",
 }) => (
   <React.Fragment>
     <meta name="twitter:card" content={card} />
@@ -28,16 +28,10 @@ socialMeta.propTypes = {
   card: string,
   description: string,
   image: string,
-  title: string
+  title: string,
 }
 
-const Head = ({
-  title,
-  post,
-  keywords,
-  author,
-  ...props
-}) => {
+const Head = ({ title, post, keywords, author, ...props }) => {
   const tags = keywords.concat((post && post.tags) || [])
   const description = (post && post.excerpt) || props.description
 
@@ -45,7 +39,7 @@ const Head = ({
     <head>
       <meta charSet="utf-8" />
       <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-      <title>{post ? (post.title + ' | ' + title) : title}</title>
+      <title>{post ? post.title + ' | ' + title : title}</title>
       <meta name="description" content={description} />
       <meta name="author" content={author} />
       <meta name="keywords" content={tags.join()} />
@@ -55,9 +49,13 @@ const Head = ({
         card: 'summary',
         image: 'https://zacanger.com/logo.png',
         title: post ? post.title : title,
-        description
+        description,
       })}
-      <link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/blog/assets/styles.min.css"
+      />
     </head>
   )
 }
@@ -67,7 +65,7 @@ Head.propTypes = {
   description: string,
   author: string,
   post: Post,
-  keywords: arrayOf(string)
+  keywords: arrayOf(string),
 }
 
 export default Head

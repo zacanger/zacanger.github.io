@@ -6,7 +6,7 @@ const Post = ({ post }) => (
 )
 
 Post.propTypes = {
-  post: PostType
+  post: PostType,
 }
 
 export default Post

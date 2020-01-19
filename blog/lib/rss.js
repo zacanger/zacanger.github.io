@@ -10,7 +10,7 @@ const options = {
   title,
   description,
   site_url: 'https://zacanger.com/blog',
-  image_url: 'https://zacanger.com/logo.png'
+  image_url: 'https://zacanger.com/logo.png',
 }
 
 const feed = new Rss(options)
@@ -25,7 +25,7 @@ data.posts.forEach((post) => {
     url: `https://zacanger.com/blog/posts/${post.slug}`,
     guid: post.slug,
     categories: post.tags,
-    author
+    author,
   })
 })
 

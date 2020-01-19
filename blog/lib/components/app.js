@@ -5,7 +5,7 @@ import { Post } from './types'
 import { arrayOf, object } from 'prop-types'
 
 class App extends React.Component {
-  render () {
+  render() {
     const { posts, params } = this.props
 
     let post = false
@@ -26,7 +26,7 @@ class App extends React.Component {
 
 App.propTypes = {
   posts: arrayOf(Post),
-  params: object
+  params: object,
 }
 
 export default App

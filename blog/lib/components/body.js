@@ -12,10 +12,7 @@ const Body = (props) => {
 
   return (
     <body>
-      <Header {...props}
-        title={post.title}
-        description={date}
-      />
+      <Header {...props} title={post.title} description={date} />
       {view}
       <Footer {...props} />
     </body>
@@ -25,7 +22,7 @@ const Body = (props) => {
 Body.propTypes = {
   title: string,
   post: Post,
-  children: node
+  children: node,
 }
 
 export default Body

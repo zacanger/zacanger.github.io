@@ -13,8 +13,8 @@ const renderPost = (post, i) => (
 
 const PostList = (props) => {
   const publishedPosts = props.posts
-  let params = props.params || false
-  let chunks = chunk(publishedPosts, props.pageSize)
+  const params = props.params || false
+  const chunks = chunk(publishedPosts, props.pageSize)
   let page
   let index = 0
   let posts = []
@@ -39,11 +39,7 @@ const PostList = (props) => {
       <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
         {posts.map(renderPost)}
       </ul>
-      <Pagination {...props}
-        index={index}
-        previous={previous}
-        next={next}
-      />
+      <Pagination {...props} index={index} previous={previous} next={next} />
     </div>
   )
 }
@@ -51,7 +47,7 @@ const PostList = (props) => {
 PostList.propTypes = {
   posts: arrayOf(Post),
   params: object,
-  pageSize: number
+  pageSize: number,
 }
 
 export default PostList

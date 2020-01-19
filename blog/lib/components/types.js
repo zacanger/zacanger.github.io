@@ -7,5 +7,5 @@ export const Post = shape({
   slug: string.isRequired,
   subhead: string,
   tags: arrayOf(string),
-  title: string.isRequired
+  title: string.isRequired,
 })

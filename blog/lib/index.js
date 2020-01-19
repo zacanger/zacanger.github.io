@@ -18,10 +18,7 @@ export default (locals, callback) => {
   }
 
   const html = renderToStaticMarkup(
-    <App {...locals}
-      params={params}
-      children={view}
-    />
+    <App {...locals} params={params} children={view} />
   )
 
   callback(null, `<!DOCTYPE html>${html}`)

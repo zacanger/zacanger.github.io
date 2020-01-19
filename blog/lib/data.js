@@ -8,11 +8,15 @@ import highlight from 'markdown-it-highlightjs'
 import dl from 'markdown-it-deflist'
 import tasks from 'markdown-it-task-lists'
 
-const md = Md().use(dl).use(tasks).use(highlight)
+const md = Md()
+  .use(dl)
+  .use(tasks)
+  .use(highlight)
 
 const dir = './src/posts'
 
-const filenames = fs.readdirSync(dir)
+const filenames = fs
+  .readdirSync(dir)
   .filter((filename) => !/^\./.test(filename))
 
 const mapFiles = (filename) => {
@@ -26,13 +30,17 @@ const mapFiles = (filename) => {
   }
   const html = md.render(matter.body)
   const $ = cheerio.load(html)
-  const excerpt = matter.attributes.excerpt || $('p').first().text()
+  const excerpt =
+    matter.attributes.excerpt ||
+    $('p')
+      .first()
+      .text()
   return {
     ...matter.attributes,
     slug: filename.replace(/\.md/, ''),
     body: matter.body,
     html,
-    excerpt
+    excerpt,
   }
 }
 
@@ -40,8 +48,10 @@ const posts = filenames
   .map(mapFiles)
   .sort((a, b) => new Date(b.created) - new Date(a.created))
 
-const postRoutes = filenames.map((filename) => '/posts/' + filename.replace(/\.md$/, ''))
-const routes = [ '/', ...postRoutes ]
+const postRoutes = filenames.map(
+  (filename) => '/posts/' + filename.replace(/\.md$/, '')
+)
+const routes = ['/', ...postRoutes]
 
 const data = {
   author,
@@ -53,7 +63,7 @@ const data = {
   pageSize: Infinity,
   posts,
   routes,
-  title: 'Zac Anger\'s Blog'
+  title: "Zac Anger's Blog",
 }
 
 module.exports = data
