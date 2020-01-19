@@ -1,5 +1,5 @@
 ---
-title: Html2text in Node Tutorial
+title: Node CLI 2, Html2text
 created: 2016-09-27
 tags:
   - node

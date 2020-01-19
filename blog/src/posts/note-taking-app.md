@@ -1,5 +1,5 @@
 ---
-title: Building Command-Line Apps In Node (A Note-Taking App)
+title: Node CLI 2, Note Taking App
 created: 2016-08-26
 tags:
   - node

@@ -1,5 +1,5 @@
 ---
-title: A Basic Command-Line App In Node
+title: Node CLI 1, React Component Generator
 created: 2016-08-24
 tags:
   - node
