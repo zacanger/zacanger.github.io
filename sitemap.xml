@@ -6,17 +6,32 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
   <loc>https://zacanger.com/</loc>
-  <lastmod>2019-11-21T20:41:55+00:00</lastmod>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://zacanger.com/cv</loc>
-  <lastmod>2019-11-21T20:41:55+00:00</lastmod>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog</loc>
-  <lastmod>2019-11-21T20:41:55+00:00</lastmod>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
   <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/presentations</loc>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/hey-you</loc>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/zeess</loc>
+  <lastmod>2020-01-19T01:41:55+00:00</lastmod>
+  <priority>0.40</priority>
 </url>
 </urlset>
