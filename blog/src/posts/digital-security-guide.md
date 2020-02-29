@@ -149,3 +149,4 @@ Encrypt any sensitive files.
 * [Messaging Services Comparison](https://github.com/dessalines/Messaging-Services-Comparison)
 * [PrivacyTools](https://www.privacytools.io/) (List of software recommendations)
 * [ThinkPrivacy](https://www.thinkprivacy.io/) (Software recommendations blog)
+* [RiseUp Digital Security Guide](https://riseup.net/en/security)
