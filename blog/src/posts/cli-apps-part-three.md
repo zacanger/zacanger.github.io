@@ -1,5 +1,5 @@
 ---
-title: Node CLI 2, Html2text
+title: Node CLI 3, Html2text
 created: 2016-09-27
 tags:
   - node
@@ -391,7 +391,7 @@ a bit from your results, and that's totally fine.
 }
 ```
 
-```index.js
+```javascript
 #!/usr/bin/env node
 
 const

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Node CLI 2, Html2text | Zac Anger&#x27;s Blog</title><meta name="description" content="Okay, ready to build another command-line app in Node?"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,node,cli,terminal,html,markdown"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Node CLI 2, Html2text"/><meta name="twitter:description" content="Okay, ready to build another command-line app in Node?"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Node CLI 2, Html2text"/><meta property="og:description" content="Okay, ready to build another command-line app in Node?"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Node CLI 2, Html2text</h2><div>27 September, 2016</div></header><div><p>Okay, ready to build another command-line app in Node?</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Node CLI 3, Html2text | Zac Anger&#x27;s Blog</title><meta name="description" content="Okay, ready to build another command-line app in Node?"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,node,cli,terminal,html,markdown"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Node CLI 3, Html2text"/><meta name="twitter:description" content="Okay, ready to build another command-line app in Node?"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Node CLI 3, Html2text"/><meta property="og:description" content="Okay, ready to build another command-line app in Node?"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Node CLI 3, Html2text</h2><div>27 September, 2016</div></header><div><p>Okay, ready to build another command-line app in Node?</p>
 <p>If you haven't seen my last two posts, you should check them out, since I'm not
 going to cover a lot of the basics again. They're both on writing small cli apps
 in Node, with no dependencies.</p>
@@ -289,21 +289,21 @@ a bit from your results, and that's totally fine.</p>
   <span class="hljs-attr">"devDependencies"</span>: {}
 }
 </code></pre>
-<pre><code class="hljs language-index.js">#!/usr/bin/env node
+<pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
 
-const
-  url      = process.argv[2] || 'zacanger.com'
-, { get }  = require('http')
+<span class="hljs-keyword">const</span>
+  url      = process.argv[<span class="hljs-number">2</span>] || <span class="hljs-string">'zacanger.com'</span>
+, { <span class="hljs-keyword">get</span> }  = require('http')
 , { rows } = process.stdout
-, len      = (rows &lt; 80 ? 80 : rows)
-, toMd     = require('to-markdown')
-, ww       = require('wordwrap')
+, len      = (rows &lt; <span class="hljs-number">80</span> ? <span class="hljs-number">80</span> : rows)
+, toMd     = <span class="hljs-built_in">require</span>(<span class="hljs-string">'to-markdown'</span>)
+, ww       = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wordwrap'</span>)
 , wrapper  = ww(len)
-, opts     = { gfm: true }
-, conv     = a =&gt; toMd(a, opts)
-, wrap     = a =&gt; wrapper(a)
-, log      = a =&gt; console.log(a)
-, src      = url.includes(('http://') || url.includes('https://')) ? url : \`http://${url}\`
+, opts     = { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">true</span> }
+, conv     = <span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> toMd(a, opts)
+, wrap     = <span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> wrapper(a)
+, log      = <span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(a)
+, src      = url.includes((<span class="hljs-string">'http://'</span>) || url.includes(<span class="hljs-string">'https://'</span>)) ? url : \<span class="hljs-string">`http://<span class="hljs-subst">${url}</span>\`
 
 const main = a =&gt; get(a, res =&gt; {
   let b = ''
@@ -312,7 +312,7 @@ const main = a =&gt; get(a, res =&gt; {
 })
 
 if (!module.parent) main(src)
-</code></pre>
+</span></code></pre>
 <p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
 Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
 Github</a>.</p>

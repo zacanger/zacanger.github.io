@@ -150,3 +150,4 @@ Encrypt any sensitive files.
 * [PrivacyTools](https://www.privacytools.io/) (List of software recommendations)
 * [ThinkPrivacy](https://www.thinkprivacy.io/) (Software recommendations blog)
 * [RiseUp Digital Security Guide](https://riseup.net/en/security)
+* [Ethical Alternatives](https://ethical.net/resources/)
