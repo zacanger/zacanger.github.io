@@ -8,10 +8,7 @@ import highlight from 'markdown-it-highlightjs'
 import dl from 'markdown-it-deflist'
 import tasks from 'markdown-it-task-lists'
 
-const md = Md()
-  .use(dl)
-  .use(tasks)
-  .use(highlight)
+const md = Md().use(dl).use(tasks).use(highlight)
 
 const dir = './src/posts'
 
@@ -30,11 +27,7 @@ const mapFiles = (filename) => {
   }
   const html = md.render(matter.body)
   const $ = cheerio.load(html)
-  const excerpt =
-    matter.attributes.excerpt ||
-    $('p')
-      .first()
-      .text()
+  const excerpt = matter.attributes.excerpt || $('p').first().text()
   return {
     ...matter.attributes,
     slug: filename.replace(/\.md/, ''),
