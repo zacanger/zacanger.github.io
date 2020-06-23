@@ -13,13 +13,13 @@ They're not complicated. Also some tips. These are all in no particular order.
 And kind of stream-of-consciousness.</p>
 <p>Have a changelog. This doesn't have to be something complicated. It can actually
 be <em>really</em> simple. Here's a script that'll do this for you.</p>
-<pre><code class="hljs language-shell"><span class="hljs-meta">#</span><span class="bash">!/usr/bin/env bash</span>
-range="${1:-origin..}"
+<pre><code class="language-shell">#!/usr/bin/env bash
+range=&quot;${1:-origin..}&quot;
 shift 1
 git log \
   --no-merges \
    --format='%C(auto,green)* %s%C(auto,reset)%n%w(0,2,2)%+b' \
-   --reverse "$range" "$@"
+   --reverse &quot;$range&quot; &quot;$@&quot;
 </code></pre>
 <p>Write tests. Even if they're not complex, thorough tests, write them. It's a
 start.</p>

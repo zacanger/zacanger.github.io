@@ -23,8 +23,8 @@ drafts so they don't lose their work if their computer dies, like it's 1995. Why
 don't we build more cool stuff for other people who create cool stuff?
 
 I want to help people make cool stuff, and it pisses me off that the best advice
-~ can offer people is "learn ~it and get ~itbucket because you get free private
-repos" and also "stop using microsoft ~roducts, you can't diff a docx."
+folks can offer people is "learn git and get bitbucket because you get free private
+repos" and also "stop using microsoft products, you can't diff a docx."
 
 I don't have a point, I'm just annoyed that programmers have all these cool toys
 and we haven't done anything useful for anyone else with them, we've just made

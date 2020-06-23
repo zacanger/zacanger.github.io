@@ -24,32 +24,32 @@
 <p>Exception number three is also pretty obvious, because you're talking about being in a block. Not rocket science.</p>
 <p>Exception number three:
 If you're writing something like this, you need some mental help:</p>
-<pre><code class="hljs">i
+<pre><code>i
 ++
 j
 </code></pre>
 <p>ASI would turn that into:</p>
-<pre><code class="hljs">i;
+<pre><code>i;
 ++j;
 </code></pre>
 <p>But guess what? No rational human being would write code like that, so it's not a problem. Right? Right.</p>
 <p>It's the first thing that people worry about, really. Which is why we like to do semicolons at the beginning of those lines. It turns out it's a lot quicker and easier to remember than people think. Don't write your code like a jackass (it's not concrete poetry, dummy), and put a semicolon at the beginning of a line if it starts with <code>[</code> or <code>(</code>. And it turns out it's a lot easier to read, too (comma-first is another entire discussion, but what it comes down to is that comma-first is much, much easier to read and write, so it doesn't really make much sense not to do it).</p>
 <p>There's also that other thing where ASI could totally break your code, and that goes back to the &quot;Don't write code like a jackass (it's not concrete poetry)&quot; bit. Imagine you're a tool, so you write:</p>
-<pre><code class="hljs">function foo(bar){
+<pre><code>function foo(bar){
   return
     bar
 }
 </code></pre>
 <p>Well, for starters, you're weird. And ASI will do this: <code>function foo(bar){ return; bar; };</code>. It turns out there's a really super easy way around that problem, and it's something all people do anyway because they're not horrible human beings: don't put random newlines in your code. <code>return</code> is <em>always</em> terminated by a newline (as mentioned above), so everyone's already aware of this. That was easy. Same goes for <code>break</code>, <code>continue</code>, and <code>throw</code>.</p>
 <p>The idea that putting semicolons everywhere is somehow more readable or safe makes very little sense. I could put semicolons all over the place, and it makes no difference.</p>
-<pre><code class="hljs">function foo(){;;;;;;;;;;;
+<pre><code>function foo(){;;;;;;;;;;;
 ;;var bar = 'semicolons';;
 ;;console.log(bar);;;;;;;;
 };;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;foo();;
 </code></pre>
 <p>Try running that in your browser console, or Node. Try running this one:</p>
-<pre><code class="hljs">function foo(){
+<pre><code>function foo(){
   var bar = 'no semicolons'
   console.log(bar)
 }

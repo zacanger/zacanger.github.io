@@ -16,14 +16,14 @@ post</a> on writing
 command-line apps in Node. I suggest you read that first, but this post should
 stand on its own if you don't want to. Below is the little React component
 generator that you'd get if you follow that tutorial.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="hljs-keyword">const</span> type = process.argv[<span class="hljs-number">2</span>]
-<span class="hljs-keyword">const</span> component = process.argv[<span class="hljs-number">3</span>]
-<span class="hljs-keyword">const</span> { writeFile } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+const type = process.argv[2]
+const component = process.argv[3]
+const { writeFile } = require('fs')
 
-<span class="hljs-keyword">const</span> help = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>
-  <span class="hljs-built_in">console</span>.log(\<span class="hljs-string">`
+const help = () =&gt;
+  console.log(\`
   please pass component type and component name
   example: ./rcg.js function Foo
 \`)
@@ -35,25 +35,25 @@ if (!component || !type) {
 const pureComponent = \`
 import React from 'react'
 
-const <span class="hljs-subst">${component}</span> = () =&gt; &lt;div&gt;<span class="hljs-subst">${component}</span>&lt;/div&gt;
+const ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
 
-export default <span class="hljs-subst">${component}</span>
+export default ${component}
 \`.trim()
 
 const classComponent = \`
 import React, { Component } from 'react'
 
-export default class <span class="hljs-subst">${component}</span> extends Component {
+export default class ${component} extends Component {
   render() {
     return (
-      &lt;div&gt;<span class="hljs-subst">${component}</span>&lt;/div&gt;
+      &lt;div&gt;${component}&lt;/div&gt;
     )
   }
 }
 \`.trim()
 
 const doTheThing = kind =&gt; (
-  writeFile(\`<span class="hljs-subst">${component}</span>.js\`, kind, 'utf8', err =&gt; {
+  writeFile(\`${component}.js\`, kind, 'utf8', err =&gt; {
     if (err) console.log(err)
   })
 )
@@ -68,7 +68,7 @@ switch (type) {
   default:
     return help()
 }
-</span></code></pre>
+</code></pre>
 <hr>
 <h2>Introduction</h2>
 <p>I really love writing little command-line utilities in Node. There are other
@@ -116,11 +116,11 @@ using <code>babel-register</code> you could use <code>import</code>s here, but w
 should</a>.</p>
 <p>We'll require just one thing to start with: <code>fs</code>, which is built in to Node.</p>
 <p>Our file should currently look like this:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="hljs-meta">'use strict'</span>
+'use strict'
 
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+const fs = require('fs')
 </code></pre>
 <p>Our app is going to read input from the terminal, so we'll need to use the
 built-in <code>process</code>. This provides an <code>argv</code>, which is an 'argument
@@ -130,7 +130,7 @@ always start with <code>node</code> and the file that's being run. So, we'll use
 <code>process</code> is an awesome piece of Node, and if you're not familiar with it, open
 a REPL (just enter <code>node</code> in the terminal) and type in <code>process</code>, and skim
 through that gigantic object.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> arg = process.argv[<span class="hljs-number">2</span>]
+<pre><code class="language-javascript">const arg = process.argv[2]
 </code></pre>
 <p>Parsing arguments is tedious and sometimes difficult. There are a
 <a href="https://github.com/tj/commander.js">lot</a> of
@@ -152,59 +152,59 @@ uses a file under the user's home directory; that's another thing we won't worry
 about right now, but it's <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">pretty
 easy</a> to do.)</p>
 <p>Let's add another couple of declarations:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> n = <span class="hljs-string">'./notes.json'</span>
-<span class="hljs-keyword">const</span> file = fs.readFileSync(n)
+<pre><code class="language-javascript">const n = './notes.json'
+const file = fs.readFileSync(n)
 </code></pre>
 <p>We'll also have a variable here for our read-in notes.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> notes = <span class="hljs-built_in">JSON</span>.parse(file)
+<pre><code class="language-javascript">const notes = JSON.parse(file)
 </code></pre>
 <p>And since we'll be using <code>console.log</code> in a few places, let's just make that a
 little shorter:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> log = <span class="hljs-built_in">console</span>.log
+<pre><code class="language-javascript">const log = console.log
 </code></pre>
 <p>Your file should now look something like this:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="hljs-meta">'use strict'</span>
+'use strict'
 
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
-<span class="hljs-keyword">const</span> log = <span class="hljs-built_in">console</span>.log
-<span class="hljs-keyword">const</span> arg = process.argv[<span class="hljs-number">2</span>]
-<span class="hljs-keyword">const</span> n = <span class="hljs-string">'./notes.json'</span>
-<span class="hljs-keyword">const</span> file = fs.readFileSync(n)
-<span class="hljs-keyword">const</span> notes = <span class="hljs-built_in">JSON</span>.parse(file)
+const fs = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = fs.readFileSync(n)
+const notes = JSON.parse(file)
 </code></pre>
 <p>And your file structure should look something like:</p>
-<pre><code class="hljs"><span class="hljs-selector-tag">project-root</span>
-  <span class="hljs-selector-tag">package</span><span class="hljs-selector-class">.json</span>
-  <span class="hljs-selector-tag">index</span><span class="hljs-selector-class">.js</span>
-  <span class="hljs-selector-tag">notes</span><span class="hljs-selector-class">.json</span>
+<pre><code>project-root
+  package.json
+  index.js
+  notes.json
 </code></pre>
 <h2>Make It Do Things</h2>
 <p>So let's do stuff! First let's make a way to record notes taken. This will work
 by just calling your script and treating the first argument as a note.</p>
-<pre><code class="hljs language-shell">./index.js "go to the grocery store"
+<pre><code class="language-shell">./index.js &quot;go to the grocery store&quot;
 ./index.js cook
 ./index.js eat
-./index.js "wash dishes"
+./index.js &quot;wash dishes&quot;
 </code></pre>
 <p>Let's write a function for this.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> takeNote = <span class="hljs-function">(<span class="hljs-params">notes, note</span>) =&gt;</span> {
+<pre><code class="language-javascript">const takeNote = (notes, note) =&gt; {
   notes.push(note)
-  <span class="hljs-keyword">const</span> taken = <span class="hljs-built_in">JSON</span>.stringify(notes, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)
-  fs.writeFile(n, taken, <span class="hljs-string">'utf8'</span>, err =&gt; {
-    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> log(err)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
   })
 }
 </code></pre>
 <p>Note that we're using function expressions, not function declarations. This
 could also be written as:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">takeNote</span> (<span class="hljs-params">notes, note</span>) </span>{
+<pre><code class="language-javascript">function takeNote (notes, note) {
   notes.push(note)
-  <span class="hljs-keyword">var</span> taken = <span class="hljs-built_in">JSON</span>.stringify(notes, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)
-  fs.writeFile(file, taken, <span class="hljs-string">'utf8'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
-    <span class="hljs-keyword">if</span> (err) {
-      <span class="hljs-keyword">return</span> log(err)
+  var taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(file, taken, 'utf8', function(err) {
+    if (err) {
+      return log(err)
     }
   })
 }
@@ -221,11 +221,11 @@ already exist, for example.</p>
 <p>We should handle this function where we process our command-line arguments,
 which we'll get to in a little bit.</p>
 <p>Let's also write a function for removing a note by its index in the array.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> removeNote = <span class="hljs-function">(<span class="hljs-params">notes, noteIndex</span>) =&gt;</span> {
-  notes.splice(noteIndex <span class="hljs-number">-1</span>, <span class="hljs-number">1</span>)
-  <span class="hljs-keyword">const</span> taken = <span class="hljs-built_in">JSON</span>.stringify(notes, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)
-  fs.writeFile(n, taken, <span class="hljs-string">'utf8'</span>, err =&gt; {
-    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> log(err)
+<pre><code class="language-javascript">const removeNote = (notes, noteIndex) =&gt; {
+  notes.splice(noteIndex -1, 1)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
   })
 }
 </code></pre>
@@ -236,64 +236,64 @@ which we'll get to in a little bit.</p>
 <code>switch</code> here, but for a lot of people that'll seem a little unfamiliar. Let's
 assume that you'll use <code>-s</code> to show all notes, and <code>-r</code> to remove a note. We
 should also handle a case where there are no arguments passed.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">if</span> (!arg) {
-  <span class="hljs-keyword">return</span> log(<span class="hljs-string">'Please pass an argument'</span>)
+<pre><code class="language-javascript">if (!arg) {
+  return log('Please pass an argument')
 }
-<span class="hljs-keyword">if</span> (arg &amp;&amp; arg === <span class="hljs-string">'-r'</span>) {
-  <span class="hljs-keyword">const</span> noteIndex = process.argv[<span class="hljs-number">3</span>]
-  <span class="hljs-keyword">return</span> removeNote(notes, noteIndex)
+if (arg &amp;&amp; arg === '-r') {
+  const noteIndex = process.argv[3]
+  return removeNote(notes, noteIndex)
 }
-<span class="hljs-keyword">if</span> (arg &amp;&amp; arg === <span class="hljs-string">'-s'</span>) {
-  <span class="hljs-keyword">return</span> log(notes)
+if (arg &amp;&amp; arg === '-s') {
+  return log(notes)
 }
-<span class="hljs-keyword">else</span> {
-  <span class="hljs-keyword">return</span> takeNote(notes, arg)
+else {
+  return takeNote(notes, arg)
 }
 </code></pre>
 <p>So, that's a basic way to handle command-line options. Let's just wrap that last
 bit in a function and call it at the end. It's not beautiful, but if you put a
 little bit of work into this, you could have a decent app! Here's how your whole
 file should look, now:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="hljs-meta">'use strict'</span>
+'use strict'
 
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
-<span class="hljs-keyword">const</span> log = <span class="hljs-built_in">console</span>.log
-<span class="hljs-keyword">const</span> arg = process.argv[<span class="hljs-number">2</span>]
-<span class="hljs-keyword">const</span> n = <span class="hljs-string">'./notes.json'</span>
-<span class="hljs-keyword">const</span> file = fs.readFileSync(n)
-<span class="hljs-keyword">const</span> notes = <span class="hljs-built_in">JSON</span>.parse(file)
+const fs = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = fs.readFileSync(n)
+const notes = JSON.parse(file)
 
-<span class="hljs-keyword">const</span> takeNote = <span class="hljs-function">(<span class="hljs-params">notes, note</span>) =&gt;</span> {
+const takeNote = (notes, note) =&gt; {
   notes.push(note)
-  <span class="hljs-keyword">const</span> taken = <span class="hljs-built_in">JSON</span>.stringify(notes, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)
-  fs.writeFile(n, taken, <span class="hljs-string">'utf8'</span>, err =&gt; {
-    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> log(err)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
   })
 }
 
-<span class="hljs-keyword">const</span> removeNote = <span class="hljs-function">(<span class="hljs-params">notes, noteIndex</span>) =&gt;</span> {
-  notes.splice(noteIndex <span class="hljs-number">-1</span>, <span class="hljs-number">1</span>)
-  <span class="hljs-keyword">const</span> taken = <span class="hljs-built_in">JSON</span>.stringify(notes, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)
-  fs.writeFile(n, taken, <span class="hljs-string">'utf8'</span>, err =&gt; {
-    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> log(err)
+const removeNote = (notes, noteIndex) =&gt; {
+  notes.splice(noteIndex -1, 1)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
   })
 }
 
-<span class="hljs-keyword">const</span> runTheApp = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-keyword">if</span> (!arg) {
-    <span class="hljs-keyword">return</span> log(<span class="hljs-string">'Please pass an argument'</span>)
+const runTheApp = () =&gt; {
+  if (!arg) {
+    return log('Please pass an argument')
   }
-  <span class="hljs-keyword">if</span> (arg &amp;&amp; arg === <span class="hljs-string">'-r'</span>) {
-    <span class="hljs-keyword">const</span> noteIndex = process.argv[<span class="hljs-number">3</span>]
-    <span class="hljs-keyword">return</span> removeNote(notes, noteIndex)
+  if (arg &amp;&amp; arg === '-r') {
+    const noteIndex = process.argv[3]
+    return removeNote(notes, noteIndex)
   }
-  <span class="hljs-keyword">if</span> (arg &amp;&amp; arg === <span class="hljs-string">'-s'</span>) {
-    <span class="hljs-keyword">return</span> log(notes)
+  if (arg &amp;&amp; arg === '-s') {
+    return log(notes)
   }
-  <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">return</span> takeNote(notes, arg)
+  else {
+    return takeNote(notes, arg)
   }
 }
 

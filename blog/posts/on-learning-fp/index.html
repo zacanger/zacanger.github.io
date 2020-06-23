@@ -23,13 +23,13 @@ coming from another paradigm or a mixed-paradigm language (like JS).</p>
 <p>Languages like Haskell are really neat. They'll change the way you think about
 writing code. But you don't need to learn a classically functional language to
 learn functional programming.</p>
-<pre><code class="hljs language-haskell"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span>
-<span class="hljs-keyword">import</span> System.Environment
+<pre><code class="language-haskell">module Main where
+import System.Environment
 
-<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+main :: IO ()
+main = do
   args &lt;- getArgs
-  putStrLn (<span class="hljs-string">"Hello "</span> ++ args !! <span class="hljs-number">0</span>)
+  putStrLn (&quot;Hello &quot; ++ args !! 0)
 </code></pre>
 <p>If a block of code like that looks pretty foreign, that's okay. <em>You can program
 functionally in whatever language is most familiar to you</em>. Probably. If you're

@@ -4,99 +4,99 @@
 <p>Koa was started in 2013, and rather than a 'server-side web development framework build on node.js' (that's Express), Koa is 'expressive middleware for node.js using generators ... to make writing web applications and REST APIs more enjoyable.' It's super small, too--around 400 SLOC.</p>
 <p>Hapi was started in 2011, and was originally built on Express. The original author still maintains it, backed by the original company (...Wal...Mart...). It's no longer Express-based, because 'configuration is better than code ... business logic must be isolated from the transport layer...', so, there's that.</p>
 <p>Making things happen:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// express</span>
-<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)
-<span class="hljs-keyword">const</span> app = express()
-<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>
-<span class="hljs-comment">// etc, we already know all this</span>
-app.listen(port) <span class="hljs-comment">// http.createServer() basically</span>
+<pre><code class="language-javascript">// express
+const express = require('express')
+const app = express()
+const port = 3000
+// etc, we already know all this
+app.listen(port) // http.createServer() basically
 
-<span class="hljs-comment">// koa</span>
-<span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)
-<span class="hljs-keyword">const</span> app = koa()
-<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>
-<span class="hljs-keyword">const</span> server = app.listen(port, () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'listening on '</span> + port)
-}) <span class="hljs-comment">// well, THAT looks super familiar, huh?</span>
+// koa
+const koa = require('koa')
+const app = koa()
+const port = 3000
+const server = app.listen(port, () =&gt; {
+  console.log('listening on ' + port)
+}) // well, THAT looks super familiar, huh?
 
-<span class="hljs-comment">//hapi</span>
-<span class="hljs-keyword">const</span> Hapi = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hapi'</span>)
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> Hapi.Server()
-server.connection({ <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span> })
-server.start(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'server over yonder on '</span>, server.info.uri)
-}) <span class="hljs-comment">// that takes a weee bit more work, there.</span>
+//hapi
+const Hapi = require('hapi')
+const server = new Hapi.Server()
+server.connection({ port: 3000 })
+server.start(() =&gt; {
+  console.log('server over yonder on ', server.info.uri)
+}) // that takes a weee bit more work, there.
 </code></pre>
 <p>routing:</p>
-<pre><code class="hljs language-javascript">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{res.send(<span class="hljs-string">'hi'</span>)})
+<pre><code class="language-javascript">app.get('/', function(req, res){res.send('hi')})
 
-app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> *(<span class="hljs-params"></span>) </span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'hi'</span>}) <span class="hljs-comment">// so, koa uses es6 generators.</span>
-<span class="hljs-comment">// the context (this) is node's `request` and `response`, wrapped up</span>
-<span class="hljs-comment">// `this.body` can be string, buffer, stream, object, or null</span>
+app.use(function *() {this.body = 'hi'}) // so, koa uses es6 generators.
+// the context (this) is node's `request` and `response`, wrapped up
+// `this.body` can be string, buffer, stream, object, or null
 
 server.route({
-  <span class="hljs-attr">method</span> : <span class="hljs-string">'GET'</span>,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
-  <span class="hljs-attr">handler</span>: <span class="hljs-function">(<span class="hljs-params">request, reply</span>) =&gt;</span> {
-    reply(<span class="hljs-string">'hi'</span>) <span class="hljs-comment">// holy boilerplate, batman</span>
+  method : 'GET',
+  path: '/',
+  handler: (request, reply) =&gt; {
+    reply('hi') // holy boilerplate, batman
   }
 })
 </code></pre>
 <hr>
 <p>How about a little API practice?</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)
-<span class="hljs-keyword">const</span> app = express()
-<span class="hljs-keyword">const</span> router = express.Router()
+<pre><code class="language-javascript">const express = require('express')
+const app = express()
+const router = express.Router()
 
-router.route(<span class="hljs-string">'/items'</span>)
-  .get(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {res.send(<span class="hljs-string">'get'</span>)})
-  .post(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {res.send(<span class="hljs-string">'post'</span>)})
+router.route('/items')
+  .get((req, res, next) =&gt; {res.send('get')})
+  .post((req, res, next) =&gt; {res.send('post')})
 
-router.route(<span class="hljs-string">'/items/:id'</span>)
-  .get(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {res.send(<span class="hljs-string">'get '</span> + req.params.id)})
-  .put(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {res.send(<span class="hljs-string">'put '</span> + req.params.id)})
-  .delete(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {res.send(<span class="hljs-string">'delete '</span> + req.params.id)})
+router.route('/items/:id')
+  .get((req, res, next) =&gt; {res.send('get ' + req.params.id)})
+  .put((req, res, next) =&gt; {res.send('put ' + req.params.id)})
+  .delete((req, res, next) =&gt; {res.send('delete ' + req.params.id)})
 
-app.use(<span class="hljs-string">'/api'</span>, router)
-app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; {res.send(<span class="hljs-string">'hi'</span>)})
+app.use('/api', router)
+app.get('/', (req, res) =&gt; {res.send('hi')})
 
-<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">3000</span>, () =&gt; {<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'listening'</span>)})
+const server = app.listen(3000, () =&gt; {console.log('listening')})
 </code></pre>
 <p>Nothing new there.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)
-<span class="hljs-keyword">const</span> route = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-route'</span>)
-<span class="hljs-keyword">const</span> app = koa()
+<pre><code class="language-javascript">const koa = require('koa')
+const route = require('koa-route')
+const app = koa()
 
-app.use(route.get(<span class="hljs-string">'/api/items'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'Get'</span>}))
-app.use(route.get(<span class="hljs-string">'/api/items/:id'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">id</span>)</span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'Get id: '</span> + id}
-app.use(route.put(<span class="hljs-string">'/api/items/:id'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">id</span>)</span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'put '</span> + id}))
-app.use(route.delete(<span class="hljs-string">'/api/items/:id'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">id</span>)</span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'Delete Id '</span>}))
-app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">this</span>.body = <span class="hljs-string">'are you lost?'</span>})
+app.use(route.get('/api/items', function*(){this.body = 'Get'}))
+app.use(route.get('/api/items/:id', function*(id){this.body = 'Get id: ' + id}
+app.use(route.put('/api/items/:id', function*(id){this.body = 'put ' + id}))
+app.use(route.delete('/api/items/:id', function*(id){this.body = 'Delete Id '}))
+app.use(function*(){this.body = 'are you lost?'})
 
-<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">3000</span>, () =&gt; {<span class="hljs-built_in">console</span>.log <span class="hljs-string">'listening on 3000'</span>})
+const server = app.listen(3000, () =&gt; {console.log 'listening on 3000'})
 </code></pre>
 <p>So, that's pretty nice. Can you see why I like Koa?</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Hapi = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hapi'</span>)
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> Hapi.Server(<span class="hljs-number">3000</span>)
+<pre><code class="language-javascript">const Hapi = require('hapi')
+const server = new Hapi.Server(3000)
 
 server.route([
   {
-    <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
-    <span class="hljs-attr">path</span>: <span class="hljs-string">'api/items'</span>,
-    <span class="hljs-attr">handlder</span>: <span class="hljs-function">(<span class="hljs-params">request, reply</span>) =&gt;</span> {
-      reply(<span class="hljs-string">'get item id '</span>)
+    method: 'GET',
+    path: 'api/items',
+    handlder: (request, reply) =&gt; {
+      reply('get item id ')
     }
   },
   {
-    <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
-    <span class="hljs-attr">path</span>   : <span class="hljs-string">'/api/items/{id},'</span>
-    <span class="hljs-attr">handler</span>: <span class="hljs-function">(<span class="hljs-params">request, reply</span>) =&gt;</span> {
-      reply(<span class="hljs-string">'get item id '</span> + request.params.id)
-    } <span class="hljs-comment">// same thing here for all the other methods</span>
+    method: 'GET',
+    path   : '/api/items/{id},'
+    handler: (request, reply) =&gt; {
+      reply('get item id ' + request.params.id)
+    } // same thing here for all the other methods
   }
 ])
 
-server.start(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {<span class="hljs-built_in">console</span>.log <span class="hljs-string">'listening on 3000'</span>})
+server.start(() =&gt; {console.log 'listening on 3000'})
 </code></pre>
 <p>Note that the Hapi version of things definitely takes a lot more code, but that's also intentional. (Remember, Hapi's meant to be easily changed for any team and/or project, so a lot of things are very manual; you also wouldn't usually use Hapi for small projects like in the examples.) Errors in Hapi are also a little more helpful, since it goes ahead and automatically provides HTTP error codes for you... in JSON, no less.</p>
 <p>So, thoughts:</p>
@@ -104,37 +104,37 @@ server.start(<span class="hljs-function"><span class="hljs-params">()</span> =&g
 <p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too, <em>now</em>, but that was a recent switch for them, I think), which is really nice. Because it's so small, it's a lot easier to just go ahead and write your own middleware. Like Express, though, that can lead to a decision problem.</p>
 <p>Hapi definitely has their corporate backing game on point. That's great for them, because that means it <em>has</em> to be stable. It's very consistent and reusable. It's also a whole goddamn lot of code to write, compared to the other two. If we're working on a large, complex app, maybe that'd be worth it, but for smaller apps (like, probably, most of the ones any of us will ever write on our own or in small teams), it's just too much. If you're doing something really big, something like... oh, I dunno, some giant retailer, let's call them 'Mal Wart,' if you've got to run this huge multinational enterprise system, then maybe Hapi actually would be really great for you.</p>
 <p>I think it's probably pretty easy to see why I favour Koa. For what it's worth, just as an example, here's what it takes to get a server running in raw Node:</p>
-<pre><code class="hljs"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
-<span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>)
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
-<span class="hljs-keyword">const</span> port = process.argv[<span class="hljs-number">2</span>] || <span class="hljs-number">4444</span>
+<pre><code>const http = require('http')
+const url = require('url')
+const path = require('path')
+const fs = require('fs')
+const port = process.argv[2] || 4444
 
-http.createServer(<span class="hljs-function">(<span class="hljs-params">request, response</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> uri = url.parse(request.url).pathname
-  <span class="hljs-keyword">const</span> filename = path.join(process.cwd(), uri)
-  fs.exists(filename, <span class="hljs-function">(<span class="hljs-params">exists</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (!exists) {
-      response.writeHead(<span class="hljs-number">404</span>, {<span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/plain'</span>})
-      response.write(<span class="hljs-string">'404 Not Found\n'</span>)
+http.createServer((request, response) =&gt; {
+  const uri = url.parse(request.url).pathname
+  const filename = path.join(process.cwd(), uri)
+  fs.exists(filename, (exists) =&gt; {
+    if (!exists) {
+      response.writeHead(404, {'Content-Type': 'text/plain'})
+      response.write('404 Not Found\n')
       response.end()
-      <span class="hljs-keyword">return</span>
+      return
     }
-    <span class="hljs-keyword">if</span> (fs.statSync(filename).isDirectory()) filename += <span class="hljs-string">'index.html'</span>
-    fs.readFile(filename, <span class="hljs-string">'binary'</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-      <span class="hljs-keyword">if</span> (err) {
-        response.writeHead(<span class="hljs-number">500</span>, {<span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/plain'</span>})
-        response.write(err + <span class="hljs-string">'\n'</span>)
+    if (fs.statSync(filename).isDirectory()) filename += 'index.html'
+    fs.readFile(filename, 'binary', (err, file) =&gt; {
+      if (err) {
+        response.writeHead(500, {'Content-Type': 'text/plain'})
+        response.write(err + '\n')
         response.end()
-        <span class="hljs-keyword">return</span>
+        return
       }
-      response.writeHead(<span class="hljs-number">200</span>)
-      response.write(file, <span class="hljs-string">'binary'</span>)
+      response.writeHead(200)
+      response.write(file, 'binary')
       response.end()
     })
   })
-}).listen(<span class="hljs-built_in">parseInt</span>(port, <span class="hljs-number">10</span>), <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'server up on '</span> + port)
+}).listen(parseInt(port, 10), () =&gt; {
+  console.log('server up on ' + port)
 })
 </code></pre>
 <p>No options. No nothing. If your file you want to serve isn't called 'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with <code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers when I'm just playing with things. The point of showing that bit, though, was to emphasise just how fantastic it is to even have things like Express. And keep in mind, there are more than just these three options. You've got Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and a load of things built on some combination of Socket.io and one middleware framework or another. Go play with options, they're all fun.</p>

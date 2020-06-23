@@ -4,11 +4,10 @@ import fm from 'front-matter'
 import cheerio from 'cheerio'
 import { author, keywords, description } from '../package.json'
 import Md from 'markdown-it'
-import highlight from 'markdown-it-highlightjs'
 import dl from 'markdown-it-deflist'
 import tasks from 'markdown-it-task-lists'
 
-const md = Md().use(dl).use(tasks).use(highlight)
+const md = Md().use(dl).use(tasks)
 
 const dir = './src/posts'
 

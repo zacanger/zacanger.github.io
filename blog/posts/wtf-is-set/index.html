@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>WTF is Set? | Zac Anger&#x27;s Blog</title><meta name="description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,es2015,set"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="WTF is Set?"/><meta name="twitter:description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="WTF is Set?"/><meta property="og:description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/blog/assets/styles.min.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>WTF is Set?</h2><div>25 April, 2017</div></header><div><p>So, someone asked in a Slack channel how they might clean up the following code:</p>
-<pre><code class="hljs language-JavaScript">getNames (contacts) {
-  <span class="hljs-keyword">let</span> contacts_set = []
+<pre><code class="language-JavaScript">getNames (contacts) {
+  let contacts_set = []
 
-  contacts.forEach(<span class="hljs-function">(<span class="hljs-params">contact</span>) =&gt;</span> {
-    <span class="hljs-keyword">let</span> firstName = <span class="hljs-keyword">get</span>(contact, 'contactInfo.firstName')
-    let lastName  = <span class="hljs-keyword">get</span>(contact, 'contactInfo.lastName')
-    let fullName = `${firstName} ${lastName}<span class="hljs-string">`
+  contacts.forEach((contact) =&gt; {
+    let firstName = get(contact, 'contactInfo.firstName')
+    let lastName  = get(contact, 'contactInfo.lastName')
+    let fullName = `${firstName} ${lastName}`
 
     if (contacts_set.includes(fullName)) {
       return
@@ -16,14 +16,14 @@
     set(this, 'contactsSet', contactsSet)
   })
 }
-</span></code></pre>
+</code></pre>
 <p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
 know Ember so don't ask me.</p>
 <p>And I said, how about this?</p>
-<pre><code class="hljs language-JavaScript">getNames: <span class="hljs-function">(<span class="hljs-params">contacts</span>) =&gt;</span>
-  [...new <span class="hljs-built_in">Set</span>(
-    contacts.map(<span class="hljs-function">(<span class="hljs-params">{ contactInfo: { firstName, lastName }}</span>) =&gt;</span>
-      <span class="hljs-string">`<span class="hljs-subst">${firstName}</span> <span class="hljs-subst">${lastName}</span>`</span>))]
+<pre><code class="language-JavaScript">getNames: (contacts) =&gt;
+  [...new Set(
+    contacts.map(({ contactInfo: { firstName, lastName }}) =&gt;
+      `${firstName} ${lastName}`))]
 </code></pre>
 <p>I like this version because it's very concise and still readable (to me).
 It also doesn't do mutation-y stuff, which is a good thing.</p>
@@ -48,20 +48,20 @@ then you're creating another thing, which is totally true.</p>
 <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is
 suppose to be kind of like.</p>
 <p>And underneath it sorta looks vaguely like this:</p>
-<pre><code class="hljs language-JavaScript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Set</span> </span>{
-  <span class="hljs-keyword">constructor</span> () {
-    <span class="hljs-keyword">this</span>.storage = []
+<pre><code class="language-JavaScript">class Set {
+  constructor () {
+    this.storage = []
   }
   add (a) {
-    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.storage.includes(a)) {
-      <span class="hljs-keyword">this</span>.storage.push(a)
+    if (!this.storage.includes(a)) {
+      this.storage.push(a)
     }
   }
   has (a) {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.storage.includes(a)
+    return this.storage.includes(a)
   }
   remove (a) {
-    <span class="hljs-keyword">this</span>.storage.splice(<span class="hljs-keyword">this</span>.storage.indexOf(a), <span class="hljs-number">1</span>)
+    this.storage.splice(this.storage.indexOf(a), 1)
   }
 }
 </code></pre>
