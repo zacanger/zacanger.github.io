@@ -7,6 +7,7 @@ export default {
     filename: 'bundle.js',
     path: __dirname,
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   module: {
     rules: [
