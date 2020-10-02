@@ -51,11 +51,7 @@ const Head = ({ title, post, keywords, author, ...props }) => {
         title: post ? post.title : title,
         description,
       })}
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/blog/assets/styles.min.css"
-      />
+      <link rel="stylesheet" type="text/css" href="/styles.css" />
     </head>
   )
 }
