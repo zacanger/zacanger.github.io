@@ -1,8 +1,3 @@
-/* Based on https://milligram.io, but with much of it removed
- * and changed. Milligram is copyright 2020 CJ Patoilo, used
- * under the MIT license.
- */
-
 *,
 *:after,
 *:before {
@@ -11,23 +6,20 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
 }
 
 body {
-  font-family: Merriweather, Cardo, serif;
+  font-family: sans-serif;
   color: #303330;
   max-width: 800px;
-  font-size: 1.6em;
   font-weight: 300;
-  line-height: 1.6;
 }
 
 blockquote {
-  border-left: 0.3rem solid #d1d1d1;
+  border-left: 0.1rem solid #d1d1d1;
   margin-left: 0;
   margin-right: 0;
-  padding: 1rem 1.5rem;
+  padding: .5rem 1rem;
 }
 
 blockquote *:last-child {
@@ -36,22 +28,21 @@ blockquote *:last-child {
 
 code {
   background: #f4f5f6;
-  border-radius: .4rem;
-  margin: 0 .2rem;
-  padding: .2rem .5rem;
+  margin: 0 .1rem;
+  padding: .1rem .3rem;
   white-space: nowrap;
+  color: #151915;
 }
 
 pre {
-  background: #f4f5f6;
-  border-left: 0.3rem solid #106c4e;
+  background: #f9f9f9;
+  border-left: 0.2rem solid #106c4e;
   overflow-y: hidden;
 }
 
 pre > code {
-  border-radius: 0;
   display: block;
-  padding: 1rem 1.5rem;
+  padding: .5rem 1rem;
   white-space: pre;
 }
 
@@ -87,7 +78,7 @@ ul dl,
 ul ol,
 ul ul {
   font-size: 95%;
-  margin: 1rem 0 1.5rem 2rem;
+  margin-left: 2rem;
 }
 
 ol {
@@ -96,31 +87,6 @@ ol {
 
 ul {
   list-style: circle inside;
-}
-
-dd,
-dt,
-li {
-  margin-bottom: 1.0rem;
-}
-
-fieldset,
-input,
-select,
-textarea {
-  margin-bottom: 1.5rem;
-}
-
-blockquote,
-dl,
-figure,
-form,
-ol,
-p,
-pre,
-table,
-ul {
-  margin-bottom: 2.5rem;
 }
 
 table {
@@ -176,4 +142,19 @@ h6 {
 
 img {
   max-width: 100%;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+  html, body {
+    font-size: 14px;
+    background: #fff;
+    color: #000;
+    overflow: visible;
+  }
+  body {
+    padding: 5mm;
+  }
 }
