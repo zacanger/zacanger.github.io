@@ -52,7 +52,6 @@ const data = {
   href: '/blog',
   keywords,
   links: [],
-  pageSize: Infinity,
   posts,
   routes,
   title: "Zac Anger's Blog",
