@@ -2,9 +2,10 @@
 title: 'Angular Meetup, 13th Oct, 2015'
 created: 2015-10-13
 tags:
-  - js
+  - meetup
   - angular
-  - set
+  - javascript
+  - notes
 ---
 
 ### Notes:

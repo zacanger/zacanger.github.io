@@ -2,6 +2,7 @@
 title: I AM SICK
 created: 2015-10-28
 tags:
+  - health
   - personal
 ---
 

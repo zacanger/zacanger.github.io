@@ -1,7 +1,8 @@
 ---
-title: Post Number Negative Two!
+title: 'Post Number Negative Two!'
 created: 2015-09-27
 tags:
+  - meta
   - blogging
 ---
 
@@ -11,26 +12,28 @@ Okay! Here we go.
 
 ### BLOGGY BLOGTIME.
 
-An attempt at this, anyway.
-I NEED A BLOGGING ENGINE.
-Seriously. I mean, static-site compiler. Whatever. There are so many out there,
+An attempt at this, anyway.  
+
+I NEED A BLOGGING ENGINE.  
+
+Seriously. I mean, static-site compiler. Whatever. There are so many out there, 
 but I can't seem to find one that actually works for me. None of them seem
-right.
+right.  
 
 I'm literally editing text in a javascript bookmarklet that loads the Ace
-editor, right now. Which is annoying a little bit, because it's got syntax
+editor, right now. Which is annoying a little bit, because it's got syntax 
 highlighting and errors based on JS, & obviously I'm writing in Markdown, so...
-Oh, and I keep automatically returning when before I hit about 80 characters;
+Oh, and I keep automatically returning when before I hit about 80 characters; 
 that's kind of dumb. I need to write a new bookmarklet that pulls in Dillinger
-or something.
+or something.  
 
-Hold on, actually....
+Hold on, actually....  
 
 -----------------
 
 ## WE'RE BACK
 
-This time in ReText. I forgot why I got rid of this writer for two seconds. Of course, then I remembered; it's slow and not great, and also doesn't want to recognize any style sheets, so I'm stick with blinding-bright-mode all the time. That's okay for the moment, though, this'll only take a bit.
+This time in ReText. I forgot why I got rid of this writer for two seconds. Of course, then I remembered; it's slow and not great, and also doesn't want to recognize any style sheets, so I'm stick with blinding-bright-mode all the time. That's okay for the moment, though, this'll only take a bit.  
 
 I've been meaning to blog for real for a while, now. I don't mean Tumblr-style miniblogging (reserving 'micro-' for truly miniscule bits like Twitter and YO); actual blogging, like they used to do. Like [Paul Ford](http://ftrain.com), or people who have things to talk about, or... I dunno, experts.
 
@@ -50,9 +53,9 @@ Shit happens and I get into things that last for days. In this case, probably we
 - Confusion about otherwise intelligent people using Javascript for things better left to, like, shell scripts. Or C. Lol.
 - More things!
 
-So, that'll all be happening. I'mma just pick a blog engine at random here, I guess, because Delposto was close but not really right for me. Even Bashblog, which sounds pretty basic, has too many features and options. Don't want no plugin comment system. Just want a nice looking thingamajig. Mebbe just some Markdown.css and call it a day.
+So, that'll all be happening. I'mma just pick a blog engine at random here, I guess, because Delposto was close but not really right for me. Even Bashblog, which sounds pretty basic, has too many features and options. Don't want no plugin comment system. Just want a nice looking thingamajig. Mebbe just some Markdown.css and call it a day.  
 
-Oh, I need tagline! Or, whaddaya call it, a signing-off thingy. I used to say this, and it'll do for now:
+Oh, I need tagline! Or, whaddaya call it, a signing-off thingy. I used to say this, and it'll do for now:  
 
-Love and tea,
+Love and tea,  
 -Z

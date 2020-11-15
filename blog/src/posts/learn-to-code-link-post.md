@@ -2,11 +2,21 @@
 title: 'Learn To Code; Link Post'
 created: 2015-09-29
 tags:
-  - links
   - education
+  - links
+  - nix
+  - dev
+  - web
+  - programming
+  - code
+  - devmtn
 ---
 
-Here we have a giant list of links, sort of unsorted. Much about front-end dev education, a good bit that I suppose could be devops, quite a bit of tricks and hackery for the nixes. A good chunk of it is messed up, formatting-wise. Oh well. THis is basically the leftover links and bits from when I was researching school options.
+Here we have a giant list of links, sort of unsorted. Much about front-end dev
+education, a good bit that I suppose could be devops, quite a bit of tricks and
+hackery for the nixes. A good chunk of it is messed up, formatting-wise. Oh
+well. THis is basically the leftover links and bits from when I was researching
+school options.
 
 ---------
 
@@ -30,6 +40,7 @@ A curated list of awesome code schools.
 * [SQLZOO](http://sqlzoo.net) - SQL
 * [Tagtree](http://tagtree.io/) - JavaScript, ES6 JavaScript
 * [Treehouse](http://teamtreehouse.com)* - HTML, CSS, JavaScript, Python, Ruby, PHP, WordPress, iOS, Android, Python
+
 \* Paid membership or purchase required for some or all content.
 
 ## Screencasts
@@ -91,31 +102,29 @@ A curated list of awesome code schools.
 
 * [Nodeschool](http://nodeschool.io/)
 * [Boulder Digital Arts](http://www.boulderdigitalarts.com)
-* [> Relevant pastebins <]
 
-#-> vim masterrace - http://vim.kpaste.net/
-
-#-> A bit of history - http://nixhist.kpaste.net/
-
-#-> Security - http://secsav.kpaste.net/
+## Relevant pastebins
+* vim masterrace - http://vim.kpaste.net/
+* A bit of history - http://nixhist.kpaste.net/
+* Security - http://secsav.kpaste.net/
 
 # Differences between distros
 
 https://www.reddit.com/r/linux/comments/2vgc9a/whats_the_difference_between_all_these_versions/
 
-[ Monitoring tools ]
+# Monitoring Tools
 
 ## Network monitoring
 
-# Pretty Ping!
+### Pretty Ping!
 
 http://www.reddit.com/r/linux/comments/1op98a/prettypingsh_a_better_ui_for_watching_ping/
 
-# Other
+## Other
 
 https://www.reddit.com/r/linux/comments/2s1q28/useful_commandline_network_monitors_on_linux/
 
-# Logcheck, be lazy with checking logs
+### Logcheck, be lazy with checking logs
 
 http://logcheck.org/
 
@@ -123,7 +132,7 @@ https://www.youtube.com/watch?v=1QgbnK45IRg&feature=player_detailpage&list=PL170
 
 https://www.reddit.com/r/homelab/comments/2fgt30/monitoring_logs_with_elk_logstash_kibana/
 
-# 80 Linux Monitoring Tools for SysAdmins - Server Density Blog (blog.serverdensity.com)
+### 80 Linux Monitoring Tools for SysAdmins - Server Density Blog (blog.serverdensity.com)
 
 https://www.reddit.com/r/commandline/comments/2v5r3y/80_linux_monitoring_tools_for_sysadmins_server/
 
@@ -133,67 +142,67 @@ https://www.reddit.com/r/commandline/comments/2vedpp/how_to_analyze_and_view_apa
 
 ## Process mgmt
 
-# How to run a process on a specific core
+### How to run a process on a specific core
 
 http://xmodulo.com/2013/10/run-program-process-specific-cpu-cores-linux.html
 
-# How to kill process
+### How to kill process
 
 http://www.cyberciti.biz/faq/kill-process-in-linux-or-terminate-a-process-in-unix-or-linux-systems/
 
-# How to roll out your own Debian distro
+### How to roll out your own Debian distro
 
 http://www.staldal.nu/tech/2011/12/11/how-to-roll-your-own-debian-based-linux-distro/
 
-# Run stuff collaboratively on a server.
+### Run stuff collaboratively on a server.
 
 http://www.reddit.com/r/sysadmin/comments/tqo7b/til_rundeck_is_a_great_tool_to_run_commands/
 
-# Generate random strings
+### Generate random strings
 
 http://www.howtogeek.com/howto/30184/10-ways-to-generate-a-random-password-from-the-command-line/
 
-# twander file manager
+### twander file manager
 
 http://www.reddit.com/r/linux/comments/1ydl8t/pcman_file_manager_120_gets_separated_desktop/cfjuw9u
 
-# Why u no open hardware :(
+### Why u no open hardware :(
 
 http://www.reddit.com/r/linux/comments/20zg0h/first_ubuntu_tablets_to_launch_this_autumn/cg86z25
 
-# About docs
+### About docs
 
 http://www.reddit.com/r/linux/comments/24jzyg/well_thats_a_super_helpful_installation_error/ch887pw
 
-# Pipe through Internet!
+### Pipe through Internet!
 
 http://www.reddit.com/r/linux/comments/24uyqo/til_you_can_pipe_through_internet/
 
-# Persistent (full?) install linux on usb for multiple computers with little to no damage? (self.linux)
+### Persistent (full?) install linux on usb for multiple computers with little to no damage? (self.linux)
 
 http://www.reddit.com/r/linux/comments/2gqovx/persistent_full_install_linux_on_usb_for_multiple/
 
-# IPcalc
+### IPcalc
 
 http://jodies.de/ipcalc
 
-# Photoshop on Linux
+### Photoshop on Linux
 
 https://www.reddit.com/r/linux/comments/2nbe8y/it_can_be_done_photoshop_cs5_on_linux_with_wine/
 
-# Data recovery
+### Data recovery
 
 https://www.reddit.com/r/linux/comments/2ov9tu/safecopy_recover_data_from_corrupt_media/
 
-# Vbox - How to shared folders - https://forums.virtualbox.org/viewtopic.php?t=15868
+### Vbox - How to shared folders - https://forums.virtualbox.org/viewtopic.php?t=15868
 
-[[[ Pro and work ]]]
+# Pro and work
 
-# I've scored an in-person interview for a Junior Linux Admin position. Recommendations on what to take to the interview? (self.linuxadmin)
+### I've scored an in-person interview for a Junior Linux Admin position. Recommendations on what to take to the interview? (self.linuxadmin)
 
 https://ssl.reddit.com/r/linuxadmin/comments/2v0905/ive_scored_an_inperson_interview_for_a_junior/
 
-[[[ General resources & Blogs ]]]
+# General resources & Blogs
 
 http://www.reddit.com/r/linux/comments/21rm3o/what_is_a_useful_linux_tool_that_you_use_that/
 
@@ -211,19 +220,19 @@ https://help.ubuntu.com/community/Servers
 
 http://www.oliverelliott.org/article/computing/
 
-# installgentoo
+### installgentoo
 
 https://wiki.installgentoo.com/index.php?title=Main_Page
 
-# About filesystem
+### About filesystem
 
 http://www.reddit.com/r/linux/comments/1ypoz8/take_the_linux_filesystem_tour/
 
-# Hardlinks & Softlinks
+### Hardlinks & Softlinks
 
 http://www.reddit.com/r/linux/comments/251mb8/the_difference_between_hard_and_soft_links/
 
-# X11 / Xorg / graphics stack explained
+### X11 / Xorg / graphics stack explained
 
 http://www.reddit.com/r/linux/comments/2acvmo/explaining_x11_for_the_rest_of_us/
 
@@ -231,7 +240,7 @@ http://www.reddit.com/r/linux/comments/2b8ap8/heartwrenching_story_of_opengl/
 
 http://www.reddit.com/r/linux/comments/1twuhi/xplain_explaining_x11_for_the_rest_of_us_jasper/
 
-# (Illustrated) SSH
+### (Illustrated) SSH
 
 http://chamibuddhika.wordpress.com/2012/03/21/ssh-tunnelling-explained/
 
@@ -243,101 +252,101 @@ https://www.reddit.com/r/linux/comments/2r539r/why_arent_we_using_ssh_for_everyt
 
 ## Kernel
 
-# The Fascinating World of Linux System Calls (sysdigcloud.com)
+### The Fascinating World of Linux System Calls (sysdigcloud.com)
 
 https://www.reddit.com/r/linux/comments/2pm6lo/the_fascinating_world_of_linux_system_calls/
 
-# A series of posts about the linux kernel.
+### A series of posts about the linux kernel.
 
 https://github.com/0xAX/linux-insides
 
-# systemd for Administrators, Part 1
+### systemd for Administrators, Part 1
 
 http://0pointer.de/blog/projects/systemd-for-admins-1.html
 
-# systemd for users
+### systemd for users
 
 http://www.reddit.com/r/linux/comments/2dvmdn/what_do_you_as_a_user_love_about_systemd/
 
-# Rsync difference between --checksum and --ignore-times options
+### Rsync difference between --checksum and --ignore-times options
 
 http://serverfault.com/questions/211005/rsync-difference-between-checksum-and-ignore-times-options
 
 http://tutorials.jenkov.com/rsync/checksums.html
 
-# wget useful commands
+### wget useful commands
 
 https://www.reddit.com/r/opendirectories/comments/2rfg79/20_wget_commands_that_can_be_used_to_accomplish/
 
-# Rute User's Tutorial and Exposition
+### Rute User's Tutorial and Exposition
 
 http://rute.2038bug.com/index.html.gz
 
-# OpenLDAP
+### OpenLDAP
 
 https://www.reddit.com/r/linux/comments/2y856a/ldap_basic_of_open_ldap_introduction_to_ldap/
 
-# IBM developer works
+## IBM developer works
 
 http://www.ibm.com/developerworks/linux/
 
-# Debian minimal
+### Debian minimal
 
 http://linuxforcynics.com/how-to/minimal-debian-install
 
 http://ask.debian.net/questions/what-s-the-first-thing-you-do-after-you-install-debian
 
-# Cron syntax in plain English
+### Cron syntax in plain English
 
 http://cronchecker.net/
 
-# Install WordPress on CentOS 6.x
+### Install WordPress on CentOS 6.x
 
 http://www.geekpeek.net/install-wordpress-on-centos/
 
 http://www.tecmint.com/install-wordpress-using-lamp-or-lemp-on-rhel-centos-fedora/
 
-# GRUB
+### GRUB
 
 http://ubuntuforums.org/showthread.php?t=1195275
 
 http://www.reddit.com/r/linux4noobs/comments/2ex4ex/short_introduction_into_grub_internals/
 
-# Visualize memory
+### Visualize memory
 
 https://www.reddit.com/r/linux/comments/2mrrjb/how_to_visualize_memory_usage_on_linux/
 
-# inotify (trigger)
+### inotify (trigger)
 
 https://www.reddit.com/r/commandline/comments/2runmh/how_you_can_use_inotifytools_to_monitor_file/
 
-[ Nginx ]
+# Nginx
 
-# docs
+### docs
 
 https://github.com/ngx/docs
 
 http://wiki.nginx.org/Main
 
-# Optimizing nginx
+### Optimizing nginx
 
 http://blog.zachorr.com/nginx-setup/
 
-# How to redirect nginx
+## How to redirect nginx
 
 http://www.servernoobs.com/nginx-redirect-url-with-http1-1-301-moved-permanently-header/?doing_wp_cron=1393287314.0689818859100341796875
 
-# Hardening nginx with better cyphers
+### Hardening nginx with better cyphers
 
 https://www.reddit.com/r/netsec/comments/2pqsx9/harden_ssl_in_nginx_with_stronger_ciphers_newer/
 
-[[[ Virtualization, Containarization, Provisioning ]]]
+# Virtualization, Containarization, Provisioning
 
-[ Vagrant ]
+### Vagrant
 
 http://stackoverflow.com/questions/18878117/using-vagrant-to-run-virtual-machines-with-desktop-environment
 
-[ Docker ]
+### Docker
 
 http://www.reddit.com/r/linux/comments/2bxxye/introduction_to_docker/
 
@@ -347,17 +356,17 @@ http://www.reddit.com/r/linux/comments/2bedwv/docker_security_with_selinux/
 
 https://github.com/shofetim/docker-skype
 
-[ Namespaces ]
+# Namespaces
 
 https://www.reddit.com/r/linux/comments/2n7mol/linux_namespaces_powerful_isolation_os_level/
 
 https://www.reddit.com/r/linux/comments/2n17b7/a_guide_to_linux_namespaces_and_environment/
 
-# cgroups
+### cgroups
 
 http://lwn.net/Articles/603762/
 
-[ tmux ]
+# tmux
 
 http://www.reddit.com/r/linux/comments/2arczq/learn_tmux_with_minimul/
 
@@ -365,11 +374,11 @@ http://www.reddit.com/r/commandline/comments/240oyo/mucks_a_session_manager_for_
 
 http://www.reddit.com/r/commandline/comments/25tcfk/practical_tmux/
 
-# Memory leak improvement under Linux - http://tmux.kpaste.net/ee9c3
+### Memory leak improvement under Linux - http://tmux.kpaste.net/ee9c3
 
-[ regex ]
+# regex
 
-# Intro to regex video
+### Intro to regex video
 
 http://www.youtube.com/watch?v=EkluES9Rvak
 
@@ -379,23 +388,23 @@ http://www.regexper.com/
 
 http://jex.im/regulex/
 
-# Awk primer
+### Awk primer
 
 https://www.reddit.com/r/commandline/comments/2smkhm/awk_in_20_minutes/
 
 http://www.reddit.com/r/linux/comments/29hskb/an_awk_primer_wikibooks_open_books_for_an_open/
 
-[ regexlol ]
+### regexlol
 
 http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454
 
-# Validating e-mail addresses, easy way, and the hard way.
+### Validating e-mail addresses, easy way, and the hard way.
 
 http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without-the
 
 http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html
 
-[ LaTeX ]
+# LaTeX
 
 www.latextemplates.com
 
@@ -403,7 +412,7 @@ https://www.writelatex.com/
 
 http://www.reddit.com/r/linux/comments/2clx22/learning_latex_on_linux/
 
-[ YouTube chans ]
+# YouTube chans
 
 https://www.youtube.com/channel/UCbNxlZZVmfP8n84ag-rGpMg/videos
 
@@ -415,19 +424,19 @@ https://www.youtube.com/user/INEtraining/playlists
 
 https://www.youtube.com/user/connermcd/videos
 
-# SysAdminGirl
+### SysAdminGirl
 
 https://www.youtube.com/channel/UCkIHLaOEtdLpC3JrqR3Bwmw
 
-# scripting
+### scripting
 
 http://www.youtube.com/playlist?list=PLcUid3OP_4OXOUqYTDGjq-iEwtBf-3l2E
 
-# CentOS basics
+### CentOS basics
 
 https://www.youtube.com/playlist?list=PLo7Ib6wWnqNCT3BvuRshqNbKQwqrS609k
 
-[[[ ~ Audio ~ ]]]
+# Audio
 
 http://www.reddit.com/r/linux/comments/1nun4f/using_linux_to_make_music_whats_the_deal/
 
@@ -455,46 +464,47 @@ https://github.com/torvalds/linux/tree/master/Documentation/sound/alsa
 
 http://manual.ardour.org/synchronization/latency-and-latency-compensation/
 
-# General Reddit threads
+### General Reddit threads
 
 http://www.reddit.com/r/linux/comments/236a5l/can_someone_make_something_akin_to_wayland_but/
 
 https://www.reddit.com/r/linux/comments/2sutds/my_band_pneumonia_recorded_our_first_album_using/
 
-# Dynamic Range Compression for PulseAudio
+### Dynamic Range Compression for PulseAudio
 
 https://www.bfccomputing.com/dynamic-range-compression-for-pulseaudio/
 
-# ALSA / Pulseaudio for pro audio discussion
+### ALSA / Pulseaudio for pro audio discussion
 
 https://www.reddit.com/r/linux/comments/2hv73a/what_is_the_one_thing_you_wish_linux_had_natively/ckwd9mk
 
-# Config
+### Config
 
 http://wiki.linuxaudio.org/wiki/system%20configuration#build_your_own_real-time_kernel_on_debian_wheezy_or_later
 
 http://www.penguinproducer.com/Blog/2011/12/setting-up-a-studio-with-ubuntu/
 
-# RIP CDs
+### RIP CDs
 
 https://www.reddit.com/r/linux/comments/2ijhdj/gnu_ddrescue_119_released/cl2pofg
 
-# Speech / Voice recognition
+### Speech / Voice recognition
 
 http://grasch.net/node/22
 
 https://www.reddit.com/r/linux/comments/2jhzle/the_state_of_voice_recognition_software_within/https://www.reddit.com/r/linux/comments/2jhzle/the_state_of_voice_recognition_software_within/
 
-# Learn piano
+### Learn piano
 
 http://pianobooster.sourceforge.net/
 
-# The power of (GC)C
+### The power of (GC)C
 
 echo "main(i){for(i=0;;i++)putchar(((i*(i>>17|i>>9)&46&i>>3))^(i&i>>10|i>>100));}" | gcc -w -x c - && ./a.out | aplay
 
-# Troubleshooting
+### Troubleshooting
 
+```
 lsusb / lspci
 
 cat /proc/asound/cards
@@ -502,60 +512,60 @@ cat /proc/asound/cards
 aplay -l
 
 aplay-L
+```
 
-[[[ Alternative UI ]]]
+# Alternative UI
 
-# Dex UI - Futuristic/Sci-Fi Interface Programmed In openFrameworks (nnkd.org)
+### Dex UI - Futuristic/Sci-Fi Interface Programmed In openFrameworks (nnkd.org)
 
 https://www.reddit.com/r/linux/comments/2t0vjv/dex_ui_futuristicscifi_interface_programmed_in/
 
-# Eagle Mode - Zoomable User Interface (YouTube)
-
+### Eagle Mode - Zoomable User Interface (YouTube)
 
 https://www.reddit.com/r/linux/comments/1nprrh/eagle_mode_zoomable_user_interface_youtube/
 
-# Wayland 3D Compositor on Oculus Rift (youtube.com)
+### Wayland 3D Compositor on Oculus Rift (youtube.com)
 https://www.reddit.com/r/linux/comments/287nup/wayland_3d_compositor_on_oculus_rift/
 
-# 3D filesystem browser
+### 3D filesystem browser
 
 https://www.reddit.com/r/linux/comments/2hky9x/tdfsb_3d_filesystem_browser/
 
-[[[ GAEMZ ]]]
+# GAEMZ
 
-# TribesNext (Tribes2 re-implementation) under Linux
+### TribesNext (Tribes2 re-implementation) under Linux
 
 http://www.tribesnext.com/forum/index.php?topic=2095.0
 
 http://www.youtube.com/watch?v=fdyxo_tauNQ
 
-# RetroRig
+### RetroRig
 
 http://www.reddit.com/r/LinuxActionShow/comments/25wndc/retrorig_a_personal_project_i_hope_everyone/
 
-[[[ Damage ]]]
+# Damage
 
-[ Prevent ]
+## Prevention
 
-# Backup ideas
+### Backup ideas
 
 https://www.reddit.com/r/linux/comments/2qtyby/what_does_rlinux_use_to_backup_their_computers/
 
 https://www.reddit.com/r/linux/comments/2v30rm/what_is_your_preferred_method_to_transfer_your/
 
-# How to shred recursively in directories
+### How to shred recursively in directories
 
 http://www.linuxforums.org/forum/miscellaneous/46693-how-shred-entire-directory-tree.html#post257616
 
-# What to do when altering remote machines
+### What to do when altering remote machines
 
 http://www.reddit.com/r/linux/comments/1kdf37/what_are_some_of_your_major_linux_fk_ups/cbnzb11
 
-[ Control ]
+## Control
 
 http://serverfault.com/questions/218005/how-do-i-deal-with-a-compromised-server
 
-[[[ Shell & Scripting ]]]
+# Shell & Scripting
 
 http://www.linusakesson.net/programming/tty/
 
@@ -573,15 +583,15 @@ http://mywiki.wooledge.org/
 
 http://bash.cyberciti.biz/guide/Main_Page
 
-# Explains commands and their flags. VERY USEFUL!
+### Explains commands and their flags. VERY USEFUL!
 
 http://explainshell.com/
 
-# With examples:
+### With examples:
 
 http://bropages.org/browse
 
-Advanced / reference:
+### Advanced / reference:
 
 http://wiki.bash-hackers.org/doku.php
 
@@ -591,15 +601,15 @@ http://www.reddit.com/r/linux/comments/235v51/better_bash_scripting_in_15_minute
 
 http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
 
-# Command shortcuts - http://bash.kpaste.net/1620c
+### Command shortcuts - http://bash.kpaste.net/1620c
 
 http://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/
 
-# About terminals
+### About terminals
 
 http://linuxgazette.net/137/anonymous.html
 
-# Customization
+### Customization
 
 http://colourco.de/
 
@@ -611,55 +621,55 @@ https://www.reddit.com/r/linux/comments/2iytrs/terminalsexy_terminal_color_schem
 
 https://www.reddit.com/r/linux/comments/2uf5uu/this_is_my_bash_prompt_which_is_your_favorite/
 
-# Moar advice
+### Moar advice
 
 http://www.reddit.com/r/linux/comments/2dwe4y/dae_have_a_bash_script_template_you_generally/
 
 http://waiting-for-dev.github.io/blog/2014/05/04/distributable-and-organized-dotfiles-with-homeshick-and-mr/
 
-# Bash search suggest box
+### Bash search suggest box
 
 http://www.reddit.com/r/linux/comments/2a4b80/bash_history_suggest_box/
 
-# How does the Shellshock exploit work?
+### How does the Shellshock exploit work?
 
 http://fedoramagazine.org/shellshock-how-does-it-actually-work/
 
 https://www.reddit.com/r/linux/comments/2hlwwz/stackexchanges_top_answer_on_shellshock_and_why/
 
-# Bash oneliners explained
+### Bash oneliners explained
 
 http://www.catonmat.net/blog/bash-one-liners-explained-part-one/
 
-# Fav minimalist CLI apps
+### Fav minimalist CLI apps
 
 https://www.reddit.com/r/linux/comments/2psson/whatre_your_favorite_cli_and_minimalistic/
 
-# Fav aliases
+### Fav aliases
 
 https://www.reddit.com/r/commandline/comments/2tjqz2/favorite_aliases/
 
-# HOWTO: Ubuntu CLI versions & Framebuffer Programs
+### HOWTO: Ubuntu CLI versions & Framebuffer Programs
 
 http://ubuntuforums.org/showthread.php?t=882596
 
-# Filenames in Shell: How to do it correctly (dwheeler.com)
+### Filenames in Shell: How to do it correctly (dwheeler.com)
 
 https://www.reddit.com/r/programming/comments/qhgj0/filenames_in_shell_how_to_do_it_correctly/
 
-# Cool shit with ls
+### Cool shit with ls
 
 https://www.reddit.com/r/linux/comments/hejra/til_nifty_ls_option_for_displaying_directories/
 
-# Bash vs. Zsh
+### Bash vs. Zsh
 
 http://www.reddit.com/r/linux/comments/2fubpn/zsh_proscons/
 
-[[[ Drama ]]]
+# Drama
 
 http://www.reddit.com/r/linux/comments/1z0vig/ffmpeg_may_return_to_debian_and_by_extend_ubuntu/cfpjqtj
 
-[[[ urxvt ]]]
+# urxvt
 
 https://wiki.archlinux.org/index.php/rxvt-unicode
 
@@ -671,31 +681,33 @@ https://www.youtube.com/playlist?list=PLdvB7n7RN2UBbecn3Kky1DtwtqFToXphU
 
 https://github.com/awwaiid/urxvt-cursortail/blob/master/cursortail
 
-[[[ FreeNAS ]]]
+# FreeNAS
 
-# Check temps
+### Check temps
 
 http://forums.freenas.org/index.php?threads/how-to-monitor-system-cpu-hdd-mobo-gpu-temperatures-on-freenas-8.2994/
 
-# Checklist
+### Checklist
 
 https://www.reddit.com/r/freenas/comments/1vw9ic/thinking_about_freenas_but_getting_overwhelmed/
 
-# Backup config files automatically
+### Backup config files automatically
 
 https://forums.freenas.org/index.php?threads/backup-config-file-every-night-automatically.8237/
 
-# Persistent changes in the filesystem - http://kpaste.net/a2c0299
+### Persistent changes in the filesystem
 
-# YT tuts
+http://kpaste.net/a2c0299
+
+### YT tuts
 
 https://www.youtube.com/channel/UCNzfwKRXUXQifyy3QYCkMRg
 
-# The connection problem:
+### The connection problem:
 
 https://www.reddit.com/r/linux4noobs/comments/2q2cn1/i_want_to_connect_to_my_isolated_nas_but_at_the/
 
-# Solutions:
+### Solutions:
 
 http://lamarque-lvs.blogspot.nl/2011/11/networkmanager-per-device-routing.html
 
@@ -705,13 +717,13 @@ https://superuser.com/questions/9586/how-do-i-setup-ubuntu-linuxs-network-manage
 
 http://ubuntuforums.org/showthread.php?t=2161887
 
-[[[ Hardware ]]]
+# Hardware
 
 http://www.reddit.com/r/linux/comments/22cnui/pc_engines_apu_system_boards_3x_gige_2_or_4_gb/
 
 http://www.reddit.com/r/linux/comments/226izd/intel_releases_99_minnowboard_max_an_opensource/
 
-[[[ TODO: ]]]
+# TODO:
 
 Learn the filesystem hierarchy and major bits such as your bootloader, init system or systemd, etc
 
@@ -723,83 +735,85 @@ Automation (Scripting, Configuration management ie Ansible, Puppet, Chef, Saltst
 
 Hardening, Security and Accounts (IPTables, SELinux, patching/repository management, cgroups, encryption, permissions, ldap and kerberos SSO)
 
-======================================================================
+--------
 
-HANDY COMMANDOS
+# HANDY COMMANDOS
 
----
+#### Archive directory
 
-# Archive directory
+`tar -cvWf archive_name.tar dir_name`
 
-tar -cvWf archive_name.tar dir_name
+#### Extract archive
 
-# Extract archive
+`tar -xvf archive_name.tar`
 
-tar -xvf archive_name.tar
+### GPG encrypt
 
-# GPG encrypt
+`gpg -ac archive_name.tar`
 
-gpg -ac archive_name.tar
+#### GPG decrypt
 
-# GPG decrypt
+`gpg -d archive_name.tar.asc > archive_name.tar`
 
-gpg -d archive_name.tar.asc > archive_name.tar
+#### CLI pastebin alias
 
-# CLI pastebin alias
+`alias apaste='curl -F '\''paste=<-'\'' http://apaste.info/store'`
 
-alias apaste='curl -F '\''paste=<-'\'' http://apaste.info/store'
-
-# Do The Right Extract
+#### Do The Right Extract
 
 http://brettcsmith.org/2007/dtrx/
 
-# How to check install size of packages (debian based)
+#### How to check install size of packages (debian based)
 
-dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | less
+`dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | less`
 
-# Badblocks
+#### Badblocks
 
-badblocks -nsv -p2 -o ./badblocksresult.txt /dev/sdX
+`badblocks -nsv -p2 -o ./badblocksresult.txt /dev/sdX`
 
-# Watch progress of dd
+#### Watch progress of dd
 
-watch -n 1 killall -USR1 dd
+`watch -n 1 killall -USR1 dd`
 
-# What's the best rsync command?
+#### What's the best rsync command?
 
-rsync -avPHSxh
+`rsync -avPHSxh`
 
-# Superfind
+#### Superfind
 
 http://stackoverflow.com/questions/16956810/finding-all-files-containing-a-text-string-on-linux
 
-# List only dirs and files starting with a . (dot)
+#### List only dirs and files starting with a . (dot)
 
-ls -d .[^.]*
+`ls -d .[^.]*`
 
+#### Diff things
+
+```
 diff <(ls /tmp/folder1) <(ls /tmp/folder2) # diff output of 2 commands
 
 diff -r /tmp/folder1 /tmp/folder2 # diff 2 dirs
+```
 
-# Substitute string1 to string2 in every file in a given path
+#### Substitute string1 to string2 in every file in a given path
 
-find path -type f -exec sed -i 's/string1/string2/' {} \;
+`find path -type f -exec sed -i 's/string1/string2/' {} \;`
 
-## in vim:
+# Vim
 
-# Visually select a block of text and prepend a '#' to it
+### Visually select a block of text and prepend a '#' to it
 
 1. Visually select block
 
 2. Ctrl+v I # Esc
 
-# Do the reverse (remove prepending '#' characters)
+### Do the reverse (remove prepending '#' characters)
 
 2. Ctrl+v 0 x
 
-#+TITLE: open-bookmarks
+--------
 
-#+STARTUP: overview
+# LINK DUMP
 
 * Android
 * [[https://developer.android.com/sdk/installing/studio.html][Android Studio IDE]]

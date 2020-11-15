@@ -1,12 +1,15 @@
 ---
-title:
+title: 'React Meetup, 17 Nov, 2015'
 created: 2015-11-17
 tags:
-  - js
   - react
+  - meetup
+  - php
+  - xml
+  - js
+  - devmtn
+  - meteor
 ---
-
-React Meetup, 17 Nov, 2015
 
 React:
   - Good at managing state.

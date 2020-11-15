@@ -2,8 +2,9 @@
 title: I Cannot Wait
 created: 2015-10-04
 tags:
-  - bootstrap
-  - personal
+  - client
+  - website
+  - bootstra
 ---
 
 ...to be done with this website, and be done with this 'client.' It's the 4th of October. I'm literally getting on a bus on the 6th and going most of the way across the country, and will not be spending one tiny bit of effort on this ever again.

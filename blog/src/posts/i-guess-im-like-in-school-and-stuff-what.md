@@ -1,9 +1,11 @@
 ---
-title: I GUESS I'M LIKE IN SCHOOL AND STUFF WHAT
+title: "I GUESS I'M LIKE IN SCHOOL AND STUFF WHAT"
 created: 2015-10-11
 tags:
-  - personal
   - devmtn
+  - javascript
+  - js
+  - python
 ---
 
 YESH. I'm in Provo, Utah, doing things that will eventually possibly hopefully make me skilled at something. Maybe even enough to get a job in that thing, and pay off the $$$ needed to get said education. Some quick observations:

@@ -3,6 +3,10 @@ title: on blogging
 created: 2016-01-08
 tags:
   - blogging
+  - writing
+  - language
+  - communication
+  - meta
 ---
 
 this is, i think, the first post of this year. happy 2016! i'm not blogging a whole lot, but really just trying to kill a few minute while my brain rests. lately i'm working a lot in new technologies that i've never touched before--react, which i still find irksome (though as before, i do _get_ it), coffeescript (to play with the atom editor), firebase (still more magicc than really cool, but it does what it does, and we need what it does, so i'm using it), and some other new things.  but i wanted to take a minute off to talk about writing.

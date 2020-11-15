@@ -1,8 +1,9 @@
 ---
-title: living up to my name...
+title: 'living up to my name...'
 created: 2015-12-20
 tags:
   - personal
+  - people
 ---
 
 i don't like being angry. at all. it's not a good look for me. somehow this weekend turned into one just full of anger about a lot of things. some of them aren't a big deal, and i can (eventually) just let everything go, because honestly it's just not worth feeling that shitty about. people aren't worth it, losing friends isn't worth it, losing time and even wasting or losing money... it's just never worth being angry about, because it's not going to change anything, get me back any time or money, fix relationships, or ever somehow make anything better. this is a little different, though, today. bias against persons with mental illness of any type (especially something as common and relatively safe and understood as depression) is _not_ okay, especially when that results in the wrong people going to fucking _jail_.
@@ -17,11 +18,11 @@ i'm not going to go into a huge amount of detail right now, because it'll be a m
 * people fucking in the next room, so she couldn't leave, and had to sit there and endure the sounds.
 * friend finally able to leave, found clothes, was denied her shoes by sister & sister's companions.
 * sister & sister's friend, to protect the person supplying alcohol, attacked my friend. this included
-	* throttling until nearly passed out
-	* severe blows to head in attempt to render unconscious
-	* conversation between the sister and the sister's friend regarding what to do with the body, if dead
-	* decision to throw the body into nearby pond
-	* on realising she was still alive, physically trying to drag back to the house where all this started
+  * throttling until nearly passed out
+  * severe blows to head in attempt to render unconscious
+  * conversation between the sister and the sister's friend regarding what to do with the body, if dead
+  * decision to throw the body into nearby pond
+  * on realising she was still alive, physically trying to drag back to the house where all this started
 * witnesses called police while sister and sister's friend were walking away, having given up the physical labour, intending to return shortly
 * police initially seemed sympathetic, but no medics called
 * police questioned sister, who stated (falsely) that friend is schizophrenic, inflicted own head wounds after locking self in the bathroom, and that she (the sister) and her friend were trying to 'help her' back

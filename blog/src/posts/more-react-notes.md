@@ -2,7 +2,6 @@
 title: More React Notes
 created: 2016-04-27
 tags:
-  - js
   - react
 ---
 

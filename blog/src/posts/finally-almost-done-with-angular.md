@@ -1,10 +1,12 @@
 ---
-title: Finally almost done with Angular...
+title: 'Finally almost done with Angular...'
 created: 2015-11-11
 tags:
-  - js
-  - devmtn
+  - javascript
+  - school
+  - markdown
   - angular
+  - node
 ---
 
 Look. I don't have anything against Angular on, like, a philosophical level. Or metaphysical. Or personal. I'm just not impressed. An MVC framework that makes templating easier and makes a lot of other things much more complicated? Client-side rendering? Bogging down browsers doing the heavy lifting so servers can respond a little faster? Very cool features. Very innovative. The year is 2008 and Javascript is starting to come into its own. Open source front-end libraries and frameworks are starting to pop up. Github was just founded. Angular is epic, right?

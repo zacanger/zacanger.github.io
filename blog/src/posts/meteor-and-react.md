@@ -2,9 +2,9 @@
 title: meteor and react
 created: 2016-01-21
 tags:
-  - js
-  - react
   - meteor
+  - react
+  - js
 ---
 
 anything in `<template>is a _meteor_ template</template>`; include in html by `{{> thatTemplate}}`, or in js with `Template.thatTemplate`. (not doing that at all with react as view.)

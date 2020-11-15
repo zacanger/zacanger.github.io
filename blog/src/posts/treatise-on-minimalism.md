@@ -3,8 +3,10 @@ title: Treatise on Minimalism
 created: 2016-01-28
 tags:
   - minimalism
+  - manifesto
+  - treatise
+  - design
 ---
-
 
 * Minimalism should increase your happiness and contentment.
 * Less is powerful.

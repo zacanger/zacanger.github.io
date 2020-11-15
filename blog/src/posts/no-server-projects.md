@@ -2,9 +2,18 @@
 title: No-Server Projects
 created: 2015-11-07
 tags:
+  - angular
+  - baas
+  - blog
   - devmtn
+  - editor
+  - firebase
+  - javascript
+  - markdown
+  - people
+  - platform
+  - school
 ---
-
 
 __HELLO__, and welcome to another episode of *Zac's Blogtime with the Blogginess!*.
 

@@ -3,9 +3,9 @@ title: scott
 created: 2016-03-03
 tags:
   - people
-  - devmtn
+  - gif
 ---
 
 lol
 
-![scott](http://zacanger.com/blog/scott.gif)
+![scott](http://zacanger.com/blog/assets/img/scott.gif)

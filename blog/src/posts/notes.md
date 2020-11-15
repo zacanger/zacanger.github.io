@@ -2,8 +2,28 @@
 title: Notes
 created: 2016-01-13
 tags:
-  - js
+  - bash
+  - blogging
+  - css
+  - design
   - devmtn
+  - education
+  - electron
+  - elm
+  - es6
+  - flux
+  - go
+  - gulp
+  - js
+  - meta
+  - meteor
+  - mongo
+  - notes
+  - personal
+  - react
+  - ruby
+  - ui
+  - unicode
 ---
 
 So, I have a _lot_ of notes that I've taken over the course of the last couple of months. Seeing as they're not doing me a whole lot of good sitting in a pile of Markdown files, I'm gradually going through them, cleaning them up, and I think I'll just post them all as sort of blog posts. Why not? So here's a little list of the topics I'll be covering over the next few weeks:

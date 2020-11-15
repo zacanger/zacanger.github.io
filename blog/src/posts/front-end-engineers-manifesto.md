@@ -1,12 +1,16 @@
 ---
-title: Front-end Engineer's Manifesto
-created: 2016-01-18
+title: "Front-end Engineer's Manifesto"
+created: 2016-01-28
 tags:
+  - design
+  - front-end
+  - manifesto
+  - list
   - js
-  - frontend
+  - css
 ---
 
-A somewhat modified version of the document fount [here](http://f2em.com)
+A somewhat modified version of the document found [here](http://f2em.com).
 
 * **USERS** are the most important part of what I do.
   * The users' needs come first.

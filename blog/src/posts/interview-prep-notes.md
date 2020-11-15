@@ -2,7 +2,10 @@
 title: Interview Prep Notes
 created: 2016-02-04
 tags:
+  - career
   - interviewing
+  - whiteboarding
+  - interviews
 ---
 
 What are interviewers looking for?

@@ -3,9 +3,10 @@ title: Licensing
 created: 2015-10-04
 tags:
   - licensing
+  - wtfpl
 ---
 
-I just wanted to take a moment to say that I don't actually care even the slightest bit if someone is offended by some things that I might say, especially if those things are as basic and trivial as the word 'fuck.' This was brought up recently, because my [error page](http://zacanger.com/whateverrandomblablahblah) happens to be 'rude' and 'unprofessional.' (_Note: I agree. It's very unprofessional to use Internet Explorer, and to interrupt someone at work to criticize something on their website completely unrelated to any client project and ask them to remove it. Also, it's not a very nice error page._)
+I just wanted to take a moment to say that I don't actually care even the slightest bit if someone is offended by some things that I might say, especially if those things are as basic and trivial as the word 'fuck.' This was brought up recently, because my [error page](http://zacanger.com/whateverrandomblablahblah) happens to be 'rude' and 'unprofessional.' (_Note: I agree. It's very unprofessional to use Internet Explorer, and to interrupt someone at work to criticize something on their website completely unrelated to any client project and ask them to remove it. Also, it's not a very nice error page._) 
 
 ---------
 
@@ -13,15 +14,15 @@ Look, I really don't care. _Fuck_ isn't a particularly nasty word. It's not a sl
 
 This relates to licenses only in that I usually opt for the [WTFPL](http://wtfpl.net) over other free licenses. Maybe it's kind of offensive to some, but there's actually a valid reason for that. Following is the full text of the license.
 
-    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-    Version 2, December 2004
-    Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
-    Everyone is permitted to copy and distribute verbatim or modified
-    copies of this license document, and changing it is allowed as long
-    as the name is changed.
-
-    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+    Version 2, December 2004                      
+    Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>  
+    Everyone is permitted to copy and distribute verbatim or modified 
+    copies of this license document, and changing it is allowed as long 
+    as the name is changed. 
+                        
+    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE  
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION       
     0. You just DO WHAT THE FUCK YOU WANT TO.
 
 

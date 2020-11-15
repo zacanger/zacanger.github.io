@@ -3,7 +3,9 @@ title: Javascript
 created: 2015-10-16
 tags:
   - js
-  - devmtn
+  - css
+  - programming
+  - vim
 ---
 
 We're staring that today, and this is exciting. I never hated CSS until Bootstrap, but now I think I'd rather debug a hypothetical program written in both PHP and assembler than have to deal with bad CSS ever again. And I don't know any assembly languages.

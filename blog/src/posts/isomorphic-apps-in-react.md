@@ -2,8 +2,9 @@
 title: Isomorphic Apps in React
 created: 2016-01-25
 tags:
-  - js
+  - isomorphic
   - react
+  - js
 ---
 
 I don't know for sure that this deserves its own file... we'll see.

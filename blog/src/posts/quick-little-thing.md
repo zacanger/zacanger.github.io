@@ -1,12 +1,19 @@
 ---
 title: QUICK LITTLE THING
-created: 2017-04-25
+created: 2015-11-21
 tags:
-  - js
+  - react
+  - angular
+  - mean-stack
+  - meteor
+  - socket
+  - personal
+  - projects
   - devmtn
 ---
 
-[![DevMountain Sign](http://zacanger.com/blog/devmtn-sign.jpg)](https://www.instagram.com/p/-SlGTAxf6W/?taken-by=zacanger)
+
+[![DevMountain Sign](http://zacanger.com/blog/assets/img/devmtn-sign.jpg)](https://www.instagram.com/p/-SlGTAxf6W/?taken-by=zacanger)
 
 --------
 

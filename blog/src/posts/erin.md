@@ -2,10 +2,11 @@
 title: erin
 created: 2015-12-23
 tags:
-  - people
+  - gif
   - devmtn
+  - people
 ---
 
 is funny
 
-![erin has eyebrows](http://zacanger.com/blog/erin-eyebrows.gif)
+![erin has eyebrows](http://zacanger.com/blog/assets/img/erin-eyebrows.gif)

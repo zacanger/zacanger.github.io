@@ -2,6 +2,9 @@
 title: DevMountain, Week 2
 created: 2015-10-19
 tags:
+  - people
+  - school
+  - javascript
   - devmtn
 ---
 

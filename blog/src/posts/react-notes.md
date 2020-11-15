@@ -2,8 +2,10 @@
 title: REACT NOTES
 created: 2016-01-25
 tags:
-  - js
   - react
+  - webpack
+  - js
+  - notes
   - redux
 ---
 

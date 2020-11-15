@@ -2,9 +2,9 @@
 title: JAVASCRIPTSSSS
 created: 2015-10-25
 tags:
-  - js
-  - angular
   - devmtn
+  - angular
+  - js
 ---
 
 Take some concentration. Which, for me, takes a good bit of silence and, like, not needing to think about things other than what I'm trying to focus on. Kind of problematic, here. Silence and uninterrupted stretches of anything kind of don't exist when you're living with three other bachelors, and rooming with the youngest (and most talkative) of them.

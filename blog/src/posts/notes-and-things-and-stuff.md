@@ -1,10 +1,16 @@
 ---
 title: Notes and Things and Stuff
-created: 2015-09-29
+created: 2015-09-27
 tags:
-  - devmtn
-  - personal
+  - bash
   - blogging
+  - devmtn
+  - health
+  - meta
+  - personal
+  - sh
+  - shell
+  - work
 ---
 
 I'll need to edit this script a bit more. Needing to delete all the filler text isn't a HUGE deal... if you use a real editor. I mean. It's not a huge deal now, but nano's not exactly... powerful. I could actually just `^^` start a mark, and then get to where I need to be, and `^k` cut it... it's the getting aroudn that doesn't work so well. Home and end work sort of as expected, but `^Space^` and `M-Space` to go forward/back one word? No, thank you.

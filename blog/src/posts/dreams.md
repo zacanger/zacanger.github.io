@@ -2,7 +2,9 @@
 title: dreams
 created: 2015-12-05
 tags:
+  - people
   - personal
+  - dreams
 ---
 
 dreams are weird. usually i don't remember them. apparently sometimes i do. because i've been going so damn hard lately, when friday or saturday night comes around, i usually sleep for twelve or more hours straight, and i dream. a lot. very vividly. i've had two super intense dreams lately that, for whatever reason, really had a major effect on me for days later.
@@ -13,13 +15,19 @@ this is the first one, from about two weeks ago. i'm reposting something i scrib
 
 --------
 
-I just had the most beautiful and but also most terrifying dream I’ve ever had. I’ll never remember it all but I think I’ve been having it for weeks.
-The elephant was first, and he was kind and pure, and I saw humanity grow through his eyes, and his pity and helplessness. Our senseless cruelty. The fires. Flying. The toy wasteful, the man murdered in the steam… Something… I’m forgetting it already. The future, the terrifying majestic post-human intelligences that looked oddly like turnips…? They rarely moved, and did so by… Not floating… It was
-Oh motherfucker
-There was something really important there. The elephant, and the fires, and the beauty of a new humanity through his eyes, and…
-The baby.
-Something about growing past the point of suffering.
-Fuck. It was really, really important.
+I just had the most beautiful and but also most terrifying dream I’ve ever had. I’ll never remember it all but I think I’ve been having it for weeks.  
+
+The elephant was first, and he was kind and pure, and I saw humanity grow through his eyes, and his pity and helplessness. Our senseless cruelty. The fires. Flying. The toy wasteful, the man murdered in the steam… Something… I’m forgetting it already. The future, the terrifying majestic post-human intelligences that looked oddly like turnips…? They rarely moved, and did so by… Not floating… It was  
+
+Oh motherfucker  
+
+There was something really important there. The elephant, and the fires, and the beauty of a new humanity through his eyes, and…  
+
+The baby.  
+
+Something about growing past the point of suffering.  
+
+Fuck. It was really, really important.  
 
 --------
 

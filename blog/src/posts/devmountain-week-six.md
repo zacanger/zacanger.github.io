@@ -1,8 +1,9 @@
 ---
 title: DevMountain, Week Six
-created: 2015-11-16
+created: 2015-10-16
 tags:
-  - devmtn
+  - js
+  - sleep
 ---
 
 Howdy. I've been here for six weeks, now. I find that totally beyond belief.

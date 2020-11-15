@@ -1,11 +1,13 @@
 ---
-title:
+title: 'not long now...'
 created: 2015-10-08
 tags:
+  - travel
+  - npm
+  - education
   - devmtn
+  - personal
 ---
-
-not long now...
 
 I suppose I'll be arriving for all that school business soon enough. Maybe, anyway. I believe our bus is about four hours behind schedule at the moment? Three hours? I tell ya what, Greyhound is a freakin' joke. They'd've gone out of business long ago, if anyone else was running buses to these parts of the country. Our current driver, though, is just about the nicest I've met. Swell guy. We're running a bit behind because of someone who was late arriving from another bus for a transfer... and before that, because of LaWanda (yeah, really) who let us know we were running late and proceeded to take a year and a half to get a move on. And also because some poor dear on this bus got sick. No surprise... this bus (this specific bus, I mean) is filthy, close, claustrophobic... it's not pleasant. Our current driver literally started cleaning it as soon as he got out there, while we were at a rest stop; evidently the Greyhound staff, who've needed to boot us out of the bus every six hours or so to service and clean it, were kind of just not doing a single goddamn thing. (This is pretty evident from the state of the restroom--it has neither improved nor even been masked since I switched to this bus in Pittsburgh, and the fellows in the back who've been on it since New York suggest that it's been like that since they got on.
 

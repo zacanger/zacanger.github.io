@@ -2,6 +2,8 @@
 title: tone and voice
 created: 2016-01-25
 tags:
+  - tone
+  - voice
   - design
 ---
 
