@@ -6,13 +6,14 @@ tags:
   - design
 ---
 
-ages ago, like multiple months ago, i really wanted to make an editor that was better
-these are a bunch of notes i took on that topic
-there's a crapton more in the notes taken while working with the group on [pharaoh](http://pharaoh.js.org),
-but those can wait for osme other time.
+ages ago, like multiple months ago, i really wanted to make an editor that was
+better these are a bunch of notes i took on that topic there's a crapton more
+in the notes taken while working with the group on
+[pharaoh](http://pharaoh.js.org), but those can wait for osme other time.
 
 now, i'm perfectly 100% satisfied with what i get out of a
-[well-configured](https://github.com/zacanger/z.git) [neovim](https://neovim.io).
+[well-configured](https://github.com/zacanger/z.git)
+[neovim](https://neovim.io).
 
 --------
 

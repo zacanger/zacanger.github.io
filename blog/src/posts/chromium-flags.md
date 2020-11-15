@@ -10,9 +10,11 @@ tags:
   - flags
 ---
 
-Chromium can take a ridiculous amount of flags (when launched on the command line).
+Chromium can take a ridiculous amount of flags (when launched on the command
+line).
 
-Full reference (kept updated) available [here](http://peter.sh/experiments/chromium-command-line-switches/).
+Full reference (kept updated) available
+[here](http://peter.sh/experiments/chromium-command-line-switches/).
 
 This is just the ones I picked out that I thought might be useful.
 

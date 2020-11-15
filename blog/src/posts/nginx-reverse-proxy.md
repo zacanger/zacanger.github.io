@@ -6,14 +6,15 @@ tags:
   - deployment
 ---
 
-reverse proxy: multiple local servers being served out to a client that only really sees
-ngnix.
+reverse proxy: multiple local servers being served out to a client that only
+really sees ngnix.
 
 `cd /etc/ngnix`
 
 `vi nginx.conf`
 
-at the bottom-ish there'll be an `http {}` block, with a comment about virtual host configs
+at the bottom-ish there'll be an `http {}` block, with a comment about virtual
+host configs
 
 `cd /etc/nginx/site-available`
 
@@ -41,7 +42,8 @@ replace (non-comment) content with something like the following:
     }
 
 
-and then do an `ln -s /etc/nginx/sites-available/whatever /etc/nginx/sites-enabled/`
+and then do an `ln -s /etc/nginx/sites-available/whatever
+/etc/nginx/sites-enabled/`
 
 after `service nginx restart` shiz should be working.
 

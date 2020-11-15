@@ -10,7 +10,8 @@ ENTRYPOINT [&quot;node&quot;] # thing to run when we start the image, i think
 </code></pre>
 <p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
 <p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
-<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org recommends it.</p>
+<p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org
+recommends it.</p>
 <p>Some other Dockerfile commands (?):</p>
 <pre><code>WORKDIR /set/working/directory/to/here/i/guess
 COPY thisthing /to/here
@@ -76,7 +77,8 @@ ExecStop=/usr/bin/docker stop ournodecontainer
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-<p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don't really tell you where to look for that):</p>
+<p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don't really tell
+you where to look for that):</p>
 <pre><code class="language-shell">docker export &lt;container-hash&gt; &gt; dockerimg.tar
 
 # And then you could just:
@@ -87,8 +89,9 @@ tar -C ~/foo -xvf dockerimg.tar
 # (or just use atool's aunpack, much easier to remember!)
 </code></pre>
 <p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
-<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash, flattening all the layers,
-so extraneous info (for example, creating files that later get removed) wouldn't take up extra space.</p>
+<p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash,
+flattening all the layers, so extraneous info (for example, creating files that
+later get removed) wouldn't take up extra space.</p>
 <p><code>docker export</code> is for <em>containers</em>, currently running.</p>
 <p><code>docker save</code> is for <em>images</em>.</p>
 </div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

@@ -1,7 +1,14 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Auth with Passport and Express | Zac Anger&#x27;s Blog</title><meta name="description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app. app.use(flash())."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,passport,express,node,auth,authentication,local,login"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Auth with Passport and Express"/><meta name="twitter:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app. app.use(flash())."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Auth with Passport and Express"/><meta property="og:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your app. app.use(flash())."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Auth with Passport and Express</h2><h3>23 January, 2016</h3></header><div><h2>Passport/Flash Issues</h2>
-<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash')</code> in your app. <code>app.use(flash())</code>.</p>
-<p>So, make a route in your app/routes/config file, wherever you're keeping those, something like <code>app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})</code>, assuming you have some html with a form that <code>POST</code>s, and input for the email.</p>
-<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid or gmail or whatever).</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Auth with Passport and Express | Zac Anger&#x27;s Blog</title><meta name="description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your
+app. app.use(flash())."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,passport,express,node,auth,authentication,local,login"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Auth with Passport and Express"/><meta name="twitter:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your
+app. app.use(flash())."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Auth with Passport and Express"/><meta property="og:description" content="npm i -S express-flash, and var flash = require(&#x27;express-flash&#x27;) in your
+app. app.use(flash())."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Auth with Passport and Express</h2><h3>23 January, 2016</h3></header><div><h2>Passport/Flash Issues</h2>
+<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash')</code> in your
+app. <code>app.use(flash())</code>.</p>
+<p>So, make a route in your app/routes/config file, wherever you're keeping
+those, something like <code>app.get('/forgot', function(req, res){res.render('forgot', {user: req.user})})</code>, assuming you have some html
+with a form that <code>POST</code>s, and input for the email.</p>
+<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid
+or gmail or whatever).</p>
 <pre><code>app.post('/forgot', function(req, res, next){
   async.waterfall([
     function(done){
@@ -101,7 +108,10 @@ app.post('/reset/:token', function(req, res){
 </code></pre>
 <hr>
 <h2>Passport with Express and Flash--what's going on, here? (Take two.)</h2>
-<p>So, a flash message is just a variable, yes? A very temporary variable. It's stored in a session, and only available once--for the next request. If we attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So, here's an example of how that might work:</p>
+<p>So, a flash message is just a variable, yes? A very temporary variable. It's
+stored in a session, and only available once--for the next request. If we
+attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So,
+here's an example of how that might work:</p>
 <pre><code>router.post('/signup', passport.authenticate('local-login', {
   successRedirect : '/profile'
 , failureRedirect : '/signup'
@@ -136,7 +146,8 @@ router.get('/signup', function(req, res){
   res.render('signup', { message : req.flash('signupMessage')})
 })
 </code></pre>
-<p>This is basically where we are right now. Everything <em>looks</em> like it should work, but it totally doesn't. I think what we need here is to fix the session.</p>
+<p>This is basically where we are right now. Everything <em>looks</em> like it should
+work, but it totally doesn't. I think what we need here is to fix the session.</p>
 <pre><code>app.use(session({
   secret            : config.sessionSecret
 , resave            : false
@@ -167,8 +178,10 @@ router.get('/signup', function(req, res){
 </li>
 <li>Or, maybe there's a real user (<code>next(null, user)</code>), in which case we go to the <code>successRedirect</code>, yay!</li>
 </ul>
-<p>In the second case, a message could be passed as well, like <code>next(null, false, {message: 'sorry, you lose!'})</code>.<br>
-If there's that <code>failureFlash</code> up there (which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed, the message is stored in the session so you can access it for a template or whatever.</p>
+<p>In the second case, a message could be passed as well, like <code>next(null, false, {message: 'sorry, you lose!'})</code>. If there's that <code>failureFlash</code> up there
+(which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed,
+the message is stored in the session so you can access it for a template or
+whatever.</p>
 <p>Another option here would be to do things the long way (manually):</p>
 <pre><code>app.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info){
@@ -182,13 +195,15 @@ If there's that <code>failureFlash</code> up there (which <em>is</em> optional, 
   })(req, res, next)
 })
 </code></pre>
-<p>Yet <em>another</em> potential problem here is how things are being dealth with in the front end.<br>
-Requests from the browser act according to the response. If the browser's sending, for<br>
-example, with AJAX, using jQuery (this is a very specific example, I know), then the jQuery<br>
-will be expecting JSON back, will be <em>getting</em> HTML, won't know what to do with it, and<br>
-maybe you won't know what's going on here, because you maybe don't have a <code>.fail()</code> in your<br>
-call.<br>
-…and this is getting <em>really</em> specific, based on just two things I'm reading on Stack Overflow, so let's ditch that path, shall we? And just show a quick code sample:</p>
+<p>Yet <em>another</em> potential problem here is how things are being dealth with in
+the front end. Requests from the browser act according to the response. If the
+browser's sending, for example, with AJAX, using jQuery (this is a very
+specific example, I know), then the jQuery will be expecting JSON back, will
+be <em>getting</em> HTML, won't know what to do with it, and maybe you won't know
+what's going on here, because you maybe don't have a <code>.fail()</code> in your call.
+…and this is getting <em>really</em> specific, based on just two things I'm reading
+on Stack Overflow, so let's ditch that path, shall we? And just show a quick
+code sample:</p>
 <pre><code>app.post('/login/ajax', passport.authenticate('local-login'))
 // login form sent here
 app.post('/login', passport.authenticate('local-login', {

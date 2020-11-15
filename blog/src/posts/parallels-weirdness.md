@@ -44,4 +44,3 @@ note: run that as sudo from your normal user, don't `sudo su` and then do it.
 
 after that, i just opened parallels again and it worked. so. idk. no issues since.
 if anyone else can't get anything to work, maybe that'll help.
-

@@ -17,8 +17,9 @@ instead of this, think in terms of enabled/showing
 
 this is both for myself (because i get confused) and for other people
 
-evidently it's not always clear especially to non-native english speakers what the hell is going on
+evidently it's not always clear especially to non-native english speakers what
+the hell is going on
 
-example from ariya hidayat's blog:
-if you asked him if `A` equals `a` if `caseInsensitive` is `false`, that'd
-take a minute of thinking to even understand. instead, why not just `caseSensitive`?
+example from ariya hidayat's blog: if you asked him if `A` equals `a` if
+`caseInsensitive` is `false`, that'd take a minute of thinking to even
+understand. instead, why not just `caseSensitive`?

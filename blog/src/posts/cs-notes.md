@@ -196,4 +196,3 @@ const foo = 'stuff' // this would be called `O(1)`, meaning 'constant time'
   * It makes sense to expect that you can chain functions together.
   * This ends up being much, _much_ more declarative.
   * Just think about `map`, `reduce`, and `filter`.
-

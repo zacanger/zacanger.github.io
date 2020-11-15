@@ -244,4 +244,3 @@ sin.on('end', () => console.log('peace'))
 // it's really easy to just go to the api docs and read all of them.
 
 ```
-

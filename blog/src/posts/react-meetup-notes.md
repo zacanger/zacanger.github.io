@@ -130,4 +130,3 @@ const List = React.createClass({
 
 export default List // like module.exports = {}
 ```
-

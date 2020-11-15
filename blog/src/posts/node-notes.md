@@ -6,9 +6,10 @@ tags:
   - notes
 ---
 
-I really enjoy node. This is all pretty disorganized. It's also all one giant code block, since
-I took the 'notes' bit in comments. The repos mentioned are [here](https://github.com/zacanger/node-misc)
-and [here](https://github.com/zacanger/examples). Yay.
+I really enjoy node. This is all pretty disorganized. It's also all one giant
+code block, since I took the 'notes' bit in comments. The repos mentioned are
+[here](https://github.com/zacanger/node-misc) and
+[here](https://github.com/zacanger/examples). Yay.
 
 --------
 

@@ -130,4 +130,3 @@ and, just for fun
 ```javascript
 javascript:var setTitle=function(){0!=document.title.indexOf("%E0%B2%A0_%E0%B2%A0")&&(document.title="%E0%B2%A0_%E0%B2%A0 "+document.title)};window.addEventListener("load",function(){titleChange=function(){console.log("changed"),setTimeout(function(){setTitle()},20)};var e=document.getElementsByTagName("title")[0];e.addEventListener("DOMSubtreeModified",titleChange,!1),setTitle()},!1),setTitle();
 ```
-

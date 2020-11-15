@@ -9,17 +9,19 @@ tags:
 Classes, actually faster than factory functions, by ~twice.
 But... who cares, when you're talking about a thousandth of a millisecond?
 
-Better programmers means better software means better solutions for bigger problems.
+Better programmers means better software means better solutions for bigger
+problems.
 
 Dear Zac: Please start writing tests. Thanks! Love, Zac.
 
-'The Overjustification Effect' ... side projects are valuable in multiple ways.
-(I think everyone knew this.)
+'The Overjustification Effect' ... side projects are valuable in multiple
+ways. (I think everyone knew this.)
 
-Clojure: in parens, operator and operands. Example: (doThings toThis andThis andThis andThis).
+Clojure: in parens, operator and operands. Example: (doThings toThis andThis
+andThis andThis).
 
-APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me why cljs has
-brackets and braces, then? Like... wat?
+APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me
+why cljs has brackets and braces, then? Like... wat?
 
 * Five steps to understanding a new code base:
   * Find a mentor who really understands that code base and is willing and able to take the
@@ -34,8 +36,10 @@ brackets and braces, then? Like... wat?
 
 ### FUNCTORS
 
-I don't really know what a functor is but apparently map and filter are functors.
+I don't really know what a functor is but apparently map and filter are
+functors.
 
 Functors are objects that have a map-type method. Not the method itself.
 
-A JS array is a functor. Same with promises (from libraries, not the spec!) and streams.
+A JS array is a functor. Same with promises (from libraries, not the spec!)
+and streams.

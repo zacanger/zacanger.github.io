@@ -8,17 +8,17 @@ tags:
 just a few clojure notes
 
 i don't know if any of this is vastly different from cljs? i'd think not,
-because really you're just talking about a different target (jvm vs js vm), rite?
-but who knows. i mean, normally you wouldn't talk about clojure and clojurescript
-with two different names if they were the exact same language and the only actual
-difference was the target vm.
+because really you're just talking about a different target (jvm vs js vm),
+rite? but who knows. i mean, normally you wouldn't talk about clojure and
+clojurescript with two different names if they were the exact same language
+and the only actual difference was the target vm.
 
 i'd look this up but i'm on a plane. so.
 
 some notes!
 
-everything, i believe, takes the format of `(action thingsTo actOn)`
-which is called a form.
+everything, i believe, takes the format of `(action thingsTo actOn)` which is
+called a form.
 
 ```clojure
 (def varname varval)
@@ -26,6 +26,7 @@ which is called a form.
 ```
 
 but there's also the `let` keyword which is different. for functions?
+
 ```clojure
 (let [myname "zac"]
   (println myname))

@@ -7,7 +7,8 @@ tags:
 
 # Category Theory for JS Devs
 
-Notes taken while watching [this series](https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX).
+Notes taken while watching [this
+series](https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX).
 
 ## Contracts
 
@@ -22,13 +23,16 @@ const str = a => {
 
 ## Guarded Functions and Categories
 
-Functions that have contracts on input or output are called _guarded_ functions.
+Functions that have contracts on input or output are called _guarded_
+functions.
 
-An _any_ function might just look like an identity function (`const any = a => a`).
+An _any_ function might just look like an identity function (`const any = a =>
+a`).
 
 Maps between categories are functors.
 
-The _objects_ of categories are the _contracts_. _Morphisms_ are the (guarded) functions.
+The _objects_ of categories are the _contracts_. _Morphisms_ are the (guarded)
+functions.
 
 Function that returns a contract:
 
@@ -57,14 +61,16 @@ const increment = a => {
 }
 ```
 
-Before I go further I should mention that yes, I have heard of Flow and TypeScript.
+Before I go further I should mention that yes, I have heard of Flow and
+TypeScript.
 
 ```javascript
 const increment = (a: number) => a + 1
 ```
 
-I assume this video series will get to actual type systems at some point, though
-it was made before TypeScript and Flow were written, so it won't be mentioning those.
+I assume this video series will get to actual type systems at some point,
+though it was made before TypeScript and Flow were written, so it won't be
+mentioning those.
 
 ## Array Contracts
 
@@ -95,8 +101,8 @@ objects and new morphisms.
 
 The _Maybe_ functor.
 
-`Maybe` is a Monad, but I guess we're only thinking of its Functor-ness for this
-video?
+`Maybe` is a Monad, but I guess we're only thinking of its Functor-ness for
+this video?
 
 Anyway here's some code.
 

@@ -44,4 +44,3 @@ plugins : [
 * Keep checking against the initial benchmark.
 * 'babel-plugin-transform-react-remove-prop-types' might also be useful. It removes unwanted/unused React.PropTypes.
 * There's also 'babel-preset-react-optimize'
-

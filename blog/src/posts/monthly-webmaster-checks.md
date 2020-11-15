@@ -6,11 +6,20 @@ tags:
   - maintenance
 ---
 
-This is a list of stuff to check regularly on any content-focused website, intended for use by the (semi-)technical person who is maintaining the website and assigned to "do something about it" for all the things that need reporting and improving. If the tasks make you go cross-eyed with incomprehension, then you can consider either how to learn more, or how to find someone to help you out!
+This is a list of stuff to check regularly on any content-focused website,
+intended for use by the (semi-)technical person who is maintaining the website
+and assigned to "do something about it" for all the things that need reporting
+and improving. If the tasks make you go cross-eyed with incomprehension, then
+you can consider either how to learn more, or how to find someone to help you
+out!
 
-As the list is generic it doesn't describe how to perform the check, or what you are looking for, and doesn't cover checks on more functional/interactive websites like ecommerce.
+As the list is generic it doesn't describe how to perform the check, or what you
+are looking for, and doesn't cover checks on more functional/interactive
+websites like ecommerce.
 
-The list includes a mixture of critical and merely "improvement-oriented" things to look at: if you are not sure what is critical and what not, that's a good question for your webmaster to work on!
+The list includes a mixture of critical and merely "improvement-oriented" things
+to look at: if you are not sure what is critical and what not, that's a good
+question for your webmaster to work on!
 
 --------
 
@@ -29,7 +38,7 @@ The list includes a mixture of critical and merely "improvement-oriented" things
    3. ...for speed and mobile-friendly indications
    4. ...extract list of 404s
 1. Run sitemap spider
-   1. ...and save snapshot of pages 
+   1. ...and save snapshot of pages
    2. ...note pages missing meta title and description, assign task
    3. ...extract list of errors
    4. ...extract list of external links and test
@@ -39,7 +48,7 @@ The list includes a mixture of critical and merely "improvement-oriented" things
    1. Check any alerts / intelligence events
    2. View reports based on agreed performance indicators such as bounce rate for sources of traffic, and variance of attentiveness for mobile visitors
    3. Any GA reports related to current ad campaigns
-   4. Check and report custom segments and content groups which are being watched 
+   4. Check and report custom segments and content groups which are being watched
    5. Note most popular devices and browsers; report if necessary
 1. Perform Google site: search to see pages indexed are as expected
 2. Run key URLs through Google Mobile Friendly test tool; note tasks as needed

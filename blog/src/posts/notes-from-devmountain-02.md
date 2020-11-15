@@ -8,11 +8,13 @@ tags:
   - angular
 ---
 
-This is a bunch more notes from my time going through the course at DevMountain.
+This is a bunch more notes from my time going through the course at
+DevMountain.
 
 These notes are specifically from the first three weeks. They're a mess.
 
-Don't take anything too seriously. I probably didn't know what I was talking about, a lot of the time.
+Don't take anything too seriously. I probably didn't know what I was talking
+about, a lot of the time.
 
 --------
 

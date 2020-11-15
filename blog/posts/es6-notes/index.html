@@ -1,6 +1,12 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>ES6 Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="(These are some random notes from a lecture on ES6.)"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,javascript,ecmascript,es6,es2015"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="ES6 Notes"/><meta name="twitter:description" content="(These are some random notes from a lecture on ES6.)"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="ES6 Notes"/><meta property="og:description" content="(These are some random notes from a lecture on ES6.)"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>ES6 Notes</h2><h3>18 January, 2016</h3></header><div><p>(These are some random notes from a lecture on ES6.)</p>
-<p><code>let</code> = <code>var</code>, but block scoped, <em>finally</em>. this means no leaks. Let can't be redeclared outside of its block, because it doesn't exist outside of there.</p>
-<p><code>const</code> = <code>var</code>, but it's a constant, <em>finally</em>. this means variables you can't fuck with, man! for simple things, that is. <code>const x = 2; x = 3</code> does <em>not</em> work. however, parts of a <code>const</code> are mutable; that is, <code>const y = [0, 1, 2, 3]; y[0] = 7</code> <em>does</em> work. Constants can be global or local, that's just up to how you declare it. Const and let behave the same no matter where you declare them; the difference is that const can't be <em>defined</em> again, whereas let <em>can</em> be redefined. <em>Neither</em> of them can be <em>declared</em> again.</p>
+<p><code>let</code> = <code>var</code>, but block scoped, <em>finally</em>. this means no leaks. Let can't be
+redeclared outside of its block, because it doesn't exist outside of there.</p>
+<p><code>const</code> = <code>var</code>, but it's a constant, <em>finally</em>. this means variables you can't
+fuck with, man! for simple things, that is. <code>const x = 2; x = 3</code> does <em>not</em>
+work. however, parts of a <code>const</code> are mutable; that is, <code>const y = [0, 1, 2, 3]; y[0] = 7</code> <em>does</em> work. Constants can be global or local, that's just up to how
+you declare it. Const and let behave the same no matter where you declare them;
+the difference is that const can't be <em>defined</em> again, whereas let <em>can</em> be
+redefined. <em>Neither</em> of them can be <em>declared</em> again.</p>
 <hr>
 <p>Structured assignment and destructuring:</p>
 <pre><code>let {name, age} =
@@ -9,7 +15,9 @@
   age: 26,
   b: false }
 </code></pre>
-<p>Here, the <code>let</code> is a <em>pattern</em>, looking for <code>age</code> and <code>name</code> in the object. It ignores the keys that don't match what it's looking for. We can build this pattern like so, for using 'pretty' keys to access 'ugly' keys:</p>
+<p>Here, the <code>let</code> is a <em>pattern</em>, looking for <code>age</code> and <code>name</code> in the object. It
+ignores the keys that don't match what it's looking for. We can build this
+pattern like so, for using 'pretty' keys to access 'ugly' keys:</p>
 <pre><code>let {qzrf: name, kjlpo: age} =
 { a: 1,
   qzrf: 'zac',
@@ -64,12 +72,15 @@ function what(s, ...t, u){}
 function foo(a,b,c){return a+b+c}
 foo(...a)
 </code></pre>
-<p>So what we're doing is <em>un</em>-packaging that array, and spreading it out to fill all the space.</p>
+<p>So what we're doing is <em>un</em>-packaging that array, and spreading it out to fill
+all the space.</p>
 <pre><code>console.log([1, 2, 3, ...a])
 // returns [1, 2, 3, 1, 2, 3]
 </code></pre>
-<p>Template strings. Backticks instead of double-quotes. Dollar sign instead of a hash. That's about all.</p>
-<p>Tag functions can manipulate both variables and template strings inside of them. Wicked cool.</p>
+<p>Template strings. Backticks instead of double-quotes. Dollar sign instead of a
+hash. That's about all.</p>
+<p>Tag functions can manipulate both variables and template strings inside of
+them. Wicked cool.</p>
 <pre><code>function template(strings, ...keys){
   return (function(...values){
     var dict   = values[values.length - 1] || {}
@@ -84,9 +95,14 @@ foo(...a)
 template`${0} ${'foo'}!`('Hello', {foo: 'world...'|)} // Hello world....
 </code></pre>
 <p>Classes: sugar for the Java/Rb/Py kids.</p>
-<p>The <code>super()</code> means 'inherit this thingy from what we're extending.' And the classical inheritance syntax goes <code>class Bar extends Foo { constructor(stuff, things){} }</code>.</p>
-<p><code>this</code> does not have lexical scope, so inside of a method on a class, <code>this</code> will <em>not</em> have the expected behavior. The <code>this</code> doesn't come to be until its calling function is ovoked.</p>
-<p>For something with no parameters, we can leave out the <code>()</code> in arrow functions. Like <code>foo =&gt; bar =&gt; bar(asdf){return asdf}</code>. Lets inner function close over the <code>this</code> of the outer fn.</p>
+<p>The <code>super()</code> means 'inherit this thingy from what we're extending.' And the
+classical inheritance syntax goes <code>class Bar extends Foo { constructor(stuff, things){} }</code>.</p>
+<p><code>this</code> does not have lexical scope, so inside of a method on a class, <code>this</code>
+will <em>not</em> have the expected behavior. The <code>this</code> doesn't come to be until its
+calling function is ovoked.</p>
+<p>For something with no parameters, we can leave out the <code>()</code> in arrow
+functions. Like <code>foo =&gt; bar =&gt; bar(asdf){return asdf}</code>. Lets inner function
+close over the <code>this</code> of the outer fn.</p>
 <p>Iterators:</p>
 <pre><code>let a  = [1, 2, 3]
 let it = a.values()
@@ -95,14 +111,18 @@ console.log(it.next()) // 2, false
 console.log(it.next()) // 3, false
 console.log(it.next()) // finally, just returns {&quot;done&quot;:true}
 </code></pre>
-<p>...iterators are sexy. Imagine one that returns pi, gradually. ES6 gives you strings, arrays, maps, and sets, by default. The <code>.values()</code> and the <code>.next()</code> are ES6 specific. The <code>.values()</code> is what gives you the next value when called. Oh my god, this is nice.</p>
+<p>...iterators are sexy. Imagine one that returns pi, gradually. ES6 gives you
+strings, arrays, maps, and sets, by default. The <code>.values()</code> and the <code>.next()</code>
+are ES6 specific. The <code>.values()</code> is what gives you the next value when
+called. Oh my god, this is nice.</p>
 <p>forOf:</p>
 <pre><code>let a = ['a', 'b', 'c']
 for (let i of a){
   console.log(i)
 }
 </code></pre>
-<p>This only works with structures that give you iterators by default (so the aforementioned strings, arrays, maps, and sets).</p>
+<p>This only works with structures that give you iterators by default (so the
+aforementioned strings, arrays, maps, and sets).</p>
 <p>Map:</p>
 <pre><code>let myMap = new Map()
 let a = {}
@@ -112,8 +132,11 @@ myMap.set(a, 'hi')
 myMap.set(b, [1, 2, 3])
 console.log(myMap.get(c)) // 4
 </code></pre>
-<p>So, we're just pairing this thing with that thing, without actually storing those things there for realsies. There are methods for removing, clearing out, etc., as well.</p>
-<p>Sets: these are like arrays, but with no duplication allowed. Great for finding out if something's already in an array.</p>
+<p>So, we're just pairing this thing with that thing, without actually storing
+those things there for realsies. There are methods for removing, clearing out,
+etc., as well.</p>
+<p>Sets: these are like arrays, but with no duplication allowed. Great for
+finding out if something's already in an array.</p>
 <pre><code>let mySet = new Set()
 mySet.add('hi')
 console.log(mySet.has('hi')) // true
@@ -122,7 +145,9 @@ console.log(mySet.size) // 2
 mySet.add('hi')
 console.log(mySet.size) // still 2!
 </code></pre>
-<p>There are a bunch of methods like clearing, removing, providing an iterator, etc., like in maps.</p>
+<p>There are a bunch of methods like clearing, removing, providing an iterator,
+etc., like in maps.</p>
 <p>Modules are a thing.</p>
-<p>And there are a bunch of new methods on stuff we already know (strings, arrays, etc.).</p>
+<p>And there are a bunch of new methods on stuff we already know (strings,
+arrays, etc.).</p>
 </div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

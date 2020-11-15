@@ -92,4 +92,3 @@ one()
   .catch(err => /* handle err */)
 
 ```
-

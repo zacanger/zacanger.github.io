@@ -22,4 +22,3 @@ words i regret the most:
 i have a really hard time with losing people.
 
 and also with losing opportunities.
-

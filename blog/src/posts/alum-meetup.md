@@ -17,7 +17,6 @@ this was from some reasonably long time ago
     well about what you've actually managed to do, because they want to know.
   * Know why it is that a company makes the choices it does. Barbara's
     example: knowing why it was the company she works for uses Angular.
-
 * Mark:
   * Having past projects to talk about _really_ helps. Obviously. Duh.
   * [STAR](https://en.wikipedia.org/wiki/Situation,_Task,_Action,_Result) is a thing,
@@ -39,7 +38,6 @@ this was from some reasonably long time ago
     the company will pay you for your work on the project (I mean, that's kinda
     becoming normal now, anyway). Maybe they won't -- and if they don't, use that
     project or whatever on your portfolio.
-
 * Dallin:
   * He likes whatever it is that he does now, I guess.
   * He has 'come to realise more, the many fallacies in his personality.'
@@ -55,9 +53,7 @@ this was from some reasonably long time ago
     That's pretty cool. He works mostly in Rails, and I know he does Coffeescript,
     so chances are he learned that on the job (knowing Ruby definitely would've
     helped with that).
-
 * Jeff:
   * Don't make portfolio pieces that aren't accessible.
     * Example: his Instagram analytics site.
     * If this isn't possible, do a video demo of that project.
-

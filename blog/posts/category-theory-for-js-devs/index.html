@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Category Theory Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="Notes taken while watching this series."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Category Theory Notes"/><meta name="twitter:description" content="Notes taken while watching this series."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Category Theory Notes"/><meta property="og:description" content="Notes taken while watching this series."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Category Theory Notes</h2><h3>26 November, 2016</h3></header><div><h1>Category Theory for JS Devs</h1>
-<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this series</a>.</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Category Theory Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="Notes taken while watching this
+series."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Category Theory Notes"/><meta name="twitter:description" content="Notes taken while watching this
+series."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Category Theory Notes"/><meta property="og:description" content="Notes taken while watching this
+series."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Category Theory Notes</h2><h3>26 November, 2016</h3></header><div><h1>Category Theory for JS Devs</h1>
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this
+series</a>.</p>
 <h2>Contracts</h2>
 <p>Basics of type checking.</p>
 <pre><code class="language-javascript">const str = a =&gt; {
@@ -8,10 +12,12 @@
 }
 </code></pre>
 <h2>Guarded Functions and Categories</h2>
-<p>Functions that have contracts on input or output are called <em>guarded</em> functions.</p>
+<p>Functions that have contracts on input or output are called <em>guarded</em>
+functions.</p>
 <p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
 <p>Maps between categories are functors.</p>
-<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded) functions.</p>
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded)
+functions.</p>
 <p>Function that returns a contract:</p>
 <pre><code class="language-javascript">const typeOf = type =&gt; a =&gt; {
   if (typeof a !== `${type}`) throw new TypeError(`Expected ${type}!`)
@@ -30,11 +36,13 @@ const num  = typeOf('number')
   return a + 1
 }
 </code></pre>
-<p>Before I go further I should mention that yes, I have heard of Flow and TypeScript.</p>
+<p>Before I go further I should mention that yes, I have heard of Flow and
+TypeScript.</p>
 <pre><code class="language-javascript">const increment = (a: number) =&gt; a + 1
 </code></pre>
-<p>I assume this video series will get to actual type systems at some point, though
-it was made before TypeScript and Flow were written, so it won't be mentioning those.</p>
+<p>I assume this video series will get to actual type systems at some point,
+though it was made before TypeScript and Flow were written, so it won't be
+mentioning those.</p>
 <h2>Array Contracts</h2>
 <p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
 <pre><code class="language-javascript">const arr = a =&gt; {
@@ -52,8 +60,8 @@ correct. Ensure that your array is, for example, all Strings, or whatever.</p>
 objects and new morphisms.</p>
 <h2>Maybe</h2>
 <p>The <em>Maybe</em> functor.</p>
-<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for this
-video?</p>
+<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for
+this video?</p>
 <p>Anyway here's some code.</p>
 <pre><code class="language-javascript">const Maybe = () =&gt; {}
 Maybe.prototype.getOrElse = function (a) {

@@ -7,9 +7,11 @@ tags:
   - js
 ---
 
-please note: these aren't all my ideas, some are from [ryan walsh](http://ryanwalsh.io)
+please note: these aren't all my ideas, some are from [ryan
+walsh](http://ryanwalsh.io)
 
-also, all of this was from back when both myself and ryan were just starting to learn react
+also, all of this was from back when both myself and ryan were just starting to
+learn react
 
 i don't dislike jsx, i got over that
 

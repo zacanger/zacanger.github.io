@@ -8,7 +8,8 @@ tags:
   - js
 ---
 
-That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and es-the-number-after-that notes.
+That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and
+es-the-number-after-that notes.
 
 What ~~will~~ might we get?
 

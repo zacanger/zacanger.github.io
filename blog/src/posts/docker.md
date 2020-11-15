@@ -22,7 +22,8 @@ and then we do something like `docker build -t whatwewanttocallit .`
 
 and then `docker run -d 4010:4010 whatwecalledit`
 
-It looks like the `argon:node` image is one that is a thing. Nodejs.org recommends it.
+It looks like the `argon:node` image is one that is a thing. Nodejs.org
+recommends it.
 
 Some other Dockerfile commands (?):
 
@@ -33,7 +34,8 @@ CMD ["array", "of", "commands", "like", "npm", "start"]
 ADD . . # add files/dirs from cwd to image
 ```
 
-The `-d` in `docker run -d` means `detach`. And `-p` as in `docker run -p 80:4010` looks obvious.
+The `-d` in `docker run -d` means `detach`. And `-p` as in `docker run -p
+80:4010` looks obvious.
 
 Some commands:
 
@@ -92,7 +94,8 @@ docker build -t jane-com .
 docker run -it --rm -name jane-com-docker-running jane-com
 ```
 
-To keep Docker running, throw this in your bash rc: `eval $(docker-machine env default)`
+To keep Docker running, throw this in your bash rc: `eval $(docker-machine env
+default)`
 
 And if you need systemd in the mix, try something like:
 
@@ -117,7 +120,8 @@ ExecStop=/usr/bin/docker stop ournodecontainer
 WantedBy=multi-user.target
 ```
 
-**TO GET YOUR IMAGE INTO A TARBALL, LOCALLY** (because they don't really tell you where to look for that):
+**TO GET YOUR IMAGE INTO A TARBALL, LOCALLY** (because they don't really tell
+you where to look for that):
 
 ```shell
 docker export <container-hash> > dockerimg.tar
@@ -132,8 +136,9 @@ tar -C ~/foo -xvf dockerimg.tar
 
 Docker can take a `.dockerignore`, formatted I guess basically the same as gitignore.
 
-Doing an `export` piped to an `import` essentially works like a squash, flattening all the layers,
-so extraneous info (for example, creating files that later get removed) wouldn't take up extra space.
+Doing an `export` piped to an `import` essentially works like a squash,
+flattening all the layers, so extraneous info (for example, creating files that
+later get removed) wouldn't take up extra space.
 
 `docker export` is for _containers_, currently running.
 

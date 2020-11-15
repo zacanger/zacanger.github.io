@@ -9,15 +9,18 @@ tags:
   - angular
 ---
 
-This is going to be a crapton of my notes, from when I was going through the course at DevMountain.
+This is going to be a crapton of my notes, from when I was going through the
+course at DevMountain.
 
-Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.
+Looking back over these, a lot of them are dumb. What I mean by this is that
+my opinions on things were dumb.
 
 Whatever.
 
-Don't take it all so seriously. Some of it could be really helpful. This is about half of my collected
-notes _that were inside project files_. Everything else has already been cleaned up and posted, or is in
-a directory of drafts somewhere. This stuff is totally unedited.
+Don't take it all so seriously. Some of it could be really helpful. This is
+about half of my collected notes _that were inside project files_. Everything
+else has already been cleaned up and posted, or is in a directory of drafts
+somewhere. This stuff is totally unedited.
 
 --------
 
@@ -48,24 +51,27 @@ key-value pairs.
       }
     })
 
-directive names MUST be camelCase. pascal case will not be recognized. nor snake case?
+directive names MUST be camelCase. pascal case will not be recognized. nor
+snake case?
 
-i mean, really, it's all made a lot more complicated than it needs to be. we're starting out basically
-just making our own little bits. it makes sense. if it works as a template file, or as just regular html,
+i mean, really, it's all made a lot more complicated than it needs to be.
+we're starting out basically just making our own little bits. it makes sense.
+if it works as a template file, or as just regular html,
 it'll work as a custom directive. just more reusable as a directive.
 
-we could have a directive with a TYPE. imagine a function that returns a customer with an attribute that's
-.type... so we'd have a directive called myCustomer, type="name", then another, type="smoking habits".
-paramaters here are always (element, attribute).
+we could have a directive with a TYPE. imagine a function that returns a
+customer with an attribute that's .type... so we'd have a directive called
+myCustomer, type="name", then another, type="smoking habits". paramaters here
+are always (element, attribute).
 
-Restrict as a property: E means element (so you'd do <myDirective> instead of <div myDirective>
-A is attribute, so it'd be <div myDirective>
-can do BOTH so it'd work for either. (restrict: EA)
-C is for class, but let's not do that! That seems like a really not okay and very bad idea.
-This is basically for semantic enforcement. Element would be good for a custom block, eg
+Restrict as a property: E means element (so you'd do <myDirective> instead of
+<div myDirective> A is attribute, so it'd be <div myDirective> can do BOTH so
+it'd work for either. (restrict: EA) C is for class, but let's not do that!
+That seems like a really not okay and very bad idea. This is basically for
+semantic enforcement. Element would be good for a custom block, eg
 <myDirective>a whole bunch of shit just about this one</myDirective>
-<mySECONDdirective>another whole bunch</mySECONDdirective> etc
-A would be good for tacking things onto elements that would likely be there anyway, it seems.
+<mySECONDdirective>another whole bunch</mySECONDdirective> etc A would be good
+for tacking things onto elements that would likely be there anyway, it seems.
 If you need to take in parameters, A would be better.
 
 custom filters like this!
@@ -85,15 +91,16 @@ custom filters like this!
 
 link ALWAYS takes in at leaste those three, and alkways in that order!
 
-inside a directive, feel free to do some jquery-lite.
-if you want to use, say, d3, or three.js, you can go ahead and inject that into angular
-and use it. (we're talking about other DOM manupilation, not utilities like lodash).
+inside a directive, feel free to do some jquery-lite. if you want to use, say,
+d3, or three.js, you can go ahead and inject that into angular and use it.
+(we're talking about other DOM manupilation, not utilities like lodash).
 
-inside a link whatever, that scp refers to its parent's scope, it shares parent's scope
-by default. eg if custom up there is directly below mainCtrl, scp means mainCtrl's $scope.
+inside a link whatever, that scp refers to its parent's scope, it shares
+parent's scope by default. eg if custom up there is directly below mainCtrl,
+scp means mainCtrl's $scope.
 
-underneath .directive, the scope: { stuff } actually means, like, scope INSTRUCTIONS or
-somesuch.
+underneath .directive, the scope: { stuff } actually means, like, scope
+INSTRUCTIONS or somesuch.
 
 SCOPE
 
@@ -103,9 +110,11 @@ SCOPE
     func: '&'
     }
 
-The properties on the scope object represent the attributes on the directive in the html. Our example scope object here would look something like this in the html.
-`<example-directive string="a string" link="user" func="updateUser()"></example-directive>`
-The hard part here is the `@`, `=`, and `&`. They each have very important and distinct meanings.
+The properties on the scope object represent the attributes on the directive
+in the html. Our example scope object here would look something like this in
+the html. `<example-directive string="a string" link="user"
+func="updateUser()"></example-directive>` The hard part here is the `@`, `=`,
+and `&`. They each have very important and distinct meanings.
 
 * `@` says take in my attribute value as a string.
 * `=` says take in my attribute value as a two-way bound variable from the parent scope.
@@ -280,7 +289,5 @@ When we're not doing eg `require('./path')` (but rather `require(/path)' with no
 
 --------
 
-...that's all, for now. There will probably be more, once I sort through the first three weeks' worth of shit.
-
-tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean
-
+...that's all, for now. There will probably be more, once I sort through the
+first three weeks' worth of shit.

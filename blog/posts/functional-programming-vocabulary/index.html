@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Functional Programming Vocabulary | Zac Anger&#x27;s Blog</title><meta name="description" content="arity"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp,programming,vocabulary"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Functional Programming Vocabulary"/><meta name="twitter:description" content="arity"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Functional Programming Vocabulary"/><meta property="og:description" content="arity"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Functional Programming Vocabulary</h2><h3>16 January, 2016</h3></header><div><ul>
-<li>
-<p>arity</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Functional Programming Vocabulary | Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp,programming,vocabulary"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Functional Programming Vocabulary"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Functional Programming Vocabulary"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Functional Programming Vocabulary</h2><h3>16 January, 2016</h3></header><div><ul>
+<li>arity
 <ul>
 <li>number of args a function takes</li>
 <li>ary + ity (it's two suffixes!)</li>
@@ -9,83 +8,71 @@
 <li>dyadic = binary (talkin greek here)</li>
 </ul>
 </li>
-<li>
-<p>hof</p>
+<li>hof
 <ul>
 <li>function that takes function as arg</li>
 <li>or function that returns a function</li>
 </ul>
 </li>
-<li>
-<p>partial application</p>
+<li>partial application
 <ul>
 <li>getting a function with lower arity compared to original function</li>
 <li>by fixing number of args</li>
 </ul>
 </li>
-<li>
-<p>currying</p>
+<li>currying
 <ul>
 <li>converting function with multiple arity into function with arity of one</li>
 </ul>
 </li>
-<li>
-<p>purity</p>
+<li>purity
 <ul>
 <li>pure function's return value is determined ONLY by input values</li>
 <li>no side effects</li>
 </ul>
 </li>
-<li>
-<p>side effects</p>
+<li>side effects
 <ul>
 <li>if modifies some state</li>
 <li>or has observable interaction with external functions</li>
 </ul>
 </li>
-<li>
-<p>idempotency</p>
+<li>idempotency
 <ul>
 <li>no side effects on multiple executions with same parameters</li>
 </ul>
 </li>
-<li>
-<p>points-free</p>
+<li>points-free
 <ul>
 <li>does not include information regarding arguments</li>
 </ul>
 </li>
-<li>
-<p>functor</p>
+<li>functor
 <ul>
 <li>structure than can be mapped over</li>
 <li>simplest in js is an array</li>
 </ul>
 </li>
-<li>
-<p>referential transparency</p>
+<li>referential transparency
 <ul>
 <li>expression that can be replaced with its value without changing its behavior</li>
 <li>eg <code>let oi = ()  = 'howdy'</code>; <code>oi()</code> can be <code>'howdy'</code>, hence is referentially transparent</li>
 </ul>
 </li>
-<li>
-<p>lazy eval</p>
+<li>lazy eval
 <ul>
 <li>delays evaluation of expression until needed</li>
 <li>allows for structures that are not available in imperative langs where sequence is significant</li>
 </ul>
 </li>
-<li>
-<p>monoid</p>
+<li>monoid
 <ul>
 <li>data type and two-param function that combines two values of the type, where an identity value that doesn't affect result also exists</li>
 <li>example: 1 + 1 (data type is number, function is =)</li>
 <li>1 + 0 (identity value is 0)</li>
 </ul>
 </li>
-<li>
-<p>monad</p>
+<li>monad
 <ul>
 <li>abstraction. provides interface for executing common sequence of commands on a value one normally avoids acting on directly</li>
 <li>optional value monad is common (to avoid exposing to null values)</li>

@@ -232,19 +232,20 @@ writeFile(`${component}.js`, toWrite, 'utf8', err => {
 })
 ```
 
-Boom! You've made a command-line app! You can drop this anywhere in your `$PATH`
-and call it from anywhere to generate a component for you! (`$PATH` is where
-your system looks for files to execute. If you don't have something like a
-`~/bin` directory, maybe `mv rcg.js /usr/local/bin`. If you don't want to move it
-somewhere like that, you can always either do `./rcg.js` or `node rcg`.)
+Boom! You've made a command-line app! You can drop this anywhere in your
+`$PATH` and call it from anywhere to generate a component for you! (`$PATH` is
+where your system looks for files to execute. If you don't have something like
+a `~/bin` directory, maybe `mv rcg.js /usr/local/bin`. If you don't want to
+move it somewhere like that, you can always either do `./rcg.js` or `node
+rcg`.)
 
 That's it! This script is not super clean. There are a few little things that
 can be done to make it a lot better, like using a `switch` statement to handle
 arguments, handling unexpected arguments, not overwritting an existing file,
-passing more options, and trimming extra lines from the generated files, and not
-keeping your templates in the same file as all the rest of the things. I'm going
-to leave that up to you. Have fun with it!
+passing more options, and trimming extra lines from the generated files, and
+not keeping your templates in the same file as all the rest of the things. I'm
+going to leave that up to you. Have fun with it!
 
-If you're interested in doing this kind of stuff in Node, be sure to check back!
-I've got two more tutorials on writing command-line apps in Node, which will go
-progressively more in depth, on the way
+If you're interested in doing this kind of stuff in Node, be sure to check
+back! I've got two more tutorials on writing command-line apps in Node, which
+will go progressively more in depth, on the way

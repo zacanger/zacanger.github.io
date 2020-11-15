@@ -29,7 +29,7 @@ tags:
 
 ### Elements
 
-Interfaces are composed of small components, which are composed of small primitives.  
+Interfaces are composed of small components, which are composed of small primitives.
 This lowest granular level only consists of a few elements:
 
 * Buttons
@@ -40,8 +40,9 @@ Everything else is usually a superset of these elements.
 
 ### Trends
 
-Don't buy into the hype. Not everything is a good thing. A lot of things are actually  
-really bad things, especially for the users you might not be considering.
+Don't buy into the hype. Not everything is a good thing. A lot of things are
+actually  really bad things, especially for the users you might not be
+considering.
 
 * Parallax -- good for flashiness, bad for a11y, users, browsers
 * Card -- good all around, for the right application
@@ -51,9 +52,9 @@ really bad things, especially for the users you might not be considering.
 
 ### Natural Language Form
 
-Forms that aren't just inputs. Mad-libs style, so one doesn't have a giant box of empty  
+Forms that aren't just inputs. Mad-libs style, so one doesn't have a giant box of empty
 boxes to fill in, but instead something like
-[I want my username to be {username} and my password to be {password}](http://www.lukew.com/ff/entry.asp?1007), or 
+[I want my username to be {username} and my password to be {password}](http://www.lukew.com/ff/entry.asp?1007), or
 [I'm looking for {restaurant} in {city} at {time}.](http://www.jroehm.com/2014/01/ui-pattern-natural-language-form/)
 
 ### Empty States

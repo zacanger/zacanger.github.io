@@ -30,16 +30,31 @@ render() == render: function(){}
 
 this.setState = important, should always use
 
-React is a view. But, does server-side rendering. Which is much more up my alley, because it's not making life miserable for users. We can check that out when we check out all those other frameworks, for fun.
+React is a view. But, does server-side rendering. Which is much more up my
+alley, because it's not making life miserable for users. We can check that out
+when we check out all those other frameworks, for fun.
 
 React is compiled.
 
-Redux is a state container. Which actually makes sense now. Because everything is state, in React, it seems. So, it abstracts state and manages it independently from the front-end, which is how React _can_ do it's thing on the server.
+Redux is a state container. Which actually makes sense now. Because everything
+is state, in React, it seems. So, it abstracts state and manages it
+independently from the front-end, which is how React _can_ do it's thing on
+the server.
 
-My god, though, React people are worse than Lisp people. Everything has to be about how they do things better, even when they very clearly just do things at a totally okay level.
+My god, though, React people are worse than Lisp people. Everything has to be
+about how they do things better, even when they very clearly just do things at
+a totally okay level.
 
-[OH. It turns out that React looks like PHP to be because it was influenced by XHP](https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook). Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So React is Javascript based on PHP based on Javascript based on XML. So it's totally okay to think that it's hideous. That's good.
+[OH. It turns out that React looks like PHP to be because it was influenced by
+XHP](https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook).
+Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So
+React is Javascript based on PHP based on Javascript based on XML. So it's
+totally okay to think that it's hideous. That's good.
 
 --------
 
-This note, and some random (a halfway finished tiny little example app) are up [on Github](https://github.com/zacanger/devmountain/tree/master/6/react-meetup). I've also got an [example to-do list built on Meteor, in React](https://github.com/zacanger/devmountain/tree/master/6/meteor-react-todos), done just as it is in the Meteor docs.
+This note, and some random (a halfway finished tiny little example app) are up
+[on Github](https://github.com/zacanger/devmountain/tree/master/6/react-meetup).
+I've also got an [example to-do list built on Meteor, in
+React](https://github.com/zacanger/devmountain/tree/master/6/meteor-react-todos),
+done just as it is in the Meteor docs.

@@ -15,4 +15,3 @@ things that don't count as real error messages:
 `No agents connected after instance start. Please check the image has TeamCity agent configured and it can connect to the server using http://foo.bar address. Start the instance manually to check for agent again.` (What actually happened? Any errors? Network? Permissions? Anything? No?)
 
 `Incompatible Runner: Command Line` (on a Debian instance. Fuck you.)
-

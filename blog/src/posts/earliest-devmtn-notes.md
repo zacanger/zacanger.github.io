@@ -21,4 +21,3 @@ directives, features, services, & shared (assets), (~~somethingican'tread~~).
 starting with webpack and angular2, we'll be moving to `require`s.
 heroku will (~~something~~) with last good git commits -- and/or github pushes
 ```
-

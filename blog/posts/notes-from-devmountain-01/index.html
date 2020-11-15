@@ -1,9 +1,15 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>NOTES FROM DEVMOUNTAIN | Zac Anger&#x27;s Blog</title><meta name="description" content="This is going to be a crapton of my notes, from when I was going through the course at DevMountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,notes,js,css,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="NOTES FROM DEVMOUNTAIN"/><meta name="twitter:description" content="This is going to be a crapton of my notes, from when I was going through the course at DevMountain."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="NOTES FROM DEVMOUNTAIN"/><meta property="og:description" content="This is going to be a crapton of my notes, from when I was going through the course at DevMountain."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>NOTES FROM DEVMOUNTAIN</h2><h3>05 May, 2016</h3></header><div><p>This is going to be a crapton of my notes, from when I was going through the course at DevMountain.</p>
-<p>Looking back over these, a lot of them are dumb. What I mean by this is that my opinions on things were dumb.</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>NOTES FROM DEVMOUNTAIN | Zac Anger&#x27;s Blog</title><meta name="description" content="This is going to be a crapton of my notes, from when I was going through the
+course at DevMountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,notes,js,css,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="NOTES FROM DEVMOUNTAIN"/><meta name="twitter:description" content="This is going to be a crapton of my notes, from when I was going through the
+course at DevMountain."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="NOTES FROM DEVMOUNTAIN"/><meta property="og:description" content="This is going to be a crapton of my notes, from when I was going through the
+course at DevMountain."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>NOTES FROM DEVMOUNTAIN</h2><h3>05 May, 2016</h3></header><div><p>This is going to be a crapton of my notes, from when I was going through the
+course at DevMountain.</p>
+<p>Looking back over these, a lot of them are dumb. What I mean by this is that
+my opinions on things were dumb.</p>
 <p>Whatever.</p>
-<p>Don't take it all so seriously. Some of it could be really helpful. This is about half of my collected
-notes <em>that were inside project files</em>. Everything else has already been cleaned up and posted, or is in
-a directory of drafts somewhere. This stuff is totally unedited.</p>
+<p>Don't take it all so seriously. Some of it could be really helpful. This is
+about half of my collected notes <em>that were inside project files</em>. Everything
+else has already been cleaned up and posted, or is in a directory of drafts
+somewhere. This stuff is totally unedited.</p>
 <hr>
 <h2>ng probs</h2>
 <pre><code>// this is in a `.then`. NOTE THAT ANGULAR WILL GIVE YOU AN OBJECT EVEN IF YOU HAVE AN ARRAY
@@ -28,21 +34,24 @@ key-value pairs.</p>
   }
 })
 </code></pre>
-<p>directive names MUST be camelCase. pascal case will not be recognized. nor snake case?</p>
-<p>i mean, really, it's all made a lot more complicated than it needs to be. we're starting out basically
-just making our own little bits. it makes sense. if it works as a template file, or as just regular html,
+<p>directive names MUST be camelCase. pascal case will not be recognized. nor
+snake case?</p>
+<p>i mean, really, it's all made a lot more complicated than it needs to be.
+we're starting out basically just making our own little bits. it makes sense.
+if it works as a template file, or as just regular html,
 it'll work as a custom directive. just more reusable as a directive.</p>
-<p>we could have a directive with a TYPE. imagine a function that returns a customer with an attribute that's
-.type... so we'd have a directive called myCustomer, type=&quot;name&quot;, then another, type=&quot;smoking habits&quot;.
-paramaters here are always (element, attribute).</p>
-<p>Restrict as a property: E means element (so you'd do &lt;myDirective&gt; instead of &lt;div myDirective&gt;
-A is attribute, so it'd be &lt;div myDirective&gt;
-can do BOTH so it'd work for either. (restrict: EA)
-C is for class, but let's not do that! That seems like a really not okay and very bad idea.
-This is basically for semantic enforcement. Element would be good for a custom block, eg
+<p>we could have a directive with a TYPE. imagine a function that returns a
+customer with an attribute that's .type... so we'd have a directive called
+myCustomer, type=&quot;name&quot;, then another, type=&quot;smoking habits&quot;. paramaters here
+are always (element, attribute).</p>
+<p>Restrict as a property: E means element (so you'd do &lt;myDirective&gt; instead of
+&lt;div myDirective&gt; A is attribute, so it'd be &lt;div myDirective&gt; can do BOTH so
+it'd work for either. (restrict: EA) C is for class, but let's not do that!
+That seems like a really not okay and very bad idea. This is basically for
+semantic enforcement. Element would be good for a custom block, eg
 &lt;myDirective&gt;a whole bunch of shit just about this one&lt;/myDirective&gt;
-&lt;mySECONDdirective&gt;another whole bunch&lt;/mySECONDdirective&gt; etc
-A would be good for tacking things onto elements that would likely be there anyway, it seems.
+&lt;mySECONDdirective&gt;another whole bunch&lt;/mySECONDdirective&gt; etc A would be good
+for tacking things onto elements that would likely be there anyway, it seems.
 If you need to take in parameters, A would be better.</p>
 <p>custom filters like this!</p>
 <pre><code>&lt;input model=&quot;whatcha&quot;&gt;
@@ -58,13 +67,14 @@ updateTime();
 });
 </code></pre>
 <p>link ALWAYS takes in at leaste those three, and alkways in that order!</p>
-<p>inside a directive, feel free to do some jquery-lite.
-if you want to use, say, d3, or three.js, you can go ahead and inject that into angular
-and use it. (we're talking about other DOM manupilation, not utilities like lodash).</p>
-<p>inside a link whatever, that scp refers to its parent's scope, it shares parent's scope
-by default. eg if custom up there is directly below mainCtrl, scp means mainCtrl's $scope.</p>
-<p>underneath .directive, the scope: { stuff } actually means, like, scope INSTRUCTIONS or
-somesuch.</p>
+<p>inside a directive, feel free to do some jquery-lite. if you want to use, say,
+d3, or three.js, you can go ahead and inject that into angular and use it.
+(we're talking about other DOM manupilation, not utilities like lodash).</p>
+<p>inside a link whatever, that scp refers to its parent's scope, it shares
+parent's scope by default. eg if custom up there is directly below mainCtrl,
+scp means mainCtrl's $scope.</p>
+<p>underneath .directive, the scope: { stuff } actually means, like, scope
+INSTRUCTIONS or somesuch.</p>
 <p>SCOPE</p>
 <pre><code>scope: {
 string: '@',
@@ -72,9 +82,10 @@ link: '=',
 func: '&amp;'
 }
 </code></pre>
-<p>The properties on the scope object represent the attributes on the directive in the html. Our example scope object here would look something like this in the html.
-<code>&lt;example-directive string=&quot;a string&quot; link=&quot;user&quot; func=&quot;updateUser()&quot;&gt;&lt;/example-directive&gt;</code>
-The hard part here is the <code>@</code>, <code>=</code>, and <code>&amp;</code>. They each have very important and distinct meanings.</p>
+<p>The properties on the scope object represent the attributes on the directive
+in the html. Our example scope object here would look something like this in
+the html. <code>&lt;example-directive string=&quot;a string&quot; link=&quot;user&quot; func=&quot;updateUser()&quot;&gt;&lt;/example-directive&gt;</code> The hard part here is the <code>@</code>, <code>=</code>,
+and <code>&amp;</code>. They each have very important and distinct meanings.</p>
 <ul>
 <li>
 <p><code>@</code> says take in my attribute value as a string.</p>
@@ -243,6 +254,6 @@ but it it's okay. prefer koding if they let me back in, but if not,
 maybe using codeanywhere/codenvy/c9/any one of the other IDEs with built in dev servers.</li>
 </ul>
 <hr>
-<p>...that's all, for now. There will probably be more, once I sort through the first three weeks' worth of shit.</p>
-<p>tags: notes, devmountain, lol, i-am-ridiculous, directives, angular, firebase, express, mongo, mongoose, node, ionic, d3, react, heroku, digital-ocean</p>
+<p>...that's all, for now. There will probably be more, once I sort through the
+first three weeks' worth of shit.</p>
 </div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

@@ -6,11 +6,24 @@ tags:
   - people
 ---
 
-i don't like being angry. at all. it's not a good look for me. somehow this weekend turned into one just full of anger about a lot of things. some of them aren't a big deal, and i can (eventually) just let everything go, because honestly it's just not worth feeling that shitty about. people aren't worth it, losing friends isn't worth it, losing time and even wasting or losing money... it's just never worth being angry about, because it's not going to change anything, get me back any time or money, fix relationships, or ever somehow make anything better. this is a little different, though, today. bias against persons with mental illness of any type (especially something as common and relatively safe and understood as depression) is _not_ okay, especially when that results in the wrong people going to fucking _jail_.
+i don't like being angry. at all. it's not a good look for me. somehow this
+weekend turned into one just full of anger about a lot of things. some of them
+aren't a big deal, and i can (eventually) just let everything go, because
+honestly it's just not worth feeling that shitty about. people aren't worth it,
+losing friends isn't worth it, losing time and even wasting or losing money...
+it's just never worth being angry about, because it's not going to change
+anything, get me back any time or money, fix relationships, or ever somehow make
+anything better. this is a little different, though, today. bias against persons
+with mental illness of any type (especially something as common and relatively
+safe and understood as depression) is _not_ okay, especially when that results
+in the wrong people going to fucking _jail_.
 
 --------
 
-i'm not going to go into a huge amount of detail right now, because it'll be a much better use of my time to start digging into legal documents and trying to help build up a case for my friend, but to quickly outline the facts of what happened:
+i'm not going to go into a huge amount of detail right now, because it'll be a
+much better use of my time to start digging into legal documents and trying to
+help build up a case for my friend, but to quickly outline the facts of what
+happened:
 
 * a friend was pressured into a bad situation that involved alcohol, underage people and under-21 people, her (older) sister, and people just trying to get it in.
 * this friend was sexually assaulted recently, and has severe ptsd, so much so that even the idea of people having sex is triggering.

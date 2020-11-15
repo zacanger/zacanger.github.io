@@ -1,25 +1,34 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Notes from the AngularJS Utah Meetup | Zac Anger&#x27;s Blog</title><meta name="description" content="So what with my last computer dying, getting a new phone, trying to find a job, preparing to maybe move,
-and all the other nonsense going on, I haven&#x27;t really blogged at all lately. Oh well."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,rxjs,immutable,js,utah,meetup,notes"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Notes from the AngularJS Utah Meetup"/><meta name="twitter:description" content="So what with my last computer dying, getting a new phone, trying to find a job, preparing to maybe move,
-and all the other nonsense going on, I haven&#x27;t really blogged at all lately. Oh well."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Notes from the AngularJS Utah Meetup"/><meta property="og:description" content="So what with my last computer dying, getting a new phone, trying to find a job, preparing to maybe move,
-and all the other nonsense going on, I haven&#x27;t really blogged at all lately. Oh well."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Notes from the AngularJS Utah Meetup</h2><h3>24 April, 2016</h3></header><div><p>So what with my last computer dying, getting a new phone, trying to find a job, preparing to maybe move,
-and all the other nonsense going on, I haven't really blogged at all lately. Oh well.</p>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Notes from the AngularJS Utah Meetup | Zac Anger&#x27;s Blog</title><meta name="description" content="So what with my last computer dying, getting a new phone, trying to find a job,
+preparing to maybe move, and all the other nonsense going on, I haven&#x27;t really
+blogged at all lately. Oh well."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,rxjs,immutable,js,utah,meetup,notes"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Notes from the AngularJS Utah Meetup"/><meta name="twitter:description" content="So what with my last computer dying, getting a new phone, trying to find a job,
+preparing to maybe move, and all the other nonsense going on, I haven&#x27;t really
+blogged at all lately. Oh well."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Notes from the AngularJS Utah Meetup"/><meta property="og:description" content="So what with my last computer dying, getting a new phone, trying to find a job,
+preparing to maybe move, and all the other nonsense going on, I haven&#x27;t really
+blogged at all lately. Oh well."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Notes from the AngularJS Utah Meetup</h2><h3>24 April, 2016</h3></header><div><p>So what with my last computer dying, getting a new phone, trying to find a job,
+preparing to maybe move, and all the other nonsense going on, I haven't really
+blogged at all lately. Oh well.</p>
 <p>My to-do list is gigantic, like a whole huge directory tree of several gigabytes full of unfinished stuff.</p>
 <p>Somewhere in there, there's rewriting my entire website.</p>
-<p>I've just switched from GoDaddy's hosting to my own VPS (a droplet), since GoDaddy's cost was going up by
-about 110%. This means I have a LOT more available to me, now. Not quite as much space, but I can run
-whatever I need to on my server now, so... I think it's time to finally update everything. I plan on leaving
-most things as just plain old static sites (because, let's be honest, no one cares how flashy this crap is
-if it takes a year to render it on an old phone). The blog might change a bit, though. I'm still using that
-same old script (based originally on <a href="https://github.com/cfenollosa/bashblog">BashBlog</a>, heavily modified
-over the past almost-year). Nothing against that script, it does its job and everything, but a 1300-line
-shell script to basically turn Markdown into HTML is absurd -- ESPECIALLY since it doesn't include the
-parser.</p>
-<p>Anyway, here are some notes from the NG-JS meetup a couple of weeks ago. They were lost on my old laptop,
-but the SATA-to-USB thingy came in the mail the other day, so I can finally just do something with these.</p>
+<p>I've just switched from GoDaddy's hosting to my own VPS (a droplet), since
+GoDaddy's cost was going up by about 110%. This means I have a LOT more
+available to me, now. Not quite as much space, but I can run whatever I need
+to on my server now, so... I think it's time to finally update everything. I
+plan on leaving most things as just plain old static sites (because, let's be
+honest, no one cares how flashy this crap is if it takes a year to render it
+on an old phone). The blog might change a bit, though. I'm still using that
+same old script (based originally on
+<a href="https://github.com/cfenollosa/bashblog">BashBlog</a>, heavily modified over the
+past almost-year). Nothing against that script, it does its job and
+everything, but a 1300-line shell script to basically turn Markdown into HTML
+is absurd -- ESPECIALLY since it doesn't include the parser.</p>
+<p>Anyway, here are some notes from the NG-JS meetup a couple of weeks ago. They
+were lost on my old laptop, but the SATA-to-USB thingy came in the mail the
+other day, so I can finally just do something with these.</p>
 <hr>
 <h3>Immutable Data Structures</h3>
-<p>I didn't really take notes on this, which kinda sucks, but what I really got out of it much more
-was a way to get started and some sparked interest. Here's the little bit I did jot down.</p>
+<p>I didn't really take notes on this, which kinda sucks, but what I really got
+out of it much more was a way to get started and some sparked interest. Here's
+the little bit I did jot down.</p>
 <pre><code>https://github.com/ryoia/ (functional-frontend-slides/)
 purescript, check it out for _real_ sometime.
 github.com/mgechev/angular-immutable
@@ -28,41 +37,43 @@ stimulus(?) (immutable library?)
 what's the _real_ difference between Object.assign() and Object.freeze() ?
 </code></pre>
 <h3>RxJS</h3>
-<p>Nothing against this guy, but... what the hell is he doing? Does he even know? I think he's probably really
-intelligent and good at stuff, but is just totally lost right now, being on a stage talking in front of
-all these... ten-ish... people.</p>
-<p>None of this is exactly new. <a href="https://github.com/zacanger/extras/tree/master/rxjs-frp">Check over here</a> for
-a demo from a few months ago, using RxJS.</p>
-<pre><code>    // observables
+<p>Nothing against this guy, but... what the hell is he doing? Does he even know?
+I think he's probably really intelligent and good at stuff, but is just
+totally lost right now, being on a stage talking in front of all these...
+ten-ish... people.</p>
+<p>None of this is exactly new. <a href="https://github.com/zacanger/extras/tree/master/rxjs-frp">Check over
+here</a> for a demo from
+a few months ago, using RxJS.</p>
+<pre><code>// observables
 
-    const foo = Rx.Observable.create(observer =&gt; {
-      observer.onNext({value : 0}) // kinda like yield
-      observer.onCompleted() // done
+const foo = Rx.Observable.create(observer =&gt; {
+  observer.onNext({value : 0}) // kinda like yield
+  observer.onCompleted() // done
 
-      return function dispose() {
-        // do stuff that needs to be done on done here
-        console.log('disposed')
-      }
-    })
+  return function dispose() {
+    // do stuff that needs to be done on done here
+    console.log('disposed')
+  }
+})
 
-    const bar = foo.(reduce(
-      // stuff
-    ))
+const bar = foo.(reduce(
+  // stuff
+))
 
-    bar.subscribe(x =&gt; console.log(x))
-    // subscribe: consumers
+bar.subscribe(x =&gt; console.log(x))
+// subscribe: consumers
 
-    // .onCompleted(), if called before last yield,
-    // nothing else will happen (so throw it inside your slowest or
-    // last async function!).
+// .onCompleted(), if called before last yield,
+// nothing else will happen (so throw it inside your slowest or
+// last async function!).
 
-    setTimeout(() =&gt; {
-      bar.dispose()
-    }, 1000) // discards subscription, then.
+setTimeout(() =&gt; {
+  bar.dispose()
+}, 1000) // discards subscription, then.
 
-    // .delay(1000) holds for ms
-    // Rx.Observable.of(val, value, valoo, vlyou)
-    // .doOnNext(x =&gt; console.log(x))
-    // tap into next in stream, perform action on it
+// .delay(1000) holds for ms
+// Rx.Observable.of(val, value, valoo, vlyou)
+// .doOnNext(x =&gt; console.log(x))
+// tap into next in stream, perform action on it
 </code></pre>
 </div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

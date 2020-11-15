@@ -9,8 +9,8 @@ tags:
   - ecmascript
 ---
 
-(Just a little cheatsheet/list for my own easy reference--and anyone else's, too, of course.
-This is like maybe 83 percent just copied from MDN.)
+(Just a little cheatsheet/list for my own easy reference--and anyone else's,
+too, of course. This is like maybe 83 percent just copied from MDN.)
 
 # JAVASCRIPT OPERATORS
 
