@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>streams | Zac Anger&#x27;s Blog</title><meta name="description" content="bits and pieces of notes on streams"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,streams"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="streams"/><meta name="twitter:description" content="bits and pieces of notes on streams"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="streams"/><meta property="og:description" content="bits and pieces of notes on streams"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>streams</h2><div>15 May, 2016</div></header><div><p>bits and pieces of notes on streams</p>
+<pre><code class="language-javascript">const foo = fetch('/something')
+.then(r =&gt; r.json())
+.then(d =&gt; d.thingwewant)
+
+const bar = fetch('/otherstuff')
+.then(r =&gt; r.body)
+
+const stream = someTaggedFunctionThing`
+  &lt;div&gt;${foo}&lt;/div&gt;
+  &lt;span&gt;${bar}&lt;/span&gt;`
+</code></pre>
+<ul>
+<li>streams can be infinite</li>
+<li>you can be aware of the beginning and end of a stream</li>
+<li>unread values are buffered (unlike how events pre-listener(s) are just gone)</li>
+<li>piping</li>
+<li>error-handling (down the pipeline)</li>
+<li>cancellation (up the pipeline)</li>
+<li>flow control (react to the reader speed)</li>
+<li>one reader per stream</li>
+<li>untapped stream can be used like <code>tee</code></li>
+</ul>
+<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code>
+on that if text content expected).</p>
+<p>there may be transform streams implemented in the browser at some point (r/w).</p>
+<p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
+<pre><code class="language-javascript">const stream = new ReadableStream({
+  start(controller){} // called immediately
+, pull(controller){}  // called when buffer isn't full; called until buffer is full
+, cancel(reason){}    // called if stream is cancelled
+}, queuingStrategy)   // how the stream buffers (default : one item)
+
+</code></pre>
+<ul>
+<li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream's buffer</li>
+<li><code>controller.close()</code> ends</li>
+<li><code>controller.error(e)</code> sends <code>e</code> (is a terminal error)</li>
+<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)
+<ul>
+<li><code>queuingStrategy</code> is used to get this</li>
+</ul>
+</li>
+<li>you could call <code>controller.enqueue()</code> whenever there's data to send (stream as a push source)</li>
+<li>you could wait until there's a <code>pull</code> called, then queue up some data (pull source)</li>
+<li>you can do whatever you like (basically)</li>
+<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source
+is good/efficient. won't break anything if you don't, though, unless you run out of memory.</li>
+</ul>
+<p>html renders as it's received (no matter how it gets there). so fetching/compiling/whatevering
+markup on the fly (aka client-side rendering, aka the devil usually) without streams means
+slowness.</p>
+<p>here's a thing basically just copied out of jake archibald's blog. it's like this because we
+don't have a <code>.pipe()</code> in the browser. we need that.</p>
+<pre><code class="language-javascript">const stream = new ReadableStream({
+  start(controller){
+    // start and end from cache, middle from network with cache fallback
+    const
+      start = caches.match('/start-cached')
+    , end   = caches.match('/end-cached')
+    , mid   = fetch('/middle')
+        .catch(() =&gt; caches.match('/middle-cached'))
+      push  = stream =&gt; {
+      const reader = stream.getReader()
+      return reader.read().then(function process(result){
+        if (result.done) {
+          return
+        }
+        controller.enqueue(result.value)
+        return reader.read().then(process)
+      })
+    }
+
+    start.then(response =&gt; push(response.body))
+    .then(() =&gt; mid).then(response =&gt; push(response.body))
+    .then(() =&gt; end).then(response =&gt; push(response.body))
+    .then(() =&gt; controller.close())
+  }
+})
+</code></pre>
+<p>From here down I'll probably just be taking notes on streams in Node.</p>
+<p>Some important things to remember (for me to remember, that is) -- differences between the
+proposed Stream and Node's streams:</p>
+<ul>
+<li>Readable
+<ul>
+<li><code>.read()</code> instead of <code>.on('readable')</code></li>
+<li>Also a sync <code>.read()</code></li>
+<li>Cancellation semantics added</li>
+<li><code>desiredSize</code></li>
+<li><code>tee</code>ing built in</li>
+<li><code>data</code> event fully gone (it's only in Node streams in compatability mode, btw)</li>
+<li><code>pause</code> and <code>resume</code> aren't a thing</li>
+<li>no <code>unshift</code></li>
+<li>binary/string/object mode switching isn't a thing</li>
+<li>size parameter is gone (use BYOB readers)</li>
+</ul>
+</li>
+<li>Writable
+<ul>
+<li>No cork/uncork</li>
+</ul>
+</li>
+<li>Transform
+<ul>
+<li>now just <code>{readable, writable}</code> rly</li>
+</ul>
+</li>
+<li>other
+<ul>
+<li>promises instead of cbs</li>
+<li>no enc/dec built-in</li>
+<li><code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code>
+<ul>
+<li>so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for
+<code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Okay, so, Node streams.</p>
+<ul>
+<li><code>req</code> and <code>res</code> are streams</li>
+<li><code>.pipe()</code> listens for 'data' and 'end' from fs streams</li>
+<li><code>.pipe()</code> handles backpressure for ya</li>
+<li>types of streams:
+<ul>
+<li>readable</li>
+<li>writable</li>
+<li>transform</li>
+<li>duplex</li>
+<li>'classic'</li>
+</ul>
+</li>
+<li>chain pipes, don't break crap out
+<ul>
+<li><code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code></li>
+<li>that's basically the same as <code>one | two | three</code></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-javascript">//
+// readable
+//
+
+const Readable = require('stream').Readable
+const rs = new Readable
+rs.push('something, and ')
+rs.push('something else.')
+rs.push(null) // this tells data consumers that we're done with rs
+rs.pipe(process.stdout)
+// so the pushes are buffered until a consumer wants them (the pipe to standard out)
+
+// instead of buffering:
+let c = 100
+rs._read = () =&gt; {
+  rs.push(String.fromCharCode(c++))
+  if (c &gt; 'z'.charCodeAt(0)) {
+    rs.push(null)
+  }
+}
+rs.pipe(process.stdout)
+// ._read can take a size param, the amount (in bytes) that the consumer wants
+// to call it like that, try `node thisfile | head -cN` where `N` is an integer
+// note that we'd need to set up an error handler here because there'll be a SIGPIPE
+// after `head` (EPIPE in node). that's not an issue when keeping your business all
+// in node.
+// `Readable({objectMode : true})` to be able to push arbitrary stuff (not just
+// buffers and strings).
+
+process.stdin.on('readable', () =&gt; {
+  let buf = process.stdin.read()
+  console.dir(buf)
+})
+// echo stuff, pipe it, eg `(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js`
+// usually we'd probably pipe a stream into another stream, maybe using through2 or somesuch
+// the above will return null at the end of what's being sent, because there's nothing left
+// we could do `.read(N)` where `N` is bytes. doesn't work for object streams.
+process.stdin.on('readable', () =&gt; {
+  let buf = process.stdin.read(2)
+  console.dir(buf) // so we'd get 2-byte chunks here. adding:
+  process.stdin.read(0) // will get the rest and make this actually work.
+})
+
+// YAY, that's it for readable streams
+
+//
+// writable
+//
+
+const Writable = require('stream').Writable
+const ws = new Writable()
+ws._write = (chunk, encoding, next) =&gt; {
+  console.dir(chunk)
+  next()
+}
+process.stdin.pipe(ws)
+// chunk is the data written
+// encoding (string) is only for when `opts.decodeStrings` is false and we've been given a string
+// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj
+// if input stream is string, that'll be converted to buf. when creating the stream we can do
+const strWs = new Writable({decodeStrings : false})
+// and if we're getting in objects
+const objWs = new Writable({objectMode : true})
+
+// writing is basically as simple as calling .write (as we do with stdout)
+// you can do a .end() to say we're done. that can take data to write, right before ending.
+// write returns false when there's more data in incoming buff than opts.highWaterMark;
+// listen for drain event to know when it's empty
+
+//
+// transform
+// these are duplex streams that do exactly what it sounds like. sometimes called 'through' streams.
+//
+
+//
+// duplex
+// r/w where both ends are two-way. example: `x.pipe(y).pipe(x)`
+
+//
+// classic streams
+//
+
+// we're on node 6.1.0 as of this writing, and chances are i won't be doing much node stuff
+// at all in the forseeable future, so i really don't care too too much about the legacy
+// streams api. just `require('readable-stream')` instead of `'stream'`, if we must support
+// node or other streams from &lt;=v0.8.
+
+// readable example:
+const sin = process.stdin
+sin.on('data', buf =&gt; console.log(buf))
+sin.on('end', () =&gt; console.log('peace'))
+// as soon as a data listener is registered, you're using compatability mode, so
+// basically you lose a lot of functionality.
+// through (the package) lets you use legacy streams with pipe
+// these also have pause and resume.
+
+// writable:
+// define write(buf), end(buf), and destroy(). end doesn't HAVE to have (buf), but
+// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.
+
+//
+//
+// streams that are built in to node
+//
+//
+
+// not gonna take really extensive notes here, for the reasons above and also because
+// it's really easy to just go to the api docs and read all of them.
+
+</code></pre>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

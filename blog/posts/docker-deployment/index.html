@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>deploying docker images | Zac Anger&#x27;s Blog</title><meta name="description" content="You can use Docker&#x27;s repos. That&#x27;s the easy way so I won&#x27;t talk about it here.
+There are loads of good docs out there on that, and anyway, it&#x27;s built into the
+tools. Instead this post deals with deployment of images that you can&#x27;t publish
+(like your company&#x27;s code)."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,docker"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="deploying docker images"/><meta name="twitter:description" content="You can use Docker&#x27;s repos. That&#x27;s the easy way so I won&#x27;t talk about it here.
+There are loads of good docs out there on that, and anyway, it&#x27;s built into the
+tools. Instead this post deals with deployment of images that you can&#x27;t publish
+(like your company&#x27;s code)."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="deploying docker images"/><meta property="og:description" content="You can use Docker&#x27;s repos. That&#x27;s the easy way so I won&#x27;t talk about it here.
+There are loads of good docs out there on that, and anyway, it&#x27;s built into the
+tools. Instead this post deals with deployment of images that you can&#x27;t publish
+(like your company&#x27;s code)."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>deploying docker images</h2><div>03 June, 2016</div></header><div><h1>Deploying Docker Images</h1>
+<p>You can use Docker's repos. That's the easy way so I won't talk about it here.
+There are loads of good docs out there on that, and anyway, it's built into the
+tools. Instead this post deals with deployment of images that you can't publish
+(like your company's code).</p>
+<h2>The non-repo way</h2>
+<p>This way doesn't give you any of the nice features of having a repo, but it's
+also much easier to deal with.</p>
+<p>First export your (running) container. Do a <code>docker ps</code> to get its name or ID,
+then <code>docker export &lt;that-name&gt; &gt; foo.tar</code>.</p>
+<p>Then you'll want to get it to your server (using <code>sftp</code> or whatever else works
+for you). On the server, do a <code>cat foo.tar | docker import -</code></p>
+<p>Boom, it's there. You can run it the same way you would normally (like <code>docker run -p 80:80 -d foo</code> or whatever).</p>
+<h2>The your-own-repo way</h2>
+<p>This is a little more difficult, but you get to keep all the benefits of a
+Docker repo without making stuff public.</p>
+<p>Get your own repo with <code>docker run -p 5000:5000 samalba/docker-registry</code>.</p>
+<p>Hurray, once that's done you'll have your own Docker registry running!</p>
+<p>Do something like <code>docker login localhost:5000</code> and set up some login
+credentials.</p>
+<p>To push your stuff to it, first tag it with info, like <code>docker tag mycompany/theirprivatecode localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Do use this repo, just use <code>docker push localhost:5000/mycompany/theirprivatecode</code> instead of pushing to a public repo.</p>
+<p>You'll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>You'll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or
+set up volumes.</p>
+<p>Okay, so probably you'll want to put that somewhere not-on-your-local-machine.
+<code>ssh</code> into your server and do an <code>ssh -R 5000:localhost:5000 -l</code> to forwared
+that port. Then to deploy forreal, just <code>docker pull localhost:5000/mycompany/theirprivatecode</code>.</p>
+<p>Then to run it you should be able to just <code>docker run mycompany/theirprivatecode</code>.</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

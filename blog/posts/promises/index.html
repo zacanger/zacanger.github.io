@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Promises | Zac Anger&#x27;s Blog</title><meta name="description" content="Important things:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,promises,es6,es2015,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Promises"/><meta name="twitter:description" content="Important things:"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Promises"/><meta property="og:description" content="Important things:"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Promises</h2><div>05 May, 2016</div></header><div><p>Important things:</p>
+<ul>
+<li>The actual promise is immutable (nothing can change that)</li>
+<li>There's a guarantee that we'll get something back</li>
+<li>Usually create a promise with a constructor (<code>new Promise</code>)</li>
+<li>Usually its two handlers are named <code>resolve</code> and <code>reject</code></li>
+<li>A promise will have one of three states:
+<ul>
+<li>Pending (until something happens)</li>
+<li>Fulfilled (if the first handler is called)</li>
+<li>Rejected (if the second handler is called)</li>
+</ul>
+</li>
+<li>It can only be 'settled' (either resolved or rejected) once.</li>
+<li>Can't cancel a promise.</li>
+<li>No way to check the status (if pending, fulfilled, or rejected).</li>
+<li>An immediately-resolved promise can be created like <code>Promise.resolve('something')</code>.</li>
+<li>An immediately-rejected promise can be created like <code>Promise.reject('something')</code>.</li>
+<li>Attach a <code>then()</code> to consume the promise.</li>
+<li><code>.then</code> takes a callback that gets passed the resolved value, on fulfillment.</li>
+<li>It can actually take a rejection callback too.</li>
+<li>You can pass in <code>null</code> instead of the first one, which is the same as just doing a <code>.catch()</code>.</li>
+<li>You can chain <code>.then()</code>s.</li>
+<li>You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.</li>
+<li>This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.</li>
+<li><code>throw</code>ing will automatically reject that promise.</li>
+<li><code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.
+<ul>
+<li>Otherwise (if any are rejected) it will reject.</li>
+</ul>
+</li>
+<li><code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.</li>
+<li>Don't program with promises using same patterns as with callbacks.
+<ul>
+<li>(Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)</li>
+</ul>
+</li>
+<li>Don't nest promises. Use a <code>.all</code> instead.</li>
+</ul>
+<p>Examples:</p>
+<pre><code class="language-javascript">const promise = new Promise((resolve, reject) =&gt; {
+  if (something) {
+    resolve(value)
+  } else {
+    reject(reason)
+  }
+})
+
+const p = Promise.resolve('something')
+p.then(res =&gt; console.log(res))
+const p2 = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve('asdf'), 2000)
+})
+p2.then(res =&gt; {
+  res += 'ghjkl;'
+  console.log(res)
+})
+p2.then(res =&gt; console.log(res)) // this is still 'asdf'
+
+somePromise.then(
+  val =&gt; console.log('fulfilled', val)
+, err =&gt; console.error('rejected', err))
+
+pr.then(val =&gt; console.log('fulfilled', val))
+  .then(null, err =&gt; console.error('rejected', err))
+
+const throwProm = new Promise((res, rej) =&gt; {
+  if (something) {
+    throw new Error('rejected')
+  } else {
+  resolve(stuff)
+  }
+})
+throwProm
+.then(val =&gt; val + 8)
+.then(val =&gt; console.log('hey', val))
+.catch(err =&gt; console.error('err', err.message))
+
+const fulProm = new Promise((res, rej) =&gt; res(8))
+fulProm
+.then(val =&gt; val + 8)
+.then(val =&gt; {throw new Error('failure')})
+.then(val =&gt; console.log('yay', val))
+.catch(err =&gt; console.error('error', err.message))
+
+one()
+.then(res =&gt; Promise.all([res, two(res)]))
+  .then(results =&gt; /* stuff */)
+  .catch(err =&gt; /* handle err */)
+
+</code></pre>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

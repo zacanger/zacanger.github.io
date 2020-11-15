@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Javascript Operators | Zac Anger&#x27;s Blog</title><meta name="description" content="(Just a little cheatsheet/list for my own easy reference--and anyone else&#x27;s, too, of course.
+This is like maybe 83 percent just copied from MDN.)"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,operators,cheatsheet,reference,ecmascript"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Javascript Operators"/><meta name="twitter:description" content="(Just a little cheatsheet/list for my own easy reference--and anyone else&#x27;s, too, of course.
+This is like maybe 83 percent just copied from MDN.)"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Javascript Operators"/><meta property="og:description" content="(Just a little cheatsheet/list for my own easy reference--and anyone else&#x27;s, too, of course.
+This is like maybe 83 percent just copied from MDN.)"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Javascript Operators</h2><div>06 February, 2016</div></header><div><p>(Just a little cheatsheet/list for my own easy reference--and anyone else's, too, of course.
+This is like maybe 83 percent just copied from MDN.)</p>
+<h1>JAVASCRIPT OPERATORS</h1>
+<p>There are a whole whole bunch! Here's most of 'em, kinda hopefully split up
+and sorted in some sort of order that makes sense. It's always worth just
+taking a peek at the spec or MDN or whatever, especially it looks like actual
+standards are going to be getting actual changes within actual human lifespans
+now.</p>
+<hr>
+<h3>BITWISE:</h3>
+<ul>
+<li><code>&amp;</code> -- AND</li>
+<li><code>|</code> -- OR</li>
+<li><code>^</code> -- XOR</li>
+<li><code>~</code> -- NOT</li>
+<li><code>&lt;&lt;</code> -- left shift</li>
+<li><code>&gt;&gt;</code> -- sign-propagating right shift</li>
+<li><code>&gt;&gt;&gt;</code> -- zero-fill right shift</li>
+</ul>
+<h3>LOGICAL:</h3>
+<ul>
+<li><code>&amp;&amp;</code> -- AND</li>
+<li><code>||</code> -- OR</li>
+<li><code>!</code> -- NOT</li>
+<li>ternary (conditional) operator: kind of like a shorthand way of writing if statements;
+takes the syntax <code>condition ? expression1 : expression2</code>, where the first expression
+is run if the condition is true, and the second is run if the condition is false. example:
+<code>age &gt; 21 ? alert('here\'s your beer!') : alert('go home, kid.')</code></li>
+</ul>
+<h3>ASSIGNMENT:</h3>
+<ul>
+<li><code>=</code> -- assignment</li>
+<li><code>*=</code> -- multiplication assignment</li>
+<li><code>/=</code> -- division assignment</li>
+<li><code>%=</code> -- remainder assignment</li>
+<li><code>+=</code> -- addition assignment</li>
+<li><code>-=</code> -- subtraction assignment</li>
+<li><code>&lt;&lt;=</code> -- left shift assignment</li>
+<li><code>&gt;&gt;=</code> -- right shift assignment</li>
+<li><code>&gt;&gt;&gt;=</code> unsigned right shift assignment</li>
+<li><code>&amp;=</code> -- bitwise AND assignment</li>
+<li><code>^=</code> -- bitwise XOR assignment</li>
+<li><code>|=</code> -- bitwise OR assignment</li>
+<li>destructuring assignment: for assigning properties or elements of an object or array,
+using object- or array-like syntax. examples: <code>[a,b,c] = [1,2,3]</code>; <code>{a,b,c}={a:1,b:2,c:3}</code></li>
+</ul>
+<h3>EQUALITY:</h3>
+<ul>
+<li><code>==</code> -- equality</li>
+<li><code>!=</code> -- inequality</li>
+<li><code>===</code> -- identity (strict equality)</li>
+<li><code>!==</code> -- nonidentity</li>
+</ul>
+<h3>POSTFIX/PREFIX:</h3>
+<ul>
+<li><code>foo++</code> -- postfix increment</li>
+<li><code>foo--</code> -- postfix decrement</li>
+<li><code>++bar</code> -- prefix increment</li>
+<li><code>--bar</code> -- prefix decrement</li>
+</ul>
+<h3>UNARY:</h3>
+<ul>
+<li><code>delete</code> -- deletes a property from an object</li>
+<li><code>void</code> -- discards the return value from an expression</li>
+<li><code>typeof</code> -- checks for the type of the object</li>
+<li><code>+</code> -- converts operand to Number</li>
+<li><code>-</code> -- converts operand to Number, negates it</li>
+<li>also see bitwise NOT and logical NOT</li>
+</ul>
+<h3>ARITHMETIC:</h3>
+<ul>
+<li><code>+</code>, <code>-</code>, <code>/</code>, <code>*</code> -- work as expected</li>
+<li><code>%</code> -- remainder operator
+<ul>
+<li>this is often incorrectly called a modulo (or, more incorrectly, 'modulus').</li>
+<li>result of remainder operator takes the sign of the dividend (rather than the divisor)</li>
+</ul>
+</li>
+<li><code>**</code> -- exponentiation. example: <code>4 ** 4</code> // =&gt; 256
+<ul>
+<li>not implemented in current widely-supported js version (ecmascript 5.1)</li>
+<li>not implemented in current standard (ES2015)</li>
+<li>proposed for ES7/ES2016--in stage 3 (implementation) as of feb 2016</li>
+</ul>
+</li>
+</ul>
+<h3>COMPARISON/RELATIONAL:</h3>
+<ul>
+<li><code>in</code> -- determines if object has given property</li>
+<li><code>instanceof</code> -- determines if obj is an instance of another object</li>
+<li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> -- work as expected</li>
+</ul>
+<hr>
+<h2>PRECEDENCE</h2>
+<p>Operators will be evaluated in a specific order. If there are operators that
+have the same priority, it's probably a good idea to check MDN or somesuch,
+because it's not all just left-to-right as one might expect. Here's a (very)
+cut-down list, in declining order (so the beginning of the list would be
+evaluated first, last operator in the list would be evaluated last).
+Grouping, <code>new</code>, postfix increment &amp; decrement, NOT, prefix increment and
+decrement, unary plus and minus, multiplication and division, remainder, addition
+and subtraction, bitwise shifts, less than and greater than comparisons, all the
+equality/inequalities, bitwise and logical OR and AND (and bitwise XOR), the
+ternary (conditional), all your assignment operators, and then finally your
+spreads and sequences.</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

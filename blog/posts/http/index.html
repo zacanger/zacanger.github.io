@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>http | Zac Anger&#x27;s Blog</title><meta name="description" content="http: k-v store of urls and resources"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,http"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="http"/><meta name="twitter:description" content="http: k-v store of urls and resources"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="http"/><meta property="og:description" content="http: k-v store of urls and resources"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>http</h2><div>01 June, 2016</div></header><div><p>http: k-v store of urls and resources</p>
+<p>representations: dictionaries of actual resources</p>
+<p>eh?</p>
+<p>example: url: foo.bar/video with:
+representations: various formats and sizes of said video</p>
+<p>methods: possible to define custom</p>
+<p>get, put, and delete are really obvious</p>
+<p>patch: like put, but for small changes</p>
+<p>head: get, but for just meta about the resource</p>
+<p>options: what all can i even do with this thing?
+(useful for... cors, i guess)</p>
+<p>post: kind of a catch-all for whatever else you want to do rly
+it's not actually intended to be used as the C in CRUD</p>
+<p>i may be rethinking my position on url parameters vs queries</p>
+<p>remembering, from <a href="http://mdkb.zacanger.com/urls">my docs</a>:</p>
+<p><a href="http://www.ietf.org/rfc/rfc2396.txt">URLs</a> are made up of (usually just some) of these parts:
+<code>&lt;scheme&gt;://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;parameters&gt;?&lt;query&gt;#&lt;fragment&gt;</code>.</p>
+<ul>
+<li>The scheme is the <em>protocol</em> (http, https, ftp, git, etc.). It ends with <code>:</code> (not <code>//</code>).</li>
+<li>The username and password are fairly self-explanitory, and we don't see that a whole whole lot these days, except
+maybe in FTP.</li>
+<li>The host is the part we all know well, like 'github' or 'google.' It can be a domain name or an IP address.</li>
+<li>The port (80 for HTTP, 443 for HTTPS, etc.) is self-explanitory; defaults to 80.</li>
+<li>The path would be segments (like <code>/doc/search</code> or whatever), and can contain semicolons to separate parameters (like <code>thing=foo;stuff=bar</code>).</li>
+<li>Queries can be before or after parameters, and that'd be something like <code>/?q=foo+bar</code>.</li>
+<li>Fragments are for specific parts of a resource, like <code>somepage.html#somesection</code>.</li>
+<li><code>; / ? : @ &amp; = + $ ,</code> are reserved characters (meaning they have special uses in URLs).</li>
+<li><code>- _ . ! ~ * ' ( )</code> are unreserved (you can use them almost wherever you'd like).</li>
+<li><code>{ } | \\ ^ [ ] \</code> ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).</li>
+<li><code>&lt; &gt; # % &quot;</code> don't use these, at all (except the <code>%</code> and <code>#</code> <em>if</em> you have a valid reason for it, because they do special things in URLs).</li>
+</ul>
+<hr>
+<ul>
+<li>content headers from client to specify what it can be (accept)</li>
+<li>content headers from server to specify what it is (content-type)</li>
+</ul>
+<p>cache-control, last-modified, and etag to control caching</p>
+<p>client will check if-modified-since and if-none-match</p>
+<p>accept-encoding (with gzip or compress) yay</p>
+<p>on server, max-age and etag ; send 304 if if-no-match matches etag</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

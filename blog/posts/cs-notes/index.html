@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>cs notes | Zac Anger&#x27;s Blog</title><meta name="description" content="notes on a bunch of stuff"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,cs,algorithms,datastructures,sort"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="cs notes"/><meta name="twitter:description" content="notes on a bunch of stuff"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="cs notes"/><meta property="og:description" content="notes on a bunch of stuff"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>cs notes</h2><div>12 May, 2016</div></header><div><p>notes on a bunch of stuff</p>
+<h2>Big O:</h2>
+<ul>
+<li>analyzing the efficiency of algorithms (or code).</li>
+<li>One could figure how much time fn will take given n input(s).</li>
+<li>But really more interested in orders of magnitude than precise differences
+(eg 100ms vs 10000ms, not 100ms vs 110ms).</li>
+</ul>
+<pre><code class="language-javascript">// this is `O(n)`. we go through the input(s) once, in a loop.
+const crossAdd = input =&gt; {
+  let answer = []
+  for (let i = 0; i &lt; input.length; i++) {
+    let
+      up = input[i]
+    , dn = input[input.length - 1 - i]
+    answer.push(up + dn)
+  }
+  return answer
+}
+
+// also `O(n)`.
+// we assume the worst, here. and the worst is that
+// the last element of `haystack` would match `needle`.
+const find = (needle, haystack) =&gt; {
+  for (let i = 0; i &lt; haystack.length; i++) {
+    if (haystack[i] === needle) {
+      return true
+    }
+  }
+}
+
+// this is `O(n2)` (imagine that `2` is superscript, please).
+// we have to basically go through an extra loop every time we need
+// to go through one loop.. this is bad.
+const makeTuples = input =&gt; {
+  let answer = []
+  for (let i = 0; i &lt; input.length; i++) {
+    for (let j = 0; i &lt; input.length; j++) {
+      answer.push([input[i], input[j]])
+    }
+  }
+  return answer
+}
+
+const foo = 'stuff' // this would be called `O(1)`, meaning 'constant time'
+
+// `O(log n)` is a good. recursion, for example, can be helpful here.
+// this is tough to understand without having any real background in math
+// i think what this mens is, so, `log n` means something like, what you'd need
+// to raise 2 by (exponentially) to get to `n`. so if `n = 1024`, `O(n)` is like
+// saying `fn(1024)`, and `O(log n)` would be like saying `fn(32)`... or something
+// ... sort of? whatever, not gonna stress about it too much right this minute.
+</code></pre>
+<h2>Sorts</h2>
+<ul>
+<li>A bubble sort is <code>O(n2)</code>, because there are two loops:
+<ul>
+<li>One to check if the indices of two elements ought to be swapped, and</li>
+<li>An outer loop to see if the swap took place</li>
+</ul>
+</li>
+<li>An insertion sort is slightly better.
+<ul>
+<li>It'd be useful if you're reasonably confident that what you're sorting is already
+somewhat close to being sorted.</li>
+<li>This could be anywhere from <code>O(n2)</code> to <code>O(n)</code>.</li>
+</ul>
+</li>
+<li>Merge sort is recursive.
+<ul>
+<li>The way this works is to take your list, split it, and then call itself (the sort)
+on each half.</li>
+<li>Then that repeats for each smaller bit. Once the list gets down to one, that's returned.</li>
+<li>Then I guess you'd have another merge going on that's going over each pair (or set?) of
+lists and merging that, and then on back up, until it's done.</li>
+<li><code>Array.sort()</code> is usually a merge sort.</li>
+<li>A merge sort will also keep equivalent elements at their original indicies.
+<ul>
+<li>Apparenty we call that being <em>stable</em>.</li>
+</ul>
+</li>
+<li><code>O(n log n)</code>. Wat.</li>
+</ul>
+</li>
+<li>Quicksort is also recursive.
+<ul>
+<li>It's the other one some engines use for <code>Array.prototype.sort</code>.</li>
+<li>Take the last el, and call it your pivot.
+<ul>
+<li>Everything smaller goes to the 'left' of that, everything larger to the right.</li>
+<li>Then the same sort is called on each half.</li>
+<li>Each returns, and then the left, pivot, and right are catenated (in that order).</li>
+<li>When you get to a list of one or zero, it just returns.</li>
+</ul>
+</li>
+<li>This is also <code>O(n log n)</code>.
+<ul>
+<li>Uses less memory than a merge sort (doesn't have to create new lists all over the place).</li>
+<li>Performs like crap on an already-sorted list, since it'd be starting with a pivot of the
+largest element, already.
+<ul>
+<li>You can get around that by doing stuff like checking the 0, length -1, and in the middle,
+and swapping if need be to get a better pivot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Data Structures</h2>
+<h3>Interfaces</h3>
+<ul>
+<li>Interfaces?
+<ul>
+<li>Meaning, we just want to consume that data structure.</li>
+<li>We don't need to know how it works, just that it acts some specific, expected way.</li>
+</ul>
+</li>
+<li>Sets are nice. We have these in ES6 now.
+<ul>
+<li>Sets will always at least let you:
+<ul>
+<li><strong>add</strong> items,</li>
+<li>check if the set <strong>contains</strong> them,</li>
+<li><strong>remove</strong> items,</li>
+<li>and call <strong>toList</strong> (or similar; JS sets have <code>.values()</code> but for an Array you'd want to do
+something like <code>const arr = Array.from(someSet)</code> or <code>const arr = [...someSet]</code>.
+<ul>
+<li>This won't come back in any particular order -- sets don't keep track of that.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What I can really see useful about them is that they don't allow duplicate values.
+<ul>
+<li>If you do something like <code>const s = new Set ; s.add('foo') ; s.add('foo')</code> it won't yell at you,
+but if you then do <code>s.values()</code> you'll just see <code>SetIterator { 'foo' }</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Maps are basically the same sort of concept as a hash/dictionary/JS object, except without all the
+extra bits that JS objects have (methods, inheritance, etc.).
+<ul>
+<li>Basically just a collection of key-value pairs, except:
+<ul>
+<li>Really more like a <em>set</em> of keys, with values associated with them, so</li>
+<li>Again, no duplicates!</li>
+<li>You could have duplicate <em>values</em> though. Just not duplicate keys.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stacks are kinda like what they sound like.
+<ul>
+<li>Only <code>push</code> and <code>pop</code> type of things.</li>
+<li>LIFO</li>
+<li>So if you have a stack that's like <code>a b c</code> and you push <code>d</code>, then pop, you'll get <code>d</code> returned
+(and removed from the stack).</li>
+<li>Frequently have a 'peek'-like method for looking at the top of the stack without actualy doing
+anything.</li>
+<li>Easiest way to visualize this is probably just thinking about the order of execution of something
+trivial, like a function that calls two functions, one of which maybe calls another funciton or two.</li>
+</ul>
+</li>
+<li>Queues are FIFO.
+<ul>
+<li>These would have methods like <code>enqueue</code> (push) and <code>dequeue</code> (pop), and probably a 'peek' type of
+thing too.</li>
+<li>With priority queues, things that have a higher priority can be sort of rushed through the line,
+basically, and dequeued earlier.</li>
+</ul>
+</li>
+</ul>
+<h3>Implementations</h3>
+<ul>
+<li>An ArrayList (it's a Java thing, I guess -- JS has arrays, and we don't really need to think all that
+much about how they actually do their job because we have GC--wait, does Java not? Oh. Huh. Poor them.)
+addresses specific indices like normal, but when you remove items from the array, you have to, like,
+shrink it back down because you have to think about that bit of memory.
+<ul>
+<li>So I guess, say you do the equivalent of <code>.splice()</code> or something, you have to actually say 'okay, get rid of element [2], then move everything from [3] to the end back one, then get rid of the last one, please' or something.</li>
+</ul>
+</li>
+<li>So, I hear a lot about linked lists. Apparently they're super important because it's one of like three
+things any CS grad knows. Almost definitely in Java.
+<ul>
+<li>A linked list is just a list where each element is aware of the next element.</li>
+<li>So basically it's a list where each item has two properties:
+<ul>
+<li>Its actual value, and</li>
+<li>A pointer (or reference) to the next node (element)</li>
+</ul>
+</li>
+<li>A linked list's <code>add</code> and <code>remove</code> would be <code>O(1)</code>, then, because all you need to do is change the
+pointer on the previous node.
+<ul>
+<li>Its <code>get</code> would be <code>O(n)</code> though because you need to loop through up 'til you get to the right node.</li>
+<li>The ArrayList would be the other way around, it'd have a <code>delete</code> and <code>add</code> of <code>O(n)</code> and a <code>get</code> of <code>O(1)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BST!
+<ul>
+<li>Each node will have either 0, 1, or 2 subtrees.
+<ul>
+<li>Every el in the left subtree will be less than the value of the node.</li>
+<li>Every el in the right will be greater.</li>
+</ul>
+</li>
+<li>Just have to change pointers, then, to add.
+<ul>
+<li>Basically just walk down the tree and find the right spot.</li>
+</ul>
+</li>
+<li>Roughly <code>O(log n)</code> on <code>get</code>, <code>add</code>, and <code>delete</code>.
+<ul>
+<li>Can be as bad as <code>O(n)</code> if a sorted list is stuck in there.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution to some of the problems of a BST? AVL tree.
+<ul>
+<li>(It's got some long name, so we'll stick with the abbreviation.)
+<ul>
+<li>This is a 'self-balancing binary search tree.'</li>
+</ul>
+</li>
+<li>BSTs can get out of whack.</li>
+<li>An AVL tree is always a valid BST (but not always the other way around).</li>
+<li>Adding works the same, except that you check to see if the node is balanced after adding.</li>
+<li>It's unbalanced if there's a height difference greater than one on the subtrees.</li>
+<li>Worst case? <code>O(log n)</code>.</li>
+<li>You could end up in a situation where you need a double rotation.
+<ul>
+<li>Basically, if the opposite child is heavy during rotation.</li>
+<li>So before you do the (probably initially intended) rotation, you do one on the root
+node of that rotation, opposite-wise.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hash tables have constant-time get, delete, and add (if you're working with a set or a map).
+<ul>
+<li>So, you've got a key, and you hash that (MD5 or whatever).
+<ul>
+<li>Now we've got a key that points to some addressable space.</li>
+<li>This isn't really a thing in JS.</li>
+</ul>
+</li>
+<li>This is neat in other languages because you can just work against that space, without
+needing to do the (logic) work of hunting things down, kinda, basically.</li>
+<li>No concept of order.</li>
+<li>Uses a fair bit of memory.</li>
+<li>Needs an idempotent hash (that is, a super-pure function -- exact same output, provided the same
+input, every single time.).</li>
+<li>Hash also has to be very well distributed.</li>
+<li>And fast.</li>
+<li>Almost probably definitely maybe need to use <code>%</code> to get your hash down to a manageable number you can
+actually use (smaller than the largest index of your array).</li>
+</ul>
+</li>
+</ul>
+<h2>Some FP Basics</h2>
+<ul>
+<li>Purity
+<ul>
+<li>Don't you dare touch my state!</li>
+</ul>
+</li>
+<li>HOF</li>
+<li>Vector (or array) programming is especially fp-friendly.
+<ul>
+<li>It makes sense to expect that you can chain functions together.</li>
+<li>This ends up being much, <em>much</em> more declarative.</li>
+<li>Just think about <code>map</code>, <code>reduce</code>, and <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
