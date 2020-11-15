@@ -7,7 +7,7 @@ const Header = ({ title, description }) => (
       <a href="/blog">Zac Anger's Blog</a>
     </h1>
     {title && <h2>{title}</h2>}
-    {description && <div>{description}</div>}
+    {description && <h3>{description}</h3>}
   </header>
 )
 
