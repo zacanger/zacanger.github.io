@@ -1,13 +1,15 @@
 import React from 'react'
-import PostCard from './post-card'
+import formatDate from './format-date'
 import { object, arrayOf } from 'prop-types'
 import { Post } from './types'
 
 const PostList = ({ posts }) => (
-  <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-    {posts.map((p, i) => (
+  <ul>
+    {posts.map((post, i) => (
       <li key={`post-${i}`}>
-        <PostCard post={p} />
+        <a href={'/blog/posts/' + post.slug}>{post.title}</a> &mdash;{' '}
+        {formatDate(new Date(post.created))}
+        {post.subhead && <div>{post.subhead}</div>}
       </li>
     ))}
   </ul>

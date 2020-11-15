@@ -20,7 +20,7 @@ console.log(`Generating RSS feed for ${data.posts.length} posts.`)
 data.posts.forEach((post) => {
   feed.item({
     title: post.title,
-    // description: post.excerpt,
+    description: post.excerpt,
     date: post.created,
     url: `https://zacanger.com/blog/posts/${post.slug}`,
     guid: post.slug,
