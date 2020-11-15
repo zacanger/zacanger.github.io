@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Angular Meetup, 13th Oct, 2015 | Zac Anger&#x27;s Blog</title><meta name="description" content="Bene Brown; author on subject of empathy."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,angular,set"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Angular Meetup, 13th Oct, 2015"/><meta name="twitter:description" content="Bene Brown; author on subject of empathy."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Angular Meetup, 13th Oct, 2015"/><meta property="og:description" content="Bene Brown; author on subject of empathy."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Angular Meetup, 13th Oct, 2015</h2><div>13 October, 2015</div></header><div><h3>Notes:</h3>
+<p>Bene Brown; author on subject of empathy.</p>
+<h3>The Technical Bit</h3>
+<p>Jordan Last, speaker on Angular, client-side storage.</p>
+<p>Problem: people want wikis, but don't like the word 'wiki.' (Yes, it's more complicated, but not so much so that a wiki wouldn't handle it).</p>
+<p>Organization of survey site data (BYU Archaeology Dept.) &amp;c.; Android devices, needed compat. with iOS. This fellow ended up with <a href="http://ionic.io">Ionic</a> to handle building apps.</p>
+<p>Okay, new question, how to work with storage? He checked out Cordova (PhoneGap), but wasn't into SQLite so much. Wanted straight-up persistant storage in the browser.</p>
+<p>What options were there? Local, IndexedDB, WebSQL. Obviously IndexedDB isn't useful for people who want to stick with that Apple Webkit crap; Local storage is okay for... a little bit of stuff. They ended up choosing WebSQL (despite its deprecation), because they're big on relational databases and didn't want to get into Mongo or Node stuff. (Sidenote, this fellow doesn't quite grasp how the W3C works, or the problems with non-standard or deprecated technologies. Oh well.) Quick rundown on the very barest basics of ORM, aka Why We're Calling This A Model.</p>
+<p>Looks like he's using <a href="https://github.com/coresmart/persistencejs">Persistence JS</a>. In persistence, you would save an object like, for example:</p>
+<pre><code>persistence.add(this)
+persistence.flush()
+callback &amp;&amp; callback()
+</code></pre>
+<p>And now you have your whatsit all set. That's your save method. Then, say, <code>thingy.save(function);</code> and, y'know, there you go. Oh, wait. He forgot a bit about persistence. Needs <code>schema.sync</code> and a <code>.config</code> bit to get up and working.</p>
+<p>Now, to query WebSQL in this kind of screwy setup (persistence-specific):</p>
+<pre><code>whatever.getStuff = function(thingPassed, maybeAnother) {
+  whatever.all().filter('thingPassed', '=' whateveritis); // i suppose i missed quite a bit here
+}
+</code></pre>
+<p>And, finally, deleting... which evidently should be pretty easy. Too easy to go over.</p>
+<h4>Closing points:</h4>
+<ul>
+<li>Never access the DB directly--do it through lots of Javascript and boilerplate and awkward ways.</li>
+<li>Keep model-specific DB stuff with the model</li>
+<li>Absolutely don't need to use persistence.js or WebSQL (thank goodness)</li>
+<li>Use an ORM, silly!</li>
+</ul>
+<p>Oh, and the fellow who organized this thing maybe isn't aware of other stuff going on aroud here. LunchJS would be worth looking into.</p>
+<p>And this Jordan fellow is interesting. Bit enthusiastic, dresses half his age, but information architecture + comp sci + dev + project management = all the things I'm really interested in, mostly, pretty much.</p>
+<p>Oh, and it was kinda neat to check out Adobe's SLC building.</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

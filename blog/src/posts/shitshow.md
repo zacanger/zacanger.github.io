@@ -3,6 +3,7 @@ title: shitshow
 created: 2016-11-09
 tags:
   - politics
+  - personal
 ---
 
 This is an elaboration on a

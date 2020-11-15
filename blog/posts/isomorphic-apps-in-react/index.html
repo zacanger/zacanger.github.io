@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Isomorphic Apps in React | Zac Anger&#x27;s Blog</title><meta name="description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,react"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Isomorphic Apps in React"/><meta name="twitter:description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Isomorphic Apps in React"/><meta property="og:description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Isomorphic Apps in React</h2><div>25 January, 2016</div></header><div><p>I don't know for sure that this deserves its own file... we'll see.</p>
+<p>We'll be processing several requests simultaneously, so we should deal with a global state (dependent on user) (like flux stores state, or whatever).</p>
+<p>About 90%, really, of the client and server code, should be shared.</p>
+<p>Which parts should be isomorphic?</p>
+<ol>
+<li>view</li>
+<li>styles</li>
+<li>routing</li>
+<li>data fetching</li>
+<li>config</li>
+<li>i10n</li>
+</ol>
+<p>The view is already there, really. Just gotta use <code>ReactDOM.renderToString</code> instead of <code>ReactDOM render</code>.</p>
+<p>Inline styles better than individual sheets in the dirs, for this architecture. React supports them. That said, one should <em>emulate</em> pseudo attributes (:hover, :active, and :focus, for example) in your Javascript. Handle your own prefixes (grooosss). Emulate your media queries in Js, too. Gotta eventually merge the CSS somehow; http://stack.formidable.com/radium/ isn't half-bad for that.</p>
+<p>Because there's so much Js to bundle up and load, it's actually okay to but the bundle at the end of your markup for this case. But we want to split things out in the webpack.config.js, so that we've got CSS on its own and can load that first the way we used to. Here's a sample webpack.config.js:</p>
+<pre><code>var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+module.exports = {
+  entry: &quot;./src/app.js&quot;,
+  plugins: [
+    new webpackDefinePlugin({
+      &quot;process.env&quot;: {
+        BROWSER: JSON.stringify(true),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      }
+    }),
+    new ExtractTextPlugin(&quot;[name].css&quot;)
+  ],
+  output : {
+    path: __dirname + '/public/build/',
+    filename: 'bundle.js',
+    publicPath: 'build/'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.css%/,
+        loader: ExtractTextPlugin.extract(&quot;style-loader&quot;, &quot;css-loader!autoprefixer-loader&quot;)
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(&quot;style-loader&quot;, &quot;css-loader!autoprefixer-loader!less-loader&quot;)
+      },
+      {
+        test: /\.png$/,
+        loader: &quot;url-loader?limit=10000&amp;mimietype=image/png&quot;
+      },
+      {
+        test: /\.jsx$/,
+        loader: &quot;react-hot!babel!eslint-loader&quot;,
+        exclude: [/node_modules/, /public/]
+      },
+      {
+        test: /\.js$/,
+        loader: &quot;babel!eslint-loader&quot;,
+        exclude: [/node_modules/, /public/]
+    ]
+  },
+  eslint: {
+    configFile: '.eslintr`^c'
+  }
+}
+</code></pre>
+<p>React Router works well for isomorphic stuff. Here's an example of using it with server-side rendering:</p>
+<pre><code>import {renderToString} from 'react-dom/server'
+import {match, RouterContext} from 'react-router'
+import routes from './routes'
+
+serve((req, res) =&gt;
+  // req.url would be full url path from original request, including query string
+    match({routes, location: req.url}, (error, redirectLocation, renderProps) =&gt; {
+      if (error){res.status(500).send(error.message)}
+      else if (redirectLocation){res.redirect(302, redirectLocation.pathname + redirectLocation.search)}
+      else if (renderProps){res.status(200).send(renderToString(&lt;RouterContext {...renderProps} /&gt;))}
+      else {res.status(404).send('404 not found')}
+  })
+)
+</code></pre>
+<p>Redux in an isomporhic app: better than a singelton flux store. With Redux we can use react-redux's react context. Using redux store's API makes dumping and restoring store state easy. Check the code of https://github.com/WebbyLab/itsquiz-wall for a really good, in-depth, production app using all of the above tech in an isomorphic app.</p>
+<p>Here's a simple api example that works both server- and client-side:</p>
+<pre><code>'use strict'
+import apiFactory from './api'
+
+const api=apiFactory({
+  apiPrefix: 'http://pharoah.js.org/api/v1'
+})
+const promise = api.users.list()
+</code></pre>
+<p>Here's a promise-pased client: https://www.npmjs.com/package/axios</p>
+<p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now): https://www.npmjs.com/package/isomorphic-fetch and https://www.npmjs.com/package/node-fetch</p>
+<p>So, here's what we might do on the client:</p>
+<ul>
+<li>render react components</li>
+<li>show spinners</li>
+<li>fetch component-dependent data</li>
+<li>update the page</li>
+</ul>
+<p>And on the server:</p>
+<ul>
+<li>preload all the data</li>
+<li>render the page to a string</li>
+<li>send html to the client</li>
+</ul>
+<p>How to do this isomorphically? Check that itsquiz app again, it's so much easier than typing out an example here.</p>
+<p>For a full-on tutorial using React and Redux to make an isomorphic app (Todos, of course...), check here: https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>

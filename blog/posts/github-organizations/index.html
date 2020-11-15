@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Github Organizations | Zac Anger&#x27;s Blog</title><meta name="description" content="And general notes on working with other humans."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,git,github"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Github Organizations"/><meta name="twitter:description" content="And general notes on working with other humans."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Github Organizations"/><meta property="og:description" content="And general notes on working with other humans."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Github Organizations</h2><div>19 January, 2016</div></header><div><p>And general notes on working with other humans.</p>
+<ul>
+<li><code>git push -u origin branchName</code> (push new branch--short for <code>--set-upstream</code>)</li>
+<li><code>git pull origin master</code>, no matter what branch you're in, will pull and merge master into your current branch. so, do <code>git pull &lt;remote name&gt; &lt;branch name&gt;</code></li>
+<li><code>git stash</code> to push changes to temp thing before pulling, then <code>git stash pop</code> to throw those back over after you pull, so it's basically a kind of automerge. Then you can go ahead and do your merge in depth.</li>
+<li>Make sure your master and remote master are in sync. Keep master merged into your feature branches at least once a day.
+<ul>
+<li>Checkout master, pull that, switch to feature branch, merge that. To merge your feature branch in, be on master, then <code>git merge feature-branch</code>.</li>
+</ul>
+</li>
+</ul>
+<p>I guess not really a whole lot of notes. Oh well.</p>
+</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
