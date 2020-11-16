@@ -67,24 +67,21 @@ code {
 }
 
 pre {
-  padding: .5rem;
-  line-height: 1.25;
-  overflow-x: scroll;
+  padding: .2rem;
 }
 
-a,
+a {
+  color: #3674A7;
+}
+
 a:visited {
-  color: #3498db;
+  color: #276A6C;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #2980b9;
-}
-
-.modest-no-decoration {
-  text-decoration: none;
+  color: #2A4685;
 }
 
 html {
@@ -107,59 +104,47 @@ body {
   line-height: 1.85;
 }
 
-p,
-.modest-p {
+p {
   font-size: 1rem;
   margin-bottom: 1.3rem;
 }
 
 h1,
-.modest-h1,
 h2,
-.modest-h2,
 h3,
-.modest-h3,
-h4,
-.modest-h4 {
+h4 {
   margin: 1.414rem 0 .5rem;
   font-weight: inherit;
   line-height: 1.42;
 }
 
-h1,
-.modest-h1 {
+h1 {
   margin-top: 0;
-  font-size: 3.998rem;
+  font-size: 3rem;
 }
 
-h2,
-.modest-h2 {
-  font-size: 2.827rem;
+h2 {
+  font-size: 2.5rem;
 }
 
-h3,
-.modest-h3 {
-  font-size: 1.999rem;
+h3 {
+  font-size: 2rem;
 }
 
-h4,
-.modest-h4 {
-  font-size: 1.414rem;
+h4 {
+  font-size: 1.5rem;
 }
 
-h5,
-.modest-h5 {
-  font-size: 1.121rem;
+h5 {
+  font-size: 1.2rem;
 }
 
-h6,
-.modest-h6 {
-  font-size: .88rem;
+h6 {
+  font-size: .8rem;
 }
 
-small,
-.modest-small {
-  font-size: .707em;
+small {
+  font-size: .8em;
 }
 
 /* https://github.com/mrmrs/fluidity */
@@ -180,7 +165,7 @@ html {
 }
 
 body {
-  color: #444;
+  color: #222;
   font-family: sans-serif;
   font-weight: 300;
   margin: 0 auto;
@@ -204,7 +189,6 @@ h3 {
   border-bottom: 2px solid #fafafa;
   margin-bottom: 1.15rem;
   padding-bottom: .5rem;
-  text-align: center;
 }
 
 blockquote {
