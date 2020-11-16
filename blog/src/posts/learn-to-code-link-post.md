@@ -1473,7 +1473,7 @@ Next, we move on the programs with monthly/course fees:
 * [[Udemy](http://www.quora.com/Udemy)] [http://www.udemy.com/courses/Tec...](http://www.udemy.com/courses/Technology)
 [[Coursera](http://www.quora.com/Coursera)] [https://www.coursera.org/](https://www.coursera.org/) deserves their own section for being the emblem of a MOOC:
 * As an example, here's my current dashboard of courses:
-![](http://qph.is.quoracdn.net/main-qimg-ed1ae3d386e19687cd0f9a7e00ce0c0e?convert_to_webp=true)
+![](https://qph.is.quoracdn.net/main-qimg-ed1ae3d386e19687cd0f9a7e00ce0c0e?convert_to_webp=true)
 
 There are also quite a few CS courses all hosted online!** **
 * [Introduction to Computer Science and Programming](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00-introduction-to-computer-science-and-programming-fall-2008/) - MIT OpenCourseWare
@@ -1778,5 +1778,3 @@ List of good, free online resources, categorized by subject.  Add books, website
 * [reSRC: Victor Felder's Github repository](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#professional-development) - This Open Source project is maintained on Github as a master reference list of programming/Computer Science books and resources released under a Creative Commons license, and is available in other languages as well. (Check with the author, publisher, and or content creator's website for details on what the Creative Commons license covers).
 
 * [reSRC: Intro Page](https://github.com/vhf/free-programming-books) - Victor Felder's Github intro page, which links free podcasts, JavaScript frameworks, interactive resources, and software testing books.
-
-This is also [over on Tumblr](http://zacanger.tumblr.com/post/129368991589/learn-to-code-link-post) if you're into that sort of thing.

@@ -14,25 +14,6 @@ you use it.
 All the recommendations here are just that: recommendations. Most users will not
 need to follow everything in this guide.
 
-### Table of Contents
-
-* [General](#general)
-* [Unionizing](#unionizing)
-* [Passwords](#passwords)
-* [Encryption](#encryption)
-* [OS](#os)
-* [Browsers](#browsers)
-* [Email](#email)
-* [Messaging](#messaging)
-* [MFA](#mfa)
-* [Search](#search)
-* [Videos](#videos)
-* [DNS](#dns)
-* [VPN](#vpn)
-* [Documents](#documents)
-* [Sync](#sync)
-* [Links](#links)
-
 ### General
 
 You should try to avoid anything hosted in, or owned by, a company in the US.

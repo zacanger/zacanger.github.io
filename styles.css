@@ -113,9 +113,8 @@ h1,
 h2,
 h3,
 h4 {
-  margin: 1.414rem 0 .5rem;
+  margin: 1rem 0;
   font-weight: inherit;
-  line-height: 1.42;
 }
 
 h1 {
@@ -181,14 +180,6 @@ h4,
 h5,
 h6 {
   font-family: Arimo, Helvetica, sans-serif;
-}
-
-h1,
-h2,
-h3 {
-  border-bottom: 2px solid #fafafa;
-  margin-bottom: 1.15rem;
-  padding-bottom: .5rem;
 }
 
 blockquote {
