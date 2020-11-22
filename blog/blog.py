@@ -76,6 +76,8 @@ def main():
             with open(destination_file, "w") as d:
                 d.write(rendered)
                 d.close()
+
+            # Depends on having appended all metadata above
             generate_index()
 
 
