@@ -1,143 +1,190 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Category Theory Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="Notes taken while watching this
-series."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Category Theory Notes"/><meta name="twitter:description" content="Notes taken while watching this
-series."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Category Theory Notes"/><meta property="og:description" content="Notes taken while watching this
-series."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Category Theory Notes</h2><h3>26 November, 2016</h3></header><div><h1>Category Theory for JS Devs</h1>
-<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Category Theory Notes | Zac Anger's Blog</title>
+    <meta name="description" content="Category Theory Notes" />
+    <meta name="keywords" content="['fp']" />
+    <meta name="twitter:description" content="Category Theory Notes" />
+    <meta name="twitter:title" content="Category Theory Notes" />
+    <meta property="og:description" content="Category Theory Notes" />
+    <meta property="og:title" content="Category Theory Notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Category Theory Notes</h2>
+      <h3>2016-11-26</h3>
+      <h4><small>Tagged: fp</small></h4>
+    </header>
+    <div>
+      <h1>Category Theory for JS Devs</h1>
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this<br />
 series</a>.</p>
 <h2>Contracts</h2>
 <p>Basics of type checking.</p>
-<pre><code class="language-javascript">const str = a =&gt; {
-  if (typeof a !== 'string') throw new TypeError('Expected a string')
-  else return a
-}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">!==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected a string&#39;</span><span class="p">)</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nx">a</span>
+<span class="p">}</span>
+</pre></div>
+
 <h2>Guarded Functions and Categories</h2>
-<p>Functions that have contracts on input or output are called <em>guarded</em>
+<p>Functions that have contracts on input or output are called <em>guarded</em><br />
 functions.</p>
-<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt; a</code>).</p>
+<p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt;
+a</code>).</p>
 <p>Maps between categories are functors.</p>
-<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded)
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded)<br />
 functions.</p>
 <p>Function that returns a contract:</p>
-<pre><code class="language-javascript">const typeOf = type =&gt; a =&gt; {
-  if (typeof a !== `${type}`) throw new TypeError(`Expected ${type}!`)
-  else return a
-}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">typeOf</span> <span class="o">=</span> <span class="nx">type</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span> <span class="o">!==</span> <span class="sb">`</span><span class="si">${</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="sb">`Expected </span><span class="si">${</span><span class="nx">type</span><span class="si">}</span><span class="sb">!`</span><span class="p">)</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nx">a</span>
+<span class="p">}</span>
+</pre></div>
+
 <p>And basic usage:</p>
-<pre><code class="language-javascript">const bool = typeOf('boolean')
-const num  = typeOf('number')
-// etc.
-// Obviously, for arrays you'd need to use Array.isArray()
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">bool</span> <span class="o">=</span> <span class="nx">typeOf</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">num</span>  <span class="o">=</span> <span class="nx">typeOf</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<span class="c1">// etc.</span>
+<span class="c1">// Obviously, for arrays you&#39;d need to use Array.isArray()</span>
+</pre></div>
+
 <p>Then we could do something like</p>
-<pre><code class="language-javascript">const increment = a =&gt; {
-  a = num(a)
-  return a + 1
-}
-</code></pre>
-<p>Before I go further I should mention that yes, I have heard of Flow and
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">increment</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">a</span> <span class="o">=</span> <span class="nx">num</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Before I go further I should mention that yes, I have heard of Flow and<br />
 TypeScript.</p>
-<pre><code class="language-javascript">const increment = (a: number) =&gt; a + 1
-</code></pre>
-<p>I assume this video series will get to actual type systems at some point,
-though it was made before TypeScript and Flow were written, so it won't be
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">increment</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+<p>I assume this video series will get to actual type systems at some point,<br />
+though it was made before TypeScript and Flow were written, so it won't be<br />
 mentioning those.</p>
 <h2>Array Contracts</h2>
 <p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
-<pre><code class="language-javascript">const arr = a =&gt; {
-  if ({}.toString.call(a) !== '[object Array]') throw TypeError('Expected array!')
-  else return a
-}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">({}.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;[object Array]&#39;</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected array!&#39;</span><span class="p">)</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nx">a</span>
+<span class="p">}</span>
+</pre></div>
+
 <p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
 <h2>Functors</h2>
-<p>Takes a maps the contract over the things array. Will throw if they're not all
+<p>Takes a maps the contract over the things array. Will throw if they're not all<br />
 correct. Ensure that your array is, for example, all Strings, or whatever.</p>
-<pre><code class="language-javascript">const arrayOf = contract =&gt; things =&gt; arr(things).map(c)
-</code></pre>
-<p>This acts on the category's <em>objects</em> and <em>morphisms</em> both, and produces new
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arrayOf</span> <span class="o">=</span> <span class="nx">contract</span> <span class="p">=&gt;</span> <span class="nx">things</span> <span class="p">=&gt;</span> <span class="nx">arr</span><span class="p">(</span><span class="nx">things</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+</pre></div>
+
+<p>This acts on the category's <em>objects</em> and <em>morphisms</em> both, and produces new<br />
 objects and new morphisms.</p>
 <h2>Maybe</h2>
 <p>The <em>Maybe</em> functor.</p>
-<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for
+<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for<br />
 this video?</p>
 <p>Anyway here's some code.</p>
-<pre><code class="language-javascript">const Maybe = () =&gt; {}
-Maybe.prototype.getOrElse = function (a) {
-  if (this instanceof Some) return this.a
-  else return a
-}
-// the above: maybe something getOrElse what to do if none
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">Maybe</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+<span class="nx">Maybe</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getOrElse</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">Some</span><span class="p">)</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nx">a</span>
+<span class="p">}</span>
+<span class="c1">// the above: maybe something getOrElse what to do if none</span>
 
-const None = () =&gt; {}
-None.prototype = Object.create(Maybe.prototype) // all instances of None are an instance of Maybe
-None.prototype.toString = () =&gt; 'None'
-const none = new None()
+<span class="kr">const</span> <span class="nx">None</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+<span class="nx">None</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Maybe</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="c1">// all instances of None are an instance of Maybe</span>
+<span class="nx">None</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="s1">&#39;None&#39;</span>
+<span class="kr">const</span> <span class="nx">none</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">None</span><span class="p">()</span>
 
-const Some = function (a) { this.a = a }
-Some.prototype = Object.create(Maybe.prototype)
-Some.prototype.toString = function () { return `Some(thisa)` }
-const some = a =&gt; new Some(a)
+<span class="kr">const</span> <span class="nx">Some</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">}</span>
+<span class="nx">Some</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Maybe</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span>
+<span class="nx">Some</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="sb">`Some(thisa)`</span> <span class="p">}</span>
+<span class="kr">const</span> <span class="nx">some</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nx">Some</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
 
-const maybe = c =&gt; m =&gt; {
-  if (m instanceof None) return m
-  else if (m instance of Some) return some((m.a))
-  else throw new TypeError('Expected None or Some a!')
-}
-</code></pre>
+<span class="kr">const</span> <span class="nx">maybe</span> <span class="o">=</span> <span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">m</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">m</span> <span class="k">instanceof</span> <span class="nx">None</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">instance</span> <span class="k">of</span> <span class="nx">Some</span><span class="p">)</span> <span class="k">return</span> <span class="nx">some</span><span class="p">((</span><span class="nx">m</span><span class="p">.</span><span class="nx">a</span><span class="p">))</span>
+  <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected None or Some a!&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 <h2>Unit and Flatten</h2>
-<pre><code class="language-javascript">const arrayOfUnit = contract =&gt; (
-  a =&gt; {
-    a = contract(a)
-    return arrayOf(contract)([a])
-  }
-)
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arrayOfUnit</span> <span class="o">=</span> <span class="nx">contract</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">contract</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">arrayOf</span><span class="p">(</span><span class="nx">contract</span><span class="p">)([</span><span class="nx">a</span><span class="p">])</span>
+  <span class="p">}</span>
+<span class="p">)</span>
 
-const maybeUnit = contract =&gt; (
-  a =&gt; {
-    a = contract(a)
-    return maybe(contract)(some(a))
-  }
-)
+<span class="kr">const</span> <span class="nx">maybeUnit</span> <span class="o">=</span> <span class="nx">contract</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">contract</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">maybe</span><span class="p">(</span><span class="nx">contract</span><span class="p">)(</span><span class="nx">some</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">)</span>
 
-const arrayOfFlatten = c =&gt; (
-  a =&gt; {
-    a = arrayOf(arrayOf(c))(a)
-    const r = []
-    const l = a.length
-    for (let i = 0; i &lt; l; ++i) {
-      r = r.concat(a[i]) // ew wtf is this guy doing?
-    }
-  }
-)
+<span class="kr">const</span> <span class="nx">arrayOfFlatten</span> <span class="o">=</span> <span class="nx">c</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">arrayOf</span><span class="p">(</span><span class="nx">arrayOf</span><span class="p">(</span><span class="nx">c</span><span class="p">))(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="kr">const</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kr">const</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">r</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="c1">// ew wtf is this guy doing?</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">)</span>
 
-const maybeFlatten = c =&gt; (
-  a =&gt; {
-    a = maybe(maybe(c))(a)
-    if (a instanceof Some) {
-      a = a.x
-    } else if (a instanceof None) {
-      a = a // why? if it's not Some, it _must_ be None.
-    }
-    return maybe(c)(a)
-  }
-)
+<span class="kr">const</span> <span class="nx">maybeFlatten</span> <span class="o">=</span> <span class="nx">c</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">maybe</span><span class="p">(</span><span class="nx">maybe</span><span class="p">(</span><span class="nx">c</span><span class="p">))(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nx">Some</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">x</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nx">None</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span> <span class="c1">// why? if it&#39;s not Some, it _must_ be None.</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">maybe</span><span class="p">(</span><span class="nx">c</span><span class="p">)(</span><span class="nx">a</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">)</span>
 
-// oh god what is even happening right now
-Array.unit = a =&gt; [a]
-Maybe.unit = some
-Array.prototype.flatten = function (c = any) { return arrayOfFlatten(c)(this) }
-// he literally has if (c === void 0) c = any
-// but this isn't the 90s so
+<span class="c1">// oh god what is even happening right now</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">unit</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">[</span><span class="nx">a</span><span class="p">]</span>
+<span class="nx">Maybe</span><span class="p">.</span><span class="nx">unit</span> <span class="o">=</span> <span class="nx">some</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">c</span> <span class="o">=</span> <span class="nx">any</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">arrayOfFlatten</span><span class="p">(</span><span class="nx">c</span><span class="p">)(</span><span class="k">this</span><span class="p">)</span> <span class="p">}</span>
+<span class="c1">// he literally has if (c === void 0) c = any</span>
+<span class="c1">// but this isn&#39;t the 90s so</span>
 
-// apply given functor twice to a contract
-const twice = f =&gt; c =&gt; f(f(c)
-const once = f =&gt; f // what the actual fuck, this is id..
-</code></pre>
-<p>Okay, I'm done, I tried. there are like 20 more videos in this series but it's
-so badly done and there are so many mistakes and the guy talks so slowly that
+<span class="c1">// apply given functor twice to a contract</span>
+<span class="kr">const</span> <span class="nx">twice</span> <span class="o">=</span> <span class="nx">f</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">once</span> <span class="o">=</span> <span class="nx">f</span> <span class="p">=&gt;</span> <span class="nx">f</span> <span class="c1">// what the actual fuck, this is id..</span>
+</pre></div>
+
+<p>Okay, I'm done, I tried. there are like 20 more videos in this series but it's<br />
+so badly done and there are so many mistakes and the guy talks so slowly that<br />
 I just can't do this anymore.</p>
-<p>If anyone knows of a decent intro to category theory for JS devs, please let
+<p>If anyone knows of a decent intro to category theory for JS devs, please let<br />
 me know.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

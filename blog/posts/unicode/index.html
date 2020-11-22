@@ -1,21 +1,59 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Unicode | Zac Anger&#x27;s Blog</title><meta name="description" content="Unicode is not a 16-bit system. Unlike mapping letters to bits (A =&gt; 0100 0001, for example), with unicode, characters are mapped to a theoretical
-concept called a code point. So it&#x27;s an... ideal."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,unicode,text,ascii"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Unicode"/><meta name="twitter:description" content="Unicode is not a 16-bit system. Unlike mapping letters to bits (A =&gt; 0100 0001, for example), with unicode, characters are mapped to a theoretical
-concept called a code point. So it&#x27;s an... ideal."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Unicode"/><meta property="og:description" content="Unicode is not a 16-bit system. Unlike mapping letters to bits (A =&gt; 0100 0001, for example), with unicode, characters are mapped to a theoretical
-concept called a code point. So it&#x27;s an... ideal."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Unicode</h2><h3>13 January, 2016</h3></header><div><p>Unicode is not a 16-bit system. Unlike mapping letters to bits (<code>A =&gt; 0100 0001</code>, for example), with unicode, characters are mapped to a theoretical
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Unicode | Zac Anger's Blog</title>
+    <meta name="description" content="Unicode" />
+    <meta name="keywords" content="['unicode', 'text', 'ascii']" />
+    <meta name="twitter:description" content="Unicode" />
+    <meta name="twitter:title" content="Unicode" />
+    <meta property="og:description" content="Unicode" />
+    <meta property="og:title" content="Unicode" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Unicode</h2>
+      <h3>2016-01-13</h3>
+      <h4><small>Tagged: unicode, text, ascii</small></h4>
+    </header>
+    <div>
+      <p>Unicode is not a 16-bit system. Unlike mapping letters to bits (<code>A =&gt; 0100
+0001</code>, for example), with unicode, characters are mapped to a theoretical<br />
 concept called a <strong>code point</strong>. So it's an... ideal.</p>
-<p>This 'code point' ideal is represented by the numbers we've already seen, like
-<code>U+0639</code>, and such. The numbers are hexadecimal (base 16) (and the <code>U+</code> prefix
+<p>This 'code point' ideal is represented by the numbers we've already seen, like<br />
+<code>U+0639</code>, and such. The numbers are hexadecimal (base 16) (and the <code>U+</code> prefix<br />
 is for 'unicode').</p>
-<p>So, early on in the life of unicode, the idea was to store those numbers in two
-bytes each. But then there was some high-school level drama between the
-high-endian clique and the low-endian gang, so now we have this <code>FF FE</code> or
-whatever at the beginning--that's the Unicode
+<p>So, early on in the life of unicode, the idea was to store those numbers in two<br />
+bytes each. But then there was some high-school level drama between the<br />
+high-endian clique and the low-endian gang, so now we have this <code>FF FE</code> or<br />
+whatever at the beginning--that's the Unicode<br />
 <a href="https://en.wikipedia.org/wiki/Byte_order_mark">BOM</a>.</p>
-<p>But <em>then</em>, basically because Americans were still using the same restricted set
-of the Latin alphabet, we came up with UTF-8. That kind of screwed everyone else
-over, because now we have 0-127 all in one singe byte, and then 128 on up stored
-in 2-6 bytes. So the characters we use every day in American English still look
-the same as before (when we used ASCII), but now a whole bunch of other scripts
-(and symbols) are kind of screwy, because it takes several bytes to use other
+<p>But <em>then</em>, basically because Americans were still using the same restricted set<br />
+of the Latin alphabet, we came up with UTF-8. That kind of screwed everyone else<br />
+over, because now we have 0-127 all in one singe byte, and then 128 on up stored<br />
+in 2-6 bytes. So the characters we use every day in American English still look<br />
+the same as before (when we used ASCII), but now a whole bunch of other scripts<br />
+(and symbols) are kind of screwy, because it takes several bytes to use other<br />
 characters.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

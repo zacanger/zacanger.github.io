@@ -1,5 +1,39 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Isomorphic Apps in React | Zac Anger&#x27;s Blog</title><meta name="description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,isomorphic,react,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Isomorphic Apps in React"/><meta name="twitter:description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Isomorphic Apps in React"/><meta property="og:description" content="I don&#x27;t know for sure that this deserves its own file... we&#x27;ll see."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Isomorphic Apps in React</h2><h3>25 January, 2016</h3></header><div><p>I don't know for sure that this deserves its own file... we'll see.</p>
-<p>We'll be processing several requests simultaneously, so we should deal with a
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Isomorphic Apps in React | Zac Anger's Blog</title>
+    <meta name="description" content="Isomorphic Apps in React" />
+    <meta name="keywords" content="['isomorphic', 'react', 'js']" />
+    <meta name="twitter:description" content="Isomorphic Apps in React" />
+    <meta name="twitter:title" content="Isomorphic Apps in React" />
+    <meta property="og:description" content="Isomorphic Apps in React" />
+    <meta property="og:title" content="Isomorphic Apps in React" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Isomorphic Apps in React</h2>
+      <h3>2016-01-25</h3>
+      <h4><small>Tagged: isomorphic, react, js</small></h4>
+    </header>
+    <div>
+      <p>I don't know for sure that this deserves its own file... we'll see.</p>
+<p>We'll be processing several requests simultaneously, so we should deal with a<br />
 global state (dependent on user) (like flux stores state, or whatever).</p>
 <p>About 90%, really, of the client and server code, should be shared.</p>
 <p>Which parts should be isomorphic?</p>
@@ -11,20 +45,20 @@ global state (dependent on user) (like flux stores state, or whatever).</p>
 <li>config</li>
 <li>i10n</li>
 </ol>
-<p>The view is already there, really. Just gotta use <code>ReactDOM.renderToString</code>
+<p>The view is already there, really. Just gotta use <code>ReactDOM.renderToString</code><br />
 instead of <code>ReactDOM render</code>.</p>
-<p>Inline styles better than individual sheets in the dirs, for this
-architecture. React supports them. That said, one should <em>emulate</em> pseudo
-attributes (:hover, :active, and :focus, for example) in your Javascript.
-Handle your own prefixes (grooosss). Emulate your media queries in Js, too.
-Gotta eventually merge the CSS somehow; http://stack.formidable.com/radium/
+<p>Inline styles better than individual sheets in the dirs, for this<br />
+architecture. React supports them. That said, one should <em>emulate</em> pseudo<br />
+attributes (:hover, :active, and :focus, for example) in your Javascript.<br />
+Handle your own prefixes (grooosss). Emulate your media queries in Js, too.<br />
+Gotta eventually merge the CSS somehow; <a href="http://stack.formidable.com/radium/">http://stack.formidable.com/radium/</a><br />
 isn't half-bad for that.</p>
-<p>Because there's so much Js to bundle up and load, it's actually okay to but
-the bundle at the end of your markup for this case. But we want to split
-things out in the webpack.config.js, so that we've got CSS on its own and can
+<p>Because there's so much Js to bundle up and load, it's actually okay to but<br />
+the bundle at the end of your markup for this case. But we want to split<br />
+things out in the webpack.config.js, so that we've got CSS on its own and can<br />
 load that first the way we used to. Here's a sample webpack.config.js:</p>
-<pre><code>var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+<div class="highlight"><pre><span></span>var webpack = require(&#39;webpack&#39;)
+var ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;)
 
 module.exports = {
   entry: &quot;./src/app.js&quot;,
@@ -32,15 +66,15 @@ module.exports = {
     new webpackDefinePlugin({
       &quot;process.env&quot;: {
         BROWSER: JSON.stringify(true),
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || &#39;development&#39;)
       }
     }),
     new ExtractTextPlugin(&quot;[name].css&quot;)
   ],
   output : {
-    path: __dirname + '/public/build/',
-    filename: 'bundle.js',
-    publicPath: 'build/'
+    path: __dirname + &#39;/public/build/&#39;,
+    filename: &#39;bundle.js&#39;,
+    publicPath: &#39;build/&#39;
   },
   module: {
     loaders: [
@@ -68,15 +102,16 @@ module.exports = {
     ]
   },
   eslint: {
-    configFile: '.eslintr`^c'
+    configFile: &#39;.eslintr`^c&#39;
   }
 }
-</code></pre>
-<p>React Router works well for isomorphic stuff. Here's an example of using it
+</pre></div>
+
+<p>React Router works well for isomorphic stuff. Here's an example of using it<br />
 with server-side rendering:</p>
-<pre><code>import {renderToString} from 'react-dom/server'
-import {match, RouterContext} from 'react-router'
-import routes from './routes'
+<div class="highlight"><pre><span></span>import {renderToString} from &#39;react-dom/server&#39;
+import {match, RouterContext} from &#39;react-router&#39;
+import routes from &#39;./routes&#39;
 
 serve((req, res) =&gt;
   // req.url would be full url path from original request, including query string
@@ -84,28 +119,30 @@ serve((req, res) =&gt;
       if (error){res.status(500).send(error.message)}
       else if (redirectLocation){res.redirect(302, redirectLocation.pathname + redirectLocation.search)}
       else if (renderProps){res.status(200).send(renderToString(&lt;RouterContext {...renderProps} /&gt;))}
-      else {res.status(404).send('404 not found')}
+      else {res.status(404).send(&#39;404 not found&#39;)}
   })
 )
-</code></pre>
-<p>Redux in an isomporhic app: better than a singelton flux store. With Redux we
-can use react-redux's react context. Using redux store's API makes dumping and
-restoring store state easy. Check the code of
-https://github.com/WebbyLab/itsquiz-wall for a really good, in-depth,
+</pre></div>
+
+<p>Redux in an isomporhic app: better than a singelton flux store. With Redux we<br />
+can use react-redux's react context. Using redux store's API makes dumping and<br />
+restoring store state easy. Check the code of<br />
+<a href="https://github.com/WebbyLab/itsquiz-wall">https://github.com/WebbyLab/itsquiz-wall</a> for a really good, in-depth,<br />
 production app using all of the above tech in an isomorphic app.</p>
 <p>Here's a simple api example that works both server- and client-side:</p>
-<pre><code>'use strict'
-import apiFactory from './api'
+<div class="highlight"><pre><span></span>&#39;use strict&#39;
+import apiFactory from &#39;./api&#39;
 
 const api=apiFactory({
-  apiPrefix: 'http://pharoah.js.org/api/v1'
+  apiPrefix: &#39;http://pharoah.js.org/api/v1&#39;
 })
 const promise = api.users.list()
-</code></pre>
-<p>Here's a promise-pased client: https://www.npmjs.com/package/axios</p>
-<p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now):
-https://www.npmjs.com/package/isomorphic-fetch and
-https://www.npmjs.com/package/node-fetch</p>
+</pre></div>
+
+<p>Here's a promise-pased client: <a href="https://www.npmjs.com/package/axios">https://www.npmjs.com/package/axios</a></p>
+<p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now):<br />
+<a href="https://www.npmjs.com/package/isomorphic-fetch">https://www.npmjs.com/package/isomorphic-fetch</a> and<br />
+<a href="https://www.npmjs.com/package/node-fetch">https://www.npmjs.com/package/node-fetch</a></p>
 <p>So, here's what we might do on the client:</p>
 <ul>
 <li>render react components</li>
@@ -119,9 +156,15 @@ https://www.npmjs.com/package/node-fetch</p>
 <li>render the page to a string</li>
 <li>send html to the client</li>
 </ul>
-<p>How to do this isomorphically? Check that itsquiz app again, it's so much
+<p>How to do this isomorphically? Check that itsquiz app again, it's so much<br />
 easier than typing out an example here.</p>
-<p>For a full-on tutorial using React and Redux to make an isomorphic app (Todos,
-of course...), check here:
-https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<p>For a full-on tutorial using React and Redux to make an isomorphic app (Todos,<br />
+of course...), check here:<br />
+<a href="https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4">https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4</a></p>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

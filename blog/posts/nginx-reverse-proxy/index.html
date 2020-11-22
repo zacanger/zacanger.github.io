@@ -1,11 +1,42 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>nginx reverse proxy | Zac Anger&#x27;s Blog</title><meta name="description" content="reverse proxy: multiple local servers being served out to a client that only
-really sees ngnix."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,nginx,deployment"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="nginx reverse proxy"/><meta name="twitter:description" content="reverse proxy: multiple local servers being served out to a client that only
-really sees ngnix."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="nginx reverse proxy"/><meta property="og:description" content="reverse proxy: multiple local servers being served out to a client that only
-really sees ngnix."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>nginx reverse proxy</h2><h3>28 March, 2016</h3></header><div><p>reverse proxy: multiple local servers being served out to a client that only
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>nginx reverse proxy | Zac Anger's Blog</title>
+    <meta name="description" content="nginx reverse proxy" />
+    <meta name="keywords" content="['nginx', 'deployment']" />
+    <meta name="twitter:description" content="nginx reverse proxy" />
+    <meta name="twitter:title" content="nginx reverse proxy" />
+    <meta property="og:description" content="nginx reverse proxy" />
+    <meta property="og:title" content="nginx reverse proxy" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>nginx reverse proxy</h2>
+      <h3>2016-03-28</h3>
+      <h4><small>Tagged: nginx, deployment</small></h4>
+    </header>
+    <div>
+      <p>reverse proxy: multiple local servers being served out to a client that only<br />
 really sees ngnix.</p>
 <p><code>cd /etc/ngnix</code></p>
 <p><code>vi nginx.conf</code></p>
-<p>at the bottom-ish there'll be an <code>http {}</code> block, with a comment about virtual
+<p>at the bottom-ish there'll be an <code>http {}</code> block, with a comment about virtual<br />
 host configs</p>
 <p><code>cd /etc/nginx/site-available</code></p>
 <p><code>cp default whatever</code></p>
@@ -23,14 +54,15 @@ host configs</p>
     proxy_redirect off;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection &quot;upgrade&quot;;
+    proxy_set_header Connection "upgrade";
     proxy_set_header X-Forwarded-Proto $scheme;
   }
 }
 </code></pre>
-<p>and then do an <code>ln -s /etc/nginx/sites-available/whatever /etc/nginx/sites-enabled/</code></p>
+<p>and then do an <code>ln -s /etc/nginx/sites-available/whatever
+/etc/nginx/sites-enabled/</code></p>
 <p>after <code>service nginx restart</code> shiz should be working.</p>
-<p>redirects www.url.com to url.com:</p>
+<p>redirects <a href="http://www.url.com">www.url.com</a> to url.com:</p>
 <pre><code>server {
     server_name www.example.com;
     return 301 $scheme://example.com$request_uri;
@@ -94,4 +126,10 @@ server {
     }
 }
 </code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

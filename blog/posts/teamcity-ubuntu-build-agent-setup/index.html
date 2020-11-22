@@ -1,20 +1,51 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>script to set up ec2 build agent for tc | Zac Anger&#x27;s Blog</title><meta name="description" content="This is a shell script to run on a new Ubuntu EC2 instance to get it
-set up as a build agent for TeamCity, running stuff in Docker."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,ubuntu,docker,aws,teamcity"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="script to set up ec2 build agent for tc"/><meta name="twitter:description" content="This is a shell script to run on a new Ubuntu EC2 instance to get it
-set up as a build agent for TeamCity, running stuff in Docker."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="script to set up ec2 build agent for tc"/><meta property="og:description" content="This is a shell script to run on a new Ubuntu EC2 instance to get it
-set up as a build agent for TeamCity, running stuff in Docker."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>script to set up ec2 build agent for tc</h2><h3>06 July, 2016</h3></header><div><p>This is a shell script to run on a new Ubuntu EC2 instance to get it
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>script to set up ec2 build agent for tc | Zac Anger's Blog</title>
+    <meta name="description" content="script to set up ec2 build agent for tc" />
+    <meta name="keywords" content="['ubuntu', 'docker', 'aws', 'teamcity']" />
+    <meta name="twitter:description" content="script to set up ec2 build agent for tc" />
+    <meta name="twitter:title" content="script to set up ec2 build agent for tc" />
+    <meta property="og:description" content="script to set up ec2 build agent for tc" />
+    <meta property="og:title" content="script to set up ec2 build agent for tc" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>script to set up ec2 build agent for tc</h2>
+      <h3>2016-07-06</h3>
+      <h4><small>Tagged: ubuntu, docker, aws, teamcity</small></h4>
+    </header>
+    <div>
+      <p>This is a shell script to run on a new Ubuntu EC2 instance to get it<br />
 set up as a build agent for TeamCity, running stuff in Docker.</p>
-<pre><code class="language-shell">#!/usr/bin/env bash
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
 
-# start with a t2.large (or maybe medium) ec2 instance
-# ubuntu, preferably 16.x
-# needs to have semi-open network access and public IP
-# to be able to update packages and talk to docker and your
-# build server
-# after running this and registering the agent on the TC
-# server, just use the agent push
-# or, download the zip and scp it up
+<span class="c1"># start with a t2.large (or maybe medium) ec2 instance</span>
+<span class="c1"># ubuntu, preferably 16.x</span>
+<span class="c1"># needs to have semi-open network access and public IP</span>
+<span class="c1"># to be able to update packages and talk to docker and your</span>
+<span class="c1"># build server</span>
+<span class="c1"># after running this and registering the agent on the TC</span>
+<span class="c1"># server, just use the agent push</span>
+<span class="c1"># or, download the zip and scp it up</span>
 
-# new ubuntu instances won't have pw on default user (ubuntu)
+<span class="c1"># new ubuntu instances won&#39;t have pw on default user (ubuntu)</span>
 sudo su
 
 apt-get update
@@ -23,98 +54,104 @@ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E8
 
 mkdir -p /etc/apt/sources.list.d/
 touch /etc/apt/sources.list.d/docker.list
-echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' &gt;&gt; /etc/apt/sources.list.d/docker.list
-echo 'apt_preserve_sources_list: true' &gt;&gt; /etc/cloud/cloud.cfg
+<span class="nb">echo</span> <span class="s1">&#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&#39;</span> &gt;&gt; /etc/apt/sources.list.d/docker.list
+<span class="nb">echo</span> <span class="s1">&#39;apt_preserve_sources_list: true&#39;</span> &gt;&gt; /etc/cloud/cloud.cfg
 
-if [ command -v lxc-docker ] ; then
+<span class="k">if</span> <span class="o">[</span> <span class="nb">command</span> -v lxc-docker <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
   apt-get purge lxc-docker -y
-fi
+<span class="k">fi</span>
 
-echo &quot;
-## Note, this file is written by cloud-init on first boot of an instance
-## modifications made here will not survive a re-bundle.
-## if you wish to make changes you can:
-## a.) add 'apt_preserve_sources_list: true' to /etc/cloud/cloud.cfg
-##     or do the same in user-data
-## b.) add sources in /etc/apt/sources.list.d
-## c.) make changes to template file /etc/cloud/templates/sources.list.tmpl
-#
+<span class="nb">echo</span> <span class="s2">&quot;</span>
+<span class="s2">## Note, this file is written by cloud-init on first boot of an instance</span>
+<span class="s2">## modifications made here will not survive a re-bundle.</span>
+<span class="s2">## if you wish to make changes you can:</span>
+<span class="s2">## a.) add &#39;apt_preserve_sources_list: true&#39; to /etc/cloud/cloud.cfg</span>
+<span class="s2">##     or do the same in user-data</span>
+<span class="s2">## b.) add sources in /etc/apt/sources.list.d</span>
+<span class="s2">## c.) make changes to template file /etc/cloud/templates/sources.list.tmpl</span>
+<span class="s2">#</span>
 
-# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-# newer versions of the distribution.
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted
+<span class="s2"># See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span>
+<span class="s2"># newer versions of the distribution.</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial main restricted</span>
 
-## Major bug fix updates produced after the final release of the
-## distribution.
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+<span class="s2">## Major bug fix updates produced after the final release of the</span>
+<span class="s2">## distribution.</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates main restricted</span>
 
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## team. Also, please note that software in universe WILL NOT receive any
-## review or updates from the Ubuntu security team.
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe
+<span class="s2">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="s2">## team. Also, please note that software in universe WILL NOT receive any</span>
+<span class="s2">## review or updates from the Ubuntu security team.</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial universe</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates universe</span>
 
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## team, and may not be under a free licence. Please satisfy yourself as to
-## your rights to use the software. Also, please note that software in
-## multiverse WILL NOT receive any review or updates from the Ubuntu
-## security team.
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+<span class="s2">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
+<span class="s2">## team, and may not be under a free licence. Please satisfy yourself as to</span>
+<span class="s2">## your rights to use the software. Also, please note that software in</span>
+<span class="s2">## multiverse WILL NOT receive any review or updates from the Ubuntu</span>
+<span class="s2">## security team.</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial multiverse</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-updates multiverse</span>
 
-## Uncomment the following two lines to add software from the 'backports'
-## repository.
-## N.B. software from this repository may not have been tested as
-## extensively as that contained in the main release, although it includes
-## newer versions of some applications which may provide useful features.
-## Also, please note that software in backports WILL NOT receive any review
-## or updates from the Ubuntu security team.
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+<span class="s2">## Uncomment the following two lines to add software from the &#39;backports&#39;</span>
+<span class="s2">## repository.</span>
+<span class="s2">## N.B. software from this repository may not have been tested as</span>
+<span class="s2">## extensively as that contained in the main release, although it includes</span>
+<span class="s2">## newer versions of some applications which may provide useful features.</span>
+<span class="s2">## Also, please note that software in backports WILL NOT receive any review</span>
+<span class="s2">## or updates from the Ubuntu security team.</span>
+<span class="s2">deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
+<span class="s2">deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse</span>
 
-## Uncomment the following two lines to add software from Canonical's
-## 'partner' repository.
-## This software is not part of Ubuntu, but is offered by Canonical and the
-## respective vendors as a service to Ubuntu users.
-# deb http://archive.canonical.com/ubuntu xenial partner
-# deb-src http://archive.canonical.com/ubuntu xenial partner
+<span class="s2">## Uncomment the following two lines to add software from Canonical&#39;s</span>
+<span class="s2">## &#39;partner&#39; repository.</span>
+<span class="s2">## This software is not part of Ubuntu, but is offered by Canonical and the</span>
+<span class="s2">## respective vendors as a service to Ubuntu users.</span>
+<span class="s2"># deb http://archive.canonical.com/ubuntu xenial partner</span>
+<span class="s2"># deb-src http://archive.canonical.com/ubuntu xenial partner</span>
 
-deb http://security.ubuntu.com/ubuntu xenial-security main
-deb-src http://security.ubuntu.com/ubuntu xenial-security main
-deb http://security.ubuntu.com/ubuntu xenial-security universe
-deb-src http://security.ubuntu.com/ubuntu xenial-security universe
-# deb http://security.ubuntu.com/ubuntu xenial-security multiverse
-# deb-src http://security.ubuntu.com/ubuntu xenial-security multiverse
-&quot; &gt; /etc/apt/sources.list
+<span class="s2">deb http://security.ubuntu.com/ubuntu xenial-security main</span>
+<span class="s2">deb-src http://security.ubuntu.com/ubuntu xenial-security main</span>
+<span class="s2">deb http://security.ubuntu.com/ubuntu xenial-security universe</span>
+<span class="s2">deb-src http://security.ubuntu.com/ubuntu xenial-security universe</span>
+<span class="s2"># deb http://security.ubuntu.com/ubuntu xenial-security multiverse</span>
+<span class="s2"># deb-src http://security.ubuntu.com/ubuntu xenial-security multiverse</span>
+<span class="s2">&quot;</span> &gt; /etc/apt/sources.list
 
 apt-get install -y apt-transport-https ca-certificates
-apt-get install -y linux-image-extra-$(uname -r) --fix-missing --allow-unauthenticated
+apt-get install -y linux-image-extra-<span class="k">$(</span>uname -r<span class="k">)</span> --fix-missing --allow-unauthenticated
 apt-get install -y default-jdk unzip docker-engine --fix-missing --allow-unauthenticated
 apt-get dist-upgrade -y --allow-unauthenticated --fix-missing
 apt-get autoremove
 apt-get purge
 
 systemctl daemon-reload
-systemctl enable docker
+systemctl <span class="nb">enable</span> docker
 systemctl start docker
 
-echo &quot;
-#!/usr/bin/env bash
+<span class="nb">echo</span> <span class="s2">&quot;</span>
+<span class="s2">#!/usr/bin/env bash</span>
 
-while true
-do
-  sleep 86400
-  docker rmi `docker images -aq`
-done
-&quot; &gt; ~/docker-cleanup.sh
+<span class="s2">while true</span>
+<span class="s2">do</span>
+<span class="s2">  sleep 86400</span>
+<span class="s2">  docker rmi `docker images -aq`</span>
+<span class="s2">done</span>
+<span class="s2">&quot;</span> &gt; ~/docker-cleanup.sh
 
 chmod +x ~/docker-cleanup.sh
-nohup ~/docker-cleanup.sh &amp;
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+nohup ~/docker-cleanup.sh <span class="p">&amp;</span>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

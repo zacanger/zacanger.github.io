@@ -1,52 +1,81 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>notes and little bits from the react meetup on 17th nov at devmountain | Zac Anger&#x27;s Blog</title><meta name="description" content="don&#x27;t take anything here seriously. i think it&#x27;s just interesting to reread
-my initial reaction when i was confronted with everything that is react."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,react"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="notes and little bits from the react meetup on 17th nov at devmountain"/><meta name="twitter:description" content="don&#x27;t take anything here seriously. i think it&#x27;s just interesting to reread
-my initial reaction when i was confronted with everything that is react."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="notes and little bits from the react meetup on 17th nov at devmountain"/><meta property="og:description" content="don&#x27;t take anything here seriously. i think it&#x27;s just interesting to reread
-my initial reaction when i was confronted with everything that is react."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>notes and little bits from the react meetup on 17th nov at devmountain</h2><h3>22 May, 2016</h3></header><div><h1>IMPORTANT:</h1>
-<p>don't take anything here seriously. i think it's just interesting to reread
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>notes and little bits from the react meetup on 17th nov at devmountain | Zac Anger's Blog</title>
+    <meta name="description" content="notes and little bits from the react meetup on 17th nov at devmountain" />
+    <meta name="keywords" content="['react']" />
+    <meta name="twitter:description" content="notes and little bits from the react meetup on 17th nov at devmountain" />
+    <meta name="twitter:title" content="notes and little bits from the react meetup on 17th nov at devmountain" />
+    <meta property="og:description" content="notes and little bits from the react meetup on 17th nov at devmountain" />
+    <meta property="og:title" content="notes and little bits from the react meetup on 17th nov at devmountain" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>notes and little bits from the react meetup on 17th nov at devmountain</h2>
+      <h3>2016-05-22</h3>
+      <h4><small>Tagged: react</small></h4>
+    </header>
+    <div>
+      <h1>IMPORTANT:</h1>
+<p>don't take anything here seriously. i think it's just interesting to reread<br />
 my initial reaction when i was confronted with everything that is react.</p>
-<hr>
+<hr />
 <h2>React Meetup, 17 Nov, 2015</h2>
-<p>React:</p>
-<ul>
-<li>Good at managing state.</li>
-<li>which is to say, dynamism</li>
-<li>Components, just like... everything else these days, so that's totally irrelevant.</li>
-<li>virtual dom, which is not exactly facebook's anyway.</li>
-<li>unidirectional data flow, which is a mouthful.</li>
-<li>that is, the loop.</li>
-<li>more boilerplate to run that... less boilerplate-replacer built into react?</li>
-</ul>
-<hr>
+<p>React:<br />
+  * Good at managing state.<br />
+  * which is to say, dynamism<br />
+  * Components, just like... everything else these days, so that's totally irrelevant.<br />
+  * virtual dom, which is not exactly facebook's anyway.<br />
+  * unidirectional data flow, which is a mouthful.<br />
+  * that is, the loop.<br />
+  * more boilerplate to run that... less boilerplate-replacer built into react?</p>
+<hr />
 <p>Random-ass notes and stuff.</p>
-<p>Erm. Thus far, it's web architecture 101. Components are a thing. People don't
+<p>Erm. Thus far, it's web architecture 101. Components are a thing. People don't<br />
 like to refresh whole pages. Etc.</p>
 <p><code>render() == render: function(){}</code></p>
 <p><code>this.setState</code> = important, should always use</p>
-<p>React is a view. But, does server-side rendering. Which is much more up my
-alley, because it's not making life miserable for users. We can check that out
+<p>React is a view. But, does server-side rendering. Which is much more up my<br />
+alley, because it's not making life miserable for users. We can check that out<br />
 when we check out all those other frameworks, for fun.</p>
 <p>React is compiled.</p>
-<p>Redux is a state container. Which actually makes sense now. Because everything
-is state, in React, it seems. So, it abstracts state and manages it
-independently from the front-end, which is how React <em>can</em> do it's thing on the
+<p>Redux is a state container. Which actually makes sense now. Because everything<br />
+is state, in React, it seems. So, it abstracts state and manages it<br />
+independently from the front-end, which is how React <em>can</em> do it's thing on the<br />
 server.</p>
-<p>My god, though, React people are worse than Lisp people. Everything has to be
-about how they do things better, even when they very clearly just do things at a
+<p>My god, though, React people are worse than Lisp people. Everything has to be<br />
+about how they do things better, even when they very clearly just do things at a<br />
 totally okay level.</p>
-<p><a href="https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook">OH. It turns out that React looks like PHP to be because it was influenced by XHP</a>.
-Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So
-React is Javascript based on PHP based on Javascript based on XML. So it's
+<p><a href="https://www.quora.com/React-JS-Library/How-was-the-idea-to-develop-React-conceived-and-how-many-people-worked-on-developing-it-and-implementing-it-at-Facebook">OH. It turns out that React looks like PHP to be because it was influenced by XHP</a>.<br />
+Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So<br />
+React is Javascript based on PHP based on Javascript based on XML. So it's<br />
 totally okay to think that it's hideous. That's good.</p>
 <p>app.jsx:</p>
-<pre><code class="language-jsx">import React from 'react' // same as var React = require('react')
-import ReactDOM from 'react-dom'
-import List from './List'
-import Friendz from './Friendz'
+<div class="highlight"><pre><span></span>import React from &#39;react&#39; // same as var React = require(&#39;react&#39;)
+import ReactDOM from &#39;react-dom&#39;
+import List from &#39;./List&#39;
+import Friendz from &#39;./Friendz&#39;
 
 const App = React.createClass({
   getInitialState(){
     return (
-      bros: ['bman', 'brosef']
+      bros: [&#39;bman&#39;, &#39;brosef&#39;]
     )
   },
   componentDidMount(){}, // onload
@@ -66,17 +95,18 @@ const App = React.createClass({
 
 ReactDOM.render(
   &lt;App /&gt;,
-  document.getElementById('root')
+  document.getElementById(&#39;root&#39;)
 )
-</code></pre>
+</pre></div>
+
 <p>miniform.jsx:</p>
-<pre><code class="language-jsx">import React from 'react'
+<div class="highlight"><pre><span></span>import React from &#39;react&#39;
 
 const Friendz = React.createClass(
   render() {
     getInitialState(){
       return {
-        newFriend: ''
+        newFriend: &#39;&#39;
       }
     },
     updateFriend(e){ // for event.
@@ -94,9 +124,10 @@ const Friendz = React.createClass(
 )
 
 export default Friendz
-</code></pre>
+</pre></div>
+
 <p>list.jsx:</p>
-<pre><code class="language-jsx">import React from 'react'
+<div class="highlight"><pre><span></span>import React from &#39;react&#39;
 
 const List = React.createClass({
   render() {
@@ -107,5 +138,11 @@ const List = React.createClass({
 })
 
 export default List // like module.exports = {}
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

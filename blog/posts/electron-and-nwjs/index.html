@@ -1,121 +1,105 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Electron and NW.js | Zac Anger&#x27;s Blog</title><meta name="description" content="Electron (formerly known as Atom Shell) and NW.js (formerly known as Node
-Webkit) are similar projects that bring Javascript to the desktop. They&#x27;re both
-based on browser runtimes. Electron is sponsored by Github, and uses
-libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by
-Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine
-(from Chrome), are fully open source (MIT Licensed), can access a variety of
-open and licensed codecs, work on Unix-like systems (and, with a little extra
-work, on Windows), and can use Flash (in Electron&#x27;s case, through the Pepper
-plugin). The biggest difference I&#x27;ve had in working with them is that Electron,
-being currently more popular (likely because of the Github support, and the
-popularity of the Atom editor, which is built on Electron) is usually closer to
-the current version of Chromium, and NW.js is usually a few versions behind.
-Electron seems to have a lot more community activity around it right now, too,
-so there are a lot of useful NPM packages like
-Electron-Prebuilt (and a
-lite version) and
-Electron-Packager (and an
-interactive
-version!).
-Electron also needs a Javascript entry point, which looks something like this:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,nwjs,electron,desktop,js,javascript,apps,node"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Electron and NW.js"/><meta name="twitter:description" content="Electron (formerly known as Atom Shell) and NW.js (formerly known as Node
-Webkit) are similar projects that bring Javascript to the desktop. They&#x27;re both
-based on browser runtimes. Electron is sponsored by Github, and uses
-libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by
-Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine
-(from Chrome), are fully open source (MIT Licensed), can access a variety of
-open and licensed codecs, work on Unix-like systems (and, with a little extra
-work, on Windows), and can use Flash (in Electron&#x27;s case, through the Pepper
-plugin). The biggest difference I&#x27;ve had in working with them is that Electron,
-being currently more popular (likely because of the Github support, and the
-popularity of the Atom editor, which is built on Electron) is usually closer to
-the current version of Chromium, and NW.js is usually a few versions behind.
-Electron seems to have a lot more community activity around it right now, too,
-so there are a lot of useful NPM packages like
-Electron-Prebuilt (and a
-lite version) and
-Electron-Packager (and an
-interactive
-version!).
-Electron also needs a Javascript entry point, which looks something like this:"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Electron and NW.js"/><meta property="og:description" content="Electron (formerly known as Atom Shell) and NW.js (formerly known as Node
-Webkit) are similar projects that bring Javascript to the desktop. They&#x27;re both
-based on browser runtimes. Electron is sponsored by Github, and uses
-libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by
-Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine
-(from Chrome), are fully open source (MIT Licensed), can access a variety of
-open and licensed codecs, work on Unix-like systems (and, with a little extra
-work, on Windows), and can use Flash (in Electron&#x27;s case, through the Pepper
-plugin). The biggest difference I&#x27;ve had in working with them is that Electron,
-being currently more popular (likely because of the Github support, and the
-popularity of the Atom editor, which is built on Electron) is usually closer to
-the current version of Chromium, and NW.js is usually a few versions behind.
-Electron seems to have a lot more community activity around it right now, too,
-so there are a lot of useful NPM packages like
-Electron-Prebuilt (and a
-lite version) and
-Electron-Packager (and an
-interactive
-version!).
-Electron also needs a Javascript entry point, which looks something like this:"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Electron and NW.js</h2><h3>15 January, 2016</h3></header><div><p>Electron (formerly known as Atom Shell) and NW.js (formerly known as Node
-Webkit) are similar projects that bring Javascript to the desktop. They're both
-based on browser runtimes. Electron is sponsored by Github, and uses
-libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by
-Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine
-(from Chrome), are fully open source (MIT Licensed), can access a variety of
-open and licensed codecs, work on Unix-like systems (and, with a little extra
-work, on Windows), and can use Flash (in Electron's case, through the Pepper
-plugin). The biggest difference I've had in working with them is that Electron,
-being currently more popular (likely because of the Github support, and the
-popularity of the Atom editor, which is built on Electron) is usually closer to
-the current version of Chromium, and NW.js is usually a few versions behind.
-Electron seems to have a lot more community activity around it right now, too,
-so there are a lot of useful NPM packages like
-<a href="https://www.npmjs.com/package/electron-prebuilt">Electron-Prebuilt</a> (and <a href="https://www.npmjs.com/package/electron-prebuilt-lite">a
-lite version</a>) and
-<a href="https://www.npmjs.com/package/electron-packager">Electron-Packager</a> (and <a href="https://www.npmjs.com/package/electron-packager-interactive">an
-interactive
-version!</a>).
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Electron and NW.js | Zac Anger's Blog</title>
+    <meta name="description" content="Electron and NW.js" />
+    <meta name="keywords" content="['nwjs', 'electron', 'desktop', 'js', 'javascript', 'apps', 'node']" />
+    <meta name="twitter:description" content="Electron and NW.js" />
+    <meta name="twitter:title" content="Electron and NW.js" />
+    <meta property="og:description" content="Electron and NW.js" />
+    <meta property="og:title" content="Electron and NW.js" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Electron and NW.js</h2>
+      <h3>2016-01-15</h3>
+      <h4><small>Tagged: nwjs, electron, desktop, js, javascript, apps, node</small></h4>
+    </header>
+    <div>
+      <p>Electron (formerly known as Atom Shell) and NW.js (formerly known as Node<br />
+Webkit) are similar projects that bring Javascript to the desktop. They're both<br />
+based on browser runtimes. Electron is sponsored by Github, and uses<br />
+libchromiumcontent and Webkit 537 (as of Autumn 2015). NW.js is sponsored by<br />
+Intel and uses Chromium and Blink/Webkit 537. They both use the V8 JS engine<br />
+(from Chrome), are fully open source (MIT Licensed), can access a variety of<br />
+open and licensed codecs, work on Unix-like systems (and, with a little extra<br />
+work, on Windows), and can use Flash (in Electron's case, through the Pepper<br />
+plugin). The biggest difference I've had in working with them is that Electron,<br />
+being currently more popular (likely because of the Github support, and the<br />
+popularity of the Atom editor, which is built on Electron) is usually closer to<br />
+the current version of Chromium, and NW.js is usually a few versions behind.<br />
+Electron seems to have a lot more community activity around it right now, too,<br />
+so there are a lot of useful NPM packages like<br />
+<a href="https://www.npmjs.com/package/electron-prebuilt">Electron-Prebuilt</a> (and <a href="https://www.npmjs.com/package/electron-prebuilt-lite">a<br />
+lite version</a>) and<br />
+<a href="https://www.npmjs.com/package/electron-packager">Electron-Packager</a> (and <a href="https://www.npmjs.com/package/electron-packager-interactive">an<br />
+interactive<br />
+version!</a>).<br />
 Electron also needs a Javascript entry point, which looks something like this:</p>
-<pre><code>var app           = require('app')
-  , BrowserWindow = require('browser-window')
-require('crash-reporter').start()
+<div class="highlight"><pre><span></span>var app           = require(&#39;app&#39;)
+  , BrowserWindow = require(&#39;browser-window&#39;)
+require(&#39;crash-reporter&#39;).start()
 
 var mainWindow = null
 
-app.on('window-all-closed', function(){
-  if(process.platform != 'darwin'){
+app.on(&#39;window-all-closed&#39;, function(){
+  if(process.platform != &#39;darwin&#39;){
       app.quit()
   }
 })
-app.on('ready', function(){
+app.on(&#39;ready&#39;, function(){
   mainWindow = new BrowserWindow({
     width                : 1200
   , height               : 800
-  , 'accept-first-mouse' : true
-  , 'title-bar-style'    : 'hidden'
-  , 'node-integration'   : false
+  , &#39;accept-first-mouse&#39; : true
+  , &#39;title-bar-style&#39;    : &#39;hidden&#39;
+  , &#39;node-integration&#39;   : false
   })
-  mainWindow.loadUrl('http://127.0.0.1:9090')
-  mainWindow.on('closed', function(){
+  mainWindow.loadUrl(&#39;http://127.0.0.1:9090&#39;)
+  mainWindow.on(&#39;closed&#39;, function(){
     mainWindow = null
   })
 })
-</code></pre>
-<p>That 'node-integration' line is <em>really important</em> if you want to use certain
-client-side libraries like Angular or jQuery that use the word 'module;' your
+</pre></div>
+
+<p>That 'node-integration' line is <em>really important</em> if you want to use certain<br />
+client-side libraries like Angular or jQuery that use the word 'module;' your<br />
 stuff will just completely break without it.</p>
-<p>NW.js, on the other hand, can just be pointed at your <code>index.html</code>, and that's
-enough to get started. That's really convenient, but for my own uses I've
-found that Electron has a lot more options. Its binaries are significantly
-larger, but there are evidently ways to cut them down. Don't count on being
+<p>NW.js, on the other hand, can just be pointed at your <code>index.html</code>, and that's<br />
+enough to get started. That's really convenient, but for my own uses I've<br />
+found that Electron has a lot more options. Its binaries are significantly<br />
+larger, but there are evidently ways to cut them down. Don't count on being<br />
 able to build an Electron app in less than a hundred megs, though.</p>
-<p>If you're doing something small, like a text editor or some other little
-widgety kind of app, you'd probably still be better off with Qt or GTK--you
-can write a full text editor in GTK-Webkit with Python in less than 16kb, and
-that's if need a full rich-text interface with buttons and such. But for
-larger apps, and especially for apps you've already written for the browser,
-NW.js and Electron are both really great options. If you're going to be
-relying on a lot of the Node environment, Electron's got a better interface to
-Node because of its separated rendering and browser engines, but you do have
-to keep in mind that you'll be limited as to what client-side libraries you
+<p>If you're doing something small, like a text editor or some other little<br />
+widgety kind of app, you'd probably still be better off with Qt or GTK--you<br />
+can write a full text editor in GTK-Webkit with Python in less than 16kb, and<br />
+that's if need a full rich-text interface with buttons and such. But for<br />
+larger apps, and especially for apps you've already written for the browser,<br />
+NW.js and Electron are both really great options. If you're going to be<br />
+relying on a lot of the Node environment, Electron's got a better interface to<br />
+Node because of its separated rendering and browser engines, but you do have<br />
+to keep in mind that you'll be limited as to what client-side libraries you<br />
 can use.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

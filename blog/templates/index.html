@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Zac Anger's Blog</title>
+    <meta name="description" content="Zac Anger's Blog" />
+    <meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing" />
+    <meta name="twitter:description" content="Zac Anger's Blog" />
+    <meta name="twitter:title" content="Zac Anger's Blog" />
+    <meta property="og:title" content="Zac Anger's Blog" />
+    <meta property="og:description" content="Zac Anger's Blog" />
+
+    {% include 'meta.html' %}
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      &#9734; indicates a high-quality, high-traffic, or important post.
+    </header>
+    <ul>
+
+      {% for p in posts %}
+      <li>
+        {% if p.starred %}
+          &#9734;
+        {% endif %}
+
+        <a href="{{ p.href }}">{{ p.title }}</a>
+        <small>
+          &mdash; {{ p.created }}
+          &mdash; {{ p.tags|join(", ") }}
+        </small>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

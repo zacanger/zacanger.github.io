@@ -1,377 +1,417 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>currying and partial application | Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,currying,fp,partial-application,functional-programming,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="currying and partial application"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="currying and partial application"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>currying and partial application</h2><h3>05 May, 2016</h3></header><div><pre><code class="language-javascript">// Prototype's version?
-Function.prototype.curry = function(){
-  var fn   = this
-    , args = Array.prototype.slice.call(arguments)
-  return function(){
-    return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)))
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
 
-// Functional's version?
-Function.prototype.partial = function(){
-  var fn   = this
-    , args = Array.prototype.slice.call(arguments)
-  return function(){
-    var arg = 0
-    for (var i = 0; i &lt; args.length &amp;&amp; arg &lt; arguments.length; i++) {
-      if (args[i] === undefined) {
-        args [i] = arguments[arg++]
-      }
-      return fn.apply(this, args)
-    }
-  }
-}
+  <head>
+    <title>currying and partial application | Zac Anger's Blog</title>
+    <meta name="description" content="currying and partial application" />
+    <meta name="keywords" content="['currying', 'fp', 'partial-application', 'functional-programming', 'js']" />
+    <meta name="twitter:description" content="currying and partial application" />
+    <meta name="twitter:title" content="currying and partial application" />
+    <meta property="og:description" content="currying and partial application" />
+    <meta property="og:title" content="currying and partial application" />
 
-// from angus croll's blog
-// note, the toArray is because the `arguments` array is actually and object
-function toArray(enumm){
-  return Array.prototype.slice.call(enumm)
-}
-// toArray is superfluous now, though, because we can just do
-let args = Array.from(arguments)
-//
-Function.prototype.curry = function(){
-  if (arguments.length &lt; 1) {
-    return this
-  }
-  var __ method = this
-    , args      = toArray(arguments)
-  return function(){
-    return __method.apply(this, args.concat(toArray(arguments)))
-  }
-}
-// and an example from his blog, using the above
-const
-  converter = (ratio, symbol, input) =&gt; [(input * ratio).toFixed(1), symbol].join(' ')
-, kgToLb    = converter.curry(2.2, 'lbs')
-, liToPi    = converter.curry(1.98, 'pints')
-, miToKm    = converter.curry(1.62, 'km')
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
 
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>currying and partial application</h2>
+      <h3>2016-05-05</h3>
+      <h4><small>Tagged: currying, fp, partial-application, functional-programming, js</small></h4>
+    </header>
+    <div>
+      <div class="highlight"><pre><span></span><span class="c1">// Prototype&#39;s version?</span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">curry</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">fn</span>   <span class="o">=</span> <span class="k">this</span>
+    <span class="p">,</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-// note that these are all examples of partial application,
-// not true currying as one would have in a purely functional language
-// see:
-const foo = (a, b) =&gt; a + b
-foo.partiallyApply(2) // b =&gt; 2 + b
-foo.curry() // a =&gt; b =&gt; a + b
-foo.curry()(2) // foo.partiallyApply(2)
+<span class="c1">// Functional&#39;s version?</span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">partial</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">fn</span>   <span class="o">=</span> <span class="k">this</span>
+    <span class="p">,</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">arg</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">args</span> <span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">arg</span><span class="o">++</span><span class="p">]</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-Function.prototype.curry = function(){
-  var
-    method = this
-  , i      = 0
-  , len    = this.length
-  , args   = []
-
-  function f() {
-    args.push(arguments[0])
-    if (++i &lt; len) {
-      return f
-    } else {
-      method.apply(this, args)
-    }
-  }
-  return f
-}
-
-// here's a super simplistic adding thingy
-const adder = (a, b) =&gt; typeof(b) !== 'undefined' ? a + b : c =&gt; a + c
-// i think the es6 is right for this? in es5 also:
-function adder(a, b) {
-  if (typeof b !== 'undefined') {
-    return a + b
-  } else {
-    return function(c){
-      return a + c
-    }
-  }
-}
-
-// the real difference between partial application and currying:
-// a curried function will accept ONLY one argument at a time.
-// it will continue accepting one argument each time it's called right
-// up until it's got enough, then will finally be executed for realz.
-
-// so: a function that can take a function as input, and an int for
-// the max args. should be able to call like so:
-curry(fn, n, ...args) // ... that is,
-curry(fn, n, 1, 2, 3) // or
-curry(fn, n)(1)(2)(3) // or
-curry(fn, n)(1, 2, 3) // and we should get the same results each way.
-// so
-curry(fn, n, 1, 2)(3, 4) == curry(fn, n, 1, 2, 3, 4)
-
-// notes on the below:
-// fn.apply(a, [1, 2, 3]) is kinda the same as doing
-// fn.call(a, 1, 2, 3), where `a` is `this`
-const argsArr = args =&gt; Array.from(args)
-
-const curry = (fn, n) =&gt; {
-  const args = argsArr(arguments)
-  if (n === args.length -2) {
-    return fn.apply(undefined, args.slice(2))
-  } else {
-    return () =&gt; {
-      return curry.apply(undefined, args.concat(arguments))
-    }
-  }
-}
-// so try:
-const addFour = (a, b, c, d) =&gt; a + b + c + d
-curry(addFour, 4, 8, 16)(1, 2)
-
-// modified to use Function.length
-const newCurry = (fn, n) =&gt; {
-  let args = argsArr(arguments)
-  if (typeof(n) == 'undefined') {
-    args[1] = fn.length
-  }
-  if (n === args.length - 2) {
-    return fn.apply(undefined, args.slice(2))
-  }
-  return function(){
-    return newCurry.apply(undefined, args.concat(argsArr(arguments)))
-  }
-}
+<span class="c1">// from angus croll&#39;s blog</span>
+<span class="c1">// note, the toArray is because the `arguments` array is actually and object</span>
+<span class="kd">function</span> <span class="nx">toArray</span><span class="p">(</span><span class="nx">enumm</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">enumm</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// toArray is superfluous now, though, because we can just do</span>
+<span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+<span class="c1">//</span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">curry</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">__</span> <span class="nx">method</span> <span class="o">=</span> <span class="k">this</span>
+    <span class="p">,</span> <span class="nx">args</span>      <span class="o">=</span> <span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">__method</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// and an example from his blog, using the above</span>
+<span class="kr">const</span>
+  <span class="nx">converter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ratio</span><span class="p">,</span> <span class="nx">symbol</span><span class="p">,</span> <span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[(</span><span class="nx">input</span> <span class="o">*</span> <span class="nx">ratio</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nx">symbol</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">kgToLb</span>    <span class="o">=</span> <span class="nx">converter</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="s1">&#39;lbs&#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">liToPi</span>    <span class="o">=</span> <span class="nx">converter</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="mf">1.98</span><span class="p">,</span> <span class="s1">&#39;pints&#39;</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">miToKm</span>    <span class="o">=</span> <span class="nx">converter</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="mf">1.62</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">)</span>
 
 
-// okay, so, from some other blog
-const objs = [{id : 1}, {id : 2}, {id : 3}, {id : 4}]
-objs.map(o =&gt; o.id)
-// this is actualy a lot cleaner than his example, because he's doing it like
-var objs = [{id : 1}, {id : 2}, {id : 3}, {id : 4}]
-objs.map(function(o){return o.id})
-// but we'll see where this goes, anyway
-const curry = require('curry') // npm i -S curry
-const get = curry(function(property, object){return object[property]})
-objs.map(get('id'))
-// meh.
-const getIDs = function(objects){
-  return objects.map(get('id'))
-}
-getIDs(objs)
-// double meh.
-const map    = curry((fn, val) =&gt; val.map(fn))
-    , getIDs = map(get('id'))
+<span class="c1">// note that these are all examples of partial application,</span>
+<span class="c1">// not true currying as one would have in a purely functional language</span>
+<span class="c1">// see:</span>
+<span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">partiallyApply</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// b =&gt; 2 + b</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">curry</span><span class="p">()</span> <span class="c1">// a =&gt; b =&gt; a + b</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">curry</span><span class="p">()(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// foo.partiallyApply(2)</span>
 
-// still not sure this is actually cleaner xD
-// let's keep going with his examples (translated to ES2015, though)
-// some sample data (we'll pretend this is JSON we're getting from somewhere):
-const sampleData = {
-  &quot;user&quot;  : &quot;z&quot;
-  , &quot;posts&quot; : [
-    {&quot;title&quot; : &quot;title!&quot;     , &quot;contents&quot; : &quot;asdf&quot;  }
-  , {&quot;title&quot; : &quot;something!&quot; , &quot;contents&quot; : &quot;ghjkl;&quot;}
-  ]
-}
-require('http').get('something.whatever/that/data.json')
-.then(JSON.parse)
-.then(data =&gt; data.posts)
-.then(posts =&gt; posts.map(post =&gt; post.title))
-// or, using the curry stuff
-require('http').get('something.whatever/that/data.json')
-.then(JSON.parse)
-.then(get('posts'))
-.then(map(get('title')))
-// uh
-// okay
-// i don't see that this is any better, here.
-// oh wait, he wrote a follow-up!
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">curry</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span>
+    <span class="nx">method</span> <span class="o">=</span> <span class="k">this</span>
+  <span class="p">,</span> <span class="nx">i</span>      <span class="o">=</span> <span class="mi">0</span>
+  <span class="p">,</span> <span class="nx">len</span>    <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span>
+  <span class="p">,</span> <span class="nx">args</span>   <span class="o">=</span> <span class="p">[]</span>
 
-// shit. i think some of this might be wrong.
-// there's no `arguments`! i knew about `this`, but not `arguments`.
-// (talking about when using `=&gt;`, i mean.)
-// not really a big deal, just in the above, we need to use `...args` instead.
-// for example,
-let sum = (...nums) =&gt; nums.reduce((a, b) =&gt; a + b)
+  <span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">f</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">method</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">f</span>
+<span class="p">}</span>
+
+<span class="c1">// here&#39;s a super simplistic adding thingy</span>
+<span class="kr">const</span> <span class="nx">adder</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">?</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">:</span> <span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">c</span>
+<span class="c1">// i think the es6 is right for this? in es5 also:</span>
+<span class="kd">function</span> <span class="nx">adder</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">b</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span>
+      <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">c</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// the real difference between partial application and currying:</span>
+<span class="c1">// a curried function will accept ONLY one argument at a time.</span>
+<span class="c1">// it will continue accepting one argument each time it&#39;s called right</span>
+<span class="c1">// up until it&#39;s got enough, then will finally be executed for realz.</span>
+
+<span class="c1">// so: a function that can take a function as input, and an int for</span>
+<span class="c1">// the max args. should be able to call like so:</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="c1">// ... that is,</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// or</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)(</span><span class="mi">1</span><span class="p">)(</span><span class="mi">2</span><span class="p">)(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// or</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// and we should get the same results each way.</span>
+<span class="c1">// so</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1">// notes on the below:</span>
+<span class="c1">// fn.apply(a, [1, 2, 3]) is kinda the same as doing</span>
+<span class="c1">// fn.call(a, 1, 2, 3), where `a` is `this`</span>
+<span class="kr">const</span> <span class="nx">argsArr</span> <span class="o">=</span> <span class="nx">args</span> <span class="p">=&gt;</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">curry</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">argsArr</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">curry</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">arguments</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// so try:</span>
+<span class="kr">const</span> <span class="nx">addFour</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">d</span>
+<span class="nx">curry</span><span class="p">(</span><span class="nx">addFour</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">// modified to use Function.length</span>
+<span class="kr">const</span> <span class="nx">newCurry</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">argsArr</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">length</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">newCurry</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">argsArr</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
 
+<span class="c1">// okay, so, from some other blog</span>
+<span class="kr">const</span> <span class="nx">objs</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">4</span><span class="p">}]</span>
+<span class="nx">objs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">o</span> <span class="p">=&gt;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+<span class="c1">// this is actualy a lot cleaner than his example, because he&#39;s doing it like</span>
+<span class="kd">var</span> <span class="nx">objs</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span> <span class="o">:</span> <span class="mi">4</span><span class="p">}]</span>
+<span class="nx">objs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">){</span><span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">})</span>
+<span class="c1">// but we&#39;ll see where this goes, anyway</span>
+<span class="kr">const</span> <span class="nx">curry</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;curry&#39;</span><span class="p">)</span> <span class="c1">// npm i -S curry</span>
+<span class="kr">const</span> <span class="nx">get</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">property</span><span class="p">,</span> <span class="nx">object</span><span class="p">){</span><span class="k">return</span> <span class="nx">object</span><span class="p">[</span><span class="nx">property</span><span class="p">]})</span>
+<span class="nx">objs</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
+<span class="c1">// meh.</span>
+<span class="kr">const</span> <span class="nx">getIDs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
+<span class="p">}</span>
+<span class="nx">getIDs</span><span class="p">(</span><span class="nx">objs</span><span class="p">)</span>
+<span class="c1">// double meh.</span>
+<span class="kr">const</span> <span class="nx">map</span>    <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span>
+    <span class="p">,</span> <span class="nx">getIDs</span> <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
 
-// examples:
-// in es5:
-function formatter(tag, text){
-  return '&lt;' + tag + '&gt;' + text + '&lt;/' + tag + '&gt;'
-}
-var p = formatter.bind(undefined, 'p')
-p('some content!')
-// in es6:
-const formatter = (tag, text) =&gt; `&lt;${tag}&gt;${text}&lt;/${tag}&gt;`
-const p = text =&gt; formatter('p', text)
-// accepting addtional arguments (more text):
-const fmt = (tag, text, moar) =&gt; `&lt;${tag}&gt;${text}${moar}&lt;/${tag}&gt;`
-const span = ...args =&gt; fmt('span', ...args)
+<span class="c1">// still not sure this is actually cleaner xD</span>
+<span class="c1">// let&#39;s keep going with his examples (translated to ES2015, though)</span>
+<span class="c1">// some sample data (we&#39;ll pretend this is JSON we&#39;re getting from somewhere):</span>
+<span class="kr">const</span> <span class="nx">sampleData</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;user&quot;</span>  <span class="o">:</span> <span class="s2">&quot;z&quot;</span>
+  <span class="p">,</span> <span class="s2">&quot;posts&quot;</span> <span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;title&quot;</span> <span class="o">:</span> <span class="s2">&quot;title!&quot;</span>     <span class="p">,</span> <span class="s2">&quot;contents&quot;</span> <span class="o">:</span> <span class="s2">&quot;asdf&quot;</span>  <span class="p">}</span>
+  <span class="p">,</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span> <span class="o">:</span> <span class="s2">&quot;something!&quot;</span> <span class="p">,</span> <span class="s2">&quot;contents&quot;</span> <span class="o">:</span> <span class="s2">&quot;ghjkl;&quot;</span><span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;something.whatever/that/data.json&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">posts</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">posts</span> <span class="p">=&gt;</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">post</span> <span class="p">=&gt;</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">))</span>
+<span class="c1">// or, using the curry stuff</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;something.whatever/that/data.json&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">map</span><span class="p">(</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)))</span>
+<span class="c1">// uh</span>
+<span class="c1">// okay</span>
+<span class="c1">// i don&#39;t see that this is any better, here.</span>
+<span class="c1">// oh wait, he wrote a follow-up!</span>
 
-// okay, that's cute because it just lets you specify however many you want, but...
-const cur = (fn, ...argsOne) =&gt; (...argsTwo) =&gt; fn(...argsOne, ...argsTwo)
-// or, allowing placeholders, as in underscore:
-const curMore = (fn, ...argsOne) =&gt; {
-  let i = argsOne.indexOf(_)
-  let argsOne = (i === -1) ? [] : argsOne.splice(i).slice(1)
-  return (...argsTwo) =&gt; fn(...argsOne, ...argsTwo, ...argsThree)
-}
-// which can then be used like:
-const lessTen = curMore(subtract, _, 10) // assuming we've defined a `subtract` somewhere
-
-
-
-// from brian lonsdorf's blog/medium, a better `curry` (better in that
-// it should be easier to debug).
-// note: very definitely es5. and redifines toString().
-function curry(fx){
-  var arity = fx.length
-  function f1(){
-    var args = Array.prototype.slice.call(arguments, 0)
-    if (args.length &gt;= arity) {
-      return fx.apply(null, args)
-    }
-    function f2(){
-      return f1.apply(null, args.concat(Array.prototype.slice.call(arguments, 0)))
-    }
-    f2.toString = function(){
-      return fToString(fx) + '(' + args.join(', ') + ')'
-    }
-    return f2
-  }
-  f1.toString = function(){
-    return fToString(fx)
-  }
-  return f1
-}
-// and a compose from the same:
-function compose(){
-  var fns = arguments
-  function f(result){
-    for (var i = fns.length - 1; i &gt; -1; i--) {
-      try {
-        result = fns[i].call(this, result)
-      } catch(e) {
-        e.message = f.toString() + ' failed at ' fns[i].toString()
-        throw(e)
-      }
-    }
-    f.toString = function(){
-      return 'compose('+[].slice.call(fns).map(function(f){ return f.toString() }).join(', ')+')';
-    }
-    return result
-  }
-  return f
-}
+<span class="c1">// shit. i think some of this might be wrong.</span>
+<span class="c1">// there&#39;s no `arguments`! i knew about `this`, but not `arguments`.</span>
+<span class="c1">// (talking about when using `=&gt;`, i mean.)</span>
+<span class="c1">// not really a big deal, just in the above, we need to use `...args` instead.</span>
+<span class="c1">// for example,</span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">nums</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">)</span>
 
 
 
-// from reginald braithwaite's blog
-// * arity: number of arguments a function accepts
-//   * nullary function takes no arguments
-//   * unary function accepts one
-//   * polyadic function accepts more than one
-//   * binary accepts two
-//   * ternary function accepts three
-//   * variadic function accepts a variable number of arguments
+<span class="c1">// examples:</span>
+<span class="c1">// in es5:</span>
+<span class="kd">function</span> <span class="nx">formatter</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">text</span><span class="p">){</span>
+  <span class="k">return</span> <span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nx">tag</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="nx">text</span> <span class="o">+</span> <span class="s1">&#39;&lt;/&#39;</span> <span class="o">+</span> <span class="nx">tag</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">formatter</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="nx">p</span><span class="p">(</span><span class="s1">&#39;some content!&#39;</span><span class="p">)</span>
+<span class="c1">// in es6:</span>
+<span class="kr">const</span> <span class="nx">formatter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="sb">`&lt;</span><span class="si">${</span><span class="nx">tag</span><span class="si">}</span><span class="sb">&gt;</span><span class="si">${</span><span class="nx">text</span><span class="si">}</span><span class="sb">&lt;/</span><span class="si">${</span><span class="nx">tag</span><span class="si">}</span><span class="sb">&gt;`</span>
+<span class="kr">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">text</span> <span class="p">=&gt;</span> <span class="nx">formatter</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span>
+<span class="c1">// accepting addtional arguments (more text):</span>
+<span class="kr">const</span> <span class="nx">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">text</span><span class="p">,</span> <span class="nx">moar</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="sb">`&lt;</span><span class="si">${</span><span class="nx">tag</span><span class="si">}</span><span class="sb">&gt;</span><span class="si">${</span><span class="nx">text</span><span class="si">}${</span><span class="nx">moar</span><span class="si">}</span><span class="sb">&lt;/</span><span class="si">${</span><span class="nx">tag</span><span class="si">}</span><span class="sb">&gt;`</span>
+<span class="kr">const</span> <span class="nx">span</span> <span class="o">=</span> <span class="p">...</span><span class="nx">args</span> <span class="p">=&gt;</span> <span class="nx">fmt</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span>
 
-// a map fn
-const __ map = [].map
-const square = n =&gt; n * n
-function map(list, unary){
-  return __map.call(list, unaryFn)
-}
-map([1, 2, 3, 4], square)
-
-// this is fine as long as map gets both arguments (is fully applied)
-function mapWrap(unaryFn){
-  return function(list){
-    return map(list, unaryFn)
-  }
-}
-mapWrap(square)([1, 2, 3, 4])
-
-const squareAll = mapWrap(square)
-squareAll([1, 2, 3, 4])
-
-// woot! that's fine, but annoying to write. so, a function to wrap functions:
-// const wrapper = unaryFn =&gt; list =&gt; map(list, unaryFn) // can become:
-// const wrapper = second =&gt; first =&gt; binaryFn(first, second) // can become:
-const rightCurry = binaryFn =&gt; secondArgument =&gt; firstArgument =&gt; binaryFn(firstArgument, secondArgument)
-// which can be used like
-const rightCurryMap = rightCurry(map)
-const squareAll     = rightCurryMap(square)
-squareAll([1, 2, 3, 4])
-// calling this rightCurry because it takes any binary function and curries into a chain
-// of unary functions, starting with the second argument. a curry that starts on the left
-// is more common, and it's usually what people mean.
-const curry = binaryFn =&gt; firstArg =&gt; secondArg =&gt; binaryFn(firstArg, secondArg)
-const cMap  = curry(map)
-const twice         = n =&gt; n + n // why did i write this down?
-// whether one goes with a leftmost or rightmost curry could depend on which things
-// you might need to name and/or reuse
-
-// okay so apparently a pattern like this:
-const squareAll = rightCurry(map)(square)
-const doubleAll = rightCurry(map)(twice)
-// is called a:
-// rightmost unary partial application of the map function
-// which means it starts from the right, takes one arg, applies not all of the args, and works on the map fn
-
-// the wrong way to build a first-class function to do this would be:
-const rightUnPartApp = (binaryFn, secondArg) =&gt; rightCurr(binaryFn)(secondArg)
-// and a better way might be
-const lastApplication = (binaryFn, secondArg) =&gt; firstArg =&gt; binaryFn(firstArg, secondArg)
-// which means we could do
-const squareAll = lastApplication(map, square)
-const doubleAll = lastApplication(map, twice)
-// and so, we could do
-const firstApp = (binaryFn, firstArg) =&gt; secondArg =&gt; binaryFn(firstArg, secondArg)
-
-// SO. wat.
-// Currying : decomposition of a polyadic function into a chain of nested unary functions. Thus,
-// decomposed, you can partially apply one or more arguments, although the curry operation itself
-// does not apply any arguments to the function.
-// Partial application : conversion of a polyadic function into a function taking fewer arguments
-// by providing one or more arguments in advance.
+<span class="c1">// okay, that&#39;s cute because it just lets you specify however many you want, but...</span>
+<span class="kr">const</span> <span class="nx">cur</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="p">...</span><span class="nx">argsOne</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(...</span><span class="nx">argsTwo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">fn</span><span class="p">(...</span><span class="nx">argsOne</span><span class="p">,</span> <span class="p">...</span><span class="nx">argsTwo</span><span class="p">)</span>
+<span class="c1">// or, allowing placeholders, as in underscore:</span>
+<span class="kr">const</span> <span class="nx">curMore</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="p">...</span><span class="nx">argsOne</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">argsOne</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">_</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">argsOne</span> <span class="o">=</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="p">[]</span> <span class="o">:</span> <span class="nx">argsOne</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">(...</span><span class="nx">argsTwo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">fn</span><span class="p">(...</span><span class="nx">argsOne</span><span class="p">,</span> <span class="p">...</span><span class="nx">argsTwo</span><span class="p">,</span> <span class="p">...</span><span class="nx">argsThree</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// which can then be used like:</span>
+<span class="kr">const</span> <span class="nx">lessTen</span> <span class="o">=</span> <span class="nx">curMore</span><span class="p">(</span><span class="nx">subtract</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">// assuming we&#39;ve defined a `subtract` somewhere</span>
 
 
 
+<span class="c1">// from brian lonsdorf&#39;s blog/medium, a better `curry` (better in that</span>
+<span class="c1">// it should be easier to debug).</span>
+<span class="c1">// note: very definitely es5. and redifines toString().</span>
+<span class="kd">function</span> <span class="nx">curry</span><span class="p">(</span><span class="nx">fx</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">arity</span> <span class="o">=</span> <span class="nx">fx</span><span class="p">.</span><span class="nx">length</span>
+  <span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">arity</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">fx</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">f2</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="nx">f1</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="p">}</span>
+    <span class="nx">f2</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="nx">fToString</span><span class="p">(</span><span class="nx">fx</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">args</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">f2</span>
+  <span class="p">}</span>
+  <span class="nx">f1</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">fToString</span><span class="p">(</span><span class="nx">fx</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">f1</span>
+<span class="p">}</span>
+<span class="c1">// and a compose from the same:</span>
+<span class="kd">function</span> <span class="nx">compose</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">fns</span> <span class="o">=</span> <span class="nx">arguments</span>
+  <span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">result</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">fns</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">result</span> <span class="o">=</span> <span class="nx">fns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+      <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">f</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; failed at &#39;</span> <span class="nx">fns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span>
+        <span class="k">throw</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="s1">&#39;compose(&#39;</span><span class="o">+</span><span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">fns</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span> <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;)&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">f</span>
+<span class="p">}</span>
 
-// this is approximately the same as wu.js's .autoCurry() (which has been removed??)
-// (es5, obvs. todo: simplify, basically just by making it es6.)
-var autoCurry = (function(){
-
-  var
-    toArray = function toArray(arr, from){
-    return Array.prototype.slice.call(arr, from || 0)
-  }
-
-, curry = function curry(fn) {
-    var args = toArray(arguments, 1)
-    return function curried(){
-      return fn.apply(this, args.concat(toArray(arguments)))
-    }
-  }
-
-  return function autoCurry(fn, numArgs){
-    numArgs = numArgs || fn.length
-    return function autoCurried(){
-      if (arguments.length &lt; numArgs) {
-        return numArgs - arguments.length &gt; 0 ?
-        autoCurry(curry.apply(this, [fn].concat(toArray(arguments)))
-      , numArgs - arguments.length)           :
-        curry.apply(this, [fn].concat(toArray(arguments)))
-      } else {
-        return fn.apply(this, arguments)
-      }
-    }
-  }
-
-}())
 
 
-// one more
-const curry = fn =&gt; {
-  const length = fn.length
-  const acc = (...args) =&gt; {
-    if (args.length === length) return fn(...args)
-    return (...args) =&gt; acc(...args.concat(args))
-  }
-  return acc
-}
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<span class="c1">// from reginald braithwaite&#39;s blog</span>
+<span class="c1">// * arity: number of arguments a function accepts</span>
+<span class="c1">//   * nullary function takes no arguments</span>
+<span class="c1">//   * unary function accepts one</span>
+<span class="c1">//   * polyadic function accepts more than one</span>
+<span class="c1">//   * binary accepts two</span>
+<span class="c1">//   * ternary function accepts three</span>
+<span class="c1">//   * variadic function accepts a variable number of arguments</span>
+
+<span class="c1">// a map fn</span>
+<span class="kr">const</span> <span class="nx">__</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">map</span>
+<span class="kr">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">n</span>
+<span class="kd">function</span> <span class="nx">map</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="nx">unary</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">__map</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="nx">unaryFn</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">map</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="nx">square</span><span class="p">)</span>
+
+<span class="c1">// this is fine as long as map gets both arguments (is fully applied)</span>
+<span class="kd">function</span> <span class="nx">mapWrap</span><span class="p">(</span><span class="nx">unaryFn</span><span class="p">){</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="nx">unaryFn</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">mapWrap</span><span class="p">(</span><span class="nx">square</span><span class="p">)([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="kr">const</span> <span class="nx">squareAll</span> <span class="o">=</span> <span class="nx">mapWrap</span><span class="p">(</span><span class="nx">square</span><span class="p">)</span>
+<span class="nx">squareAll</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="c1">// woot! that&#39;s fine, but annoying to write. so, a function to wrap functions:</span>
+<span class="c1">// const wrapper = unaryFn =&gt; list =&gt; map(list, unaryFn) // can become:</span>
+<span class="c1">// const wrapper = second =&gt; first =&gt; binaryFn(first, second) // can become:</span>
+<span class="kr">const</span> <span class="nx">rightCurry</span> <span class="o">=</span> <span class="nx">binaryFn</span> <span class="p">=&gt;</span> <span class="nx">secondArgument</span> <span class="p">=&gt;</span> <span class="nx">firstArgument</span> <span class="p">=&gt;</span> <span class="nx">binaryFn</span><span class="p">(</span><span class="nx">firstArgument</span><span class="p">,</span> <span class="nx">secondArgument</span><span class="p">)</span>
+<span class="c1">// which can be used like</span>
+<span class="kr">const</span> <span class="nx">rightCurryMap</span> <span class="o">=</span> <span class="nx">rightCurry</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">squareAll</span>     <span class="o">=</span> <span class="nx">rightCurryMap</span><span class="p">(</span><span class="nx">square</span><span class="p">)</span>
+<span class="nx">squareAll</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="c1">// calling this rightCurry because it takes any binary function and curries into a chain</span>
+<span class="c1">// of unary functions, starting with the second argument. a curry that starts on the left</span>
+<span class="c1">// is more common, and it&#39;s usually what people mean.</span>
+<span class="kr">const</span> <span class="nx">curry</span> <span class="o">=</span> <span class="nx">binaryFn</span> <span class="p">=&gt;</span> <span class="nx">firstArg</span> <span class="p">=&gt;</span> <span class="nx">secondArg</span> <span class="p">=&gt;</span> <span class="nx">binaryFn</span><span class="p">(</span><span class="nx">firstArg</span><span class="p">,</span> <span class="nx">secondArg</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">cMap</span>  <span class="o">=</span> <span class="nx">curry</span><span class="p">(</span><span class="nx">map</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">twice</span>         <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">+</span> <span class="nx">n</span> <span class="c1">// why did i write this down?</span>
+<span class="c1">// whether one goes with a leftmost or rightmost curry could depend on which things</span>
+<span class="c1">// you might need to name and/or reuse</span>
+
+<span class="c1">// okay so apparently a pattern like this:</span>
+<span class="kr">const</span> <span class="nx">squareAll</span> <span class="o">=</span> <span class="nx">rightCurry</span><span class="p">(</span><span class="nx">map</span><span class="p">)(</span><span class="nx">square</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">doubleAll</span> <span class="o">=</span> <span class="nx">rightCurry</span><span class="p">(</span><span class="nx">map</span><span class="p">)(</span><span class="nx">twice</span><span class="p">)</span>
+<span class="c1">// is called a:</span>
+<span class="c1">// rightmost unary partial application of the map function</span>
+<span class="c1">// which means it starts from the right, takes one arg, applies not all of the args, and works on the map fn</span>
+
+<span class="c1">// the wrong way to build a first-class function to do this would be:</span>
+<span class="kr">const</span> <span class="nx">rightUnPartApp</span> <span class="o">=</span> <span class="p">(</span><span class="nx">binaryFn</span><span class="p">,</span> <span class="nx">secondArg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">rightCurr</span><span class="p">(</span><span class="nx">binaryFn</span><span class="p">)(</span><span class="nx">secondArg</span><span class="p">)</span>
+<span class="c1">// and a better way might be</span>
+<span class="kr">const</span> <span class="nx">lastApplication</span> <span class="o">=</span> <span class="p">(</span><span class="nx">binaryFn</span><span class="p">,</span> <span class="nx">secondArg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">firstArg</span> <span class="p">=&gt;</span> <span class="nx">binaryFn</span><span class="p">(</span><span class="nx">firstArg</span><span class="p">,</span> <span class="nx">secondArg</span><span class="p">)</span>
+<span class="c1">// which means we could do</span>
+<span class="kr">const</span> <span class="nx">squareAll</span> <span class="o">=</span> <span class="nx">lastApplication</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">square</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">doubleAll</span> <span class="o">=</span> <span class="nx">lastApplication</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">twice</span><span class="p">)</span>
+<span class="c1">// and so, we could do</span>
+<span class="kr">const</span> <span class="nx">firstApp</span> <span class="o">=</span> <span class="p">(</span><span class="nx">binaryFn</span><span class="p">,</span> <span class="nx">firstArg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">secondArg</span> <span class="p">=&gt;</span> <span class="nx">binaryFn</span><span class="p">(</span><span class="nx">firstArg</span><span class="p">,</span> <span class="nx">secondArg</span><span class="p">)</span>
+
+<span class="c1">// SO. wat.</span>
+<span class="c1">// Currying : decomposition of a polyadic function into a chain of nested unary functions. Thus,</span>
+<span class="c1">// decomposed, you can partially apply one or more arguments, although the curry operation itself</span>
+<span class="c1">// does not apply any arguments to the function.</span>
+<span class="c1">// Partial application : conversion of a polyadic function into a function taking fewer arguments</span>
+<span class="c1">// by providing one or more arguments in advance.</span>
+
+
+
+
+<span class="c1">// this is approximately the same as wu.js&#39;s .autoCurry() (which has been removed??)</span>
+<span class="c1">// (es5, obvs. todo: simplify, basically just by making it es6.)</span>
+<span class="kd">var</span> <span class="nx">autoCurry</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="kd">var</span>
+    <span class="nx">toArray</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">toArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">from</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">}</span>
+
+<span class="p">,</span> <span class="nx">curry</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">curry</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="nx">curried</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="kd">function</span> <span class="nx">autoCurry</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">numArgs</span><span class="p">){</span>
+    <span class="nx">numArgs</span> <span class="o">=</span> <span class="nx">numArgs</span> <span class="o">||</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">length</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="nx">autoCurried</span><span class="p">(){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">numArgs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">numArgs</span> <span class="o">-</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span>
+        <span class="nx">autoCurry</span><span class="p">(</span><span class="nx">curry</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+      <span class="p">,</span> <span class="nx">numArgs</span> <span class="o">-</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>           <span class="o">:</span>
+        <span class="nx">curry</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">fn</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)))</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="p">}())</span>
+
+
+<span class="c1">// one more</span>
+<span class="kr">const</span> <span class="nx">curry</span> <span class="o">=</span> <span class="nx">fn</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">length</span>
+  <span class="kr">const</span> <span class="nx">acc</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="nx">fn</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span><span class="p">(...</span><span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">args</span><span class="p">))</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">acc</span>
+<span class="p">}</span>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

@@ -1,58 +1,87 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>SystemJS and JSPM | Zac Anger&#x27;s Blog</title><meta name="description" content="SystemJS is a module loader. It works with ES6 modules, AMD (the sort that
-RequireJS brought to the browser), CommonJS (the kind that most people are more
-familiar with, the synchronous sort), Node (which basically just uses CommonJS),
-and global scripts. It&#x27;s basically the es6 module loader
-polyfill on hella steroids.
-Using plugins, you can load in assets (styles, images, whatevers)."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,bundler,build-tools,systemjs,jspm,browser,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="SystemJS and JSPM"/><meta name="twitter:description" content="SystemJS is a module loader. It works with ES6 modules, AMD (the sort that
-RequireJS brought to the browser), CommonJS (the kind that most people are more
-familiar with, the synchronous sort), Node (which basically just uses CommonJS),
-and global scripts. It&#x27;s basically the es6 module loader
-polyfill on hella steroids.
-Using plugins, you can load in assets (styles, images, whatevers)."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="SystemJS and JSPM"/><meta property="og:description" content="SystemJS is a module loader. It works with ES6 modules, AMD (the sort that
-RequireJS brought to the browser), CommonJS (the kind that most people are more
-familiar with, the synchronous sort), Node (which basically just uses CommonJS),
-and global scripts. It&#x27;s basically the es6 module loader
-polyfill on hella steroids.
-Using plugins, you can load in assets (styles, images, whatevers)."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>SystemJS and JSPM</h2><h3>14 January, 2016</h3></header><div><p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that
-RequireJS brought to the browser), CommonJS (the kind that most people are more
-familiar with, the synchronous sort), Node (which basically just uses CommonJS),
-and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader
-polyfill</a> on hella steroids.
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>SystemJS and JSPM | Zac Anger's Blog</title>
+    <meta name="description" content="SystemJS and JSPM" />
+    <meta name="keywords" content="['bundler', 'build-tools', 'systemjs', 'jspm', 'browser', 'js']" />
+    <meta name="twitter:description" content="SystemJS and JSPM" />
+    <meta name="twitter:title" content="SystemJS and JSPM" />
+    <meta property="og:description" content="SystemJS and JSPM" />
+    <meta property="og:title" content="SystemJS and JSPM" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>SystemJS and JSPM</h2>
+      <h3>2016-01-14</h3>
+      <h4><small>Tagged: bundler, build-tools, systemjs, jspm, browser, js</small></h4>
+    </header>
+    <div>
+      <p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that<br />
+RequireJS brought to the browser), CommonJS (the kind that most people are more<br />
+familiar with, the synchronous sort), Node (which basically just uses CommonJS),<br />
+and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader<br />
+polyfill</a> on hella steroids.<br />
 Using plugins, you can load in assets (styles, images, whatevers).</p>
 <p>To use it in the browser, you'd do something kinda like</p>
-<pre><code>System.config({baseUrl: '/app'})
-System.import('main.js')
-</code></pre>
-<p>assuming we've got SystemJS coming from a CDN in there somewhere. That doesn't
-sound at all exciting, since we're just loading in 'main.js' from the '/app'
+<div class="highlight"><pre><span></span>System.config({baseUrl: &#39;/app&#39;})
+System.import(&#39;main.js&#39;)
+</pre></div>
+
+<p>assuming we've got SystemJS coming from a CDN in there somewhere. That doesn't<br />
+sound at all exciting, since we're just loading in 'main.js' from the '/app'<br />
 directory, but we can do some cool things with it, like</p>
-<pre><code>System.config({
-  baseUrl: '/app'
-, transpiler: 'babel'
+<div class="highlight"><pre><span></span>System.config({
+  baseUrl: &#39;/app&#39;
+, transpiler: &#39;babel&#39;
 , babelOptions: {
     // etc.
   }
 })
-</code></pre>
-<p>so, y'know, that's actually pretty super cool. We could write in ES6 and have
+</pre></div>
+
+<p>so, y'know, that's actually pretty super cool. We could write in ES6 and have<br />
 it <em>just work</em>.</p>
-<p>SystemJS uses <code>Promise</code> and <code>URL</code>. If they're not available, it'll load in an
-external polyfill file. Probably needed for IE. If we're using a CDN instead
-of bundling, load a <code>window.Promise</code> and <code>window.URLPolyfill</code> in, before
+<p>SystemJS uses <code>Promise</code> and <code>URL</code>. If they're not available, it'll load in an<br />
+external polyfill file. Probably needed for IE. If we're using a CDN instead<br />
+of bundling, load a <code>window.Promise</code> and <code>window.URLPolyfill</code> in, before<br />
 SystemJS.</p>
 <p>To get up and rolling, we need to do a tiny bit of boilerplate.</p>
-<pre><code>var System = require('systemjs')
-System.transpiler = 'babel'
-System.import('./app.js').then(function(m){
+<div class="highlight"><pre><span></span>var System = require(&#39;systemjs&#39;)
+System.transpiler = &#39;babel&#39;
+System.import(&#39;./app.js&#39;).then(function(m){
   console.log(m)
 })
-</code></pre>
-<p>That assumes we're installing with NPM, and not using JSPM at all. We should
+</pre></div>
+
+<p>That assumes we're installing with NPM, and not using JSPM at all. We should<br />
 think about using it, though.</p>
-<pre><code>var System = require('jspm').Loader()
-System.import('someLibrary').then(function(things){
+<div class="highlight"><pre><span></span>var System = require(&#39;jspm&#39;).Loader()
+System.import(&#39;someLibrary&#39;).then(function(things){
   console.log(whatever)
 })
-</code></pre>
+</pre></div>
+
 <p>So, with JSPM, we'd be handling almost everything in JSPM's own config file.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

@@ -1,35 +1,63 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>More DevMountain Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="This is a bunch more notes from my time going through the course at
-DevMountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,js,css,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="More DevMountain Notes"/><meta name="twitter:description" content="This is a bunch more notes from my time going through the course at
-DevMountain."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="More DevMountain Notes"/><meta property="og:description" content="This is a bunch more notes from my time going through the course at
-DevMountain."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>More DevMountain Notes</h2><h3>05 May, 2016</h3></header><div><p>This is a bunch more notes from my time going through the course at
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>More DevMountain Notes | Zac Anger's Blog</title>
+    <meta name="description" content="More DevMountain Notes" />
+    <meta name="keywords" content="['devmtn', 'js', 'css', 'angular']" />
+    <meta name="twitter:description" content="More DevMountain Notes" />
+    <meta name="twitter:title" content="More DevMountain Notes" />
+    <meta property="og:description" content="More DevMountain Notes" />
+    <meta property="og:title" content="More DevMountain Notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>More DevMountain Notes</h2>
+      <h3>2016-05-05</h3>
+      <h4><small>Tagged: devmtn, js, css, angular</small></h4>
+    </header>
+    <div>
+      <p>This is a bunch more notes from my time going through the course at<br />
 DevMountain.</p>
 <p>These notes are specifically from the first three weeks. They're a mess.</p>
-<p>Don't take anything too seriously. I probably didn't know what I was talking
+<p>Don't take anything too seriously. I probably didn't know what I was talking<br />
 about, a lot of the time.</p>
-<hr>
+<hr />
 <h2>css</h2>
-<p>if a div has position absolute, position RELATIVE on another
+<p>if a div has position absolute, position RELATIVE on another<br />
 element will be in RELATION to the div that has ABSOLUTE.</p>
-<p>so, top 0 is in RELATION to something else that has ABSOLUTE,
+<p>so, top 0 is in RELATION to something else that has ABSOLUTE,<br />
 otherwise just defaults to in relative to HTML.</p>
-<p>in simpler terms... position is basically just referring to its immediate parent,
+<p>in simpler terms... position is basically just referring to its immediate parent,<br />
 unless there's no frame of reference there. all hierarchical. (lol hence C in CSS....)</p>
 <ul>
-<li>box-model:
-<ul>
+<li>box-model:</li>
 <li>border goes OUTwards from the element</li>
 <li>padding goes IN and squishes the element</li>
 <li>LOTS of padding will actually stretch an element out</li>
 <li>margins--space between picture and other items</li>
 </ul>
-</li>
-</ul>
-<hr>
+<hr />
 <h2>rly just beginning js</h2>
 <pre><code>// Variables
 
-// JavaScript uses &quot;lexical&quot; scoping for variables, meaning it matches
-// a variable based on its name.  &quot;Name&quot; isn't the same as &quot;name&quot;.
+// JavaScript uses "lexical" scoping for variables, meaning it matches
+// a variable based on its name.  "Name" isn't the same as "name".
 
 // Variables hold values (Numbers, Strings, Arrays, Objects, Functions, Boolean)
 var myAge = 39
@@ -49,7 +77,7 @@ if (myAge &lt; 20) {
 }
 
 // Truthy and Falsy
-// There are 6 values that are considered &quot;falsy&quot;
+// There are 6 values that are considered "falsy"
 // '',0,false,undefined,null,NaN
 
 // == vs ===
@@ -57,11 +85,11 @@ if (myAge &lt; 20) {
 // The triple equals will return false if the values aren't
 // the same type
 if ('42' == 42) {
-  console.log(&quot;'42' == 42&quot;)
+  console.log("'42' == 42")
 }
 
 if ('42' === 42) {
-  console.log(&quot;'42' === 42&quot;)
+  console.log("'42' === 42")
 }
 
 // Function Declaration
@@ -85,20 +113,20 @@ console.log(doubled)
 
 // Functions themselves can be stored in a variable
 var func = function SayHello() {
-  console.log(&quot;Hello&quot;)
+  console.log("Hello")
 }
 
 // When a function is used in an expression, the function name
 // isn't required.  This is called an anonymous function
 var func1 = function () {
-  console.log(&quot;Hello&quot;)
+  console.log("Hello")
 }
 
 // We'll see where using anonymous functions is a common
 // pattern in a future lesson
 
 // Scope
-var name = &quot;Jared&quot;
+var name = "Jared"
 
 // A function can access variables declared outside the function
 function SayMyName() {
@@ -107,18 +135,18 @@ function SayMyName() {
 
 SayMyName()
 
-// A function argument is &quot;local&quot; to the function, and &quot;hides&quot;
+// A function argument is "local" to the function, and "hides"
 // the outer variable with the same name
 function SayMyName2(name) {
   console.log(name)
 }
 
-SayMyName2(&quot;John&quot;)
+SayMyName2("John")
 
-// A variabled declared inside the function also &quot;hides&quot; the
+// A variabled declared inside the function also "hides" the
 // outer variable with the same name
 function SayMyName3() {
-  var name = &quot;Bob&quot;
+  var name = "Bob"
   console.log(name)
 }
 
@@ -131,16 +159,16 @@ function ShowAge() {
   console.log(age)
 }
 
-//console.log(age) // This is an error because &quot;age&quot; isn't defined
+//console.log(age) // This is an error because "age" isn't defined
 
-// Functions can be &quot;nested&quot; inside of other functions.  Scope works
+// Functions can be "nested" inside of other functions.  Scope works
 // from the inside-out.
 function Grandpa() {
-  var name = &quot;Grandpa&quot;
+  var name = "Grandpa"
   function Dad() {
-    var name = &quot;Dad&quot;
+    var name = "Dad"
     function Son() {
-      var name = &quot;Son&quot;
+      var name = "Son"
     }
   }
 }
@@ -149,7 +177,7 @@ function Grandpa() {
 // 1. A function can access the the variables declared in outer functions
 // 2. A function can access those variables even after the outer function
 //    has been invoked and returned.
-// A function that has &quot;remembered&quot; these values is called a closure.
+// A function that has "remembered" these values is called a closure.
 
 // Closures
 function Person(firstName, lastName) {
@@ -170,7 +198,7 @@ using .call() or .apply() invokes the function, so no need to invoke like fun();
 // this way one can bind values WITHOUT calling it, so no need to create another inner function
 // and go through lots of work to avoid screwing up scope
 </code></pre>
-<hr>
+<hr />
 <h2>js basix</h2>
 <pre><code>object that contains a function = {
   function() {
@@ -180,35 +208,25 @@ using .call() or .apply() invokes the function, so no need to invoke like fun();
 call.the(object(function())
 </code></pre>
 <ul>
+<li><code>arrayName.pop()</code> removes the last item from the array</li>
+<li><code>arrayName.push("item", "maybeAnotherItem")</code> adds to the end of the array</li>
+<li><code>arrayName[integer] = "item"</code> adds item at this place in array; could leave empty items thusly</li>
+<li><code>arrayName.shift()</code> removes FIRST item from array</li>
+<li><code>arrayName.unshift("item", "more if you want", "hey why not")</code> adds to the BEGINNING of array</li>
 <li>
-<p><code>arrayName.pop()</code> removes the last item from the array</p>
-</li>
-<li>
-<p><code>arrayName.push(&quot;item&quot;, &quot;maybeAnotherItem&quot;)</code> adds to the end of the array</p>
-</li>
-<li>
-<p><code>arrayName[integer] = &quot;item&quot;</code> adds item at this place in array; could leave empty items thusly</p>
-</li>
-<li>
-<p><code>arrayName.shift()</code> removes FIRST item from array</p>
-</li>
-<li>
-<p><code>arrayName.unshift(&quot;item&quot;, &quot;more if you want&quot;, &quot;hey why not&quot;)</code> adds to the BEGINNING of array</p>
-</li>
-<li>
-<p><code>arrayName.splice(startingInteger, integerofItemsToRemove, &quot;string&quot;, &quot;item&quot;, &quot;etc&quot;)</code></p>
-<p>// example:
-var bits = [&quot;bots&quot;, &quot;boots&quot;, &quot;bats&quot;, &quot;beets&quot;, &quot;boats&quot;, &quot;bets&quot;]
-bits.splice(2, 2, &quot;wat&quot;, &quot;wuuuuuuuh&quot;)
-// would result in:
+<p><code>arrayName.splice(startingInteger, integerofItemsToRemove, "string", "item", "etc")</code></p>
+<p>// example:<br />
+var bits = ["bots", "boots", "bats", "beets", "boats", "bets"]<br />
+bits.splice(2, 2, "wat", "wuuuuuuuh")<br />
+// would result in:<br />
 bots boots way wuuuh boats bets</p>
 </li>
 </ul>
 <p>use same method to just remove from an array eg <code>bits.splice(3, 3)</code> would return from the above, <code>bots boots boats bets</code></p>
 <p>to move items from one array to another, also splice, like so: <code>var stib = bits.splice(2, 5)</code></p>
-<p>this would leave bits unchanged.
-2 is the starting index of item to be copied;
-5 is the element AFTER the last one to be copied.
+<p>this would leave bits unchanged.<br />
+2 is the starting index of item to be copied;<br />
+5 is the element AFTER the last one to be copied.<br />
 can use same method simply to reduce current array (overwrite)</p>
 <pre><code>true, false: booleans (so no quotes)
 if blahblah
@@ -225,25 +243,25 @@ example: var threeLetterPrefix = thatDudesName.slice(0, 3)
 var blah = whatever.length
 //returns the length of 'whatever'
 </code></pre>
-<p>in the case of true || whatever, whatever will never be checked;
-in the casae of false &amp;&amp; whatever, whatever will never be checked.
+<p>in the case of true || whatever, whatever will never be checked;<br />
+in the casae of false &amp;&amp; whatever, whatever will never be checked.<br />
 they are evaluated <em>only when necessary</em>.</p>
-<p>expression is kinda like a clause in natural language;
-can have nested subclauses, whatnots.
+<p>expression is kinda like a clause in natural language;<br />
+can have nested subclauses, whatnots.<br />
 statemets, more like full, complete sentences.</p>
 <p>builtin function <code>Number()</code> converts given value to integer. for example:</p>
 <pre><code>var ancient = Number(prompt('how many milliseconds have you been alive?'), ''))
-alert('you're one old sonofabitch, &quot; + ancient + &quot; is a long freaking time.')
+alert('you're one old sonofabitch, " + ancient + " is a long freaking time.')
 </code></pre>
-<p>do loop is similar to while, but do will always execute at least once;
+<p>do loop is similar to while, but do will always execute at least once;<br />
 it doesn't test until after the first execution. example:</p>
 <pre><code>do {
-  var asdf = prompt(&quot;what do they call you?&quot;)
+  var asdf = prompt("what do they call you?")
   } while (!asdf)
 console.log(asdf)
 // this will keep prompting until the prompt recieves a string
 </code></pre>
-<p>standard loop boilerplate pattern: counter variable to count (duh);
+<p>standard loop boilerplate pattern: counter variable to count (duh);<br />
 while loop (check counter against limit?) then update counter.</p>
 <p>OH WAIT WE CALL THIS A FOR LOOP DUH.</p>
 <pre><code>for (var number = 0; number &lt;= 26; number = number + 1)
@@ -253,41 +271,38 @@ while loop (check counter against limit?) then update counter.</p>
 //etc, until we are less than or equal to 26.
 </code></pre>
 <ul>
-<li>for loop syntax:
-<ul>
+<li>for loop syntax:</li>
 <li>for (bit that initializes the loop, like setting an integer at 0 to count up;</li>
 <li>expression check if the loop should still go, like defining a counting limit;</li>
 <li>what to do, if we've made it through those first bits)</li>
 <li>always needs three sections/two semicolons</li>
 </ul>
-</li>
-</ul>
-<p><code>+=</code> is not the only thing that works for updating;
-looks like all math operations, when done <code>i *= i</code>;
+<p><code>+=</code> is not the only thing that works for updating;<br />
+looks like all math operations, when done <code>i *= i</code>;<br />
 obvs <code>i += i</code> and <code>i -= i</code> can be shortened to <code>i--</code> and <code>i++</code></p>
 <p>switch: it's case, i guess, but minus esac (because, note, we also don't use done, or fi... wtf).</p>
 <p>so:</p>
 <pre><code>switch (thingy(whatthewhat)) {
-  case &quot;oioioi!&quot;:
-    alert(&quot;OI! OI! OI!&quot;)
-  case &quot;blaahh&quot;:
+  case "oioioi!":
+    alert("OI! OI! OI!")
+  case "blaahh":
     whatever
   break
   default:
-    console.log(&quot;u r a bag of dix&quot;)
+    console.log("u r a bag of dix")
   break
 }
 </code></pre>
 <p>functions always have curly braces around body, even if just one command</p>
-<p>braces are allowed everywhere but only define a new local environment within functions,
+<p>braces are allowed everywhere but only define a new local environment within functions,<br />
 and only really useful for grouping conditionals and loops</p>
-<p>like any other variable, functions can totally get new names.
+<p>like any other variable, functions can totally get new names.<br />
 their values are just as mutable as any other vars'.</p>
-<p>use brackets when accessing vague proprop (eg looping over) from object;
+<p>use brackets when accessing vague proprop (eg looping over) from object;<br />
 otherwise dot notation if know specific key</p>
 <p>NOT <code>for i in arr.length whatever</code></p>
 <p>....</p>
-<p>rather,
+<p>rather,<br />
 <code>return arr[arr.length -1]</code></p>
 <pre><code>//GLOBAL SCOPE
 var x = 1;
@@ -320,10 +335,10 @@ var count = makeCounter();
 var secondCount = makeCounter();
 secondCount() //return 1
 </code></pre>
-<p>a closure references variables OUTSIDE OF ITSELF
+<p>a closure references variables OUTSIDE OF ITSELF<br />
 and remembers those even when its parent scope (parent function) has returned</p>
-<p>remember, don't need to do
-<code>if whatever == true/if whatever != true (or == false)</code>
+<p>remember, don't need to do<br />
+<code>if whatever == true/if whatever != true (or == false)</code><br />
 just need to do</p>
 <pre><code>if (whatever)
 return true
@@ -341,7 +356,7 @@ function flipIt(arr){
   return flipped
 }
 </code></pre>
-<hr>
+<hr />
 <h2>ajax (jquery) snippets</h2>
 <pre><code>$(document).ready(function(){
   var app = $('app')
@@ -374,7 +389,7 @@ function flipIt(arr){
 
 })
 </code></pre>
-<hr>
+<hr />
 <h2>toy problem notes, week two</h2>
 <pre><code>function checkEvens( num ) {
   if (num % 2 === 0) {    // this just checks if the argument passed is divisible by two
@@ -419,7 +434,7 @@ var myArray = [1, 2, ,3 ,4 ,5 ,6, 7, 8, 9, 10, 11] // oh, HERE's that array we k
 
 myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that function and pass it ALL THE THINGS
 </code></pre>
-<hr>
+<hr />
 <h2>something about some twitter clone thing</h2>
 <h3>do this</h3>
 <ul>
@@ -458,7 +473,7 @@ myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that f
 <li>of the former top tweet on the feed (btw, css could probably use an update... twitter's one column</li>
 <li>of user and tweets, and two side columns of promos and ads, now.). that's, uh, totally unrealistic.</li>
 </ul>
-<hr>
+<hr />
 <h2>murr nuutes</h2>
 <pre><code>// make a loop. then have it go 1-5 endlessly. then have it only do it once.
 
@@ -648,9 +663,9 @@ console.log(msg, mssg);
 // snippet for reversing strings, because we apparently don't have a builtin
 // for this, exactly...
 var reversed
-  , name = &quot;zac anger&quot;;
+  , name = "zac anger";
 
-reversed = name.split(&quot;&quot;).reverse().join(&quot;&quot;);
+reversed = name.split("").reverse().join("");
 return(reversed);
 
 //
@@ -767,8 +782,8 @@ var huh = { meh: 'yo' }; meh.what(); (two);
 //
 // from rey:
 // The this Keyword
-// In JavaScript, the thing called this, is the object that &quot;owns&quot; the JavaScript code.
-//The value of this, when used in a function, is the object that &quot;owns&quot; the function.
+// In JavaScript, the thing called this, is the object that "owns" the JavaScript code.
+//The value of this, when used in a function, is the object that "owns" the function.
 //The value of this, when used in an object, is the object itself.
 //The this keyword in an object constructor does not have a value. It is only a substitute for the new object.
 //The value of this will become the new object when the constructor is used to create an object.
@@ -966,7 +981,7 @@ order.updateTotal = function () {
 };
 
 order.updateTotal();
-console.log(&quot;Total using 'self': &quot; + order.total);
+console.log("Total using 'self': " + order.total);
 
 // Change the updateTotal method to solve the problem using 'bind'
 order.updateTotal = function () {
@@ -978,7 +993,7 @@ order.updateTotal = function () {
 };
 
 order.updateTotal();
-console.log(&quot;Total using 'bind': &quot; + order.total);
+console.log("Total using 'bind': " + order.total);
 
 // Change the updateTotal method to solve problem by passing 'this'
 // to forEach
@@ -1091,4 +1106,10 @@ $.ajax(ajaxParams).then(function(response){
 // more bugs
 //
 </code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

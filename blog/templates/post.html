@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>{{ post.title }} | Zac Anger's Blog</title>
+    <meta name="description" content="{{ post.title }}" />
+    <meta name="keywords" content="{{ post.tags }}" />
+    <meta name="twitter:description" content="{{ post.title }}" />
+    <meta name="twitter:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.title }}" />
+    <meta property="og:title" content="{{ post.title }}" />
+
+    {% include 'meta.html' %}
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>{{ post.title }}</h2>
+      <h3>{{ post.created }}</h3>
+      <h4><small>Tagged: {{ post.tags|join(", ") }}</small></h4>
+    </header>
+    <div>
+      {{ post.contents }}
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

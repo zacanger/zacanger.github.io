@@ -1,74 +1,106 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>redux notes, part one | Zac Anger&#x27;s Blog</title><meta name="description" content="Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#x27;s not, and because those docs themselves are pretty overwhelming when
-you&#x27;re first trying out Redux, I&#x27;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,redux"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="redux notes, part one"/><meta name="twitter:description" content="Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#x27;s not, and because those docs themselves are pretty overwhelming when
-you&#x27;re first trying out Redux, I&#x27;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="redux notes, part one"/><meta property="og:description" content="Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it&#x27;s not, and because those docs themselves are pretty overwhelming when
-you&#x27;re first trying out Redux, I&#x27;m going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
-couple of blog posts."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>redux notes, part one</h2><h3>02 August, 2016</h3></header><div><p>Because the Redux docs say &quot;Redux is actually really simple!&quot; when sometimes
-it's not, and because those docs themselves are pretty overwhelming when
-you're first trying out Redux, I'm going to attempt to distill the docs and
-bits of my own (admittedly limited) personal experience with Redux into a
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>redux notes, part one | Zac Anger's Blog</title>
+    <meta name="description" content="redux notes, part one" />
+    <meta name="keywords" content="['redux']" />
+    <meta name="twitter:description" content="redux notes, part one" />
+    <meta name="twitter:title" content="redux notes, part one" />
+    <meta property="og:description" content="redux notes, part one" />
+    <meta property="og:title" content="redux notes, part one" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>redux notes, part one</h2>
+      <h3>2016-08-02</h3>
+      <h4><small>Tagged: redux</small></h4>
+    </header>
+    <div>
+      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes<br />
+it's not, and because those docs themselves are pretty overwhelming when<br />
+you're first trying out Redux, I'm going to attempt to distill the docs and<br />
+bits of my own (admittedly limited) personal experience with Redux into a<br />
 couple of blog posts.</p>
-<hr>
-<p>The store is an object that holds state. There's only ever one store in Redux,
+<hr />
+<p>The store is an object that holds state. There's only ever one store in Redux,<br />
 with many reducers that act on it.</p>
 <p><code>getState()</code> returns the state from the store.</p>
-<p><code>subscribe(listener)</code> says &quot;Hey, call <code>listener</code> when the state changes.&quot;</p>
-<p>There's also a <code>replaceReducer</code> but unless you're writing hot middlware or
+<p><code>subscribe(listener)</code> says "Hey, call <code>listener</code> when the state changes."</p>
+<p>There's also a <code>replaceReducer</code> but unless you're writing hot middlware or<br />
 something you probably won't touch this one.</p>
-<p>State can by any type, though obviously it's probably best to just use an
+<p>State can by any type, though obviously it's probably best to just use an<br />
 object here.</p>
 <p>Actions are always objects, and they always have a <code>type</code>.</p>
-<pre><code class="language-javascript">store.dispatch({type: 'do-stuff'})
-// it's conventional to use all uppercase, but it's also hideous. so.
-store.dispatch({type: 'DO_OTHER_STUFF', stuff: '[things to do here, maybe]'})
-</code></pre>
-<p>Action creators are functions that create actions based on any sorts of
+<div class="highlight"><pre><span></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;do-stuff&#39;</span><span class="p">})</span>
+<span class="c1">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;DO_OTHER_STUFF&#39;</span><span class="p">,</span> <span class="nx">stuff</span><span class="o">:</span> <span class="s1">&#39;[things to do here, maybe]&#39;</span><span class="p">})</span>
+</pre></div>
+
+<p>Action creators are functions that create actions based on any sorts of<br />
 arguments.</p>
-<pre><code class="language-javascript">const sendSomeData = 'send-some-data'
-const sendSomeDataActionCreator = data =&gt; ({
-  type : sendSomeData
-, data
-})
-</code></pre>
-<p>A 'bound' action creator would be one that creates the action and immediately
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendSomeData</span> <span class="o">=</span> <span class="s1">&#39;send-some-data&#39;</span>
+<span class="kr">const</span> <span class="nx">sendSomeDataActionCreator</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">({</span>
+  <span class="nx">type</span> <span class="o">:</span> <span class="nx">sendSomeData</span>
+<span class="p">,</span> <span class="nx">data</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>A 'bound' action creator would be one that creates the action and immediately<br />
 dispatches it. This might be familiar to folks who've worked with Flux before.</p>
 <p>This is how you might have something like this in Flux:</p>
-<pre><code class="language-javascript">const sendMoreData = data =&gt; {
-  const doIt = {
-    type : sendMoreData,
-    data
-  }
-  dispatch(doIt)
-}
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendMoreData</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">doIt</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">type</span> <span class="o">:</span> <span class="nx">sendMoreData</span><span class="p">,</span>
+    <span class="nx">data</span>
+  <span class="p">}</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">doIt</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 <p>And this is how it'd work in Redux:</p>
-<pre><code class="language-javascript">// assuming you already have the dispatch and action creator, you'd just
-const boundSendMoreData = data =&gt;
-  dispatch(sendMoreData(data))
-</code></pre>
-<p>There's also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
+<div class="highlight"><pre><span></span><span class="c1">// assuming you already have the dispatch and action creator, you&#39;d just</span>
+<span class="kr">const</span> <span class="nx">boundSendMoreData</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">sendMoreData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+</pre></div>
+
+<p>There's also a <code>bindActionCreators()</code> to just do this for you, and React-Redux<br />
 has <code>connect()</code>.</p>
-<p>Async actions should go through middleware to be turned into regular actions
+<p>Async actions should go through middleware to be turned into regular actions<br />
 before being dispatched.</p>
-<p>Reducers always take state and an action and return state.
-<code>reducer (state, action) =&gt; state</code>
-These are what they sound like—reducing functions.
-The state a reducer takes is your existing (or previous, I guess) state.
+<p>Reducers always take state and an action and return state.<br />
+<code>reducer (state, action) =&gt; state</code><br />
+These are what they sound like&mdash;reducing functions.<br />
+The state a reducer takes is your existing (or previous, I guess) state.<br />
 Reducers are pure functions.</p>
-<p>A dispatch is a function that takes an action (or an async action). It may then
-dispatch an action (or actions) which will affect the store.
+<p>A dispatch is a function that takes an action (or an async action). It may then<br />
+dispatch an action (or actions) which will affect the store.<br />
 There's a base <code>dispatch</code> that always sends an action to the reducer.</p>
-<p>Middleware are about what you'd expect—functions (HOF) that take a
+<p>Middleware are about what you'd expect&mdash;functions (HOF) that take a<br />
 dispatch function and return a dispatch function.</p>
-<p>There are 'store enhancers' that are higher-order functions that take a store
-creator and return a different store creator. They're basically kind of a
-middleware for the store creator. You probably won't directly use one, ever.
+<p>There are 'store enhancers' that are higher-order functions that take a store<br />
+creator and return a different store creator. They're basically kind of a<br />
+middleware for the store creator. You probably won't directly use one, ever.<br />
 Instead you'll just use the regular store creator (<code>createStore</code>).</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

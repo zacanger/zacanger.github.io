@@ -1,76 +1,119 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>WTF is Set? | Zac Anger&#x27;s Blog</title><meta name="description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,es2015,set"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="WTF is Set?"/><meta name="twitter:description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="WTF is Set?"/><meta property="og:description" content="So, someone asked in a Slack channel how they might clean up the following code:"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>WTF is Set?</h2><h3>25 April, 2017</h3></header><div><p>So, someone asked in a Slack channel how they might clean up the following code:</p>
-<pre><code class="language-JavaScript">getNames (contacts) {
-  let contacts_set = []
+<!DOCTYPE html>
+<html lang="en">
 
-  contacts.forEach((contact) =&gt; {
-    let firstName = get(contact, 'contactInfo.firstName')
-    let lastName  = get(contact, 'contactInfo.lastName')
-    let fullName = `${firstName} ${lastName}`
+  <head>
+    <title>WTF is Set? | Zac Anger's Blog</title>
+    <meta name="description" content="WTF is Set?" />
+    <meta name="keywords" content="['js', 'es2015', 'set']" />
+    <meta name="twitter:description" content="WTF is Set?" />
+    <meta name="twitter:title" content="WTF is Set?" />
+    <meta property="og:description" content="WTF is Set?" />
+    <meta property="og:title" content="WTF is Set?" />
 
-    if (contacts_set.includes(fullName)) {
-      return
-    } else {
-      contacts_set.push(fullName)
-    }
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
 
-    set(this, 'contactsSet', contactsSet)
-  })
-}
-</code></pre>
-<p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>WTF is Set?</h2>
+      <h3>2017-04-25</h3>
+      <h4><small>Tagged: js, es2015, set</small></h4>
+    </header>
+    <div>
+      <p>So, someone asked in a Slack channel how they might clean up the following code:</p>
+<div class="highlight"><pre><span></span><span class="nx">getNames</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">contacts_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="nx">contacts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">contact</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="nx">get</span><span class="p">(</span><span class="nx">contact</span><span class="p">,</span> <span class="s1">&#39;contactInfo.firstName&#39;</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">lastName</span>  <span class="o">=</span> <span class="nx">get</span><span class="p">(</span><span class="nx">contact</span><span class="p">,</span> <span class="s1">&#39;contactInfo.lastName&#39;</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">contacts_set</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">fullName</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">contacts_set</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">fullName</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;contactsSet&#39;</span><span class="p">,</span> <span class="nx">contactsSet</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't<br />
 know Ember so don't ask me.</p>
 <p>And I said, how about this?</p>
-<pre><code class="language-JavaScript">getNames: (contacts) =&gt;
-  [...new Set(
-    contacts.map(({ contactInfo: { firstName, lastName }}) =&gt;
-      `${firstName} ${lastName}`))]
-</code></pre>
-<p>I like this version because it's very concise and still readable (to me).
+<div class="highlight"><pre><span></span><span class="nx">getNames</span><span class="o">:</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">=&gt;</span>
+  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span>
+    <span class="nx">contacts</span><span class="p">.</span><span class="nx">map</span><span class="p">(({</span> <span class="nx">contactInfo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span> <span class="p">}})</span> <span class="p">=&gt;</span>
+      <span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">))]</span>
+</pre></div>
+
+<p>I like this version because it's very concise and still readable (to me).<br />
 It also doesn't do mutation-y stuff, which is a good thing.</p>
 <p>And then someone else asked:</p>
 <blockquote>
 <p>Can some one eli5 what <code>Set</code> is that's referenced above?</p>
 </blockquote>
-<p>Which made me realise that a lot of folks still aren't using a lot of the nice
+<p>Which made me realise that a lot of folks still aren't using a lot of the nice<br />
 new things from ES2015, so I explained a bit. Here's how I understand it.</p>
-<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map
+<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map<br />
 is also new in 2015. Set is to Array as Map is to Object, kinda.</p>
-<p>For practical usage Set is basically Array but unique, and with different
-methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There's a lot more
+<p>For practical usage Set is basically Array but unique, and with different<br />
+methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There's a lot more<br />
 info <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">on MDN</a>.</p>
-<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works
+<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works<br />
 (because thing inside <code>new Set()</code> results in an array).</p>
-<p>In that case <code>Set</code> isn't being used for too much besides just the fact that it's
-<code>Set</code> (so it only holds unique values). Someone else pointed out in the same
-channel that maybe it's not the best idea if you have a lot of values, because
+<p>In that case <code>Set</code> isn't being used for too much besides just the fact that it's<br />
+<code>Set</code> (so it only holds unique values). Someone else pointed out in the same<br />
+channel that maybe it's not the best idea if you have a lot of values, because<br />
 then you're creating another thing, which is totally true.</p>
-<p>There's a bit more background
-<a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is
+<p>There's a bit more background<br />
+<a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is<br />
 suppose to be kind of like.</p>
 <p>And underneath it sorta looks vaguely like this:</p>
-<pre><code class="language-JavaScript">class Set {
-  constructor () {
-    this.storage = []
-  }
-  add (a) {
-    if (!this.storage.includes(a)) {
-      this.storage.push(a)
-    }
-  }
-  has (a) {
-    return this.storage.includes(a)
-  }
-  remove (a) {
-    this.storage.splice(this.storage.indexOf(a), 1)
-  }
-}
-</code></pre>
-<p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Set</span> <span class="p">{</span>
+  <span class="nx">constructor</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="p">}</span>
+  <span class="nx">add</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">has</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nx">remove</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">a</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like<br />
 <code>Array</code> but it only holds unique things.</p>
-<p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a
+<p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a<br />
 valid use case for <code>WeakSet</code> and <code>WeakMap</code> yet, personally.</p>
-<p><code>Set</code> turns out to be pretty useful. I've used it a few times <a href="https://jane.com">at
-work</a> (with appropriate polyfills) without any problems, and I
-use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my
+<p><code>Set</code> turns out to be pretty useful. I've used it a few times <a href="https://jane.com">at<br />
+work</a> (with appropriate polyfills) without any problems, and I<br />
+use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my<br />
 sort-of-sometimes-popular utility library. Definitely play around with it!</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

@@ -1,22 +1,50 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Meteor Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="{{#with foo}} is a template tag that takes arg (foo). that is the data
-context for the block in that tag. being a tag, it needs to be closed later
-({/with})."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,meteor,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Meteor Notes"/><meta name="twitter:description" content="{{#with foo}} is a template tag that takes arg (foo). that is the data
-context for the block in that tag. being a tag, it needs to be closed later
-({/with})."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Meteor Notes"/><meta property="og:description" content="{{#with foo}} is a template tag that takes arg (foo). that is the data
-context for the block in that tag. being a tag, it needs to be closed later
-({/with})."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Meteor Notes</h2><h3>21 January, 2016</h3></header><div><h2>General Notes, from that time I played with Meteor</h2>
-<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data
-context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Meteor Notes | Zac Anger's Blog</title>
+    <meta name="description" content="Meteor Notes" />
+    <meta name="keywords" content="['meteor', 'js']" />
+    <meta name="twitter:description" content="Meteor Notes" />
+    <meta name="twitter:title" content="Meteor Notes" />
+    <meta property="og:description" content="Meteor Notes" />
+    <meta property="og:title" content="Meteor Notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Meteor Notes</h2>
+      <h3>2016-01-21</h3>
+      <h4><small>Tagged: meteor, js</small></h4>
+    </header>
+    <div>
+      <h2>General Notes, from that time I played with Meteor</h2>
+<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data<br />
+context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later<br />
 (<code>{/with}</code>).</p>
-<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of
+<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of<br />
 <code>Collection.find()</code>.</p>
 <p>Includes are like so: <code>{{&gt; foo bar}}</code> which will bring in the bar from foo.</p>
 <p>meteor's blaze will soon just be a thin templating layer over react.</p>
-<p>iron router is meteor's primary routing package. its 'data' method helps with
+<p>iron router is meteor's primary routing package. its 'data' method helps with<br />
 data contexts.</p>
-<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data
+<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data<br />
 context is accessible via <code>this</code>. an example:</p>
-<pre><code>&lt;template name=&quot;profile&quot;&gt;
+<div class="highlight"><pre><span></span>&lt;template name=&quot;profile&quot;&gt;
   &lt;h3&gt;profile&lt;/h3&gt;
   {{#with profile}}
   &lt;img src=&quot;{{avatarPath}}&quot; /&gt;
@@ -29,18 +57,19 @@ context is accessible via <code>this</code>. an example:</p>
 
 Template.profile.helpers({
   profile: function(){
-    return Users.findOne(Session.get('userId'))
+    return Users.findOne(Session.get(&#39;userId&#39;))
   },
   avatarPath: function(){
-    return 'images/' + this.avatar
+    return &#39;images/&#39; + this.avatar
   },
   fullName: function(){
-    return this.first + ' ' +  this.last
+    return this.first + &#39; &#39; +  this.last
   }
 })
-</code></pre>
+</pre></div>
+
 <p>a dedicated {{log}} helper can be more useful than console.log(this)</p>
-<pre><code>Template.profile.helpers({
+<div class="highlight"><pre><span></span>Template.profile.helpers({
   log: function(){
     console.log(this)
 }})
@@ -51,93 +80,91 @@ Template.profile.helpers({
   {{log}}
   &lt;!-- etc --&gt;
   {{/with}}
-</code></pre>
-<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad,
-actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and
+</pre></div>
+
+<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad,<br />
+actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and<br />
 <code>{{blahblah ../..}}</code>).</p>
 <h4>Reactivity in Meteor</h4>
-<p>Reactive computation: block of code (inside of a function) that re-runs when a
+<p>Reactive computation: block of code (inside of a function) that re-runs when a<br />
 reactive data source <em>inside</em> it changes.</p>
-<pre><code>Template.hello.helpers{(
+<div class="highlight"><pre><span></span>Template.hello.helpers{(
   counter: function(){
-    console.log('counter helper is running')
-    return Session.get('count')
+    console.log(&#39;counter helper is running&#39;)
+    return Session.get(&#39;count&#39;)
   }
 )}```
-</code></pre>
-<p>Here, counter re-runs whenever count changes (count is retrieved by
-Session.get('count_')).  Session variables are <em>reactive sources</em>. Template
+</pre></div>
+
+<p>Here, counter re-runs whenever count changes (count is retrieved by<br />
+Session.get('count_')).  Session variables are <em>reactive sources</em>. Template<br />
 helpers are <em>reactive computations</em>.</p>
 <p>Reactive variables in Meteor:</p>
 <ul>
-<li>Session variables
-<ul>
+<li>Session variables</li>
 <li>defined with <code>Session.set()</code></li>
 <li>retrieved with <code>Session.get()</code></li>
 <li>global to the app, and reactive</li>
-</ul>
-</li>
-<li>Cursors
-<ul>
+<li>Cursors</li>
 <li>what you get when querying db</li>
 <li>(via <code>Collection.find()</code>)</li>
-</ul>
-</li>
-<li>Subscription's <code>ready()</code> method
-<ul>
+<li>Subscription's <code>ready()</code> method</li>
 <li><code>subscription.ready()</code> is when the client has received all data</li>
-</ul>
-</li>
-<li>some others, including:
-<ul>
+<li>some others, including:</li>
 <li><code>Meteor.user()</code></li>
 <li><code>Meteor.userId()</code></li>
 <li><code>Meteor.status</code></li>
 <li><code>Meteor.loggingIn</code></li>
 </ul>
-</li>
-</ul>
 <p>Reactive computations:</p>
 <ul>
 <li>template helpers (eg <code>{{something}}</code> in a template, duh)</li>
-<li>iron router (third party) hooks are reactive
-<ul>
+<li>iron router (third party) hooks are reactive</li>
 <li>route functions and <em>most</em> hooks are run in a reactive computation</li>
 </ul>
-</li>
-</ul>
-<p>Custom reactivity in meteor: reactive-var (third party package) enables
-defining own reactive variables. these don't have global names (like
-Session.get('foo')'s foo), more like this.foo.get() declared like <code>new ReactiveVar()</code>.</p>
-<pre><code>var count = new ReactiveVar(0)
+<p>Custom reactivity in meteor: reactive-var (third party package) enables<br />
+defining own reactive variables. these don't have global names (like<br />
+Session.get('foo')'s foo), more like this.foo.get() declared like <code>new
+ReactiveVar()</code>.</p>
+<div class="highlight"><pre><span></span>var count = new ReactiveVar(0)
 count.set(1)
 count.get() // 1
-</code></pre>
+</pre></div>
+
 <p>There's also <code>ReactiveDict</code>. That's a thing.</p>
-<p>Custom reactive computations: <code>Tracker.autorun(function(){})</code> Read the full
+<p>Custom reactive computations: <code>Tracker.autorun(function(){})</code> Read the full<br />
 Meteor manual for more on that, I guess.</p>
-<p>Reactivity can be passed on through composition, eg <code>var getCount = function(){ return Session.get('count') }</code> -- getCount is a reactive data
-source, by virtue of Session.get('count'), which is itself a reactive data
+<p>Reactivity can be passed on through composition, eg <code>var getCount =
+function(){ return Session.get('count') }</code> -- getCount is a reactive data<br />
+source, by virtue of Session.get('count'), which is itself a reactive data<br />
 source. SO...</p>
-<pre><code>Template.hello.helpers({
+<div class="highlight"><pre><span></span>Template.hello.helpers({
   counter: function(){
-    console.log('counter helper is running')
-    return Session.get('count')
+    console.log(&#39;counter helper is running&#39;)
+    return Session.get(&#39;count&#39;)
   }
 })
-</code></pre>
+</pre></div>
+
 <p>IS THE SAME AS</p>
-<pre><code>var getCount = function(){
-  return Session.get('count')
+<div class="highlight"><pre><span></span>var getCount = function(){
+  return Session.get(&#39;count&#39;)
 }
 
 Template.hello.helpers({
   counter: function(){
-    console.log('counter helper is running')
+    console.log(&#39;counter helper is running&#39;)
     return getCount()
   }
 })
-</code></pre>
+</pre></div>
+
 <p>both ways, counter reruns whenever count session variable changes.</p>
 <p>composition only applies to functions. not variables.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>
