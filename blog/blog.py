@@ -20,8 +20,6 @@ out_dir = "./posts"
 templates_dir = "./templates"
 index = "index.html"
 index_data = []
-
-
 jinja_env = Environment(loader=PackageLoader("blog", "templates"))
 
 
@@ -50,16 +48,14 @@ def main():
 
         with open(src_dir + "/" + post) as p:
             contents = p.read()
-            # Split out frontmatter. This will return
-            # an empty string, the frontmatter yaml, and then
-            # the post body which may have more occurrences of ---.
+            # Split out frontmatter. This will return an empty string, the
+            # frontmatter yaml, and then the post body which may have more
+            # occurrences of ---.
             parts = contents.split("---", 2)
-            _metadata = parts[1]
-            _blog = parts[2]
-            metadata = yaml.safe_load(_metadata)
+            metadata = yaml.safe_load(parts[1])
             metadata["href"] = "/blog/" + destination_dir
             index_data.append(metadata)
-            blog = render_md(_blog)
+            blog = render_md(parts[2])
             template = jinja_env.get_template("post.html")
             rendered = template.render(
                 {
