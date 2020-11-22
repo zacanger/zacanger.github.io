@@ -100,11 +100,13 @@ function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 <hr />
 <h2>local and session storage</h2>
 <ul>
-<li>same api for both, but sessionStorage loses data on browser close.</li>
+<li>same api for both, but sessionStorage loses data on browser close.<ul>
 <li><code>storage.getItem(k)</code> returns value for key</li>
 <li><code>storage.removeItem(k)</code> removes ''</li>
 <li><code>storage.setItem(k, v)</code> stores ''</li>
 <li><code>storage.clear()</code> empties storage contents.</li>
+</ul>
+</li>
 <li>api expects strings, so <em>if needed</em>, implement a wrapper. json.stringify is chill.</li>
 </ul>
 <hr />
@@ -120,8 +122,10 @@ function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 </li>
 <li>
 <p>For Mac users, if they've installed with Ports (or Brew?), this alias would be nice:</p>
-</li>
+<ul>
 <li><code>alias mongo-start='mongod --fork --logpath /var/log/mongo.log --logappend --dbpath=/tmp/mongo'</code></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2>angular</h2>

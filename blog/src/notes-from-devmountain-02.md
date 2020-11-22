@@ -30,10 +30,10 @@ in simpler terms... position is basically just referring to its immediate parent
 unless there's no frame of reference there. all hierarchical. (lol hence C in CSS....)
 
 * box-model:
-  * border goes OUTwards from the element
-  * padding goes IN and squishes the element
-  * LOTS of padding will actually stretch an element out
-  * margins--space between picture and other items
+    * border goes OUTwards from the element
+    * padding goes IN and squishes the element
+    * LOTS of padding will actually stretch an element out
+    * margins--space between picture and other items
 
 --------
 
@@ -265,10 +265,10 @@ OH WAIT WE CALL THIS A FOR LOOP DUH.
     //etc, until we are less than or equal to 26.
 
 * for loop syntax:
-  * for (bit that initializes the loop, like setting an integer at 0 to count up;
-  * expression check if the loop should still go, like defining a counting limit;
-  * what to do, if we've made it through those first bits)
-  * always needs three sections/two semicolons
+    * for (bit that initializes the loop, like setting an integer at 0 to count up;
+    * expression check if the loop should still go, like defining a counting limit;
+    * what to do, if we've made it through those first bits)
+    * always needs three sections/two semicolons
 
 `+=` is not the only thing that works for updating;
 looks like all math operations, when done `i *= i`;

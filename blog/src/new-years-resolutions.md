@@ -16,24 +16,24 @@ and edit some items. Some leftover items will probably end up on 2018's list.
 * [ ] At least record the acoustic album that's been written and sitting there for ages
 * [ ] Maybe get Windows working enough to finish up the electro album thing
 * [x] Work less at work
-  * [x] Mainly, stop working on weekends and in the middle of the night and stuff
+    * [x] Mainly, stop working on weekends and in the middle of the night and stuff
 * [x] Learn more about `sh` and POSIX compat in general
-  * [x] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
-  * [x] Also weed out my dotfiles, they're ridiculous
+    * [x] Also convert as much of my dotfiles as possible to use `sh` instead of `bash`
+    * [x] Also weed out my dotfiles, they're ridiculous
 * [x] Start learning to play the cello
 * [x] Be healther
-  * [x] Switch to vaping, for real this time
-  * [x] Maybe eat better?
-    * [x] Less pizza, at least
+    * [x] Switch to vaping, for real this time
+    * [x] Maybe eat better?
+        * [x] Less pizza, at least
 * [x] Finish paying off debts, so close
-  * [x] Also try not to tap into savings so much for stupid things
+    * [x] Also try not to tap into savings so much for stupid things
 * [x] Change how this blog is built, so it's more flexible, and maybe using something fun like Frog (using GFM).
-  * [x] Also, blog more (at least, clear out my `drafts` dir).
+    * [x] Also, blog more (at least, clear out my `drafts` dir).
 * [x] Be making more money
-  * [x] Preferably where I am now, but somewhere else if that doesn't work out
-  * [x] Also start actually emailing recruiters back
+    * [x] Preferably where I am now, but somewhere else if that doesn't work out
+    * [x] Also start actually emailing recruiters back
 * [x] Actually finish anything ever
-  * [x] Various unfinished small projects
+    * [x] Various unfinished small projects
 * [x] Make progress on learning Korean, for real this time
 * [x] Try really hard to not write any untested code
 * [x] Make a real effort to talk to real humans in real life

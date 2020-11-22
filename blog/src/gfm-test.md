@@ -87,16 +87,16 @@ And a "mixed" task list:
 And a nested list:
 
 * Jackson 5
-  * Michael
-  * Tito
-  * Jackie
-  * Marlon
-  * Jermaine
+    * Michael
+    * Tito
+    * Jackie
+    * Marlon
+    * Jermaine
 * TMNT
-  * Leonardo
-  * Michelangelo
-  * Donatello
-  * Raphael
+    * Leonardo
+    * Michelangelo
+    * Donatello
+    * Raphael
 
 Definition lists can be used with HTML syntax. Definition terms are bold and italic.
 

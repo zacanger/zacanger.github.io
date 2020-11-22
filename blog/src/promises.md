@@ -14,9 +14,9 @@ Important things:
 * Usually create a promise with a constructor (`new Promise`)
 * Usually its two handlers are named `resolve` and `reject`
 * A promise will have one of three states:
-  * Pending (until something happens)
-  * Fulfilled (if the first handler is called)
-  * Rejected (if the second handler is called)
+    * Pending (until something happens)
+    * Fulfilled (if the first handler is called)
+    * Rejected (if the second handler is called)
 * It can only be 'settled' (either resolved or rejected) once.
 * Can't cancel a promise.
 * No way to check the status (if pending, fulfilled, or rejected).
@@ -31,10 +31,10 @@ Important things:
 * This way you can chain multiple `then`s and then have a final `catch`.
 * `throw`ing will automatically reject that promise.
 * `Promise.all()` takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.
-  * Otherwise (if any are rejected) it will reject.
+    * Otherwise (if any are rejected) it will reject.
 * `Promise.race()` is similar, but will fulfill once first promise in the array fulfills.
 * Don't program with promises using same patterns as with callbacks.
-  * (Don't do a `.then(fn(res), fn(err))`; use `.then().catch()`.)
+    * (Don't do a `.then(fn(res), fn(err))`; use `.then().catch()`.)
 * Don't nest promises. Use a `.all` instead.
 
 

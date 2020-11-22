@@ -121,10 +121,10 @@ and `&`. They each have very important and distinct meanings.
 * `&` says take in my attribute value as a reference to a function on the parent scope.
 
 * (from another notes snippet):
-  * `@` : string/text (one-way)
-  * `=` : two-way
-  * `&` : binds parent scope's methods into directive's scope
-  * `<` : one-way (outer-to-inner)
+    * `@` : string/text (one-way)
+    * `=` : two-way
+    * `&` : binds parent scope's methods into directive's scope
+    * `<` : one-way (outer-to-inner)
 
 --------
 
@@ -154,11 +154,11 @@ modularly).
 * req and res are passed to EVERY function by express
 * ongoing request and response are passed on down whole if statement chain
 * a controller can't reference arrays from another file.
-  * so, your server (or, let's say, your index) couldn't have something defined that a ctrl needs to access
-    * (assuming your ctrl is set up as a an object, module.exports = {} with your functions(req, res, next) all in there.)
-  * solution?
-  * move your stuff into the file where you want to access it, i guess.
-  * module.exports can be an array, too. that makes sense in a db context, okay.
+    * so, your server (or, let's say, your index) couldn't have something defined that a ctrl needs to access
+        * (assuming your ctrl is set up as a an object, module.exports = {} with your functions(req, res, next) all in there.)
+    * solution?
+    * move your stuff into the file where you want to access it, i guess.
+    * module.exports can be an array, too. that makes sense in a db context, okay.
 
 --------
 
@@ -255,8 +255,8 @@ When we're not doing eg `require('./path')` (but rather `require(/path)' with no
 * react is reacty. it reacts, sometimes reactively.
 * it's still ugly as hell and i hope it dies, though.
 * note that i'm doing all this in vim because:
-  * A. lighttable doesn't like react and
-  * B. lighttable has my projects loadded up, currently, and i don't want to add yet another workspace.
+    * A. lighttable doesn't like react and
+    * B. lighttable has my projects loadded up, currently, and i don't want to add yet another workspace.
 * so, this will probably all be formatted like shit, because vim doesn't understand, no matter how many times i tell it, that i don't want it to turn spaces into tabs, i want the opposite.
 * oh well.
 

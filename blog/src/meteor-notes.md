@@ -91,25 +91,25 @@ helpers are _reactive computations_.
 Reactive variables in Meteor:
 
 * Session variables
-  * defined with `Session.set()`
-  * retrieved with `Session.get()`
-  * global to the app, and reactive
+    * defined with `Session.set()`
+    * retrieved with `Session.get()`
+    * global to the app, and reactive
 * Cursors
-  * what you get when querying db
-  * (via `Collection.find()`)
+    * what you get when querying db
+    * (via `Collection.find()`)
 * Subscription's `ready()` method
-  * `subscription.ready()` is when the client has received all data
+    * `subscription.ready()` is when the client has received all data
 * some others, including:
-  * `Meteor.user()`
-  * `Meteor.userId()`
-  * `Meteor.status`
-  * `Meteor.loggingIn`
+    * `Meteor.user()`
+    * `Meteor.userId()`
+    * `Meteor.status`
+    * `Meteor.loggingIn`
 
 Reactive computations:
 
 * template helpers (eg `{{something}}` in a template, duh)
 * iron router (third party) hooks are reactive
-  * route functions and _most_ hooks are run in a reactive computation
+    * route functions and _most_ hooks are run in a reactive computation
 
 Custom reactivity in meteor: reactive-var (third party package) enables
 defining own reactive variables. these don't have global names (like

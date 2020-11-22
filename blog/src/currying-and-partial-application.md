@@ -273,12 +273,12 @@ function compose(){
 
 // from reginald braithwaite's blog
 // * arity: number of arguments a function accepts
-//   * nullary function takes no arguments
-//   * unary function accepts one
-//   * polyadic function accepts more than one
-//   * binary accepts two
-//   * ternary function accepts three
-//   * variadic function accepts a variable number of arguments
+//     * nullary function takes no arguments
+//     * unary function accepts one
+//     * polyadic function accepts more than one
+//     * binary accepts two
+//     * ternary function accepts three
+//     * variadic function accepts a variable number of arguments
 
 // a map fn
 const __ map = [].map

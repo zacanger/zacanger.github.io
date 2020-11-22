@@ -37,8 +37,10 @@
 <li><code>git push -u origin branchName</code> (push new branch--short for <code>--set-upstream</code>)</li>
 <li><code>git pull origin master</code>, no matter what branch you're in, will pull and merge master into your current branch. so, do <code>git pull &lt;remote name&gt; &lt;branch name&gt;</code></li>
 <li><code>git stash</code> to push changes to temp thing before pulling, then <code>git stash pop</code> to throw those back over after you pull, so it's basically a kind of automerge. Then you can go ahead and do your merge in depth.</li>
-<li>Make sure your master and remote master are in sync. Keep master merged into your feature branches at least once a day.</li>
+<li>Make sure your master and remote master are in sync. Keep master merged into your feature branches at least once a day.<ul>
 <li>Checkout master, pull that, switch to feature branch, merge that. To merge your feature branch in, be on master, then <code>git merge feature-branch</code>.</li>
+</ul>
+</li>
 </ul>
 <p>I guess not really a whole lot of notes. Oh well.</p>
     </div>

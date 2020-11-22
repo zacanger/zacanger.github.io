@@ -24,15 +24,15 @@ APPARENTLY I know 90% of Clojure, now. Cool. Can someone please explain to me
 why cljs has brackets and braces, then? Like... wat?
 
 * Five steps to understanding a new code base:
-  * Find a mentor who really understands that code base and is willing and able to take the
-    time to talk to you about it.
-  * Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
-    etc. for all of it, then go study all those things _apart_ from the current code so you
-    know how they're all supposed to work. Also find out the history of the code.
-  * Complete a task. A tiny feature or bugfix or something.
-  * Don't get stuck. If you're not getting anything done for more than like a half hour or
-    whatever and you can't figure it out, _ask that mentor_.
-  * Code review, review, review code, code, code review.
+    * Find a mentor who really understands that code base and is willing and able to take the
+      time to talk to you about it.
+    * Get an overview of the codebase from said mentor, on style, frameworks, libs, architecture,
+      etc. for all of it, then go study all those things _apart_ from the current code so you
+      know how they're all supposed to work. Also find out the history of the code.
+    * Complete a task. A tiny feature or bugfix or something.
+    * Don't get stuck. If you're not getting anything done for more than like a half hour or
+      whatever and you can't figure it out, _ask that mentor_.
+    * Code review, review, review code, code, code review.
 
 ### FUNCTORS
 

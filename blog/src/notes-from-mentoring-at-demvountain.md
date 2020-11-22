@@ -86,10 +86,10 @@ function ghjkl(){console.log(texty)}ghjkl()}`.
 ## local and session storage
 
 * same api for both, but sessionStorage loses data on browser close.
-  * `storage.getItem(k)` returns value for key
-  * `storage.removeItem(k)` removes ''
-  * `storage.setItem(k, v)` stores ''
-  * `storage.clear()` empties storage contents.
+    * `storage.getItem(k)` returns value for key
+    * `storage.removeItem(k)` removes ''
+    * `storage.setItem(k, v)` stores ''
+    * `storage.clear()` empties storage contents.
 * api expects strings, so _if needed_, implement a wrapper. json.stringify is chill.
 
 --------
@@ -105,7 +105,7 @@ function ghjkl(){console.log(texty)}ghjkl()}`.
 * from the mongo shell, `use admin` and `db.shutdownServer()` to kill. or, just `mongod --shutdown`
 
 * For Mac users, if they've installed with Ports (or Brew?), this alias would be nice:
-  * `alias mongo-start='mongod --fork --logpath /var/log/mongo.log --logappend --dbpath=/tmp/mongo'`
+    * `alias mongo-start='mongod --fork --logpath /var/log/mongo.log --logappend --dbpath=/tmp/mongo'`
 
 --------
 

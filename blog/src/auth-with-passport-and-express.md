@@ -199,8 +199,8 @@ Three things might happen here:
 
 * Internal error, which Express will handle, spit out a 500
 * Invalid auth (no user, password != user.password, whatever):
-  * Here we _don't_ generate an error, we just pass `false` as the user object:
-    * `next(null, false)`… this triggers the `failureRedirect`, which will be a generated 401 by default.
+    * Here we _don't_ generate an error, we just pass `false` as the user object:
+        * `next(null, false)`… this triggers the `failureRedirect`, which will be a generated 401 by default.
 * Or, maybe there's a real user (`next(null, user)`), in which case we go to the `successRedirect`, yay!
 
 In the second case, a message could be passed as well, like `next(null, false,

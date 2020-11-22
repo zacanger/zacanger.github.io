@@ -167,14 +167,16 @@ there <em>shouldn't</em> be conflict.)</p>
 <li>remote enalbes calling node in remote pages, whitelist of hostnames.</li>
 <li>chromium-args (literally).</li>
 <li>js-flags (string) for example:<code>{"name": "test", "main": "index.html", "js-flags": etc function etc}</code></li>
-<li>inject-js-start and inject-js-end (THESE ARE THE IMPORTANT BITS, PAY ATTENTION HERE!)</li>
-<li>start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.</li>
 <li>
-<p>end: same, but it's excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.</p>
+<p>inject-js-start and inject-js-end (THESE ARE THE IMPORTANT BITS, PAY ATTENTION HERE!)</p>
+<ul>
+<li>start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.</li>
+<li>end: same, but it's excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.</li>
+</ul>
 </li>
 <li>
 <p>window:</p>
-</li>
+<ul>
 <li>title str</li>
 <li>width/height int</li>
 <li>tooolbar bool</li>
@@ -190,15 +192,17 @@ there <em>shouldn't</em> be conflict.)</p>
 <li>frame bool (sets frameless; avoid if setting fullscreen to true!)</li>
 <li>show bool (false would mean hidden startup [tray?])</li>
 <li>kiosk bool (fullscreen, prevents mouse-driven leaving app; alt-f4 still works, and ctrl-q probably does as well)</li>
-<li>
-<p>transparent bool (would need composition support) (if true, set with rgba as in css)</p>
+<li>transparent bool (would need composition support) (if true, set with rgba as in css)</li>
+</ul>
 </li>
 <li>
 <p>webkit</p>
-</li>
+<ul>
 <li>plugin bool (defaults false, for loading media plugins)</li>
 <li>java bool (fuck no, leave that shit where it is)</li>
 <li>page-cache bool</li>
+</ul>
+</li>
 </ul>
 <p>More on nw stuff:</p>
 <p>whether a .nw file (renamed zip) or project directory, the package.json needs to<br />
@@ -206,9 +210,9 @@ be in the root, and if it's the .nw, that needs to be the actual project<br />
 directory contents, not a directory containing them.</p>
 <p><code>console.log</code> redirects to dev tools (same with console.warn and console.error)</p>
 <p>the <code>process</code> object:<br />
-  - <code>process.versions['node-webkit']</code> is set with nw's version<br />
-  - <code>process.versions['chromium']</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)<br />
-  - <code>process.mainModule</code> is set to the <em>start</em> page, eg <code>index.html</code>--this is whatever's under <code>main</code> in the package.json, UNLESS there's a specified <code>node-main</code> field there.</p>
+- <code>process.versions['node-webkit']</code> is set with nw's version<br />
+- <code>process.versions['chromium']</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)<br />
+- <code>process.mainModule</code> is set to the <em>start</em> page, eg <code>index.html</code>--this is whatever's under <code>main</code> in the package.json, UNLESS there's a specified <code>node-main</code> field there.</p>
 <p><code>__dirname</code> can only be called by node modules (with <code>require()</code>). webkit doesn't have that (not in devtools either). a hacky fix:</p>
 <p><code>exports.dirname = __dirname</code> in a file, then require that (eg <code>var dirname = require('./dirnamefile').dirname; console.log(dirname)</code> would return dirname).</p>
 <hr />

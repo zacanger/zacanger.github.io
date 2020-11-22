@@ -69,10 +69,12 @@ out in coffee shops too much.</p>
 <ul>
 <li>mvp: oh wait, that's already done. well, except for getting it to work in the<br />
   desktop client, which is the entire idea here.</li>
-<li>the rest:</li>
+<li>the rest:<ul>
 <li>a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.</li>
 <li>comments.</li>
 <li>import/export without relying on the browser (to markdown and html).</li>
+</ul>
+</li>
 </ul>
 <h3>Views</h3>
 <ol>
@@ -94,9 +96,11 @@ out in coffee shops too much.</p>
 <li>browser, main, and nav (see existing codebase)</li>
 <li>not controllers, but...</li>
 <li>services: files (existing)</li>
-<li>filters: filename and cut (existing)</li>
+<li>filters: filename and cut (existing)<ul>
 <li>by tag (feed view)</li>
 <li>(also possibly by date -- narrowing -- feed view)</li>
+</ul>
+</li>
 </ul>
 <h3>Endpoints</h3>
 <p>Those are a thing, yes.</p>
@@ -249,7 +253,7 @@ clickables, one assumes).</p>
 </ul>
 <h3>menus</h3>
 <ul>
-<li>new MenuItem(opts):</li>
+<li>new MenuItem(opts):<ul>
 <li>id: string, unique within menu</li>
 <li>submenu</li>
 <li>checked: bool</li>
@@ -259,7 +263,9 @@ clickables, one assumes).</p>
 <li>type: normal, separator, submenu, checkbox, or radio</li>
 <li>role: action; if specified, next thing will be ignored</li>
 <li>click: function -- click(menuItem, browserWindow) -- this is that 'next thing'</li>
-<li>recommended to set role:</li>
+</ul>
+</li>
+<li>recommended to set role:<ul>
 <li>undo</li>
 <li>redo</li>
 <li>cut</li>
@@ -268,6 +274,8 @@ clickables, one assumes).</p>
 <li>selectall</li>
 <li>minimize</li>
 <li>close</li>
+</ul>
+</li>
 </ul>
 <p>electron-rebuild would automatically take care of headers &amp; native node module<br />
 builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>

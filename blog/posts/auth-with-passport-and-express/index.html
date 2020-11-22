@@ -203,9 +203,11 @@ work, but it totally doesn't. I think what we need here is to fix the session.</
 <p>Three things might happen here:</p>
 <ul>
 <li>Internal error, which Express will handle, spit out a 500</li>
-<li>Invalid auth (no user, password != user.password, whatever):</li>
+<li>Invalid auth (no user, password != user.password, whatever):<ul>
 <li>Here we <em>don't</em> generate an error, we just pass <code>false</code> as the user object:<ul>
 <li><code>next(null, false)</code>… this triggers the <code>failureRedirect</code>, which will be a generated 401 by default.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Or, maybe there's a real user (<code>next(null, user)</code>), in which case we go to the <code>successRedirect</code>, yay!</li>

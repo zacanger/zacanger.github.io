@@ -15,25 +15,25 @@ weekly i think, except the design things, which
 i need to learn i guess sometime
 
 * windows server
-  * visual studio
-  * c#
-  * .net
-  * sql server
+    * visual studio
+    * c#
+    * .net
+    * sql server
 
 * linux servers
-  * aws s3, ec2, elastic beanstalk, various others
-  * docker
-  * sysd?
-  * koa
-  * react
-  * mocha, chai, enzyme
-  * graphql, apollo?
-  * redux
-  * immutable
-  * typescript
-  * purescript
-  * sass
-  * postcss
+    * aws s3, ec2, elastic beanstalk, various others
+    * docker
+    * sysd?
+    * koa
+    * react
+    * mocha, chai, enzyme
+    * graphql, apollo?
+    * redux
+    * immutable
+    * typescript
+    * purescript
+    * sass
+    * postcss
 
 * teamcity
 

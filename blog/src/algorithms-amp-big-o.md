@@ -20,8 +20,8 @@ Common uses: sorting, searching, solving.
 Implementations: recursive, logical (which is exact opposite of recursive), prl/distr/etc
 * binary starts with a sorted list
 * EVERY recursive function should start, straight away, with a CYA
-  * eg, if (searchArray.length = 0) return exit status 1
-  * because infinite loops are dumb
+    * eg, if (searchArray.length = 0) return exit status 1
+    * because infinite loops are dumb
 
 --------
 

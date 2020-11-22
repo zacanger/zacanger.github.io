@@ -14,11 +14,11 @@ tags:
 * newlines are much more readable
 * bash variables: there are local, global, string, integer,
   constant, and array variables.
-  * global = env variables.
-  * local are available only in current shell.
-  * also predefined vars, like id (try `echo $UID`).
-  * capitalised by default. case-sensitive. local ones
-  * are sometimes done in lowercase, though. can contain
-  * integers, but can't _start_ with integers.
+    * global = env variables.
+    * local are available only in current shell.
+    * also predefined vars, like id (try `echo $UID`).
+    * capitalised by default. case-sensitive. local ones
+    * are sometimes done in lowercase, though. can contain
+    * integers, but can't _start_ with integers.
 * to get started with everything: `man 1 intro`
 * also `git help everyday`

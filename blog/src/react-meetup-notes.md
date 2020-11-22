@@ -15,13 +15,13 @@ my initial reaction when i was confronted with everything that is react.
 ## React Meetup, 17 Nov, 2015
 
 React:
-  * Good at managing state.
-  * which is to say, dynamism
-  * Components, just like... everything else these days, so that's totally irrelevant.
-  * virtual dom, which is not exactly facebook's anyway.
-  * unidirectional data flow, which is a mouthful.
-  * that is, the loop.
-  * more boilerplate to run that... less boilerplate-replacer built into react?
+* Good at managing state.
+* which is to say, dynamism
+* Components, just like... everything else these days, so that's totally irrelevant.
+* virtual dom, which is not exactly facebook's anyway.
+* unidirectional data flow, which is a mouthful.
+* that is, the loop.
+* more boilerplate to run that... less boilerplate-replacer built into react?
 
 --------
 

@@ -51,7 +51,7 @@ const stream = new ReadableStream({
 * `controller.close()` ends
 * `controller.error(e)` sends `e` (is a terminal error)
 * `controller.desiredSize` amount of buffer left (can be negative if overfilled)
-  * `queuingStrategy` is used to get this
+    * `queuingStrategy` is used to get this
 * you could call `controller.enqueue()` whenever there's data to send (stream as a push source)
 * you could wait until there's a `pull` called, then queue up some data (pull source)
 * you can do whatever you like (basically)
@@ -98,25 +98,25 @@ From here down I'll probably just be taking notes on streams in Node.
 Some important things to remember (for me to remember, that is) -- differences between the
 proposed Stream and Node's streams:
 * Readable
-  * `.read()` instead of `.on('readable')`
-  * Also a sync `.read()`
-  * Cancellation semantics added
-  * `desiredSize`
-  * `tee`ing built in
-  * `data` event fully gone (it's only in Node streams in compatability mode, btw)
-  * `pause` and `resume` aren't a thing
-  * no `unshift`
-  * binary/string/object mode switching isn't a thing
-  * size parameter is gone (use BYOB readers)
+    * `.read()` instead of `.on('readable')`
+    * Also a sync `.read()`
+    * Cancellation semantics added
+    * `desiredSize`
+    * `tee`ing built in
+    * `data` event fully gone (it's only in Node streams in compatability mode, btw)
+    * `pause` and `resume` aren't a thing
+    * no `unshift`
+    * binary/string/object mode switching isn't a thing
+    * size parameter is gone (use BYOB readers)
 * Writable
-  * No cork/uncork
+    * No cork/uncork
 * Transform
-  * now just `{readable, writable}` rly
+    * now just `{readable, writable}` rly
 * other
-  * promises instead of cbs
-  * no enc/dec built-in
-  * `pipeTo(writable)` and `pipeThrough(transform)` instead of just `pipe()`
-    * so `source.pipeThrough(thing).pipeTo(destination)` is syntactic sugar for
+    * promises instead of cbs
+    * no enc/dec built-in
+    * `pipeTo(writable)` and `pipeThrough(transform)` instead of just `pipe()`
+        * so `source.pipeThrough(thing).pipeTo(destination)` is syntactic sugar for
       `source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)`
 
 Okay, so, Node streams.
@@ -124,14 +124,14 @@ Okay, so, Node streams.
 * `.pipe()` listens for 'data' and 'end' from fs streams
 * `.pipe()` handles backpressure for ya
 * types of streams:
-  * readable
-  * writable
-  * transform
-  * duplex
-  * 'classic'
+    * readable
+    * writable
+    * transform
+    * duplex
+    * 'classic'
 * chain pipes, don't break crap out
-  * `one.pipe(two).pipe(three)`, not `one.pipe(two);two.pipe(three);`
-  * that's basically the same as `one | two | three`
+    * `one.pipe(two).pipe(three)`, not `one.pipe(two);two.pipe(three);`
+    * that's basically the same as `one | two | three`
 
 ```javascript
 //

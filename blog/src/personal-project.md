@@ -57,9 +57,9 @@ out in coffee shops too much.
 * mvp: oh wait, that's already done. well, except for getting it to work in the
   desktop client, which is the entire idea here.
 * the rest:
-  * a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.
-  * comments.
-  * import/export without relying on the browser (to markdown and html).
+    * a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.
+    * comments.
+    * import/export without relying on the browser (to markdown and html).
 
 ### Views
 
@@ -82,8 +82,8 @@ out in coffee shops too much.
 * not controllers, but...
 * services: files (existing)
 * filters: filename and cut (existing)
-  * by tag (feed view)
-  * (also possibly by date -- narrowing -- feed view)
+    * by tag (feed view)
+    * (also possibly by date -- narrowing -- feed view)
 
 ### Endpoints
 
@@ -261,24 +261,24 @@ win.webContents.on('did-finish-load', function() {
 ### menus
 
 * new MenuItem(opts):
-  * id: string, unique within menu
-  * submenu
-  * checked: bool
-  * visible: bool
-  * enabled: bool
-  * label: string
-  * type: normal, separator, submenu, checkbox, or radio
-  * role: action; if specified, next thing will be ignored
-  * click: function -- click(menuItem, browserWindow) -- this is that 'next thing'
+    * id: string, unique within menu
+    * submenu
+    * checked: bool
+    * visible: bool
+    * enabled: bool
+    * label: string
+    * type: normal, separator, submenu, checkbox, or radio
+    * role: action; if specified, next thing will be ignored
+    * click: function -- click(menuItem, browserWindow) -- this is that 'next thing'
 * recommended to set role:
-  * undo
-  * redo
-  * cut
-  * copy
-  * paste
-  * selectall
-  * minimize
-  * close
+    * undo
+    * redo
+    * cut
+    * copy
+    * paste
+    * selectall
+    * minimize
+    * close
 
 electron-rebuild would automatically take care of headers & native node module
 builds. so, after each `npm i`, do a `./node_modules/.bin/electron-rebuild`

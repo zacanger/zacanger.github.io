@@ -86,12 +86,12 @@ now.
 
 * `+`, `-`, `/`, `*` -- work as expected
 * `%` -- remainder operator
-  * this is often incorrectly called a modulo (or, more incorrectly, 'modulus').
-  * result of remainder operator takes the sign of the dividend (rather than the divisor)
+    * this is often incorrectly called a modulo (or, more incorrectly, 'modulus').
+    * result of remainder operator takes the sign of the dividend (rather than the divisor)
 * `**` -- exponentiation. example: `4 ** 4` // => 256
-  * not implemented in current widely-supported js version (ecmascript 5.1)
-  * not implemented in current standard (ES2015)
-  * proposed for ES7/ES2016--in stage 3 (implementation) as of feb 2016
+    * not implemented in current widely-supported js version (ecmascript 5.1)
+    * not implemented in current standard (ES2015)
+    * proposed for ES7/ES2016--in stage 3 (implementation) as of feb 2016
 
 ### COMPARISON/RELATIONAL:
 

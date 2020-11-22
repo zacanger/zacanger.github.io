@@ -38,9 +38,9 @@
 * Usually create a promise with a constructor (<code>new Promise</code>)
 * Usually its two handlers are named <code>resolve</code> and <code>reject</code>
 * A promise will have one of three states:<br />
-  * Pending (until something happens)<br />
-  * Fulfilled (if the first handler is called)<br />
-  * Rejected (if the second handler is called)
+    * Pending (until something happens)<br />
+    * Fulfilled (if the first handler is called)<br />
+    * Rejected (if the second handler is called)
 * It can only be 'settled' (either resolved or rejected) once.
 * Can't cancel a promise.
 * No way to check the status (if pending, fulfilled, or rejected).
@@ -55,10 +55,10 @@
 * This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.
 * <code>throw</code>ing will automatically reject that promise.
 * <code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<br />
-  * Otherwise (if any are rejected) it will reject.
+    * Otherwise (if any are rejected) it will reject.
 * <code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.
 * Don't program with promises using same patterns as with callbacks.<br />
-  * (Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)
+    * (Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)
 * Don't nest promises. Use a <code>.all</code> instead.</p>
 <p>Examples:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>

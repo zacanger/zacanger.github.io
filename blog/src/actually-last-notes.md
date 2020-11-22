@@ -67,17 +67,17 @@ That's my interpretation, anyway.
 ## Notes on Mongo schema design
 
 #### (in a one-to-n sort of situation...)
-  - Embed N if low cardinality & don't need to access embedded N standalone (outside parent object's context) (array of documents)
-  - Array of refs to N objects if cardinality is one-to-many, or if N objects should need to stand alone (array of refs)
-  - Ref to One from the N objects if cardinality is very high (parent ref in the N-side document)
+- Embed N if low cardinality & don't need to access embedded N standalone (outside parent object's context) (array of documents)
+- Array of refs to N objects if cardinality is one-to-many, or if N objects should need to stand alone (array of refs)
+- Ref to One from the N objects if cardinality is very high (parent ref in the N-side document)
 
 #### the six rules of thumb, according to mongodb:
-  1. favour embedding unless there is a compelling reason not to
-  1. needing to access an object on its own is a compelling reason
-  1. arrays should not grow. more than a couple hundred on the 'many' side, don't embed. if there are more than a couple thousand, don't use an array of objectid refs.
-  1. don't fear application-level joins.
-  1. keep r/w ratio in mind when denormalizing. mostly read is a good candidate. frequently updated means it's not worth it.
-  1. structure your models around how you will access data. how the app queries and updates are very important here.
+1. favour embedding unless there is a compelling reason not to
+1. needing to access an object on its own is a compelling reason
+1. arrays should not grow. more than a couple hundred on the 'many' side, don't embed. if there are more than a couple thousand, don't use an array of objectid refs.
+1. don't fear application-level joins.
+1. keep r/w ratio in mind when denormalizing. mostly read is a good candidate. frequently updated means it's not worth it.
+1. structure your models around how you will access data. how the app queries and updates are very important here.
 
 --------
 
@@ -170,31 +170,31 @@ there _shouldn't_ be conflict.)
 - chromium-args (literally).
 - js-flags (string) for example:`{"name": "test", "main": "index.html", "js-flags": etc function etc}`
 - inject-js-start and inject-js-end (THESE ARE THE IMPORTANT BITS, PAY ATTENTION HERE!)
-  - start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.
-  - end: same, but it's excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.
+    - start: local filename (relative to index.html) to specify js to inject. js is executed AFTER all css, but BEFORE any other scripts are run or the dom is built.
+    - end: same, but it's excecuted AFTER loaded, before the onload event. mostly used as an option of Window.open() to inject js into a new window.
 
 - window:
-  - title str
-  - width/height int
-  - tooolbar bool
-  - icon str (path to the icon)
-  - position  str (null, center, or mouse)
-  - `min_width`, `min_height`, `max_width`, `max_height` int
-  - `as_desktop` bool show as x server desktop background window
-  - resizable bool
-  - always-on-top bool
-  - visible-on-all-workspaces bool
-  - fullscreen bool
-  - `show_in_taskbar` bool
-  - frame bool (sets frameless; avoid if setting fullscreen to true!)
-  - show bool (false would mean hidden startup [tray?])
-  - kiosk bool (fullscreen, prevents mouse-driven leaving app; alt-f4 still works, and ctrl-q probably does as well)
-  - transparent bool (would need composition support) (if true, set with rgba as in css)
+    - title str
+    - width/height int
+    - tooolbar bool
+    - icon str (path to the icon)
+    - position  str (null, center, or mouse)
+    - `min_width`, `min_height`, `max_width`, `max_height` int
+    - `as_desktop` bool show as x server desktop background window
+    - resizable bool
+    - always-on-top bool
+    - visible-on-all-workspaces bool
+    - fullscreen bool
+    - `show_in_taskbar` bool
+    - frame bool (sets frameless; avoid if setting fullscreen to true!)
+    - show bool (false would mean hidden startup [tray?])
+    - kiosk bool (fullscreen, prevents mouse-driven leaving app; alt-f4 still works, and ctrl-q probably does as well)
+    - transparent bool (would need composition support) (if true, set with rgba as in css)
 
 - webkit
-  - plugin bool (defaults false, for loading media plugins)
-  - java bool (fuck no, leave that shit where it is)
-  - page-cache bool
+    - plugin bool (defaults false, for loading media plugins)
+    - java bool (fuck no, leave that shit where it is)
+    - page-cache bool
 
 More on nw stuff:
 
@@ -205,9 +205,9 @@ directory contents, not a directory containing them.
 `console.log` redirects to dev tools (same with console.warn and console.error)
 
 the `process` object:
-  - `process.versions['node-webkit']` is set with nw's version
-  - `process.versions['chromium']` is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)
-  - `process.mainModule` is set to the _start_ page, eg `index.html`--this is whatever's under `main` in the package.json, UNLESS there's a specified `node-main` field there.
+- `process.versions['node-webkit']` is set with nw's version
+- `process.versions['chromium']` is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)
+- `process.mainModule` is set to the _start_ page, eg `index.html`--this is whatever's under `main` in the package.json, UNLESS there's a specified `node-main` field there.
 
 `__dirname` can only be called by node modules (with `require()`). webkit doesn't have that (not in devtools either). a hacky fix:
 

@@ -101,26 +101,36 @@ Session.get('count_')).  Session variables are <em>reactive sources</em>. Templa
 helpers are <em>reactive computations</em>.</p>
 <p>Reactive variables in Meteor:</p>
 <ul>
-<li>Session variables</li>
+<li>Session variables<ul>
 <li>defined with <code>Session.set()</code></li>
 <li>retrieved with <code>Session.get()</code></li>
 <li>global to the app, and reactive</li>
-<li>Cursors</li>
+</ul>
+</li>
+<li>Cursors<ul>
 <li>what you get when querying db</li>
 <li>(via <code>Collection.find()</code>)</li>
-<li>Subscription's <code>ready()</code> method</li>
+</ul>
+</li>
+<li>Subscription's <code>ready()</code> method<ul>
 <li><code>subscription.ready()</code> is when the client has received all data</li>
-<li>some others, including:</li>
+</ul>
+</li>
+<li>some others, including:<ul>
 <li><code>Meteor.user()</code></li>
 <li><code>Meteor.userId()</code></li>
 <li><code>Meteor.status</code></li>
 <li><code>Meteor.loggingIn</code></li>
 </ul>
+</li>
+</ul>
 <p>Reactive computations:</p>
 <ul>
 <li>template helpers (eg <code>{{something}}</code> in a template, duh)</li>
-<li>iron router (third party) hooks are reactive</li>
+<li>iron router (third party) hooks are reactive<ul>
 <li>route functions and <em>most</em> hooks are run in a reactive computation</li>
+</ul>
+</li>
 </ul>
 <p>Custom reactivity in meteor: reactive-var (third party package) enables<br />
 defining own reactive variables. these don't have global names (like<br />

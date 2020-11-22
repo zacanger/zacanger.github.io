@@ -33,50 +33,76 @@
     </header>
     <div>
       <ul>
-<li>arity</li>
+<li>arity<ul>
 <li>number of args a function takes</li>
 <li>ary + ity (it's two suffixes!)</li>
 <li>binary, ternary, etc = arity of two, arity of three, etc</li>
 <li>variable number of args = variadic</li>
 <li>dyadic = binary (talkin greek here)</li>
-<li>hof</li>
+</ul>
+</li>
+<li>hof<ul>
 <li>function that takes function as arg</li>
 <li>or function that returns a function</li>
-<li>partial application</li>
+</ul>
+</li>
+<li>partial application<ul>
 <li>getting a function with lower arity compared to original function</li>
 <li>by fixing number of args</li>
-<li>currying</li>
+</ul>
+</li>
+<li>currying<ul>
 <li>converting function with multiple arity into function with arity of one</li>
-<li>purity</li>
+</ul>
+</li>
+<li>purity<ul>
 <li>pure function's return value is determined ONLY by input values</li>
 <li>no side effects</li>
-<li>side effects</li>
+</ul>
+</li>
+<li>side effects<ul>
 <li>if modifies some state</li>
 <li>or has observable interaction with external functions</li>
-<li>idempotency</li>
+</ul>
+</li>
+<li>idempotency<ul>
 <li>no side effects on multiple executions with same parameters</li>
-<li>points-free</li>
+</ul>
+</li>
+<li>points-free<ul>
 <li>does not include information regarding arguments</li>
-<li>functor</li>
+</ul>
+</li>
+<li>functor<ul>
 <li>structure than can be mapped over</li>
 <li>simplest in js is an array</li>
-<li>referential transparency</li>
+</ul>
+</li>
+<li>referential transparency<ul>
 <li>expression that can be replaced with its value without changing its behavior</li>
 <li>eg <code>let oi = ()  = 'howdy'</code>; <code>oi()</code> can be <code>'howdy'</code>, hence is referentially transparent</li>
-<li>lazy eval</li>
+</ul>
+</li>
+<li>lazy eval<ul>
 <li>delays evaluation of expression until needed</li>
 <li>allows for structures that are not available in imperative langs where sequence is significant</li>
-<li>monoid</li>
+</ul>
+</li>
+<li>monoid<ul>
 <li>data type and two-param function that combines two values of the type, where an identity value that doesn't affect result also exists</li>
 <li>example: 1 + 1 (data type is number, function is =)</li>
 <li>1 + 0 (identity value is 0)</li>
-<li>monad</li>
+</ul>
+</li>
+<li>monad<ul>
 <li>abstraction. provides interface for executing common sequence of commands on a value one normally avoids acting on directly</li>
 <li>optional value monad is common (to avoid exposing to null values)</li>
 <li>a monad is a special functor that also returns a monad</li>
 <li>so, can be chained to describe sequence of operations</li>
 <li>useful when sequence matters (hence nickname 'programmable semicolons')</li>
 <li>example: <code>let Identity = v =&gt; ({bind: transform =&gt; transform(v)})</code></li>
+</ul>
+</li>
 </ul>
     </div>
     <footer>

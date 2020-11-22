@@ -59,14 +59,14 @@ Here's a couple of things to like about Macs/Apple. Keep in mind that I don't ow
 any since before Mac OS X. I have used them regularly over the past several years, though.
 
 * Their hardware doesn't suck. It's not great, performance-wise, for the price, but it's good hardware.
-  * Great battery life (due to the fancy it's-not-in-just-one-place-in-your-laptop battery).
-  * Great displays (if you pay for the great display).
-  * The cases (speaking of their laptops, here) are _gorgeous_.
-  * They're super light. Yes, there are Windows laptops that are also super light. Those Windows laptops also probably
-    cost less and are more powerful, generally. But you can get a powerful Mac that's also lightweight (for like $3500).
-  * The keyboards, while annoyingly different from literally every other type of computer ever, have a nice feel.
-    (My current laptop, and the one I used just prior to this one, had equally good keyboards. They're not only a
-    Mac thing.)
+    * Great battery life (due to the fancy it's-not-in-just-one-place-in-your-laptop battery).
+    * Great displays (if you pay for the great display).
+    * The cases (speaking of their laptops, here) are _gorgeous_.
+    * They're super light. Yes, there are Windows laptops that are also super light. Those Windows laptops also probably
+      cost less and are more powerful, generally. But you can get a powerful Mac that's also lightweight (for like $3500).
+    * The keyboards, while annoyingly different from literally every other type of computer ever, have a nice feel.
+      (My current laptop, and the one I used just prior to this one, had equally good keyboards. They're not only a
+      Mac thing.)
 * Under the hood, Mac OS X is a (gimped) BSD. It's a PITA sometimes to actually get to the good parts, and it's a lot
   easier to just throw Linux on a (much cheaper, probably faster) laptop, but it can be made into a really nice
   development environment. It takes some work on any platform (and is virtually impossible on Windows, unless you're
@@ -85,5 +85,5 @@ any since before Mac OS X. I have used them regularly over the past several year
   editor I've ever seen), and a host of fantastic video tools -- plus, of course, ImageMagick and everything that
   allows.
 * Mac OS X isn't Windows.
-  * I should say that Windows _is_ good at some things. I think. Not the OS itself, but having the OS, it's probably a
-    good idea if you're really into games, or developing specifically for Microsoft products (VB, C#, whatever).
+    * I should say that Windows _is_ good at some things. I think. Not the OS itself, but having the OS, it's probably a
+      good idea if you're really into games, or developing specifically for Microsoft products (VB, C#, whatever).

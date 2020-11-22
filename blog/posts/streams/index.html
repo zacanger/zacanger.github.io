@@ -71,8 +71,10 @@ on that if text content expected).</p>
 <li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream's buffer</li>
 <li><code>controller.close()</code> ends</li>
 <li><code>controller.error(e)</code> sends <code>e</code> (is a terminal error)</li>
-<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)</li>
+<li><code>controller.desiredSize</code> amount of buffer left (can be negative if overfilled)<ul>
 <li><code>queuingStrategy</code> is used to get this</li>
+</ul>
+</li>
 <li>you could call <code>controller.enqueue()</code> whenever there's data to send (stream as a push source)</li>
 <li>you could wait until there's a <code>pull</code> called, then queue up some data (pull source)</li>
 <li>you can do whatever you like (basically)</li>
@@ -115,39 +117,39 @@ don't have a <code>.pipe()</code> in the browser. we need that.</p>
 <p>Some important things to remember (for me to remember, that is) -- differences between the<br />
 proposed Stream and Node's streams:
 * Readable<br />
-  * <code>.read()</code> instead of <code>.on('readable')</code><br />
-  * Also a sync <code>.read()</code><br />
-  * Cancellation semantics added<br />
-  * <code>desiredSize</code><br />
-  * <code>tee</code>ing built in<br />
-  * <code>data</code> event fully gone (it's only in Node streams in compatability mode, btw)<br />
-  * <code>pause</code> and <code>resume</code> aren't a thing<br />
-  * no <code>unshift</code><br />
-  * binary/string/object mode switching isn't a thing<br />
-  * size parameter is gone (use BYOB readers)
+    * <code>.read()</code> instead of <code>.on('readable')</code><br />
+    * Also a sync <code>.read()</code><br />
+    * Cancellation semantics added<br />
+    * <code>desiredSize</code><br />
+    * <code>tee</code>ing built in<br />
+    * <code>data</code> event fully gone (it's only in Node streams in compatability mode, btw)<br />
+    * <code>pause</code> and <code>resume</code> aren't a thing<br />
+    * no <code>unshift</code><br />
+    * binary/string/object mode switching isn't a thing<br />
+    * size parameter is gone (use BYOB readers)
 * Writable<br />
-  * No cork/uncork
+    * No cork/uncork
 * Transform<br />
-  * now just <code>{readable, writable}</code> rly
+    * now just <code>{readable, writable}</code> rly
 * other<br />
-  * promises instead of cbs<br />
-  * no enc/dec built-in<br />
-  * <code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><br />
-    * so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for<br />
+    * promises instead of cbs<br />
+    * no enc/dec built-in<br />
+    * <code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><br />
+        * so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for<br />
 <code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></p>
 <p>Okay, so, Node streams.
 * <code>req</code> and <code>res</code> are streams
 * <code>.pipe()</code> listens for 'data' and 'end' from fs streams
 * <code>.pipe()</code> handles backpressure for ya
 * types of streams:<br />
-  * readable<br />
-  * writable<br />
-  * transform<br />
-  * duplex<br />
-  * 'classic'
+    * readable<br />
+    * writable<br />
+    * transform<br />
+    * duplex<br />
+    * 'classic'
 * chain pipes, don't break crap out<br />
-  * <code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code><br />
-  * that's basically the same as <code>one | two | three</code></p>
+    * <code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code><br />
+    * that's basically the same as <code>one | two | three</code></p>
 <div class="highlight"><pre><span></span><span class="c1">//</span>
 <span class="c1">// readable</span>
 <span class="c1">//</span>

@@ -31,11 +31,11 @@ happened:
 * people fucking in the next room, so she couldn't leave, and had to sit there and endure the sounds.
 * friend finally able to leave, found clothes, was denied her shoes by sister & sister's companions.
 * sister & sister's friend, to protect the person supplying alcohol, attacked my friend. this included
-  * throttling until nearly passed out
-  * severe blows to head in attempt to render unconscious
-  * conversation between the sister and the sister's friend regarding what to do with the body, if dead
-  * decision to throw the body into nearby pond
-  * on realising she was still alive, physically trying to drag back to the house where all this started
+    * throttling until nearly passed out
+    * severe blows to head in attempt to render unconscious
+    * conversation between the sister and the sister's friend regarding what to do with the body, if dead
+    * decision to throw the body into nearby pond
+    * on realising she was still alive, physically trying to drag back to the house where all this started
 * witnesses called police while sister and sister's friend were walking away, having given up the physical labour, intending to return shortly
 * police initially seemed sympathetic, but no medics called
 * police questioned sister, who stated (falsely) that friend is schizophrenic, inflicted own head wounds after locking self in the bathroom, and that she (the sister) and her friend were trying to 'help her' back

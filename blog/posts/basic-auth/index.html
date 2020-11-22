@@ -33,20 +33,30 @@
     </header>
     <div>
       <ul>
-<li>Basic HTTP:</li>
+<li>Basic HTTP:<ul>
 <li>restricted based on system user/pass</li>
 <li><a href="http://zacanger:encryptedpassword@zacanger.com">http://zacanger:encryptedpassword@zacanger.com</a></li>
-<li>Form-based:</li>
+</ul>
+</li>
+<li>Form-based:<ul>
 <li>restricted based on cookies</li>
 <li>success = stored cookie on client</li>
 <li><code>POST whatever.com/login (headers)</code></li>
-<li>Token-based:</li>
+</ul>
+</li>
+<li>Token-based:<ul>
 <li>requests with auth token</li>
 <li><a href="https://foo.bar/whatever?auth_token=asdfghjkl123456789">https://foo.bar/whatever?auth_token=asdfghjkl123456789</a></li>
-<li>OAuth</li>
+</ul>
+</li>
+<li>OAuth<ul>
 <li>rate limited, expired, revoked server-side</li>
-<li>Passport</li>
+</ul>
+</li>
+<li>Passport<ul>
 <li>this is, clearly, the preferred method, both with devmtn and with express in general, i feel</li>
+</ul>
+</li>
 </ul>
 <hr />
 <div class="highlight"><pre><span></span><span class="c1">// npm i -S the things we&#39;re requiring right here</span>

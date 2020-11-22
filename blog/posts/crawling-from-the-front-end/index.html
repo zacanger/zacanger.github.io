@@ -37,8 +37,10 @@
 <li>First, create an array to store visited links: <code>var visitedLinks = []</code>.</li>
 <li>Now, define a seed URL and root domain: <code>var link = http://some.url, rootDomain = some.url</code>.</li>
 <li>Now we need a recursive function that takes in the link.</li>
-<li>In the function, define a URL to request from Yahoo, to get all the internal links on that page.</li>
+<li>In the function, define a URL to request from Yahoo, to get all the internal links on that page.<ul>
 <li>The Yahoo Query Language looks like this: <code>SELECT * FROM html WHERE url = '" + encodeURI(link) + "' AND xpath=\"//a[not(contains(@href,'" + rootDomain + "'))][contains(@href,'http')]\""</code></li>
+</ul>
+</li>
 <li>This returns JSON, which contains an array of objects under data=&gt;query=&gt;results=&gt;a, with each object containing a key of <code>href</code> and a value of a link.</li>
 <li>We need to loop through this, check if the link is in the <code>visitedLinks</code> array, move on if true, and add it to the array otherwise. Then we call the function again and use the new link as the parameter.</li>
 <li>To limit this, we can do something like <code>if(vistedLInks &lt;= 10000){ourFunction(newLink)}else{console.log('done!')}</code></li>
