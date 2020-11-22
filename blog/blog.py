@@ -25,6 +25,8 @@ index_data = []
 jinja_env = Environment(loader=PackageLoader("blog", "templates"))
 
 
+# TODO: this module has a bug in it, I think.
+# Single newlines in markdown should not be treated as line breaks.
 def render_md(source):
     return markdown.markdown(
         source, extensions=[GithubFlavoredMarkdownExtension()]
