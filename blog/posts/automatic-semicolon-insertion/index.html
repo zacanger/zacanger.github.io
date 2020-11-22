@@ -32,20 +32,20 @@
       <h4><small>Tagged: js, asi, semicolons, rant</small></h4>
     </header>
     <div>
-      <p>This is a simplified version of the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">section from the spec that deals with<br />
-ASI</a>, because I'm<br />
-really tired of all the idiocy and debate about this. It's not a big deal<br />
-whether you use semicolons everywhere or don't, but the vitriol from those who<br />
-use them everywhere really needs to end, and from what I can tell it's almost<br />
-entirely based on this idea that ASI is complicated. ASI is <em>really simple</em>, and<br />
-its rules are a lot easier to remember than stupidity like <code>++foo</code> vs <code>foo++</code>,<br />
-or the rules for <code>this</code>. The actual spec's ASI section is less than two pages,<br />
+      <p>This is a simplified version of the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">section from the spec that deals with
+ASI</a>, because I'm
+really tired of all the idiocy and debate about this. It's not a big deal
+whether you use semicolons everywhere or don't, but the vitriol from those who
+use them everywhere really needs to end, and from what I can tell it's almost
+entirely based on this idea that ASI is complicated. ASI is <em>really simple</em>, and
+its rules are a lot easier to remember than stupidity like <code>++foo</code> vs <code>foo++</code>,
+or the rules for <code>this</code>. The actual spec's ASI section is less than two pages,
 but it can be simplified further, into probably less than a page.</p>
 <hr />
 <h2>Automatic Semicolon Insertion</h2>
-<p>ECMAScript statements are really really basic, and if you don't know what a<br />
-statement is, you probably shouldn't be programming. A lot of statements in<br />
-JavaScript (the popular implementation of the ECMAScript standard) are<br />
+<p>ECMAScript statements are really really basic, and if you don't know what a
+statement is, you probably shouldn't be programming. A lot of statements in
+JavaScript (the popular implementation of the ECMAScript standard) are
 terminated by semicolons. These are:</p>
 <ul>
 <li>empty statement</li>
@@ -57,9 +57,9 @@ terminated by semicolons. These are:</p>
 <li>throw statement</li>
 <li>return statement</li>
 </ul>
-<p>Semicolons don't need to be included in the source while writing these,<br />
-though. Why not? Because when they're parsed, semicolons are automatically<br />
-inserted. Why is this okay? Because new lines (what the spec calls a<br />
+<p>Semicolons don't need to be included in the source while writing these,
+though. Why not? Because when they're parsed, semicolons are automatically
+inserted. Why is this okay? Because new lines (what the spec calls a
 'LineTerminator') also end statements, except in a few cases:</p>
 <ol>
 <li>The next line starts with one of the following characters: <code>[ ( + * / - , .</code></li>
@@ -69,9 +69,9 @@ inserted. Why is this okay? Because new lines (what the spec calls a<br />
 </ol>
 <p>Let's talk about that for a second.</p>
 <p>Exception number four is pretty obvious, and no one has a problem with that.</p>
-<p>Exception number three is also pretty obvious, because you're talking about<br />
+<p>Exception number three is also pretty obvious, because you're talking about
 being in a block. Not rocket science.</p>
-<p>Exception number three: If you're writing something like this, you need some<br />
+<p>Exception number three: If you're writing something like this, you need some
 mental help:</p>
 <div class="highlight"><pre><span></span>i
 ++
@@ -83,18 +83,18 @@ j
 ++j;
 </pre></div>
 
-<p>But guess what? No rational human being would write code like that, so it's<br />
+<p>But guess what? No rational human being would write code like that, so it's
 not a problem. Right? Right.</p>
-<p>It's the first thing that people worry about, really. Which is why we like to<br />
-do semicolons at the beginning of those lines. It turns out it's a lot quicker<br />
-and easier to remember than people think. Don't write your code like a jackass<br />
-(it's not concrete poetry, dummy), and put a semicolon at the beginning of a<br />
-line if it starts with <code>[</code> or <code>(</code>. And it turns out it's a lot easier to read,<br />
-too (comma-first is another entire discussion, but what it comes down to is<br />
-that comma-first is much, much easier to read and write, so it doesn't really<br />
+<p>It's the first thing that people worry about, really. Which is why we like to
+do semicolons at the beginning of those lines. It turns out it's a lot quicker
+and easier to remember than people think. Don't write your code like a jackass
+(it's not concrete poetry, dummy), and put a semicolon at the beginning of a
+line if it starts with <code>[</code> or <code>(</code>. And it turns out it's a lot easier to read,
+too (comma-first is another entire discussion, but what it comes down to is
+that comma-first is much, much easier to read and write, so it doesn't really
 make much sense not to do it).</p>
-<p>There's also that other thing where ASI could totally break your code, and<br />
-that goes back to the "Don't write code like a jackass (it's not concrete<br />
+<p>There's also that other thing where ASI could totally break your code, and
+that goes back to the "Don't write code like a jackass (it's not concrete
 poetry)" bit. Imagine you're a tool, so you write:</p>
 <div class="highlight"><pre><span></span>function foo(bar){
   return
@@ -103,13 +103,13 @@ poetry)" bit. Imagine you're a tool, so you write:</p>
 </pre></div>
 
 <p>Well, for starters, you're weird. And ASI will do this: <code>function foo(bar){
-return; bar; };</code>. It turns out there's a really super easy way around that<br />
-problem, and it's something all people do anyway because they're not horrible<br />
-human beings: don't put random newlines in your code. <code>return</code> is <em>always</em><br />
-terminated by a newline (as mentioned above), so everyone's already aware of<br />
+return; bar; };</code>. It turns out there's a really super easy way around that
+problem, and it's something all people do anyway because they're not horrible
+human beings: don't put random newlines in your code. <code>return</code> is <em>always</em>
+terminated by a newline (as mentioned above), so everyone's already aware of
 this. That was easy. Same goes for <code>break</code>, <code>continue</code>, and <code>throw</code>.</p>
-<p>The idea that putting semicolons everywhere is somehow more readable or safe<br />
-makes very little sense. I could put semicolons all over the place, and it<br />
+<p>The idea that putting semicolons everywhere is somehow more readable or safe
+makes very little sense. I could put semicolons all over the place, and it
 makes no difference.</p>
 <div class="highlight"><pre><span></span>function foo(){;;;;;;;;;;;
 ;;var bar = &#39;semicolons&#39;;;
@@ -127,29 +127,29 @@ foo()
 </pre></div>
 
 <p>See any difference?</p>
-<p>ASI's not a new thing (it's older than a lot of people writing JavaScript<br />
-these days, actually). It's not scary, it's not unreliable, and it definitely<br />
-doesn't cause <a href="https://google.github.io/styleguide/javascriptguide.xml?showone=Semicolons#Semicolons">subtle, hard to debug<br />
-problems</a>,<br />
+<p>ASI's not a new thing (it's older than a lot of people writing JavaScript
+these days, actually). It's not scary, it's not unreliable, and it definitely
+doesn't cause <a href="https://google.github.io/styleguide/javascriptguide.xml?showone=Semicolons#Semicolons">subtle, hard to debug
+problems</a>,
 as long as you don't write code like a jackass.</p>
-<p>I'm basically done here. I still definitely recommend <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">actually reading<br />
-this</a>, both because<br />
-it's a bit more verbose and because it's extraordinarily comprehensible. But<br />
-if technical literature's not your style, then maybe check <a href="http://inimino.org/~inimino/blog/javascript_semicolons">one<br />
-of</a> <a href="http://mislav.net/2010/05/semicolons/">the<br />
-big</a> <a href="http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding">blog<br />
-posts</a><br />
+<p>I'm basically done here. I still definitely recommend <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-7.9">actually reading
+this</a>, both because
+it's a bit more verbose and because it's extraordinarily comprehensible. But
+if technical literature's not your style, then maybe check <a href="http://inimino.org/~inimino/blog/javascript_semicolons">one
+of</a> <a href="http://mislav.net/2010/05/semicolons/">the
+big</a> <a href="http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding">blog
+posts</a>
 from smarter people than myself on the topic.</p>
 <h2>TL;DR</h2>
-<p>The TL;DR here is that no one actually gives a shit how you write code in the<br />
-privacy of your cubicle, as long as it conforms to the styleguide of the<br />
-project you're working on. But the nastiness directed towards people who don't<br />
-use semicolons really has to end. The rules are stupid-simple, nearly<br />
-impossible to fuck up, and taking five minutes to get in the habit of writing<br />
-code this way actually does make things more readable. If you love your<br />
-semicolons, good for you. But don't ever tell someone their style is 'wrong'<br />
-or 'dangerous' or prone to breakage just because they spent an extra five<br />
-minutes to read two pages of the language specification. And don't be afraid<br />
+<p>The TL;DR here is that no one actually gives a shit how you write code in the
+privacy of your cubicle, as long as it conforms to the styleguide of the
+project you're working on. But the nastiness directed towards people who don't
+use semicolons really has to end. The rules are stupid-simple, nearly
+impossible to fuck up, and taking five minutes to get in the habit of writing
+code this way actually does make things more readable. If you love your
+semicolons, good for you. But don't ever tell someone their style is 'wrong'
+or 'dangerous' or prone to breakage just because they spent an extra five
+minutes to read two pages of the language specification. And don't be afraid
 of learning the rules yourself. It's really actually incredibly simple.</p>
     </div>
     <footer>

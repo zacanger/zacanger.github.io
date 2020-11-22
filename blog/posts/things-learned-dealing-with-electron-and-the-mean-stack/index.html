@@ -32,39 +32,39 @@
       <h4><small>Tagged: javascript, js, electron, angular, mean, school, css</small></h4>
     </header>
     <div>
-      <p>In the interest of <a href="http://coffeecoder.net/blog/blog-little-things/">blogging the little<br />
-things</a>, I want to write down a<br />
-couple of things I learned while struggling through <a href="https://github.com/zacanger/ayuba.git">my<br />
-project</a>. Nothing major, but a few things<br />
-that I really had to dig to find answers to, buried way underneath unrelated<br />
+      <p>In the interest of <a href="http://coffeecoder.net/blog/blog-little-things/">blogging the little
+things</a>, I want to write down a
+couple of things I learned while struggling through <a href="https://github.com/zacanger/ayuba.git">my
+project</a>. Nothing major, but a few things
+that I really had to dig to find answers to, buried way underneath unrelated
 issues in Github and whatnot.</p>
 <hr />
-<p>Firstly: Mongo is not an effective way to store data for a desktop app. If<br />
-you've got to wrap up Mongo into your app, you're looking at a huge binary; if<br />
-you're calling to Mongolab or whatever, you're looking at an online-only app,<br />
-which defeats the purpose. Ayuba will be moved to IndexedDB or similar before<br />
+<p>Firstly: Mongo is not an effective way to store data for a desktop app. If
+you've got to wrap up Mongo into your app, you're looking at a huge binary; if
+you're calling to Mongolab or whatever, you're looking at an online-only app,
+which defeats the purpose. Ayuba will be moved to IndexedDB or similar before
 being rolled back into <a href="https://www.npmjs.com/package/markvi">markvi</a>.</p>
-<p><a href="http://codemirror.net">CodeMirror</a> and <a href="http://ace.c9.io/">Ace</a> are both<br />
-really great, but if they're breaking things, it's okay to just not use them.<br />
-Syntax highlighting isn't all that important, not for<br />
+<p><a href="http://codemirror.net">CodeMirror</a> and <a href="http://ace.c9.io/">Ace</a> are both
+really great, but if they're breaking things, it's okay to just not use them.
+Syntax highlighting isn't all that important, not for
 <a href="daringfireball.net/projects/markdown/">Markdown</a>.</p>
-<p>Parsers are hard. They're mostly just regular expressions, and that's really<br />
-exhausting and annoying and not fun. It's a lot more sensible to just use <a href="https://github.com/showdownjs/showdown">a<br />
-really good one</a> that already suits<br />
+<p>Parsers are hard. They're mostly just regular expressions, and that's really
+exhausting and annoying and not fun. It's a lot more sensible to just use <a href="https://github.com/showdownjs/showdown">a
+really good one</a> that already suits
 your purpose.</p>
-<p><a href="http://electron.atom.io">Electron</a> is cool, but still new and it still has<br />
-issues. <a href="http://nwjs.io">NW.js</a> is a lot more solid, works a lot more<br />
-intuitively, and is worth learning. Either way, it's a lot easier to just use<br />
-the <a href="https://www.python.org/">right tools for the job</a>, even if it's not what<br />
+<p><a href="http://electron.atom.io">Electron</a> is cool, but still new and it still has
+issues. <a href="http://nwjs.io">NW.js</a> is a lot more solid, works a lot more
+intuitively, and is worth learning. Either way, it's a lot easier to just use
+the <a href="https://www.python.org/">right tools for the job</a>, even if it's not what
 you're paying money to learn.</p>
-<p>CSS is annoying. No one likes CSS. But it's really really really not worth<br />
-screwing yourself over by using <a href="http://getbootstrap.com">one of the</a> <a href="http://materializecss.com/">popular<br />
-and really</a> <a href="http://yuilibrary.com/">inflexible and<br />
-overweight</a> <a href="https://material.angularjs.org/latest/">UI/widgeting/CSS<br />
-frameworks</a> out there, because they<br />
+<p>CSS is annoying. No one likes CSS. But it's really really really not worth
+screwing yourself over by using <a href="http://getbootstrap.com">one of the</a> <a href="http://materializecss.com/">popular
+and really</a> <a href="http://yuilibrary.com/">inflexible and
+overweight</a> <a href="https://material.angularjs.org/latest/">UI/widgeting/CSS
+frameworks</a> out there, because they
 won't give you any room to breathe later.</p>
-<p>Number one important and really frustrating thing I learned, though, was that<br />
-Electron needs to be told that it can use Angular, jQuery, etc., explicitly.<br />
+<p>Number one important and really frustrating thing I learned, though, was that
+Electron needs to be told that it can use Angular, jQuery, etc., explicitly.
 Here's an example of my <code>app.js</code> to start my Electron app:</p>
 <div class="highlight"><pre><span></span>var app = require(&#39;app&#39;)
   , BrowserWindow = require(&#39;browser-window&#39;)
@@ -98,17 +98,17 @@ app.on(&#39;ready&#39;, function(){
 })
 </pre></div>
 
-<p>The relevant line is commented, but to emphasize: <code>'node-integration'</code> needs<br />
-to be set to <code>false</code> if you want to use frameworks/libraries that might have<br />
-conflicts with native Node things, like the word <code>module</code>. I couldn't find<br />
-this documented anywhere, and it really threw me off, for about four days<br />
-straight, until I found an issue raised on Github related to this (link's long<br />
-lost, now), with the solution to my problem mentioned way down in there<br />
-somewhere, buried. So, now you know... if your front-end code keeps breaking<br />
-in Electron, and Electron doesn't need to be aware of your app's Node backend,<br />
+<p>The relevant line is commented, but to emphasize: <code>'node-integration'</code> needs
+to be set to <code>false</code> if you want to use frameworks/libraries that might have
+conflicts with native Node things, like the word <code>module</code>. I couldn't find
+this documented anywhere, and it really threw me off, for about four days
+straight, until I found an issue raised on Github related to this (link's long
+lost, now), with the solution to my problem mentioned way down in there
+somewhere, buried. So, now you know... if your front-end code keeps breaking
+in Electron, and Electron doesn't need to be aware of your app's Node backend,
 there's a possible solution for you.</p>
-<p>Feel free to check out the <a href="https://github.com/zacanger/ayuba/tree/master/the-real-one">code from my<br />
-project</a> and tell<br />
+<p>Feel free to check out the <a href="https://github.com/zacanger/ayuba/tree/master/the-real-one">code from my
+project</a> and tell
 me how bad it is. Maybe this'll help someone, at some point.</p>
     </div>
     <footer>

@@ -11,7 +11,7 @@ import yaml
 import re
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markdown
-from mdx_gfm import GithubFlavoredMarkdownExtension
+from mdx_gfm import PartialGithubFlavoredMarkdownExtension
 
 
 src_dir = "./src"
@@ -25,11 +25,9 @@ index_data = []
 jinja_env = Environment(loader=PackageLoader("blog", "templates"))
 
 
-# TODO: this module has a bug in it, I think.
-# Single newlines in markdown should not be treated as line breaks.
 def render_md(source):
     return markdown.markdown(
-        source, extensions=[GithubFlavoredMarkdownExtension()]
+        source, extensions=[PartialGithubFlavoredMarkdownExtension()]
     )
 
 

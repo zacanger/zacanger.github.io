@@ -33,7 +33,7 @@
     </header>
     <div>
       <h1>Category Theory for JS Devs</h1>
-<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this<br />
+<p>Notes taken while watching <a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX">this
 series</a>.</p>
 <h2>Contracts</h2>
 <p>Basics of type checking.</p>
@@ -44,12 +44,12 @@ series</a>.</p>
 </pre></div>
 
 <h2>Guarded Functions and Categories</h2>
-<p>Functions that have contracts on input or output are called <em>guarded</em><br />
+<p>Functions that have contracts on input or output are called <em>guarded</em>
 functions.</p>
 <p>An <em>any</em> function might just look like an identity function (<code>const any = a =&gt;
 a</code>).</p>
 <p>Maps between categories are functors.</p>
-<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded)<br />
+<p>The <em>objects</em> of categories are the <em>contracts</em>. <em>Morphisms</em> are the (guarded)
 functions.</p>
 <p>Function that returns a contract:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">typeOf</span> <span class="o">=</span> <span class="nx">type</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -72,13 +72,13 @@ functions.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>Before I go further I should mention that yes, I have heard of Flow and<br />
+<p>Before I go further I should mention that yes, I have heard of Flow and
 TypeScript.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">increment</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="o">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 
-<p>I assume this video series will get to actual type systems at some point,<br />
-though it was made before TypeScript and Flow were written, so it won't be<br />
+<p>I assume this video series will get to actual type systems at some point,
+though it was made before TypeScript and Flow were written, so it won't be
 mentioning those.</p>
 <h2>Array Contracts</h2>
 <p>Not using <code>isArray</code> or <code>instance of</code>. Using <code>toString</code>.</p>
@@ -90,16 +90,16 @@ mentioning those.</p>
 
 <p>The same thing could be done for <code>Date</code>, <code>RegExp</code>, etc.</p>
 <h2>Functors</h2>
-<p>Takes a maps the contract over the things array. Will throw if they're not all<br />
+<p>Takes a maps the contract over the things array. Will throw if they're not all
 correct. Ensure that your array is, for example, all Strings, or whatever.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arrayOf</span> <span class="o">=</span> <span class="nx">contract</span> <span class="p">=&gt;</span> <span class="nx">things</span> <span class="p">=&gt;</span> <span class="nx">arr</span><span class="p">(</span><span class="nx">things</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
 </pre></div>
 
-<p>This acts on the category's <em>objects</em> and <em>morphisms</em> both, and produces new<br />
+<p>This acts on the category's <em>objects</em> and <em>morphisms</em> both, and produces new
 objects and new morphisms.</p>
 <h2>Maybe</h2>
 <p>The <em>Maybe</em> functor.</p>
-<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for<br />
+<p><code>Maybe</code> is a Monad, but I guess we're only thinking of its Functor-ness for
 this video?</p>
 <p>Anyway here's some code.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">Maybe</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
@@ -176,10 +176,10 @@ this video?</p>
 <span class="kr">const</span> <span class="nx">once</span> <span class="o">=</span> <span class="nx">f</span> <span class="p">=&gt;</span> <span class="nx">f</span> <span class="c1">// what the actual fuck, this is id..</span>
 </pre></div>
 
-<p>Okay, I'm done, I tried. there are like 20 more videos in this series but it's<br />
-so badly done and there are so many mistakes and the guy talks so slowly that<br />
+<p>Okay, I'm done, I tried. there are like 20 more videos in this series but it's
+so badly done and there are so many mistakes and the guy talks so slowly that
 I just can't do this anymore.</p>
-<p>If anyone knows of a decent intro to category theory for JS devs, please let<br />
+<p>If anyone knows of a decent intro to category theory for JS devs, please let
 me know.</p>
     </div>
     <footer>

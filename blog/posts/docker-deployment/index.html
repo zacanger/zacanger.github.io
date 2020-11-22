@@ -33,38 +33,38 @@
     </header>
     <div>
       <h1>Deploying Docker Images</h1>
-<p>You can use Docker's repos. That's the easy way so I won't talk about it here.<br />
-There are loads of good docs out there on that, and anyway, it's built into the<br />
-tools. Instead this post deals with deployment of images that you can't publish<br />
+<p>You can use Docker's repos. That's the easy way so I won't talk about it here.
+There are loads of good docs out there on that, and anyway, it's built into the
+tools. Instead this post deals with deployment of images that you can't publish
 (like your company's code).</p>
 <h2>The non-repo way</h2>
-<p>This way doesn't give you any of the nice features of having a repo, but it's<br />
+<p>This way doesn't give you any of the nice features of having a repo, but it's
 also much easier to deal with.</p>
-<p>First export your (running) container. Do a <code>docker ps</code> to get its name or ID,<br />
+<p>First export your (running) container. Do a <code>docker ps</code> to get its name or ID,
 then <code>docker export &lt;that-name&gt; &gt; foo.tar</code>.</p>
-<p>Then you'll want to get it to your server (using <code>sftp</code> or whatever else works<br />
+<p>Then you'll want to get it to your server (using <code>sftp</code> or whatever else works
 for you). On the server, do a <code>cat foo.tar | docker import -</code></p>
 <p>Boom, it's there. You can run it the same way you would normally (like <code>docker
 run -p 80:80 -d foo</code> or whatever).</p>
 <h2>The your-own-repo way</h2>
-<p>This is a little more difficult, but you get to keep all the benefits of a<br />
+<p>This is a little more difficult, but you get to keep all the benefits of a
 Docker repo without making stuff public.</p>
 <p>Get your own repo with <code>docker run -p 5000:5000 samalba/docker-registry</code>.</p>
 <p>Hurray, once that's done you'll have your own Docker registry running!</p>
-<p>Do something like <code>docker login localhost:5000</code> and set up some login<br />
+<p>Do something like <code>docker login localhost:5000</code> and set up some login
 credentials.</p>
 <p>To push your stuff to it, first tag it with info, like <code>docker tag
 mycompany/theirprivatecode localhost:5000/mycompany/theirprivatecode</code>.</p>
 <p>Do use this repo, just use <code>docker push
 localhost:5000/mycompany/theirprivatecode</code> instead of pushing to a public repo.</p>
-<p>You'll want to do a <code>docker ps</code> and get the container ID for your local<br />
-registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or<br />
+<p>You'll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or
 set up volumes.</p>
-<p>You'll want to do a <code>docker ps</code> and get the container ID for your local<br />
-registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or<br />
+<p>You'll want to do a <code>docker ps</code> and get the container ID for your local
+registry, and commit that so you don't lose your stuff. Or you can use <code>-v</code> or
 set up volumes.</p>
-<p>Okay, so probably you'll want to put that somewhere not-on-your-local-machine.<br />
-<code>ssh</code> into your server and do an <code>ssh -R 5000:localhost:5000 -l</code> to forwared<br />
+<p>Okay, so probably you'll want to put that somewhere not-on-your-local-machine.
+<code>ssh</code> into your server and do an <code>ssh -R 5000:localhost:5000 -l</code> to forwared
 that port. Then to deploy forreal, just <code>docker pull
 localhost:5000/mycompany/theirprivatecode</code>.</p>
 <p>Then to run it you should be able to just <code>docker run

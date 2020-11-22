@@ -33,8 +33,8 @@
     </header>
     <div>
       <p>Two things that I think might be fun to play around with, at some point.</p>
-<p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or<br />
-Haskell style annotations, but maybe use Flow as a sort of backend to actually<br />
+<p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or
+Haskell style annotations, but maybe use Flow as a sort of backend to actually
 do the type checking? It could look something like this:</p>
 <div class="highlight"><pre><span></span><span class="c1">//:: Int -&gt; Int -&gt; [Int]</span>
 <span class="kr">const</span> <span class="nx">putIntsInList</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[</span> <span class="nx">a</span><span class="p">,</span>  <span class="nx">b</span> <span class="p">]</span>
@@ -44,10 +44,10 @@ do the type checking? It could look something like this:</p>
 <span class="kr">const</span> <span class="nx">doThingsWithStrings</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span>
 </pre></div>
 
-<p>It could use some sort of regexy thing to basically just detect anywhere there's<br />
-<code>//::</code>, see what the next thing is, and see if they go together. I don't know<br />
-much about ASTs or type systems, though. I just think that'd be a lot less<br />
-in-the-way than how TypeScript and Flow currently work. Also, my syntax<br />
+<p>It could use some sort of regexy thing to basically just detect anywhere there's
+<code>//::</code>, see what the next thing is, and see if they go together. I don't know
+much about ASTs or type systems, though. I just think that'd be a lot less
+in-the-way than how TypeScript and Flow currently work. Also, my syntax
 highlighting doesn't know what template strings are, so. That's gross.</p>
 <p>Another thing:</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
@@ -78,9 +78,9 @@ highlighting doesn't know what template strings are, so. That's gross.</p>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Something</span>
 </pre></div>
 
-<p>This a totally made-up syntax for a thing that doesn't exactly exist, and I<br />
-don't know how useful this would actually be, since there are already great<br />
-React libraries for ClojureScript out there. Just think it'd be neat to be able<br />
+<p>This a totally made-up syntax for a thing that doesn't exactly exist, and I
+don't know how useful this would actually be, since there are already great
+React libraries for ClojureScript out there. Just think it'd be neat to be able
 to to JSX in Scheme.</p>
     </div>
     <footer>

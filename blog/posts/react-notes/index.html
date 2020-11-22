@@ -33,27 +33,27 @@
     </header>
     <div>
       <p>This is all <em>such</em> a mess, and so unsorted, so, sorry about that in advance.</p>
-<p>This is also almost entirely notes from very early on in trying to learn React,<br />
+<p>This is also almost entirely notes from very early on in trying to learn React,
 so not all of it will be completely valid, probably. Okay. So.</p>
 <p>Enjoy.</p>
 <h4>REACT NOTES (yeah, again):</h4>
 <p>There's no <code>if...else</code> in JSX. Doesn't work. Don't try it (in your JSX).</p>
 <p>Don't try <code>&lt;!doctype&gt;</code> either. It'll break stuff.</p>
-<p>Same with HTML comments. Not worth the trouble, I guess. No one reads them,<br />
+<p>Same with HTML comments. Not worth the trouble, I guess. No one reads them,
 anyway, so whatever.</p>
-<p>Don't try to use your own code style. JSX needs to be written the way the docs<br />
-say to. Doing React means doing React <em>their</em> way, so screw your purely<br />
-stylistic preferences, they don't matter anymore. Which, unfortunately, means<br />
+<p>Don't try to use your own code style. JSX needs to be written the way the docs
+say to. Doing React means doing React <em>their</em> way, so screw your purely
+stylistic preferences, they don't matter anymore. Which, unfortunately, means
 semicolons everywhere. Gross.</p>
-<p><em>Every single XML tag needs to be closed</em>. That means that <code>&lt;br&gt;</code> is invalid,<br />
-but <code>&lt;br&gt;&lt;/br&gt;</code> is... totally valid. Also, self-closing tags (which literally<br />
-do not even exist in HTML anymore) work just fine, so <code>&lt;div /&gt;</code> is valid. What<br />
+<p><em>Every single XML tag needs to be closed</em>. That means that <code>&lt;br&gt;</code> is invalid,
+but <code>&lt;br&gt;&lt;/br&gt;</code> is... totally valid. Also, self-closing tags (which literally
+do not even exist in HTML anymore) work just fine, so <code>&lt;div /&gt;</code> is valid. What
 the hell.</p>
-<p>In JSX, <strong>everything</strong> in <code>{}</code> will be evaluated as Javascript. So you can do<br />
+<p>In JSX, <strong>everything</strong> in <code>{}</code> will be evaluated as Javascript. So you can do
 some things there, if you need to. (But not <code>if...else</code>!)</p>
-<p>Any JSX over multiple lines needs to be wrapped in parens. If it's<br />
+<p>Any JSX over multiple lines needs to be wrapped in parens. If it's
 single-line, you don't need them.</p>
-<p>Evidently it's better to indent all the stuff going in your tags just inside<br />
+<p>Evidently it's better to indent all the stuff going in your tags just inside
 the tag, rather than even with the first whatchamacallit. This is what I mean:</p>
 <div class="highlight"><pre><span></span>&lt;input type=&quot;text&quot;
        value={whatever.stuff}
@@ -67,10 +67,10 @@ the tag, rather than even with the first whatchamacallit. This is what I mean:</
   onChange={this.foo.bar} /&gt;
 </pre></div>
 
-<p>which, personally, I find more annoying and <em>less</em> readable, but apparently<br />
-that's how the React community does, so whatever. Oh, and as to the closing of<br />
-the tag, no matter what it's gonna be hideous, so I don't know or care whether<br />
-it should be on a newline. Probably not, because that's just even more lines,<br />
+<p>which, personally, I find more annoying and <em>less</em> readable, but apparently
+that's how the React community does, so whatever. Oh, and as to the closing of
+the tag, no matter what it's gonna be hideous, so I don't know or care whether
+it should be on a newline. Probably not, because that's just even more lines,
 but I have seen a lot of this:</p>
 <div class="highlight"><pre><span></span>&lt;input type=&quot;text&quot;
   value={whatever.stuff}
@@ -78,9 +78,9 @@ but I have seen a lot of this:</p>
 /&gt;
 </pre></div>
 
-<p>which is really even more annoying, but whatever. Lastly, as far as style<br />
-goes, I'll just put what would make the most sense to <strong>me</strong>, personally. Note<br />
-how clean and lined up things are? Yeah. Much better, to my eyes. Still ugly<br />
+<p>which is really even more annoying, but whatever. Lastly, as far as style
+goes, I'll just put what would make the most sense to <strong>me</strong>, personally. Note
+how clean and lined up things are? Yeah. Much better, to my eyes. Still ugly
 af, though.</p>
 <div class="highlight"><pre><span></span>&lt;input type=&quot;text&quot;
       value={whatever.stuff}
@@ -89,14 +89,14 @@ af, though.</p>
 
 <hr />
 <p>Redux:</p>
-<p>Actions describe a desired change inside the app. Actions have types. What I'm<br />
-doing in my example Redux todo app is putting functions in the actions<br />
-subdirectory, rather than putting them directly in the components; this is<br />
+<p>Actions describe a desired change inside the app. Actions have types. What I'm
+doing in my example Redux todo app is putting functions in the actions
+subdirectory, rather than putting them directly in the components; this is
 because we're not changing the internal state, we're changing the Redux store.</p>
-<p>The idea behind immutable is simply what it sounds like: mutable states are<br />
-not desirable. So instead of making changes to states, immutable returns a new<br />
-copy for every change. The API of the lib is pretty close to regular Js<br />
-variable types, which is why we can just <del>push</del> <em>unshift</em> (because we want<br />
+<p>The idea behind immutable is simply what it sounds like: mutable states are
+not desirable. So instead of making changes to states, immutable returns a new
+copy for every change. The API of the lib is pretty close to regular Js
+variable types, which is why we can just <del>push</del> <em>unshift</em> (because we want
 it on the top, duh) to a list like we would to an array.</p>
 <p>The way this little project works is like this:</p>
 <ul>
@@ -108,18 +108,18 @@ it on the top, duh) to a list like we would to an array.</p>
 </ul>
 <p>... that's all I've got. So far.</p>
 <p>With Redux, you will always only have <strong>one</strong> store, and use <em>reducers</em>.</p>
-<p>The <code>connect</code> bit lets you choose which parts of the state you want to give to<br />
-your component. That's kinda necessary in anything resembling a real app,<br />
+<p>The <code>connect</code> bit lets you choose which parts of the state you want to give to
+your component. That's kinda necessary in anything resembling a real app,
 which would have multiple reducers.</p>
-<p>Oh, so what we're doing is handling all state in Redux, and taking it<br />
-completely out of the actual components. That's sensible, I guess. Hence the<br />
+<p>Oh, so what we're doing is handling all state in Redux, and taking it
+completely out of the actual components. That's sensible, I guess. Hence the
 term 'state container.'</p>
-<p>And actions are just pure functions. so <code>dispatch(addTodo('test'))</code> is exactly<br />
-the same as <code>dispatch({type: 'addTodo', todo: 'test'})</code>. (One thing to keep in<br />
-mind, then, is to never do an AJAX request before returning an action; that<br />
-would mean a possibly different output, if there was a failure, which would<br />
+<p>And actions are just pure functions. so <code>dispatch(addTodo('test'))</code> is exactly
+the same as <code>dispatch({type: 'addTodo', todo: 'test'})</code>. (One thing to keep in
+mind, then, is to never do an AJAX request before returning an action; that
+would mean a possibly different output, if there was a failure, which would
 make the function totally not pure at all.)</p>
-<p>Directory structure: A lot of examples and boilerplates will organize files by<br />
+<p>Directory structure: A lot of examples and boilerplates will organize files by
 nature (including the ones I've been doing), so something like this:</p>
 <div class="highlight"><pre><span></span>actions/
   thoseActions.js
@@ -140,13 +140,13 @@ tests/
   ... basically the same structure as above, repeated.
 </pre></div>
 
-<p>...etc., etc., etc., and there's nothing necessarily <em>wrong</em> with that, but<br />
-it's kinda not actually scalable, I think. Especially since that means every<br />
-time you have a new 'feature,' you're throwing files in several directories.<br />
-Doesn't that sort of obstruct the whole componentized way of doing things? If<br />
-we're using ES6, which we are, because we need to find some relief from JSX,<br />
-and ES6 at least makes some things a little less horribly unpleasant, we can<br />
-export more than once from a file. Since Redux is handling state, and our<br />
+<p>...etc., etc., etc., and there's nothing necessarily <em>wrong</em> with that, but
+it's kinda not actually scalable, I think. Especially since that means every
+time you have a new 'feature,' you're throwing files in several directories.
+Doesn't that sort of obstruct the whole componentized way of doing things? If
+we're using ES6, which we are, because we need to find some relief from JSX,
+and ES6 at least makes some things a little less horribly unpleasant, we can
+export more than once from a file. Since Redux is handling state, and our
 components are just dump pluggable bits, why not nix some of that?</p>
 <div class="highlight"><pre><span></span>  import {something} from &#39;redux&#39;
   import {connect} from &#39;react-redux&#39;
@@ -165,10 +165,10 @@ components are just dump pluggable bits, why not nix some of that?</p>
   export default connect(mapStateToProps, mapDispatchToProps)(Whatever)
 </pre></div>
 
-<p>So now we have one less file, and if we are actually doing some testing, we<br />
-can, like, <code>import {Whatever} from './Whatever.js'</code>. Lovely. And instead of<br />
-throwing all our tests in a mirroring directory, let's be a <em>wee</em> bit more<br />
-like Python (where we'd just have tests in the actual files) and move our<br />
+<p>So now we have one less file, and if we are actually doing some testing, we
+can, like, <code>import {Whatever} from './Whatever.js'</code>. Lovely. And instead of
+throwing all our tests in a mirroring directory, let's be a <em>wee</em> bit more
+like Python (where we'd just have tests in the actual files) and move our
 tests closer to our code, shall we?</p>
 <div class="highlight"><pre><span></span>  src/
     app/
@@ -188,11 +188,11 @@ tests closer to our code, shall we?</p>
     ... and you get the idea....
 </pre></div>
 
-<p>That's even more of a bad example of <em>actual</em> separation of concerns, but it's<br />
-incredibly evident that React's idea of 'separation of concerns' differs<br />
-wildly from the rest of the world's. If we're trying to just organize things<br />
-by component, which we very definitely are in React, this makes a lot more<br />
-sense. Good going, interwebsh, you've helped me clean up my directories a lot!<br />
+<p>That's even more of a bad example of <em>actual</em> separation of concerns, but it's
+incredibly evident that React's idea of 'separation of concerns' differs
+wildly from the rest of the world's. If we're trying to just organize things
+by component, which we very definitely are in React, this makes a lot more
+sense. Good going, interwebsh, you've helped me clean up my directories a lot!
 Thanks. :)</p>
 <hr />
 <div class="highlight"><pre><span></span>ES7:        ::a.b  &lt;-&gt;  a::a.b
@@ -204,13 +204,13 @@ Is: &lt;input onChange={::this.onInputChange} /&gt;
 </pre></div>
 
 <hr />
-<p>Here's another proposed directory/file structure for react projects. The<br />
-benefits of this one are clear feature ownership, predictability of module<br />
-usage, and that everything literally maps to the route hierarchy (which maps<br />
-to the UI hierarchy). That's a bit backwards from how we normally (outside of<br />
+<p>Here's another proposed directory/file structure for react projects. The
+benefits of this one are clear feature ownership, predictability of module
+usage, and that everything literally maps to the route hierarchy (which maps
+to the UI hierarchy). That's a bit backwards from how we normally (outside of
 React, since there isn't really a 'normal' for React, it seems) do things.</p>
-<p>Let's say we have two types of directories: 'feature' directories and<br />
-'generic' directories. Features might be 'users,' 'admin,' or 'comments;'<br />
+<p>Let's say we have two types of directories: 'feature' directories and
+'generic' directories. Features might be 'users,' 'admin,' or 'comments;'
 generics would be your usual 'components,' 'stores,' 'actions,' and 'helpers.'</p>
 <p>So, let's say this is our route:</p>
 <div class="highlight"><pre><span></span>var routes = (
@@ -240,8 +240,8 @@ generics would be your usual 'components,' 'stores,' 'actions,' and 'helpers.'</
                     └── Assignments
 </pre></div>
 
-<p>So, let's assume that each screen will have an <code>index.js</code> which serves as the<br />
-entry point. React Router would call this a 'route handler.' There'll also be<br />
+<p>So, let's assume that each screen will have an <code>index.js</code> which serves as the
+entry point. React Router would call this a 'route handler.' There'll also be
 a <code>config/routes.js</code> up there somewhere.</p>
 <div class="highlight"><pre><span></span>app
 ├── config
@@ -265,7 +265,7 @@ a <code>config/routes.js</code> up there somewhere.</p>
 └── index.js
 </pre></div>
 
-<p>So, here each 'screen' has its own modules. So now we've got scope built right<br />
+<p>So, here each 'screen' has its own modules. So now we've got scope built right
 into our structure. Assuming each 'screen' has its own components:</p>
 <div class="highlight"><pre><span></span>app
 ├── config
@@ -295,8 +295,8 @@ into our structure. Assuming each 'screen' has its own components:</p>
 └── index.js
 </pre></div>
 
-<p>Each component there is used only in that one screen--not even the child<br />
-screens. But every screen <em>also</em> has a 'shared' directory, for sharing between<br />
+<p>Each component there is used only in that one screen--not even the child
+screens. But every screen <em>also</em> has a 'shared' directory, for sharing between
 siblings, or with a parent.</p>
 <div class="highlight"><pre><span></span>app
 ├── config
@@ -320,8 +320,8 @@ siblings, or with a parent.</p>
 └── index.js
 </pre></div>
 
-<p>With this structure, each screen has its own directory to hold its<br />
-modules. In other words, we've introduced "scope" into our application<br />
+<p>With this structure, each screen has its own directory to hold its
+modules. In other words, we've introduced "scope" into our application
 file structure.</p>
 <p>Each will probably have a <code>components</code> directory.</p>
 <div class="highlight"><pre><span></span>app
@@ -352,13 +352,13 @@ file structure.</p>
 └── index.js
 </pre></div>
 
-<p>These components are used <em>only in the current screen</em>, not even the<br />
-child screens. So what about when you've got some shared components<br />
+<p>These components are used <em>only in the current screen</em>, not even the
+child screens. So what about when you've got some shared components
 between screens?</p>
 <h3>Shared Modules</h3>
-<p>Every screen also has a "shared" generic directory. If its children<br />
-share any components with each other or the parent, we put the shared<br />
-code in "shared". Here is our growing app with some new shared, and not<br />
+<p>Every screen also has a "shared" generic directory. If its children
+share any components with each other or the parent, we put the shared
+code in "shared". Here is our growing app with some new shared, and not
 shared modules.</p>
 <div class="highlight"><pre><span></span>app
 ├── config
@@ -401,10 +401,10 @@ shared modules.</p>
 └── index.js
 </pre></div>
 
-<p>This will basically make requires/imports work the same way they do in Node,<br />
-where if you require something without a filepath, it'll look in<br />
-<code>node_modules/</code>, then <code>../node_modules/</code>, and on up until it finds something,<br />
-hopefully. As with the previously mentioned structure, we can put our tests<br />
+<p>This will basically make requires/imports work the same way they do in Node,
+where if you require something without a filepath, it'll look in
+<code>node_modules/</code>, then <code>../node_modules/</code>, and on up until it finds something,
+hopefully. As with the previously mentioned structure, we can put our tests
 right where they belong: in with the code.</p>
 <div class="highlight"><pre><span></span>app
 ├── __tests__
@@ -427,18 +427,18 @@ right where they belong: in with the code.</p>
 └── index.js
 </pre></div>
 
-<p>This is <em>definitely</em> more for larger React applications... this is<br />
-complicated, kinda, and takes a lot of files and a lot of directories, but<br />
+<p>This is <em>definitely</em> more for larger React applications... this is
+complicated, kinda, and takes a lot of files and a lot of directories, but
 it's easy to see how it could work out well and be maintainable.</p>
-<p>Note that we're using the word 'screen' here because 'view' has a lot of other<br />
-connotations, for example as the V in MVC, or as a shared template. Screens<br />
-are literally just one screen in the app. Almost like using web languages to<br />
-make <em>web stuff</em>, for the web. Y'know, like we used to, back in the good old<br />
+<p>Note that we're using the word 'screen' here because 'view' has a lot of other
+connotations, for example as the V in MVC, or as a shared template. Screens
+are literally just one screen in the app. Almost like using web languages to
+make <em>web stuff</em>, for the web. Y'know, like we used to, back in the good old
 days.</p>
 <hr />
 <h4>REDUX</h4>
-<p>Something worthy of note: immutability doesn't mean one <em>can't</em> change an<br />
-object, it just means we don't, I guess. The rule here is, basically, 'if you<br />
+<p>Something worthy of note: immutability doesn't mean one <em>can't</em> change an
+object, it just means we don't, I guess. The rule here is, basically, 'if you
 change it, replace it.'</p>
 <div class="highlight"><pre><span></span>var obj = {something: &#39;value&#39;}
 obj.something = &#39;new value&#39;
@@ -454,11 +454,11 @@ shouldComponentUpdate(newProps){
 // method to determine if components need to update themselves
 </pre></div>
 
-<p>Everything is an <em>action</em>. Only one state object. No weird buzzwords, just<br />
-straight up objects &amp; arrays &amp; primitives. Everything works by reducers (to<br />
-change state). You have a starting state and a current value. You return a new<br />
-state. Everything is sequential. Any series of identical actions performed<br />
-against the same state will result in the same returned state (so, states<br />
+<p>Everything is an <em>action</em>. Only one state object. No weird buzzwords, just
+straight up objects &amp; arrays &amp; primitives. Everything works by reducers (to
+change state). You have a starting state and a current value. You return a new
+state. Everything is sequential. Any series of identical actions performed
+against the same state will result in the same returned state (so, states
 <em>could</em> be thought of as 'purely functional,' at least in that respect).</p>
 <hr />
 <h4>WEBACK IS A PAIN</h4>
@@ -470,7 +470,7 @@ against the same state will result in the same returned state (so, states<br />
 <li>Also, there's no need for jsx-loader, because babel-loader does JSX by default.</li>
 </ul>
 <p>Webpack won't reload your entry point, just components.</p>
-<p>Here's a solution to avoid needing to require all your files inside of each<br />
+<p>Here's a solution to avoid needing to require all your files inside of each
 other (if it's a safe thing to do, for your project):</p>
 <div class="highlight"><pre><span></span>var req = require.context(&quot;../fooDirectory&quot;, true, /^(.*\.(js$))[^.]*$/igm)
 req.keys().forEach(function(key){
@@ -478,7 +478,7 @@ req.keys().forEach(function(key){
 })
 </pre></div>
 
-<p>Another way would be to make an <code>index.js</code> or whatever in that <code>fooDIrectory</code>,<br />
+<p>Another way would be to make an <code>index.js</code> or whatever in that <code>fooDIrectory</code>,
 and put this in it:</p>
 <div class="highlight"><pre><span></span>var req = require.context(&#39;./&#39;, true, /\.js$)
 req([])

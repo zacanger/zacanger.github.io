@@ -33,16 +33,16 @@
     </header>
     <div>
       <h2>General Notes, from that time I played with Meteor</h2>
-<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data<br />
-context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later<br />
+<p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data
+context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later
 (<code>{/with}</code>).</p>
-<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of<br />
+<p>{{#each}} also takes an argument, usually a 'cursor' such as the result of
 <code>Collection.find()</code>.</p>
 <p>Includes are like so: <code>{{&gt; foo bar}}</code> which will bring in the bar from foo.</p>
 <p>meteor's blaze will soon just be a thin templating layer over react.</p>
-<p>iron router is meteor's primary routing package. its 'data' method helps with<br />
+<p>iron router is meteor's primary routing package. its 'data' method helps with
 data contexts.</p>
-<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data<br />
+<p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data
 context is accessible via <code>this</code>. an example:</p>
 <div class="highlight"><pre><span></span>&lt;template name=&quot;profile&quot;&gt;
   &lt;h3&gt;profile&lt;/h3&gt;
@@ -82,11 +82,11 @@ Template.profile.helpers({
   {{/with}}
 </pre></div>
 
-<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad,<br />
-actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and<br />
+<p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad,
+actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and
 <code>{{blahblah ../..}}</code>).</p>
 <h4>Reactivity in Meteor</h4>
-<p>Reactive computation: block of code (inside of a function) that re-runs when a<br />
+<p>Reactive computation: block of code (inside of a function) that re-runs when a
 reactive data source <em>inside</em> it changes.</p>
 <div class="highlight"><pre><span></span>Template.hello.helpers{(
   counter: function(){
@@ -96,8 +96,8 @@ reactive data source <em>inside</em> it changes.</p>
 )}```
 </pre></div>
 
-<p>Here, counter re-runs whenever count changes (count is retrieved by<br />
-Session.get('count_')).  Session variables are <em>reactive sources</em>. Template<br />
+<p>Here, counter re-runs whenever count changes (count is retrieved by
+Session.get('count_')).  Session variables are <em>reactive sources</em>. Template
 helpers are <em>reactive computations</em>.</p>
 <p>Reactive variables in Meteor:</p>
 <ul>
@@ -132,8 +132,8 @@ helpers are <em>reactive computations</em>.</p>
 </ul>
 </li>
 </ul>
-<p>Custom reactivity in meteor: reactive-var (third party package) enables<br />
-defining own reactive variables. these don't have global names (like<br />
+<p>Custom reactivity in meteor: reactive-var (third party package) enables
+defining own reactive variables. these don't have global names (like
 Session.get('foo')'s foo), more like this.foo.get() declared like <code>new
 ReactiveVar()</code>.</p>
 <div class="highlight"><pre><span></span>var count = new ReactiveVar(0)
@@ -142,11 +142,11 @@ count.get() // 1
 </pre></div>
 
 <p>There's also <code>ReactiveDict</code>. That's a thing.</p>
-<p>Custom reactive computations: <code>Tracker.autorun(function(){})</code> Read the full<br />
+<p>Custom reactive computations: <code>Tracker.autorun(function(){})</code> Read the full
 Meteor manual for more on that, I guess.</p>
 <p>Reactivity can be passed on through composition, eg <code>var getCount =
-function(){ return Session.get('count') }</code> -- getCount is a reactive data<br />
-source, by virtue of Session.get('count'), which is itself a reactive data<br />
+function(){ return Session.get('count') }</code> -- getCount is a reactive data
+source, by virtue of Session.get('count'), which is itself a reactive data
 source. SO...</p>
 <div class="highlight"><pre><span></span>Template.hello.helpers({
   counter: function(){

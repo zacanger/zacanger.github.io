@@ -33,10 +33,10 @@
     </header>
     <div>
       <h2>WAIT I FOUND MORE NOTES</h2>
-<p>These should be the very last of the notes taken while at DevMountain. I stuck<br />
-in like two comments somewhere just because there was something actually<br />
-incorrect, but as usual, please don't take anything in here seriously, there's a<br />
-pretty good chance I didn't know what I was talking about when I wrote a lot of<br />
+<p>These should be the very last of the notes taken while at DevMountain. I stuck
+in like two comments somewhere just because there was something actually
+incorrect, but as usual, please don't take anything in here seriously, there's a
+pretty good chance I didn't know what I was talking about when I wrote a lot of
 this.</p>
 <hr />
 <div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">format</span><span class="p">(){</span>
@@ -49,9 +49,9 @@ this.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>this is my implementation, called format.js, stolen mostly from bevacqua. it's<br />
+<p>this is my implementation, called format.js, stolen mostly from bevacqua. it's
 like util.format(), but for not-node.</p>
-<p>so, you can pass arguments to console.log and console.error that will be passed<br />
+<p>so, you can pass arguments to console.log and console.error that will be passed
 to util.format()</p>
 <p>so %s for strings, %d for numbers, and %j for objects are valid</p>
 <div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span>
@@ -61,20 +61,20 @@ to util.format()</p>
 </pre></div>
 
 <hr />
-<p>Don't use Mongoose. Mongoose actually does have all the problems I thought it<br />
-had. Try Mongolayer at least once. <a href="https://github.com/simpleviewinc/mongolayer">https://github.com/simpleviewinc/mongolayer</a><br />
+<p>Don't use Mongoose. Mongoose actually does have all the problems I thought it
+had. Try Mongolayer at least once. <a href="https://github.com/simpleviewinc/mongolayer">https://github.com/simpleviewinc/mongolayer</a>
 <code>npm i --save mongolayer</code></p>
-<p>Recursive populates, create vs insert fixed, find/create and save using<br />
-different syntax fixed, and each document only having the fields added to it,<br />
-rather than being a whole new instance of the schema fixed. Records getting<br />
+<p>Recursive populates, create vs insert fixed, find/create and save using
+different syntax fixed, and each document only having the fields added to it,
+rather than being a whole new instance of the schema fixed. Records getting
 default values instead of not filling that field fixed. Plus other things.</p>
 <hr />
-<p>Generators DO look just like infinite loops. I'm not wrong. Turns out that's<br />
-because they are infinite loops, but that's okay, because they're basically kind<br />
-of backgrounded until called. You hit it up with an iterator, get what you need,<br />
-and then it goes back to sleep. So, in a way, maybe that's kind of like a<br />
-builtin thing that you'd imagine needs to be an infinite loop, but isn't in the<br />
-way because you only poke it when you need it. (Like Math.random(), kinda?)<br />
+<p>Generators DO look just like infinite loops. I'm not wrong. Turns out that's
+because they are infinite loops, but that's okay, because they're basically kind
+of backgrounded until called. You hit it up with an iterator, get what you need,
+and then it goes back to sleep. So, in a way, maybe that's kind of like a
+builtin thing that you'd imagine needs to be an infinite loop, but isn't in the
+way because you only poke it when you need it. (Like Math.random(), kinda?)
 That's my interpretation, anyway.</p>
 <hr />
 <h2>Notes on Mongo schema design</h2>
@@ -94,11 +94,11 @@ That's my interpretation, anyway.</p>
 <li>structure your models around how you will access data. how the app queries and updates are very important here.</li>
 </ol>
 <hr />
-<p>Type <em>introspection</em> is a feature of languages where, at runtime (which, for the<br />
-sake of keeping it in my head, we'll say is when said language goes from source<br />
-to not-source, whether that's a binary or a browser window, or whatever... (Java<br />
-bytecode doesn't count, I'm not even sure where it falls on the range of<br />
-'scripting' to 'compiled')  a program can take a peek inside and see what the<br />
+<p>Type <em>introspection</em> is a feature of languages where, at runtime (which, for the
+sake of keeping it in my head, we'll say is when said language goes from source
+to not-source, whether that's a binary or a browser window, or whatever... (Java
+bytecode doesn't count, I'm not even sure where it falls on the range of
+'scripting' to 'compiled')  a program can take a peek inside and see what the
 <em>type</em> of an <em>object</em> is.</p>
 <p>So:</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="no">Class</span><span class="o">.</span><span class="n">new</span>
@@ -131,12 +131,12 @@ bytecode doesn't count, I'm not even sure where it falls on the range of<br />
 <p>Python also has <code>hasattr</code>, which is nifty.</p>
 <hr />
 <h2>Cron in Node</h2>
-<p><code>node-schedule</code> seems quite popular. It's a 'cron-like' and 'not-cron-like'<br />
-scheduler. I believe that means it's a scheduler, but it's time based instead of<br />
-interval based (because <code>setInterval</code> exists). Node-schedule is for in-process<br />
-scheduling, so once your script has executed, it's gone (and then cron makes a<br />
-lot more sense, because otherwise you'd have to write a script just to start<br />
-node-schedule to do whatever it is that you need done at whatever time and/or<br />
+<p><code>node-schedule</code> seems quite popular. It's a 'cron-like' and 'not-cron-like'
+scheduler. I believe that means it's a scheduler, but it's time based instead of
+interval based (because <code>setInterval</code> exists). Node-schedule is for in-process
+scheduling, so once your script has executed, it's gone (and then cron makes a
+lot more sense, because otherwise you'd have to write a script just to start
+node-schedule to do whatever it is that you need done at whatever time and/or
 date).</p>
 <hr />
 <p>Gulp:</p>
@@ -155,12 +155,12 @@ date).</p>
 <li>nw: shell calls are totally fine.</li>
 <li>electron: need to spawn child procs with the <code>pipe</code> stdio option.</li>
 </ul>
-<p>A package for nw.js is a zip archive wit hthe extension 'nw.' There must be a<br />
-package.json, which includes the 'main' key (html to open on load), and name of<br />
+<p>A package for nw.js is a zip archive wit hthe extension 'nw.' There must be a
+package.json, which includes the 'main' key (html to open on load), and name of
 package (similar to node modules).</p>
-<p>'nodejs' field on package.json is boolean; set false to disable node running<br />
-there (purely client-side). node-main is the path to the script for node to run<br />
-(so we could have nodde run the server, and nwjs working with its own files, and<br />
+<p>'nodejs' field on package.json is boolean; set false to disable node running
+there (purely client-side). node-main is the path to the script for node to run
+(so we could have nodde run the server, and nwjs working with its own files, and
 there <em>shouldn't</em> be conflict.)</p>
 <ul>
 <li>user-agent (should be pretty obvious.)</li>
@@ -205,30 +205,30 @@ there <em>shouldn't</em> be conflict.)</p>
 </li>
 </ul>
 <p>More on nw stuff:</p>
-<p>whether a .nw file (renamed zip) or project directory, the package.json needs to<br />
-be in the root, and if it's the .nw, that needs to be the actual project<br />
+<p>whether a .nw file (renamed zip) or project directory, the package.json needs to
+be in the root, and if it's the .nw, that needs to be the actual project
 directory contents, not a directory containing them.</p>
 <p><code>console.log</code> redirects to dev tools (same with console.warn and console.error)</p>
-<p>the <code>process</code> object:<br />
-- <code>process.versions['node-webkit']</code> is set with nw's version<br />
-- <code>process.versions['chromium']</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)<br />
+<p>the <code>process</code> object:
+- <code>process.versions['node-webkit']</code> is set with nw's version
+- <code>process.versions['chromium']</code> is set with the chromium version that the nw version is based on (so, for example, node-webkit version 0.13.0-alpha7, chromium version 47.0.2526.73, node version 5.1.0)
 - <code>process.mainModule</code> is set to the <em>start</em> page, eg <code>index.html</code>--this is whatever's under <code>main</code> in the package.json, UNLESS there's a specified <code>node-main</code> field there.</p>
 <p><code>__dirname</code> can only be called by node modules (with <code>require()</code>). webkit doesn't have that (not in devtools either). a hacky fix:</p>
 <p><code>exports.dirname = __dirname</code> in a file, then require that (eg <code>var dirname = require('./dirnamefile').dirname; console.log(dirname)</code> would return dirname).</p>
 <hr />
 <h1>MISC NODE THINGS</h1>
-<p>What the hell is an event emitter, anyway? Oh, okay. So. Here's an example.<br />
-<code>net.Server</code> emits an event when a peer connects. <code>fs.readStream</code> emits an event<br />
-when a file is opened. <code>events.EventEmitter</code> objects! This can be accessed<br />
+<p>What the hell is an event emitter, anyway? Oh, okay. So. Here's an example.
+<code>net.Server</code> emits an event when a peer connects. <code>fs.readStream</code> emits an event
+when a file is opened. <code>events.EventEmitter</code> objects! This can be accessed
 directly by requiring <code>events</code>.</p>
-<p>Functions can be executed when an event is emitted--these are called<br />
-<strong>listeners</strong> (not something silly like emitter methods or whatever, that would<br />
-just be nonsense). In those functions, <code>this</code> is the <code>EventEmitter</code> to which the<br />
+<p>Functions can be executed when an event is emitted--these are called
+<strong>listeners</strong> (not something silly like emitter methods or whatever, that would
+just be nonsense). In those functions, <code>this</code> is the <code>EventEmitter</code> to which the
 listener is attached.</p>
-<p>Something worth noting: <em>HANDLE EVENTEMITTER ERRORS</em>. Errors are special events<br />
-in node, and if there's no listener for it, node'll just print a stack trace and<br />
-exit. So always always always be aware, and do something like <code>.on('error', fn)</code><br />
-to make sure you're handling errors the way you <strong>want</strong> to handle them, rather<br />
+<p>Something worth noting: <em>HANDLE EVENTEMITTER ERRORS</em>. Errors are special events
+in node, and if there's no listener for it, node'll just print a stack trace and
+exit. So always always always be aware, and do something like <code>.on('error', fn)</code>
+to make sure you're handling errors the way you <strong>want</strong> to handle them, rather
 than just letting shit crash and die.</p>
 <hr />
 <p>Gulp core's api is THIS SIMPLE. Check this out.</p>
@@ -239,15 +239,15 @@ than just letting shit crash and die.</p>
 <span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">glob</span> <span class="p">[,</span> <span class="nx">opts</span><span class="p">],</span> <span class="nx">cb</span><span class="p">)</span> <span class="c1">// watches fs</span>
 </pre></div>
 
-<p>That's IT. The entire codebase is actually readable in a relatively short amount<br />
+<p>That's IT. The entire codebase is actually readable in a relatively short amount
 of time. Fuckin' beautiful.</p>
-<p>Clearly that doesn't include <code>.pipe()</code>, but pipe isn't exactly an api thing I<br />
-think. It's a pipe. That'd be like saying 'oh yeah, you need to learn |, that's<br />
-a really important thing' or whatever. Sure, it's the most vital and fundamental<br />
+<p>Clearly that doesn't include <code>.pipe()</code>, but pipe isn't exactly an api thing I
+think. It's a pipe. That'd be like saying 'oh yeah, you need to learn |, that's
+a really important thing' or whatever. Sure, it's the most vital and fundamental
 thing about *n*x, but it's not a thing you learn, I guess.</p>
 <p>(note : pipe is from node, not gulp-specific)</p>
 <hr />
-<p>Regarding ES6 <code>let</code> and <code>const</code>: <code>let</code> would be mutable. <code>const</code> is basically<br />
+<p>Regarding ES6 <code>let</code> and <code>const</code>: <code>let</code> would be mutable. <code>const</code> is basically
 exactly what it sounds like.</p>
 <p>(note : not exactly)</p>
 <hr />
@@ -265,34 +265,34 @@ exactly what it sounds like.</p>
 <p><code>mixins</code> array</p>
 <p><code>statics</code> properties and methods for component</p>
 <hr />
-<p>Webpack: <code>preLoaders</code> gets executed before <code>loaders</code>, regardless of order; this<br />
-still goes in under <code>module:{}</code>.  <code>jshint-loader</code> works in here! That'll just<br />
+<p>Webpack: <code>preLoaders</code> gets executed before <code>loaders</code>, regardless of order; this
+still goes in under <code>module:{}</code>.  <code>jshint-loader</code> works in here! That'll just
 look for your standard <code>.jshintrc</code>.</p>
-<p>Eslint would be better for React, especially because of <code>eslint-plugin-react</code>.<br />
+<p>Eslint would be better for React, especially because of <code>eslint-plugin-react</code>.
 Eslint also has autofixing (--fix) for some stuff.</p>
-<p>With eslint we'd just include that as an npm script, eg <code>npm run lint</code> with<br />
+<p>With eslint we'd just include that as an npm script, eg <code>npm run lint</code> with
 <code>"lint": "eslint . --ext .js --ext .jsx --fix"</code>.</p>
-<p>Eslint also follows an <code>.eslintignore</code>, and an <code>.eslintrc</code>. Rules have<br />
-<em>severity</em>: 0 for disabled, 1 for warning, 2 for error. Some rules take an<br />
+<p>Eslint also follows an <code>.eslintignore</code>, and an <code>.eslintrc</code>. Rules have
+<em>severity</em>: 0 for disabled, 1 for warning, 2 for error. Some rules take an
 <em>array</em> instead, like <code>"quotes": [2, "single"]</code>.</p>
-<p>When there's a lint error with Eslint, npm will give you an <code>ELIFECYCLE</code> error.<br />
-To hide that, we could do <code>npm run lint --silent</code>; alternatively, the same npm<br />
-script above could have <code>|| true</code> appended, but if we invoke that from somewhere<br />
+<p>When there's a lint error with Eslint, npm will give you an <code>ELIFECYCLE</code> error.
+To hide that, we could do <code>npm run lint --silent</code>; alternatively, the same npm
+script above could have <code>|| true</code> appended, but if we invoke that from somewhere
 else, it'll pass even when there are failures.</p>
 <p><code>jscs</code>, with <code>jscs-loader</code>, follows <code>.jscsrc</code>.</p>
 <p>And, lastly, there's always EditorConfig and the <code>.editorconfig</code> file.</p>
 <hr />
-<p>Flux: really just an architecture pattern that means it has a <em>unidirectional<br />
+<p>Flux: really just an architecture pattern that means it has a <em>unidirectional
 data flow</em>. Like, seriously, that's all. Here's an example diagram: <code>Actions -&gt;
-Data Stores -&gt; Components (Views)</code>. That's <em>it</em>. All Flux really is is a way of<br />
-<em>thinking</em> about things. That's why there are libraries that <em>implement</em> Flux<br />
+Data Stores -&gt; Components (Views)</code>. That's <em>it</em>. All Flux really is is a way of
+<em>thinking</em> about things. That's why there are libraries that <em>implement</em> Flux
 patterns, like Alt.</p>
 <p>Another example diagram:</p>
-<p>```           (listens())<br />
-  Stores &lt;- - \<br />
- |              Components<br />
- |(listens)      |<br />
- \               / (calls)<br />
+<p>```           (listens())
+  Stores &lt;- - \
+ |              Components
+ |(listens)      |
+ \               / (calls)
   --&gt; Actions &lt;--</p>
 <div class="highlight"><pre><span></span>--------
 
@@ -335,48 +335,48 @@ thingy = React.createElement(SomeComponent)` or `var thingy = &lt;Some Component
 <p>React.render = (ReactElement, HTMLElement | SVGElement) =&gt; ReactComponent</p>
 <p>type ReactNode = ReactElement | ReactFragment | ReactText</p>
 <p>type ReactElement = ReactComponentElement | ReactDOMElement</p>
-<p>type ReactDOMElement = {<br />
-  type: string,<br />
-  props: {<br />
-    children: ReactNodeList,<br />
-    className: string,<br />
-    etc.<br />
-  },<br />
-  key : string | boolean | number | null,<br />
-  ref : string | null<br />
+<p>type ReactDOMElement = {
+  type: string,
+  props: {
+    children: ReactNodeList,
+    className: string,
+    etc.
+  },
+  key : string | boolean | number | null,
+  ref : string | null
 }</p>
-<p>type ReactComponentElement<TProps> = {<br />
-  type: ReacetClass<TProps>,<br />
-  props: TProps,<br />
-  key : string | boolean | number | null,<br />
-  ref : string | null<br />
+<p>type ReactComponentElement<TProps> = {
+  type: ReacetClass<TProps>,
+  props: TProps,
+  key : string | boolean | number | null,
+  ref : string | null
 }</p>
 <p>type ReactFragment = Array<ReactNode | ReactEmpty></p>
 <p>type ReactNodeList = ReactNode | ReactEmpty</p>
 <p>type ReactText string | number</p>
 <p>type ReactEmpty = null | undefined | boolean</p>
 <p>type ReacetClass<TProps> = (TProps) =&gt; ReactComponent<TProps></p>
-<p>type ReactComponent<TProps> = {<br />
-  props: TProps,<br />
-  render: () =&gt; ReactElement<br />
+<p>type ReactComponent<TProps> = {
+  props: TProps,
+  render: () =&gt; ReactElement
 }</p>
 <div class="highlight"><pre><span></span>--------
 
 #### Waterfall Model:
 </pre></div>
 
-<p>Requirements ==&gt;<br />
-  Design       ==&gt;<br />
-    Implementation ==&gt;<br />
-        Verification ==&gt;<br />
+<p>Requirements ==&gt;
+  Design       ==&gt;
+    Implementation ==&gt;
+        Verification ==&gt;
             Maintenance</p>
 <div class="highlight"><pre><span></span>Also known as:
 </pre></div>
 
-<p>Denial ==&gt;<br />
-  Bargaining ==&gt;<br />
-    Anger      ==&gt;<br />
-      Depression ==&gt;<br />
+<p>Denial ==&gt;
+  Bargaining ==&gt;
+    Anger      ==&gt;
+      Depression ==&gt;
           Acceptance</p>
 <div class="highlight"><pre><span></span>--------
 
@@ -403,12 +403,12 @@ console.log(yourDate.toGMTString() + &#39; &#39; + yourDate.toLocaleString())
 </pre></div>
 
 <hr />
-<p>A transpiler is a compiler. It takes code that can't be run on whatever engine<br />
-it's targetting, and compiles it so it works. The only actual difference is that<br />
-when funky-code-X is compiled into normal-code-Y, it stays at around the same<br />
-level of abstraction. So, turning JSX or ES6 into ES5 doesn't really make a vast<br />
-difference in terms of performance, and it's not like Javascript is a low-level<br />
-language that we're compiling to, using Babel--we're just basically<br />
+<p>A transpiler is a compiler. It takes code that can't be run on whatever engine
+it's targetting, and compiles it so it works. The only actual difference is that
+when funky-code-X is compiled into normal-code-Y, it stays at around the same
+level of abstraction. So, turning JSX or ES6 into ES5 doesn't really make a vast
+difference in terms of performance, and it's not like Javascript is a low-level
+language that we're compiling to, using Babel--we're just basically
 cross-piling. Hence the 'trans' prefix.</p>
 <hr />
 <div class="highlight"><pre><span></span><span class="c">/* hides the element so it&#39;s just _gone_ */</span>
@@ -417,8 +417,8 @@ cross-piling. Hence the 'trans' prefix.</p>
 <span class="p">.</span><span class="nc">stuff</span> <span class="p">{</span><span class="k">visibility</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;}</span>
 </pre></div>
 
-<p>NPM -- local (to project) <code>.npmrc</code> <em>must</em> be <code>0600</code>! Otherwise NPM ignores them.<br />
-Idea being that they should only be readable and writable by the single user<br />
+<p>NPM -- local (to project) <code>.npmrc</code> <em>must</em> be <code>0600</code>! Otherwise NPM ignores them.
+Idea being that they should only be readable and writable by the single user
 account. The local <code>.npmrc</code> can be overridden by arguments (such as <code>npm config
 set foo:port 9999</code>_).</p>
     </div>

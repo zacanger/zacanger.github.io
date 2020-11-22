@@ -53,7 +53,7 @@
 <span class="kt">A</span> <span class="o">&lt;=</span> <span class="kt">B</span> <span class="c1">-- B implies instance of A</span>
 </pre></div>
 
-<p>something like this is kind of right i think (what builds on what):<br />
+<p>something like this is kind of right i think (what builds on what):
 i</p>
 <div class="highlight"><pre><span></span>      monad
   applicative   ??
@@ -64,8 +64,8 @@ i</p>
 <p>No tuples, just records. But there's a lib for tuples.</p>
 <p><code>&lt;&lt;&lt;</code>  is <code>.</code> for rtl composition, and <code>&gt;&gt;&gt;</code> for ltr</p>
 <p>Lots of <code>Data.List</code> stuff is in <code>Data.Foldable</code> and <code>Data.Traversable</code> instead.</p>
-<p>To export stuff: <code>module Foo (a, b, c) where</code>.<br />
-That's like <code>export { a, b, c }</code> in JS, I think.<br />
+<p>To export stuff: <code>module Foo (a, b, c) where</code>.
+That's like <code>export { a, b, c }</code> in JS, I think.
 <code>module Foo (..)</code> exports everything, I think.</p>
     </div>
     <footer>

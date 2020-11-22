@@ -32,18 +32,18 @@
       <h4><small>Tagged: devmtn, js, css, angular</small></h4>
     </header>
     <div>
-      <p>This is a bunch more notes from my time going through the course at<br />
+      <p>This is a bunch more notes from my time going through the course at
 DevMountain.</p>
 <p>These notes are specifically from the first three weeks. They're a mess.</p>
-<p>Don't take anything too seriously. I probably didn't know what I was talking<br />
+<p>Don't take anything too seriously. I probably didn't know what I was talking
 about, a lot of the time.</p>
 <hr />
 <h2>css</h2>
-<p>if a div has position absolute, position RELATIVE on another<br />
+<p>if a div has position absolute, position RELATIVE on another
 element will be in RELATION to the div that has ABSOLUTE.</p>
-<p>so, top 0 is in RELATION to something else that has ABSOLUTE,<br />
+<p>so, top 0 is in RELATION to something else that has ABSOLUTE,
 otherwise just defaults to in relative to HTML.</p>
-<p>in simpler terms... position is basically just referring to its immediate parent,<br />
+<p>in simpler terms... position is basically just referring to its immediate parent,
 unless there's no frame of reference there. all hierarchical. (lol hence C in CSS....)</p>
 <ul>
 <li>box-model:<ul>
@@ -217,18 +217,18 @@ call.the(object(function())
 <li><code>arrayName.unshift("item", "more if you want", "hey why not")</code> adds to the BEGINNING of array</li>
 <li>
 <p><code>arrayName.splice(startingInteger, integerofItemsToRemove, "string", "item", "etc")</code></p>
-<p>// example:<br />
-var bits = ["bots", "boots", "bats", "beets", "boats", "bets"]<br />
-bits.splice(2, 2, "wat", "wuuuuuuuh")<br />
-// would result in:<br />
+<p>// example:
+var bits = ["bots", "boots", "bats", "beets", "boats", "bets"]
+bits.splice(2, 2, "wat", "wuuuuuuuh")
+// would result in:
 bots boots way wuuuh boats bets</p>
 </li>
 </ul>
 <p>use same method to just remove from an array eg <code>bits.splice(3, 3)</code> would return from the above, <code>bots boots boats bets</code></p>
 <p>to move items from one array to another, also splice, like so: <code>var stib = bits.splice(2, 5)</code></p>
-<p>this would leave bits unchanged.<br />
-2 is the starting index of item to be copied;<br />
-5 is the element AFTER the last one to be copied.<br />
+<p>this would leave bits unchanged.
+2 is the starting index of item to be copied;
+5 is the element AFTER the last one to be copied.
 can use same method simply to reduce current array (overwrite)</p>
 <pre><code>true, false: booleans (so no quotes)
 if blahblah
@@ -245,17 +245,17 @@ example: var threeLetterPrefix = thatDudesName.slice(0, 3)
 var blah = whatever.length
 //returns the length of 'whatever'
 </code></pre>
-<p>in the case of true || whatever, whatever will never be checked;<br />
-in the casae of false &amp;&amp; whatever, whatever will never be checked.<br />
+<p>in the case of true || whatever, whatever will never be checked;
+in the casae of false &amp;&amp; whatever, whatever will never be checked.
 they are evaluated <em>only when necessary</em>.</p>
-<p>expression is kinda like a clause in natural language;<br />
-can have nested subclauses, whatnots.<br />
+<p>expression is kinda like a clause in natural language;
+can have nested subclauses, whatnots.
 statemets, more like full, complete sentences.</p>
 <p>builtin function <code>Number()</code> converts given value to integer. for example:</p>
 <pre><code>var ancient = Number(prompt('how many milliseconds have you been alive?'), ''))
 alert('you're one old sonofabitch, " + ancient + " is a long freaking time.')
 </code></pre>
-<p>do loop is similar to while, but do will always execute at least once;<br />
+<p>do loop is similar to while, but do will always execute at least once;
 it doesn't test until after the first execution. example:</p>
 <pre><code>do {
   var asdf = prompt("what do they call you?")
@@ -263,7 +263,7 @@ it doesn't test until after the first execution. example:</p>
 console.log(asdf)
 // this will keep prompting until the prompt recieves a string
 </code></pre>
-<p>standard loop boilerplate pattern: counter variable to count (duh);<br />
+<p>standard loop boilerplate pattern: counter variable to count (duh);
 while loop (check counter against limit?) then update counter.</p>
 <p>OH WAIT WE CALL THIS A FOR LOOP DUH.</p>
 <pre><code>for (var number = 0; number &lt;= 26; number = number + 1)
@@ -281,8 +281,8 @@ while loop (check counter against limit?) then update counter.</p>
 </ul>
 </li>
 </ul>
-<p><code>+=</code> is not the only thing that works for updating;<br />
-looks like all math operations, when done <code>i *= i</code>;<br />
+<p><code>+=</code> is not the only thing that works for updating;
+looks like all math operations, when done <code>i *= i</code>;
 obvs <code>i += i</code> and <code>i -= i</code> can be shortened to <code>i--</code> and <code>i++</code></p>
 <p>switch: it's case, i guess, but minus esac (because, note, we also don't use done, or fi... wtf).</p>
 <p>so:</p>
@@ -298,15 +298,15 @@ obvs <code>i += i</code> and <code>i -= i</code> can be shortened to <code>i--</
 }
 </code></pre>
 <p>functions always have curly braces around body, even if just one command</p>
-<p>braces are allowed everywhere but only define a new local environment within functions,<br />
+<p>braces are allowed everywhere but only define a new local environment within functions,
 and only really useful for grouping conditionals and loops</p>
-<p>like any other variable, functions can totally get new names.<br />
+<p>like any other variable, functions can totally get new names.
 their values are just as mutable as any other vars'.</p>
-<p>use brackets when accessing vague proprop (eg looping over) from object;<br />
+<p>use brackets when accessing vague proprop (eg looping over) from object;
 otherwise dot notation if know specific key</p>
 <p>NOT <code>for i in arr.length whatever</code></p>
 <p>....</p>
-<p>rather,<br />
+<p>rather,
 <code>return arr[arr.length -1]</code></p>
 <pre><code>//GLOBAL SCOPE
 var x = 1;
@@ -339,10 +339,10 @@ var count = makeCounter();
 var secondCount = makeCounter();
 secondCount() //return 1
 </code></pre>
-<p>a closure references variables OUTSIDE OF ITSELF<br />
+<p>a closure references variables OUTSIDE OF ITSELF
 and remembers those even when its parent scope (parent function) has returned</p>
-<p>remember, don't need to do<br />
-<code>if whatever == true/if whatever != true (or == false)</code><br />
+<p>remember, don't need to do
+<code>if whatever == true/if whatever != true (or == false)</code>
 just need to do</p>
 <pre><code>if (whatever)
 return true

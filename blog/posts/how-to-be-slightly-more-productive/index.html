@@ -32,21 +32,21 @@
       <h4><small>Tagged: sh, npm, shell, bash</small></h4>
     </header>
     <div>
-      <p>One of my pet peeves is seeing people who make software for a living doing<br />
-things in incredibly slow/unproductive ways. I know everyone has their own<br />
-ways of being awesome, and most of those ways are much more awesome ways than<br />
-the ways in which I am okay at things, but still, there are better ways, and<br />
+      <p>One of my pet peeves is seeing people who make software for a living doing
+things in incredibly slow/unproductive ways. I know everyone has their own
+ways of being awesome, and most of those ways are much more awesome ways than
+the ways in which I am okay at things, but still, there are better ways, and
 most developers I've seen just have <em>no</em> idea how much time they waste.</p>
-<p>So here are just some tiny little tips. None of these are big news, none<br />
-are esoteric, none are risky, all require a little bit of work but make things<br />
+<p>So here are just some tiny little tips. None of these are big news, none
+are esoteric, none are risky, all require a little bit of work but make things
 a lot faster in a very short period of time.</p>
 <h2>Bash things</h2>
-<p>you can use zsh, and that's a thing, and it doesn't suck, okay, but it pays<br />
-to be good at Bash. Bash is everywhere. It's the default shell on just about<br />
-every system. Zsh gives you nice things, but you can get all the same nice<br />
+<p>you can use zsh, and that's a thing, and it doesn't suck, okay, but it pays
+to be good at Bash. Bash is everywhere. It's the default shell on just about
+every system. Zsh gives you nice things, but you can get all the same nice
 things in Bash with just a tiny bit of work.</p>
-<p>The number one most useful thing to do with Bash is aliases, I think.<br />
-It's generally recommended that you use functions if you can, but there's<br />
+<p>The number one most useful thing to do with Bash is aliases, I think.
+It's generally recommended that you use functions if you can, but there's
 really no harm in using aliases. Try these out, for example:</p>
 <div class="highlight"><pre><span></span>alias ns=&#39;npm start&#39;
 alias nt=&#39;npm test&#39;
@@ -56,67 +56,67 @@ alias nid=&#39;npm i -D&#39;
 
 <p>Throw these at the bottom of your <code>~/.bashrc</code> (or <code>~/.bash_profile</code> on a Mac).</p>
 <h2>npm</h2>
-<p>For that matter, there's the aliases up there... npm has a bunch built-in.<br />
-For example, you never need to type out <code>npm install --save-dev</code><br />
+<p>For that matter, there's the aliases up there... npm has a bunch built-in.
+For example, you never need to type out <code>npm install --save-dev</code>
 -- just do <code>npm i -S</code>.</p>
 <p>npm gives you a million things. Just read the docs sometime. or the help screens.</p>
 <h2>The Terminal</h2>
-<p>Use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow<br />
-(or option-arrow on Mac) to get around between words. Use these things. Or check<br />
+<p>Use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow
+(or option-arrow on Mac) to get around between words. Use these things. Or check
 out vi-mode.</p>
-<p>Set your prompt up to tell you nice stuff. I recommend using liquidprompt<br />
-(<code>apt-get install -y liquidprompt</code> or <code>brew install liquidprompt</code>), but you can<br />
-also do all these things manually (check<br />
-<a href="https://github.com/zacanger/z/blob/master/.bash/prompt.sh">my dotfiles</a> for<br />
+<p>Set your prompt up to tell you nice stuff. I recommend using liquidprompt
+(<code>apt-get install -y liquidprompt</code> or <code>brew install liquidprompt</code>), but you can
+also do all these things manually (check
+<a href="https://github.com/zacanger/z/blob/master/.bash/prompt.sh">my dotfiles</a> for
 examples).</p>
-<p>Pick a bookmarking system and stick with it. <a href="https://github.com/wting/autojump">There</a><br />
-<a href="https://github.com/rupa/z">are</a> a <a href="https://github.com/shyiko/commacd">bunch</a> of them<br />
-out there (many many more, just search). or export aliases to move to places. Or you<br />
-can use <a href="https://github.com/zacanger/z/blob/master/.bash/functions/g.sh">mine</a><br />
+<p>Pick a bookmarking system and stick with it. <a href="https://github.com/wting/autojump">There</a>
+<a href="https://github.com/rupa/z">are</a> a <a href="https://github.com/shyiko/commacd">bunch</a> of them
+out there (many many more, just search). or export aliases to move to places. Or you
+can use <a href="https://github.com/zacanger/z/blob/master/.bash/functions/g.sh">mine</a>
 if you'd like.</p>
 <h2>Markdown</h2>
-<p>If you don't use it, use it. If you still click around in Microsoft Word or Google Docs,<br />
-goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text<br />
+<p>If you don't use it, use it. If you still click around in Microsoft Word or Google Docs,
+goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
 lightweight-markup authoring format out there.</p>
 <h2>Your Editor</h2>
-<p>I don't care what your editor is. I really don't. I know just enough about lisp<br />
-to not even hate Emacs users. I do dislike VS Code, but mostly because of the<br />
-idiotic and transparent licensing scheme. But the built-in debugger isn't bad<br />
-(you can get all the same things from other tools, but it is better than the<br />
+<p>I don't care what your editor is. I really don't. I know just enough about lisp
+to not even hate Emacs users. I do dislike VS Code, but mostly because of the
+idiotic and transparent licensing scheme. But the built-in debugger isn't bad
+(you can get all the same things from other tools, but it is better than the
 ones that you can get for most other editors for Node).</p>
-<p>Whatever your editor is, take a week to learn it really well. In my case, finally<br />
-just spending some time getting <em>fluid</em> with Vim has made a huge difference.<br />
-I no longer have any other editors installed (and I tried a lot of them! I loved<br />
-<a href="http://lighttable.com/">LightTable</a> and <a href="http://foicica.com/textadept/">Textadept</a><br />
-especially, and also really liked Atom (but it's <em>slow</em>); Brackets was a waste of<br />
-my time, Sublime was okay but nonfree and there's Textadept so whatever, see above<br />
-for notes on VS code; actual IDEs I tend to avoid because they're just overwhelmingly<br />
-large and in the way all the time, to me). That doesn't mean vim's the <em>best</em> editor<br />
-(though it totally is), it just means it's the one I decided I wanted use, and it's<br />
+<p>Whatever your editor is, take a week to learn it really well. In my case, finally
+just spending some time getting <em>fluid</em> with Vim has made a huge difference.
+I no longer have any other editors installed (and I tried a lot of them! I loved
+<a href="http://lighttable.com/">LightTable</a> and <a href="http://foicica.com/textadept/">Textadept</a>
+especially, and also really liked Atom (but it's <em>slow</em>); Brackets was a waste of
+my time, Sublime was okay but nonfree and there's Textadept so whatever, see above
+for notes on VS code; actual IDEs I tend to avoid because they're just overwhelmingly
+large and in the way all the time, to me). That doesn't mean vim's the <em>best</em> editor
+(though it totally is), it just means it's the one I decided I wanted use, and it's
 the absolute best tool that I have now because I'm pretty quick with it.</p>
-<p>Even if you use VS code or Brackets, just take the time to learn your editor<br />
-well. learn its plugin/extension/ whatever system, find or write a theme that<br />
-makes things really easy on you, check out <a href="https://medium.com/@evnbr/coding-in-color-3a6db2743a1e#.5rffb0gto">semantic<br />
-highlighting</a><br />
-and give that a shot for a week, find a way to open a terminal in your editor<br />
-(because you DO need that) if it's a graphical editor, learn keybinds, learn<br />
-configs, and make it work for you. That sounds like a lot of work put into<br />
-something that's not directly <strong>work</strong>, but it's work invested in yourself being<br />
+<p>Even if you use VS code or Brackets, just take the time to learn your editor
+well. learn its plugin/extension/ whatever system, find or write a theme that
+makes things really easy on you, check out <a href="https://medium.com/@evnbr/coding-in-color-3a6db2743a1e#.5rffb0gto">semantic
+highlighting</a>
+and give that a shot for a week, find a way to open a terminal in your editor
+(because you DO need that) if it's a graphical editor, learn keybinds, learn
+configs, and make it work for you. That sounds like a lot of work put into
+something that's not directly <strong>work</strong>, but it's work invested in yourself being
 better at using your tools.</p>
-<p>Laurie Voss, the COO of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a><br />
-that one of the most important things you can do is be good at your editor. He's<br />
+<p>Laurie Voss, the COO of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a>
+that one of the most important things you can do is be good at your editor. He's
 right.</p>
 <h2>Use Git</h2>
-<p>This should be obvious. but, I mean, really use it. Use it enough that you<br />
-learn how to use a gitconfig, templates, etc., and try out lots of different<br />
-extensions and wrappers for git (like hub, legit, ghcli, etc.). Do stuff with<br />
-Git. Get really comfortable with Git. It's important. Other version control also<br />
-matters sometimes in some businesses but really really really spend some time<br />
+<p>This should be obvious. but, I mean, really use it. Use it enough that you
+learn how to use a gitconfig, templates, etc., and try out lots of different
+extensions and wrappers for git (like hub, legit, ghcli, etc.). Do stuff with
+Git. Get really comfortable with Git. It's important. Other version control also
+matters sometimes in some businesses but really really really spend some time
 learning Git.</p>
 <h2>Configs</h2>
 <p>(<a href="https://github.com/zacanger/z">like these</a>)</p>
-<p>Organize yours. Store them somewhere, like in a repo. Because when your current<br />
-computer dies (and it will), it'll take you weeks to get things feeling decent<br />
+<p>Organize yours. Store them somewhere, like in a repo. Because when your current
+computer dies (and it will), it'll take you weeks to get things feeling decent
 if you have to recreate everything manually.</p>
     </div>
     <footer>

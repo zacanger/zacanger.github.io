@@ -32,10 +32,10 @@
       <h4><small>Tagged: bash, shell, sh, unix, linux, disaster-recovery</small></h4>
     </header>
     <div>
-      <p>Let's say that in some hypothetical horrible world, we have a system with no<br />
-utilities, except the shell we're using, which happens to be GNU Bash. Maybe<br />
-we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't<br />
-know. Here's how we can get some basic programs back, just by using Bash<br />
+      <p>Let's say that in some hypothetical horrible world, we have a system with no
+utilities, except the shell we're using, which happens to be GNU Bash. Maybe
+we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't
+know. Here's how we can get some basic programs back, just by using Bash
 builtins.</p>
 <p><code>type</code> still exists!</p>
 <p>We need an <code>ls</code>. So, <code>echo 'ls() { printf '%s\n' ${1:+${1%/}/}*; }' &gt;&gt; foo.sh</code></p>
@@ -43,9 +43,9 @@ builtins.</p>
 <p>Here's a rough <code>cat</code>: <code>(while read line; do echo "$line"; done) &lt; stuff.txt</code></p>
 <p><code>executable () { if [[ ( ! -d $1 ) &amp;&amp;  ( ! -h $1 ) &amp;&amp; -x $1 ]] ; then echo "$1"; fi }</code></p>
 <p>To find executables: <code>for file in /*; do executable $file; done</code>.</p>
-<p>Wanna just lock ourselves out for real?<br />
+<p>Wanna just lock ourselves out for real?
 <code>echo 1 &gt; /proc/sys/kernel/sysrq</code> <code>echo "b" &gt; /proc/sysrq-trigger</code>.</p>
-<p><a href="http://eusebeia.dyndns.org/bashcp">http://eusebeia.dyndns.org/bashcp</a> go here, if we really must rescue a system<br />
+<p><a href="http://eusebeia.dyndns.org/bashcp">http://eusebeia.dyndns.org/bashcp</a> go here, if we really must rescue a system
 and have no other options.</p>
     </div>
     <footer>

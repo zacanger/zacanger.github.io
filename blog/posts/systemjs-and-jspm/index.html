@@ -32,19 +32,19 @@
       <h4><small>Tagged: bundler, build-tools, systemjs, jspm, browser, js</small></h4>
     </header>
     <div>
-      <p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that<br />
-RequireJS brought to the browser), CommonJS (the kind that most people are more<br />
-familiar with, the synchronous sort), Node (which basically just uses CommonJS),<br />
-and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader<br />
-polyfill</a> on hella steroids.<br />
+      <p>SystemJS is a module loader. It works with ES6 modules, AMD (the sort that
+RequireJS brought to the browser), CommonJS (the kind that most people are more
+familiar with, the synchronous sort), Node (which basically just uses CommonJS),
+and global scripts. It's basically the <a href="https://github.com/ModuleLoader/es6-module-loader">es6 module loader
+polyfill</a> on hella steroids.
 Using plugins, you can load in assets (styles, images, whatevers).</p>
 <p>To use it in the browser, you'd do something kinda like</p>
 <div class="highlight"><pre><span></span>System.config({baseUrl: &#39;/app&#39;})
 System.import(&#39;main.js&#39;)
 </pre></div>
 
-<p>assuming we've got SystemJS coming from a CDN in there somewhere. That doesn't<br />
-sound at all exciting, since we're just loading in 'main.js' from the '/app'<br />
+<p>assuming we've got SystemJS coming from a CDN in there somewhere. That doesn't
+sound at all exciting, since we're just loading in 'main.js' from the '/app'
 directory, but we can do some cool things with it, like</p>
 <div class="highlight"><pre><span></span>System.config({
   baseUrl: &#39;/app&#39;
@@ -55,11 +55,11 @@ directory, but we can do some cool things with it, like</p>
 })
 </pre></div>
 
-<p>so, y'know, that's actually pretty super cool. We could write in ES6 and have<br />
+<p>so, y'know, that's actually pretty super cool. We could write in ES6 and have
 it <em>just work</em>.</p>
-<p>SystemJS uses <code>Promise</code> and <code>URL</code>. If they're not available, it'll load in an<br />
-external polyfill file. Probably needed for IE. If we're using a CDN instead<br />
-of bundling, load a <code>window.Promise</code> and <code>window.URLPolyfill</code> in, before<br />
+<p>SystemJS uses <code>Promise</code> and <code>URL</code>. If they're not available, it'll load in an
+external polyfill file. Probably needed for IE. If we're using a CDN instead
+of bundling, load a <code>window.Promise</code> and <code>window.URLPolyfill</code> in, before
 SystemJS.</p>
 <p>To get up and rolling, we need to do a tiny bit of boilerplate.</p>
 <div class="highlight"><pre><span></span>var System = require(&#39;systemjs&#39;)
@@ -69,7 +69,7 @@ System.import(&#39;./app.js&#39;).then(function(m){
 })
 </pre></div>
 
-<p>That assumes we're installing with NPM, and not using JSPM at all. We should<br />
+<p>That assumes we're installing with NPM, and not using JSPM at all. We should
 think about using it, though.</p>
 <div class="highlight"><pre><span></span>var System = require(&#39;jspm&#39;).Loader()
 System.import(&#39;someLibrary&#39;).then(function(things){

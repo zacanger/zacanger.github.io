@@ -32,7 +32,7 @@
       <h4><small>Tagged: go, lang</small></h4>
     </header>
     <div>
-      <p>Go programs are made of packages. The package name is the last element of the<br />
+      <p>Go programs are made of packages. The package name is the last element of the
 import path.</p>
 <p><code>main</code> is the entry point.</p>
 <p>Imports can be written as a single statement, or multiple statements.</p>
@@ -53,7 +53,7 @@ import (
 }
 </pre></div>
 
-<p>Declaration is a little weird. Instead of the traditional <code>int Z</code> or the<br />
+<p>Declaration is a little weird. Instead of the traditional <code>int Z</code> or the
 dynamic (JS style), we do <code>w int</code>. This means:</p>
 <div class="highlight"><pre><span></span>x int
 p *int
@@ -68,23 +68,23 @@ func main(argc int, argv[]string) int
 
 <p>Pointers: <code>x = *p</code></p>
 <p>So, Go declares left-to-right.</p>
-<p>If two named function params share a type the type can be omitted from<br />
+<p>If two named function params share a type the type can be omitted from
 everything except the last, eg</p>
 <div class="highlight"><pre><span></span>func add(x, y, z int) int {
   return x + y + z
 }
 </pre></div>
 
-<p>Functions can return any number of results. Returns can be named, as well, and<br />
-if they are, they're vars defined at top of function (hosted return variables,<br />
-I guess?). A 'naked' return would be one that doesn't say <em>what</em> to return, in<br />
-which case it just returns the named variables. Should only be used in short<br />
+<p>Functions can return any number of results. Returns can be named, as well, and
+if they are, they're vars defined at top of function (hosted return variables,
+I guess?). A 'naked' return would be one that doesn't say <em>what</em> to return, in
+which case it just returns the named variables. Should only be used in short
 fns for readability.</p>
 <p><code>var</code> can be at package or fn level. Type is declared after. so <code>var foo, bar,
 quux, baz bool</code>.</p>
 <p>If initialized at declaration, explicit type annotation can be omitted. <code>var
 q, r = 8, 16</code>.</p>
-<p><code>:=</code> is shortand for <code>var</code> with implicit type, but only available inside a<br />
+<p><code>:=</code> is shortand for <code>var</code> with implicit type, but only available inside a
 fn--globally, every statement must begin with keyword. So:</p>
 <div class="highlight"><pre><span></span>var foo, bar = false, false
 
@@ -105,13 +105,13 @@ func foo() {
 <li><code>rune</code> (alias to <code>int32</code>)</li>
 <li><code>byte</code> (alias to <code>uint8</code>)</li>
 </ul>
-<p><code>var</code> declared without value is given <em>zero value</em>. That means <code>0</code> for<br />
+<p><code>var</code> declared without value is given <em>zero value</em>. That means <code>0</code> for
 numerics, <code>false</code>, or <code>""</code>.</p>
 <p>Expression <code>T(v)</code> makes value to Type.</p>
-<p>Types are inferred by value on the right, except when right contains untyped<br />
-numeric const--that means we can have <code>int</code>, <code>float64</code>, or <code>complex128</code><br />
+<p>Types are inferred by value on the right, except when right contains untyped
+numeric const--that means we can have <code>int</code>, <code>float64</code>, or <code>complex128</code>
 depending on precision of the const.</p>
-<p><code>const</code> is declared var-style, can be <code>char</code>, <code>string</code>, <code>bool</code>, or numeric.<br />
+<p><code>const</code> is declared var-style, can be <code>char</code>, <code>string</code>, <code>bool</code>, or numeric.
 Cannot use <code>:=</code>.</p>
 <p>Note that <code>int</code> can store <em>max</em> 64-bit.</p>
 <p>Loops: only <code>for</code>. No <code>()</code>, <code>{}</code> are required.</p>
@@ -137,11 +137,11 @@ Cannot use <code>:=</code>.</p>
 }
 </pre></div>
 
-<p>If statements, again no parens, required braces. Vars declared in <code>if</code> are<br />
+<p>If statements, again no parens, required braces. Vars declared in <code>if</code> are
 avail in <code>else</code>, before <code>fmt.Print1n</code>.</p>
-<p>Case: similar. Breaks automatically, unless <code>fallthrough</code>. Switch from top<br />
+<p>Case: similar. Breaks automatically, unless <code>fallthrough</code>. Switch from top
 down, breaks on success. Switch sans condition means <code>switch true</code>.</p>
-<p><code>defer</code> does not evaluate until its surrounding func returns. Defers can be<br />
+<p><code>defer</code> does not evaluate until its surrounding func returns. Defers can be
 stacked; they are then executed LIFO.</p>
 <p>Here's the usual...</p>
 <div class="highlight"><pre><span></span>package main

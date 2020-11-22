@@ -32,7 +32,7 @@
       <h4><small>Tagged: react, proptypes, classnames</small></h4>
     </header>
     <div>
-      <p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.<br />
+      <p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
 It lets you do stuff like</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">cn</span> <span class="nx">from</span> <span class="s1">&#39;classnames&#39;</span>
 <span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./styles.css&#39;</span>
@@ -41,18 +41,18 @@ It lets you do stuff like</p>
   <span class="o">&lt;</span><span class="nx">Stuff</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">cn</span><span class="p">(</span><span class="nx">styles</span><span class="p">.</span><span class="nx">thing</span><span class="p">,</span> <span class="p">{</span> <span class="p">[</span><span class="nx">styles</span><span class="p">.</span><span class="nx">foo</span><span class="p">]</span><span class="o">:</span> <span class="nx">foo</span> <span class="o">!==</span> <span class="mi">2</span> <span class="p">})}</span> <span class="o">/&gt;</span>
 </pre></div>
 
-<p>And a whole bunch of other stuff, and it just works. If you write your CSS<br />
+<p>And a whole bunch of other stuff, and it just works. If you write your CSS
 in CSS, you should check it out.</p>
-<p>There is one sort of pain point with it, though. If you have components that<br />
+<p>There is one sort of pain point with it, though. If you have components that
 can take anything that's <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
 <div class="highlight"><pre><span></span><span class="nx">Stuff</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="nx">string</span><span class="p">.</span><span class="nx">isRequired</span> <span class="p">}</span>
 </pre></div>
 
 <p>This doesn't work, because you're passing all sorts of stuff in, possibly.</p>
-<p>A solution is to make your own custom PropTypes. You don't even need to<br />
-get into fancy stuff involving validation, just combine a bunch of other<br />
+<p>A solution is to make your own custom PropTypes. You don't even need to
+get into fancy stuff involving validation, just combine a bunch of other
 PropTypes into your own.</p>
-<p>Let's say you have a <code>propTypes.js</code> file somewhere where you define custom<br />
+<p>Let's say you have a <code>propTypes.js</code> file somewhere where you define custom
 PropTypes.</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 
@@ -82,7 +82,7 @@ PropTypes.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>That should solve all PropTypes warnings and let you throw anything the<br />
+<p>That should solve all PropTypes warnings and let you throw anything the
 <code>classnames</code> library can handle at your components.</p>
 <hr />
 <p>Edit 10th January, 2018:</p>

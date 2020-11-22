@@ -33,13 +33,13 @@
     </header>
     <div>
       <h2>Passport/Flash Issues</h2>
-<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash')</code> in your<br />
+<p><code>npm i -S express-flash</code>, and <code>var flash = require('express-flash')</code> in your
 app. <code>app.use(flash())</code>.</p>
-<p>So, make a route in your app/routes/config file, wherever you're keeping<br />
+<p>So, make a route in your app/routes/config file, wherever you're keeping
 those, something like <code>app.get('/forgot', function(req,
-res){res.render('forgot', {user: req.user})})</code>, assuming you have some html<br />
+res){res.render('forgot', {user: req.user})})</code>, assuming you have some html
 with a form that <code>POST</code>s, and input for the email.</p>
-<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid<br />
+<p>This assumes <code>async</code> and <code>nodemailer</code>, plus a mailing service (like sendgrid
 or gmail or whatever).</p>
 <div class="highlight"><pre><span></span>app.post(&#39;/forgot&#39;, function(req, res, next){
   async.waterfall([
@@ -141,9 +141,9 @@ app.post(&#39;/reset/:token&#39;, function(req, res){
 
 <hr />
 <h2>Passport with Express and Flash--what's going on, here? (Take two.)</h2>
-<p>So, a flash message is just a variable, yes? A very temporary variable. It's<br />
-stored in a session, and only available once--for the next request. If we<br />
-attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So,<br />
+<p>So, a flash message is just a variable, yes? A very temporary variable. It's
+stored in a session, and only available once--for the next request. If we
+attempt to rerender the page (or whateber), that flash variable is <em>gone</em>. So,
 here's an example of how that might work:</p>
 <div class="highlight"><pre><span></span>router.post(&#39;/signup&#39;, passport.authenticate(&#39;local-login&#39;, {
   successRedirect : &#39;/profile&#39;
@@ -180,7 +180,7 @@ router.get(&#39;/signup&#39;, function(req, res){
 })
 </pre></div>
 
-<p>This is basically where we are right now. Everything <em>looks</em> like it should<br />
+<p>This is basically where we are right now. Everything <em>looks</em> like it should
 work, but it totally doesn't. I think what we need here is to fix the session.</p>
 <div class="highlight"><pre><span></span>app.use(session({
   secret            : config.sessionSecret
@@ -213,9 +213,9 @@ work, but it totally doesn't. I think what we need here is to fix the session.</
 <li>Or, maybe there's a real user (<code>next(null, user)</code>), in which case we go to the <code>successRedirect</code>, yay!</li>
 </ul>
 <p>In the second case, a message could be passed as well, like <code>next(null, false,
-{message: 'sorry, you lose!'})</code>. If there's that <code>failureFlash</code> up there<br />
-(which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed,<br />
-the message is stored in the session so you can access it for a template or<br />
+{message: 'sorry, you lose!'})</code>. If there's that <code>failureFlash</code> up there
+(which <em>is</em> optional, as it happens), and we've got <code>connect-flash</code> installed,
+the message is stored in the session so you can access it for a template or
 whatever.</p>
 <p>Another option here would be to do things the long way (manually):</p>
 <div class="highlight"><pre><span></span>app.post(&#39;/login&#39;, function(req, res, next){
@@ -231,14 +231,14 @@ whatever.</p>
 })
 </pre></div>
 
-<p>Yet <em>another</em> potential problem here is how things are being dealth with in<br />
-the front end. Requests from the browser act according to the response. If the<br />
-browser's sending, for example, with AJAX, using jQuery (this is a very<br />
-specific example, I know), then the jQuery will be expecting JSON back, will<br />
-be <em>getting</em> HTML, won't know what to do with it, and maybe you won't know<br />
-what's going on here, because you maybe don't have a <code>.fail()</code> in your call.<br />
-…and this is getting <em>really</em> specific, based on just two things I'm reading<br />
-on Stack Overflow, so let's ditch that path, shall we? And just show a quick<br />
+<p>Yet <em>another</em> potential problem here is how things are being dealth with in
+the front end. Requests from the browser act according to the response. If the
+browser's sending, for example, with AJAX, using jQuery (this is a very
+specific example, I know), then the jQuery will be expecting JSON back, will
+be <em>getting</em> HTML, won't know what to do with it, and maybe you won't know
+what's going on here, because you maybe don't have a <code>.fail()</code> in your call.
+…and this is getting <em>really</em> specific, based on just two things I'm reading
+on Stack Overflow, so let's ditch that path, shall we? And just show a quick
 code sample:</p>
 <div class="highlight"><pre><span></span>app.post(&#39;/login/ajax&#39;, passport.authenticate(&#39;local-login&#39;))
 // login form sent here

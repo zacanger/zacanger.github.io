@@ -32,21 +32,21 @@
       <h4><small>Tagged: express, koa, js, hapi, node, server, framework</small></h4>
     </header>
     <div>
-      <p>Quick little comparison of the three. Express is clearly the most commonly used,<br />
-but I'm inclined to jump to Koa whenever I can. The simple fact that the guy who<br />
-initially started Express passed that off to a company to maintain and instead<br />
-works on Koa, now (which he also started), says to me that maybe Koa's the right<br />
+      <p>Quick little comparison of the three. Express is clearly the most commonly used,
+but I'm inclined to jump to Koa whenever I can. The simple fact that the guy who
+initially started Express passed that off to a company to maintain and instead
+works on Koa, now (which he also started), says to me that maybe Koa's the right
 way to go.</p>
 <p>Okay, so all three are Sinatra-alikes for Node.</p>
-<p>Express was started in 2009, and is now maintained by StrongLoop, the Node API<br />
+<p>Express was started in 2009, and is now maintained by StrongLoop, the Node API
 company.</p>
-<p>Koa was started in 2013, and rather than a 'server-side web development<br />
-framework build on node.js' (that's Express), Koa is 'expressive middleware for<br />
-node.js using generators ... to make writing web applications and REST APIs more<br />
+<p>Koa was started in 2013, and rather than a 'server-side web development
+framework build on node.js' (that's Express), Koa is 'expressive middleware for
+node.js using generators ... to make writing web applications and REST APIs more
 enjoyable.' It's super small, too--around 400 SLOC.</p>
-<p>Hapi was started in 2011, and was originally built on Express. The original<br />
-author still maintains it, backed by the original company (...Wal...Mart...).<br />
-It's no longer Express-based, because 'configuration is better than code ...<br />
+<p>Hapi was started in 2011, and was originally built on Express. The original
+author still maintains it, backed by the original company (...Wal...Mart...).
+It's no longer Express-based, because 'configuration is better than code ...
 business logic must be isolated from the transport layer...', so, there's that.</p>
 <p>Making things happen:</p>
 <div class="highlight"><pre><span></span><span class="c1">// express</span>
@@ -148,34 +148,34 @@ business logic must be isolated from the transport layer...', so, there's that.<
 <span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;listening on 3000&#39;</span><span class="p">})</span>
 </pre></div>
 
-<p>Note that the Hapi version of things definitely takes a lot more code, but<br />
-that's also intentional. (Remember, Hapi's meant to be easily changed for any<br />
-team and/or project, so a lot of things are very manual; you also wouldn't<br />
-usually use Hapi for small projects like in the examples.) Errors in Hapi are<br />
-also a little more helpful, since it goes ahead and automatically provides<br />
+<p>Note that the Hapi version of things definitely takes a lot more code, but
+that's also intentional. (Remember, Hapi's meant to be easily changed for any
+team and/or project, so a lot of things are very manual; you also wouldn't
+usually use Hapi for small projects like in the examples.) Errors in Hapi are
+also a little more helpful, since it goes ahead and automatically provides
 HTTP error codes for you... in JSON, no less.</p>
 <p>So, thoughts:</p>
-<p>Express is the standard. Everyone knows it, because it's been around forever.<br />
-It's very mature, stable, got a lot of users and a lot of backers and<br />
-contributors. It's got a nice little built-in router. It does <em>not</em> have error<br />
-handling, it's pretty damn opinionated, it's rather big these days, and<br />
-there's so much out there <em>for</em> it that it's easy to get lost in all the<br />
+<p>Express is the standard. Everyone knows it, because it's been around forever.
+It's very mature, stable, got a lot of users and a lot of backers and
+contributors. It's got a nice little built-in router. It does <em>not</em> have error
+handling, it's pretty damn opinionated, it's rather big these days, and
+there's so much out there <em>for</em> it that it's easy to get lost in all the
 middleware and options and whatnot.</p>
-<p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too,<br />
-<em>now</em>, but that was a recent switch for them, I think), which is really nice.<br />
-Because it's so small, it's a lot easier to just go ahead and write your own<br />
+<p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too,
+<em>now</em>, but that was a recent switch for them, I think), which is really nice.
+Because it's so small, it's a lot easier to just go ahead and write your own
 middleware. Like Express, though, that can lead to a decision problem.</p>
-<p>Hapi definitely has their corporate backing game on point. That's great for<br />
-them, because that means it <em>has</em> to be stable. It's very consistent and<br />
-reusable. It's also a whole goddamn lot of code to write, compared to the<br />
-other two. If we're working on a large, complex app, maybe that'd be worth it,<br />
-but for smaller apps (like, probably, most of the ones any of us will ever<br />
-write on our own or in small teams), it's just too much. If you're doing<br />
-something really big, something like... oh, I dunno, some giant retailer,<br />
-let's call them 'Mal Wart,' if you've got to run this huge multinational<br />
+<p>Hapi definitely has their corporate backing game on point. That's great for
+them, because that means it <em>has</em> to be stable. It's very consistent and
+reusable. It's also a whole goddamn lot of code to write, compared to the
+other two. If we're working on a large, complex app, maybe that'd be worth it,
+but for smaller apps (like, probably, most of the ones any of us will ever
+write on our own or in small teams), it's just too much. If you're doing
+something really big, something like... oh, I dunno, some giant retailer,
+let's call them 'Mal Wart,' if you've got to run this huge multinational
 enterprise system, then maybe Hapi actually would be really great for you.</p>
-<p>I think it's probably pretty easy to see why I favour Koa. For what it's<br />
-worth, just as an example, here's what it takes to get a server running in raw<br />
+<p>I think it's probably pretty easy to see why I favour Koa. For what it's
+worth, just as an example, here's what it takes to get a server running in raw
 Node:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
 <span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
@@ -211,14 +211,14 @@ Node:</p>
 <span class="p">})</span>
 </pre></div>
 
-<p>No options. No nothing. If your file you want to serve isn't called<br />
-'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with<br />
-<code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers<br />
-when I'm just playing with things. The point of showing that bit, though, was<br />
-to emphasise just how fantastic it is to even have things like Express. And<br />
-keep in mind, there are more than just these three options. You've got<br />
-Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and<br />
-a load of things built on some combination of Socket.io and one middleware<br />
+<p>No options. No nothing. If your file you want to serve isn't called
+'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with
+<code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers
+when I'm just playing with things. The point of showing that bit, though, was
+to emphasise just how fantastic it is to even have things like Express. And
+keep in mind, there are more than just these three options. You've got
+Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and
+a load of things built on some combination of Socket.io and one middleware
 framework or another. Go play with options, they're all fun.</p>
 <p>:)</p>
     </div>

@@ -52,7 +52,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't<br />
+<p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
 know Ember so don't ask me.</p>
 <p>And I said, how about this?</p>
 <div class="highlight"><pre><span></span><span class="nx">getNames</span><span class="o">:</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">=&gt;</span>
@@ -61,27 +61,27 @@ know Ember so don't ask me.</p>
       <span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">))]</span>
 </pre></div>
 
-<p>I like this version because it's very concise and still readable (to me).<br />
+<p>I like this version because it's very concise and still readable (to me).
 It also doesn't do mutation-y stuff, which is a good thing.</p>
 <p>And then someone else asked:</p>
 <blockquote>
 <p>Can some one eli5 what <code>Set</code> is that's referenced above?</p>
 </blockquote>
-<p>Which made me realise that a lot of folks still aren't using a lot of the nice<br />
+<p>Which made me realise that a lot of folks still aren't using a lot of the nice
 new things from ES2015, so I explained a bit. Here's how I understand it.</p>
-<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map<br />
+<p>Set is a new (in ES2015) iterable builtin (like Array, String, TypedArray). Map
 is also new in 2015. Set is to Array as Map is to Object, kinda.</p>
-<p>For practical usage Set is basically Array but unique, and with different<br />
-methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There's a lot more<br />
+<p>For practical usage Set is basically Array but unique, and with different
+methods. <code>add</code>, <code>has</code>, <code>delete</code>, <code>size</code>, and some others. There's a lot more
 info <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">on MDN</a>.</p>
-<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works<br />
+<p>You can pass <code>Set</code> an iterable, which is why the thing I have above works
 (because thing inside <code>new Set()</code> results in an array).</p>
-<p>In that case <code>Set</code> isn't being used for too much besides just the fact that it's<br />
-<code>Set</code> (so it only holds unique values). Someone else pointed out in the same<br />
-channel that maybe it's not the best idea if you have a lot of values, because<br />
+<p>In that case <code>Set</code> isn't being used for too much besides just the fact that it's
+<code>Set</code> (so it only holds unique values). Someone else pointed out in the same
+channel that maybe it's not the best idea if you have a lot of values, because
 then you're creating another thing, which is totally true.</p>
-<p>There's a bit more background<br />
-<a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is<br />
+<p>There's a bit more background
+<a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is
 suppose to be kind of like.</p>
 <p>And underneath it sorta looks vaguely like this:</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Set</span> <span class="p">{</span>
@@ -102,13 +102,13 @@ suppose to be kind of like.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like<br />
+<p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like
 <code>Array</code> but it only holds unique things.</p>
-<p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a<br />
+<p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a
 valid use case for <code>WeakSet</code> and <code>WeakMap</code> yet, personally.</p>
-<p><code>Set</code> turns out to be pretty useful. I've used it a few times <a href="https://jane.com">at<br />
-work</a> (with appropriate polyfills) without any problems, and I<br />
-use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my<br />
+<p><code>Set</code> turns out to be pretty useful. I've used it a few times <a href="https://jane.com">at
+work</a> (with appropriate polyfills) without any problems, and I
+use it in a few places in <a href="https://github.com/zacanger/zeelib">zeelib</a>, my
 sort-of-sometimes-popular utility library. Definitely play around with it!</p>
     </div>
     <footer>

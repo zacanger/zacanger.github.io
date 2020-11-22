@@ -32,42 +32,42 @@
       <h4><small>Tagged: redux, react</small></h4>
     </header>
     <div>
-      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes<br />
-it's not, and because those docs themselves are pretty overwhelming when<br />
-you're first trying out Redux, I'm going to attempt to distill the docs and<br />
-bits of my own (admittedly limited) personal experience with Redux into a<br />
+      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes
+it's not, and because those docs themselves are pretty overwhelming when
+you're first trying out Redux, I'm going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
 couple of blog posts.</p>
 <hr />
-<p>All your data moves in one direction. This is the same as in Flux. You will<br />
+<p>All your data moves in one direction. This is the same as in Flux. You will
 always go through the same steps in redux:</p>
 <ul>
-<li>Action (call <code>store.dispatch()</code> with an object that describes something<br />
+<li>Action (call <code>store.dispatch()</code> with an object that describes something
   happening)</li>
-<li>Reducer (pure function called based on the action that was dispatched that<br />
+<li>Reducer (pure function called based on the action that was dispatched that
   calculates next state)</li>
-<li>Your root reducer combines a bunch of reducers' outputs into one state tree<br />
+<li>Your root reducer combines a bunch of reducers' outputs into one state tree
   (assuming you have a root reducer, which you probably do)</li>
-<li>The store saves the state tree as returned by the above&mdash;now that's your<br />
+<li>The store saves the state tree as returned by the above&mdash;now that's your
   state (and at this point anything you subscribed with will be invoked)</li>
 </ul>
-<p>All your state in redux is just an object&mdash;just one object. It's probably a<br />
-good idea to try to keep that as shallow as possible, and reference things by<br />
+<p>All your state in redux is just an object&mdash;just one object. It's probably a
+good idea to try to keep that as shallow as possible, and reference things by
 keys (IDs), rather than deeply nesting stuff.</p>
-<p>Reducers are just functions. They take your existing state (state previous to<br />
+<p>Reducers are just functions. They take your existing state (state previous to
 acting on it) and an action and output state (new state).</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">someReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">oldState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">newState</span>
 </pre></div>
 
-<p>It's a reducing function just like you'd pass to <code>Array.reduce()</code>, it it should<br />
-always be a pure function. Don't mutate arguments, call non-pure functions, make<br />
-API calls, or anything like that in a reducer. If you don't know what a pure<br />
+<p>It's a reducing function just like you'd pass to <code>Array.reduce()</code>, it it should
+always be a pure function. Don't mutate arguments, call non-pure functions, make
+API calls, or anything like that in a reducer. If you don't know what a pure
 function is, it's actually super simple:</p>
 <blockquote>
-<p>Given the same arguments, a pure function will always have the same output.<br />
+<p>Given the same arguments, a pure function will always have the same output.
 This means it's a function who's result relies solely on its arguments.</p>
 </blockquote>
-<p>One thing you should get in the habit of doing is using 'default arguments.'<br />
-This is new in ES2015, and saves you a bit of code. This means you could have<br />
+<p>One thing you should get in the habit of doing is using 'default arguments.'
+This is new in ES2015, and saves you a bit of code. This means you could have
 some initial state:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">initState</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">something</span>     <span class="o">:</span> <span class="s1">&#39;a&#39;</span>
@@ -88,10 +88,10 @@ some initial state:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="c1">// do stuff</span>
 </pre></div>
 
-<p>Reducers are frequently switch statements. This might seem a little weird at<br />
-first, since most JS folks avoid switch statements (I think some linters even<br />
-warn about them, saying they're 'confusing'), but it makes sense in reducers<br />
-since you can handle various actions in one function. Remember, an action is<br />
+<p>Reducers are frequently switch statements. This might seem a little weird at
+first, since most JS folks avoid switch statements (I think some linters even
+warn about them, saying they're 'confusing'), but it makes sense in reducers
+since you can handle various actions in one function. Remember, an action is
 just an object: <code>{type: 'do_thing'}</code> with possible other fields: <code>{type:
 'do_thing', to: 'stuff'}</code>.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">someReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
@@ -104,11 +104,11 @@ just an object: <code>{type: 'do_thing'}</code> with possible other fields: <cod
 <span class="p">}</span>
 </pre></div>
 
-<p>Note the <code>Object.assign()</code>&mdash;we don't mutate state, we return a new state<br />
-based on the old state and the action. You'll probably want to use a polyfill<br />
-for <code>.assign()</code>, but chances are you're already using Babel anyway. You could<br />
+<p>Note the <code>Object.assign()</code>&mdash;we don't mutate state, we return a new state
+based on the old state and the action. You'll probably want to use a polyfill
+for <code>.assign()</code>, but chances are you're already using Babel anyway. You could
 also use something from Lodash, Underscore, or some other library.</p>
-<p>It's always a good idea to return <code>state</code> (which is our old state) as a default,<br />
+<p>It's always a good idea to return <code>state</code> (which is our old state) as a default,
 in case we get sent some unexpected action.</p>
 <p>It's also a good idea to split your reducers and compose them:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">firstReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -130,9 +130,9 @@ in case we get sent some unexpected action.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>This means that <code>firstReducer</code> only needs to get the state that it actually<br />
-cares about, when it needs to do something. Also note that defaut state is an<br />
-empty object there. It could be anything you want it to be, just make sure it's<br />
+<p>This means that <code>firstReducer</code> only needs to get the state that it actually
+cares about, when it needs to do something. Also note that defaut state is an
+empty object there. It could be anything you want it to be, just make sure it's
 the shape your reducer expects to act on.</p>
 <p>When you have a lot of reducers, you can use <code>combineReducers</code>:</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">combineReducers</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
@@ -147,12 +147,12 @@ the shape your reducer expects to act on.</p>
 </pre></div>
 
 <p>And you can do this as many times as you like, in as many files as you need.</p>
-<p>All you're doing with reducers is taking in the state as it exists, taking in an<br />
+<p>All you're doing with reducers is taking in the state as it exists, taking in an
 action, and outputing the new state. What you're operating against is the store.</p>
-<p>The Store is a really important bit. It holds all the state of your app. This<br />
-is different from Flux, where you'd have a lot of little stores. In Redux<br />
-there's only one. It's accessed similiarly&mdash;you have <code>getState()</code>, you<br />
-dispatch actions, and you can have listeners subscribe to changes. To create a<br />
+<p>The Store is a really important bit. It holds all the state of your app. This
+is different from Flux, where you'd have a lot of little stores. In Redux
+there's only one. It's accessed similiarly&mdash;you have <code>getState()</code>, you
+dispatch actions, and you can have listeners subscribe to changes. To create a
 store in Redux, you just use <code>createStore</code>.</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
 <span class="kr">import</span> <span class="nx">someReducer</span> <span class="nx">from</span> <span class="s1">&#39;./someFile&#39;</span>
@@ -163,7 +163,7 @@ store in Redux, you just use <code>createStore</code>.</p>
 <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">({}))</span> <span class="c1">// your store is just an empty object, now</span>
 </pre></div>
 
-<p><code>store.subscribe()</code> returns a function for _un_subscribing. So you can do<br />
+<p><code>store.subscribe()</code> returns a function for _un_subscribing. So you can do
 something like:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">unsubscribe</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">someListener</span><span class="p">)</span>
 <span class="nx">unsubscribe</span><span class="p">()</span>

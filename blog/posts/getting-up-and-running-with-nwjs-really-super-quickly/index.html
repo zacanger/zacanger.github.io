@@ -32,19 +32,19 @@
       <h4><small>Tagged: nwjs, desktop, node, electron, app</small></h4>
     </header>
     <div>
-      <p>There are basically two main ways to build a desktop app in JS: Electron<br />
-(formerly called 'Atom-Shell') and NW.js (formerly called 'Node-Webkit').<br />
-Electron's really swell, probably offers more options overall, and has a cleaner<br />
-way of keeping Node and client-side code separate. NW.js is a heckuva lot<br />
+      <p>There are basically two main ways to build a desktop app in JS: Electron
+(formerly called 'Atom-Shell') and NW.js (formerly called 'Node-Webkit').
+Electron's really swell, probably offers more options overall, and has a cleaner
+way of keeping Node and client-side code separate. NW.js is a heckuva lot
 easier, overall, though.</p>
-<p>This is what I've been using to build and run Pharaoh:<br />
+<p>This is what I've been using to build and run Pharaoh:
 <a href="https://github.com/nwjs/nw-builder">https://github.com/nwjs/nw-builder</a></p>
-<p>There's also a nifty sort of version manager for NW.js here:<br />
-<a href="https://www.npmjs.com/package/nwjs">https://www.npmjs.com/package/nwjs</a> , which worked a little more smoothly out<br />
+<p>There's also a nifty sort of version manager for NW.js here:
+<a href="https://www.npmjs.com/package/nwjs">https://www.npmjs.com/package/nwjs</a> , which worked a little more smoothly out
 of the box, but gave me issues when trying to get Node integration to work.</p>
-<p>To get up and running with NW.js using nw-builder, you basically just need to<br />
-put the relevant information in your <code>package.json</code>. The relevant info on that<br />
-is all here: <a href="https://github.com/nwjs/nw.js/wiki/Manifest-format">https://github.com/nwjs/nw.js/wiki/Manifest-format</a> but mostly<br />
+<p>To get up and running with NW.js using nw-builder, you basically just need to
+put the relevant information in your <code>package.json</code>. The relevant info on that
+is all here: <a href="https://github.com/nwjs/nw.js/wiki/Manifest-format">https://github.com/nwjs/nw.js/wiki/Manifest-format</a> but mostly
 it's just something like</p>
 <div class="highlight"><pre><span></span>&quot;window&quot;: {
   &quot;height&quot;: 800,
@@ -53,17 +53,17 @@ it's just something like</p>
 }
 </pre></div>
 
-<p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or<br />
-whatever in it), needs to be what NW.js is pointed to. That can be an HTML<br />
-file (<code>"main": "./client/public/index.html"</code> or whatever) or a URL (if you're<br />
-serving the app, especially locally--this is how Atom, Brackets, LightTable,<br />
+<p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or
+whatever in it), needs to be what NW.js is pointed to. That can be an HTML
+file (<code>"main": "./client/public/index.html"</code> or whatever) or a URL (if you're
+serving the app, especially locally--this is how Atom, Brackets, LightTable,
 etc. do things, except using Electron).</p>
-<p>That's basically it, I think. There are a lot of great Yeoman generators and<br />
+<p>That's basically it, I think. There are a lot of great Yeoman generators and
 stuff to scaffold out NW.js apps, but they're mostly overkill.</p>
-<p>Using <code>nw-builder</code> makes things pretty simple. <code>npm i -g nw-builder</code>, then<br />
-just run <code>nwbuild -h</code> to see the options. (I use <code>nwbuild -r .</code> in the project<br />
+<p>Using <code>nw-builder</code> makes things pretty simple. <code>npm i -g nw-builder</code>, then
+just run <code>nwbuild -h</code> to see the options. (I use <code>nwbuild -r .</code> in the project
 root/wherever the relevant <code>package.json</code> is, to run the app).</p>
-<p>Their docs are really good, and there's a crapload of options and neat stuff<br />
+<p>Their docs are really good, and there's a crapload of options and neat stuff
 you can do: <a href="https://github.com/nwjs/nw.js/wiki">https://github.com/nwjs/nw.js/wiki</a></p>
     </div>
     <footer>

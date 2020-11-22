@@ -33,7 +33,7 @@
     </header>
     <div>
       <p>I don't know for sure that this deserves its own file... we'll see.</p>
-<p>We'll be processing several requests simultaneously, so we should deal with a<br />
+<p>We'll be processing several requests simultaneously, so we should deal with a
 global state (dependent on user) (like flux stores state, or whatever).</p>
 <p>About 90%, really, of the client and server code, should be shared.</p>
 <p>Which parts should be isomorphic?</p>
@@ -45,17 +45,17 @@ global state (dependent on user) (like flux stores state, or whatever).</p>
 <li>config</li>
 <li>i10n</li>
 </ol>
-<p>The view is already there, really. Just gotta use <code>ReactDOM.renderToString</code><br />
+<p>The view is already there, really. Just gotta use <code>ReactDOM.renderToString</code>
 instead of <code>ReactDOM render</code>.</p>
-<p>Inline styles better than individual sheets in the dirs, for this<br />
-architecture. React supports them. That said, one should <em>emulate</em> pseudo<br />
-attributes (:hover, :active, and :focus, for example) in your Javascript.<br />
-Handle your own prefixes (grooosss). Emulate your media queries in Js, too.<br />
-Gotta eventually merge the CSS somehow; <a href="http://stack.formidable.com/radium/">http://stack.formidable.com/radium/</a><br />
+<p>Inline styles better than individual sheets in the dirs, for this
+architecture. React supports them. That said, one should <em>emulate</em> pseudo
+attributes (:hover, :active, and :focus, for example) in your Javascript.
+Handle your own prefixes (grooosss). Emulate your media queries in Js, too.
+Gotta eventually merge the CSS somehow; <a href="http://stack.formidable.com/radium/">http://stack.formidable.com/radium/</a>
 isn't half-bad for that.</p>
-<p>Because there's so much Js to bundle up and load, it's actually okay to but<br />
-the bundle at the end of your markup for this case. But we want to split<br />
-things out in the webpack.config.js, so that we've got CSS on its own and can<br />
+<p>Because there's so much Js to bundle up and load, it's actually okay to but
+the bundle at the end of your markup for this case. But we want to split
+things out in the webpack.config.js, so that we've got CSS on its own and can
 load that first the way we used to. Here's a sample webpack.config.js:</p>
 <div class="highlight"><pre><span></span>var webpack = require(&#39;webpack&#39;)
 var ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;)
@@ -107,7 +107,7 @@ module.exports = {
 }
 </pre></div>
 
-<p>React Router works well for isomorphic stuff. Here's an example of using it<br />
+<p>React Router works well for isomorphic stuff. Here's an example of using it
 with server-side rendering:</p>
 <div class="highlight"><pre><span></span>import {renderToString} from &#39;react-dom/server&#39;
 import {match, RouterContext} from &#39;react-router&#39;
@@ -124,10 +124,10 @@ serve((req, res) =&gt;
 )
 </pre></div>
 
-<p>Redux in an isomporhic app: better than a singelton flux store. With Redux we<br />
-can use react-redux's react context. Using redux store's API makes dumping and<br />
-restoring store state easy. Check the code of<br />
-<a href="https://github.com/WebbyLab/itsquiz-wall">https://github.com/WebbyLab/itsquiz-wall</a> for a really good, in-depth,<br />
+<p>Redux in an isomporhic app: better than a singelton flux store. With Redux we
+can use react-redux's react context. Using redux store's API makes dumping and
+restoring store state easy. Check the code of
+<a href="https://github.com/WebbyLab/itsquiz-wall">https://github.com/WebbyLab/itsquiz-wall</a> for a really good, in-depth,
 production app using all of the above tech in an isomorphic app.</p>
 <p>Here's a simple api example that works both server- and client-side:</p>
 <div class="highlight"><pre><span></span>&#39;use strict&#39;
@@ -140,8 +140,8 @@ const promise = api.users.list()
 </pre></div>
 
 <p>Here's a promise-pased client: <a href="https://www.npmjs.com/package/axios">https://www.npmjs.com/package/axios</a></p>
-<p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now):<br />
-<a href="https://www.npmjs.com/package/isomorphic-fetch">https://www.npmjs.com/package/isomorphic-fetch</a> and<br />
+<p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now):
+<a href="https://www.npmjs.com/package/isomorphic-fetch">https://www.npmjs.com/package/isomorphic-fetch</a> and
 <a href="https://www.npmjs.com/package/node-fetch">https://www.npmjs.com/package/node-fetch</a></p>
 <p>So, here's what we might do on the client:</p>
 <ul>
@@ -156,10 +156,10 @@ const promise = api.users.list()
 <li>render the page to a string</li>
 <li>send html to the client</li>
 </ul>
-<p>How to do this isomorphically? Check that itsquiz app again, it's so much<br />
+<p>How to do this isomorphically? Check that itsquiz app again, it's so much
 easier than typing out an example here.</p>
-<p>For a full-on tutorial using React and Redux to make an isomorphic app (Todos,<br />
-of course...), check here:<br />
+<p>For a full-on tutorial using React and Redux to make an isomorphic app (Todos,
+of course...), check here:
 <a href="https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4">https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4</a></p>
     </div>
     <footer>

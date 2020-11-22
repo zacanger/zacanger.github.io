@@ -40,8 +40,8 @@ done
 </pre></div>
 
 <p>Or with sed: <code>find . -name "file" | sed 's/.*/mv &amp; &amp;.ext/' | sh</code></p>
-<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command<br />
-<code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command<br />
+<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command
+<code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command
 above, just in vi, basically).</p>
 <hr />
 <p>Doing the same thing, but with files of a certain extension:</p>
@@ -56,9 +56,9 @@ done
 <hr />
 <p><code>:!./%</code> runs your current file from vi.</p>
 <hr />
-<p>This little script is pretty nice. It's a much shorter version of something I<br />
-modified from soem blog somewhere (check my dotfiles for the full thing, which<br />
-I called<br />
+<p>This little script is pretty nice. It's a much shorter version of something I
+modified from soem blog somewhere (check my dotfiles for the full thing, which
+I called
 <a href="https://github.com/zacanger/z/blob/master/bin/sh/writescripts">writescripts</a>):</p>
 <div class="highlight"><pre><span></span>if [ ! -f $1 ]; then
   echo &quot;#!/usr/bin/env bash&quot; &gt; $1

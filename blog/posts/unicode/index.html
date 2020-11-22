@@ -33,22 +33,22 @@
     </header>
     <div>
       <p>Unicode is not a 16-bit system. Unlike mapping letters to bits (<code>A =&gt; 0100
-0001</code>, for example), with unicode, characters are mapped to a theoretical<br />
+0001</code>, for example), with unicode, characters are mapped to a theoretical
 concept called a <strong>code point</strong>. So it's an... ideal.</p>
-<p>This 'code point' ideal is represented by the numbers we've already seen, like<br />
-<code>U+0639</code>, and such. The numbers are hexadecimal (base 16) (and the <code>U+</code> prefix<br />
+<p>This 'code point' ideal is represented by the numbers we've already seen, like
+<code>U+0639</code>, and such. The numbers are hexadecimal (base 16) (and the <code>U+</code> prefix
 is for 'unicode').</p>
-<p>So, early on in the life of unicode, the idea was to store those numbers in two<br />
-bytes each. But then there was some high-school level drama between the<br />
-high-endian clique and the low-endian gang, so now we have this <code>FF FE</code> or<br />
-whatever at the beginning--that's the Unicode<br />
+<p>So, early on in the life of unicode, the idea was to store those numbers in two
+bytes each. But then there was some high-school level drama between the
+high-endian clique and the low-endian gang, so now we have this <code>FF FE</code> or
+whatever at the beginning--that's the Unicode
 <a href="https://en.wikipedia.org/wiki/Byte_order_mark">BOM</a>.</p>
-<p>But <em>then</em>, basically because Americans were still using the same restricted set<br />
-of the Latin alphabet, we came up with UTF-8. That kind of screwed everyone else<br />
-over, because now we have 0-127 all in one singe byte, and then 128 on up stored<br />
-in 2-6 bytes. So the characters we use every day in American English still look<br />
-the same as before (when we used ASCII), but now a whole bunch of other scripts<br />
-(and symbols) are kind of screwy, because it takes several bytes to use other<br />
+<p>But <em>then</em>, basically because Americans were still using the same restricted set
+of the Latin alphabet, we came up with UTF-8. That kind of screwed everyone else
+over, because now we have 0-127 all in one singe byte, and then 128 on up stored
+in 2-6 bytes. So the characters we use every day in American English still look
+the same as before (when we used ASCII), but now a whole bunch of other scripts
+(and symbols) are kind of screwy, because it takes several bytes to use other
 characters.</p>
     </div>
     <footer>

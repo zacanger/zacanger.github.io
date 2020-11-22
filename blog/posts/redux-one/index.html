@@ -32,19 +32,19 @@
       <h4><small>Tagged: redux</small></h4>
     </header>
     <div>
-      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes<br />
-it's not, and because those docs themselves are pretty overwhelming when<br />
-you're first trying out Redux, I'm going to attempt to distill the docs and<br />
-bits of my own (admittedly limited) personal experience with Redux into a<br />
+      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes
+it's not, and because those docs themselves are pretty overwhelming when
+you're first trying out Redux, I'm going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
 couple of blog posts.</p>
 <hr />
-<p>The store is an object that holds state. There's only ever one store in Redux,<br />
+<p>The store is an object that holds state. There's only ever one store in Redux,
 with many reducers that act on it.</p>
 <p><code>getState()</code> returns the state from the store.</p>
 <p><code>subscribe(listener)</code> says "Hey, call <code>listener</code> when the state changes."</p>
-<p>There's also a <code>replaceReducer</code> but unless you're writing hot middlware or<br />
+<p>There's also a <code>replaceReducer</code> but unless you're writing hot middlware or
 something you probably won't touch this one.</p>
-<p>State can by any type, though obviously it's probably best to just use an<br />
+<p>State can by any type, though obviously it's probably best to just use an
 object here.</p>
 <p>Actions are always objects, and they always have a <code>type</code>.</p>
 <div class="highlight"><pre><span></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;do-stuff&#39;</span><span class="p">})</span>
@@ -52,7 +52,7 @@ object here.</p>
 <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;DO_OTHER_STUFF&#39;</span><span class="p">,</span> <span class="nx">stuff</span><span class="o">:</span> <span class="s1">&#39;[things to do here, maybe]&#39;</span><span class="p">})</span>
 </pre></div>
 
-<p>Action creators are functions that create actions based on any sorts of<br />
+<p>Action creators are functions that create actions based on any sorts of
 arguments.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendSomeData</span> <span class="o">=</span> <span class="s1">&#39;send-some-data&#39;</span>
 <span class="kr">const</span> <span class="nx">sendSomeDataActionCreator</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">({</span>
@@ -61,7 +61,7 @@ arguments.</p>
 <span class="p">})</span>
 </pre></div>
 
-<p>A 'bound' action creator would be one that creates the action and immediately<br />
+<p>A 'bound' action creator would be one that creates the action and immediately
 dispatches it. This might be familiar to folks who've worked with Flux before.</p>
 <p>This is how you might have something like this in Flux:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendMoreData</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -79,23 +79,23 @@ dispatches it. This might be familiar to folks who've worked with Flux before.</
   <span class="nx">dispatch</span><span class="p">(</span><span class="nx">sendMoreData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
 </pre></div>
 
-<p>There's also a <code>bindActionCreators()</code> to just do this for you, and React-Redux<br />
+<p>There's also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
 has <code>connect()</code>.</p>
-<p>Async actions should go through middleware to be turned into regular actions<br />
+<p>Async actions should go through middleware to be turned into regular actions
 before being dispatched.</p>
-<p>Reducers always take state and an action and return state.<br />
-<code>reducer (state, action) =&gt; state</code><br />
-These are what they sound like&mdash;reducing functions.<br />
-The state a reducer takes is your existing (or previous, I guess) state.<br />
+<p>Reducers always take state and an action and return state.
+<code>reducer (state, action) =&gt; state</code>
+These are what they sound like&mdash;reducing functions.
+The state a reducer takes is your existing (or previous, I guess) state.
 Reducers are pure functions.</p>
-<p>A dispatch is a function that takes an action (or an async action). It may then<br />
-dispatch an action (or actions) which will affect the store.<br />
+<p>A dispatch is a function that takes an action (or an async action). It may then
+dispatch an action (or actions) which will affect the store.
 There's a base <code>dispatch</code> that always sends an action to the reducer.</p>
-<p>Middleware are about what you'd expect&mdash;functions (HOF) that take a<br />
+<p>Middleware are about what you'd expect&mdash;functions (HOF) that take a
 dispatch function and return a dispatch function.</p>
-<p>There are 'store enhancers' that are higher-order functions that take a store<br />
-creator and return a different store creator. They're basically kind of a<br />
-middleware for the store creator. You probably won't directly use one, ever.<br />
+<p>There are 'store enhancers' that are higher-order functions that take a store
+creator and return a different store creator. They're basically kind of a
+middleware for the store creator. You probably won't directly use one, ever.
 Instead you'll just use the regular store creator (<code>createStore</code>).</p>
     </div>
     <footer>

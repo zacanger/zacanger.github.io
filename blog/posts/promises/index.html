@@ -37,9 +37,9 @@
 * There's a guarantee that we'll get something back
 * Usually create a promise with a constructor (<code>new Promise</code>)
 * Usually its two handlers are named <code>resolve</code> and <code>reject</code>
-* A promise will have one of three states:<br />
-    * Pending (until something happens)<br />
-    * Fulfilled (if the first handler is called)<br />
+* A promise will have one of three states:
+    * Pending (until something happens)
+    * Fulfilled (if the first handler is called)
     * Rejected (if the second handler is called)
 * It can only be 'settled' (either resolved or rejected) once.
 * Can't cancel a promise.
@@ -54,10 +54,10 @@
 * You SHOULD use <code>.catch()</code> instead of the <code>.then(null, cb)</code> style.
 * This way you can chain multiple <code>then</code>s and then have a final <code>catch</code>.
 * <code>throw</code>ing will automatically reject that promise.
-* <code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.<br />
+* <code>Promise.all()</code> takes arr of promises; once all are fulfilled, it returns arr of fulfilled values.
     * Otherwise (if any are rejected) it will reject.
 * <code>Promise.race()</code> is similar, but will fulfill once first promise in the array fulfills.
-* Don't program with promises using same patterns as with callbacks.<br />
+* Don't program with promises using same patterns as with callbacks.
     * (Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)
 * Don't nest promises. Use a <code>.all</code> instead.</p>
 <p>Examples:</p>

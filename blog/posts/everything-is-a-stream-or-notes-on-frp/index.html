@@ -33,25 +33,25 @@
     </header>
     <div>
       <p>IT ALL MAKES SENSE NOW.</p>
-<p>Promises are Observables. Promise++, specifically. Note that that means<br />
-Observables are <em>not</em> Promises/A+ compliant. A Promise would be an Observable<br />
+<p>Promises are Observables. Promise++, specifically. Note that that means
+Observables are <em>not</em> Promises/A+ compliant. A Promise would be an Observable
 with one single emitted value. Our streams return many values.</p>
-<p>Listening to streams is Subscribing. We return <em>new</em> streams, hence the term<br />
-Immutability, which is regarding the original (unchanged, unchangeable)<br />
+<p>Listening to streams is Subscribing. We return <em>new</em> streams, hence the term
+Immutability, which is regarding the original (unchanged, unchangeable)
 streams.</p>
-<p>We do things like mapping, filtering, and scanning. Simple functions applied<br />
+<p>We do things like mapping, filtering, and scanning. Simple functions applied
 to streams that return new streams.</p>
 <p>A <code>map(f)</code> takes input stream, applies <code>f()</code>, produces value on output stream.</p>
-<p>If one creates what we will call a 'metastream' we're basically making a<br />
+<p>If one creates what we will call a 'metastream' we're basically making a
 stream of POINTERS. WHY DOES THIS ALL MAKE PERFECT SENSE?!</p>
-<p>RxJS has a <code>.flatMap()</code> which is brilliant, it flattens said 'metastream' and<br />
-emits on a <em>trunk</em> stream everything that would be emitted on the <em>branch</em><br />
+<p>RxJS has a <code>.flatMap()</code> which is brilliant, it flattens said 'metastream' and
+emits on a <em>trunk</em> stream everything that would be emitted on the <em>branch</em>
 streams.</p>
-<p>Okay, following the tutorial, I'm going to move these notes over to the actual<br />
+<p>Okay, following the tutorial, I'm going to move these notes over to the actual
 rx-js/frp directory....</p>
-<p>There's a <code>.startWith()</code> that does EXACTLY what it sounds like. No matter the<br />
+<p>There's a <code>.startWith()</code> that does EXACTLY what it sounds like. No matter the
 input stream, the output of <code>startWith(x)</code> will have <code>x</code> at the beginning.</p>
-<p>It looks to me like everything about FRP makes a lot more sense if<br />
+<p>It looks to me like everything about FRP makes a lot more sense if
 graphed/charted first. ASCII can work for this pretty well. Example:</p>
 <div class="highlight"><pre><span></span>  streamyInput: -1---2---3---45-&gt;
    inputStream: ----a----b--c---&gt;
@@ -61,7 +61,7 @@ streamPostWhat: ----Q---IDK-----&gt;
 </pre></div>
 
 <p>Hurray, streams!</p>
-<p>In Rx there's a <code>combineLatest()</code> that takes two input streams and joins the<br />
+<p>In Rx there's a <code>combineLatest()</code> that takes two input streams and joins the
 two most recently emitted values from both streams, like:</p>
 <div class="highlight"><pre><span></span>A: ---a-------e----i-------&gt;
 B: -----b--c----d------q---&gt;
@@ -70,17 +70,17 @@ B: -----b--c----d------q---&gt;
 </pre></div>
 
 <p>Huh. I don't actually know why this isn't working, exactly.</p>
-<p>OH WAIT DUH, I forgot jQuery. Thank goodness. I really was hoping I wasn't<br />
+<p>OH WAIT DUH, I forgot jQuery. Thank goodness. I really was hoping I wasn't
 gonna have dumb problems. YAY THIS IS NICE!</p>
 <hr />
 <p>Other Rx notes:</p>
-<p>Cold Observables start running <em>on subscription</em>; that is, the values are<br />
-pushed from the observable to the observers when Subscribe is called. Values<br />
+<p>Cold Observables start running <em>on subscription</em>; that is, the values are
+pushed from the observable to the observers when Subscribe is called. Values
 are not shared among subscribers.</p>
-<p>Hot Observables are already producing values, even before a subscription is<br />
-active. (Mouse events or constant input streams from an API would be good<br />
-examples.) When an observer subscribes to a hot observable, it gets all the<br />
-values in the stream starting from when it subscribes. This sequence is shared<br />
+<p>Hot Observables are already producing values, even before a subscription is
+active. (Mouse events or constant input streams from an API would be good
+examples.) When an observer subscribes to a hot observable, it gets all the
+values in the stream starting from when it subscribes. This sequence is shared
 among subscribers.</p>
     </div>
     <footer>

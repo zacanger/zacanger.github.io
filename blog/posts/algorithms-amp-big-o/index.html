@@ -33,14 +33,14 @@
     </header>
     <div>
       <h2>Algorithms and Problem Solving in One Hour or Less.</h2>
-<p>Why use algorithms? Because they're a structured set of rules to use for<br />
-calculations of any type, duh. They let you loop over arrays, etc., in a more<br />
+<p>Why use algorithms? Because they're a structured set of rules to use for
+calculations of any type, duh. They let you loop over arrays, etc., in a more
 functional and portable manner.</p>
 <p>Common uses: sorting, searching, solving.</p>
 <p>Implementations: recursive, logical (which is exact opposite of recursive), prl/distr/etc
 * binary starts with a sorted list
-* EVERY recursive function should start, straight away, with a CYA<br />
-    * eg, if (searchArray.length = 0) return exit status 1<br />
+* EVERY recursive function should start, straight away, with a CYA
+    * eg, if (searchArray.length = 0) return exit status 1
     * because infinite loops are dumb</p>
 <hr />
 <p><a href="https://github.com/addyosmani/recursive-binarysearch">recursive binary search:</a></p>
@@ -66,28 +66,28 @@ module.exports = function(array, target){
 }
 </pre></div>
 
-<p>Finally a valid use for that Wolfram API account. Any big O type of stuff I<br />
+<p>Finally a valid use for that Wolfram API account. Any big O type of stuff I
 don't understand by reading it, Wolfram can just straight-up graph that.</p>
 <hr />
-<p>Asymptotic notations: languages that let us analyse the time it will take to<br />
-run an algorithm by identifying its behavior, as the size of the algorithm's<br />
+<p>Asymptotic notations: languages that let us analyse the time it will take to
+run an algorithm by identifying its behavior, as the size of the algorithm's
 input increases.</p>
-<p>Let's say algorithm is fn f, input is in, and f(n) is the time it takes to<br />
-run. So with that algorithm f, input size n, you get the time f(n), yes? This<br />
-means that we can graph this where Y ix the <em>runtime</em>, and x is the <em>input<br />
+<p>Let's say algorithm is fn f, input is in, and f(n) is the time it takes to
+run. So with that algorithm f, input size n, you get the time f(n), yes? This
+means that we can graph this where Y ix the <em>runtime</em>, and x is the <em>input
 size</em>; points on the graph are the amount of <em>time</em> for that <em>input size</em>.</p>
-<p>Big O in <em>maths</em> and Big O in <em>computer science</em> are a wee bit different. If<br />
-you read the Wikipedia article on Big O, that's the <em>math</em> version; check the<br />
+<p>Big O in <em>maths</em> and Big O in <em>computer science</em> are a wee bit different. If
+you read the Wikipedia article on Big O, that's the <em>math</em> version; check the
 Wikipedia article for <em>Time Complexity</em> instead.</p>
 <p>Big O n cubed = a Rubik's Cube. That'd be a triply-nested for loop.</p>
-<p>Algorithm that takes an array, iterates over every element in array, and every<br />
+<p>Algorithm that takes an array, iterates over every element in array, and every
 character of every string <em>in</em> the array: <code>O(n*m)</code></p>
 <p><code>.sort</code> in JS is <code>(n*m)</code> complexity.</p>
 <p>That's linearithmic or (linear logarithmic).</p>
-<p>Bucket sorts: we start with an array or whatever, make some buckets. Let's say<br />
-our array is <code>[1, 4, 3, 7, 7, 9, 6, 2]</code>. Then we make some buckets (let's say<br />
-ten of them). Just places to put things. Then we go through those buckets, and<br />
-count how many times those things are in each bucket. So we'd sort our array<br />
+<p>Bucket sorts: we start with an array or whatever, make some buckets. Let's say
+our array is <code>[1, 4, 3, 7, 7, 9, 6, 2]</code>. Then we make some buckets (let's say
+ten of them). Just places to put things. Then we go through those buckets, and
+count how many times those things are in each bucket. So we'd sort our array
 like this:</p>
 <div class="highlight"><pre><span></span>1  1    1,
 2  1    2,
@@ -162,7 +162,7 @@ console.time(&#39;bucketSort&#39;)
 console.timeEnd(&#39;bucketSort&#39;)
 </pre></div>
 
-<p>And some resources for actually kind of understanding any of this stuff<br />
+<p>And some resources for actually kind of understanding any of this stuff
 (because I only halfway actually do):</p>
 <ul>
 <li><a href="https://learnxinyminutes.com/docs/asymptotic-notation/">Learn X in Y</a></li>

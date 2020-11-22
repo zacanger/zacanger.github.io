@@ -47,9 +47,9 @@
 </ul>
 </li>
 <li>Updating:<ul>
-<li><code>componentWillReceiveProps()</code>, invoked when mounted component receives new props from parent. Use this<br />
+<li><code>componentWillReceiveProps()</code>, invoked when mounted component receives new props from parent. Use this
   when changing state (<code>this.setState()</code>).</li>
-<li><code>shouldComponentUpdate()</code>, invoked when component 'decides' whether or not to push updates to the DOM.<br />
+<li><code>shouldComponentUpdate()</code>, invoked when component 'decides' whether or not to push updates to the DOM.
   Return <code>false</code> from this if we don't want React to update.</li>
 <li><code>componentDidUpdate()</code>, invoked <em>immediately</em> after updating.</li>
 </ul>
@@ -58,10 +58,10 @@
 <li><code>componentWillUnmount()</code>, <em>immediately</em> before component unmounts and is destroyed. Clean-up goes here.</li>
 </ul>
 </li>
-<li>While mounted, <code>component.forceUpdate()</code> is also available. This is for any mounted component whose state<br />
+<li>While mounted, <code>component.forceUpdate()</code> is also available. This is for any mounted component whose state
   has changed without <code>this.setState()</code>.</li>
 </ul>
-<p>The big, big difference between <code>props</code> and <code>state</code>: state is private to components.<br />
+<p>The big, big difference between <code>props</code> and <code>state</code>: state is private to components.
 A parent component (or any other component) can never manipulate the state of another (with <code>setState</code> or whatever).</p>
 <ul>
 <li>So:<ul>

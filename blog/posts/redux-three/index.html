@@ -32,14 +32,14 @@
       <h4><small>Tagged: redux, react</small></h4>
     </header>
     <div>
-      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes<br />
-it's not, and because those docs themselves are pretty overwhelming when<br />
-you're first trying out Redux, I'm going to attempt to distill the docs and<br />
-bits of my own (admittedly limited) personal experience with Redux into a<br />
+      <p>Because the Redux docs say "Redux is actually really simple!" when sometimes
+it's not, and because those docs themselves are pretty overwhelming when
+you're first trying out Redux, I'm going to attempt to distill the docs and
+bits of my own (admittedly limited) personal experience with Redux into a
 couple of blog posts.</p>
 <hr />
-<p>Just want to take a second to go over some syntax before going on more about<br />
-Redux. A lot of folks who're new to React might also be new to new JavaScript,<br />
+<p>Just want to take a second to go over some syntax before going on more about
+Redux. A lot of folks who're new to React might also be new to new JavaScript,
 so some things might be looking a little unusual.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span> <span class="c1">// is roughly the same as</span>
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span> <span class="c1">// EXCEPT that you could not then do</span>
@@ -82,31 +82,31 @@ so some things might be looking a little unusual.</p>
 <span class="c1">// though there _are_ important differences</span>
 </pre></div>
 
-<p>If you're not at all familiar with ES2015, you should really go get comfortable<br />
-with it. I put together a repo a while ago for that, full of examples and notes.<br />
-Check it out <a href="https://github.com/zacanger/es6-and-builds/tree/master">here</a>.<br />
-(Also if you want, check out my semi-maintained bunch of examples and resources<br />
+<p>If you're not at all familiar with ES2015, you should really go get comfortable
+with it. I put together a repo a while ago for that, full of examples and notes.
+Check it out <a href="https://github.com/zacanger/es6-and-builds/tree/master">here</a>.
+(Also if you want, check out my semi-maintained bunch of examples and resources
 for learning React <a href="https://github.com/zacanger/react-bits">here</a>.)</p>
 <hr />
-<p><code>react-redux</code> (not a part of Redux itself, since it's supposed to be<br />
-framework/library agnostic... ish) is something you'll need for writing React<br />
-apps using Redux. It sort of enforces the presentational/container (or<br />
+<p><code>react-redux</code> (not a part of Redux itself, since it's supposed to be
+framework/library agnostic... ish) is something you'll need for writing React
+apps using Redux. It sort of enforces the presentational/container (or
 dumb/smart) way of structuring your components.</p>
-<p>Note&mdash;you don't <em>need</em> <code>react-redux</code> to be able to use Redux with React, it<br />
+<p>Note&mdash;you don't <em>need</em> <code>react-redux</code> to be able to use Redux with React, it
 just helps. A lot.</p>
-<p>I won't go into the whole presentational/container component thing, there are a<br />
-lot of blogs posts and such out there on that topic, but it's basically what it<br />
-sounds like; you have components that handle how things look and components that<br />
+<p>I won't go into the whole presentational/container component thing, there are a
+lot of blogs posts and such out there on that topic, but it's basically what it
+sounds like; you have components that handle how things look and components that
 handle how things work.</p>
-<p><code>react-redux</code> gives you this <code>connect()</code> function which is pretty handy. You can<br />
-do a lot of the stuff it does by hand using <code>store.subscribe()</code>, but then you<br />
-start needing to worry about <code>shouldComponentUpdate</code> and all this stuff, and<br />
+<p><code>react-redux</code> gives you this <code>connect()</code> function which is pretty handy. You can
+do a lot of the stuff it does by hand using <code>store.subscribe()</code>, but then you
+start needing to worry about <code>shouldComponentUpdate</code> and all this stuff, and
 it's all kind of annoying.</p>
-<p>When wrapping a 'dumb' component up in a 'smart' component, there are two<br />
-functions you usually throw in there. One is called <code>mapStateToProps</code>, and the<br />
-other is <code>mapDispatchToProps</code>. I'd suggest you take a good look at the <a href="https://github.com/reactjs/react-redux">official<br />
-docs</a> on <code>react-redux</code> to get a good<br />
-feel for how it all works, but setting up a container component turns out to be<br />
+<p>When wrapping a 'dumb' component up in a 'smart' component, there are two
+functions you usually throw in there. One is called <code>mapStateToProps</code>, and the
+other is <code>mapDispatchToProps</code>. I'd suggest you take a good look at the <a href="https://github.com/reactjs/react-redux">official
+docs</a> on <code>react-redux</code> to get a good
+feel for how it all works, but setting up a container component turns out to be
 pretty straightforward.</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">someReducer</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./wherever/your/reducers/are&#39;</span>
@@ -128,12 +128,12 @@ pretty straightforward.</p>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">AComponentThatIsNowConnected</span>
 </pre></div>
 
-<p><code>mapDispatchToProps</code> is a little tricky, so I'd really suggest just checking out<br />
+<p><code>mapDispatchToProps</code> is a little tricky, so I'd really suggest just checking out
 <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md">the docs</a>.</p>
-<p>There's one other important bit, and that's this thing called <code>Provider</code>. It's a<br />
-component that makes the store available to all your container components<br />
-without you needing to actually pass it down everywhere. It uses this funky<br />
-<a href="https://facebook.github.io/react/docs/context.html">context</a> thing under the<br />
+<p>There's one other important bit, and that's this thing called <code>Provider</code>. It's a
+component that makes the store available to all your container components
+without you needing to actually pass it down everywhere. It uses this funky
+<a href="https://facebook.github.io/react/docs/context.html">context</a> thing under the
 hood. You don't need to put it everywhere, you just wrap a root component in it.</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
@@ -153,8 +153,8 @@ hood. You don't need to put it everywhere, you just wrap a root component in it.
 <span class="p">)</span>
 </pre></div>
 
-<p>This can trip you up when testing! You don't need to do much to work around it,<br />
-but it can be annoying the first time you see all these random errors. Try<br />
+<p>This can trip you up when testing! You don't need to do much to work around it,
+but it can be annoying the first time you see all these random errors. Try
 something like:</p>
 <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">test</span> <span class="nx">from</span> <span class="s1">&#39;ava&#39;</span> <span class="c1">// seriously awesome test runner</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>

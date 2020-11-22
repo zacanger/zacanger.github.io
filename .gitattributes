@@ -1,6 +1,4 @@
 * filter=ignoreline
 * text=auto
 text eol=lf
-package-lock.json -diff
-rss.xml -diff
 blog/posts/**/* -diff

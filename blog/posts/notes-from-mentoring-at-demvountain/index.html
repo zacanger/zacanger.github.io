@@ -41,15 +41,15 @@
 <li><code>varTwo = var++</code> would mean <code>varTwo = var</code>, <code>var=var+1</code>, etc. keep in mind.</li>
 <li>and, <code>varTwo = ++var</code> is the same as <code>++var,</code> <code>varTwo = var</code></li>
 <li>(so, if <code>var</code> is originally one, both <code>varTwo</code> and <code>var</code> are now equal to two).</li>
-<li>In other words, <code>++var</code> says 'increment this <code>var</code>; the value of the expression is the final value,'<br />
-  while <code>var++</code> would mean 'remember var? go ahead and increment it, but the value of the expression<br />
-  is the original value of <code>var</code>.' <code>var++</code> and <code>++var</code> are the same thing, but when used in an expression,<br />
+<li>In other words, <code>++var</code> says 'increment this <code>var</code>; the value of the expression is the final value,'
+  while <code>var++</code> would mean 'remember var? go ahead and increment it, but the value of the expression
+  is the original value of <code>var</code>.' <code>var++</code> and <code>++var</code> are the same thing, but when used in an expression,
   they'll return differently.</li>
-<li>math using parens works just like math using parens in real life:<br />
+<li>math using parens works just like math using parens in real life:
   those things happen first. convenient, neh?</li>
 <li>mention <code>===</code> vs <code>==</code> ? the book doesn't touch on that early enough.</li>
 <li>
-<p>in the case of <code>true || whatever</code>, <code>whatever</code> will never be checked;<br />
+<p>in the case of <code>true || whatever</code>, <code>whatever</code> will never be checked;
   in the case of <code>false &amp;&amp; whatever</code>, <code>whatever</code> will never be checked. they are evaluated <em>only when necessary</em>.</p>
 </li>
 <li>
@@ -77,9 +77,9 @@ throw true try typeof var void while with yield
 <hr />
 <h2>Functional JS</h2>
 <p>Functions are first-class objects. This means that <code>var foo = 2</code> and <code>var bar
-= function(quux, baz){return quux + baz}</code> are equally valid. This isn't<br />
-exactly special, but it means that (importantly) functions can be passed as<br />
-arguments. <code>var fooBar = function(fn, quux, baz){return fn(quux, baz)}</code> is<br />
+= function(quux, baz){return quux + baz}</code> are equally valid. This isn't
+exactly special, but it means that (importantly) functions can be passed as
+arguments. <code>var fooBar = function(fn, quux, baz){return fn(quux, baz)}</code> is
 still good, as is the following:</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
   <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
@@ -91,10 +91,10 @@ still good, as is the following:</p>
 </pre></div>
 
 <p>Higher-order functions are functions that <em>return other functions</em>. <code>var stuff
-= function(things){return function(){return things}}</code>. Closures, for example,<br />
+= function(things){return function(){return things}}</code>. Closures, for example,
 always return the same thing, as in <code>var what = stuff(function(){}) ; what()
 === what()</code>.</p>
-<p>A closure's inner function has access to its parent's scope <em>even after the<br />
+<p>A closure's inner function has access to its parent's scope <em>even after the
 parent function has been returned</em>. <code>function asdf(){var texty = 'howdy';
 function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 <hr />
@@ -129,20 +129,20 @@ function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 </ul>
 <hr />
 <h2>angular</h2>
-<p>Don't design a page, then manuipulate the DOM (as you would in jQuery). Here,<br />
-we're no longer building websites that we make expressive and add to with<br />
-Javascript... we're building applications in the browser, and thinking about<br />
+<p>Don't design a page, then manuipulate the DOM (as you would in jQuery). Here,
+we're no longer building websites that we make expressive and add to with
+Javascript... we're building applications in the browser, and thinking about
 <em>architecting</em> an app, rather than building a website.</p>
-<p>Related to that, don't try to build out your site in HTML, CSS, and Javascript<br />
-(or jQuery, or whatever), and use Angular for models and controllers. Angular<br />
-doesn't like that. Angular gets mad. If you're committing to using Angular,<br />
-you're committing to learning that DSL, and using it. Angular wasn't built by<br />
-Javascript people to program in Javascript. It was designed by Java people for<br />
+<p>Related to that, don't try to build out your site in HTML, CSS, and Javascript
+(or jQuery, or whatever), and use Angular for models and controllers. Angular
+doesn't like that. Angular gets mad. If you're committing to using Angular,
+you're committing to learning that DSL, and using it. Angular wasn't built by
+Javascript people to program in Javascript. It was designed by Java people for
 designers to be able to sketch out concepts in the browser.</p>
-<p>The <em>view</em> is the official 'record' in Angular. So you never actually change<br />
+<p>The <em>view</em> is the official 'record' in Angular. So you never actually change
 the DOM, except in directives, which are applied in the view.</p>
-<p>Angular's two-way data binding is actually probably it's strongest feature, at<br />
-least for small apps. Using jQuery, we might do something like the following<br />
+<p>Angular's two-way data binding is actually probably it's strongest feature, at
+least for small apps. Using jQuery, we might do something like the following
 to update content based on events:</p>
 <div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
   <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;/thing.json&#39;</span>
@@ -162,56 +162,56 @@ to update content based on events:</p>
 log"&gt;{{thing.msg}}&lt;/li&gt;&lt;/ul&gt;</code>.</p>
 <p>We could also just have, in our view, something like <code>&lt;input
 ng-model="thing.msg"&gt;</code>, and there's our two-way data binding.</p>
-<p>Angular's separation of concerns is very much an MVC-ish architecture. You<br />
-have a view, a model (representing data), a service layer (reusable tasks),<br />
-directives for DOM manipulation, and controllers to just stick it all<br />
-together. We also have DI in Angular, which is not at all new, but was a<br />
-little unusual in client-side code before Angular really took off. Essentially<br />
-this just means we're exporting components, and then importing them in some<br />
+<p>Angular's separation of concerns is very much an MVC-ish architecture. You
+have a view, a model (representing data), a service layer (reusable tasks),
+directives for DOM manipulation, and controllers to just stick it all
+together. We also have DI in Angular, which is not at all new, but was a
+little unusual in client-side code before Angular really took off. Essentially
+this just means we're exporting components, and then importing them in some
 other bit of code.</p>
-<p>Something to keep in mind with Angular is that you're essentially compiling<br />
-your Angular in the browser, into something your browser's Javascript<br />
-rendering engine can handle. This is the big reason Angular can have<br />
-performance problems. Angular is esssentialy <em>template driven</em> (just another<br />
-way of saying that it's all about the view, as above). In traditional sites,<br />
-we're using unobtrusive Javascript; that is, we build a site, use semantic<br />
-HTML, style things in a stylesheet linked into the header, throw all our<br />
-scripts in a file linked in the footer, and the page still works. In an<br />
-Angular app, you're fucked if you don't want/use/have JS, because your entire<br />
-<code>index.html</code> might only consist of opening and closing tags, and a couple of<br />
-links to scripts/styles. Everything is written in Angular, which means you<br />
-literally cannot use your thing as a website anymore, because it is not (one<br />
-clear indicator of this is just how badly hash routing fucks up a lot of<br />
+<p>Something to keep in mind with Angular is that you're essentially compiling
+your Angular in the browser, into something your browser's Javascript
+rendering engine can handle. This is the big reason Angular can have
+performance problems. Angular is esssentialy <em>template driven</em> (just another
+way of saying that it's all about the view, as above). In traditional sites,
+we're using unobtrusive Javascript; that is, we build a site, use semantic
+HTML, style things in a stylesheet linked into the header, throw all our
+scripts in a file linked in the footer, and the page still works. In an
+Angular app, you're fucked if you don't want/use/have JS, because your entire
+<code>index.html</code> might only consist of opening and closing tags, and a couple of
+links to scripts/styles. Everything is written in Angular, which means you
+literally cannot use your thing as a website anymore, because it is not (one
+clear indicator of this is just how badly hash routing fucks up a lot of
 things).</p>
-<p>This really goes back to the 'Angular Way' of doing things--Angular isn't a<br />
-framework for programmers to program; it's not a framework to make performant,<br />
-navigable, friendly sites for users to use--it's a DSL for Java developers and<br />
-designers to be able to use and comprehend equally well. Angular treats your<br />
-HTML as if it's code to be compiled. In that way it deviates from a regular<br />
-MVC--the view in Angular is actaully mixed into your logic, and usually has<br />
-its own logic mixed into <em>it</em>. Angular compiles all of that into standard<br />
+<p>This really goes back to the 'Angular Way' of doing things--Angular isn't a
+framework for programmers to program; it's not a framework to make performant,
+navigable, friendly sites for users to use--it's a DSL for Java developers and
+designers to be able to use and comprehend equally well. Angular treats your
+HTML as if it's code to be compiled. In that way it deviates from a regular
+MVC--the view in Angular is actaully mixed into your logic, and usually has
+its own logic mixed into <em>it</em>. Angular compiles all of that into standard
 languages that browsers can actually understand.</p>
-<p>Angular has no real solution for itself. If SEO, accessibility, compatibility,<br />
-maintainability, performance, comformity (to actual standards), ease of use,<br />
-best practices, and conventional wisdom are important, Angular's probably not<br />
-the best choice. If you need to sketch out an idea and none of those are<br />
+<p>Angular has no real solution for itself. If SEO, accessibility, compatibility,
+maintainability, performance, comformity (to actual standards), ease of use,
+best practices, and conventional wisdom are important, Angular's probably not
+the best choice. If you need to sketch out an idea and none of those are
 really a big deal, it's not necessarily a bad option.</p>
-<p>In Angular, you <em>want</em> to use two-way binding (I mean, really, why else use<br />
-Angular, anymore?). Rather than writing a function to update a DOM node based<br />
-on an event, we're binding an element in the template, using either an<br />
-attribute or the <code>{{}}</code> notation. So, <code>&lt;input ng-model="foo.bar"&gt;</code>, and<br />
-<code>{{&lt;p&gt;{{foo.bar}}&lt;/p&gt;}}</code>. Now, we're sending data from the view, to the model<br />
+<p>In Angular, you <em>want</em> to use two-way binding (I mean, really, why else use
+Angular, anymore?). Rather than writing a function to update a DOM node based
+on an event, we're binding an element in the template, using either an
+attribute or the <code>{{}}</code> notation. So, <code>&lt;input ng-model="foo.bar"&gt;</code>, and
+<code>{{&lt;p&gt;{{foo.bar}}&lt;/p&gt;}}</code>. Now, we're sending data from the view, to the model
 (<code>$scope.foo.bar</code>), and then sending that to our view.</p>
-<p>Services are essentially helper functions, sorta. They're an object that<br />
+<p>Services are essentially helper functions, sorta. They're an object that
 contains data and functions. They're always singletons. Nuff said.</p>
-<p>One really basic way to think about the difference between Angular and many<br />
-other ways of writing Javascript applications would be this little summary:<br />
-'Don't select... <em>direct.</em>' What I mean is, unlike in jQuery, where you use a<br />
-selector to find the elements, and then do things to them, in Angular you<br />
-write your code <em>in</em> your elements (as in <code>&lt;button ng-click="stuff()"&gt;</code>), or<br />
+<p>One really basic way to think about the difference between Angular and many
+other ways of writing Javascript applications would be this little summary:
+'Don't select... <em>direct.</em>' What I mean is, unlike in jQuery, where you use a
+selector to find the elements, and then do things to them, in Angular you
+write your code <em>in</em> your elements (as in <code>&lt;button ng-click="stuff()"&gt;</code>), or
 simply write your own elements, and plug them in.</p>
-<p>Angular's super opinionated about things. If you want to use unobtrusive JS,<br />
-don't use Angular. Angular's position is that it's an HTML extension; it's<br />
+<p>Angular's super opinionated about things. If you want to use unobtrusive JS,
+don't use Angular. Angular's position is that it's an HTML extension; it's
 template-driven, declarative, and compiled.</p>
     </div>
     <footer>

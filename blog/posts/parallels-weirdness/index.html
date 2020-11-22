@@ -59,12 +59,12 @@ May 19 15:41:10  pdfm-bootstrap[84980] &lt;Info&gt;: agent[84958]: Dump pids to 
 May 19 15:41:10  pdfm-bootstrap[84981] &lt;Notice&gt;: launcher[84948]: Start finished. Agents: 0; Service: 4
 </pre></div>
 
-<p>most of that is probably irrelevant, apparently that class is implemented in both thingy<br />
-is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.<br />
+<p>most of that is probably irrelevant, apparently that class is implemented in both thingy
+is gui related, found a lot of other stuff about that that had nothing to do with actually crashing.
 anyway, the thing that actually ended up working was:</p>
 <p><code>sudo "/Applications/Parallels Desktop.app/Contents/MacOS/inittool" init -b "/Applications/Parallels Desktop.app"</code></p>
 <p>note: run that as sudo from your normal user, don't <code>sudo su</code> and then do it.</p>
-<p>after that, i just opened parallels again and it worked. so. idk. no issues since.<br />
+<p>after that, i just opened parallels again and it worked. so. idk. no issues since.
 if anyone else can't get anything to work, maybe that'll help.</p>
     </div>
     <footer>

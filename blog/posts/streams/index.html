@@ -56,7 +56,7 @@
 <li>one reader per stream</li>
 <li>untapped stream can be used like <code>tee</code></li>
 </ul>
-<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code><br />
+<p>with <code>fetch</code>, <code>result.value</code> is always of type <code>Uint8Array</code> (binary; use <code>TextDecoder</code>
 on that if text content expected).</p>
 <p>there may be transform streams implemented in the browser at some point (r/w).</p>
 <p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
@@ -78,13 +78,13 @@ on that if text content expected).</p>
 <li>you could call <code>controller.enqueue()</code> whenever there's data to send (stream as a push source)</li>
 <li>you could wait until there's a <code>pull</code> called, then queue up some data (pull source)</li>
 <li>you can do whatever you like (basically)</li>
-<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source<br />
+<li>staying within the bounds of <code>controller.desiredSize</code> and having backpressure on the source
   is good/efficient. won't break anything if you don't, though, unless you run out of memory.</li>
 </ul>
-<p>html renders as it's received (no matter how it gets there). so fetching/compiling/whatevering<br />
-markup on the fly (aka client-side rendering, aka the devil usually) without streams means<br />
+<p>html renders as it's received (no matter how it gets there). so fetching/compiling/whatevering
+markup on the fly (aka client-side rendering, aka the devil usually) without streams means
 slowness.</p>
-<p>here's a thing basically just copied out of jake archibald's blog. it's like this because we<br />
+<p>here's a thing basically just copied out of jake archibald's blog. it's like this because we
 don't have a <code>.pipe()</code> in the browser. we need that.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReadableStream</span><span class="p">({</span>
   <span class="nx">start</span><span class="p">(</span><span class="nx">controller</span><span class="p">){</span>
@@ -114,41 +114,41 @@ don't have a <code>.pipe()</code> in the browser. we need that.</p>
 </pre></div>
 
 <p>From here down I'll probably just be taking notes on streams in Node.</p>
-<p>Some important things to remember (for me to remember, that is) -- differences between the<br />
+<p>Some important things to remember (for me to remember, that is) -- differences between the
 proposed Stream and Node's streams:
-* Readable<br />
-    * <code>.read()</code> instead of <code>.on('readable')</code><br />
-    * Also a sync <code>.read()</code><br />
-    * Cancellation semantics added<br />
-    * <code>desiredSize</code><br />
-    * <code>tee</code>ing built in<br />
-    * <code>data</code> event fully gone (it's only in Node streams in compatability mode, btw)<br />
-    * <code>pause</code> and <code>resume</code> aren't a thing<br />
-    * no <code>unshift</code><br />
-    * binary/string/object mode switching isn't a thing<br />
+* Readable
+    * <code>.read()</code> instead of <code>.on('readable')</code>
+    * Also a sync <code>.read()</code>
+    * Cancellation semantics added
+    * <code>desiredSize</code>
+    * <code>tee</code>ing built in
+    * <code>data</code> event fully gone (it's only in Node streams in compatability mode, btw)
+    * <code>pause</code> and <code>resume</code> aren't a thing
+    * no <code>unshift</code>
+    * binary/string/object mode switching isn't a thing
     * size parameter is gone (use BYOB readers)
-* Writable<br />
+* Writable
     * No cork/uncork
-* Transform<br />
+* Transform
     * now just <code>{readable, writable}</code> rly
-* other<br />
-    * promises instead of cbs<br />
-    * no enc/dec built-in<br />
-    * <code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code><br />
-        * so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for<br />
-<code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></p>
+* other
+    * promises instead of cbs
+    * no enc/dec built-in
+    * <code>pipeTo(writable)</code> and <code>pipeThrough(transform)</code> instead of just <code>pipe()</code>
+        * so <code>source.pipeThrough(thing).pipeTo(destination)</code> is syntactic sugar for
+      <code>source.pipeTo(thing.writable) ; thing.readable.pipeTo(destination)</code></p>
 <p>Okay, so, Node streams.
 * <code>req</code> and <code>res</code> are streams
 * <code>.pipe()</code> listens for 'data' and 'end' from fs streams
 * <code>.pipe()</code> handles backpressure for ya
-* types of streams:<br />
-    * readable<br />
-    * writable<br />
-    * transform<br />
-    * duplex<br />
+* types of streams:
+    * readable
+    * writable
+    * transform
+    * duplex
     * 'classic'
-* chain pipes, don't break crap out<br />
-    * <code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code><br />
+* chain pipes, don't break crap out
+    * <code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code>
     * that's basically the same as <code>one | two | three</code></p>
 <div class="highlight"><pre><span></span><span class="c1">//</span>
 <span class="c1">// readable</span>

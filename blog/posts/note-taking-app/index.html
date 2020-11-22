@@ -33,10 +33,10 @@
     </header>
     <div>
       <h2>Build a Note-Taking App for the Terminal, in Node</h2>
-<p>This is a follow-up to my <a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html">first<br />
-post</a> on writing<br />
-command-line apps in Node. I suggest you read that first, but this post should<br />
-stand on its own if you don't want to. Below is the little React component<br />
+<p>This is a follow-up to my <a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html">first
+post</a> on writing
+command-line apps in Node. I suggest you read that first, but this post should
+stand on its own if you don't want to. Below is the little React component
 generator that you'd get if you follow that tutorial.</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
 
@@ -94,52 +94,52 @@ generator that you'd get if you follow that tutorial.</p>
 
 <hr />
 <h2>Introduction</h2>
-<p>I really love writing little command-line utilities in Node. There are other<br />
-languages that may be better for this (Bash, Ruby, Perl), but Node is just more<br />
-<em>fun</em> than those (at least to me). I especially love trying to do simple little<br />
-tools with no dependencies, or wrapping up awesome modules to be used in your<br />
-terminal. The majority of <a href="https://www.npmjs.com/~zacanger">my published modules</a><br />
-are little tools like this. A lot of folks only think of Node as the thing that<br />
-runs Express, or the thing that lets them test their code without a browser, or<br />
-whatever, though. So, this will be a short tutorial on writing a command-line<br />
-app in Node. At the end of it, you'll have a totally awesome little app for<br />
-taking notes in JSON. The full version of this app (with a few adjustments and<br />
-additions) is <a href="https://www.npmjs.com/package/lilnote">here</a>, and you can<br />
+<p>I really love writing little command-line utilities in Node. There are other
+languages that may be better for this (Bash, Ruby, Perl), but Node is just more
+<em>fun</em> than those (at least to me). I especially love trying to do simple little
+tools with no dependencies, or wrapping up awesome modules to be used in your
+terminal. The majority of <a href="https://www.npmjs.com/~zacanger">my published modules</a>
+are little tools like this. A lot of folks only think of Node as the thing that
+runs Express, or the thing that lets them test their code without a browser, or
+whatever, though. So, this will be a short tutorial on writing a command-line
+app in Node. At the end of it, you'll have a totally awesome little app for
+taking notes in JSON. The full version of this app (with a few adjustments and
+additions) is <a href="https://www.npmjs.com/package/lilnote">here</a>, and you can
 install it to use in your terminal with <code>npm i -g lilnote</code>.</p>
 <p>Okay, so, let's do stuff!</p>
 <h2>Update Node</h2>
-<p>First things first&mdash;make sure Node and npm are up to date. If you're<br />
-already using at least versions 6 of node and 3 of npm (<code>node -v</code> and <code>npm -v</code><br />
+<p>First things first&mdash;make sure Node and npm are up to date. If you're
+already using at least versions 6 of node and 3 of npm (<code>node -v</code> and <code>npm -v</code>
 to find out), you're fine. Otherwise, you really should update.</p>
-<p>I recommend using <a href="https://www.npmjs.com/package/n">n</a> for this. If you already<br />
-use NVM, go with that; if you're on Windows, you'll likely have to go download<br />
+<p>I recommend using <a href="https://www.npmjs.com/package/n">n</a> for this. If you already
+use NVM, go with that; if you're on Windows, you'll likely have to go download
 the new version and manually install it. Otherwise, just <code>npm i -g n &amp;&amp; n latest
-&amp;&amp; npm i -g npm@next</code> (you can leave out the last bit, but it's nice to have the<br />
+&amp;&amp; npm i -g npm@next</code> (you can leave out the last bit, but it's nice to have the
 newest version of the coolest tools).</p>
 <h2>Start a Project</h2>
 <p>Make a new directory and start a project (<code>mkdir note-taking-app</code>, <code>cd
-note-taking-app</code>, <code>npm init</code>, <code>touch index.js</code>, and <code>chmod +x index.js</code> to make<br />
+note-taking-app</code>, <code>npm init</code>, <code>touch index.js</code>, and <code>chmod +x index.js</code> to make
 it executable).</p>
-<p>You won't need any dependencies here; the <code>npm init</code> isn't vital, but if you<br />
-later wanted to add dependencies, publish this (please don't unless it's<br />
-significantly different from <a href="https://npmjs.com/package/lilnote">lilnote</a>!), or<br />
+<p>You won't need any dependencies here; the <code>npm init</code> isn't vital, but if you
+later wanted to add dependencies, publish this (please don't unless it's
+significantly different from <a href="https://npmjs.com/package/lilnote">lilnote</a>!), or
 something, it'd be nice to just have this already set up.</p>
-<p>If you want, you can add some fields to your <code>package.json</code> to specifiy that<br />
+<p>If you want, you can add some fields to your <code>package.json</code> to specifiy that
 it's a global, command-line sort of app. Add <code>"preferGlobal": true</code> and <code>"bin":
 "./index.js"</code> for this.</p>
 <h2>Write Some Code</h2>
 <p>Open the <code>index.js</code> in your editor.</p>
-<p>The first thing you'll need to write is the shebang. This is to let your shell<br />
+<p>The first thing you'll need to write is the shebang. This is to let your shell
 know how to execute this file. For a Node script, it should read <code>#!/usr/bin/env
-node</code>. Any time you're writing an executable script, this goes on the first<br />
-line. You'll use a similar thing for any language you'd use (for example,<br />
-<code>#!/bin/bash</code> for a Bash script, or <code>#!/usr/bin/ruby</code> for a Ruby script&mdash;<br />
-the <code>env</code> bit says 'find out what my computer thinks Node is, and execute that<br />
+node</code>. Any time you're writing an executable script, this goes on the first
+line. You'll use a similar thing for any language you'd use (for example,
+<code>#!/bin/bash</code> for a Bash script, or <code>#!/usr/bin/ruby</code> for a Ruby script&mdash;
+the <code>env</code> bit says 'find out what my computer thinks Node is, and execute that
 script with that thing'&mdash;it's the same idea as doing <code>which node index.js</code>).</p>
-<p>We're going to require some stuff. If you happen to be using <code>babel-node</code> or<br />
-using <code>babel-register</code> you could use <code>import</code>s here, but we'll go with<br />
+<p>We're going to require some stuff. If you happen to be using <code>babel-node</code> or
+using <code>babel-register</code> you could use <code>import</code>s here, but we'll go with
 <code>require</code>s because this means we can keep our app dependency-free.</p>
-<p>Add <code>'use strict'</code> to the next line. You don't <em>have</em> to do this, <a href="https://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode">but you<br />
+<p>Add <code>'use strict'</code> to the next line. You don't <em>have</em> to do this, <a href="https://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode">but you
 should</a>.</p>
 <p>We'll require just one thing to start with: <code>fs</code>, which is built in to Node.</p>
 <p>Our file should currently look like this:</p>
@@ -150,35 +150,35 @@ should</a>.</p>
 <span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
 </pre></div>
 
-<p>Our app is going to read input from the terminal, so we'll need to use the<br />
-built-in <code>process</code>. This provides an <code>argv</code>, which is an 'argument<br />
-vector'&mdash;an array of all things entered on the command-line, which will<br />
-always start with <code>node</code> and the file that's being run. So, we'll use<br />
-<code>process.argv[2]</code>, which will be the first manually entered argument. Sidenote:<br />
-<code>process</code> is an awesome piece of Node, and if you're not familiar with it, open<br />
-a REPL (just enter <code>node</code> in the terminal) and type in <code>process</code>, and skim<br />
+<p>Our app is going to read input from the terminal, so we'll need to use the
+built-in <code>process</code>. This provides an <code>argv</code>, which is an 'argument
+vector'&mdash;an array of all things entered on the command-line, which will
+always start with <code>node</code> and the file that's being run. So, we'll use
+<code>process.argv[2]</code>, which will be the first manually entered argument. Sidenote:
+<code>process</code> is an awesome piece of Node, and if you're not familiar with it, open
+a REPL (just enter <code>node</code> in the terminal) and type in <code>process</code>, and skim
 through that gigantic object.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 
-<p>Parsing arguments is tedious and sometimes difficult. There are a<br />
-<a href="https://github.com/tj/commander.js">lot</a> of<br />
-<a href="https://github.com/substack/minimist">awesome</a><br />
-<a href="https://www.npmjs.com/package/yargs">modules</a> that exist for this, and if you<br />
-keep building cli apps in Node you should definitely investigate these, but for<br />
-this tutorial we'll parse options manually. In the same way that you should know<br />
-how HTTP works and then maybe use <a href="http://koajs.com">Koa</a> or<br />
-<a href="http://hapijs.com">hapi</a>, you should know how arguments work before deciding on<br />
+<p>Parsing arguments is tedious and sometimes difficult. There are a
+<a href="https://github.com/tj/commander.js">lot</a> of
+<a href="https://github.com/substack/minimist">awesome</a>
+<a href="https://www.npmjs.com/package/yargs">modules</a> that exist for this, and if you
+keep building cli apps in Node you should definitely investigate these, but for
+this tutorial we'll parse options manually. In the same way that you should know
+how HTTP works and then maybe use <a href="http://koajs.com">Koa</a> or
+<a href="http://hapijs.com">hapi</a>, you should know how arguments work before deciding on
 a library to handle them.</p>
-<p>We'll need a couple of other things before we can really get going. We should<br />
-probably do something with that <code>fs</code> module&mdash;let's use it to specify a<br />
-piece of JSON we'll work against. I won't get into how to handle what happens if<br />
-that file doesn't already exist here, but you can check out <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">lilnote's source<br />
-code</a> if<br />
-you're curious. For our purposes, you should <code>touch notes.json</code> in the same<br />
-directory as your app, and put an empty array (<code>[]</code>) in there. (Note: <code>lilnote</code><br />
-uses a file under the user's home directory; that's another thing we won't worry<br />
-about right now, but it's <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">pretty<br />
+<p>We'll need a couple of other things before we can really get going. We should
+probably do something with that <code>fs</code> module&mdash;let's use it to specify a
+piece of JSON we'll work against. I won't get into how to handle what happens if
+that file doesn't already exist here, but you can check out <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">lilnote's source
+code</a> if
+you're curious. For our purposes, you should <code>touch notes.json</code> in the same
+directory as your app, and put an empty array (<code>[]</code>) in there. (Note: <code>lilnote</code>
+uses a file under the user's home directory; that's another thing we won't worry
+about right now, but it's <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">pretty
 easy</a> to do.)</p>
 <p>Let's add another couple of declarations:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="s1">&#39;./notes.json&#39;</span>
@@ -189,7 +189,7 @@ easy</a> to do.)</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">notes</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
 </pre></div>
 
-<p>And since we'll be using <code>console.log</code> in a few places, let's just make that a<br />
+<p>And since we'll be using <code>console.log</code> in a few places, let's just make that a
 little shorter:</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span>
 </pre></div>
@@ -215,7 +215,7 @@ little shorter:</p>
 </pre></div>
 
 <h2>Make It Do Things</h2>
-<p>So let's do stuff! First let's make a way to record notes taken. This will work<br />
+<p>So let's do stuff! First let's make a way to record notes taken. This will work
 by just calling your script and treating the first argument as a note.</p>
 <div class="highlight"><pre><span></span>./index.js <span class="s2">&quot;go to the grocery store&quot;</span>
 ./index.js cook
@@ -233,7 +233,7 @@ by just calling your script and treating the first argument as a note.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>Note that we're using function expressions, not function declarations. This<br />
+<p>Note that we're using function expressions, not function declarations. This
 could also be written as:</p>
 <div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">takeNote</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">note</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">note</span><span class="p">)</span>
@@ -246,16 +246,16 @@ could also be written as:</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>These extra parameters to <code>JSON.stringify()</code> make our JSON look decent. Check<br />
-out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">docs on<br />
-MDN</a><br />
+<p>These extra parameters to <code>JSON.stringify()</code> make our JSON look decent. Check
+out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">docs on
+MDN</a>
 if you're not familiar with them.</p>
-<p>We're taking in the array of notes and a note, and pushing that note to the<br />
-array of notes. Then we're using <code>writeFile()</code> from <code>fs</code> to write to the <code>file</code><br />
-we declared earlier, using the <code>taken</code> we declared earlier, with the encoding<br />
-<code>UTF-8</code>. The callback here is in case there's an error&mdash;if the file doesn't<br />
+<p>We're taking in the array of notes and a note, and pushing that note to the
+array of notes. Then we're using <code>writeFile()</code> from <code>fs</code> to write to the <code>file</code>
+we declared earlier, using the <code>taken</code> we declared earlier, with the encoding
+<code>UTF-8</code>. The callback here is in case there's an error&mdash;if the file doesn't
 already exist, for example.</p>
-<p>We should handle this function where we process our command-line arguments,<br />
+<p>We should handle this function where we process our command-line arguments,
 which we'll get to in a little bit.</p>
 <p>Let's also write a function for removing a note by its index in the array.</p>
 <div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">removeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -270,9 +270,9 @@ which we'll get to in a little bit.</p>
 <p>Awesome! That's like 90% of our app right there.</p>
 <p>We should probably handle some arguments so we can actually use this thing.</p>
 <h2>Make It All Work</h2>
-<p>We're going to do this with a series of <code>if</code> statements. We could also use a<br />
-<code>switch</code> here, but for a lot of people that'll seem a little unfamiliar. Let's<br />
-assume that you'll use <code>-s</code> to show all notes, and <code>-r</code> to remove a note. We<br />
+<p>We're going to do this with a series of <code>if</code> statements. We could also use a
+<code>switch</code> here, but for a lot of people that'll seem a little unfamiliar. Let's
+assume that you'll use <code>-s</code> to show all notes, and <code>-r</code> to remove a note. We
 should also handle a case where there are no arguments passed.</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Please pass an argument&#39;</span><span class="p">)</span>
@@ -289,9 +289,9 @@ should also handle a case where there are no arguments passed.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>So, that's a basic way to handle command-line options. Let's just wrap that last<br />
-bit in a function and call it at the end. It's not beautiful, but if you put a<br />
-little bit of work into this, you could have a decent app! Here's how your whole<br />
+<p>So, that's a basic way to handle command-line options. Let's just wrap that last
+bit in a function and call it at the end. It's not beautiful, but if you put a
+little bit of work into this, you could have a decent app! Here's how your whole
 file should look, now:</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
 
@@ -339,10 +339,10 @@ file should look, now:</p>
 <span class="nx">runTheApp</span><span class="p">()</span>
 </pre></div>
 
-<p>This isn't beautiful, but as with the last post, I'll leave it to you to clean<br />
-it up, handle funky cases, and whatnot. If you're having fun with this, check<br />
-back for my next post! Also, if you have any thoughts on fun command-line<br />
-projects in Node but aren't sure how to get started, hit me up <a href="https://twitter.com/zacanger">on<br />
+<p>This isn't beautiful, but as with the last post, I'll leave it to you to clean
+it up, handle funky cases, and whatnot. If you're having fun with this, check
+back for my next post! Also, if you have any thoughts on fun command-line
+projects in Node but aren't sure how to get started, hit me up <a href="https://twitter.com/zacanger">on
 Twitter</a> and I'll see about writing something up!</p>
     </div>
     <footer>

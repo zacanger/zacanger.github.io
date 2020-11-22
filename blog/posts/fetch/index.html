@@ -57,7 +57,7 @@
 <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
 </pre></div>
 
-<p>granted i'm also using es2015 in the fetch example, which makes it even nicer-looking,<br />
+<p>granted i'm also using es2015 in the fetch example, which makes it even nicer-looking,
 but whatever.</p>
 <p>using esnext async functions:</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nx">async</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -80,11 +80,11 @@ but whatever.</p>
 <div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;//foo.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">mode</span> <span class="o">:</span> <span class="s1">&#39;no-cors&#39;</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">type</span><span class="p">))</span> <span class="c1">// opaque</span>
 </pre></div>
 
-<p>can't actually read the content of response here, but it could be used by something else (add an event listener<br />
+<p>can't actually read the content of response here, but it could be used by something else (add an event listener
 for when it comes back, for example).</p>
 <p>other modes: <code>same-origin</code>, <code>cors</code>, and <code>cors-with-forced-preflight</code>.</p>
 <p>you could also cache that stuff, which is nice.</p>
-<p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access<br />
+<p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access
 it sort of, with <code>responseText</code> while it's still going on, but it's going to put it all in mem anyway.</p>
 <div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -102,9 +102,9 @@ it sort of, with <code>responseText</code> while it's still going on, but it's g
 </pre></div>
 
 <p><code>response.body</code> is a <code>ReadableStream</code>.</p>
-<p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate<br />
+<p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate
 content on the go, using that, with fetch. You can feed that to the view as you get it.</p>
-<p>I guess fetch didn't have streams when it first started to be implemented, so they have some<br />
+<p>I guess fetch didn't have streams when it first started to be implemented, so they have some
 other readers they stuck in there. So, <code>response</code> (or <code>request</code> actually, too), then</p>
 <ul>
 <li><code>.arrayBuffer()</code></li>
@@ -113,7 +113,7 @@ other readers they stuck in there. So, <code>response</code> (or <code>request</
 <li><code>.json()</code></li>
 <li>and <code>.text()</code></li>
 </ul>
-<p>Once they've been called, you can't call another one on that same stream (they 'drain' the stream). What we could<br />
+<p>Once they've been called, you can't call another one on that same stream (they 'drain' the stream). What we could
 do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respone.clone().json().catch() =&gt; response.text())</code>.</p>
 <p>You can check <code>response.headers</code> to decide what you need to do with it.</p>
 <div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
@@ -125,7 +125,7 @@ do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respon
 <span class="p">})</span>
 </pre></div>
 
-<p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better<br />
+<p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better
 control over cache, and same-origin requests without credentials (no credentials is fetch's default).</p>
 <p>You <em>can't</em> abort a request with fetch before at least the headers come back (yet).</p>
 <p>You can't track progress (yet), but you can do stuff to do that on your own (by working with <code>Content-Length</code>).</p>
@@ -140,9 +140,9 @@ control over cache, and same-origin requests without credentials (no credentials
 </pre></div>
 
 <p>And credentials (like cookies, for example): <code>fetch(url, {credentials : 'include'})</code></p>
-<p>There's a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch<br />
+<p>There's a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch
 instead of XHR. Looks pretty nice.</p>
-<p>There are a bunch of other fetch implementations. But it's already basically in browsers, so Node can't be<br />
+<p>There are a bunch of other fetch implementations. But it's already basically in browsers, so Node can't be
 <em>too</em> far behind... right?</p>
     </div>
     <footer>

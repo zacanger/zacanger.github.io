@@ -32,14 +32,14 @@
       <h4><small>Tagged: devmtn, notes, js, css, angular</small></h4>
     </header>
     <div>
-      <p>This is going to be a crapton of my notes, from when I was going through the<br />
+      <p>This is going to be a crapton of my notes, from when I was going through the
 course at DevMountain.</p>
-<p>Looking back over these, a lot of them are dumb. What I mean by this is that<br />
+<p>Looking back over these, a lot of them are dumb. What I mean by this is that
 my opinions on things were dumb.</p>
 <p>Whatever.</p>
-<p>Don't take it all so seriously. Some of it could be really helpful. This is<br />
-about half of my collected notes <em>that were inside project files</em>. Everything<br />
-else has already been cleaned up and posted, or is in a directory of drafts<br />
+<p>Don't take it all so seriously. Some of it could be really helpful. This is
+about half of my collected notes <em>that were inside project files</em>. Everything
+else has already been cleaned up and posted, or is in a directory of drafts
 somewhere. This stuff is totally unedited.</p>
 <hr />
 <h2>ng probs</h2>
@@ -55,9 +55,9 @@ somewhere. This stuff is totally unedited.</p>
 </code></pre>
 <hr />
 <h2>angular: directives</h2>
-<p>directives are different than controllers and services. directives ALWAYS return an object. when you write a<br />
-ctrl or svc you're giving some definitions to something that already exists. with directives you're closer<br />
-to writing routing. you're writing a set of instructions. they return an object. objects get, obviously,<br />
+<p>directives are different than controllers and services. directives ALWAYS return an object. when you write a
+ctrl or svc you're giving some definitions to something that already exists. with directives you're closer
+to writing routing. you're writing a set of instructions. they return an object. objects get, obviously,
 key-value pairs.</p>
 <pre><code>.directive('myDirective', function(){
   return {
@@ -65,15 +65,15 @@ key-value pairs.</p>
   }
 })
 </code></pre>
-<p>directive names MUST be camelCase. pascal case will not be recognized. nor<br />
+<p>directive names MUST be camelCase. pascal case will not be recognized. nor
 snake case?</p>
-<p>i mean, really, it's all made a lot more complicated than it needs to be.<br />
-we're starting out basically just making our own little bits. it makes sense.<br />
-if it works as a template file, or as just regular html,<br />
+<p>i mean, really, it's all made a lot more complicated than it needs to be.
+we're starting out basically just making our own little bits. it makes sense.
+if it works as a template file, or as just regular html,
 it'll work as a custom directive. just more reusable as a directive.</p>
-<p>we could have a directive with a TYPE. imagine a function that returns a<br />
-customer with an attribute that's .type... so we'd have a directive called<br />
-myCustomer, type="name", then another, type="smoking habits". paramaters here<br />
+<p>we could have a directive with a TYPE. imagine a function that returns a
+customer with an attribute that's .type... so we'd have a directive called
+myCustomer, type="name", then another, type="smoking habits". paramaters here
 are always (element, attribute).</p>
 <p>Restrict as a property: E means element (so you'd do <myDirective> instead of</p>
 <div myDirective> A is attribute, so it'd be <div myDirective> can do BOTH so
