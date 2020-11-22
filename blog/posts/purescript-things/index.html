@@ -1,34 +1,76 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>purescript things | Zac Anger&#x27;s Blog</title><meta name="description" content="What are @ and =&gt;?"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,purescript"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="purescript things"/><meta name="twitter:description" content="What are @ and =&gt;?"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="purescript things"/><meta property="og:description" content="What are @ and =&gt;?"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>purescript things</h2><h3>19 August, 2016</h3></header><div><p>What are <code>@</code> and <code>=&gt;</code>?</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>purescript things | Zac Anger's Blog</title>
+    <meta name="description" content="purescript things" />
+    <meta name="keywords" content="['purescript']" />
+    <meta name="twitter:description" content="purescript things" />
+    <meta name="twitter:title" content="purescript things" />
+    <meta property="og:description" content="purescript things" />
+    <meta property="og:title" content="purescript things" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>purescript things</h2>
+      <h3>2016-08-19</h3>
+      <h4><small>Tagged: purescript</small></h4>
+    </header>
+    <div>
+      <p>What are <code>@</code> and <code>=&gt;</code>?</p>
 <p>What is fixity? Is this the same as precedence?</p>
-<pre><code class="language-haskell">foo :: [a] -- in haskell would be
-foo :: forall a. Array a -- in purescript, i think?
--- there's no [] in annotations, it's always Array a
--- but there is List, but you have to use Data.List instead of just []
+<div class="highlight"><pre><span></span><span class="nf">foo</span> <span class="ow">::</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="c1">-- in haskell would be</span>
+<span class="nf">foo</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Array</span> <span class="n">a</span> <span class="c1">-- in purescript, i think?</span>
+<span class="c1">-- there&#39;s no [] in annotations, it&#39;s always Array a</span>
+<span class="c1">-- but there is List, but you have to use Data.List instead of just []</span>
 
-Number -- is js number
-Int -- is 32 bit -- and it's basically n | 0 (?)
+<span class="kt">Number</span> <span class="c1">-- is js number</span>
+<span class="kt">Int</span> <span class="c1">-- is 32 bit -- and it&#39;s basically n | 0 (?)</span>
 
-Unit -- ()
+<span class="kt">Unit</span> <span class="c1">-- ()</span>
 
-main :: IO () -- would be
-main :: Eff -- basically, but really more something like
-main :: Eff (process :: PROCESS, fs :: FS) Unit -- or something
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span> <span class="c1">-- would be</span>
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">Eff</span> <span class="c1">-- basically, but really more something like</span>
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">Eff</span> <span class="p">(</span><span class="n">process</span> <span class="ow">::</span> <span class="kt">PROCESS</span><span class="p">,</span> <span class="n">fs</span> <span class="ow">::</span> <span class="kt">FS</span><span class="p">)</span> <span class="kt">Unit</span> <span class="c1">-- or something</span>
 
-a &lt;&gt; b -- a ++ b -- concat a b
+<span class="nf">a</span> <span class="o">&lt;&gt;</span> <span class="n">b</span> <span class="c1">-- a ++ b -- concat a b</span>
 
-A &lt;= B -- B implies instance of A
-</code></pre>
-<p>something like this is kind of right i think (what builds on what):
+<span class="kt">A</span> <span class="o">&lt;=</span> <span class="kt">B</span> <span class="c1">-- B implies instance of A</span>
+</pre></div>
+
+<p>something like this is kind of right i think (what builds on what):<br />
 i</p>
-<pre><code class="language-text">      monad
+<div class="highlight"><pre><span></span>      monad
   applicative   ??
     apply  bind
       functor
-</code></pre>
+</pre></div>
+
 <p>No tuples, just records. But there's a lib for tuples.</p>
 <p><code>&lt;&lt;&lt;</code>  is <code>.</code> for rtl composition, and <code>&gt;&gt;&gt;</code> for ltr</p>
 <p>Lots of <code>Data.List</code> stuff is in <code>Data.Foldable</code> and <code>Data.Traversable</code> instead.</p>
-<p>To export stuff: <code>module Foo (a, b, c) where</code>.
-That's like <code>export { a, b, c }</code> in JS, I think.
+<p>To export stuff: <code>module Foo (a, b, c) where</code>.<br />
+That's like <code>export { a, b, c }</code> in JS, I think.<br />
 <code>module Foo (..)</code> exports everything, I think.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

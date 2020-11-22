@@ -1,13 +1,53 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>meetup notes i guess | Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp,meetup,notes"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="meetup notes i guess"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="meetup notes i guess"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>meetup notes i guess</h2><h3>12 July, 2016</h3></header><div><pre><code class="language-javascript">const
-  id    = a =&gt; a
-, add   = (a, b) =&gt; a + b
-, sub   = (a, b) =&gt; a - b
-, mul   = (a, b) =&gt; a * b
-, div   = (a, b) =&gt; a / b
-, mol   = (a, b) =&gt; a % b
-, idF   = () =&gt; a =&gt; a
-, addF  = a =&gt; a =&gt; b =&gt; a + b
-, cur   = fn =&gt; a =&gt; b =&gt; fn(a, b)
-, rCur  = fn =&gt; b =&gt; a =&gt; fn(a, b)
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>meetup notes i guess | Zac Anger's Blog</title>
+    <meta name="description" content="meetup notes i guess" />
+    <meta name="keywords" content="['fp', 'meetup', 'notes']" />
+    <meta name="twitter:description" content="meetup notes i guess" />
+    <meta name="twitter:title" content="meetup notes i guess" />
+    <meta property="og:description" content="meetup notes i guess" />
+    <meta property="og:title" content="meetup notes i guess" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>meetup notes i guess</h2>
+      <h3>2016-07-12</h3>
+      <h4><small>Tagged: fp, meetup, notes</small></h4>
+    </header>
+    <div>
+      <div class="highlight"><pre><span></span><span class="kr">const</span>
+  <span class="nx">id</span>    <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span>
+<span class="p">,</span> <span class="nx">add</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">sub</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">mul</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">div</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">/</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">mol</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">%</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">idF</span>   <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span>
+<span class="p">,</span> <span class="nx">addF</span>  <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">b</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">,</span> <span class="nx">cur</span>   <span class="o">=</span> <span class="nx">fn</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">b</span> <span class="p">=&gt;</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+<span class="p">,</span> <span class="nx">rCur</span>  <span class="o">=</span> <span class="nx">fn</span> <span class="p">=&gt;</span> <span class="nx">b</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

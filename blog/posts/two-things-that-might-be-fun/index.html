@@ -1,49 +1,91 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Two Things That Might Be Fun | Zac Anger&#x27;s Blog</title><meta name="description" content="Two things that I think might be fun to play around with, at some point."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,cljs,clj,scheme,types,hs,jsx,js,react"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Two Things That Might Be Fun"/><meta name="twitter:description" content="Two things that I think might be fun to play around with, at some point."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Two Things That Might Be Fun"/><meta property="og:description" content="Two things that I think might be fun to play around with, at some point."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Two Things That Might Be Fun</h2><h3>03 November, 2016</h3></header><div><p>Two things that I think might be fun to play around with, at some point.</p>
-<p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or
-Haskell style annotations, but maybe use Flow as a sort of backend to actually
-do the type checking? It could look something like this:</p>
-<pre><code class="language-js">//:: Int -&gt; Int -&gt; [Int]
-const putIntsInList = (a, b) =&gt; [ a,  b ]
+<!DOCTYPE html>
+<html lang="en">
 
-//::Str -&gt; Str -&gt; Str // or
-//::[Char] -&gt; [Char] -&gt; [Char]
-const doThingsWithStrings = (a, b) =&gt; `${a} ${b}`
-</code></pre>
-<p>It could use some sort of regexy thing to basically just detect anywhere there's
-<code>//::</code>, see what the next thing is, and see if they go together. I don't know
-much about ASTs or type systems, though. I just think that'd be a lot less
-in-the-way than how TypeScript and Flow currently work. Also, my syntax
+  <head>
+    <title>Two Things That Might Be Fun | Zac Anger's Blog</title>
+    <meta name="description" content="Two Things That Might Be Fun" />
+    <meta name="keywords" content="['cljs', 'clj', 'scheme', 'types', 'hs', 'jsx', 'js', 'react']" />
+    <meta name="twitter:description" content="Two Things That Might Be Fun" />
+    <meta name="twitter:title" content="Two Things That Might Be Fun" />
+    <meta property="og:description" content="Two Things That Might Be Fun" />
+    <meta property="og:title" content="Two Things That Might Be Fun" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Two Things That Might Be Fun</h2>
+      <h3>2016-11-03</h3>
+      <h4><small>Tagged: cljs, clj, scheme, types, hs, jsx, js, react</small></h4>
+    </header>
+    <div>
+      <p>Two things that I think might be fun to play around with, at some point.</p>
+<p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or<br />
+Haskell style annotations, but maybe use Flow as a sort of backend to actually<br />
+do the type checking? It could look something like this:</p>
+<div class="highlight"><pre><span></span><span class="c1">//:: Int -&gt; Int -&gt; [Int]</span>
+<span class="kr">const</span> <span class="nx">putIntsInList</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[</span> <span class="nx">a</span><span class="p">,</span>  <span class="nx">b</span> <span class="p">]</span>
+
+<span class="c1">//::Str -&gt; Str -&gt; Str // or</span>
+<span class="c1">//::[Char] -&gt; [Char] -&gt; [Char]</span>
+<span class="kr">const</span> <span class="nx">doThingsWithStrings</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span>
+</pre></div>
+
+<p>It could use some sort of regexy thing to basically just detect anywhere there's<br />
+<code>//::</code>, see what the next thing is, and see if they go together. I don't know<br />
+much about ASTs or type systems, though. I just think that'd be a lot less<br />
+in-the-way than how TypeScript and Flow currently work. Also, my syntax<br />
 highlighting doesn't know what template strings are, so. That's gross.</p>
 <p>Another thing:</p>
-<pre><code class="language-js">import React, { PropTypes } from 'react'
-import AnotherComponent from './AnotherComponent'
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="nx">AnotherComponent</span> <span class="nx">from</span> <span class="s1">&#39;./AnotherComponent&#39;</span>
 
-const Something = ({ a, b, c }) =&gt; {
-  if (!a) return null
+<span class="kr">const</span> <span class="nx">Something</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span>
 
-  return (
-    (div
-      (another-component (whatever 'a))
-        (not (null? b)
-          (span (b))
-        (not (null? c)
-          (map (p (c)))))))
-  // which would be like
-  return (
-    &lt;div&gt;
-      &lt;AnotherComponent whatever={a} /&gt;
-      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
-      {c &amp;&amp; c.length &amp;&amp;
-        c.map((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
-      }
-    &lt;/div&gt;
-  )
-}
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">(</span><span class="nx">div</span>
+      <span class="p">(</span><span class="nx">another</span><span class="o">-</span><span class="nx">component</span> <span class="p">(</span><span class="nx">whatever</span> <span class="err">&#39;</span><span class="nx">a</span><span class="p">))</span>
+        <span class="p">(</span><span class="nx">not</span> <span class="p">(</span><span class="kc">null</span><span class="o">?</span> <span class="nx">b</span><span class="p">)</span>
+          <span class="p">(</span><span class="nx">span</span> <span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+        <span class="p">(</span><span class="nx">not</span> <span class="p">(</span><span class="kc">null</span><span class="o">?</span> <span class="nx">c</span><span class="p">)</span>
+          <span class="p">(</span><span class="nx">map</span> <span class="p">(</span><span class="nx">p</span> <span class="p">(</span><span class="nx">c</span><span class="p">)))))))</span>
+  <span class="c1">// which would be like</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">AnotherComponent</span> <span class="nx">whatever</span><span class="o">=</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="p">{</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">b</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/span&gt;}</span>
+      <span class="p">{</span><span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">i</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;)</span>
+      <span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
 
-export default Something
-</code></pre>
-<p>This a totally made-up syntax for a thing that doesn't exactly exist, and I
-don't know how useful this would actually be, since there are already great
-React libraries for ClojureScript out there. Just think it'd be neat to be able
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Something</span>
+</pre></div>
+
+<p>This a totally made-up syntax for a thing that doesn't exactly exist, and I<br />
+don't know how useful this would actually be, since there are already great<br />
+React libraries for ClojureScript out there. Just think it'd be neat to be able<br />
 to to JSX in Scheme.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

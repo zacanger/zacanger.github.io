@@ -1,79 +1,76 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Functional Programming Vocabulary | Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,fp,programming,vocabulary"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Functional Programming Vocabulary"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Functional Programming Vocabulary"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Functional Programming Vocabulary</h2><h3>16 January, 2016</h3></header><div><ul>
-<li>arity
-<ul>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Functional Programming Vocabulary | Zac Anger's Blog</title>
+    <meta name="description" content="Functional Programming Vocabulary" />
+    <meta name="keywords" content="['fp', 'programming', 'vocabulary']" />
+    <meta name="twitter:description" content="Functional Programming Vocabulary" />
+    <meta name="twitter:title" content="Functional Programming Vocabulary" />
+    <meta property="og:description" content="Functional Programming Vocabulary" />
+    <meta property="og:title" content="Functional Programming Vocabulary" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Functional Programming Vocabulary</h2>
+      <h3>2016-01-16</h3>
+      <h4><small>Tagged: fp, programming, vocabulary</small></h4>
+    </header>
+    <div>
+      <ul>
+<li>arity</li>
 <li>number of args a function takes</li>
 <li>ary + ity (it's two suffixes!)</li>
 <li>binary, ternary, etc = arity of two, arity of three, etc</li>
 <li>variable number of args = variadic</li>
 <li>dyadic = binary (talkin greek here)</li>
-</ul>
-</li>
-<li>hof
-<ul>
+<li>hof</li>
 <li>function that takes function as arg</li>
 <li>or function that returns a function</li>
-</ul>
-</li>
-<li>partial application
-<ul>
+<li>partial application</li>
 <li>getting a function with lower arity compared to original function</li>
 <li>by fixing number of args</li>
-</ul>
-</li>
-<li>currying
-<ul>
+<li>currying</li>
 <li>converting function with multiple arity into function with arity of one</li>
-</ul>
-</li>
-<li>purity
-<ul>
+<li>purity</li>
 <li>pure function's return value is determined ONLY by input values</li>
 <li>no side effects</li>
-</ul>
-</li>
-<li>side effects
-<ul>
+<li>side effects</li>
 <li>if modifies some state</li>
 <li>or has observable interaction with external functions</li>
-</ul>
-</li>
-<li>idempotency
-<ul>
+<li>idempotency</li>
 <li>no side effects on multiple executions with same parameters</li>
-</ul>
-</li>
-<li>points-free
-<ul>
+<li>points-free</li>
 <li>does not include information regarding arguments</li>
-</ul>
-</li>
-<li>functor
-<ul>
+<li>functor</li>
 <li>structure than can be mapped over</li>
 <li>simplest in js is an array</li>
-</ul>
-</li>
-<li>referential transparency
-<ul>
+<li>referential transparency</li>
 <li>expression that can be replaced with its value without changing its behavior</li>
 <li>eg <code>let oi = ()  = 'howdy'</code>; <code>oi()</code> can be <code>'howdy'</code>, hence is referentially transparent</li>
-</ul>
-</li>
-<li>lazy eval
-<ul>
+<li>lazy eval</li>
 <li>delays evaluation of expression until needed</li>
 <li>allows for structures that are not available in imperative langs where sequence is significant</li>
-</ul>
-</li>
-<li>monoid
-<ul>
+<li>monoid</li>
 <li>data type and two-param function that combines two values of the type, where an identity value that doesn't affect result also exists</li>
 <li>example: 1 + 1 (data type is number, function is =)</li>
 <li>1 + 0 (identity value is 0)</li>
-</ul>
-</li>
-<li>monad
-<ul>
+<li>monad</li>
 <li>abstraction. provides interface for executing common sequence of commands on a value one normally avoids acting on directly</li>
 <li>optional value monad is common (to avoid exposing to null values)</li>
 <li>a monad is a special functor that also returns a monad</li>
@@ -81,6 +78,10 @@
 <li>useful when sequence matters (hence nickname 'programmable semicolons')</li>
 <li>example: <code>let Identity = v =&gt; ({bind: transform =&gt; transform(v)})</code></li>
 </ul>
-</li>
-</ul>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

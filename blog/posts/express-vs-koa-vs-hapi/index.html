@@ -1,196 +1,230 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Express vs Koa vs Hapi | Zac Anger&#x27;s Blog</title><meta name="description" content="Quick little comparison of the three. Express is clearly the most commonly used,
-but I&#x27;m inclined to jump to Koa whenever I can. The simple fact that the guy who
-initially started Express passed that off to a company to maintain and instead
-works on Koa, now (which he also started), says to me that maybe Koa&#x27;s the right
-way to go."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,express,koa,js,hapi,node,server,framework"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Express vs Koa vs Hapi"/><meta name="twitter:description" content="Quick little comparison of the three. Express is clearly the most commonly used,
-but I&#x27;m inclined to jump to Koa whenever I can. The simple fact that the guy who
-initially started Express passed that off to a company to maintain and instead
-works on Koa, now (which he also started), says to me that maybe Koa&#x27;s the right
-way to go."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Express vs Koa vs Hapi"/><meta property="og:description" content="Quick little comparison of the three. Express is clearly the most commonly used,
-but I&#x27;m inclined to jump to Koa whenever I can. The simple fact that the guy who
-initially started Express passed that off to a company to maintain and instead
-works on Koa, now (which he also started), says to me that maybe Koa&#x27;s the right
-way to go."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Express vs Koa vs Hapi</h2><h3>30 December, 2015</h3></header><div><p>Quick little comparison of the three. Express is clearly the most commonly used,
-but I'm inclined to jump to Koa whenever I can. The simple fact that the guy who
-initially started Express passed that off to a company to maintain and instead
-works on Koa, now (which he also started), says to me that maybe Koa's the right
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Express vs Koa vs Hapi | Zac Anger's Blog</title>
+    <meta name="description" content="Express vs Koa vs Hapi" />
+    <meta name="keywords" content="['express', 'koa', 'js', 'hapi', 'node', 'server', 'framework']" />
+    <meta name="twitter:description" content="Express vs Koa vs Hapi" />
+    <meta name="twitter:title" content="Express vs Koa vs Hapi" />
+    <meta property="og:description" content="Express vs Koa vs Hapi" />
+    <meta property="og:title" content="Express vs Koa vs Hapi" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Express vs Koa vs Hapi</h2>
+      <h3>2015-12-30</h3>
+      <h4><small>Tagged: express, koa, js, hapi, node, server, framework</small></h4>
+    </header>
+    <div>
+      <p>Quick little comparison of the three. Express is clearly the most commonly used,<br />
+but I'm inclined to jump to Koa whenever I can. The simple fact that the guy who<br />
+initially started Express passed that off to a company to maintain and instead<br />
+works on Koa, now (which he also started), says to me that maybe Koa's the right<br />
 way to go.</p>
 <p>Okay, so all three are Sinatra-alikes for Node.</p>
-<p>Express was started in 2009, and is now maintained by StrongLoop, the Node API
+<p>Express was started in 2009, and is now maintained by StrongLoop, the Node API<br />
 company.</p>
-<p>Koa was started in 2013, and rather than a 'server-side web development
-framework build on node.js' (that's Express), Koa is 'expressive middleware for
-node.js using generators ... to make writing web applications and REST APIs more
+<p>Koa was started in 2013, and rather than a 'server-side web development<br />
+framework build on node.js' (that's Express), Koa is 'expressive middleware for<br />
+node.js using generators ... to make writing web applications and REST APIs more<br />
 enjoyable.' It's super small, too--around 400 SLOC.</p>
-<p>Hapi was started in 2011, and was originally built on Express. The original
-author still maintains it, backed by the original company (...Wal...Mart...).
-It's no longer Express-based, because 'configuration is better than code ...
+<p>Hapi was started in 2011, and was originally built on Express. The original<br />
+author still maintains it, backed by the original company (...Wal...Mart...).<br />
+It's no longer Express-based, because 'configuration is better than code ...<br />
 business logic must be isolated from the transport layer...', so, there's that.</p>
 <p>Making things happen:</p>
-<pre><code class="language-javascript">// express
-const express = require('express')
-const app = express()
-const port = 3000
-// etc, we already know all this
-app.listen(port) // http.createServer() basically
+<div class="highlight"><pre><span></span><span class="c1">// express</span>
+<span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="c1">// etc, we already know all this</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span> <span class="c1">// http.createServer() basically</span>
 
-// koa
-const koa = require('koa')
-const app = koa()
-const port = 3000
-const server = app.listen(port, () =&gt; {
-  console.log('listening on ' + port)
-}) // well, THAT looks super familiar, huh?
+<span class="c1">// koa</span>
+<span class="kr">const</span> <span class="nx">koa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;koa&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">koa</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on &#39;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">)</span>
+<span class="p">})</span> <span class="c1">// well, THAT looks super familiar, huh?</span>
 
-//hapi
-const Hapi = require('hapi')
-const server = new Hapi.Server()
-server.connection({ port: 3000 })
-server.start(() =&gt; {
-  console.log('server over yonder on ', server.info.uri)
-}) // that takes a weee bit more work, there.
-</code></pre>
+<span class="c1">//hapi</span>
+<span class="kr">const</span> <span class="nx">Hapi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;hapi&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hapi</span><span class="p">.</span><span class="nx">Server</span><span class="p">()</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">connection</span><span class="p">({</span> <span class="nx">port</span><span class="o">:</span> <span class="mi">3000</span> <span class="p">})</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;server over yonder on &#39;</span><span class="p">,</span> <span class="nx">server</span><span class="p">.</span><span class="nx">info</span><span class="p">.</span><span class="nx">uri</span><span class="p">)</span>
+<span class="p">})</span> <span class="c1">// that takes a weee bit more work, there.</span>
+</pre></div>
+
 <p>routing:</p>
-<pre><code class="language-javascript">app.get('/', function(req, res){res.send('hi')})
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)})</span>
 
-app.use(function *() {this.body = 'hi'}) // so, koa uses es6 generators.
-// the context (this) is node's `request` and `response`, wrapped up
-// `this.body` can be string, buffer, stream, object, or null
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="o">*</span><span class="p">()</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;hi&#39;</span><span class="p">})</span> <span class="c1">// so, koa uses es6 generators.</span>
+<span class="c1">// the context (this) is node&#39;s `request` and `response`, wrapped up</span>
+<span class="c1">// `this.body` can be string, buffer, stream, object, or null</span>
 
-server.route({
-  method : 'GET',
-  path: '/',
-  handler: (request, reply) =&gt; {
-    reply('hi') // holy boilerplate, batman
-  }
-})
-</code></pre>
-<hr>
+<span class="nx">server</span><span class="p">.</span><span class="nx">route</span><span class="p">({</span>
+  <span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+  <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+  <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">reply</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span> <span class="c1">// holy boilerplate, batman</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+
+<hr />
 <p>How about a little API practice?</p>
-<pre><code class="language-javascript">const express = require('express')
-const app = express()
-const router = express.Router()
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">()</span>
 
-router.route('/items')
-  .get((req, res, next) =&gt; {res.send('get')})
-  .post((req, res, next) =&gt; {res.send('post')})
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/items&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">)})</span>
+  <span class="p">.</span><span class="nx">post</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">)})</span>
 
-router.route('/items/:id')
-  .get((req, res, next) =&gt; {res.send('get ' + req.params.id)})
-  .put((req, res, next) =&gt; {res.send('put ' + req.params.id)})
-  .delete((req, res, next) =&gt; {res.send('delete ' + req.params.id)})
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">&#39;/items/:id&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;get &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)})</span>
+  <span class="p">.</span><span class="nx">put</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;put &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)})</span>
+  <span class="p">.</span><span class="k">delete</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;delete &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)})</span>
 
-app.use('/api', router)
-app.get('/', (req, res) =&gt; {res.send('hi')})
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="nx">router</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)})</span>
 
-const server = app.listen(3000, () =&gt; {console.log('listening')})
-</code></pre>
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening&#39;</span><span class="p">)})</span>
+</pre></div>
+
 <p>Nothing new there.</p>
-<pre><code class="language-javascript">const koa = require('koa')
-const route = require('koa-route')
-const app = koa()
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">koa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;koa&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">route</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;koa-route&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">koa</span><span class="p">()</span>
 
-app.use(route.get('/api/items', function*(){this.body = 'Get'}))
-app.use(route.get('/api/items/:id', function*(id){this.body = 'Get id: ' + id}
-app.use(route.put('/api/items/:id', function*(id){this.body = 'put ' + id}))
-app.use(route.delete('/api/items/:id', function*(id){this.body = 'Delete Id '}))
-app.use(function*(){this.body = 'are you lost?'})
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/items&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="o">*</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;Get&#39;</span><span class="p">}))</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/items/:id&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="o">*</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;Get id: &#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">}</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/api/items/:id&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="o">*</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;put &#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">}))</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/api/items/:id&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="o">*</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;Delete Id &#39;</span><span class="p">}))</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="o">*</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;are you lost?&#39;</span><span class="p">})</span>
 
-const server = app.listen(3000, () =&gt; {console.log 'listening on 3000'})
-</code></pre>
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;listening on 3000&#39;</span><span class="p">})</span>
+</pre></div>
+
 <p>So, that's pretty nice. Can you see why I like Koa?</p>
-<pre><code class="language-javascript">const Hapi = require('hapi')
-const server = new Hapi.Server(3000)
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">Hapi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;hapi&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hapi</span><span class="p">.</span><span class="nx">Server</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
 
-server.route([
-  {
-    method: 'GET',
-    path: 'api/items',
-    handlder: (request, reply) =&gt; {
-      reply('get item id ')
-    }
-  },
-  {
-    method: 'GET',
-    path   : '/api/items/{id},'
-    handler: (request, reply) =&gt; {
-      reply('get item id ' + request.params.id)
-    } // same thing here for all the other methods
-  }
-])
+<span class="nx">server</span><span class="p">.</span><span class="nx">route</span><span class="p">([</span>
+  <span class="p">{</span>
+    <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;api/items&#39;</span><span class="p">,</span>
+    <span class="nx">handlder</span><span class="o">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">reply</span><span class="p">(</span><span class="s1">&#39;get item id &#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+    <span class="nx">path</span>   <span class="o">:</span> <span class="s1">&#39;/api/items/{id},&#39;</span>
+    <span class="nx">handler</span><span class="o">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">reply</span><span class="p">(</span><span class="s1">&#39;get item id &#39;</span> <span class="o">+</span> <span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+    <span class="p">}</span> <span class="c1">// same thing here for all the other methods</span>
+  <span class="p">}</span>
+<span class="p">])</span>
 
-server.start(() =&gt; {console.log 'listening on 3000'})
-</code></pre>
-<p>Note that the Hapi version of things definitely takes a lot more code, but
-that's also intentional. (Remember, Hapi's meant to be easily changed for any
-team and/or project, so a lot of things are very manual; you also wouldn't
-usually use Hapi for small projects like in the examples.) Errors in Hapi are
-also a little more helpful, since it goes ahead and automatically provides
+<span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;listening on 3000&#39;</span><span class="p">})</span>
+</pre></div>
+
+<p>Note that the Hapi version of things definitely takes a lot more code, but<br />
+that's also intentional. (Remember, Hapi's meant to be easily changed for any<br />
+team and/or project, so a lot of things are very manual; you also wouldn't<br />
+usually use Hapi for small projects like in the examples.) Errors in Hapi are<br />
+also a little more helpful, since it goes ahead and automatically provides<br />
 HTTP error codes for you... in JSON, no less.</p>
 <p>So, thoughts:</p>
-<p>Express is the standard. Everyone knows it, because it's been around forever.
-It's very mature, stable, got a lot of users and a lot of backers and
-contributors. It's got a nice little built-in router. It does <em>not</em> have error
-handling, it's pretty damn opinionated, it's rather big these days, and
-there's so much out there <em>for</em> it that it's easy to get lost in all the
+<p>Express is the standard. Everyone knows it, because it's been around forever.<br />
+It's very mature, stable, got a lot of users and a lot of backers and<br />
+contributors. It's got a nice little built-in router. It does <em>not</em> have error<br />
+handling, it's pretty damn opinionated, it's rather big these days, and<br />
+there's so much out there <em>for</em> it that it's easy to get lost in all the<br />
 middleware and options and whatnot.</p>
-<p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too,
-<em>now</em>, but that was a recent switch for them, I think), which is really nice.
-Because it's so small, it's a lot easier to just go ahead and write your own
+<p>Koa's very small, and so, it's very flexible. It uses ES6 (Hapi does, too,<br />
+<em>now</em>, but that was a recent switch for them, I think), which is really nice.<br />
+Because it's so small, it's a lot easier to just go ahead and write your own<br />
 middleware. Like Express, though, that can lead to a decision problem.</p>
-<p>Hapi definitely has their corporate backing game on point. That's great for
-them, because that means it <em>has</em> to be stable. It's very consistent and
-reusable. It's also a whole goddamn lot of code to write, compared to the
-other two. If we're working on a large, complex app, maybe that'd be worth it,
-but for smaller apps (like, probably, most of the ones any of us will ever
-write on our own or in small teams), it's just too much. If you're doing
-something really big, something like... oh, I dunno, some giant retailer,
-let's call them 'Mal Wart,' if you've got to run this huge multinational
+<p>Hapi definitely has their corporate backing game on point. That's great for<br />
+them, because that means it <em>has</em> to be stable. It's very consistent and<br />
+reusable. It's also a whole goddamn lot of code to write, compared to the<br />
+other two. If we're working on a large, complex app, maybe that'd be worth it,<br />
+but for smaller apps (like, probably, most of the ones any of us will ever<br />
+write on our own or in small teams), it's just too much. If you're doing<br />
+something really big, something like... oh, I dunno, some giant retailer,<br />
+let's call them 'Mal Wart,' if you've got to run this huge multinational<br />
 enterprise system, then maybe Hapi actually would be really great for you.</p>
-<p>I think it's probably pretty easy to see why I favour Koa. For what it's
-worth, just as an example, here's what it takes to get a server running in raw
+<p>I think it's probably pretty easy to see why I favour Koa. For what it's<br />
+worth, just as an example, here's what it takes to get a server running in raw<br />
 Node:</p>
-<pre><code class="language-javascript">const http = require('http')
-const url = require('url')
-const path = require('path')
-const fs = require('fs')
-const port = process.argv[2] || 4444
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">||</span> <span class="mi">4444</span>
 
-http.createServer((request, response) =&gt; {
-  const uri = url.parse(request.url).pathname
-  const filename = path.join(process.cwd(), uri)
-  fs.exists(filename, (exists) =&gt; {
-    if (!exists) {
-      response.writeHead(404, {'Content-Type': 'text/plain'})
-      response.write('404 Not Found\n')
-      response.end()
-      return
-    }
-    if (fs.statSync(filename).isDirectory()) filename += 'index.html'
-    fs.readFile(filename, 'binary', (err, file) =&gt; {
-      if (err) {
-        response.writeHead(500, {'Content-Type': 'text/plain'})
-        response.write(err + '\n')
-        response.end()
-        return
-      }
-      response.writeHead(200)
-      response.write(file, 'binary')
-      response.end()
-    })
-  })
-}).listen(parseInt(port, 10), () =&gt; {
-  console.log('server up on ' + port)
-})
-</code></pre>
-<p>No options. No nothing. If your file you want to serve isn't called
-'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with
-<code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers
-when I'm just playing with things. The point of showing that bit, though, was
-to emphasise just how fantastic it is to even have things like Express. And
-keep in mind, there are more than just these three options. You've got
-Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and
-a load of things built on some combination of Socket.io and one middleware
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">uri</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span>
+  <span class="kr">const</span> <span class="nx">filename</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">(),</span> <span class="nx">uri</span><span class="p">)</span>
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="p">(</span><span class="nx">exists</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">exists</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">})</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;404 Not Found\n&#39;</span><span class="p">)</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">statSync</span><span class="p">(</span><span class="nx">filename</span><span class="p">).</span><span class="nx">isDirectory</span><span class="p">())</span> <span class="nx">filename</span> <span class="o">+=</span> <span class="s1">&#39;index.html&#39;</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">file</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">})</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">err</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="p">)</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+        <span class="k">return</span>
+      <span class="p">}</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;server up on &#39;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>No options. No nothing. If your file you want to serve isn't called<br />
+'index.html,' that kinda sucks for you. I keep this around in my <code>~/bin</code> (with<br />
+<code>#! /usr/bin/env node</code> at the top, executable) for running super quick servers<br />
+when I'm just playing with things. The point of showing that bit, though, was<br />
+to emphasise just how fantastic it is to even have things like Express. And<br />
+keep in mind, there are more than just these three options. You've got<br />
+Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and<br />
+a load of things built on some combination of Socket.io and one middleware<br />
 framework or another. Go play with options, they're all fun.</p>
 <p>:)</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

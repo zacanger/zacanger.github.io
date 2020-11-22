@@ -1,15 +1,52 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Crawling from the Front End | Zac Anger&#x27;s Blog</title><meta name="description" content="The steps are pretty simple. We&#x27;re going to use Yahoo&#x27;s API."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,crawling,frontend,web-crawler"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Crawling from the Front End"/><meta name="twitter:description" content="The steps are pretty simple. We&#x27;re going to use Yahoo&#x27;s API."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Crawling from the Front End"/><meta property="og:description" content="The steps are pretty simple. We&#x27;re going to use Yahoo&#x27;s API."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Crawling from the Front End</h2><h3>24 January, 2016</h3></header><div><p>The steps are pretty simple. We're going to use Yahoo's API.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Crawling from the Front End | Zac Anger's Blog</title>
+    <meta name="description" content="Crawling from the Front End" />
+    <meta name="keywords" content="['crawling', 'frontend', 'web-crawler']" />
+    <meta name="twitter:description" content="Crawling from the Front End" />
+    <meta name="twitter:title" content="Crawling from the Front End" />
+    <meta property="og:description" content="Crawling from the Front End" />
+    <meta property="og:title" content="Crawling from the Front End" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Crawling from the Front End</h2>
+      <h3>2016-01-24</h3>
+      <h4><small>Tagged: crawling, frontend, web-crawler</small></h4>
+    </header>
+    <div>
+      <p>The steps are pretty simple. We're going to use Yahoo's API.</p>
 <ul>
 <li>First, create an array to store visited links: <code>var visitedLinks = []</code>.</li>
 <li>Now, define a seed URL and root domain: <code>var link = http://some.url, rootDomain = some.url</code>.</li>
 <li>Now we need a recursive function that takes in the link.</li>
-<li>In the function, define a URL to request from Yahoo, to get all the internal links on that page.
-<ul>
-<li>The Yahoo Query Language looks like this: <code>SELECT * FROM html WHERE url = '&quot; + encodeURI(link) + &quot;' AND xpath=\&quot;//a[not(contains(@href,'&quot; + rootDomain + &quot;'))][contains(@href,'http')]\&quot;&quot;</code></li>
-</ul>
-</li>
+<li>In the function, define a URL to request from Yahoo, to get all the internal links on that page.</li>
+<li>The Yahoo Query Language looks like this: <code>SELECT * FROM html WHERE url = '" + encodeURI(link) + "' AND xpath=\"//a[not(contains(@href,'" + rootDomain + "'))][contains(@href,'http')]\""</code></li>
 <li>This returns JSON, which contains an array of objects under data=&gt;query=&gt;results=&gt;a, with each object containing a key of <code>href</code> and a value of a link.</li>
 <li>We need to loop through this, check if the link is in the <code>visitedLinks</code> array, move on if true, and add it to the array otherwise. Then we call the function again and use the new link as the parameter.</li>
 <li>To limit this, we can do something like <code>if(vistedLInks &lt;= 10000){ourFunction(newLink)}else{console.log('done!')}</code></li>
 </ul>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

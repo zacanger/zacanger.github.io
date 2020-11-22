@@ -1,177 +1,204 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>notes from my personal project at devmountain | Zac Anger&#x27;s Blog</title><meta name="description" content="a whole bunch of basically totally disorganised notes from when i was working
-on my &#x27;personal project&#x27; at devmountain."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,devmtn,electron,nwjs,markdown,angular"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="notes from my personal project at devmountain"/><meta name="twitter:description" content="a whole bunch of basically totally disorganised notes from when i was working
-on my &#x27;personal project&#x27; at devmountain."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="notes from my personal project at devmountain"/><meta property="og:description" content="a whole bunch of basically totally disorganised notes from when i was working
-on my &#x27;personal project&#x27; at devmountain."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>notes from my personal project at devmountain</h2><h3>19 May, 2016</h3></header><div><h1>this is probably a mess</h1>
-<p>a whole bunch of basically totally disorganised notes from when i was working
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>notes from my personal project at devmountain | Zac Anger's Blog</title>
+    <meta name="description" content="notes from my personal project at devmountain" />
+    <meta name="keywords" content="['devmtn', 'electron', 'nwjs']" />
+    <meta name="twitter:description" content="notes from my personal project at devmountain" />
+    <meta name="twitter:title" content="notes from my personal project at devmountain" />
+    <meta property="og:description" content="notes from my personal project at devmountain" />
+    <meta property="og:title" content="notes from my personal project at devmountain" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>notes from my personal project at devmountain</h2>
+      <h3>2016-05-19</h3>
+      <h4><small>Tagged: devmtn, electron, nwjs</small></h4>
+    </header>
+    <div>
+      <h1>this is probably a mess</h1>
+<p>a whole bunch of basically totally disorganised notes from when i was working<br />
 on my 'personal project' at devmountain.</p>
-<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
-for people who actually cared about writing. turns out no one really wants that.
-also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a>
+<p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform<br />
+for people who actually cared about writing. turns out no one really wants that.<br />
+also it turns out <a href="https://github.com/TryGhost/Ghost-Desktop">ghost was working on a desktop application</a><br />
 cool.</p>
 <p>requirements for this: make a mean stack app, basically.</p>
-<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
+<p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a><br />
 and more importantly here's the mess of notes i took while doing stuff with that.</p>
-<hr>
+<hr />
 <h2>Planner</h2>
-<p>At DevMountain, for projects, you're encouraged (required, really) to use a planning
-paper, which is basically a big sheet of paper divided up into sections that represent
-pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
+<p>At DevMountain, for projects, you're encouraged (required, really) to use a planning<br />
+paper, which is basically a big sheet of paper divided up into sections that represent<br />
+pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along<br />
 the bottom.</p>
-<p>I was actually out sick the day those got handed out for the personal projects, but NBD,
-there was a PDF version floating around so I threw a little app up using that (converted to
-PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes
-bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was
-able to easily just save all my notes out (they were all just in a big text file anyway, on
-my server). Note: I'd initially planned on using my earlier app from my 'no-server' project
-(something we do at DevMountain early on, just an Angular app that can actually use a server
-so long as it's a BaaS and not one we've spent time doing, because we don't actually know how
+<p>I was actually out sick the day those got handed out for the personal projects, but NBD,<br />
+there was a PDF version floating around so I threw a little app up using that (converted to<br />
+PNG and colour-inverted) using a little bit of PHP and jQuery to make a kind of sticky-notes<br />
+bulletin-board kind of thingy to serve the same purpose. One benefit of this is that I was<br />
+able to easily just save all my notes out (they were all just in a big text file anyway, on<br />
+my server). Note: I'd initially planned on using my earlier app from my 'no-server' project<br />
+(something we do at DevMountain early on, just an Angular app that can actually use a server<br />
+so long as it's a BaaS and not one we've spent time doing, because we don't actually know how<br />
 to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
 <p>Anyway, these are the contents from my planning thing.</p>
 <h3>Ideas and Users</h3>
-<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
-ADHD social media style of content-creation and likes and shares that's taken
-over the popular idea of the blog, but instead around long-form writing; essays,
-meaningful stories, and such. the target audience here is the moderately
-technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
+<p>concept: a blogging platform <em>for writers, and readers</em>, based not around the<br />
+ADHD social media style of content-creation and likes and shares that's taken<br />
+over the popular idea of the blog, but instead around long-form writing; essays,<br />
+meaningful stories, and such. the target audience here is the moderately<br />
+technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs<br />
 out in coffee shops too much.</p>
 <h3>Features</h3>
 <ul>
-<li>mvp: oh wait, that's already done. well, except for getting it to work in the
-desktop client, which is the entire idea here.</li>
-<li>the rest:
-<ul>
+<li>mvp: oh wait, that's already done. well, except for getting it to work in the<br />
+  desktop client, which is the entire idea here.</li>
+<li>the rest:</li>
 <li>a clean, simple 'feed' (a la jekyll archive pages), filterable by tag and possibly date.</li>
 <li>comments.</li>
 <li>import/export without relying on the browser (to markdown and html).</li>
 </ul>
-</li>
-</ul>
 <h3>Views</h3>
 <ol>
-<li>the existing markdown editor (however, likely revamped to move away from
-plain old codemirror, and to include a basic rte-style toolbar).</li>
-<li>the rendered panel, alone (the reading view; same on one's own posts as
-someone else's).</li>
-<li>the 'social' view: a feed, no 'content-based' sorting, just purely ordered
-chronologically, and filterable by tag (and POSSIBLY date range).</li>
-<li>-ish?: comments. they'll be isolated (data-wise), so it may be smarter to
-load them in dynamically (see: discourse [not discuz, they're ruby], but don't
-do that stupid thing where half the page disappears, that's some annoying-ass
-bullshit).</li>
-<li>settings. VERY simple. name, email, password, export (if possible) to an
-archive file, delete account.</li>
+<li>the existing markdown editor (however, likely revamped to move away from<br />
+  plain old codemirror, and to include a basic rte-style toolbar).</li>
+<li>the rendered panel, alone (the reading view; same on one's own posts as<br />
+  someone else's).</li>
+<li>the 'social' view: a feed, no 'content-based' sorting, just purely ordered<br />
+  chronologically, and filterable by tag (and POSSIBLY date range).</li>
+<li>-ish?: comments. they'll be isolated (data-wise), so it may be smarter to<br />
+  load them in dynamically (see: discourse [not discuz, they're ruby], but don't<br />
+  do that stupid thing where half the page disappears, that's some annoying-ass<br />
+  bullshit).</li>
+<li>settings. VERY simple. name, email, password, export (if possible) to an<br />
+  archive file, delete account.</li>
 </ol>
 <h3>Controllers</h3>
 <ul>
 <li>browser, main, and nav (see existing codebase)</li>
 <li>not controllers, but...</li>
 <li>services: files (existing)</li>
-<li>filters: filename and cut (existing)
-<ul>
+<li>filters: filename and cut (existing)</li>
 <li>by tag (feed view)</li>
 <li>(also possibly by date -- narrowing -- feed view)</li>
-</ul>
-</li>
 </ul>
 <h3>Endpoints</h3>
 <p>Those are a thing, yes.</p>
 <h3>Schemas</h3>
-<pre><code class="language-javascript">// possible schemas ??
+<div class="highlight"><pre><span></span><span class="c1">// possible schemas ??</span>
 
-const mongoose = require('mongoose')
+<span class="kr">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">)</span>
 
-const user = mongoose.Schema({
-  username : {type : String, required : true}
-, pass     : {type : String, required : true, minlength : 6}
-, post     : [{mongoose.Types.ObjectId, ref : 'post'}]
-, comments : [{mongoose.Types.ObjectId, ref : 'comment'}]
-})
+<span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="nx">username</span> <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">,</span> <span class="nx">pass</span>     <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">6</span><span class="p">}</span>
+<span class="p">,</span> <span class="nx">post</span>     <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;post&#39;</span><span class="p">}]</span>
+<span class="p">,</span> <span class="nx">comments</span> <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;comment&#39;</span><span class="p">}]</span>
+<span class="p">})</span>
 
-const post = mongoose.Schema({
-  title    : {type : String, required : true}
-, content  : {type : String, required : true}
-, tags     : Array
-, date     : {type : Number, default : new Date()}
-, author   : [{mongoose.Types.ObjectId, ref : 'user'}]
-, comments : [{mongoose.Types.ObjectID, ref : 'comment'}]
-})
+<span class="kr">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="nx">title</span>    <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">,</span> <span class="nx">content</span>  <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">,</span> <span class="nx">tags</span>     <span class="o">:</span> <span class="nb">Array</span>
+<span class="p">,</span> <span class="nx">date</span>     <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="k">default</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()}</span>
+<span class="p">,</span> <span class="nx">author</span>   <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">}]</span>
+<span class="p">,</span> <span class="nx">comments</span> <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectID</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;comment&#39;</span><span class="p">}]</span>
+<span class="p">})</span>
 
-const comment = mongoose.Schema({
-  date    : {type : Number, default  : new Date()}
-, content : {type : String, required : true}
-, post    : [{mongoose.Types.ObjectId, ref : 'posts'}]
-, author  : [{mongoose.Types.ObjectId, ref : 'user'}]
-})
+<span class="kr">const</span> <span class="nx">comment</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="nx">date</span>    <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="k">default</span>  <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()}</span>
+<span class="p">,</span> <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">,</span> <span class="nx">post</span>    <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;posts&#39;</span><span class="p">}]</span>
+<span class="p">,</span> <span class="nx">author</span>  <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">}]</span>
+<span class="p">})</span>
 
-mongoose.model('user', user)
-mongoose.model('post', post)
-mongoose.model('comment', comment)
-</code></pre>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="nx">comment</span><span class="p">)</span>
+</pre></div>
+
 <h3>Other Thoughts:</h3>
-<p>this would be relatively easy to throw up in a web browser. blogging platforms
-are a dime a dozen, especially ones built on node. the idea here isn't to make
-another tumblr, but to bring actual writing back to the web. sort of like
-medium, but without all the twitter. a key part of that is having it NOT be in a
-browser. right now the goal is to put all this in an electron shell, but i'm not
-going to focus super hardcore on that right this moment. if i can get everything
-else in place and rock-solid first, then i'll stuff it all in electron. if not,
-then i'll just write up a manifest file and call it a chrome app. either way,
+<p>this would be relatively easy to throw up in a web browser. blogging platforms<br />
+are a dime a dozen, especially ones built on node. the idea here isn't to make<br />
+another tumblr, but to bring actual writing back to the web. sort of like<br />
+medium, but without all the twitter. a key part of that is having it NOT be in a<br />
+browser. right now the goal is to put all this in an electron shell, but i'm not<br />
+going to focus super hardcore on that right this moment. if i can get everything<br />
+else in place and rock-solid first, then i'll stuff it all in electron. if not,<br />
+then i'll just write up a manifest file and call it a chrome app. either way,<br />
 fuck y'all, it's already got nigh on a thousand installs....</p>
-<hr>
+<hr />
 <h2>The Presentation Speech</h2>
-<p>This is what I'd planned to say when presenting my app. I think instead
-I just kind of mumbled a little bit about how neat CodeMirror is and how
-annoying it was to struggle with the <code>'node-integration'</code> issue with
+<p>This is what I'd planned to say when presenting my app. I think instead<br />
+I just kind of mumbled a little bit about how neat CodeMirror is and how<br />
+annoying it was to struggle with the <code>'node-integration'</code> issue with<br />
 Electron.</p>
 <h3>Markdown</h3>
-<p>…is a lightweight markup language which makes writing for the web a much quicker
-and easier process than if using a rich text editor (like Word), which wouldn't
-translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
-<code>&lt;strong&gt;</code>, in Markdown you'd use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on
-Github are usually written in an implementation of Markdown called Github
-Flavoured Markdown, which shows just how popular the format has grown. Stack
-Overflow, the Discourse comment system, and various blog systems including
+<p>…is a lightweight markup language which makes writing for the web a much quicker<br />
+and easier process than if using a rich text editor (like Word), which wouldn't<br />
+translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or<br />
+<code>&lt;strong&gt;</code>, in Markdown you'd use a <code>_</code> or <code>*</code>, or <code>__</code> or <code>**</code>. Readme files on<br />
+Github are usually written in an implementation of Markdown called Github<br />
+Flavoured Markdown, which shows just how popular the format has grown. Stack<br />
+Overflow, the Discourse comment system, and various blog systems including<br />
 Ghost, Wordpress, Tumblr all use Markdown, if not by default than as an option.</p>
-<p>vi is possibly the most influential editor of, like, ever. it was written in
-1976, and either vi or one of its descendants (usually vim, which stands for 'vi
-improved') has been on almost every unix-based system since then, including
-every computer in this building (except the microsoft machines -- and even on
-those, if you have git-bash or something similar). vim's power comes from how
-easily and quickly it can manipulate large chunks of text. For example, typing
+<p>vi is possibly the most influential editor of, like, ever. it was written in<br />
+1976, and either vi or one of its descendants (usually vim, which stands for 'vi<br />
+improved') has been on almost every unix-based system since then, including<br />
+every computer in this building (except the microsoft machines -- and even on<br />
+those, if you have git-bash or something similar). vim's power comes from how<br />
+easily and quickly it can manipulate large chunks of text. For example, typing<br />
 in <code>d5k</code> will delete five lines upwards, and<code>497G</code> jumps to line 497.</p>
-<p>So, putting these things together makes for a really great tool for writing. Not
-necessarily writing Tweets or Facebook posts, but writing longer texts, like
-articles or essays. That's the purpose of this app. It's not a social blog. It's
-kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal
+<p>So, putting these things together makes for a really great tool for writing. Not<br />
+necessarily writing Tweets or Facebook posts, but writing longer texts, like<br />
+articles or essays. That's the purpose of this app. It's not a social blog. It's<br />
+kind of like Medium minus Twitter, Tumblr minus reblogging, or LiveJournal<br />
 minus… teenagers.</p>
-<p>Since the editor component itself is based around CodeMirror, it's very
-extensible, which is exciting because it leaves so much open for future
-development. For example, if we wanted to make this a Javascript editor instead,
-we could just change a few lines and now we have the right syntax highlighting,
+<p>Since the editor component itself is based around CodeMirror, it's very<br />
+extensible, which is exciting because it leaves so much open for future<br />
+development. For example, if we wanted to make this a Javascript editor instead,<br />
+we could just change a few lines and now we have the right syntax highlighting,<br />
 automatic indentation, et cetera.</p>
-<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but
-from the beginning it was really meant to be a desktop tool; browsers are
+<p>Oh, and, so, this is all a desktop app. It runs perfectly fine in a browser, but<br />
+from the beginning it was really meant to be a desktop tool; browsers are<br />
 distracting, this not so much.</p>
 <p>Aaaand here's the code.</p>
-<hr>
+<hr />
 <h2>misc notes</h2>
-<p>All this stuff was just thrown in another file.
+<p>All this stuff was just thrown in another file.<br />
 It's mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
-<p>check https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md
-before trying to get any other browser-shit going on--we'll want to move things
-into their own windows, i feel; chromeless might be a good idea, at least for
+<p>check <a href="https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md">https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md</a><br />
+before trying to get any other browser-shit going on--we'll want to move things<br />
+into their own windows, i feel; chromeless might be a good idea, at least for<br />
 the editor view</p>
-<pre><code>const BrowserWindow = require('electron').BrowserWindow
+<div class="highlight"><pre><span></span>const BrowserWindow = require(&#39;electron&#39;).BrowserWindow
 let win = new BrowserWindow({width : 1900, height : 1600, frame : false})
-</code></pre>
-<p>so basically it's just a new browser window, frame as false, but we want to
-probably lock the px to whatever screen we're working with, if CSS continues to
+</pre></div>
+
+<p>so basically it's just a new browser window, frame as false, but we want to<br />
+probably lock the px to whatever screen we're working with, if CSS continues to<br />
 fail miserably.</p>
-<p>-- note: check how atom manages to not fuck that up. except those bits where
+<p>-- note: check how atom manages to not fuck that up. except those bits where<br />
 they do.</p>
-<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code>
-in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this
-necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button
+<p>frameless = non-draggable (even with alt?). specify <code>-webkit-app-region: drag</code><br />
+in css. or, say, <code>body { -webkit-app-region: drag }</code> for all of that. this<br />
+necessitates <code>button { -webkit-app-region: no-drag }</code> (same for non-button<br />
 clickables, one assumes).</p>
 <ul>
 <li><code>DownloadItem</code> is an eventemitter. will-download event of Session.</li>
@@ -181,48 +208,48 @@ clickables, one assumes).</p>
 <li>file.path = real (fs) path</li>
 </ul>
 <h3>printing</h3>
-<pre><code class="language-javascript">webContents.printToPDF(opts, cb) // where:
-opts:
-  marginsType: 0, 1, 2 (0 default)
-  pageSize: 'A4', 'A3', 'Legal', 'Letter', 'Tabloid'
-  printBackground: false (duh)
-  landscape: false (is portrait)
-cb function(err, data){if err etc, data = content buffer}
+<div class="highlight"><pre><span></span><span class="nx">webContents</span><span class="p">.</span><span class="nx">printToPDF</span><span class="p">(</span><span class="nx">opts</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="c1">// where:</span>
+<span class="nx">opts</span><span class="o">:</span>
+  <span class="nx">marginsType</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">0</span> <span class="k">default</span><span class="p">)</span>
+  <span class="nx">pageSize</span><span class="o">:</span> <span class="s1">&#39;A4&#39;</span><span class="p">,</span> <span class="s1">&#39;A3&#39;</span><span class="p">,</span> <span class="s1">&#39;Legal&#39;</span><span class="p">,</span> <span class="s1">&#39;Letter&#39;</span><span class="p">,</span> <span class="s1">&#39;Tabloid&#39;</span>
+  <span class="nx">printBackground</span><span class="o">:</span> <span class="kc">false</span> <span class="p">(</span><span class="nx">duh</span><span class="p">)</span>
+  <span class="nx">landscape</span><span class="o">:</span> <span class="kc">false</span> <span class="p">(</span><span class="nx">is</span> <span class="nx">portrait</span><span class="p">)</span>
+<span class="nx">cb</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span><span class="k">if</span> <span class="nx">err</span> <span class="nx">etc</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">content</span> <span class="nx">buffer</span><span class="p">}</span>
 
-empty opts = `{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`
+<span class="nx">empty</span> <span class="nx">opts</span> <span class="o">=</span> <span class="sb">`{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`</span>
 
-// sample from electron docs
-const BrowserWindow = require('electron').BrowserWindow
-const fs = require('fs')
-let win = new BrowserWindow({width: 800, height: 600})
-win.loadURL('http://github.com')
-win.webContents.on('did-finish-load', function() {
-  // Use default printing options
-  win.webContents.printToPDF({}, function(error, data) {
-    if (error) {
-    throw error
-    }
-    fs.writeFile('/tmp/print.pdf', data, function(error) {
-      if (error) {
-        throw error
-      }
-      console.log('done did dat')
-    })
-  })
-})
-</code></pre>
+<span class="c1">// sample from electron docs</span>
+<span class="kr">const</span> <span class="nx">BrowserWindow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;electron&#39;</span><span class="p">).</span><span class="nx">BrowserWindow</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="mi">800</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">600</span><span class="p">})</span>
+<span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="s1">&#39;http://github.com&#39;</span><span class="p">)</span>
+<span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;did-finish-load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Use default printing options</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">printToPDF</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">error</span>
+    <span class="p">}</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="s1">&#39;/tmp/print.pdf&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="nx">error</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;done did dat&#39;</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+
 <ul>
 <li>main process is a normal node script</li>
 <li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
-<li>electron's built-in modules don't need <code>require('asdf')</code>; set
+<li>electron's built-in modules don't need <code>require('asdf')</code>; set<br />
 <code>process.env.ELECTRON_HIDE_INTERNAL_MODULES = TRUE</code></li>
 <li>shell.openExternal(url) opens in eg xdg-browser</li>
 <li>shell.openItem('/FULL/path/to/item') = xdg-open</li>
 </ul>
 <h3>menus</h3>
 <ul>
-<li>new MenuItem(opts):
-<ul>
+<li>new MenuItem(opts):</li>
 <li>id: string, unique within menu</li>
 <li>submenu</li>
 <li>checked: bool</li>
@@ -232,10 +259,7 @@ win.webContents.on('did-finish-load', function() {
 <li>type: normal, separator, submenu, checkbox, or radio</li>
 <li>role: action; if specified, next thing will be ignored</li>
 <li>click: function -- click(menuItem, browserWindow) -- this is that 'next thing'</li>
-</ul>
-</li>
-<li>recommended to set role:
-<ul>
+<li>recommended to set role:</li>
 <li>undo</li>
 <li>redo</li>
 <li>cut</li>
@@ -245,19 +269,24 @@ win.webContents.on('did-finish-load', function() {
 <li>minimize</li>
 <li>close</li>
 </ul>
-</li>
-</ul>
-<p>electron-rebuild would automatically take care of headers &amp; native node module
+<p>electron-rebuild would automatically take care of headers &amp; native node module<br />
 builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
 <p>the 'npm' way: same as usual, except env variables:</p>
-<pre><code>export
+<div class="highlight"><pre><span></span>export
   npm_config_disturl=https://atom.io/download/atom-shell
   npm_config_target=0.33.1 # ???
   npm_config_arch=x64
   npm_config_runtime=electron
 HOME=~/.electron-gyp npm install module-name # home equals? what?
-</code></pre>
-<p>one important thing: nw.js's url in the package file? nah, bro, electron don't
-do that shit. so manually creating the browser window and loading HTML is the
+</pre></div>
+
+<p>one important thing: nw.js's url in the package file? nah, bro, electron don't<br />
+do that shit. so manually creating the browser window and loading HTML is the<br />
 right way with electron.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

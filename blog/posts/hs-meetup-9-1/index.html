@@ -1,12 +1,46 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>haskell meetup, 1 sept 2016 | Zac Anger&#x27;s Blog</title><meta name="description" content="just a few random notes. most of this was way over my head."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,haskell"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="haskell meetup, 1 sept 2016"/><meta name="twitter:description" content="just a few random notes. most of this was way over my head."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="haskell meetup, 1 sept 2016"/><meta property="og:description" content="just a few random notes. most of this was way over my head."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>haskell meetup, 1 sept 2016</h2><h3>01 September, 2016</h3></header><div><p>just a few random notes. most of this was way over my head.</p>
-<p>https://github.com/pinealservo/mamedb</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>haskell meetup, 1 sept 2016 | Zac Anger's Blog</title>
+    <meta name="description" content="haskell meetup, 1 sept 2016" />
+    <meta name="keywords" content="['haskell']" />
+    <meta name="twitter:description" content="haskell meetup, 1 sept 2016" />
+    <meta name="twitter:title" content="haskell meetup, 1 sept 2016" />
+    <meta property="og:description" content="haskell meetup, 1 sept 2016" />
+    <meta property="og:title" content="haskell meetup, 1 sept 2016" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>haskell meetup, 1 sept 2016</h2>
+      <h3>2016-09-01</h3>
+      <h4><small>Tagged: haskell</small></h4>
+    </header>
+    <div>
+      <p>just a few random notes. most of this was way over my head.</p>
+<p><a href="https://github.com/pinealservo/mamedb">https://github.com/pinealservo/mamedb</a></p>
 <p>xml-conduit -- xml parsing</p>
 <p>hasql - postgres lib</p>
 <p>maybe keep all types etc in own file</p>
 <p>cabal files: main-is Main.hs, list other of <em>our</em> modules.</p>
 <p>build-depends are dependencies. install with stack.</p>
 <p>stack build is like npm i</p>
-<p>$$ -- ?
+<p>$$ -- ?<br />
 $= -- ?</p>
 <p>combinators from conduit</p>
 <p>conduit is a streaming library thing</p>
@@ -14,15 +48,22 @@ $= -- ?</p>
 <p>there's also pipes, another group of streaming abstractions</p>
 <p>also iostreams -- uses io</p>
 <p>in:</p>
-<pre><code>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
+<div class="highlight"><pre><span></span>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
 parseMame = void $ tagIgnoreAttrs &quot;mame&quot; $ manyYield parseMachine
-</code></pre>
+</pre></div>
+
 <p>void is explicitly discarding the value</p>
-<p>you can use the -&gt; typeclass to build things, and use them as arrows,
+<p>you can use the -&gt; typeclass to build things, and use them as arrows,<br />
 including in type signatures.</p>
-<p>in <code>rId &lt;- insertRom -&lt; rom</code>,
+<p>in <code>rId &lt;- insertRom -&lt; rom</code>,<br />
 rom is input to insertrom ; insertrom's output is romid</p>
 <p>stack ghci: ghci but for project</p>
 <p>:r -- reload loaded module</p>
 <p>11 -- oom</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

@@ -1,30 +1,66 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>shell things | Zac Anger&#x27;s Blog</title><meta name="description" content="Just some tidbits."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,sh,bash,shell,sed,vi,vim"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="shell things"/><meta name="twitter:description" content="Just some tidbits."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="shell things"/><meta property="og:description" content="Just some tidbits."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>shell things</h2><h3>24 January, 2016</h3></header><div><p>Just some tidbits.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>shell things | Zac Anger's Blog</title>
+    <meta name="description" content="shell things" />
+    <meta name="keywords" content="['sh', 'bash', 'shell', 'sed', 'vi', 'vim']" />
+    <meta name="twitter:description" content="shell things" />
+    <meta name="twitter:title" content="shell things" />
+    <meta property="og:description" content="shell things" />
+    <meta property="og:title" content="shell things" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>shell things</h2>
+      <h3>2016-01-24</h3>
+      <h4><small>Tagged: sh, bash, shell, sed, vi, vim</small></h4>
+    </header>
+    <div>
+      <p>Just some tidbits.</p>
 <p>Renaming all files in <code>cwd</code> to have a certain extension:</p>
-<pre><code>for i in *; do
+<div class="highlight"><pre><span></span>for i in *; do
   mv $i $i.ext
 done
-</code></pre>
-<p>Or with sed: <code>find . -name &quot;file&quot; | sed 's/.*/mv &amp; &amp;.ext/' | sh</code></p>
-<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command
-<code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command
+</pre></div>
+
+<p>Or with sed: <code>find . -name "file" | sed 's/.*/mv &amp; &amp;.ext/' | sh</code></p>
+<p>Or in vi: something like <code>ls -a file* &gt; a</code>, then <code>vi a</code>, and the command<br />
+<code>:%s/.*/mv &amp; &amp;.ext/</code>, then <code>ZZ</code> and <code>sh a</code>. (It's the same as the sed command<br />
 above, just in vi, basically).</p>
-<hr>
+<hr />
 <p>Doing the same thing, but with files of a certain extension:</p>
-<pre><code>for i in *.txt; do
+<div class="highlight"><pre><span></span>for i in *.txt; do
   x=`basename $i .old`
   mv $i $x.ext
 done
-</code></pre>
-<p>Or with sed: <code>find . -name &quot;*.old&quot; | sed 's/\(.*\.\)\(.*\)mv &amp; \1ext/' | sh</code>.</p>
+</pre></div>
+
+<p>Or with sed: <code>find . -name "*.old" | sed 's/\(.*\.\)\(.*\)mv &amp; \1ext/' | sh</code>.</p>
 <p>Or in vi: <code>ls -a file* &gt; a</code>; <code>vi a</code>; <code>:%s/\.old$/\.ext/</code>; <code>sh a</code>.</p>
-<hr>
+<hr />
 <p><code>:!./%</code> runs your current file from vi.</p>
-<hr>
-<p>This little script is pretty nice. It's a much shorter version of something I
-modified from soem blog somewhere (check my dotfiles for the full thing, which
-I called
+<hr />
+<p>This little script is pretty nice. It's a much shorter version of something I<br />
+modified from soem blog somewhere (check my dotfiles for the full thing, which<br />
+I called<br />
 <a href="https://github.com/zacanger/z/blob/master/bin/sh/writescripts">writescripts</a>):</p>
-<pre><code>if [ ! -f $1 ]; then
+<div class="highlight"><pre><span></span>if [ ! -f $1 ]; then
   echo &quot;#!/usr/bin/env bash&quot; &gt; $1
 fi
 
@@ -34,7 +70,14 @@ while [ 1 ]; do
   ./$1
   read dummy
 done
-</code></pre>
+</pre></div>
+
 <p><code>paste</code> is <em>really</em> useful, and you should learn it.</p>
 <p>that's all, for now, i think.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

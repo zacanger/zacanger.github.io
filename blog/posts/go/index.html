@@ -1,129 +1,161 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Go | Zac Anger&#x27;s Blog</title><meta name="description" content="Go programs are made of packages. The package name is the last element of the
-import path."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,go,lang"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Go"/><meta name="twitter:description" content="Go programs are made of packages. The package name is the last element of the
-import path."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Go"/><meta property="og:description" content="Go programs are made of packages. The package name is the last element of the
-import path."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Go</h2><h3>24 January, 2016</h3></header><div><p>Go programs are made of packages. The package name is the last element of the
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Go | Zac Anger's Blog</title>
+    <meta name="description" content="Go" />
+    <meta name="keywords" content="['go', 'lang']" />
+    <meta name="twitter:description" content="Go" />
+    <meta name="twitter:title" content="Go" />
+    <meta property="og:description" content="Go" />
+    <meta property="og:title" content="Go" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Go</h2>
+      <h3>2016-01-24</h3>
+      <h4><small>Tagged: go, lang</small></h4>
+    </header>
+    <div>
+      <p>Go programs are made of packages. The package name is the last element of the<br />
 import path.</p>
 <p><code>main</code> is the entry point.</p>
 <p>Imports can be written as a single statement, or multiple statements.</p>
-<pre><code>import &quot;fmt&quot;
+<div class="highlight"><pre><span></span>import &quot;fmt&quot;
 import &quot;math&quot;
 
 import (
   &quot;fmt&quot;
   &quot;math&quot;
 )
-</code></pre>
+</pre></div>
+
 <p>Good practice says to use the former option.</p>
 <p>Exports being with a CapitalLetter. Imports can bring in any exports from other packages, same as with NPM//APT/ whatever.</p>
 <p>Functions can take 0 or more args:</p>
-<pre><code>func add(x int, y int) int {
+<div class="highlight"><pre><span></span>func add(x int, y int) int {
   return x + y
 }
-</code></pre>
-<p>Declaration is a little weird. Instead of the traditional <code>int Z</code> or the
+</pre></div>
+
+<p>Declaration is a little weird. Instead of the traditional <code>int Z</code> or the<br />
 dynamic (JS style), we do <code>w int</code>. This means:</p>
-<pre><code>x int
+<div class="highlight"><pre><span></span>x int
 p *int
 a [3]int
 
 func main(argc int, argv[]string) int
-</code></pre>
+</pre></div>
+
 <p>Note that Go's actual <code>main</code> takes no arguments.</p>
-<pre><code>f func(func(int,int) int, int) func (int, int) int
-</code></pre>
+<div class="highlight"><pre><span></span>f func(func(int,int) int, int) func (int, int) int
+</pre></div>
+
 <p>Pointers: <code>x = *p</code></p>
 <p>So, Go declares left-to-right.</p>
-<p>If two named function params share a type the type can be omitted from
+<p>If two named function params share a type the type can be omitted from<br />
 everything except the last, eg</p>
-<pre><code>func add(x, y, z int) int {
+<div class="highlight"><pre><span></span>func add(x, y, z int) int {
   return x + y + z
 }
-</code></pre>
-<p>Functions can return any number of results. Returns can be named, as well, and
-if they are, they're vars defined at top of function (hosted return variables,
-I guess?). A 'naked' return would be one that doesn't say <em>what</em> to return, in
-which case it just returns the named variables. Should only be used in short
+</pre></div>
+
+<p>Functions can return any number of results. Returns can be named, as well, and<br />
+if they are, they're vars defined at top of function (hosted return variables,<br />
+I guess?). A 'naked' return would be one that doesn't say <em>what</em> to return, in<br />
+which case it just returns the named variables. Should only be used in short<br />
 fns for readability.</p>
-<p><code>var</code> can be at package or fn level. Type is declared after. so <code>var foo, bar, quux, baz bool</code>.</p>
-<p>If initialized at declaration, explicit type annotation can be omitted. <code>var q, r = 8, 16</code>.</p>
-<p><code>:=</code> is shortand for <code>var</code> with implicit type, but only available inside a
+<p><code>var</code> can be at package or fn level. Type is declared after. so <code>var foo, bar,
+quux, baz bool</code>.</p>
+<p>If initialized at declaration, explicit type annotation can be omitted. <code>var
+q, r = 8, 16</code>.</p>
+<p><code>:=</code> is shortand for <code>var</code> with implicit type, but only available inside a<br />
 fn--globally, every statement must begin with keyword. So:</p>
-<pre><code>var foo, bar = false, false
+<div class="highlight"><pre><span></span>var foo, bar = false, false
 
 func foo() {
   var s, t int = 32, 64
   u := 128
 }
-</code></pre>
-<p>Types in Go:</p>
+</pre></div>
+
+<p>Types in Go:
+* <code>bool</code>
+* <code>string</code>
+* <code>int</code> <code>int8</code> <code>int16</code> <code>int32</code> <code>int64</code>
+* <code>uint</code> ''     ''      ''       ''  <code>uintptr</code></p>
 <ul>
-<li>
-<p><code>bool</code></p>
-</li>
-<li>
-<p><code>string</code></p>
-</li>
-<li>
-<p><code>int</code> <code>int8</code> <code>int16</code> <code>int32</code> <code>int64</code></p>
-</li>
-<li>
-<p><code>uint</code> ''     ''      ''       ''  <code>uintptr</code></p>
-</li>
-<li>
-<p><code>float32</code> <code>float64</code></p>
-</li>
-<li>
-<p><code>complex64</code> <code>complex128</code></p>
-</li>
-<li>
-<p><code>rune</code> (alias to <code>int32</code>)</p>
-</li>
-<li>
-<p><code>byte</code> (alias to <code>uint8</code>)</p>
-</li>
+<li><code>float32</code> <code>float64</code></li>
+<li><code>complex64</code> <code>complex128</code></li>
+<li><code>rune</code> (alias to <code>int32</code>)</li>
+<li><code>byte</code> (alias to <code>uint8</code>)</li>
 </ul>
-<p><code>var</code> declared without value is given <em>zero value</em>. That means <code>0</code> for
-numerics, <code>false</code>, or <code>&quot;&quot;</code>.</p>
+<p><code>var</code> declared without value is given <em>zero value</em>. That means <code>0</code> for<br />
+numerics, <code>false</code>, or <code>""</code>.</p>
 <p>Expression <code>T(v)</code> makes value to Type.</p>
-<p>Types are inferred by value on the right, except when right contains untyped
-numeric const--that means we can have <code>int</code>, <code>float64</code>, or <code>complex128</code>
+<p>Types are inferred by value on the right, except when right contains untyped<br />
+numeric const--that means we can have <code>int</code>, <code>float64</code>, or <code>complex128</code><br />
 depending on precision of the const.</p>
-<p><code>const</code> is declared var-style, can be <code>char</code>, <code>string</code>, <code>bool</code>, or numeric.
+<p><code>const</code> is declared var-style, can be <code>char</code>, <code>string</code>, <code>bool</code>, or numeric.<br />
 Cannot use <code>:=</code>.</p>
 <p>Note that <code>int</code> can store <em>max</em> 64-bit.</p>
 <p>Loops: only <code>for</code>. No <code>()</code>, <code>{}</code> are required.</p>
-<pre><code>func bar() {
+<div class="highlight"><pre><span></span>func bar() {
   sum :=0
   for i :=0; i &lt; 10; i++ {
     sum +=1
   }
   fmt.Print1n(sum)
 }
-</code></pre>
+</pre></div>
+
 <p>Pre and post can be empty, which just gives us a <code>while</code>.</p>
-<pre><code>for sum &lt; 999 {
+<div class="highlight"><pre><span></span>for sum &lt; 999 {
   sum += sum
 }
-</code></pre>
+</pre></div>
+
 <p>Infinte loop:</p>
-<pre><code>func quux () {
+<div class="highlight"><pre><span></span>func quux () {
   for {
   }
 }
-</code></pre>
-<p>If statements, again no parens, required braces. Vars declared in <code>if</code> are
+</pre></div>
+
+<p>If statements, again no parens, required braces. Vars declared in <code>if</code> are<br />
 avail in <code>else</code>, before <code>fmt.Print1n</code>.</p>
-<p>Case: similar. Breaks automatically, unless <code>fallthrough</code>. Switch from top
+<p>Case: similar. Breaks automatically, unless <code>fallthrough</code>. Switch from top<br />
 down, breaks on success. Switch sans condition means <code>switch true</code>.</p>
-<p><code>defer</code> does not evaluate until its surrounding func returns. Defers can be
+<p><code>defer</code> does not evaluate until its surrounding func returns. Defers can be<br />
 stacked; they are then executed LIFO.</p>
 <p>Here's the usual...</p>
-<pre><code>package main
+<div class="highlight"><pre><span></span>package main
 
 import fmt &quot;fmt&quot; // formatted i/o
 
 func main() {
   fmt.Printf(&quot;Hello, world.&quot;)
 }
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

@@ -1,34 +1,66 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Closures | Zac Anger&#x27;s Blog</title><meta name="description" content="A closure is a local variable for a function, which sticks around after the
-function has been returned."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,closures,,notes,,closure"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Closures"/><meta name="twitter:description" content="A closure is a local variable for a function, which sticks around after the
-function has been returned."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Closures"/><meta property="og:description" content="A closure is a local variable for a function, which sticks around after the
-function has been returned."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Closures</h2><h3>02 February, 2016</h3></header><div><p>A closure is a local variable for a function, which sticks around after the
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Closures | Zac Anger's Blog</title>
+    <meta name="description" content="Closures" />
+    <meta name="keywords" content="['js', 'closures,', 'notes,', 'closure']" />
+    <meta name="twitter:description" content="Closures" />
+    <meta name="twitter:title" content="Closures" />
+    <meta property="og:description" content="Closures" />
+    <meta property="og:title" content="Closures" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Closures</h2>
+      <h3>2016-02-02</h3>
+      <h4><small>Tagged: js, closures,, notes,, closure</small></h4>
+    </header>
+    <div>
+      <p>A closure is a local variable for a function, which sticks around after the<br />
 function has been returned.</p>
-<p>(Or, a closure is a stack-frame which is <em>not deallocated</em> when the function
-returns [as if a 'stack-frame' were malloc'ed instead of being on the stack!].
+<p>(Or, a closure is a stack-frame which is <em>not deallocated</em> when the function<br />
+returns [as if a 'stack-frame' were malloc'ed instead of being on the stack!].<br />
 Whatever that means.)</p>
 <p>Here, let's explain in Javascript.</p>
-<pre><code>function sayHi(name){
-  var text = 'hi ' + name // (local var)
+<div class="highlight"><pre><span></span>function sayHi(name){
+  var text = &#39;hi &#39; + name // (local var)
     , say  = function(){
     console.log(text)
     return say
   }
 }
-var sayIt = sayHi('zac')
-sayIt() // returns 'hi zac'
-</code></pre>
+var sayIt = sayHi(&#39;zac&#39;)
+sayIt() // returns &#39;hi zac&#39;
+</pre></div>
+
 <p>So here, a function is returned as a variable.</p>
-<p>What we're doing here is putting a function inside a function. And we're
+<p>What we're doing here is putting a function inside a function. And we're<br />
 getting something accessible outside of that enclosing function, right?</p>
 <p>Hence <em>closure</em>.</p>
-<p>In most descendants of C, after a function returns, its local variables are
+<p>In most descendants of C, after a function returns, its local variables are<br />
 <em>gone</em>. The stack-frame is gone.</p>
-<p>In JS, functions that are inside other functions can still be accessed outside
-of (after) that parent function. Try using the above code, and then doing
-<code>sayIt.toString()</code>, and you'll see that the variable <code>say</code> is returned --
-which is a function that references <code>text</code>, which is a variable local to
+<p>In JS, functions that are inside other functions can still be accessed outside<br />
+of (after) that parent function. Try using the above code, and then doing<br />
+<code>sayIt.toString()</code>, and you'll see that the variable <code>say</code> is returned --<br />
+which is a function that references <code>text</code>, which is a variable local to<br />
 <code>sayHi()</code>.</p>
-<pre><code>function oneMore(){
+<div class="highlight"><pre><span></span>function oneMore(){
   var i     = 1
     , logIt = function(){
     console.log(i)
@@ -38,10 +70,11 @@ which is a function that references <code>text</code>, which is a variable local
 }
 var logStuff = logIt()
 oneMore() // 2
-</code></pre>
-<p>Make sense? Here's a slightly more complex example pulled straight from the
+</pre></div>
+
+<p>Make sense? Here's a slightly more complex example pulled straight from the<br />
 interwebs.</p>
-<pre><code>var logNumber, increaseNumber, setNumber
+<div class="highlight"><pre><span></span>var logNumber, increaseNumber, setNumber
 function setupGlobals(){
   var i = 4
   logNumber = function(){
@@ -63,22 +96,23 @@ var oldLog = logNumber
 setupGlobals()
 logNumber()     // 4
 oldLog()        // 8
-</code></pre>
-<p>Local variables from a closure will be overwritten if you call that outer
-function again. Don't forget this, because you can get some really screwy
+</pre></div>
+
+<p>Local variables from a closure will be overwritten if you call that outer<br />
+function again. Don't forget this, because you can get some really screwy<br />
 stuff going on if you do!</p>
-<p>There is a closure for <em>every function call</em>, not for every <em>function
+<p>There is a closure for <em>every function call</em>, not for every <em>function<br />
 declaration</em>. This example might help demonstrate this.</p>
-<pre><code>function newClosure(fooInt, barRef){
+<div class="highlight"><pre><span></span>function newClosure(fooInt, barRef){
   var num     = fooInt
     , quuxArr = [1, 2, 3]
     , ref     = barRef
   return function(x){
     num += x
     quuxArr.push(num)
-    console.log('num: ' + num +
-      '; quuxArr: ' + quuxArr.toString() +
-      '; ref.bazVar: ' + ref.bazVar)
+    console.log(&#39;num: &#39; + num +
+      &#39;; quuxArr: &#39; + quuxArr.toString() +
+      &#39;; ref.bazVar: &#39; + ref.bazVar)
   }
 }
 obj = {bazVar: 4}
@@ -89,37 +123,47 @@ fn2(1)     // num:9; quuxArr:1,2,3,8; ref.bazVar: 4
 obj.bazVar++ // 4
 fn1(2)     // num:7; quuxArr:1,2,3,5,7; ref.bazVar:5
 fn2(2)     // num:11; quuxArr:1,2,3,9,11; ref.bazVar:5
-</code></pre>
+</pre></div>
+
 <p>So... a quick recap?</p>
-<p>When a function is <em>used</em> inside another function, you've used a <em>closure</em>.
-This includes <code>eval()</code>. (Note that using a constructor, as in <code>new Function()</code>, does <em>not</em> create a closure.)</p>
-<p>Every time you call a function with a closure, it makes a new set of those
+<p>When a function is <em>used</em> inside another function, you've used a <em>closure</em>.<br />
+This includes <code>eval()</code>. (Note that using a constructor, as in <code>new
+Function()</code>, does <em>not</em> create a closure.)</p>
+<p>Every time you call a function with a closure, it makes a new set of those<br />
 local variables.</p>
 <p>Closures <em>can</em> definitely be nested.</p>
-<hr>
+<hr />
 <p>And, in a cuter way....</p>
-<p>Once upon a time, there was a princess: <code>function princess(){</code>
-Who lived in a world full of adventures. There was stuff with unicorns and
+<p>Once upon a time, there was a princess: <code>function princess(){</code><br />
+Who lived in a world full of adventures. There was stuff with unicorns and<br />
 dragons and a whole range of other wild shenanigans.</p>
-<pre><code>var adventures = []
+<div class="highlight"><pre><span></span>var adventures = []
 function princeCharming(){}
 var unicorns   = {}
   , dragons    = {}
-  , otherStuff = 'howdy'
-</code></pre>
-<p>But said princess would eventually always have to <code>return {</code> to the real
+  , otherStuff = &#39;howdy&#39;
+</pre></div>
+
+<p>But said princess would eventually always have to <code>return {</code> to the real<br />
 world, and she'd then talk about all her crazy-awesome princessy adventuring.</p>
-<pre><code>    story : function(){
+<div class="highlight"><pre><span></span>    story : function(){
       return adventures[adventures.length -1]
     }
   }
 }
-</code></pre>
-<p>Unfortunately all folks would see is some <code>var littleKid = princess()</code> telling
+</pre></div>
+
+<p>Unfortunately all folks would see is some <code>var littleKid = princess()</code> telling<br />
 a wild <code>littleKid.story()</code>.</p>
-<p>Those folks new there were real princesses, but they wouldn't believe in
-nonsense they couldn't see, and insisted things like <code>unicorns</code> and <code>dragons</code>
-and <code>otherStuff</code> were all in the <code>littleKid</code>'s head. As it turns out, though,
+<p>Those folks new there were real princesses, but they wouldn't believe in<br />
+nonsense they couldn't see, and insisted things like <code>unicorns</code> and <code>dragons</code><br />
+and <code>otherStuff</code> were all in the <code>littleKid</code>'s head. As it turns out, though,<br />
 the <code>littleKid</code> with the <code>princess</code> inside...</p>
 <p>...is really a <code>princess</code> with a <code>littleKid</code> inside.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

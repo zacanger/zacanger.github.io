@@ -1,5 +1,39 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>GFM Test | Zac Anger&#x27;s Blog</title><meta name="description" content="Text can be bold, italic, or strikethrough. Links should be blue with no underlines (unless hovered over)."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,test,markdown"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="GFM Test"/><meta name="twitter:description" content="Text can be bold, italic, or strikethrough. Links should be blue with no underlines (unless hovered over)."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="GFM Test"/><meta property="og:description" content="Text can be bold, italic, or strikethrough. Links should be blue with no underlines (unless hovered over)."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>GFM Test</h2><h3>19 November, 2017</h3></header><div><h1>This is a Test of GitHub-Flavoured Markdown</h1>
-<p>Text can be <strong>bold</strong>, <em>italic</em>, or <s>strikethrough</s>. <a href="http://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>GFM Test | Zac Anger's Blog</title>
+    <meta name="description" content="GFM Test" />
+    <meta name="keywords" content="['test', 'markdown']" />
+    <meta name="twitter:description" content="GFM Test" />
+    <meta name="twitter:title" content="GFM Test" />
+    <meta property="og:description" content="GFM Test" />
+    <meta property="og:title" content="GFM Test" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>GFM Test</h2>
+      <h3>2017-11-19</h3>
+      <h4><small>Tagged: test, markdown</small></h4>
+    </header>
+    <div>
+      <h1>This is a Test of GitHub-Flavoured Markdown</h1>
+<p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>. <a href="https://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
 <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
 <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
 <blockquote>
@@ -14,8 +48,9 @@
 <p>This is a blockquote following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.</p>
 </blockquote>
 <h3>Header 3</h3>
-<pre><code>This is a code block following a header.
-</code></pre>
+<div class="highlight"><pre><span></span>This is a code block following a header.
+</pre></div>
+
 <h4>Header 4</h4>
 <ul>
 <li>This is an unordered list following a header.</li>
@@ -51,9 +86,9 @@
 </tr>
 </tbody>
 </table>
-<hr>
+<hr />
 <p>There's a horizontal rule above and below this.</p>
-<hr>
+<hr />
 <p>Here is an unordered list:</p>
 <ul>
 <li>Salt-n-Pepa</li>
@@ -67,49 +102,44 @@
 <li>Michael Bublé</li>
 </ol>
 <p>And an unordered task list:</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Create a sample markdown document</li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Add task lists to it</li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Take a vacation</li>
+<ul>
+<li><input checked="checked" disabled="disabled" type="checkbox" /> Create a sample markdown document</li>
+<li><input checked="checked" disabled="disabled" type="checkbox" /> Add task lists to it</li>
+<li><input disabled="disabled" type="checkbox" /> Take a vacation</li>
 </ul>
-<p>And a &quot;mixed&quot; task list:</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Steal underpants</li>
+<p>And a "mixed" task list:</p>
+<ul>
+<li><input disabled="disabled" type="checkbox" /> Steal underpants</li>
 <li>?</li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Profit!</li>
+<li><input disabled="disabled" type="checkbox" /> Profit!</li>
 </ul>
 <p>And a nested list:</p>
 <ul>
-<li>Jackson 5
-<ul>
+<li>Jackson 5</li>
 <li>Michael</li>
 <li>Tito</li>
 <li>Jackie</li>
 <li>Marlon</li>
 <li>Jermaine</li>
-</ul>
-</li>
-<li>TMNT
-<ul>
+<li>TMNT</li>
 <li>Leonardo</li>
 <li>Michelangelo</li>
 <li>Donatello</li>
 <li>Raphael</li>
 </ul>
-</li>
-</ul>
 <p>Definition lists can be used with HTML syntax. Definition terms are bold and italic.</p>
-<p>&lt;dl&gt;
-&lt;dt&gt;Name&lt;/dt&gt;
-&lt;dd&gt;Godzilla&lt;/dd&gt;
-&lt;dt&gt;Born&lt;/dt&gt;
-&lt;dd&gt;1952&lt;/dd&gt;
-&lt;dt&gt;Birthplace&lt;/dt&gt;
-&lt;dd&gt;Japan&lt;/dd&gt;
-&lt;dt&gt;Color&lt;/dt&gt;
-&lt;dd&gt;Green&lt;/dd&gt;
-&lt;/dl&gt;</p>
-<hr>
+<dl>
+    <dt>Name</dt>
+    <dd>Godzilla</dd>
+    <dt>Born</dt>
+    <dd>1952</dd>
+    <dt>Birthplace</dt>
+    <dd>Japan</dd>
+    <dt>Color</dt>
+    <dd>Green</dd>
+</dl>
+
+<hr />
 <p>Tables should have bold headings and alternating shaded rows.</p>
 <table>
 <thead>
@@ -176,15 +206,17 @@
 </tr>
 </tbody>
 </table>
-<hr>
-<p>Code snippets like <code>var foo = &quot;bar&quot;</code> can be shown inline.</p>
-<p>Also, <code>this should vertically align</code> <s><code>with this</code></s> <s>and this</s>.</p>
+<hr />
+<p>Code snippets like <code>var foo = "bar"</code> can be shown inline.</p>
+<p>Also, <code>this should vertically align</code> <del><code>with this</code></del> <del>and this</del>.</p>
 <p>Code can also be shown in a block element.</p>
-<pre><code>var foo = &quot;bar&quot;;
-</code></pre>
+<div class="highlight"><pre><span></span>var foo = &quot;bar&quot;;
+</pre></div>
+
 <p>Code can also use syntax highlighting.</p>
-<pre><code class="language-javascript">var foo = &quot;bar&quot;;
-</code></pre>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">;</span>
+</pre></div>
+
 <p>Inline code inside table cells should still be distinguishable.</p>
 <table>
 <thead>
@@ -196,18 +228,24 @@
 <tbody>
 <tr>
 <td>Javascript</td>
-<td><code>var foo = &quot;bar&quot;</code></td>
+<td><code>var foo = "bar"</code></td>
 </tr>
 <tr>
 <td>Ruby</td>
-<td><code>foo = &quot;bar&quot;</code></td>
+<td><code>foo = "bar"</code></td>
 </tr>
 </tbody>
 </table>
-<hr>
+<hr />
 <p>Small images should be shown at their actual size.</p>
-<p><img src="https://www.placecage.com/gif/300/500" alt=""></p>
+<p><img alt="" src="https://www.placecage.com/gif/300/500" /></p>
 <p>Large images should always scale down and fit in the content container.</p>
-<p><img src="http://placekitten.com/g/1200/800/" alt=""></p>
-<p><code>This is the final element on the page.</code> <s><code>There should be no margin below this</code></s>. (actually, there's totally a margin. whatevs.)</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<p><img alt="" src="https://placekitten.com/g/1200/800/" /></p>
+<p>This is the final element on the page and there should be no margin below this.</p>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

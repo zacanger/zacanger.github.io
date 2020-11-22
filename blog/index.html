@@ -1,1 +1,1883 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Zac Anger&#x27;s Blog</title><meta name="description" content="Zac Anger&#x27;s blog."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Zac Anger&#x27;s Blog"/><meta name="twitter:description" content="Zac Anger&#x27;s blog."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Zac Anger&#x27;s Blog"/><meta property="og:description" content="Zac Anger&#x27;s blog."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1></header><ul><li><a href="/blog/posts/digital-security-guide">Digital Security Guide</a> — 19 December, 2019</li><li><a href="/blog/posts/mit-to-lgpl-3">Switching from MIT to LGPL-3.0</a> — 30 August, 2019</li><li><a href="/blog/posts/use-boring-stuff">Use Boring Stuff (It&#x27;s Okay!)</a> — 10 February, 2019</li><li><a href="/blog/posts/2019-resolutions">2019 Resolutions</a> — 25 December, 2018</li><li><a href="/blog/posts/2018-todo-list">2018 Todo List</a> — 24 December, 2018</li><li><a href="/blog/posts/we-should-build-stuff">We Should Build Stuff</a> — 29 October, 2018</li><li><a href="/blog/posts/new-years-resolutions">2017 Todo List</a> — 31 December, 2017</li><li><a href="/blog/posts/from-smoking-to-vaping">From Smoking to Vaping</a> — 22 November, 2017</li><li><a href="/blog/posts/gfm-test">GFM Test</a> — 19 November, 2017</li><li><a href="/blog/posts/so-you-want-to-learn-vim">So You Want To Learn Vim</a> — 27 July, 2017</li><li><a href="/blog/posts/short-rant-on-languages">a short rant about languages and people</a> — 19 May, 2017</li><li><a href="/blog/posts/wtf-is-set">WTF is Set?</a> — 25 April, 2017</li><li><a href="/blog/posts/recommendations-for-new-web-devs">Recommendations For New Web Devs</a> — 26 March, 2017</li><li><a href="/blog/posts/proptypes-for-classnames">PropTypes for Classnames</a> — 11 February, 2017</li><li><a href="/blog/posts/new-years-resolutions-2016">new years resolutions</a> — 31 December, 2016</li><li><a href="/blog/posts/category-theory-for-js-devs">Category Theory Notes</a> — 26 November, 2016</li><li><a href="/blog/posts/advice-for-new-devs">Advice For New Devs</a> — 12 November, 2016</li><li><a href="/blog/posts/shitshow">shitshow</a> — 09 November, 2016</li><li><a href="/blog/posts/two-things-that-might-be-fun">Two Things That Might Be Fun</a> — 03 November, 2016</li><li><a href="/blog/posts/pm-tools-kill-productivity">pm tools kill productivity</a> — 18 October, 2016</li><li><a href="/blog/posts/on-learning-fp">Thoughts On Learning Functional Programming</a> — 16 October, 2016</li><li><a href="/blog/posts/cli-apps-part-three">Node CLI 3, Html2text</a> — 27 September, 2016</li><li><a href="/blog/posts/hs-meetup-9-1">haskell meetup, 1 sept 2016</a> — 01 September, 2016</li><li><a href="/blog/posts/note-taking-app">Node CLI 2, Note Taking App</a> — 26 August, 2016</li><li><a href="/blog/posts/a-basic-cli-app-in-node">Node CLI 1, React Component Generator</a> — 24 August, 2016</li><li><a href="/blog/posts/things-that-suck-about-js">things that suck about js</a> — 22 August, 2016</li><li><a href="/blog/posts/visual-studio-oddities">visual studio oddities</a> — 22 August, 2016</li><li><a href="/blog/posts/principles-and-tips">Principles and Tips</a> — 19 August, 2016</li><li><a href="/blog/posts/purescript-things">purescript things</a> — 19 August, 2016</li><li><a href="/blog/posts/angular-in-one-line">angular in one line</a> — 13 August, 2016</li><li><a href="/blog/posts/react-in-one-line">react in one line</a> — 13 August, 2016</li><li><a href="/blog/posts/void-elements">Void Elements</a> — 09 August, 2016</li><li><a href="/blog/posts/redux-three">redux notes, part three</a> — 06 August, 2016</li><li><a href="/blog/posts/redux-two">redux notes, part two</a> — 06 August, 2016</li><li><a href="/blog/posts/design-for-devs">idea: series on design for devs</a> — 02 August, 2016</li><li><a href="/blog/posts/redux-one">redux notes, part one</a> — 02 August, 2016</li><li><a href="/blog/posts/redux-in-two-lines">redux in two lines</a> — 29 July, 2016</li><li><a href="/blog/posts/fff2">More More Notes Taken While Watching MPJ&#x27;s Videos</a> — 24 July, 2016</li><li><a href="/blog/posts/july-12-meetup">meetup notes i guess</a> — 12 July, 2016</li><li><a href="/blog/posts/teamcity-ubuntu-build-agent-setup">script to set up ec2 build agent for tc</a> — 06 July, 2016</li><li><a href="/blog/posts/daniel-jumping-gifs">just two gifs</a> — 29 June, 2016</li><li><a href="/blog/posts/teamcity-and-aws-fuck-you">crappy error messages</a> — 29 June, 2016</li><li><a href="/blog/posts/three-quick-tips">Three Quick Tips for Fresh Bootcamp Grads</a> — 24 June, 2016</li><li><a href="/blog/posts/stack">stack</a> — 24 June, 2016</li><li><a href="/blog/posts/editor-design-notes">editor design notes</a> — 13 June, 2016</li><li><a href="/blog/posts/a-tip">A Tip</a> — 10 June, 2016</li><li><a href="/blog/posts/fff">More Notes Taken While Watching MPJ&#x27;s Videos</a> — 05 June, 2016</li><li><a href="/blog/posts/docker-deployment">deploying docker images</a> — 03 June, 2016</li><li><a href="/blog/posts/clojure">clojure</a> — 01 June, 2016</li><li><a href="/blog/posts/http">http</a> — 01 June, 2016</li><li><a href="/blog/posts/how-to-be-slightly-more-productive">How To Be Slightly More Productive</a> — 31 May, 2016</li><li><a href="/blog/posts/actually-last-notes">Actually The Last Of The Notes</a> — 29 May, 2016</li><li><a href="/blog/posts/bookmarklets">bookmarklets</a> — 29 May, 2016</li><li><a href="/blog/posts/docker">docker notes</a> — 26 May, 2016</li><li><a href="/blog/posts/alum-meetup">devmountain alumni meetup notes</a> — 25 May, 2016</li><li><a href="/blog/posts/last-devmtn-notes">the last of the devmountain notes!</a> — 22 May, 2016</li><li><a href="/blog/posts/parallels-weirdness">fixing parallels weirdness</a> — 22 May, 2016</li><li><a href="/blog/posts/postcss">random notes from when reading about postcss</a> — 22 May, 2016</li><li><a href="/blog/posts/react-meetup-notes">notes and little bits from the react meetup on 17th nov at devmountain</a> — 22 May, 2016</li><li><a href="/blog/posts/earliest-devmtn-notes">earliest devmtn notes</a> — 19 May, 2016</li><li><a href="/blog/posts/personal-project">notes from my personal project at devmountain</a> — 19 May, 2016</li><li><a href="/blog/posts/bash-basix">bash basix</a> — 16 May, 2016</li><li><a href="/blog/posts/streams">streams</a> — 15 May, 2016</li><li><a href="/blog/posts/api-design-notes">api design notes</a> — 14 May, 2016</li><li><a href="/blog/posts/react-performance">React Performance</a> — 14 May, 2016</li><li><a href="/blog/posts/cs-notes">cs notes</a> — 12 May, 2016</li><li><a href="/blog/posts/fetch">fetch</a> — 12 May, 2016</li><li><a href="/blog/posts/forty-reasons-to-wonder-why-the-fuck-you-love-apple">Forty Reasons To Wonder Why The Fuck You Love Apple</a> — 09 May, 2016</li><li><a href="/blog/posts/words">words</a> — 08 May, 2016</li><li><a href="/blog/posts/bootcamp-analogies">bootcamp analogies</a> — 07 May, 2016</li><li><a href="/blog/posts/fizzbuzz">fizzbuzz</a> — 07 May, 2016</li><li><a href="/blog/posts/notes-from-mentoring-at-demvountain">notes from mentoring at devmountain</a> — 06 May, 2016</li><li><a href="/blog/posts/better-jsx">ideas for a better jsx</a> — 05 May, 2016</li><li><a href="/blog/posts/currying-and-partial-application">currying and partial application</a> — 05 May, 2016</li><li><a href="/blog/posts/notes-from-devmountain-01">NOTES FROM DEVMOUNTAIN</a> — 05 May, 2016</li><li><a href="/blog/posts/notes-from-devmountain-02">More DevMountain Notes</a> — 05 May, 2016</li><li><a href="/blog/posts/promises">Promises</a> — 05 May, 2016</li><li><a href="/blog/posts/react-which">Creating A React Component</a> — 05 May, 2016</li><li><a href="/blog/posts/test">This is a test</a> — 05 May, 2016</li><li><a href="/blog/posts/more-react-notes">More React Notes</a> — 27 April, 2016</li><li><a href="/blog/posts/notes-from-the-angularjs-utah-meetup">Notes from the AngularJS Utah Meetup</a> — 24 April, 2016</li><li><a href="/blog/posts/fp-in-js">FP in JS</a> — 09 April, 2016</li><li><a href="/blog/posts/stuff-everybody-knows">Stuff Everybody Knows</a> — 09 April, 2016</li><li><a href="/blog/posts/nginx-reverse-proxy">nginx reverse proxy</a> — 28 March, 2016</li><li><a href="/blog/posts/scott">scott</a> — 03 March, 2016</li><li><a href="/blog/posts/kiks-api">kik&#x27;s api</a> — 17 February, 2016</li><li><a href="/blog/posts/mac-disk-usage-shiz">mac disk usage shiz</a> — 17 February, 2016</li><li><a href="/blog/posts/getting-up-and-running-with-nwjs-really-super-quickly">getting up and running with nw.js really super quickly</a> — 14 February, 2016</li><li><a href="/blog/posts/basic-auth">basic auth</a> — 12 February, 2016</li><li><a href="/blog/posts/node-fs-basics">node fs basics</a> — 12 February, 2016</li><li><a href="/blog/posts/solving-programming-problems">Solving programming problems</a> — 10 February, 2016</li><li><a href="/blog/posts/void-elements-in-html">void elements in html</a> — 08 February, 2016</li><li><a href="/blog/posts/javascript-operators">Javascript Operators</a> — 06 February, 2016</li><li><a href="/blog/posts/es-next-notes">ES-Next Notes</a> — 05 February, 2016</li><li><a href="/blog/posts/interview-prep-notes">Interview Prep Notes</a> — 04 February, 2016</li><li><a href="/blog/posts/firebase-notes">Firebase Notes</a> — 03 February, 2016</li><li><a href="/blog/posts/node-notes">Node Notes</a> — 03 February, 2016</li><li><a href="/blog/posts/closures">Closures</a> — 02 February, 2016</li><li><a href="/blog/posts/about-pages">about pages</a> — 28 January, 2016</li><li><a href="/blog/posts/email-from-node">email from node</a> — 28 January, 2016</li><li><a href="/blog/posts/front-end-engineers-manifesto">Front-end Engineer&#x27;s Manifesto</a> — 28 January, 2016</li><li><a href="/blog/posts/research-questions">Research Questions</a> — 28 January, 2016</li><li><a href="/blog/posts/sqlrdbms">SQL/RDBMS</a> — 28 January, 2016</li><li><a href="/blog/posts/treatise-on-minimalism">Treatise on Minimalism</a> — 28 January, 2016</li><li><a href="/blog/posts/isomorphic-apps-in-react">Isomorphic Apps in React</a> — 25 January, 2016</li><li><a href="/blog/posts/react-notes">REACT NOTES</a> — 25 January, 2016</li><li><a href="/blog/posts/tone-and-voice">tone and voice</a> — 25 January, 2016</li><li><a href="/blog/posts/crawling-from-the-front-end">Crawling from the Front End</a> — 24 January, 2016</li><li><a href="/blog/posts/effective-websites">Effective Websites</a> — 24 January, 2016</li><li><a href="/blog/posts/go">Go</a> — 24 January, 2016</li><li><a href="/blog/posts/shell-things">shell things</a> — 24 January, 2016</li><li><a href="/blog/posts/auth-with-passport-and-express">Auth with Passport and Express</a> — 23 January, 2016</li><li><a href="/blog/posts/bash-builtins">bash builtins</a> — 21 January, 2016</li><li><a href="/blog/posts/meteor-and-react">meteor and react</a> — 21 January, 2016</li><li><a href="/blog/posts/meteor-notes">Meteor Notes</a> — 21 January, 2016</li><li><a href="/blog/posts/chromium-flags">Chromium Flags</a> — 20 January, 2016</li><li><a href="/blog/posts/baconjs">BaconJS</a> — 19 January, 2016</li><li><a href="/blog/posts/github-organizations">Github Organizations</a> — 19 January, 2016</li><li><a href="/blog/posts/monthly-webmaster-checks">Monthly Webmaster Checks</a> — 19 January, 2016</li><li><a href="/blog/posts/styleguide-checklist">styleguide checklist</a> — 19 January, 2016</li><li><a href="/blog/posts/es6-notes">ES6 Notes</a> — 18 January, 2016</li><li><a href="/blog/posts/everything-is-a-stream-or-notes-on-frp">EVERYTHING IS A STREAM, or Notes On FRP</a> — 18 January, 2016</li><li><a href="/blog/posts/dreams-part-one-million-and-three">dreams, part one million and three</a> — 17 January, 2016</li><li><a href="/blog/posts/problem-solving">Problem Solving</a> — 17 January, 2016</li><li><a href="/blog/posts/functional-programming-vocabulary">Functional Programming Vocabulary</a> — 16 January, 2016</li><li><a href="/blog/posts/electron-and-nwjs">Electron and NW.js</a> — 15 January, 2016</li><li><a href="/blog/posts/pusher">Pusher</a> — 15 January, 2016</li><li><a href="/blog/posts/algorithms-amp-big-o">Algorithm &amp; Big-O</a> — 14 January, 2016</li><li><a href="/blog/posts/browserify">Browserify</a> — 14 January, 2016</li><li><a href="/blog/posts/css-preprocessors">CSS Preprocessors</a> — 14 January, 2016</li><li><a href="/blog/posts/elm-notes">Elm (notes)</a> — 14 January, 2016</li><li><a href="/blog/posts/systemjs-and-jspm">SystemJS and JSPM</a> — 14 January, 2016</li><li><a href="/blog/posts/notes">Notes</a> — 13 January, 2016</li><li><a href="/blog/posts/ui">UI</a> — 13 January, 2016</li><li><a href="/blog/posts/unicode">Unicode</a> — 13 January, 2016</li><li><a href="/blog/posts/on-blogging">on blogging</a> — 08 January, 2016</li><li><a href="/blog/posts/vs-code-license">Visual Studio Code&#x27;s License</a> — 07 January, 2016</li><li><a href="/blog/posts/express-vs-koa-vs-hapi">Express vs Koa vs Hapi</a> — 30 December, 2015</li><li><a href="/blog/posts/front-end-performance-notes">Front-End Performance Notes</a> — 28 December, 2015</li><li><a href="/blog/posts/my-problem-with-react">My Problem With React</a> — 28 December, 2015</li><li><a href="/blog/posts/xmas-2015">xmas 2015</a> — 25 December, 2015</li><li><a href="/blog/posts/you-cant-parse-xhtml-with-regex">you can&#x27;t parse (x)html with regex</a> — 25 December, 2015</li><li><a href="/blog/posts/erin">erin</a> — 23 December, 2015</li><li><a href="/blog/posts/living-up-to-my-name">living up to my name...</a> — 20 December, 2015</li><li><a href="/blog/posts/things-learned-dealing-with-electron-and-the-mean-stack">things learned dealing with electron and the mean stack</a> — 16 December, 2015</li><li><a href="/blog/posts/projects-projects-projects">Projects, projects, projects.</a> — 15 December, 2015</li><li><a href="/blog/posts/automatic-semicolon-insertion">Automatic Semicolon Insertion</a> — 13 December, 2015</li><li><a href="/blog/posts/more-on-dreams">more on dreams</a> — 12 December, 2015</li><li><a href="/blog/posts/dreams">dreams</a> — 05 December, 2015</li><li><a href="/blog/posts/thanksgiving-week-projects-fun-times-and-the-future">Thanksgiving Week, Projects, Fun Times, and The Future</a> — 27 November, 2015</li><li><a href="/blog/posts/quick-little-thing">QUICK LITTLE THING</a> — 21 November, 2015</li><li><a href="/blog/posts/now-things-get-real">Now things get real.</a> — 19 November, 2015</li><li><a href="/blog/posts/react-meetup-17-nov-2015">React Meetup, 17 Nov, 2015</a> — 17 November, 2015</li><li><a href="/blog/posts/finally-almost-done-with-angular">Finally almost done with Angular...</a> — 11 November, 2015</li><li><a href="/blog/posts/no-server-projects">No-Server Projects</a> — 07 November, 2015</li><li><a href="/blog/posts/angulaaaaarrrrr">ANGULAAAAARRRRR</a> — 01 November, 2015</li><li><a href="/blog/posts/i-am-sick">I AM SICK</a> — 28 October, 2015</li><li><a href="/blog/posts/javascriptssss">JAVASCRIPTSSSS</a> — 25 October, 2015</li><li><a href="/blog/posts/im-at-the-end-of-my-patience">i&#x27;m at the end of my patience</a> — 20 October, 2015</li><li><a href="/blog/posts/devmountain-week-2">DevMountain, Week 2</a> — 19 October, 2015</li><li><a href="/blog/posts/devmountain-week-six">DevMountain, Week Six</a> — 16 October, 2015</li><li><a href="/blog/posts/javascript">Javascript</a> — 16 October, 2015</li><li><a href="/blog/posts/angular-meetup-13th-oct-2015">Angular Meetup, 13th Oct, 2015</a> — 13 October, 2015</li><li><a href="/blog/posts/code-bootcamps-comparison">Code Bootcamps (Comparison)</a> — 12 October, 2015</li><li><a href="/blog/posts/i-guess-im-like-in-school-and-stuff-what">I GUESS I&#x27;M LIKE IN SCHOOL AND STUFF WHAT</a> — 11 October, 2015</li><li><a href="/blog/posts/not-long-now">not long now...</a> — 08 October, 2015</li><li><a href="/blog/posts/im-off">I&#x27;M OFF</a> — 07 October, 2015</li><li><a href="/blog/posts/i-cannot-wait">I Cannot Wait</a> — 04 October, 2015</li><li><a href="/blog/posts/licensing">Licensing</a> — 04 October, 2015</li><li><a href="/blog/posts/less-than-a-week-til-school">Less than a week &#x27;til school...</a> — 02 October, 2015</li><li><a href="/blog/posts/learn-to-code-link-post">Learn To Code; Link Post</a> — 29 September, 2015</li><li><a href="/blog/posts/paying-for-web-things-what">Paying For Web Things? What?</a> — 29 September, 2015</li><li><a href="/blog/posts/world-suicide-prevention-day-personal">world suicide prevention day (personal)</a> — 29 September, 2015</li><li><a href="/blog/posts/notes-and-things-and-stuff">Notes and Things and Stuff</a> — 27 September, 2015</li><li><a href="/blog/posts/post-number-negative-two">Post Number Negative Two!</a> — 27 September, 2015</li><li><a href="/blog/posts/switch-to-linux-part-one">Switch To Linux (Part One)</a> — 27 September, 2015</li><li><a href="/blog/posts/switch-to-linux-part-two">Switch To Linux! (Part Two)</a> — 27 September, 2015</li><li><a href="/blog/posts/that-was-fast">That was fast.</a> — 27 September, 2015</li><li><a href="/blog/posts/this-heres-a-test">This Here&#x27;s A Test!</a> — 27 September, 2015</li></ul><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Zac Anger's Blog</title>
+    <meta name="description" content="Zac Anger's Blog" />
+    <meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing" />
+    <meta name="twitter:description" content="Zac Anger's Blog" />
+    <meta name="twitter:title" content="Zac Anger's Blog" />
+    <meta property="og:title" content="Zac Anger's Blog" />
+    <meta property="og:description" content="Zac Anger's Blog" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      &#9734; indicates a high-quality, high-traffic, or important post.
+    </header>
+    <ul>
+
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/digital-security-guide">Digital Security Guide</a>
+        <small>
+          &mdash; 2019-12-19
+          &mdash; security
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/mit-to-lgpl-3">Switching from MIT to LGPL-3.0</a>
+        <small>
+          &mdash; 2019-08-30
+          &mdash; foss, license
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/use-boring-stuff">Use Boring Stuff (It's Okay!)</a>
+        <small>
+          &mdash; 2019-02-10
+          &mdash; linux
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/2019-resolutions">2019 Resolutions</a>
+        <small>
+          &mdash; 2018-12-25
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/2018-todo-list">2018 Todo List</a>
+        <small>
+          &mdash; 2018-12-24
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/we-should-build-stuff">We Should Build Stuff</a>
+        <small>
+          &mdash; 2018-10-29
+          &mdash; tools
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/new-years-resolutions">2017 Todo List</a>
+        <small>
+          &mdash; 2017-12-31
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/from-smoking-to-vaping">From Smoking to Vaping</a>
+        <small>
+          &mdash; 2017-11-22
+          &mdash; health, personal, vaping
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/gfm-test">GFM Test</a>
+        <small>
+          &mdash; 2017-11-19
+          &mdash; test, markdown
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/so-you-want-to-learn-vim">So You Want To Learn Vim</a>
+        <small>
+          &mdash; 2017-07-27
+          &mdash; vim, learning, education, editor
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/short-rant-on-languages">a short rant about languages and people</a>
+        <small>
+          &mdash; 2017-05-19
+          &mdash; lang, community
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/wtf-is-set">WTF is Set?</a>
+        <small>
+          &mdash; 2017-04-25
+          &mdash; js, es2015, set
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/recommendations-for-new-web-devs">Recommendations For New Web Devs</a>
+        <small>
+          &mdash; 2017-03-26
+          &mdash; devmtn, thoughts
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/proptypes-for-classnames">PropTypes for Classnames</a>
+        <small>
+          &mdash; 2017-02-11
+          &mdash; react, proptypes, classnames
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/new-years-resolutions-2016">new years resolutions</a>
+        <small>
+          &mdash; 2016-12-31
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/category-theory-for-js-devs">Category Theory Notes</a>
+        <small>
+          &mdash; 2016-11-26
+          &mdash; fp
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/advice-for-new-devs">Advice For New Devs</a>
+        <small>
+          &mdash; 2016-11-12
+          &mdash; devmtn, tips, dev
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/shitshow">shitshow</a>
+        <small>
+          &mdash; 2016-11-09
+          &mdash; politics, personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/two-things-that-might-be-fun">Two Things That Might Be Fun</a>
+        <small>
+          &mdash; 2016-11-03
+          &mdash; cljs, clj, scheme, types, hs, jsx, js, react
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/pm-tools-kill-productivity">pm tools kill productivity</a>
+        <small>
+          &mdash; 2016-10-18
+          &mdash; tools, work
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/on-learning-fp">Thoughts On Learning Functional Programming</a>
+        <small>
+          &mdash; 2016-10-16
+          &mdash; fp, js
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/cli-apps-part-three">Node CLI 3, Html2text</a>
+        <small>
+          &mdash; 2016-09-27
+          &mdash; node, cli, terminal, html, markdown
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/hs-meetup-9-1">haskell meetup, 1 sept 2016</a>
+        <small>
+          &mdash; 2016-09-01
+          &mdash; haskell
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/note-taking-app">Node CLI 2, Note Taking App</a>
+        <small>
+          &mdash; 2016-08-26
+          &mdash; node, cli, terminal
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/a-basic-cli-app-in-node">Node CLI 1, React Component Generator</a>
+        <small>
+          &mdash; 2016-08-24
+          &mdash; node, cli, terminal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/things-that-suck-about-js">things that suck about js</a>
+        <small>
+          &mdash; 2016-08-22
+          &mdash; js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/visual-studio-oddities">visual studio oddities</a>
+        <small>
+          &mdash; 2016-08-22
+          &mdash; visual-studio, windows, ms
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/purescript-things">purescript things</a>
+        <small>
+          &mdash; 2016-08-19
+          &mdash; purescript
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/principles-and-tips">Principles and Tips</a>
+        <small>
+          &mdash; 2016-08-19
+          &mdash; process, development, principles, tips
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/angular-in-one-line">angular in one line</a>
+        <small>
+          &mdash; 2016-08-13
+          &mdash; angular
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-in-one-line">react in one line</a>
+        <small>
+          &mdash; 2016-08-13
+          &mdash; react
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/void-elements">Void Elements</a>
+        <small>
+          &mdash; 2016-08-09
+          &mdash; html
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/redux-three">redux notes, part three</a>
+        <small>
+          &mdash; 2016-08-06
+          &mdash; redux, react
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/redux-two">redux notes, part two</a>
+        <small>
+          &mdash; 2016-08-06
+          &mdash; redux, react
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/design-for-devs">idea: series on design for devs</a>
+        <small>
+          &mdash; 2016-08-02
+          &mdash; design, idea, dev
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/redux-one">redux notes, part one</a>
+        <small>
+          &mdash; 2016-08-02
+          &mdash; redux
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/redux-in-two-lines">redux in two lines</a>
+        <small>
+          &mdash; 2016-07-29
+          &mdash; react, redux
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/fff2">More More Notes Taken While Watching MPJ's Videos</a>
+        <small>
+          &mdash; 2016-07-24
+          &mdash; js, fp
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/july-12-meetup">meetup notes i guess</a>
+        <small>
+          &mdash; 2016-07-12
+          &mdash; fp, meetup, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/teamcity-ubuntu-build-agent-setup">script to set up ec2 build agent for tc</a>
+        <small>
+          &mdash; 2016-07-06
+          &mdash; ubuntu, docker, aws, teamcity
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/teamcity-and-aws-fuck-you">crappy error messages</a>
+        <small>
+          &mdash; 2016-06-29
+          &mdash; aws, teamcity
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/daniel-jumping-gifs">just two gifs</a>
+        <small>
+          &mdash; 2016-06-29
+          &mdash; gifs, work
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/stack">stack</a>
+        <small>
+          &mdash; 2016-06-24
+          &mdash; work
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/three-quick-tips">Three Quick Tips for Fresh Bootcamp Grads</a>
+        <small>
+          &mdash; 2016-06-24
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/editor-design-notes">editor design notes</a>
+        <small>
+          &mdash; 2016-06-13
+          &mdash; editor, design
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/a-tip">A Tip</a>
+        <small>
+          &mdash; 2016-06-10
+          &mdash; confidence
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/fff">More Notes Taken While Watching MPJ's Videos</a>
+        <small>
+          &mdash; 2016-06-05
+          &mdash; js, fp
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/docker-deployment">deploying docker images</a>
+        <small>
+          &mdash; 2016-06-03
+          &mdash; docker
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/clojure">clojure</a>
+        <small>
+          &mdash; 2016-06-01
+          &mdash; clj
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/http">http</a>
+        <small>
+          &mdash; 2016-06-01
+          &mdash; http
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/how-to-be-slightly-more-productive">How To Be Slightly More Productive</a>
+        <small>
+          &mdash; 2016-05-31
+          &mdash; sh, npm, shell, bash
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/actually-last-notes">Actually The Last Of The Notes</a>
+        <small>
+          &mdash; 2016-05-29
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/bookmarklets">bookmarklets</a>
+        <small>
+          &mdash; 2016-05-29
+          &mdash; bookmarklets, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/docker">docker notes</a>
+        <small>
+          &mdash; 2016-05-26
+          &mdash; docker
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/alum-meetup">devmountain alumni meetup notes</a>
+        <small>
+          &mdash; 2016-05-25
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-meetup-notes">notes and little bits from the react meetup on 17th nov at devmountain</a>
+        <small>
+          &mdash; 2016-05-22
+          &mdash; react
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/parallels-weirdness">fixing parallels weirdness</a>
+        <small>
+          &mdash; 2016-05-22
+          &mdash; mac
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/last-devmtn-notes">the last of the devmountain notes!</a>
+        <small>
+          &mdash; 2016-05-22
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/postcss">random notes from when reading about postcss</a>
+        <small>
+          &mdash; 2016-05-22
+          &mdash; css, postcss
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/personal-project">notes from my personal project at devmountain</a>
+        <small>
+          &mdash; 2016-05-19
+          &mdash; devmtn, electron, nwjs
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/earliest-devmtn-notes">earliest devmtn notes</a>
+        <small>
+          &mdash; 2016-05-19
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/bash-basix">bash basix</a>
+        <small>
+          &mdash; 2016-05-16
+          &mdash; sh, shell, bash
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/streams">streams</a>
+        <small>
+          &mdash; 2016-05-15
+          &mdash; js, streams
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/api-design-notes">api design notes</a>
+        <small>
+          &mdash; 2016-05-14
+          &mdash; api, design
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-performance">React Performance</a>
+        <small>
+          &mdash; 2016-05-14
+          &mdash; react, performance
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/cs-notes">cs notes</a>
+        <small>
+          &mdash; 2016-05-12
+          &mdash; cs, algorithms, datastructures, sort
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/fetch">fetch</a>
+        <small>
+          &mdash; 2016-05-12
+          &mdash; js, fetch
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/forty-reasons-to-wonder-why-the-fuck-you-love-apple">Forty Reasons To Wonder Why The Fuck You Love Apple</a>
+        <small>
+          &mdash; 2016-05-09
+          &mdash; apple
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/words">words</a>
+        <small>
+          &mdash; 2016-05-08
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/fizzbuzz">fizzbuzz</a>
+        <small>
+          &mdash; 2016-05-07
+          &mdash; js, fizzbuzz
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/bootcamp-analogies">bootcamp analogies</a>
+        <small>
+          &mdash; 2016-05-07
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes-from-mentoring-at-demvountain">notes from mentoring at devmountain</a>
+        <small>
+          &mdash; 2016-05-06
+          &mdash; devmtn, mentoring, angular, mongo, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-which">Creating A React Component</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; react, es6
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/currying-and-partial-application">currying and partial application</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; currying, fp, partial-application, functional-programming, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/promises">Promises</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; promises, es6, es2015, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/better-jsx">ideas for a better jsx</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; jsx, react, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes-from-devmountain-01">NOTES FROM DEVMOUNTAIN</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; devmtn, notes, js, css, angular
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes-from-devmountain-02">More DevMountain Notes</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; devmtn, js, css, angular
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/test">This is a test</a>
+        <small>
+          &mdash; 2016-05-05
+          &mdash; test, blogging
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/more-react-notes">More React Notes</a>
+        <small>
+          &mdash; 2016-04-27
+          &mdash; react
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes-from-the-angularjs-utah-meetup">Notes from the AngularJS Utah Meetup</a>
+        <small>
+          &mdash; 2016-04-24
+          &mdash; rxjs, immutable, js, utah, meetup, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/stuff-everybody-knows">Stuff Everybody Knows</a>
+        <small>
+          &mdash; 2016-04-09
+          &mdash; talks, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/fp-in-js">FP in JS</a>
+        <small>
+          &mdash; 2016-04-09
+          &mdash; javascript, js, fp, functional, notes, examples, map, filter, reduce, promises, closure, closures, recursion
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/nginx-reverse-proxy">nginx reverse proxy</a>
+        <small>
+          &mdash; 2016-03-28
+          &mdash; nginx, deployment
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/scott">scott</a>
+        <small>
+          &mdash; 2016-03-03
+          &mdash; people, gif
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/mac-disk-usage-shiz">mac disk usage shiz</a>
+        <small>
+          &mdash; 2016-02-17
+          &mdash; mac, apple
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/kiks-api">kik's api</a>
+        <small>
+          &mdash; 2016-02-17
+          &mdash; kik, api
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/getting-up-and-running-with-nwjs-really-super-quickly">getting up and running with nw.js really super quickly</a>
+        <small>
+          &mdash; 2016-02-14
+          &mdash; nwjs, desktop, node, electron, app
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/node-fs-basics">node fs basics</a>
+        <small>
+          &mdash; 2016-02-12
+          &mdash; node, fs, js, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/basic-auth">basic auth</a>
+        <small>
+          &mdash; 2016-02-12
+          &mdash; auth, node, js, passport
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/solving-programming-problems">Solving programming problems</a>
+        <small>
+          &mdash; 2016-02-10
+          &mdash; toy-problems, programming, problem-solving
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/void-elements-in-html">void elements in html</a>
+        <small>
+          &mdash; 2016-02-08
+          &mdash; html
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/javascript-operators">Javascript Operators</a>
+        <small>
+          &mdash; 2016-02-06
+          &mdash; js, operators, cheatsheet, reference, ecmascript
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/es-next-notes">ES-Next Notes</a>
+        <small>
+          &mdash; 2016-02-05
+          &mdash; es7, es8, ecmascript, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/interview-prep-notes">Interview Prep Notes</a>
+        <small>
+          &mdash; 2016-02-04
+          &mdash; career, interviewing, whiteboarding, interviews
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/firebase-notes">Firebase Notes</a>
+        <small>
+          &mdash; 2016-02-03
+          &mdash; firebase
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/node-notes">Node Notes</a>
+        <small>
+          &mdash; 2016-02-03
+          &mdash; node, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/closures">Closures</a>
+        <small>
+          &mdash; 2016-02-02
+          &mdash; js, closures,, notes,, closure
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/front-end-engineers-manifesto">Front-end Engineer's Manifesto</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; design, front-end, manifesto, list, js, css
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/about-pages">about pages</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; about-pages
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/treatise-on-minimalism">Treatise on Minimalism</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; minimalism, manifesto, treatise, design
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/sqlrdbms">SQL/RDBMS</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; db, rdbms, sql, sqlite
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/email-from-node">email from node</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; email, node
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/research-questions">Research Questions</a>
+        <small>
+          &mdash; 2016-01-28
+          &mdash; ux, ui, user-research, research, webdesign, webdev
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-notes">REACT NOTES</a>
+        <small>
+          &mdash; 2016-01-25
+          &mdash; react, webpack, js, notes, redux
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/isomorphic-apps-in-react">Isomorphic Apps in React</a>
+        <small>
+          &mdash; 2016-01-25
+          &mdash; isomorphic, react, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/tone-and-voice">tone and voice</a>
+        <small>
+          &mdash; 2016-01-25
+          &mdash; tone, voice, design
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/effective-websites">Effective Websites</a>
+        <small>
+          &mdash; 2016-01-24
+          &mdash; web-design, design
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/go">Go</a>
+        <small>
+          &mdash; 2016-01-24
+          &mdash; go, lang
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/shell-things">shell things</a>
+        <small>
+          &mdash; 2016-01-24
+          &mdash; sh, bash, shell, sed, vi, vim
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/crawling-from-the-front-end">Crawling from the Front End</a>
+        <small>
+          &mdash; 2016-01-24
+          &mdash; crawling, frontend, web-crawler
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/auth-with-passport-and-express">Auth with Passport and Express</a>
+        <small>
+          &mdash; 2016-01-23
+          &mdash; passport, express, node, auth, authentication, local, login
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/meteor-notes">Meteor Notes</a>
+        <small>
+          &mdash; 2016-01-21
+          &mdash; meteor, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/meteor-and-react">meteor and react</a>
+        <small>
+          &mdash; 2016-01-21
+          &mdash; meteor, react, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/bash-builtins">bash builtins</a>
+        <small>
+          &mdash; 2016-01-21
+          &mdash; bash, shell, sh, unix, linux, disaster-recovery
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/chromium-flags">Chromium Flags</a>
+        <small>
+          &mdash; 2016-01-20
+          &mdash; chrome, chromium, browser, command-line, cli, flags
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/github-organizations">Github Organizations</a>
+        <small>
+          &mdash; 2016-01-19
+          &mdash; git, github
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/monthly-webmaster-checks">Monthly Webmaster Checks</a>
+        <small>
+          &mdash; 2016-01-19
+          &mdash; webmaster, maintenance
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/styleguide-checklist">styleguide checklist</a>
+        <small>
+          &mdash; 2016-01-19
+          &mdash; styleguide, checklist, design, user-experience, ux
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/baconjs">BaconJS</a>
+        <small>
+          &mdash; 2016-01-19
+          &mdash; bacon, js, frp, streams, events, functional, programming, reactive, fp
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/everything-is-a-stream-or-notes-on-frp">EVERYTHING IS A STREAM, or Notes On FRP</a>
+        <small>
+          &mdash; 2016-01-18
+          &mdash; rxjs, reactive, js, frp, fp
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/es6-notes">ES6 Notes</a>
+        <small>
+          &mdash; 2016-01-18
+          &mdash; js, javascript, ecmascript, es6, es2015
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/problem-solving">Problem Solving</a>
+        <small>
+          &mdash; 2016-01-17
+          &mdash; debugging, problem-solving
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/dreams-part-one-million-and-three">dreams, part one million and three</a>
+        <small>
+          &mdash; 2016-01-17
+          &mdash; personal, dreams
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/functional-programming-vocabulary">Functional Programming Vocabulary</a>
+        <small>
+          &mdash; 2016-01-16
+          &mdash; fp, programming, vocabulary
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/electron-and-nwjs">Electron and NW.js</a>
+        <small>
+          &mdash; 2016-01-15
+          &mdash; nwjs, electron, desktop, js, javascript, apps, node
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/pusher">Pusher</a>
+        <small>
+          &mdash; 2016-01-15
+          &mdash; pusher, realtime, api, baas, paas
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/algorithms-amp-big-o">Algorithm & Big-O</a>
+        <small>
+          &mdash; 2016-01-14
+          &mdash; algorithms, big-o, sort, math, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/systemjs-and-jspm">SystemJS and JSPM</a>
+        <small>
+          &mdash; 2016-01-14
+          &mdash; bundler, build-tools, systemjs, jspm, browser, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/browserify">Browserify</a>
+        <small>
+          &mdash; 2016-01-14
+          &mdash; bundler, browserify, tidbits, build-tools
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/elm-notes">Elm (notes)</a>
+        <small>
+          &mdash; 2016-01-14
+          &mdash; js, haskell, fp, programming, javascript, elm, lang
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/css-preprocessors">CSS Preprocessors</a>
+        <small>
+          &mdash; 2016-01-14
+          &mdash; css, preprocessors, stylus, sass, scss, less, styl, nib
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/ui">UI</a>
+        <small>
+          &mdash; 2016-01-13
+          &mdash; ui, design, guidelines, ux, css, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes">Notes</a>
+        <small>
+          &mdash; 2016-01-13
+          &mdash; bash, blogging, css, design, devmtn, education, electron, elm, es6, flux, go, gulp, js, meta, meteor, mongo, notes, personal, react, ruby, ui, unicode
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/unicode">Unicode</a>
+        <small>
+          &mdash; 2016-01-13
+          &mdash; unicode, text, ascii
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/on-blogging">on blogging</a>
+        <small>
+          &mdash; 2016-01-08
+          &mdash; blogging, writing, language, communication, meta
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/vs-code-license">Visual Studio Code's License</a>
+        <small>
+          &mdash; 2016-01-07
+          &mdash; ms, vscode, editor, licensing
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/express-vs-koa-vs-hapi">Express vs Koa vs Hapi</a>
+        <small>
+          &mdash; 2015-12-30
+          &mdash; express, koa, js, hapi, node, server, framework
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/front-end-performance-notes">Front-End Performance Notes</a>
+        <small>
+          &mdash; 2015-12-28
+          &mdash; performance, front-end, js, browser, css
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/my-problem-with-react">My Problem With React</a>
+        <small>
+          &mdash; 2015-12-28
+          &mdash; react, frameworks, libraries, riot, vue, js, angular, jsx, mithril, design
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/xmas-2015">xmas 2015</a>
+        <small>
+          &mdash; 2015-12-25
+          &mdash; personal, xmas, people
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/you-cant-parse-xhtml-with-regex">you can't parse (x)html with regex</a>
+        <small>
+          &mdash; 2015-12-25
+          &mdash; regex, html, xhtml
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/erin">erin</a>
+        <small>
+          &mdash; 2015-12-23
+          &mdash; gif, devmtn, people
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/living-up-to-my-name">living up to my name...</a>
+        <small>
+          &mdash; 2015-12-20
+          &mdash; personal, people
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/things-learned-dealing-with-electron-and-the-mean-stack">things learned dealing with electron and the mean stack</a>
+        <small>
+          &mdash; 2015-12-16
+          &mdash; javascript, js, electron, angular, mean, school, css
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/projects-projects-projects">Projects, projects, projects.</a>
+        <small>
+          &mdash; 2015-12-15
+          &mdash; devmtn, markvi, projects, editor, electron
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/automatic-semicolon-insertion">Automatic Semicolon Insertion</a>
+        <small>
+          &mdash; 2015-12-13
+          &mdash; js, asi, semicolons, rant
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/more-on-dreams">more on dreams</a>
+        <small>
+          &mdash; 2015-12-12
+          &mdash; dreams, personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/dreams">dreams</a>
+        <small>
+          &mdash; 2015-12-05
+          &mdash; people, personal, dreams
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/thanksgiving-week-projects-fun-times-and-the-future">Thanksgiving Week, Projects, Fun Times, and The Future</a>
+        <small>
+          &mdash; 2015-11-27
+          &mdash; devmtn, personal, wiki, projects, vue, mithril, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/quick-little-thing">QUICK LITTLE THING</a>
+        <small>
+          &mdash; 2015-11-21
+          &mdash; react, angular, mean-stack, meteor, socket, personal, projects, devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/now-things-get-real">Now things get real.</a>
+        <small>
+          &mdash; 2015-11-19
+          &mdash; projects, mobile, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/react-meetup-17-nov-2015">React Meetup, 17 Nov, 2015</a>
+        <small>
+          &mdash; 2015-11-17
+          &mdash; react, meetup, php, xml, js, devmtn, meteor
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/finally-almost-done-with-angular">Finally almost done with Angular...</a>
+        <small>
+          &mdash; 2015-11-11
+          &mdash; javascript, devmtn, markdown, angular, node
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/no-server-projects">No-Server Projects</a>
+        <small>
+          &mdash; 2015-11-07
+          &mdash; angular, baas, blog, devmtn, editor, firebase, javascript, markdown, people, platform, school
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/angulaaaaarrrrr">ANGULAAAAARRRRR</a>
+        <small>
+          &mdash; 2015-11-01
+          &mdash; javascript, bash, school, people, baas
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/i-am-sick">I AM SICK</a>
+        <small>
+          &mdash; 2015-10-28
+          &mdash; health, personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/javascriptssss">JAVASCRIPTSSSS</a>
+        <small>
+          &mdash; 2015-10-25
+          &mdash; devmtn, angular, js
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/im-at-the-end-of-my-patience">i'm at the end of my patience</a>
+        <small>
+          &mdash; 2015-10-20
+          &mdash; devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/devmountain-week-2">DevMountain, Week 2</a>
+        <small>
+          &mdash; 2015-10-19
+          &mdash; people, school, javascript, devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/devmountain-week-six">DevMountain, Week Six</a>
+        <small>
+          &mdash; 2015-10-16
+          &mdash; js, sleep
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/javascript">Javascript</a>
+        <small>
+          &mdash; 2015-10-16
+          &mdash; js, css, programming, vim
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/angular-meetup-13th-oct-2015">Angular Meetup, 13th Oct, 2015</a>
+        <small>
+          &mdash; 2015-10-13
+          &mdash; meetup, angular, javascript, notes
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/code-bootcamps-comparison">Code Bootcamps (Comparison)</a>
+        <small>
+          &mdash; 2015-10-12
+          &mdash; old, education, school, code-bootcamp, javascript, coding, programming
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/i-guess-im-like-in-school-and-stuff-what">I GUESS I'M LIKE IN SCHOOL AND STUFF WHAT</a>
+        <small>
+          &mdash; 2015-10-11
+          &mdash; devmtn, javascript, js, python
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/not-long-now">not long now...</a>
+        <small>
+          &mdash; 2015-10-08
+          &mdash; travel, npm, education, devmtn, personal
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/im-off">I'M OFF</a>
+        <small>
+          &mdash; 2015-10-07
+          &mdash; personal, devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/licensing">Licensing</a>
+        <small>
+          &mdash; 2015-10-04
+          &mdash; licensing, wtfpl
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/i-cannot-wait">I Cannot Wait</a>
+        <small>
+          &mdash; 2015-10-04
+          &mdash; work, bootstrap
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/less-than-a-week-til-school">Less than a week 'til school...</a>
+        <small>
+          &mdash; 2015-10-02
+          &mdash; js, devmtn, work, blogging, meta, projects
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/world-suicide-prevention-day-personal">world suicide prevention day (personal)</a>
+        <small>
+          &mdash; 2015-09-29
+          &mdash; personal
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/learn-to-code-link-post">Learn To Code; Link Post</a>
+        <small>
+          &mdash; 2015-09-29
+          &mdash; education, links, nix, dev, web, programming, code, devmtn
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/paying-for-web-things-what">Paying For Web Things? What?</a>
+        <small>
+          &mdash; 2015-09-29
+          &mdash; meta, bookmarking, pinboard
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/this-heres-a-test">This Here's A Test!</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; meta, bashblog, markdown, blogging
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/post-number-negative-two">Post Number Negative Two!</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; meta, blogging
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/notes-and-things-and-stuff">Notes and Things and Stuff</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; bash, blogging, devmtn, health, meta, personal, sh, shell, work
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/switch-to-linux-part-one">Switch To Linux (Part One)</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; linux, windows, operating-systems, open-source
+        </small>
+      </li>
+      
+      <li>
+        
+          &#9734;
+        
+
+        <a href="/blog/./posts/switch-to-linux-part-two">Switch To Linux! (Part Two)</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; linux, operating-systems, mac, apple, os-x, open-source
+        </small>
+      </li>
+      
+      <li>
+        
+
+        <a href="/blog/./posts/that-was-fast">That was fast.</a>
+        <small>
+          &mdash; 2015-09-27
+          &mdash; meta, bashblog, blogging
+        </small>
+      </li>
+      
+
+    </ul>
+
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

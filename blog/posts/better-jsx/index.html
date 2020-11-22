@@ -1,13 +1,44 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>ideas for a better jsx | Zac Anger&#x27;s Blog</title><meta name="description" content="please note: these aren&#x27;t all my ideas, some are from ryan
-walsh"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,jsx,react,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="ideas for a better jsx"/><meta name="twitter:description" content="please note: these aren&#x27;t all my ideas, some are from ryan
-walsh"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="ideas for a better jsx"/><meta property="og:description" content="please note: these aren&#x27;t all my ideas, some are from ryan
-walsh"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>ideas for a better jsx</h2><h3>05 May, 2016</h3></header><div><p>please note: these aren't all my ideas, some are from <a href="http://ryanwalsh.io">ryan
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>ideas for a better jsx | Zac Anger's Blog</title>
+    <meta name="description" content="ideas for a better jsx" />
+    <meta name="keywords" content="['jsx', 'react', 'js']" />
+    <meta name="twitter:description" content="ideas for a better jsx" />
+    <meta name="twitter:title" content="ideas for a better jsx" />
+    <meta property="og:description" content="ideas for a better jsx" />
+    <meta property="og:title" content="ideas for a better jsx" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>ideas for a better jsx</h2>
+      <h3>2016-05-05</h3>
+      <h4><small>Tagged: jsx, react, js</small></h4>
+    </header>
+    <div>
+      <p>please note: these aren't all my ideas, some are from <a href="http://ryanwalsh.io">ryan<br />
 walsh</a></p>
-<p>also, all of this was from back when both myself and ryan were just starting to
+<p>also, all of this was from back when both myself and ryan were just starting to<br />
 learn react</p>
 <p>i don't dislike jsx, i got over that</p>
 <p>pretty sure ryan did, too</p>
-<pre><code class="language-jsx">// JSX
+<div class="highlight"><pre><span></span>// JSX
 export default class ProfileInfo extends React.Component {
   render() {
     return (
@@ -57,43 +88,43 @@ export default class ProfileInfo extends React.Component {
 export default class ProfileInfo extends React.Component {
   render() {
     return (
-      div( { class: ['profile-guide-info-container'] } ) {
+      div( { class: [&#39;profile-guide-info-container&#39;] } ) {
 
         div( { class: [&quot;profile-image-wrapper&quot;] } ) {
-          img( { class: ['profile-image'], src: 'https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460' } ) {}
+          img( { class: [&#39;profile-image&#39;], src: &#39;https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460&#39; } ) {}
         }
 
-        div( { class: 'name-info-container' } ) {
+        div( { class: &#39;name-info-container&#39; } ) {
           h2( { class: &quot;display-name&quot; } ) { John Doe }
-          h3( { class: 'username' } ) { jdoe }
+          h3( { class: &#39;username&#39; } ) { jdoe }
         }
 
-        table( { class: ['profile-guide-info'] } ) {
-          tr( { class: ['number-container'] } ) {
-            th( { class: ['guide-info-number'] } ) {
-              span( { class: ['profile-authored'] } )
+        table( { class: [&#39;profile-guide-info&#39;] } ) {
+          tr( { class: [&#39;number-container&#39;] } ) {
+            th( { class: [&#39;guide-info-number&#39;] } ) {
+              span( { class: [&#39;profile-authored&#39;] } )
             }
 
-            th( { class: ['guide-info-number'] } ) {
-              span( { class: ['profile-authored'] } )
+            th( { class: [&#39;guide-info-number&#39;] } ) {
+              span( { class: [&#39;profile-authored&#39;] } )
             }
 
-            th( { class: ['guide-info-number'] } ) {
-              span( { class: ['profile-authored'] } )
+            th( { class: [&#39;guide-info-number&#39;] } ) {
+              span( { class: [&#39;profile-authored&#39;] } )
             }
           }
 
           tr() {
             td() {
-              span( { class: ['profile-authored'] } ) {}
+              span( { class: [&#39;profile-authored&#39;] } ) {}
             }
 
             td() {
-              span( { class: ['profile-authored'] } ) {}
+              span( { class: [&#39;profile-authored&#39;] } ) {}
             }
 
             td() {
-              span( { class: ['profile-authored'] } ) {}
+              span( { class: [&#39;profile-authored&#39;] } ) {}
             }
           }
         }
@@ -107,9 +138,9 @@ export default class ProfileInfo extends React.Component{
   render() {
     return ({
       div : {
-        class : ['foo', 'bar']
+        class : [&#39;foo&#39;, &#39;bar&#39;]
       , p : {
-          str : 'Bespoke scenester retro bitters Pitchfork 8-bit mixtape PBR&amp;B mlkshk iphone wire-rimmed glasses forage Helvetica put a bird on it intelligentsia semiotics leggings normcore. Flexitarian Echo Park mustache carles kickstarter Echo Park Blue Bottle actually tumblr beard literally tote bag Pitchfork cray shabby Portland stumptown asymmetrical.'
+          str : &#39;Bespoke scenester retro bitters Pitchfork 8-bit mixtape PBR&amp;B mlkshk iphone wire-rimmed glasses forage Helvetica put a bird on it intelligentsia semiotics leggings normcore. Flexitarian Echo Park mustache carles kickstarter Echo Park Blue Bottle actually tumblr beard literally tote bag Pitchfork cray shabby Portland stumptown asymmetrical.&#39;
         }
       }
     , footer : {
@@ -120,27 +151,27 @@ export default class ProfileInfo extends React.Component{
 // or this?
 const n = notJSX
 function notJSXparser(){
-  return n('body', [
-    n('h1', {'this is a website'},
-      n('p', {'this is a lot of text! texytext, text. texting. txet.'},
-        n('footer', {`Copyright ${stuff}`})
+  return n(&#39;body&#39;, [
+    n(&#39;h1&#39;, {&#39;this is a website&#39;},
+      n(&#39;p&#39;, {&#39;this is a lot of text! texytext, text. texting. txet.&#39;},
+        n(&#39;footer&#39;, {`Copyright ${stuff}`})
       )
     )
   ])
 }
 
-// how they do it in EVE's UI (note: they use typescript and an in-house custom lib they call 'microReact')
+// how they do it in EVE&#39;s UI (note: they use typescript and an in-house custom lib they call &#39;microReact&#39;)
 const page = {
-  t          : 'span' // the tag type; defauts to 'div'
-, c          : 'col-12' // className
-, text       : 'some content'
+  t          : &#39;span&#39; // the tag type; defauts to &#39;div&#39;
+, c          : &#39;col-12&#39; // className
+, text       : &#39;some content&#39;
 , children   : [{
     // array of further nodes
   }]
 , top        : 10
-, width      : 100 // more styles can go here, like react's style object basically
+, width      : 100 // more styles can go here, like react&#39;s style object basically
 , click      : someHandler
-, svg        : true // to add svg properties... why? idk. just 'cuz, i guess.
+, svg        : true // to add svg properties... why? idk. just &#39;cuz, i guess.
 , cx         : 4
 , cy         : 4
 , postRender : someDomManipulationFunction // on insertion and on update
@@ -148,10 +179,16 @@ const page = {
 
 // how jsx actually kinda works (reactelement anyway) under the hood:
 let someEl = {
-  type  : 'div'
+  type  : &#39;div&#39;
 , props : {}
 , ref   : null
 , key   : null
 }
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

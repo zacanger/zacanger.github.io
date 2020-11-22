@@ -1,37 +1,78 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>email from node | Zac Anger&#x27;s Blog</title><meta name="description" content="nodemailer and nodemailer-smtp-transport"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,email,node"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="email from node"/><meta name="twitter:description" content="nodemailer and nodemailer-smtp-transport"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="email from node"/><meta property="og:description" content="nodemailer and nodemailer-smtp-transport"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>email from node</h2><h3>28 January, 2016</h3></header><div><p><code>nodemailer</code> and <code>nodemailer-smtp-transport</code></p>
-<pre><code>var transporter = nodemailer.createTransport(
-  smtpTransport('smtps://foo@thing.com:asdf@bar.com'))
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>email from node | Zac Anger's Blog</title>
+    <meta name="description" content="email from node" />
+    <meta name="keywords" content="['email', 'node']" />
+    <meta name="twitter:description" content="email from node" />
+    <meta name="twitter:title" content="email from node" />
+    <meta property="og:description" content="email from node" />
+    <meta property="og:title" content="email from node" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>email from node</h2>
+      <h3>2016-01-28</h3>
+      <h4><small>Tagged: email, node</small></h4>
+    </header>
+    <div>
+      <p><code>nodemailer</code> and <code>nodemailer-smtp-transport</code></p>
+<div class="highlight"><pre><span></span>var transporter = nodemailer.createTransport(
+  smtpTransport(&#39;smtps://foo@thing.com:asdf@bar.com&#39;))
 var transport = nodemailer.createTransport(smtpTransport({
-  host: 'host'
+  host: &#39;host&#39;
 , port: foo
 , auth: {
-    user: 'username'
-  , pass: 'password'
+    user: &#39;username&#39;
+  , pass: &#39;password&#39;
   }
 }))
 transporter.sendMail(mailOptions, function(err, info){
   if(error){res.send(error)}
   else{res.send(info)}
 })
-</code></pre>
-<p>using a service, we're just sending the bare instructions there from the
-front-end, so sendgrid or whatever would take care of the actual compiling,
-rendering, and all that nonsense. (remember the blogs on tinyletter or
+</pre></div>
+
+<p>using a service, we're just sending the bare instructions there from the<br />
+front-end, so sendgrid or whatever would take care of the actual compiling,<br />
+rendering, and all that nonsense. (remember the blogs on tinyletter or<br />
 whatever, about how to even make your email acceptable? hmmm....)</p>
-<p>sendgrid, mandrill, and mailgun are the big ones. sendgrid is a little less
-likely to throw your emails in spam. 12k per month or something like that
-(with daily cap of maybe 400-ish) for free. they have a slight delay when you
-sign up, maybe a few hours. obvs we'd likely want to do our own server/service
-for large-scale, but the analytics available on these things are worth it...?
+<p>sendgrid, mandrill, and mailgun are the big ones. sendgrid is a little less<br />
+likely to throw your emails in spam. 12k per month or something like that<br />
+(with daily cap of maybe 400-ish) for free. they have a slight delay when you<br />
+sign up, maybe a few hours. obvs we'd likely want to do our own server/service<br />
+for large-scale, but the analytics available on these things are worth it...?<br />
 (see: pb:tag/analytics.)</p>
-<p>to use sendgrid we'd need to <code>npm i -S sendgrid</code>. then we're using
-fs.readFile(), i suppose, to work with things on the disk. (note that this
-could also be in streams, and it could also be in a db....) sendgrid can work
-with some templating on the back end, though it evidently doesn't inline your
-css for you.... ah, i see, it looks like zurb's got a tool for that (of
+<p>to use sendgrid we'd need to <code>npm i -S sendgrid</code>. then we're using<br />
+fs.readFile(), i suppose, to work with things on the disk. (note that this<br />
+could also be in streams, and it could also be in a db....) sendgrid can work<br />
+with some templating on the back end, though it evidently doesn't inline your<br />
+css for you.... ah, i see, it looks like zurb's got a tool for that (of<br />
 course--they've got a tool for everything). i think tinyletter has one, too.</p>
-<p>there are yeoman generators for all this stuff. why do the dirty work
+<p>there are yeoman generators for all this stuff. why do the dirty work<br />
 yourself?</p>
-<p>zero and rabbit are things. i guess rabbitmq is currently the more popular
+<p>zero and rabbit are things. i guess rabbitmq is currently the more popular<br />
 one?</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

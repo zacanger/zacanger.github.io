@@ -1,20 +1,45 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>editor design notes | Zac Anger&#x27;s Blog</title><meta name="description" content="ages ago, like multiple months ago, i really wanted to make an editor that was
-better these are a bunch of notes i took on that topic there&#x27;s a crapton more
-in the notes taken while working with the group on
-pharaoh, but those can wait for osme other time."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,editor,design"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="editor design notes"/><meta name="twitter:description" content="ages ago, like multiple months ago, i really wanted to make an editor that was
-better these are a bunch of notes i took on that topic there&#x27;s a crapton more
-in the notes taken while working with the group on
-pharaoh, but those can wait for osme other time."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="editor design notes"/><meta property="og:description" content="ages ago, like multiple months ago, i really wanted to make an editor that was
-better these are a bunch of notes i took on that topic there&#x27;s a crapton more
-in the notes taken while working with the group on
-pharaoh, but those can wait for osme other time."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>editor design notes</h2><h3>13 June, 2016</h3></header><div><p>ages ago, like multiple months ago, i really wanted to make an editor that was
-better these are a bunch of notes i took on that topic there's a crapton more
-in the notes taken while working with the group on
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>editor design notes | Zac Anger's Blog</title>
+    <meta name="description" content="editor design notes" />
+    <meta name="keywords" content="['editor', 'design']" />
+    <meta name="twitter:description" content="editor design notes" />
+    <meta name="twitter:title" content="editor design notes" />
+    <meta property="og:description" content="editor design notes" />
+    <meta property="og:title" content="editor design notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>editor design notes</h2>
+      <h3>2016-06-13</h3>
+      <h4><small>Tagged: editor, design</small></h4>
+    </header>
+    <div>
+      <p>ages ago, like multiple months ago, i really wanted to make an editor that was<br />
+better these are a bunch of notes i took on that topic there's a crapton more<br />
+in the notes taken while working with the group on<br />
 <a href="http://pharaoh.js.org">pharaoh</a>, but those can wait for osme other time.</p>
-<p>now, i'm perfectly 100% satisfied with what i get out of a
-<a href="https://github.com/zacanger/z.git">well-configured</a>
+<p>now, i'm perfectly 100% satisfied with what i get out of a<br />
+<a href="https://github.com/zacanger/z.git">well-configured</a><br />
 <a href="https://neovim.io">neovim</a>.</p>
-<hr>
+<hr />
 <h2>editor idea</h2>
 <ul>
 <li>libraries, etc: in local storage</li>
@@ -22,16 +47,10 @@ in the notes taken while working with the group on
 <li>offline: save to local, queue, push when back online</li>
 <li>do while loop: cash saves, settimeout, push to backend periodically</li>
 <li>alert for unsaved files on exit</li>
-<li>codefolding and tabs.
-<ul>
+<li>codefolding and tabs.</li>
 <li>VS Code STILL doesn't have these basics. Wow.</li>
-</ul>
-</li>
-<li>autosaves, but saves are git commits?
-<ul>
+<li>autosaves, but saves are git commits?</li>
 <li>easy reversion. integrate with dropbox/gdrive/whatever to keep commits distributed but private.</li>
-</ul>
-</li>
 </ul>
 <h3>Things any programming editor-cum-environment should do</h3>
 <h4>(including some really obvious ones, but i just want to make it all clear)</h4>
@@ -47,50 +66,43 @@ in the notes taken while working with the group on
 <li>interpret code as it is typed; show results locally !!</li>
 <li>abstract <em>above</em> just a normal directory tree for navigation/code organization !!</li>
 </ul>
-<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,
-technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research
+<p>!! -- almost certainly only through extensibility (packages/plugins), and even then these are pretty far-out goals,<br />
+technologically. the last two are especially difficult, even conceptually, and would need a lot of HCI design research<br />
 before even prototyping.</p>
 <h3>notes from brett victor's talks and such</h3>
 <ul>
 <li>Information Design two big rules: Show the data, and show comparisons.</li>
-<li>Larry Tesler: personal vendetta against modes in software. 'Don't mode me in.'</li>
+<li>Larry Tesler: personal vendetta against modes in software. 'Don\'t mode me in.'</li>
 <li>He's the reason we have straight-up WYSIWYG editing and stuff.</li>
 <li>His editor was called 'Gypsy.' Click and drag? That's him.</li>
 <li>Cut, copy, and paste: that's him.</li>
 <li>That's funny, kinda, because the best software is still moded.</li>
-<li>This is curious, because to everyone else at the time, modes were just a way of life
-with computing. This wasn't a problem to anyone else, just to him.</li>
+<li>This is curious, because to everyone else at the time, modes were just a way of life<br />
+  with computing. This wasn't a problem to anyone else, just to him.</li>
 </ul>
 <h2>on version control and ot and eve in general</h2>
 <ul>
 <li>Recording changes as they happen is easier than inferring them after the fact.</li>
 <li>Preserving history (the context in which a change was made) is necessary for proper merges.</li>
 <li>Being predictable is more important than being smart.</li>
-<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,
-rather than the whole thing.</li>
+<li>Partial edits, merge conflicts, etc. prevent only that current view/component/whatever from running,<br />
+  rather than the whole thing.</li>
 </ul>
 <h2>Links</h2>
 <ul>
 <li><a href="https://github.com/jdleesmiller/jotgit">Git-backed editor</a> build on Meteor, in Coffeescript.</li>
-<li>Some bits relating to editor design:
-<ul>
+<li>Some bits relating to editor design:</li>
 <li><a href="https://vimeo.com/36579366">bret victor's 'inventing on principle'</a></li>
 <li><a href="http://worrydream.com/LearnableProgramming/">(and his followup to it, so people would stop misinterpreting in)</a></li>
 <li><a href="http://dl.acm.org/citation.cfm?id=2677279">an empirical study of imperative programming assignments</a></li>
-</ul>
-</li>
-<li>Some things about LightTable:
-<ul>
+<li>Some things about LightTable:</li>
 <li><a href="https://groups.google.com/forum/#!topic/light-table-discussion/T3DhzWhabok">discussion about writing plugins</a></li>
 <li><a href="https://github.com/mdhaney/lt-plugin-template">plugin template</a></li>
 <li><a href="https://github.com/swannodette/lt-cljs-tutorial">clojurescript tutorial for lighttable users</a></li>
 <li><a href="http://product.reverb.com/2014/05/10/getting-started-programming-light-table/">basics of hacking on lighttable</a></li>
 <li><a href="https://github.com/LightTable/Declassifier">basic walkthrough of plugin build</a></li>
 <li><a href="https://github.com/LightTable/LightTable/wiki/Creating-an-LT-Client-using-LTs'-bundled-Node">using node in lighttable</a></li>
-</ul>
-</li>
-<li>Eve links:
-<ul>
+<li>Eve links:</li>
 <li><a href="http://www.cse.yorku.ca/~wolfgang/papers/layoutALE.pdf">Auckland layout editor for constraint-based UI</a></li>
 <li><a href="http://db.cs.berkeley.edu/papers/dbtest12-bloom.pdf">BloomUnit: Declarative Testing for Distributed Programs</a></li>
 <li><a href="http://db.cs.berkeley.edu/papers/eurosys10-boom.pdf">BOOM Analytics: Exploring Data-Centric, Declarative Programming for the Cloud</a></li>
@@ -109,6 +121,10 @@ rather than the whole thing.</li>
 <li><a href="http://icwww.epfl.ch/~kuncak/papers/DagandETAL08Opis.pdf">Opis: Reliable Distributed Systems in OCaml</a></li>
 <li><a href="http://repository.cmu.edu/cgi/viewcontent.cgi?article=1165&amp;context=hcii">Why Not Questions about Program Behavior</a></li>
 </ul>
-</li>
-</ul>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

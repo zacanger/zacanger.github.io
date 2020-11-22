@@ -1,21 +1,55 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>meteor and react | Zac Anger&#x27;s Blog</title><meta name="description" content="anything in &lt;template&gt;is a _meteor_ template&lt;/template&gt;; include in html by
-{{&gt; thatTemplate}}, or in js with Template.thatTemplate. (not doing that at
-all with react as view.)"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,meteor,react,js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="meteor and react"/><meta name="twitter:description" content="anything in &lt;template&gt;is a _meteor_ template&lt;/template&gt;; include in html by
-{{&gt; thatTemplate}}, or in js with Template.thatTemplate. (not doing that at
-all with react as view.)"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="meteor and react"/><meta property="og:description" content="anything in &lt;template&gt;is a _meteor_ template&lt;/template&gt;; include in html by
-{{&gt; thatTemplate}}, or in js with Template.thatTemplate. (not doing that at
-all with react as view.)"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>meteor and react</h2><h3>21 January, 2016</h3></header><div><p>anything in <code>&lt;template&gt;is a _meteor_ template&lt;/template&gt;</code>; include in html by
-<code>{{&gt; thatTemplate}}</code>, or in js with <code>Template.thatTemplate</code>. (not doing that at
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>meteor and react | Zac Anger's Blog</title>
+    <meta name="description" content="meteor and react" />
+    <meta name="keywords" content="['meteor', 'react', 'js']" />
+    <meta name="twitter:description" content="meteor and react" />
+    <meta name="twitter:title" content="meteor and react" />
+    <meta property="og:description" content="meteor and react" />
+    <meta property="og:title" content="meteor and react" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>meteor and react</h2>
+      <h3>2016-01-21</h3>
+      <h4><small>Tagged: meteor, react, js</small></h4>
+    </header>
+    <div>
+      <p>anything in <code>&lt;template&gt;is a _meteor_ template&lt;/template&gt;</code>; include in html by<br />
+<code>{{&gt; thatTemplate}}</code>, or in js with <code>Template.thatTemplate</code>. (not doing that at<br />
 all with react as view.)</p>
-<p><code>React.createClass</code> defines a new view... class. why are components classes?
+<p><code>React.createClass</code> defines a new view... class. why are components classes?<br />
 <code>props</code> are attributes that allow compnents/classes to inherit <em>data</em>.</p>
-<p><code>render()</code> (react) gets a description of the markup to show. html's inside jsx,
-so get used to angle brackets in your scripting, yay.... jsx: <code>className</code>
+<p><code>render()</code> (react) gets a description of the markup to show. html's inside jsx,<br />
+so get used to angle brackets in your scripting, yay.... jsx: <code>className</code><br />
 instead of <code>class</code>. jsx, not templating lang... just compiles to plain old js.</p>
-<p>jsx can use es6 (what about esnext-next?). this includes <code>const</code> &amp; <code>let</code>,
+<p>jsx can use es6 (what about esnext-next?). this includes <code>const</code> &amp; <code>let</code>,<br />
 <code>methodShorthand(){...}</code>, and <code>=&gt;</code>.</p>
-<p>collections: how meteor stores persistent data. aka mongo. lol duh. accessible
+<p>collections: how meteor stores persistent data. aka mongo. lol duh. accessible<br />
 from server and client.</p>
-<p><code>collectionName = new Mongo.Collection(&quot;collection-name&quot;)</code> to make that happen.
+<p><code>collectionName = new Mongo.Collection("collection-name")</code> to make that happen.<br />
 that makes a new mongo collection on the server, and cache on the client.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

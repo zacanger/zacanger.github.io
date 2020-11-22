@@ -1,37 +1,75 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>More More Notes Taken While Watching MPJ&#x27;s Videos | Zac Anger&#x27;s Blog</title><meta name="description" content="lol streams are like the weird lovechild of promises and arrays i love that
-analogy"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,fp"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="More More Notes Taken While Watching MPJ&#x27;s Videos"/><meta name="twitter:description" content="lol streams are like the weird lovechild of promises and arrays i love that
-analogy"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="More More Notes Taken While Watching MPJ&#x27;s Videos"/><meta property="og:description" content="lol streams are like the weird lovechild of promises and arrays i love that
-analogy"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>More More Notes Taken While Watching MPJ&#x27;s Videos</h2><h3>24 July, 2016</h3></header><div><p>lol streams are like the weird lovechild of promises and arrays i love that
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>More More Notes Taken While Watching MPJ's Videos | Zac Anger's Blog</title>
+    <meta name="description" content="More More Notes Taken While Watching MPJ's Videos" />
+    <meta name="keywords" content="['js', 'fp']" />
+    <meta name="twitter:description" content="More More Notes Taken While Watching MPJ's Videos" />
+    <meta name="twitter:title" content="More More Notes Taken While Watching MPJ's Videos" />
+    <meta property="og:description" content="More More Notes Taken While Watching MPJ's Videos" />
+    <meta property="og:title" content="More More Notes Taken While Watching MPJ's Videos" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>More More Notes Taken While Watching MPJ's Videos</h2>
+      <h3>2016-07-24</h3>
+      <h4><small>Tagged: js, fp</small></h4>
+    </header>
+    <div>
+      <p>lol streams are like the weird lovechild of promises and arrays i love that<br />
 analogy</p>
 <p>here's a stream-making thingy</p>
-<pre><code class="language-javascript">const foo = {
-  each (cb) {
-    setTimeout(() =&gt; cb(1), 100)
-    setTimeout(() =&gt; cb(2), 200)
-    setTimeout(() =&gt; cb(3), 300)
-    setTimeout(() =&gt; cb(4), 400)
-  }
-}
-foo.each(console.log)
-</code></pre>
-<p>prototypes are faster than factory functions but geez they're
-kinda gross to think about you know so unless we're doing something
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">each</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">cb</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">cb</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">cb</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">300</span><span class="p">)</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">cb</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="mi">400</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+</pre></div>
+
+<p>prototypes are faster than factory functions but geez they're<br />
+kinda gross to think about you know so unless we're doing something<br />
 like making ten million objects just use a factory there i guess</p>
 <p>streams are functors</p>
 <p>functors are just a thing that implements map</p>
 <p>monads are functors that also implement <em>flatMap</em></p>
 <p>flatMap just flattens, i guess? that's what it sounds like.</p>
-<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.
-same with stuff like bind and chain methods and stuff. it's basically
-flattening into its <em>value</em> rather than having the actual (semi-expected)
+<p>so like with Promises for example, <code>.then</code> is like <code>.flatMap</code>.<br />
+same with stuff like bind and chain methods and stuff. it's basically<br />
+flattening into its <em>value</em> rather than having the actual (semi-expected)<br />
 value (function/promise/stream/whatever).</p>
-<p>so if you have a flatMap that would return another monad, i guess,
+<p>so if you have a flatMap that would return another monad, i guess,<br />
 it'd actually return its value, not that other monad.</p>
-<p>if you are a tooling addict, don't do tools. (this actually totally applies to
-me, because i've spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a>
-than on any other individual project... <em>but</em> i feel like it's worth it, mostly.
-being able to just use vim and not go through the work of setting up any other
-editor on any computer, being able to just clone that repo and symlink what i need,
-that really does make me more productive. as long as i don't forget how to use
+<p>if you are a tooling addict, don't do tools. (this actually totally applies to<br />
+me, because i've spent more time on <a href="https://github.com/zacanger/z.git">my dotfiles</a><br />
+than on any other individual project... <em>but</em> i feel like it's worth it, mostly.<br />
+being able to just use vim and not go through the work of setting up any other<br />
+editor on any computer, being able to just clone that repo and symlink what i need,<br />
+that really does make me more productive. as long as i don't forget how to use<br />
 computers without my dotfiles, i don't think they're really a waste of time.)</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

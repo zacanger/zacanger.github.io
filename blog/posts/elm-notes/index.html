@@ -1,6 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Elm (notes) | Zac Anger&#x27;s Blog</title><meta name="description" content="Differences from JS:"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,js,haskell,fp,programming,javascript,elm,lang"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Elm (notes)"/><meta name="twitter:description" content="Differences from JS:"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Elm (notes)"/><meta property="og:description" content="Differences from JS:"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Elm (notes)</h2><h3>14 January, 2016</h3></header><div><p>Differences from JS:</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Elm (notes) | Zac Anger's Blog</title>
+    <meta name="description" content="Elm (notes)" />
+    <meta name="keywords" content="['js', 'haskell', 'fp', 'programming', 'javascript', 'elm', 'lang']" />
+    <meta name="twitter:description" content="Elm (notes)" />
+    <meta name="twitter:title" content="Elm (notes)" />
+    <meta property="og:description" content="Elm (notes)" />
+    <meta property="og:title" content="Elm (notes)" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Elm (notes)</h2>
+      <h3>2016-01-14</h3>
+      <h4><small>Tagged: js, haskell, fp, programming, javascript, elm, lang</small></h4>
+    </header>
+    <div>
+      <p>Differences from JS:</p>
 <ul>
-<li>Elm has multiline string support, with <em>triple</em> sets of quotes, eg &quot;&quot;&quot;multiline string&quot;&quot;&quot;</li>
+<li>Elm has multiline string support, with <em>triple</em> sets of quotes, eg """multiline string"""</li>
 <li>Elm <em>cannot</em> use single quotes for <em>strings</em>. Elm uses single quotes to denote <em>characters</em>.</li>
 <li>Booleans are uppercase.</li>
 <li>Objects use <code>=</code> instead of <code>:</code>, so <code>{key: value, key2: value2}</code> in JS would be <code>{key = value, key2 = value2}</code> in Elm.</li>
@@ -8,77 +42,67 @@
 <li>Functions are greatly simplified. <code>function(foo, bar){return foo+bar}</code> in js would be <code>\foo bar -&gt; foo + bar</code> in Elm.</li>
 <li>Math is a little simpler: <code>Math.max(2,4)</code> is just <code>max 2 4</code>. Same with <code>min</code>. <code>Math.pow</code> is just <code>^</code>, eg <code>Math.min(1, Math.pow(2, 4))</code> is <code>min 1 (2^4)</code>.</li>
 <li><code>numbers.map(Math.sqrt)</code> would be <code>List.map sqrt numbers</code>. <code>points.map(function(p){return p.x})</code> becomes <code>List.map .x points</code>.</li>
-<li><code>2 &lt; 4 ? 'WHAT' : 'how?'</code>, <code>if 2 &lt; 4 then &quot;WHAT&quot; else &quot;how?&quot;</code></li>
+<li><code>2 &lt; 4 ? 'WHAT' : 'how?'</code>, <code>if 2 &lt; 4 then "WHAT" else "how?"</code></li>
 <li><code>var foo = 72</code>; <code>let foo = 72 in...</code></li>
 <li>No return statements; everything is an expression.</li>
-<li><code>String.length &quot;asdf&quot;</code> rather than 'asdf.length'</li>
+<li><code>String.length "asdf"</code> rather than 'asdf.length'</li>
 </ul>
 <p>Mostly it looks pretty neat, but there's virtually nothing out there for actually <em>learning</em> it, so I'm already kind of over it....</p>
 <p>Note that the 'EventLog.elm' in this directory doesn't actually need the start-app package anymore; turns out it's really easy to just wire the damn thing up all on your own.</p>
-<hr>
+<hr />
 <p><code>type</code> defines and names a new type. <code>type alias</code> gives a name to an existing type, like <code>alias</code> would in Bash.</p>
 <p>Elm doesn't come witih an HTML module by default/in elm-core, so <code>elm package install evancz/elm-html</code>.</p>
 <p>The repl doesn't support type annotations.</p>
-<p>There's an official list of packages at http://package.elm-lang.org/ -- useful, since you have to install everything with the <code>user/repo</code> syntax.</p>
-<p>Anything wrapped with <code>Debug.log &quot;anything&quot;</code> will go out to the Js console.</p>
+<p>There's an official list of packages at <a href="http://package.elm-lang.org/">http://package.elm-lang.org/</a> -- useful, since you have to install everything with the <code>user/repo</code> syntax.</p>
+<p>Anything wrapped with <code>Debug.log "anything"</code> will go out to the Js console.</p>
 <p>Seeing as so much stuff hasn't been updated for 0.16, there is actually an environment manager one could use, here: <a href="https://github.com/sonnym/elmenv">https://github.com/sonnym/elmenv</a> .</p>
-<p>The <code>=&gt;</code> in Elm is not what you think it is. It's a shorthand for <code>(,)</code>, which is useful in situations like <code>[&quot;color&quot; =&gt; &quot;red&quot;, &quot;padding&quot; =&gt; &quot;2px&quot;]</code>, to avoid annoying things like <code>[(&quot;color&quot;, &quot;red&quot;), (&quot;padding&quot;, &quot;2px&quot;)]</code>.</p>
+<p>The <code>=&gt;</code> in Elm is not what you think it is. It's a shorthand for <code>(,)</code>, which is useful in situations like <code>["color" =&gt; "red", "padding" =&gt; "2px"]</code>, to avoid annoying things like <code>[("color", "red"), ("padding", "2px")]</code>.</p>
 <p><code>()</code> is an empty tuple, so it's like <code>null</code>, basically.</p>
 <p><code>&lt;|</code> takes lower priority than functions expressed by adjacency, so it can be used instead of parens. So, <code>max 2 (sqrt x)</code> is the same as <code>max 3 &lt;| sqrt x</code>.</p>
-<p>To run native code that we didn't install with <code>elm package</code>, <code>&quot;native-modules&quot;: true</code> needs to be in the <code>elm-package.json</code> file.</p>
-<hr>
-<p>Some additional style tips:</p>
-<ul>
-<li>Line length &lt;= 80</li>
-<li>2 sp indentation (duh)</li>
-<li>no trailing spaces (duh)</li>
-<li>newline (duh)</li>
-<li>do write type annotations</li>
-<li>do write records (etc.) with spaces between special chars</li>
-<li>on compilation, use <code>elm-make --warn</code>; get rid of the warnings</li>
-<li>for totally fresh compilation, <code>rm elm-stuff/build-artifacts</code></li>
-<li>for any block &gt; 1 line, drop it down on the first line
-<ul>
-<li>
-<p>means more indentation and more lines, but is more readable</p>
-</li>
-<li>
-<p>do the same for accompanying block, even if short</p>
-<ul>
-<li>same reason as for the above</li>
-</ul>
-<p>type alias Foo =<br>
-{ thisWhatever : Float<br>
-, thinyMajiggy : Float<br>
-}</p>
-</li>
-</ul>
-</li>
-</ul>
+<p>To run native code that we didn't install with <code>elm package</code>, <code>"native-modules": true</code> needs to be in the <code>elm-package.json</code> file.</p>
+<hr />
+<p>Some additional style tips:
+* Line length &lt;= 80
+* 2 sp indentation (duh)
+* no trailing spaces (duh)
+* newline (duh)
+* do write type annotations
+* do write records (etc.) with spaces between special chars
+* on compilation, use <code>elm-make --warn</code>; get rid of the warnings
+* for totally fresh compilation, <code>rm elm-stuff/build-artifacts</code>
+* for any block &gt; 1 line, drop it down on the first line<br />
+  * means more indentation and more lines, but is more readable<br />
+  * do the same for accompanying block, even if short<br />
+    * same reason as for the above</p>
+<pre><code>type alias Foo =  
+  { thisWhatever : Float  
+  , thinyMajiggy : Float  
+  }
+</code></pre>
 <p>That's good!</p>
 <pre><code>bar = {  
   thing = 100  
   stuff = 9  
-}  
+}
 </code></pre>
 <p>That's no good!</p>
 <p>Avoid nested declarations. So use type aliases for this. (So we don't get shit like <code>type alias Bar = { something : { name: String, stuff: Float } }</code>).</p>
 <pre><code>quux =  
-  [ &quot;okay&quot;  
-  , &quot;things&quot;  
-  , &quot;are&quot;  
-  , &quot;logical&quot;  
-  ]  
+  [ "okay"  
+  , "things"  
+  , "are"  
+  , "logical"  
+  ]
 </code></pre>
 <p>good!</p>
-<p>bad:</p>
-<pre><code>baz = [&quot;okay&quot;, &quot;nope&quot;, &quot;gross&quot;]
+<p>bad:  </p>
+<pre><code>baz = ["okay", "nope", "gross"]
 
 lol = [  
-  &quot;stuffs&quot;,  
-  &quot;thingses&quot;,  
-&quot;et ceteras&quot;  
-]  
+  "stuffs",  
+  "thingses",  
+"et ceteras"  
+]
 
 
 doStuff this that =  
@@ -91,14 +115,14 @@ doStuff this that =
   in  
     [ something  
     , thingsome  
-    ]  
+    ]
 </code></pre>
 <p>GOOD!</p>
-<p>BAD:</p>
+<p>BAD:  </p>
 <pre><code>doWhatever you me =  
   let something = andDoThings (mix you me)  
       thingsome = mix me you  
-  in [ something, thingsome ]  
+  in [ something, thingsome ]
 </code></pre>
 <p>use newlines for 'then' and 'else'</p>
 <p>use newlines for the bits of a case</p>
@@ -108,10 +132,10 @@ doStuff this that =
 <li>explicitly exposing imports</li>
 <li>imports exposing evertything</li>
 </ol>
-<p>... and by 'order' i mean preference order. like:</p>
+<p>... and by 'order' i mean preference order. like:  </p>
 <pre><code>import Woot  
 import Aw exposing (We, Tried)  
-import OhDear exposing (..)  
+import OhDear exposing (..)
 </code></pre>
 <p>In declarations, use a newline after <code>=</code>, and use <code>|&gt;</code>, on newlines.</p>
 <p>All of <code>elm-html</code>'s elements are functions, with two lists as parameters. We can concat the child list with <code>++</code> (for flexibility), but when rendering we ought to map over it.</p>
@@ -122,25 +146,25 @@ consChildren model =
   ]  
   &lt;| [ Header.render model.title ]  
   ++ renderMaybe model.subTitle  
-  ++ [ Footer.render model.footerThings ]  
+  ++ [ Footer.render model.footerThings ]
 
 mapChildren : List Thing -&gt; Html  
 mapChildren : things =  
   div  
   [  
   ]  
-  &lt;| List.map renderThing Things  
+  &lt;| List.map renderThing Things
 </code></pre>
-<p>That's quite a bit more annyoing than</p>
+<p>That's quite a bit more annyoing than  </p>
 <pre><code>[ Header.render model.title  
 , renderSubTitle model.subTitle  
 , Footer.render model.footerThings  
-]  
+]
 </code></pre>
 <p>... but I hear it's worth it, since with great concat comes great flexibility.</p>
-<hr>
+<hr />
 <h4>I GUESS AN ACTUAL SYNTAX REFERENCE MIGHT BE USEFUL, SO HERE'S A REALLY SHORT RUN-DOWN ON ELM. OKAY.</h4>
-<pre><code>-- comment  
+<pre><code>-- comment
 
 {-  
 multiline comment  
@@ -148,41 +172,41 @@ multiline comment
     with another multiline comment  
     inside of it  
   -}  
--}  
+-}
 
 {--} -- by removing that '}', we can toggle between commented and uncommented  
 add x y = x + y  
---}  
+--}
 
 -- bool  
 True  : Bool  
-False : Bool  
+False : Bool
 
 4     : number -- Int OR Float, depending on usage  
 1.6   : Float  
 'z'   : Char  
-'zac' : String  
+'zac' : String
 
-&quot;&quot;&quot;  
+"""  
 This is a multiline string.  
 It's handy for things that need their own quotation marks.  
-One could see how &quot;JSON&quot; might &quot;need&quot; it.  
-&quot;&quot;&quot;  
+One could see how "JSON" might "need" it.  
+"""
 
-&quot;zac&quot; ++ &quot; anger&quot; -- string concatenation  
+"zac" ++ " anger" -- string concatenation
 
 -- lists: all these things are equivalent:  
 [1..4]  
 [1,2,3,4]  
 1 :: [2,3,4]  
-1 :: 2 :: 3 :: 4 :: []  
+1 :: 2 :: 3 :: 4 :: []
 
-if foo &gt; 4 then &quot;HI!&quot; else &quot;bye...&quot;  
+if foo &gt; 4 then "HI!" else "bye..."
 
 -- records are kind of like objects in js, but without all the stupid bits  
 point = { x = 2, y = 2 }  
 point.x -- access it  
-{ point | x = 4 } -- update it  
+{ point | x = 4 } -- update it
 
 -- functions  
 square n =  
@@ -190,57 +214,57 @@ square n =
 hypotenuse a b =  
   sqrt (sqare a + square b)  
 distance (a,b) (x,y) =  
-  hypotenuse (a-x) (b-y)  
+  hypotenuse (a-x) (b-y)
 
 -- and anonymous functions  
 square =  
   \n -&gt; n^2  
 squares =  
-  Listmap (\n -&gt; n^2 [1..100])  
+  Listmap (\n -&gt; n^2 [1..100])
 
 let  
   foo = 8  
   y   = 8 -- this is indent-significant!  
 in  
-  foo + bar  
+  foo + bar
 
-isPositive : Int -&gt; Bool -- type annotation: takes Int, returns Bool  
+isPositive : Int -&gt; Bool -- type annotation: takes Int, returns Bool
 
-isPositive number = number &gt; 0 -- function definition  
+isPositive number = number &gt; 0 -- function definition
 
-someFunc : Int -&gt; Int -&gt; Int -- takes two Ints, returns Int  
+someFunc : Int -&gt; Int -&gt; Int -- takes two Ints, returns Int
 
 somefunc a b =  
   let sum    = a + b -- define intermediate values let  
       square = sum * sum  
-  in  square         -- and use them in (in)  
+  in  square         -- and use them in (in)
 
-transformTuple : (Int, Int) -&gt; (Float, Float) -- tuples  
+transformTuple : (Int, Int) -&gt; (Float, Float) -- tuples
 
 transformTuple(a, b) =  
-  (toFloat a, toFloat b)  
+  (toFloat a, toFloat b)
 
-(,,,) 1 2 3 -- shorthand for creating tuples  
+(,,,) 1 2 3 -- shorthand for creating tuples
 
 -- chained functions, infix operators, so  
 filled red (square 40) -- is identical to  
 square 40  
-  |&gt; filled red  
+  |&gt; filled red
 
 rotate (degrees 60) ((move (100, 100) (filled red (square 40)))) -- looks a little lispy, neh?  
 square 40 -- here's a much less... ah... _parenthetical_ way of doing ^that^  
   |&gt; filled red  
   |&gt; move (100, 100)  
-  |&gt; rotate (Degrees 60)  
+  |&gt; rotate (Degrees 60)
 </code></pre>
-<p>In every Elm file, there are default imports, things I'd basically <em>have</em> to bring in no matter what -- elm-core stuff, I suppose, like the core-est of the core.</p>
+<p>In every Elm file, there are default imports, things I'd basically <em>have</em> to bring in no matter what -- elm-core stuff, I suppose, like the core-est of the core.  </p>
 <pre><code>import Basics exposing (..)  
 import List   exposing ( List, (..) )  
 import Maybe  exposing ( Maybe( Just, Nothing ) )  
 import Result exposing ( Result(Ok, Err) )  
-import Signal exposing ( Signal )  
+import Signal exposing ( Signal )
 </code></pre>
-<p>That's the basic shtuff, right there.</p>
+<p>That's the basic shtuff, right there.  </p>
 <p><a href="http://elm-lang.org/try">Elm's little online editor thing</a> is pretty nifty.</p>
 <p>Elm has some built-in handlers for ports:</p>
 <ul>
@@ -251,4 +275,10 @@ import Signal exposing ( Signal )
 <li><code>stdout</code> to node stdout, devtools console</li>
 <li><code>stderr</code> as well</li>
 </ul>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

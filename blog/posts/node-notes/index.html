@@ -1,17 +1,42 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>Node Notes | Zac Anger&#x27;s Blog</title><meta name="description" content="I really enjoy node. This is all pretty disorganized. It&#x27;s also all one giant
-code block, since I took the &#x27;notes&#x27; bit in comments. The repos mentioned are
-here and
-here. Yay."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,node,notes"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="Node Notes"/><meta name="twitter:description" content="I really enjoy node. This is all pretty disorganized. It&#x27;s also all one giant
-code block, since I took the &#x27;notes&#x27; bit in comments. The repos mentioned are
-here and
-here. Yay."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="Node Notes"/><meta property="og:description" content="I really enjoy node. This is all pretty disorganized. It&#x27;s also all one giant
-code block, since I took the &#x27;notes&#x27; bit in comments. The repos mentioned are
-here and
-here. Yay."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>Node Notes</h2><h3>03 February, 2016</h3></header><div><p>I really enjoy node. This is all pretty disorganized. It's also all one giant
-code block, since I took the 'notes' bit in comments. The repos mentioned are
-<a href="https://github.com/zacanger/node-misc">here</a> and
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Node Notes | Zac Anger's Blog</title>
+    <meta name="description" content="Node Notes" />
+    <meta name="keywords" content="['node', 'notes']" />
+    <meta name="twitter:description" content="Node Notes" />
+    <meta name="twitter:title" content="Node Notes" />
+    <meta property="og:description" content="Node Notes" />
+    <meta property="og:title" content="Node Notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>Node Notes</h2>
+      <h3>2016-02-03</h3>
+      <h4><small>Tagged: node, notes</small></h4>
+    </header>
+    <div>
+      <p>I really enjoy node. This is all pretty disorganized. It's also all one giant<br />
+code block, since I took the 'notes' bit in comments. The repos mentioned are<br />
+<a href="https://github.com/zacanger/node-misc">here</a> and<br />
 <a href="https://github.com/zacanger/examples">here</a>. Yay.</p>
-<hr>
+<hr />
 <pre><code>// killing a process
 var psTree = require('ps-tree')
 var kill   = function(pid, signal, callback){
@@ -139,11 +164,11 @@ clearImmediate
 // npm's scripts section (in the package.json) passes to sh, so we can use
 // ||, &amp;&amp;, &amp;, |, etc.
 // NPM can also just straight up execute your shell scripts, so you can do
-// something like `scripts:{&quot;foo&quot;:&quot;./scripts/bar.sh&quot;}`, and that's totally
+// something like `scripts:{"foo":"./scripts/bar.sh"}`, and that's totally
 // valid.
 // Preinstall and postinstall scripts are super useful. And you can even use
 // scripts from the interwebs this way, by just putting your command in there:
-// &quot;webscript&quot;:&quot;curl http://somesite.com/somescript.js | node&quot;
+// "webscript":"curl http://somesite.com/somescript.js | node"
 // as it happens, most scripts fields in the package.json support a 'pre' and
 // 'post' field. publish, install, uninstall, version, test, start, stop, and
 // restart all support pre and post hooks by default. it's easy enough to
@@ -334,4 +359,10 @@ process.stdin.on('readable', function(){
 // when there's a `data` listener, it switches to 'classic' mode
 // and works the way it did in that old API (check node 0.12 docs, maybe?).
 </code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

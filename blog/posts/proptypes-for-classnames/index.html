@@ -1,66 +1,107 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>PropTypes for Classnames | Zac Anger&#x27;s Blog</title><meta name="description" content="The classnames library is nice.
-It lets you do stuff like"/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,react,proptypes,classnames"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="PropTypes for Classnames"/><meta name="twitter:description" content="The classnames library is nice.
-It lets you do stuff like"/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="PropTypes for Classnames"/><meta property="og:description" content="The classnames library is nice.
-It lets you do stuff like"/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>PropTypes for Classnames</h2><h3>11 February, 2017</h3></header><div><p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>PropTypes for Classnames | Zac Anger's Blog</title>
+    <meta name="description" content="PropTypes for Classnames" />
+    <meta name="keywords" content="['react', 'proptypes', 'classnames']" />
+    <meta name="twitter:description" content="PropTypes for Classnames" />
+    <meta name="twitter:title" content="PropTypes for Classnames" />
+    <meta property="og:description" content="PropTypes for Classnames" />
+    <meta property="og:title" content="PropTypes for Classnames" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>PropTypes for Classnames</h2>
+      <h3>2017-02-11</h3>
+      <h4><small>Tagged: react, proptypes, classnames</small></h4>
+    </header>
+    <div>
+      <p>The <a href="https://npmjs.com/package/classnames">classnames</a> library is nice.<br />
 It lets you do stuff like</p>
-<pre><code class="language-javascript">import cn from 'classnames'
-import styles from './styles.css'
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">cn</span> <span class="nx">from</span> <span class="s1">&#39;classnames&#39;</span>
+<span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./styles.css&#39;</span>
 
-const Thing = ({ foo }) =&gt;
-  &lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== 2 })} /&gt;
-</code></pre>
-<p>And a whole bunch of other stuff, and it just works. If you write your CSS
+<span class="kr">const</span> <span class="nx">Thing</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">foo</span> <span class="p">})</span> <span class="p">=&gt;</span>
+  <span class="o">&lt;</span><span class="nx">Stuff</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">cn</span><span class="p">(</span><span class="nx">styles</span><span class="p">.</span><span class="nx">thing</span><span class="p">,</span> <span class="p">{</span> <span class="p">[</span><span class="nx">styles</span><span class="p">.</span><span class="nx">foo</span><span class="p">]</span><span class="o">:</span> <span class="nx">foo</span> <span class="o">!==</span> <span class="mi">2</span> <span class="p">})}</span> <span class="o">/&gt;</span>
+</pre></div>
+
+<p>And a whole bunch of other stuff, and it just works. If you write your CSS<br />
 in CSS, you should check it out.</p>
-<p>There is one sort of pain point with it, though. If you have components that
+<p>There is one sort of pain point with it, though. If you have components that<br />
 can take anything that's <code>classnames</code>-compatible, PropTypes get a little annoying.</p>
-<pre><code class="language-javascript">Stuff.propTypes = { className: string.isRequired }
-</code></pre>
+<div class="highlight"><pre><span></span><span class="nx">Stuff</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="nx">string</span><span class="p">.</span><span class="nx">isRequired</span> <span class="p">}</span>
+</pre></div>
+
 <p>This doesn't work, because you're passing all sorts of stuff in, possibly.</p>
-<p>A solution is to make your own custom PropTypes. You don't even need to
-get into fancy stuff involving validation, just combine a bunch of other
+<p>A solution is to make your own custom PropTypes. You don't even need to<br />
+get into fancy stuff involving validation, just combine a bunch of other<br />
 PropTypes into your own.</p>
-<p>Let's say you have a <code>propTypes.js</code> file somewhere where you define custom
+<p>Let's say you have a <code>propTypes.js</code> file somewhere where you define custom<br />
 PropTypes.</p>
-<pre><code class="language-javascript">import { PropTypes } from 'react'
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 
-export const classname = PropTypes.oneOfType([
-  PropTypes.object,
-  PropTypes.string,
-  PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.bool,
-      PropTypes.object,
-      PropTypes.string
-    ])
-  )
-])
-</code></pre>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">classname</span> <span class="o">=</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">oneOfType</span><span class="p">([</span>
+  <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">object</span><span class="p">,</span>
+  <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span><span class="p">,</span>
+  <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">arrayOf</span><span class="p">(</span>
+    <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">oneOfType</span><span class="p">([</span>
+      <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">array</span><span class="p">,</span>
+      <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">bool</span><span class="p">,</span>
+      <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">object</span><span class="p">,</span>
+      <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
+    <span class="p">])</span>
+  <span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+
 <p>That's all you need! Then you can do:</p>
-<pre><code class="language-javascript">import { classname } from './propTypes'
-import cn from 'classnames'
+<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">classname</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./propTypes&#39;</span>
+<span class="kr">import</span> <span class="nx">cn</span> <span class="nx">from</span> <span class="s1">&#39;classnames&#39;</span>
 
-const Stuff = ({ className }) =&gt;
-  &lt;span className={cn(className)}&gt;
+<span class="kr">const</span> <span class="nx">Stuff</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">className</span> <span class="p">})</span> <span class="p">=&gt;</span>
+  <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">cn</span><span class="p">(</span><span class="nx">className</span><span class="p">)}</span><span class="o">&gt;</span>
 
-Stuff.propTypes = {
-  className: classname // this is your custom thing
-}
-</code></pre>
-<p>That should solve all PropTypes warnings and let you throw anything the
+<span class="nx">Stuff</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">className</span><span class="o">:</span> <span class="nx">classname</span> <span class="c1">// this is your custom thing</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That should solve all PropTypes warnings and let you throw anything the<br />
 <code>classnames</code> library can handle at your components.</p>
-<hr>
+<hr />
 <p>Edit 10th January, 2018:</p>
 <p>Bonus: a Flow type for this library (TypeScript should be similar):</p>
-<pre><code class="language-javascript">// @flow
+<div class="highlight"><pre><span></span><span class="c1">// @flow</span>
 
-type classes =
-  | { [className: string]: * }
-  | string
-  | false
-  | void
-  | null
+<span class="nx">type</span> <span class="nx">classes</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="p">[</span><span class="nx">className</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="o">*</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="nx">string</span>
+  <span class="o">|</span> <span class="kc">false</span>
+  <span class="o">|</span> <span class="k">void</span>
+  <span class="o">|</span> <span class="kc">null</span>
 
-type classnames = (...args: Array&lt;classes | classes[]&gt;) =&gt; string
-</code></pre>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<span class="nx">type</span> <span class="nx">classnames</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="o">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">classes</span> <span class="o">|</span> <span class="nx">classes</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">string</span>
+</pre></div>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

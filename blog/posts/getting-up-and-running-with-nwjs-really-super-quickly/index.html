@@ -1,45 +1,74 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>getting up and running with nw.js really super quickly | Zac Anger&#x27;s Blog</title><meta name="description" content="There are basically two main ways to build a desktop app in JS: Electron
-(formerly called &#x27;Atom-Shell&#x27;) and NW.js (formerly called &#x27;Node-Webkit&#x27;).
-Electron&#x27;s really swell, probably offers more options overall, and has a cleaner
-way of keeping Node and client-side code separate. NW.js is a heckuva lot
-easier, overall, though."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,nwjs,desktop,node,electron,app"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="getting up and running with nw.js really super quickly"/><meta name="twitter:description" content="There are basically two main ways to build a desktop app in JS: Electron
-(formerly called &#x27;Atom-Shell&#x27;) and NW.js (formerly called &#x27;Node-Webkit&#x27;).
-Electron&#x27;s really swell, probably offers more options overall, and has a cleaner
-way of keeping Node and client-side code separate. NW.js is a heckuva lot
-easier, overall, though."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="getting up and running with nw.js really super quickly"/><meta property="og:description" content="There are basically two main ways to build a desktop app in JS: Electron
-(formerly called &#x27;Atom-Shell&#x27;) and NW.js (formerly called &#x27;Node-Webkit&#x27;).
-Electron&#x27;s really swell, probably offers more options overall, and has a cleaner
-way of keeping Node and client-side code separate. NW.js is a heckuva lot
-easier, overall, though."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>getting up and running with nw.js really super quickly</h2><h3>14 February, 2016</h3></header><div><p>There are basically two main ways to build a desktop app in JS: Electron
-(formerly called 'Atom-Shell') and NW.js (formerly called 'Node-Webkit').
-Electron's really swell, probably offers more options overall, and has a cleaner
-way of keeping Node and client-side code separate. NW.js is a heckuva lot
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>getting up and running with nw.js really super quickly | Zac Anger's Blog</title>
+    <meta name="description" content="getting up and running with nw.js really super quickly" />
+    <meta name="keywords" content="['nwjs', 'desktop', 'node', 'electron', 'app']" />
+    <meta name="twitter:description" content="getting up and running with nw.js really super quickly" />
+    <meta name="twitter:title" content="getting up and running with nw.js really super quickly" />
+    <meta property="og:description" content="getting up and running with nw.js really super quickly" />
+    <meta property="og:title" content="getting up and running with nw.js really super quickly" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>getting up and running with nw.js really super quickly</h2>
+      <h3>2016-02-14</h3>
+      <h4><small>Tagged: nwjs, desktop, node, electron, app</small></h4>
+    </header>
+    <div>
+      <p>There are basically two main ways to build a desktop app in JS: Electron<br />
+(formerly called 'Atom-Shell') and NW.js (formerly called 'Node-Webkit').<br />
+Electron's really swell, probably offers more options overall, and has a cleaner<br />
+way of keeping Node and client-side code separate. NW.js is a heckuva lot<br />
 easier, overall, though.</p>
-<p>This is what I've been using to build and run Pharaoh:
-https://github.com/nwjs/nw-builder</p>
-<p>There's also a nifty sort of version manager for NW.js here:
-https://www.npmjs.com/package/nwjs , which worked a little more smoothly out
+<p>This is what I've been using to build and run Pharaoh:<br />
+<a href="https://github.com/nwjs/nw-builder">https://github.com/nwjs/nw-builder</a></p>
+<p>There's also a nifty sort of version manager for NW.js here:<br />
+<a href="https://www.npmjs.com/package/nwjs">https://www.npmjs.com/package/nwjs</a> , which worked a little more smoothly out<br />
 of the box, but gave me issues when trying to get Node integration to work.</p>
-<p>To get up and running with NW.js using nw-builder, you basically just need to
-put the relevant information in your <code>package.json</code>. The relevant info on that
-is all here: https://github.com/nwjs/nw.js/wiki/Manifest-format but mostly
+<p>To get up and running with NW.js using nw-builder, you basically just need to<br />
+put the relevant information in your <code>package.json</code>. The relevant info on that<br />
+is all here: <a href="https://github.com/nwjs/nw.js/wiki/Manifest-format">https://github.com/nwjs/nw.js/wiki/Manifest-format</a> but mostly<br />
 it's just something like</p>
-<pre><code>&quot;window&quot;: {
+<div class="highlight"><pre><span></span>&quot;window&quot;: {
   &quot;height&quot;: 800,
   &quot;width&quot;: 1200,
   &quot;title&quot;: &quot;my app&quot;
 }
-</code></pre>
-<p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or
-whatever in it), needs to be what NW.js is pointed to. That can be an HTML
-file (<code>&quot;main&quot;: &quot;./client/public/index.html&quot;</code> or whatever) or a URL (if you're
-serving the app, especially locally--this is how Atom, Brackets, LightTable,
+</pre></div>
+
+<p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or<br />
+whatever in it), needs to be what NW.js is pointed to. That can be an HTML<br />
+file (<code>"main": "./client/public/index.html"</code> or whatever) or a URL (if you're<br />
+serving the app, especially locally--this is how Atom, Brackets, LightTable,<br />
 etc. do things, except using Electron).</p>
-<p>That's basically it, I think. There are a lot of great Yeoman generators and
+<p>That's basically it, I think. There are a lot of great Yeoman generators and<br />
 stuff to scaffold out NW.js apps, but they're mostly overkill.</p>
-<p>Using <code>nw-builder</code> makes things pretty simple. <code>npm i -g nw-builder</code>, then
-just run <code>nwbuild -h</code> to see the options. (I use <code>nwbuild -r .</code> in the project
+<p>Using <code>nw-builder</code> makes things pretty simple. <code>npm i -g nw-builder</code>, then<br />
+just run <code>nwbuild -h</code> to see the options. (I use <code>nwbuild -r .</code> in the project<br />
 root/wherever the relevant <code>package.json</code> is, to run the app).</p>
-<p>Their docs are really good, and there's a crapload of options and neat stuff
-you can do: https://github.com/nwjs/nw.js/wiki</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+<p>Their docs are really good, and there's a crapload of options and neat stuff<br />
+you can do: <a href="https://github.com/nwjs/nw.js/wiki">https://github.com/nwjs/nw.js/wiki</a></p>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>

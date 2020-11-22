@@ -1,28 +1,56 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/><title>bash builtins | Zac Anger&#x27;s Blog</title><meta name="description" content="Let&#x27;s say that in some hypothetical horrible world, we have a system with no
-utilities, except the shell we&#x27;re using, which happens to be GNU Bash. Maybe
-we were dumb and did something like rm -rf --no-preserve-root /, I don&#x27;t
-know. Here&#x27;s how we can get some basic programs back, just by using Bash
-builtins."/><meta name="author" content="Zac Anger"/><meta name="keywords" content="blog,design,javascript,js,music,programming,vim,web development,writing,bash,shell,sh,unix,linux,disaster-recovery"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@zacanger"/><meta name="twitter:creator" content="@zacanger"/><meta name="twitter:title" content="bash builtins"/><meta name="twitter:description" content="Let&#x27;s say that in some hypothetical horrible world, we have a system with no
-utilities, except the shell we&#x27;re using, which happens to be GNU Bash. Maybe
-we were dumb and did something like rm -rf --no-preserve-root /, I don&#x27;t
-know. Here&#x27;s how we can get some basic programs back, just by using Bash
-builtins."/><meta name="twitter:image" content="https://zacanger.com/logo.png"/><meta property="og:type" content="article"/><meta property="og:title" content="bash builtins"/><meta property="og:description" content="Let&#x27;s say that in some hypothetical horrible world, we have a system with no
-utilities, except the shell we&#x27;re using, which happens to be GNU Bash. Maybe
-we were dumb and did something like rm -rf --no-preserve-root /, I don&#x27;t
-know. Here&#x27;s how we can get some basic programs back, just by using Bash
-builtins."/><meta property="og:site_name" content="https://zacanger.com/blog"/><meta property="og:image" content="https://zacanger.com/logo.png"/><link rel="stylesheet" type="text/css" href="/styles.css"/></head><body><header><h1><a href="/blog">Zac Anger&#x27;s Blog</a></h1><h2>bash builtins</h2><h3>21 January, 2016</h3></header><div><p>Let's say that in some hypothetical horrible world, we have a system with no
-utilities, except the shell we're using, which happens to be GNU Bash. Maybe
-we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't
-know. Here's how we can get some basic programs back, just by using Bash
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>bash builtins | Zac Anger's Blog</title>
+    <meta name="description" content="bash builtins" />
+    <meta name="keywords" content="['bash', 'shell', 'sh', 'unix', 'linux', 'disaster-recovery']" />
+    <meta name="twitter:description" content="bash builtins" />
+    <meta name="twitter:title" content="bash builtins" />
+    <meta property="og:description" content="bash builtins" />
+    <meta property="og:title" content="bash builtins" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>bash builtins</h2>
+      <h3>2016-01-21</h3>
+      <h4><small>Tagged: bash, shell, sh, unix, linux, disaster-recovery</small></h4>
+    </header>
+    <div>
+      <p>Let's say that in some hypothetical horrible world, we have a system with no<br />
+utilities, except the shell we're using, which happens to be GNU Bash. Maybe<br />
+we were dumb and did something like <code>rm -rf --no-preserve-root /</code>, I don't<br />
+know. Here's how we can get some basic programs back, just by using Bash<br />
 builtins.</p>
 <p><code>type</code> still exists!</p>
 <p>We need an <code>ls</code>. So, <code>echo 'ls() { printf '%s\n' ${1:+${1%/}/}*; }' &gt;&gt; foo.sh</code></p>
 <p><code>source foo.sh</code></p>
-<p>Here's a rough <code>cat</code>: <code>(while read line; do echo &quot;$line&quot;; done) &lt; stuff.txt</code></p>
-<p><code>executable () { if [[ ( ! -d $1 ) &amp;&amp;  ( ! -h $1 ) &amp;&amp; -x $1 ]] ; then echo &quot;$1&quot;; fi }</code></p>
+<p>Here's a rough <code>cat</code>: <code>(while read line; do echo "$line"; done) &lt; stuff.txt</code></p>
+<p><code>executable () { if [[ ( ! -d $1 ) &amp;&amp;  ( ! -h $1 ) &amp;&amp; -x $1 ]] ; then echo "$1"; fi }</code></p>
 <p>To find executables: <code>for file in /*; do executable $file; done</code>.</p>
-<p>Wanna just lock ourselves out for real?
-<code>echo 1 &gt; /proc/sys/kernel/sysrq</code> <code>echo &quot;b&quot; &gt; /proc/sysrq-trigger</code>.</p>
-<p>http://eusebeia.dyndns.org/bashcp go here, if we really must rescue a system
+<p>Wanna just lock ourselves out for real?<br />
+<code>echo 1 &gt; /proc/sys/kernel/sysrq</code> <code>echo "b" &gt; /proc/sysrq-trigger</code>.</p>
+<p><a href="http://eusebeia.dyndns.org/bashcp">http://eusebeia.dyndns.org/bashcp</a> go here, if we really must rescue a system<br />
 and have no other options.</p>
-</div><footer><a href="/">Zac Anger</a> · <a href="/blog/rss.xml">RSS</a> · <a href="https://github.com/zacanger/zacanger.github.io">Source</a></footer></body></html>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>
