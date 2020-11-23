@@ -16,7 +16,7 @@ from mdx_gfm import PartialGithubFlavoredMarkdownExtension
 
 src_dir = "./src"
 all_posts = os.listdir(src_dir)
-out_dir = "./posts"
+out_dir = "posts"
 templates_dir = "./templates"
 index = "index.html"
 index_data = []
@@ -42,9 +42,7 @@ def main():
     for post in all_posts:
         destination_dir = out_dir + "/" + post.replace(".md", "")
         destination_file = destination_dir + "/" + index
-
-        if not os.path.exists(destination_dir):
-            os.makedirs(destination_dir)
+        os.makedirs(destination_dir, exist_ok=True)
 
         with open(src_dir + "/" + post) as p:
             contents = p.read()

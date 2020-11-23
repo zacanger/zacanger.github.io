@@ -22,10 +22,7 @@
 
       {% for p in posts %}
       <li>
-        {% if p.starred %}
-          &#9734;
-        {% endif %}
-
+        {% if p.starred %} &#9734; {% endif %}
         <a href="{{ p.href }}">{{ p.title }}</a>
         <small>
           &mdash; {{ p.created }}
