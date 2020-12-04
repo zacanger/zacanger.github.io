@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>pluralsight 'secure coding, preventing sensitive data exposure' notes | Zac Anger's Blog</title>
+    <meta name="description" content="pluralsight 'secure coding, preventing sensitive data exposure' notes" />
+    <meta name="keywords" content="['security', 'notes']" />
+    <meta name="twitter:description" content="pluralsight 'secure coding, preventing sensitive data exposure' notes" />
+    <meta name="twitter:title" content="pluralsight 'secure coding, preventing sensitive data exposure' notes" />
+    <meta property="og:description" content="pluralsight 'secure coding, preventing sensitive data exposure' notes" />
+    <meta property="og:title" content="pluralsight 'secure coding, preventing sensitive data exposure' notes" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@zacanger" />
+<meta name="twitter:creator" content="@zacanger" />
+<meta name="twitter:image" content="https://zacanger.com/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>pluralsight 'secure coding, preventing sensitive data exposure' notes</h2>
+      <h3>2020-12-04</h3>
+      <h4><small>Tags: security, notes</small></h4>
+    </header>
+    <div>
+      <p>had to run through this for compliance so i took a few notes</p>
+<ul>
+<li>not all user data is "sensitive", depends on regulations:<ul>
+<li>logs are not sensitive data (assuming they're clean)</li>
+<li>acls are not sensitive data</li>
+</ul>
+</li>
+<li>attack vectors:<ul>
+<li>connection between browser and application (in transit)</li>
+<li>connection between app and db (in transit)</li>
+<li>db itself (at rest)</li>
+<li>browser itself (at rest)</li>
+</ul>
+</li>
+<li>sensitive data can be either plain text or ciphertext (encrypted or hashed)</li>
+<li>attack stuff:</li>
+<li>in transit:<ul>
+<li>mitm<ul>
+<li>sniffing, or sitting in the path/shaping traffic</li>
+<li>dns-based</li>
+</ul>
+</li>
+<li>tls<ul>
+<li>tls is at tcp layer</li>
+<li>https is http over tls</li>
+<li>how it works:<ul>
+<li>browser generates shared secret, encrypts using the cert's public key</li>
+<li>app decrypts shared secret</li>
+<li>then the application generates a shared symmetric key for the actual traffic</li>
+</ul>
+</li>
+<li>there can be another attack by stealing the private key</li>
+</ul>
+</li>
+<li>private key storage:<ul>
+<li>software: no physical access restrictions (cryptographic module)</li>
+<li>hardware: physical access restrictions</li>
+</ul>
+</li>
+<li>perfect forward secrecy<ul>
+<li>attacker only sniffing/recording, not tampering</li>
+<li>negotiation of DH params is in plaintext</li>
+<li>backend signs params, client verifies signature</li>
+<li>prevents decryption of previous traffic (but not current traffic)</li>
+</ul>
+</li>
+<li>more on certificates<ul>
+<li>the 'which directory?' problem comes up when the chain can't be followed (for example, if the root cert isn't available)</li>
+<li>public key pinning is associating a cert with a known host<ul>
+<li>pins cert, public key, or hash of either. hashing is preferred.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>protocol downgrade attack<ul>
+<li>get cookies, headers, etc</li>
+<li>no mixed content, hsts</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>at rest:<ul>
+<li>passwords<ul>
+<li>inexpensive to work with</li>
+<li>convenient</li>
+<li>password (in)security</li>
+<li>some overhead on policies, proper storage</li>
+<li>ACLs on the db</li>
+<li>hashing, salting (hashing is one-way, fixed output length)</li>
+<li>vulnerable to brute force attacks depending on password lengths and probability of known strings (dictionary attacks)</li>
+<li>rainbow tables (known hashed passwords, try to match to plaintext)</li>
+<li>salt has to be stored with computed hash<ul>
+<li>with a salt, basically no lookup tables will actually work, since there would need to be a different table per salt</li>
+<li>salts hide identical passwords</li>
+</ul>
+</li>
+<li>hashing function can be ~1s, run as slow as possible without hurting regular user perf</li>
+</ul>
+</li>
+<li>crypto alone is not enough. ACLs, other access restrictions, prevent db tampering<ul>
+<li>admin roles</li>
+<li>signed columns</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>owasp recommendations:<ul>
+<li>never put sensitive data in the url (caching, referrer - <code>a</code> tag <code>rel</code>s help here too)</li>
+<li>tls everywhere, no mixed content or requests</li>
+<li>always use recent versions of tls and strong ciphers</li>
+<li>at least 2048 bits in key</li>
+<li>multiple domain certificates (SANs)</li>
+<li>never use unqualified domains</li>
+<li>wildcard certs might be shady</li>
+<li>no self-signed certs</li>
+<li>return all necessary certs to clients</li>
+<li>don't use sha-1</li>
+<li>salt should be generated with cryptographically strong random data generator</li>
+<li>salt should be unique per credential (not per user)</li>
+<li>pw security should not depend on hiding or obscuring salt</li>
+<li>good hashing functions (in this order): argon2, pbkdf2, scrypt, bcrypt, hmacs</li>
+<li>max length for pws with no limited character set (160 chars)</li>
+<li>hash as part of several steps</li>
+<li>design password storage keeping in mind potential compromise</li>
+</ul>
+</li>
+</ul>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+</footer>
+  </body>
+</html>
