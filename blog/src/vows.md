@@ -11,4 +11,4 @@ attachment is inexhaustible; i vow to end it all.
 
 the dharma gates are numberless; I vow to learn them all.
 
-the way of awakening is unsurpassable; for the sake of all beings, i vow to accomplish it.
+the way of awakening is unsurpassable; for the benefit of all beings, i vow to accomplish it.
