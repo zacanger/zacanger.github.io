@@ -1,6 +1,7 @@
 ---
 title: vows
 created: 2020-12-05
+starred: true
 tags:
   - personal
 ---
