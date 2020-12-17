@@ -12,6 +12,7 @@ import re
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markdown
 from mdx_gfm import PartialGithubFlavoredMarkdownExtension
+
 # import pycmarkgfm
 
 
@@ -30,11 +31,8 @@ def render_md(source):
     # project so i want to make sure it's stable before switching.
     # return pycmarkgfm.gfm_to_html(source)
     return markdown.markdown(
-        source, extensions=[
-            PartialGithubFlavoredMarkdownExtension(),
-            "toc",
-            "extra"
-        ]
+        source,
+        extensions=[PartialGithubFlavoredMarkdownExtension(), "toc", "extra"],
     )
 
 
