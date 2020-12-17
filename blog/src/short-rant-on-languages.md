@@ -7,8 +7,7 @@ tags:
   - community
 ---
 
-I wrote this on [Mastodon](https://mastodon.social/@zacanger) but decided
-to cross-post for whatever reason.
+I wrote this on Mastodon but decided to cross-post for whatever reason.
 
 One of my biggest pet peeves is when people talk about how great foo-lang is as
 an alernative to bar-lang, & it turns out they're just shit at bar-lang, or
