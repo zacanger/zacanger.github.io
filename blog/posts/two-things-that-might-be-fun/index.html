@@ -37,48 +37,46 @@
 <p>First: a less intrusive type annotation thing for JS. It'd be similar to ML or
 Haskell style annotations, but maybe use Flow as a sort of backend to actually
 do the type checking? It could look something like this:</p>
-<div class="highlight"><pre><span></span><span class="c1">//:: Int -&gt; Int -&gt; [Int]</span>
-<span class="kr">const</span> <span class="nx">putIntsInList</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[</span> <span class="nx">a</span><span class="p">,</span>  <span class="nx">b</span> <span class="p">]</span>
+<pre><code class="language-js">//:: Int -&gt; Int -&gt; [Int]
+const putIntsInList = (a, b) =&gt; [ a,  b ]
 
-<span class="c1">//::Str -&gt; Str -&gt; Str // or</span>
-<span class="c1">//::[Char] -&gt; [Char] -&gt; [Char]</span>
-<span class="kr">const</span> <span class="nx">doThingsWithStrings</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span>
-</pre></div>
-
+//::Str -&gt; Str -&gt; Str // or
+//::[Char] -&gt; [Char] -&gt; [Char]
+const doThingsWithStrings = (a, b) =&gt; `${a} ${b}`
+</code></pre>
 <p>It could use some sort of regexy thing to basically just detect anywhere there's
 <code>//::</code>, see what the next thing is, and see if they go together. I don't know
 much about ASTs or type systems, though. I just think that'd be a lot less
 in-the-way than how TypeScript and Flow currently work. Also, my syntax
 highlighting doesn't know what template strings are, so. That's gross.</p>
 <p>Another thing:</p>
-<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">PropTypes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="nx">AnotherComponent</span> <span class="nx">from</span> <span class="s1">&#39;./AnotherComponent&#39;</span>
+<pre><code class="language-js">import React, { PropTypes } from 'react'
+import AnotherComponent from './AnotherComponent'
 
-<span class="kr">const</span> <span class="nx">Something</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span>
+const Something = ({ a, b, c }) =&gt; {
+  if (!a) return null
 
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">(</span><span class="nx">div</span>
-      <span class="p">(</span><span class="nx">another</span><span class="o">-</span><span class="nx">component</span> <span class="p">(</span><span class="nx">whatever</span> <span class="err">&#39;</span><span class="nx">a</span><span class="p">))</span>
-        <span class="p">(</span><span class="nx">not</span> <span class="p">(</span><span class="kc">null</span><span class="o">?</span> <span class="nx">b</span><span class="p">)</span>
-          <span class="p">(</span><span class="nx">span</span> <span class="p">(</span><span class="nx">b</span><span class="p">))</span>
-        <span class="p">(</span><span class="nx">not</span> <span class="p">(</span><span class="kc">null</span><span class="o">?</span> <span class="nx">c</span><span class="p">)</span>
-          <span class="p">(</span><span class="nx">map</span> <span class="p">(</span><span class="nx">p</span> <span class="p">(</span><span class="nx">c</span><span class="p">)))))))</span>
-  <span class="c1">// which would be like</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">AnotherComponent</span> <span class="nx">whatever</span><span class="o">=</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span> <span class="o">/&gt;</span>
-      <span class="p">{</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">b</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/span&gt;}</span>
-      <span class="p">{</span><span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span>
-        <span class="nx">c</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">i</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;)</span>
-      <span class="p">}</span>
-    <span class="o">&lt;</span><span class="err">/div&gt;</span>
-  <span class="p">)</span>
-<span class="p">}</span>
+  return (
+    (div
+      (another-component (whatever 'a))
+        (not (null? b)
+          (span (b))
+        (not (null? c)
+          (map (p (c)))))))
+  // which would be like
+  return (
+    &lt;div&gt;
+      &lt;AnotherComponent whatever={a} /&gt;
+      {b &amp;&amp; &lt;span&gt;{b}&lt;/span&gt;}
+      {c &amp;&amp; c.length &amp;&amp;
+        c.map((a, i) =&gt; &lt;p key={i}&gt;{a}&lt;/p&gt;)
+      }
+    &lt;/div&gt;
+  )
+}
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">Something</span>
-</pre></div>
-
+export default Something
+</code></pre>
 <p>This a totally made-up syntax for a thing that doesn't exactly exist, and I
 don't know how useful this would actually be, since there are already great
 React libraries for ClojureScript out there. Just think it'd be neat to be able

@@ -33,68 +33,67 @@
     </header>
     <hr>
     <div>
-      <h2>Build a Note-Taking App for the Terminal, in Node</h2>
+      <h2 id="build-a-note-taking-app-for-the-terminal-in-node">Build a Note-Taking App for the Terminal, in Node</h2>
 <p>This is a follow-up to my <a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html">first
 post</a> on writing
 command-line apps in Node. I suggest you read that first, but this post should
 stand on its own if you don't want to. Below is the little React component
 generator that you'd get if you follow that tutorial.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">component</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">writeFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+const type = process.argv[2]
+const component = process.argv[3]
+const { writeFile } = require('fs')
 
-<span class="kr">const</span> <span class="nx">help</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">\</span><span class="sb">`</span>
-<span class="sb">  please pass component type and component name</span>
-<span class="sb">  example: ./rcg.js function Foo</span>
-<span class="sb">\`)</span>
+const help = () =&gt;
+  console.log(\`
+  please pass component type and component name
+  example: ./rcg.js function Foo
+\`)
 
-<span class="sb">if (!component || !type) {</span>
-<span class="sb">  return help()</span>
-<span class="sb">}</span>
+if (!component || !type) {
+  return help()
+}
 
-<span class="sb">const pureComponent = \`</span>
-<span class="sb">import React from &#39;react&#39;</span>
+const pureComponent = \`
+import React from 'react'
 
-<span class="sb">const </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> = () =&gt; &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+const ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
 
-<span class="sb">export default </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"></span>
-<span class="sb">\`.trim()</span>
+export default ${component}
+\`.trim()
 
-<span class="sb">const classComponent = \`</span>
-<span class="sb">import React, { Component } from &#39;react&#39;</span>
+const classComponent = \`
+import React, { Component } from 'react'
 
-<span class="sb">export default class </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> extends Component {</span>
-<span class="sb">  render() {</span>
-<span class="sb">    return (</span>
-<span class="sb">      &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
-<span class="sb">    )</span>
-<span class="sb">  }</span>
-<span class="sb">}</span>
-<span class="sb">\`.trim()</span>
+export default class ${component} extends Component {
+  render() {
+    return (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+\`.trim()
 
-<span class="sb">const doTheThing = kind =&gt; (</span>
-<span class="sb">  writeFile(\`</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">.js\`, kind, &#39;utf8&#39;, err =&gt; {</span>
-<span class="sb">    if (err) console.log(err)</span>
-<span class="sb">  })</span>
-<span class="sb">)</span>
+const doTheThing = kind =&gt; (
+  writeFile(\`${component}.js\`, kind, 'utf8', err =&gt; {
+    if (err) console.log(err)
+  })
+)
 
-<span class="sb">switch (type) {</span>
-<span class="sb">  case &#39;function&#39;:</span>
-<span class="sb">    doTheThing(pureComponent)</span>
-<span class="sb">    break</span>
-<span class="sb">  case &#39;class&#39;:</span>
-<span class="sb">    doTheThing(classComponent)</span>
-<span class="sb">    break</span>
-<span class="sb">  default:</span>
-<span class="sb">    return help()</span>
-<span class="sb">}</span>
-</pre></div>
-
+switch (type) {
+  case 'function':
+    doTheThing(pureComponent)
+    break
+  case 'class':
+    doTheThing(classComponent)
+    break
+  default:
+    return help()
+}
+</code></pre>
 <hr />
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 <p>I really love writing little command-line utilities in Node. There are other
 languages that may be better for this (Bash, Ruby, Perl), but Node is just more
 <em>fun</em> than those (at least to me). I especially love trying to do simple little
@@ -108,7 +107,7 @@ taking notes in JSON. The full version of this app (with a few adjustments and
 additions) is <a href="https://www.npmjs.com/package/lilnote">here</a>, and you can
 install it to use in your terminal with <code>npm i -g lilnote</code>.</p>
 <p>Okay, so, let's do stuff!</p>
-<h2>Update Node</h2>
+<h2 id="update-node">Update Node</h2>
 <p>First things first&mdash;make sure Node and npm are up to date. If you're
 already using at least versions 6 of node and 3 of npm (<code>node -v</code> and <code>npm -v</code>
 to find out), you're fine. Otherwise, you really should update.</p>
@@ -117,7 +116,7 @@ use NVM, go with that; if you're on Windows, you'll likely have to go download
 the new version and manually install it. Otherwise, just <code>npm i -g n &amp;&amp; n latest
 &amp;&amp; npm i -g npm@next</code> (you can leave out the last bit, but it's nice to have the
 newest version of the coolest tools).</p>
-<h2>Start a Project</h2>
+<h2 id="start-a-project">Start a Project</h2>
 <p>Make a new directory and start a project (<code>mkdir note-taking-app</code>, <code>cd
 note-taking-app</code>, <code>npm init</code>, <code>touch index.js</code>, and <code>chmod +x index.js</code> to make
 it executable).</p>
@@ -128,7 +127,7 @@ something, it'd be nice to just have this already set up.</p>
 <p>If you want, you can add some fields to your <code>package.json</code> to specifiy that
 it's a global, command-line sort of app. Add <code>"preferGlobal": true</code> and <code>"bin":
 "./index.js"</code> for this.</p>
-<h2>Write Some Code</h2>
+<h2 id="write-some-code">Write Some Code</h2>
 <p>Open the <code>index.js</code> in your editor.</p>
 <p>The first thing you'll need to write is the shebang. This is to let your shell
 know how to execute this file. For a Node script, it should read <code>#!/usr/bin/env
@@ -144,13 +143,12 @@ using <code>babel-register</code> you could use <code>import</code>s here, but w
 should</a>.</p>
 <p>We'll require just one thing to start with: <code>fs</code>, which is built in to Node.</p>
 <p>Our file should currently look like this:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="s1">&#39;use strict&#39;</span>
+'use strict'
 
-<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-</pre></div>
-
+const fs = require('fs')
+</code></pre>
 <p>Our app is going to read input from the terminal, so we'll need to use the
 built-in <code>process</code>. This provides an <code>argv</code>, which is an 'argument
 vector'&mdash;an array of all things entered on the command-line, which will
@@ -159,9 +157,8 @@ always start with <code>node</code> and the file that's being run. So, we'll use
 <code>process</code> is an awesome piece of Node, and if you're not familiar with it, open
 a REPL (just enter <code>node</code> in the terminal) and type in <code>process</code>, and skim
 through that gigantic object.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-
+<pre><code class="language-javascript">const arg = process.argv[2]
+</code></pre>
 <p>Parsing arguments is tedious and sometimes difficult. There are a
 <a href="https://github.com/tj/commander.js">lot</a> of
 <a href="https://github.com/substack/minimist">awesome</a>
@@ -182,71 +179,63 @@ uses a file under the user's home directory; that's another thing we won't worry
 about right now, but it's <a href="https://github.com/zacanger/lilnote/blob/master/check-file.js#L10">pretty
 easy</a> to do.)</p>
 <p>Let's add another couple of declarations:</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="s1">&#39;./notes.json&#39;</span>
-<span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const n = './notes.json'
+const file = fs.readFileSync(n)
+</code></pre>
 <p>We'll also have a variable here for our read-in notes.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">notes</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const notes = JSON.parse(file)
+</code></pre>
 <p>And since we'll be using <code>console.log</code> in a few places, let's just make that a
 little shorter:</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span>
-</pre></div>
-
+<pre><code class="language-javascript">const log = console.log
+</code></pre>
 <p>Your file should now look something like this:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="s1">&#39;use strict&#39;</span>
+'use strict'
 
-<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span>
-<span class="kr">const</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="s1">&#39;./notes.json&#39;</span>
-<span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">notes</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
-</pre></div>
-
+const fs = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = fs.readFileSync(n)
+const notes = JSON.parse(file)
+</code></pre>
 <p>And your file structure should look something like:</p>
-<div class="highlight"><pre><span></span>project-root
+<pre><code>project-root
   package.json
   index.js
   notes.json
-</pre></div>
-
-<h2>Make It Do Things</h2>
+</code></pre>
+<h2 id="make-it-do-things">Make It Do Things</h2>
 <p>So let's do stuff! First let's make a way to record notes taken. This will work
 by just calling your script and treating the first argument as a note.</p>
-<div class="highlight"><pre><span></span>./index.js <span class="s2">&quot;go to the grocery store&quot;</span>
+<pre><code class="language-shell">./index.js &quot;go to the grocery store&quot;
 ./index.js cook
 ./index.js eat
-./index.js <span class="s2">&quot;wash dishes&quot;</span>
-</pre></div>
-
+./index.js &quot;wash dishes&quot;
+</code></pre>
 <p>Let's write a function for this.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">takeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">note</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">note</span><span class="p">)</span>
-  <span class="kr">const</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">const takeNote = (notes, note) =&gt; {
+  notes.push(note)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
+  })
+}
+</code></pre>
 <p>Note that we're using function expressions, not function declarations. This
 could also be written as:</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">takeNote</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">note</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">note</span><span class="p">)</span>
-  <span class="kd">var</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">function takeNote (notes, note) {
+  notes.push(note)
+  var taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(file, taken, 'utf8', function(err) {
+    if (err) {
+      return log(err)
+    }
+  })
+}
+</code></pre>
 <p>These extra parameters to <code>JSON.stringify()</code> make our JSON look decent. Check
 out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">docs on
 MDN</a>
@@ -259,87 +248,84 @@ already exist, for example.</p>
 <p>We should handle this function where we process our command-line arguments,
 which we'll get to in a little bit.</p>
 <p>Let's also write a function for removing a note by its index in the array.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">removeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">noteIndex</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="kr">const</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">const removeNote = (notes, noteIndex) =&gt; {
+  notes.splice(noteIndex -1, 1)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
+  })
+}
+</code></pre>
 <p>Awesome! That's like 90% of our app right there.</p>
 <p>We should probably handle some arguments so we can actually use this thing.</p>
-<h2>Make It All Work</h2>
+<h2 id="make-it-all-work">Make It All Work</h2>
 <p>We're going to do this with a series of <code>if</code> statements. We could also use a
 <code>switch</code> here, but for a lot of people that'll seem a little unfamiliar. Let's
 assume that you'll use <code>-s</code> to show all notes, and <code>-r</code> to remove a note. We
 should also handle a case where there are no arguments passed.</p>
-<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Please pass an argument&#39;</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span> <span class="o">===</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">noteIndex</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-  <span class="k">return</span> <span class="nx">removeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span> <span class="o">===</span> <span class="s1">&#39;-s&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">notes</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">takeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">if (!arg) {
+  return log('Please pass an argument')
+}
+if (arg &amp;&amp; arg === '-r') {
+  const noteIndex = process.argv[3]
+  return removeNote(notes, noteIndex)
+}
+if (arg &amp;&amp; arg === '-s') {
+  return log(notes)
+}
+else {
+  return takeNote(notes, arg)
+}
+</code></pre>
 <p>So, that's a basic way to handle command-line options. Let's just wrap that last
 bit in a function and call it at the end. It's not beautiful, but if you put a
 little bit of work into this, you could have a decent app! Here's how your whole
 file should look, now:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="s1">&#39;use strict&#39;</span>
+'use strict'
 
-<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span>
-<span class="kr">const</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="s1">&#39;./notes.json&#39;</span>
-<span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">notes</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+const fs = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = fs.readFileSync(n)
+const notes = JSON.parse(file)
 
-<span class="kr">const</span> <span class="nx">takeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">note</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">note</span><span class="p">)</span>
-  <span class="kr">const</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
+const takeNote = (notes, note) =&gt; {
+  notes.push(note)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
+  })
+}
 
-<span class="kr">const</span> <span class="nx">removeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">noteIndex</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="kr">const</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
+const removeNote = (notes, noteIndex) =&gt; {
+  notes.splice(noteIndex -1, 1)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
+  })
+}
 
-<span class="kr">const</span> <span class="nx">runTheApp</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Please pass an argument&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span> <span class="o">===</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">noteIndex</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-    <span class="k">return</span> <span class="nx">removeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span> <span class="o">===</span> <span class="s1">&#39;-s&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">notes</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">takeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+const runTheApp = () =&gt; {
+  if (!arg) {
+    return log('Please pass an argument')
+  }
+  if (arg &amp;&amp; arg === '-r') {
+    const noteIndex = process.argv[3]
+    return removeNote(notes, noteIndex)
+  }
+  if (arg &amp;&amp; arg === '-s') {
+    return log(notes)
+  }
+  else {
+    return takeNote(notes, arg)
+  }
+}
 
-<span class="nx">runTheApp</span><span class="p">()</span>
-</pre></div>
-
+runTheApp()
+</code></pre>
 <p>This isn't beautiful, but as with the last post, I'll leave it to you to clean
 it up, handle funky cases, and whatnot. If you're having fun with this, check
 back for my next post! Also, if you have any thoughts on fun command-line

@@ -38,8 +38,26 @@ DevMountain.</p>
 <p>These notes are specifically from the first three weeks. They're a mess.</p>
 <p>Don't take anything too seriously. I probably didn't know what I was talking
 about, a lot of the time.</p>
+<div class="toc">
+<ul>
+<li><a href="#css">css</a></li>
+<li><a href="#rly-just-beginning-js">rly just beginning js</a></li>
+<li><a href="#js-basix">js basix</a></li>
+<li><a href="#ajax-jquery-snippets">ajax (jquery) snippets</a></li>
+<li><a href="#toy-problem-notes-week-two">toy problem notes, week two</a></li>
+<li><a href="#something-about-some-twitter-clone-thing">something about some twitter clone thing</a><ul>
+<li><a href="#do-this">do this</a><ul>
+<li><a href="#notes-on-changes">notes on changes</a></li>
+<li><a href="#notes-on-the-process-and-result">notes on the process (and result)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#murr-nuutes">murr nuutes</a></li>
+</ul>
+</div>
 <hr />
-<h2>css</h2>
+<h2 id="css">css</h2>
 <p>if a div has position absolute, position RELATIVE on another
 element will be in RELATION to the div that has ABSOLUTE.</p>
 <p>so, top 0 is in RELATION to something else that has ABSOLUTE,
@@ -56,7 +74,7 @@ unless there's no frame of reference there. all hierarchical. (lol hence C in CS
 </li>
 </ul>
 <hr />
-<h2>rly just beginning js</h2>
+<h2 id="rly-just-beginning-js">rly just beginning js</h2>
 <pre><code>// Variables
 
 // JavaScript uses "lexical" scoping for variables, meaning it matches
@@ -202,7 +220,7 @@ using .call() or .apply() invokes the function, so no need to invoke like fun();
 // and go through lots of work to avoid screwing up scope
 </code></pre>
 <hr />
-<h2>js basix</h2>
+<h2 id="js-basix">js basix</h2>
 <pre><code>object that contains a function = {
   function() {
     return: stuffs
@@ -362,7 +380,7 @@ function flipIt(arr){
 }
 </code></pre>
 <hr />
-<h2>ajax (jquery) snippets</h2>
+<h2 id="ajax-jquery-snippets">ajax (jquery) snippets</h2>
 <pre><code>$(document).ready(function(){
   var app = $('app')
   var header = $('&lt;h3&gt;Random Colour Palette&lt;/h3&gt;')
@@ -395,7 +413,7 @@ function flipIt(arr){
 })
 </code></pre>
 <hr />
-<h2>toy problem notes, week two</h2>
+<h2 id="toy-problem-notes-week-two">toy problem notes, week two</h2>
 <pre><code>function checkEvens( num ) {
   if (num % 2 === 0) {    // this just checks if the argument passed is divisible by two
     return true
@@ -440,8 +458,8 @@ var myArray = [1, 2, ,3 ,4 ,5 ,6, 7, 8, 9, 10, 11] // oh, HERE's that array we k
 myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that function and pass it ALL THE THINGS
 </code></pre>
 <hr />
-<h2>something about some twitter clone thing</h2>
-<h3>do this</h3>
+<h2 id="something-about-some-twitter-clone-thing">something about some twitter clone thing</h2>
+<h3 id="do-this">do this</h3>
 <ul>
 <li>hide tweet button and character count initially (so, just not there)</li>
 <li>on click, double textarea size, reveal character count and tweet button</li>
@@ -457,7 +475,7 @@ myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that f
 <li>localstorage (or howabout localForage?)</li>
 <li>or baas... ... yeah. localforage.</li>
 </ul>
-<h4>notes on changes</h4>
+<h4 id="notes-on-changes">notes on changes</h4>
 <ul>
 <li>setting max-viewport is a <em>horrible</em> practice. nixed.</li>
 <li>normalize instead of reset; cdn instead of stuck in our own stylesheet.</li>
@@ -470,7 +488,7 @@ myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that f
 <li><code>tweet-controls</code> = <code>controls</code></li>
 <li>because i don't like to type</li>
 </ul>
-<h4>notes on the process (and result)</h4>
+<h4 id="notes-on-the-process-and-result">notes on the process (and result)</h4>
 <ul>
 <li>so it turns out that i'm 99% sure none of us is doing this right. after doing epic battle with</li>
 <li>the javascripts, i've been defeated. manually moving the first tweet down and putting the new</li>
@@ -479,7 +497,7 @@ myCallbacks(checkEvens, compareLengths, howMany, myArray) // let's invoke that f
 <li>of user and tweets, and two side columns of promos and ads, now.). that's, uh, totally unrealistic.</li>
 </ul>
 <hr />
-<h2>murr nuutes</h2>
+<h2 id="murr-nuutes">murr nuutes</h2>
 <pre><code>// make a loop. then have it go 1-5 endlessly. then have it only do it once.
 
 // our way

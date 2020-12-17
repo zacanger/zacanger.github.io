@@ -47,20 +47,19 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="c1">// stuff</span>
-<span class="nx">plugins</span> <span class="o">:</span> <span class="p">[</span>
-  <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">DefinePlugin</span><span class="p">({</span>
-    <span class="s1">&#39;process.env.NODE_ENV&#39;</span> <span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">,</span> <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">UglifyJsPlugin</span><span class="p">({</span>
-    <span class="nx">compress</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">warnings</span> <span class="o">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
-<span class="p">]</span>
-<span class="c1">// stuff</span>
-</pre></div>
-
+<pre><code class="language-javascript">// stuff
+plugins : [
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV' : JSON.stringify('production')
+  })
+, new webpack.optimize.UglifyJsPlugin({
+    compress : {
+      warnings : false
+    }
+  })
+]
+// stuff
+</code></pre>
 <ul>
 <li>Reduce calls to <code>React.createClass</code> (if we're still doing that).<ul>
 <li>Try using React Inline Elements for this.</li>
@@ -68,12 +67,11 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="s2">&quot;babel&quot;</span><span class="err">:</span> <span class="p">{</span> <span class="nt">&quot;env&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;production&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
-  <span class="s2">&quot;transform-react-constant-elements&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;transform-react-inline-elements&quot;</span>
-<span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-json">&quot;babel&quot;: { &quot;env&quot;: { &quot;production&quot;: { &quot;plugins&quot;: [
+  &quot;transform-react-constant-elements&quot;,
+  &quot;transform-react-inline-elements&quot;
+] } } }
+</code></pre>
 <ul>
 <li>Keep checking against the initial benchmark.</li>
 <li>'babel-plugin-transform-react-remove-prop-types' might also be useful. It removes unwanted/unused React.PropTypes.</li>

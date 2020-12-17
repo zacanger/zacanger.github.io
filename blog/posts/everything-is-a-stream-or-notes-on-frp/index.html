@@ -54,22 +54,22 @@ rx-js/frp directory....</p>
 input stream, the output of <code>startWith(x)</code> will have <code>x</code> at the beginning.</p>
 <p>It looks to me like everything about FRP makes a lot more sense if
 graphed/charted first. ASCII can work for this pretty well. Example:</p>
-<div class="highlight"><pre><span></span>  streamyInput: -1---2---3---45-&gt;
+<pre><code>  streamyInput: -1---2---3---45-&gt;
    inputStream: ----a----b--c---&gt;
   dostuffThing: -----X-----X----&gt;
   outputOfThat: ---------E----E-&gt;
 streamPostWhat: ----Q---IDK-----&gt;
-</pre></div>
 
+</code></pre>
 <p>Hurray, streams!</p>
 <p>In Rx there's a <code>combineLatest()</code> that takes two input streams and joins the
 two most recently emitted values from both streams, like:</p>
-<div class="highlight"><pre><span></span>A: ---a-------e----i-------&gt;
+<pre><code>A: ---a-------e----i-------&gt;
 B: -----b--c----d------q---&gt;
 //////combineLatest(f)//////
 -----AB--AC---EC-ED-ID--IQ-&gt;
-</pre></div>
 
+</code></pre>
 <p>Huh. I don't actually know why this isn't working, exactly.</p>
 <p>OH WAIT DUH, I forgot jQuery. Thank goodness. I really was hoping I wasn't
 gonna have dumb problems. YAY THIS IS NICE!</p>

@@ -33,7 +33,7 @@
     </header>
     <hr>
     <div>
-      <h2>General Notes, from that time I played with Meteor</h2>
+      <h2 id="general-notes-from-that-time-i-played-with-meteor">General Notes, from that time I played with Meteor</h2>
 <p><code>{{#with foo}}</code> is a template tag that takes arg (foo). that is the <em>data
 context</em> for the block in that tag. being a <em>tag</em>, it needs to be closed later
 (<code>{/with}</code>).</p>
@@ -45,7 +45,7 @@ context</em> for the block in that tag. being a <em>tag</em>, it needs to be clo
 data contexts.</p>
 <p>in meteor there are html <em>templates</em> and js <em>template helpers</em>, in which data
 context is accessible via <code>this</code>. an example:</p>
-<div class="highlight"><pre><span></span>&lt;template name=&quot;profile&quot;&gt;
+<pre><code>&lt;template name=&quot;profile&quot;&gt;
   &lt;h3&gt;profile&lt;/h3&gt;
   {{#with profile}}
   &lt;img src=&quot;{{avatarPath}}&quot; /&gt;
@@ -58,19 +58,18 @@ context is accessible via <code>this</code>. an example:</p>
 
 Template.profile.helpers({
   profile: function(){
-    return Users.findOne(Session.get(&#39;userId&#39;))
+    return Users.findOne(Session.get('userId'))
   },
   avatarPath: function(){
-    return &#39;images/&#39; + this.avatar
+    return 'images/' + this.avatar
   },
   fullName: function(){
-    return this.first + &#39; &#39; +  this.last
+    return this.first + ' ' +  this.last
   }
 })
-</pre></div>
-
+</code></pre>
 <p>a dedicated {{log}} helper can be more useful than console.log(this)</p>
-<div class="highlight"><pre><span></span>Template.profile.helpers({
+<pre><code>Template.profile.helpers({
   log: function(){
     console.log(this)
 }})
@@ -81,22 +80,20 @@ Template.profile.helpers({
   {{log}}
   &lt;!-- etc --&gt;
   {{/with}}
-</pre></div>
-
+</code></pre>
 <p>the <code>..</code> keyword in helpers is to access a parent. That's pretty fucking rad,
 actually. And the <code>../..</code> also works exactly as expected (eg <code>{{blah ..}}</code> and
 <code>{{blahblah ../..}}</code>).</p>
-<h4>Reactivity in Meteor</h4>
+<h4 id="reactivity-in-meteor">Reactivity in Meteor</h4>
 <p>Reactive computation: block of code (inside of a function) that re-runs when a
 reactive data source <em>inside</em> it changes.</p>
-<div class="highlight"><pre><span></span>Template.hello.helpers{(
+<pre><code>Template.hello.helpers{(
   counter: function(){
-    console.log(&#39;counter helper is running&#39;)
-    return Session.get(&#39;count&#39;)
+    console.log('counter helper is running')
+    return Session.get('count')
   }
 )}```
-</pre></div>
-
+</code></pre>
 <p>Here, counter re-runs whenever count changes (count is retrieved by
 Session.get('count_')).  Session variables are <em>reactive sources</em>. Template
 helpers are <em>reactive computations</em>.</p>
@@ -137,11 +134,10 @@ helpers are <em>reactive computations</em>.</p>
 defining own reactive variables. these don't have global names (like
 Session.get('foo')'s foo), more like this.foo.get() declared like <code>new
 ReactiveVar()</code>.</p>
-<div class="highlight"><pre><span></span>var count = new ReactiveVar(0)
+<pre><code>var count = new ReactiveVar(0)
 count.set(1)
 count.get() // 1
-</pre></div>
-
+</code></pre>
 <p>There's also <code>ReactiveDict</code>. That's a thing.</p>
 <p>Custom reactive computations: <code>Tracker.autorun(function(){})</code> Read the full
 Meteor manual for more on that, I guess.</p>
@@ -149,27 +145,25 @@ Meteor manual for more on that, I guess.</p>
 function(){ return Session.get('count') }</code> -- getCount is a reactive data
 source, by virtue of Session.get('count'), which is itself a reactive data
 source. SO...</p>
-<div class="highlight"><pre><span></span>Template.hello.helpers({
+<pre><code>Template.hello.helpers({
   counter: function(){
-    console.log(&#39;counter helper is running&#39;)
-    return Session.get(&#39;count&#39;)
+    console.log('counter helper is running')
+    return Session.get('count')
   }
 })
-</pre></div>
-
+</code></pre>
 <p>IS THE SAME AS</p>
-<div class="highlight"><pre><span></span>var getCount = function(){
-  return Session.get(&#39;count&#39;)
+<pre><code>var getCount = function(){
+  return Session.get('count')
 }
 
 Template.hello.helpers({
   counter: function(){
-    console.log(&#39;counter helper is running&#39;)
+    console.log('counter helper is running')
     return getCount()
   }
 })
-</pre></div>
-
+</code></pre>
 <p>both ways, counter reruns whenever count session variable changes.</p>
 <p>composition only applies to functions. not variables.</p>
     </div>

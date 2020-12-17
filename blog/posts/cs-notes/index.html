@@ -34,60 +34,59 @@
     <hr>
     <div>
       <p>notes on a bunch of stuff</p>
-<h2>Big O:</h2>
+<h2 id="big-o">Big O:</h2>
 <ul>
 <li>analyzing the efficiency of algorithms (or code).</li>
 <li>One could figure how much time fn will take given n input(s).</li>
 <li>But really more interested in orders of magnitude than precise differences
   (eg 100ms vs 10000ms, not 100ms vs 110ms).</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="c1">// this is `O(n)`. we go through the input(s) once, in a loop.</span>
-<span class="kr">const</span> <span class="nx">crossAdd</span> <span class="o">=</span> <span class="nx">input</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span>
-      <span class="nx">up</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-    <span class="p">,</span> <span class="nx">dn</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">input</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">i</span><span class="p">]</span>
-    <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">up</span> <span class="o">+</span> <span class="nx">dn</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">answer</span>
-<span class="p">}</span>
+<pre><code class="language-javascript">// this is `O(n)`. we go through the input(s) once, in a loop.
+const crossAdd = input =&gt; {
+  let answer = []
+  for (let i = 0; i &lt; input.length; i++) {
+    let
+      up = input[i]
+    , dn = input[input.length - 1 - i]
+    answer.push(up + dn)
+  }
+  return answer
+}
 
-<span class="c1">// also `O(n)`.</span>
-<span class="c1">// we assume the worst, here. and the worst is that</span>
-<span class="c1">// the last element of `haystack` would match `needle`.</span>
-<span class="kr">const</span> <span class="nx">find</span> <span class="o">=</span> <span class="p">(</span><span class="nx">needle</span><span class="p">,</span> <span class="nx">haystack</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">haystack</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">haystack</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">needle</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="kc">true</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+// also `O(n)`.
+// we assume the worst, here. and the worst is that
+// the last element of `haystack` would match `needle`.
+const find = (needle, haystack) =&gt; {
+  for (let i = 0; i &lt; haystack.length; i++) {
+    if (haystack[i] === needle) {
+      return true
+    }
+  }
+}
 
-<span class="c1">// this is `O(n2)` (imagine that `2` is superscript, please).</span>
-<span class="c1">// we have to basically go through an extra loop every time we need</span>
-<span class="c1">// to go through one loop.. this is bad.</span>
-<span class="kr">const</span> <span class="nx">makeTuples</span> <span class="o">=</span> <span class="nx">input</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">input</span><span class="p">[</span><span class="nx">j</span><span class="p">]])</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">answer</span>
-<span class="p">}</span>
+// this is `O(n2)` (imagine that `2` is superscript, please).
+// we have to basically go through an extra loop every time we need
+// to go through one loop.. this is bad.
+const makeTuples = input =&gt; {
+  let answer = []
+  for (let i = 0; i &lt; input.length; i++) {
+    for (let j = 0; i &lt; input.length; j++) {
+      answer.push([input[i], input[j]])
+    }
+  }
+  return answer
+}
 
-<span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;stuff&#39;</span> <span class="c1">// this would be called `O(1)`, meaning &#39;constant time&#39;</span>
+const foo = 'stuff' // this would be called `O(1)`, meaning 'constant time'
 
-<span class="c1">// `O(log n)` is a good. recursion, for example, can be helpful here.</span>
-<span class="c1">// this is tough to understand without having any real background in math</span>
-<span class="c1">// i think what this mens is, so, `log n` means something like, what you&#39;d need</span>
-<span class="c1">// to raise 2 by (exponentially) to get to `n`. so if `n = 1024`, `O(n)` is like</span>
-<span class="c1">// saying `fn(1024)`, and `O(log n)` would be like saying `fn(32)`... or something</span>
-<span class="c1">// ... sort of? whatever, not gonna stress about it too much right this minute.</span>
-</pre></div>
-
-<h2>Sorts</h2>
+// `O(log n)` is a good. recursion, for example, can be helpful here.
+// this is tough to understand without having any real background in math
+// i think what this mens is, so, `log n` means something like, what you'd need
+// to raise 2 by (exponentially) to get to `n`. so if `n = 1024`, `O(n)` is like
+// saying `fn(1024)`, and `O(log n)` would be like saying `fn(32)`... or something
+// ... sort of? whatever, not gonna stress about it too much right this minute.
+</code></pre>
+<h2 id="sorts">Sorts</h2>
 <ul>
 <li>A bubble sort is <code>O(n2)</code>, because there are two loops:<ul>
 <li>One to check if the indices of two elements ought to be swapped, and</li>
@@ -136,8 +135,8 @@
 </ul>
 </li>
 </ul>
-<h2>Data Structures</h2>
-<h3>Interfaces</h3>
+<h2 id="data-structures">Data Structures</h2>
+<h3 id="interfaces">Interfaces</h3>
 <ul>
 <li>Interfaces?<ul>
 <li>Meaning, we just want to consume that data structure.</li>
@@ -192,7 +191,7 @@
 </ul>
 </li>
 </ul>
-<h3>Implementations</h3>
+<h3 id="implementations">Implementations</h3>
 <ul>
 <li>An ArrayList (it's a Java thing, I guess -- JS has arrays, and we don't really need to think all that
   much about how they actually do their job because we have GC--wait, does Java not? Oh. Huh. Poor them.)
@@ -270,7 +269,7 @@
 </ul>
 </li>
 </ul>
-<h2>Some FP Basics</h2>
+<h2 id="some-fp-basics">Some FP Basics</h2>
 <ul>
 <li>Purity<ul>
 <li>Don't you dare touch my state!</li>

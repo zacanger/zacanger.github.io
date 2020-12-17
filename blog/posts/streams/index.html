@@ -34,18 +34,17 @@
     <hr>
     <div>
       <p>bits and pieces of notes on streams</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/something&#39;</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span> <span class="p">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">thingwewant</span><span class="p">)</span>
+<pre><code class="language-javascript">const foo = fetch('/something')
+.then(r =&gt; r.json())
+.then(d =&gt; d.thingwewant)
 
-<span class="kr">const</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/otherstuff&#39;</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span> <span class="p">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+const bar = fetch('/otherstuff')
+.then(r =&gt; r.body)
 
-<span class="kr">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">someTaggedFunctionThing</span><span class="sb">`</span>
-<span class="sb">  &lt;div&gt;</span><span class="si">${</span><span class="nx">foo</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
-<span class="sb">  &lt;span&gt;</span><span class="si">${</span><span class="nx">bar</span><span class="si">}</span><span class="sb">&lt;/span&gt;`</span>
-</pre></div>
-
+const stream = someTaggedFunctionThing`
+  &lt;div&gt;${foo}&lt;/div&gt;
+  &lt;span&gt;${bar}&lt;/span&gt;`
+</code></pre>
 <ul>
 <li>streams can be infinite</li>
 <li>you can be aware of the beginning and end of a stream</li>
@@ -61,13 +60,13 @@
 on that if text content expected).</p>
 <p>there may be transform streams implemented in the browser at some point (r/w).</p>
 <p><code>reader.cancel()</code> (or <code>response.body.cancel()</code> if fetch)</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReadableStream</span><span class="p">({</span>
-  <span class="nx">start</span><span class="p">(</span><span class="nx">controller</span><span class="p">){}</span> <span class="c1">// called immediately</span>
-<span class="p">,</span> <span class="nx">pull</span><span class="p">(</span><span class="nx">controller</span><span class="p">){}</span>  <span class="c1">// called when buffer isn&#39;t full; called until buffer is full</span>
-<span class="p">,</span> <span class="nx">cancel</span><span class="p">(</span><span class="nx">reason</span><span class="p">){}</span>    <span class="c1">// called if stream is cancelled</span>
-<span class="p">},</span> <span class="nx">queuingStrategy</span><span class="p">)</span>   <span class="c1">// how the stream buffers (default : one item)</span>
-</pre></div>
+<pre><code class="language-javascript">const stream = new ReadableStream({
+  start(controller){} // called immediately
+, pull(controller){}  // called when buffer isn't full; called until buffer is full
+, cancel(reason){}    // called if stream is cancelled
+}, queuingStrategy)   // how the stream buffers (default : one item)
 
+</code></pre>
 <ul>
 <li><code>controller.enqueue(something)</code> queues <code>something</code> in the stream's buffer</li>
 <li><code>controller.close()</code> ends</li>
@@ -87,33 +86,32 @@ markup on the fly (aka client-side rendering, aka the devil usually) without str
 slowness.</p>
 <p>here's a thing basically just copied out of jake archibald's blog. it's like this because we
 don't have a <code>.pipe()</code> in the browser. we need that.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReadableStream</span><span class="p">({</span>
-  <span class="nx">start</span><span class="p">(</span><span class="nx">controller</span><span class="p">){</span>
-    <span class="c1">// start and end from cache, middle from network with cache fallback</span>
-    <span class="kr">const</span>
-      <span class="nx">start</span> <span class="o">=</span> <span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;/start-cached&#39;</span><span class="p">)</span>
-    <span class="p">,</span> <span class="nx">end</span>   <span class="o">=</span> <span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;/end-cached&#39;</span><span class="p">)</span>
-    <span class="p">,</span> <span class="nx">mid</span>   <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/middle&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="k">catch</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;/middle-cached&#39;</span><span class="p">))</span>
-      <span class="nx">push</span>  <span class="o">=</span> <span class="nx">stream</span> <span class="p">=&gt;</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">.</span><span class="nx">getReader</span><span class="p">()</span>
-      <span class="k">return</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">result</span><span class="p">){</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span>
-        <span class="p">}</span>
-        <span class="nx">controller</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">process</span><span class="p">)</span>
-      <span class="p">})</span>
-    <span class="p">}</span>
+<pre><code class="language-javascript">const stream = new ReadableStream({
+  start(controller){
+    // start and end from cache, middle from network with cache fallback
+    const
+      start = caches.match('/start-cached')
+    , end   = caches.match('/end-cached')
+    , mid   = fetch('/middle')
+        .catch(() =&gt; caches.match('/middle-cached'))
+      push  = stream =&gt; {
+      const reader = stream.getReader()
+      return reader.read().then(function process(result){
+        if (result.done) {
+          return
+        }
+        controller.enqueue(result.value)
+        return reader.read().then(process)
+      })
+    }
 
-    <span class="nx">start</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">mid</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">end</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">close</span><span class="p">())</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-</pre></div>
-
+    start.then(response =&gt; push(response.body))
+    .then(() =&gt; mid).then(response =&gt; push(response.body))
+    .then(() =&gt; end).then(response =&gt; push(response.body))
+    .then(() =&gt; controller.close())
+  }
+})
+</code></pre>
 <p>From here down I'll probably just be taking notes on streams in Node.</p>
 <p>Some important things to remember (for me to remember, that is) -- differences between the
 proposed Stream and Node's streams:
@@ -151,115 +149,116 @@ proposed Stream and Node's streams:
 * chain pipes, don't break crap out
     * <code>one.pipe(two).pipe(three)</code>, not <code>one.pipe(two);two.pipe(three);</code>
     * that's basically the same as <code>one | two | three</code></p>
-<div class="highlight"><pre><span></span><span class="c1">//</span>
-<span class="c1">// readable</span>
-<span class="c1">//</span>
+<pre><code class="language-javascript">//
+// readable
+//
 
-<span class="kr">const</span> <span class="nx">Readable</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;stream&#39;</span><span class="p">).</span><span class="nx">Readable</span>
-<span class="kr">const</span> <span class="nx">rs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Readable</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;something, and &#39;</span><span class="p">)</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;something else.&#39;</span><span class="p">)</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// this tells data consumers that we&#39;re done with rs</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">)</span>
-<span class="c1">// so the pushes are buffered until a consumer wants them (the pipe to standard out)</span>
+const Readable = require('stream').Readable
+const rs = new Readable
+rs.push('something, and ')
+rs.push('something else.')
+rs.push(null) // this tells data consumers that we're done with rs
+rs.pipe(process.stdout)
+// so the pushes are buffered until a consumer wants them (the pipe to standard out)
 
-<span class="c1">// instead of buffering:</span>
-<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">_read</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">rs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">c</span><span class="o">++</span><span class="p">))</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">c</span> <span class="o">&gt;</span> <span class="s1">&#39;z&#39;</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">rs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">rs</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">)</span>
-<span class="c1">// ._read can take a size param, the amount (in bytes) that the consumer wants</span>
-<span class="c1">// to call it like that, try `node thisfile | head -cN` where `N` is an integer</span>
-<span class="c1">// note that we&#39;d need to set up an error handler here because there&#39;ll be a SIGPIPE</span>
-<span class="c1">// after `head` (EPIPE in node). that&#39;s not an issue when keeping your business all</span>
-<span class="c1">// in node.</span>
-<span class="c1">// `Readable({objectMode : true})` to be able to push arbitrary stuff (not just</span>
-<span class="c1">// buffers and strings).</span>
+// instead of buffering:
+let c = 100
+rs._read = () =&gt; {
+  rs.push(String.fromCharCode(c++))
+  if (c &gt; 'z'.charCodeAt(0)) {
+    rs.push(null)
+  }
+}
+rs.pipe(process.stdout)
+// ._read can take a size param, the amount (in bytes) that the consumer wants
+// to call it like that, try `node thisfile | head -cN` where `N` is an integer
+// note that we'd need to set up an error handler here because there'll be a SIGPIPE
+// after `head` (EPIPE in node). that's not an issue when keeping your business all
+// in node.
+// `Readable({objectMode : true})` to be able to push arbitrary stuff (not just
+// buffers and strings).
 
-<span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">buf</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">read</span><span class="p">()</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="c1">// echo stuff, pipe it, eg `(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js`</span>
-<span class="c1">// usually we&#39;d probably pipe a stream into another stream, maybe using through2 or somesuch</span>
-<span class="c1">// the above will return null at the end of what&#39;s being sent, because there&#39;s nothing left</span>
-<span class="c1">// we could do `.read(N)` where `N` is bytes. doesn&#39;t work for object streams.</span>
-<span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">buf</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span> <span class="c1">// so we&#39;d get 2-byte chunks here. adding:</span>
-  <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// will get the rest and make this actually work.</span>
-<span class="p">})</span>
+process.stdin.on('readable', () =&gt; {
+  let buf = process.stdin.read()
+  console.dir(buf)
+})
+// echo stuff, pipe it, eg `(echo foo ; echo bar ; sleep 10 ; echo asdfghjkl) | node this-script.js`
+// usually we'd probably pipe a stream into another stream, maybe using through2 or somesuch
+// the above will return null at the end of what's being sent, because there's nothing left
+// we could do `.read(N)` where `N` is bytes. doesn't work for object streams.
+process.stdin.on('readable', () =&gt; {
+  let buf = process.stdin.read(2)
+  console.dir(buf) // so we'd get 2-byte chunks here. adding:
+  process.stdin.read(0) // will get the rest and make this actually work.
+})
 
-<span class="c1">// YAY, that&#39;s it for readable streams</span>
+// YAY, that's it for readable streams
 
-<span class="c1">//</span>
-<span class="c1">// writable</span>
-<span class="c1">//</span>
+//
+// writable
+//
 
-<span class="kr">const</span> <span class="nx">Writable</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;stream&#39;</span><span class="p">).</span><span class="nx">Writable</span>
-<span class="kr">const</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Writable</span><span class="p">()</span>
-<span class="nx">ws</span><span class="p">.</span><span class="nx">_write</span> <span class="o">=</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">,</span> <span class="nx">encoding</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">chunk</span><span class="p">)</span>
-  <span class="nx">next</span><span class="p">()</span>
-<span class="p">}</span>
-<span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">ws</span><span class="p">)</span>
-<span class="c1">// chunk is the data written</span>
-<span class="c1">// encoding (string) is only for when `opts.decodeStrings` is false and we&#39;ve been given a string</span>
-<span class="c1">// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj</span>
-<span class="c1">// if input stream is string, that&#39;ll be converted to buf. when creating the stream we can do</span>
-<span class="kr">const</span> <span class="nx">strWs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Writable</span><span class="p">({</span><span class="nx">decodeStrings</span> <span class="o">:</span> <span class="kc">false</span><span class="p">})</span>
-<span class="c1">// and if we&#39;re getting in objects</span>
-<span class="kr">const</span> <span class="nx">objWs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Writable</span><span class="p">({</span><span class="nx">objectMode</span> <span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
+const Writable = require('stream').Writable
+const ws = new Writable()
+ws._write = (chunk, encoding, next) =&gt; {
+  console.dir(chunk)
+  next()
+}
+process.stdin.pipe(ws)
+// chunk is the data written
+// encoding (string) is only for when `opts.decodeStrings` is false and we've been given a string
+// the third arg is cb, tells consumer to go ahead and write more. it can take an err obj
+// if input stream is string, that'll be converted to buf. when creating the stream we can do
+const strWs = new Writable({decodeStrings : false})
+// and if we're getting in objects
+const objWs = new Writable({objectMode : true})
 
-<span class="c1">// writing is basically as simple as calling .write (as we do with stdout)</span>
-<span class="c1">// you can do a .end() to say we&#39;re done. that can take data to write, right before ending.</span>
-<span class="c1">// write returns false when there&#39;s more data in incoming buff than opts.highWaterMark;</span>
-<span class="c1">// listen for drain event to know when it&#39;s empty</span>
+// writing is basically as simple as calling .write (as we do with stdout)
+// you can do a .end() to say we're done. that can take data to write, right before ending.
+// write returns false when there's more data in incoming buff than opts.highWaterMark;
+// listen for drain event to know when it's empty
 
-<span class="c1">//</span>
-<span class="c1">// transform</span>
-<span class="c1">// these are duplex streams that do exactly what it sounds like. sometimes called &#39;through&#39; streams.</span>
-<span class="c1">//</span>
+//
+// transform
+// these are duplex streams that do exactly what it sounds like. sometimes called 'through' streams.
+//
 
-<span class="c1">//</span>
-<span class="c1">// duplex</span>
-<span class="c1">// r/w where both ends are two-way. example: `x.pipe(y).pipe(x)`</span>
+//
+// duplex
+// r/w where both ends are two-way. example: `x.pipe(y).pipe(x)`
 
-<span class="c1">//</span>
-<span class="c1">// classic streams</span>
-<span class="c1">//</span>
+//
+// classic streams
+//
 
-<span class="c1">// we&#39;re on node 6.1.0 as of this writing, and chances are i won&#39;t be doing much node stuff</span>
-<span class="c1">// at all in the forseeable future, so i really don&#39;t care too too much about the legacy</span>
-<span class="c1">// streams api. just `require(&#39;readable-stream&#39;)` instead of `&#39;stream&#39;`, if we must support</span>
-<span class="c1">// node or other streams from &lt;=v0.8.</span>
+// we're on node 6.1.0 as of this writing, and chances are i won't be doing much node stuff
+// at all in the forseeable future, so i really don't care too too much about the legacy
+// streams api. just `require('readable-stream')` instead of `'stream'`, if we must support
+// node or other streams from &lt;=v0.8.
 
-<span class="c1">// readable example:</span>
-<span class="kr">const</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span>
-<span class="nx">sin</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">buf</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">buf</span><span class="p">))</span>
-<span class="nx">sin</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;peace&#39;</span><span class="p">))</span>
-<span class="c1">// as soon as a data listener is registered, you&#39;re using compatability mode, so</span>
-<span class="c1">// basically you lose a lot of functionality.</span>
-<span class="c1">// through (the package) lets you use legacy streams with pipe</span>
-<span class="c1">// these also have pause and resume.</span>
+// readable example:
+const sin = process.stdin
+sin.on('data', buf =&gt; console.log(buf))
+sin.on('end', () =&gt; console.log('peace'))
+// as soon as a data listener is registered, you're using compatability mode, so
+// basically you lose a lot of functionality.
+// through (the package) lets you use legacy streams with pipe
+// these also have pause and resume.
 
-<span class="c1">// writable:</span>
-<span class="c1">// define write(buf), end(buf), and destroy(). end doesn&#39;t HAVE to have (buf), but</span>
-<span class="c1">// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.</span>
+// writable:
+// define write(buf), end(buf), and destroy(). end doesn't HAVE to have (buf), but
+// it should work so that stream.end(buf) means stream.write(buf) ; stream.end(), so just do that.
 
-<span class="c1">//</span>
-<span class="c1">//</span>
-<span class="c1">// streams that are built in to node</span>
-<span class="c1">//</span>
-<span class="c1">//</span>
+//
+//
+// streams that are built in to node
+//
+//
 
-<span class="c1">// not gonna take really extensive notes here, for the reasons above and also because</span>
-<span class="c1">// it&#39;s really easy to just go to the api docs and read all of them.</span>
-</pre></div>
+// not gonna take really extensive notes here, for the reasons above and also because
+// it's really easy to just go to the api docs and read all of them.
+
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

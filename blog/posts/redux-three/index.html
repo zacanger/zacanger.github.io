@@ -42,47 +42,46 @@ couple of blog posts.</p>
 <p>Just want to take a second to go over some syntax before going on more about
 Redux. A lot of folks who're new to React might also be new to new JavaScript,
 so some things might be looking a little unusual.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span> <span class="c1">// is roughly the same as</span>
-<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span> <span class="c1">// EXCEPT that you could not then do</span>
-<span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;baz&#39;</span> <span class="c1">// because you&#39;d be reassigning a const which is not okay.</span>
-<span class="kd">let</span> <span class="nx">asdf</span> <span class="o">=</span> <span class="s1">&#39;ghjkl&#39;</span> <span class="c1">// is a lot more like var</span>
-<span class="nx">asdf</span> <span class="o">=</span> <span class="s1">&#39;qwerty&#39;</span> <span class="c1">// no errors</span>
+<pre><code class="language-javascript">const foo = 'bar' // is roughly the same as
+var foo = 'bar' // EXCEPT that you could not then do
+foo = 'baz' // because you'd be reassigning a const which is not okay.
+let asdf = 'ghjkl' // is a lot more like var
+asdf = 'qwerty' // no errors
 
-<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span> <span class="c1">// is kinda like</span>
-<span class="kr">const</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">)</span> <span class="c1">// except it&#39;s actually just a part of the language now</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">resolve</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;path&#39;</span> <span class="c1">// is like</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">resolve</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span> <span class="c1">// which is like</span>
-<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">resolve</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span>
+import React from 'react' // is kinda like
+const React = require('react') // except it's actually just a part of the language now
+import { resolve } from 'path' // is like
+const { resolve } = require('path') // which is like
+var path = require('path')
+var resolve = path.resolve
 
-<span class="kr">export</span> <span class="kr">const</span> <span class="nx">whatever</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span> <span class="c1">// is like</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">whatever</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){}</span>
+export const whatever = () =&gt; {} // is like
+module.exports.whatever = function(){}
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">MyThing</span> <span class="c1">// is like</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyThing</span>
+export default MyThing // is like
+module.exports = MyThing
 
-<span class="kr">const</span>
-  <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
-<span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
-<span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
-<span class="p">,</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="p">}</span> <span class="c1">// is the same as</span>
+const
+  a = 'a'
+, b = 'b'
+, c = 'c'
+, o = { a, b, c } // is the same as
 
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
-<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
-<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span> <span class="o">:</span> <span class="nx">a</span>
-<span class="p">,</span> <span class="nx">b</span> <span class="o">:</span> <span class="nx">b</span>
-<span class="p">,</span> <span class="nx">c</span> <span class="o">:</span> <span class="nx">c</span>
-<span class="p">}</span>
+var a = 'a'
+var b = 'b'
+var c = 'c'
+var o = {
+  a : a
+, b : b
+, c : c
+}
 
-<span class="kr">const</span> <span class="nx">someFunc</span> <span class="o">=</span> <span class="nx">param</span> <span class="p">=&gt;</span> <span class="nx">param</span> <span class="c1">// is roughly the same as</span>
-<span class="kd">function</span> <span class="nx">someFunc</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">param</span>
-<span class="p">}</span>
-<span class="c1">// though there _are_ important differences</span>
-</pre></div>
-
+const someFunc = param =&gt; param // is roughly the same as
+function someFunc(param) {
+  return param
+}
+// though there _are_ important differences
+</code></pre>
 <p>If you're not at all familiar with ES2015, you should really go get comfortable
 with it. I put together a repo a while ago for that, full of examples and notes.
 Check it out <a href="https://github.com/zacanger/es6-and-builds/tree/master">here</a>.
@@ -109,26 +108,25 @@ other is <code>mapDispatchToProps</code>. I'd suggest you take a good look at th
 docs</a> on <code>react-redux</code> to get a good
 feel for how it all works, but setting up a container component turns out to be
 pretty straightforward.</p>
-<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">someReducer</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./wherever/your/reducers/are&#39;</span>
-<span class="kr">import</span> <span class="nx">AComponent</span> <span class="nx">from</span> <span class="s1">&#39;./AComponent&#39;</span>
+<pre><code class="language-javascript">import { connect } from 'react-redux'
+import { someReducer } from './wherever/your/reducers/are'
+import AComponent from './AComponent'
 
-<span class="kr">const</span> <span class="nx">mapStateToProps</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">ownProps</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span>
-  <span class="nx">somethingInState</span><span class="o">:</span> <span class="nx">someReducer</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">ownProps</span><span class="p">.</span><span class="nx">maybeSomeProperty</span><span class="p">.</span><span class="nx">Here</span><span class="p">)</span>
-<span class="p">})</span>
+const mapStateToProps = (state, ownProps) =&gt; ({
+  somethingInState: someReducer(state, ownProps.maybeSomeProperty.Here)
+})
 
-<span class="kr">const</span> <span class="nx">mapDispatchToProps</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">,</span> <span class="nx">ownProps</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span>
-  <span class="nx">something</span><span class="o">:</span> <span class="nx">probablyAnActionOrOtherFunction</span>
-<span class="p">})</span>
+const mapDispatchToProps = (dispatch, ownProps) =&gt; ({
+  something: probablyAnActionOrOtherFunction
+})
 
-<span class="kr">const</span> <span class="nx">AComponentThatIsNowConnected</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">(</span>
-  <span class="nx">mapStateToProps</span>
-<span class="p">,</span> <span class="nx">mapDispatchToProps</span>
-<span class="p">)(</span><span class="nx">AComponent</span><span class="p">)</span>
+const AComponentThatIsNowConnected = connect(
+  mapStateToProps
+, mapDispatchToProps
+)(AComponent)
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">AComponentThatIsNowConnected</span>
-</pre></div>
-
+export default AComponentThatIsNowConnected
+</code></pre>
 <p><code>mapDispatchToProps</code> is a little tricky, so I'd really suggest just checking out
 <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md">the docs</a>.</p>
 <p>There's one other important bit, and that's this thing called <code>Provider</code>. It's a
@@ -136,51 +134,50 @@ component that makes the store available to all your container components
 without you needing to actually pass it down everywhere. It uses this funky
 <a href="https://facebook.github.io/react/docs/context.html">context</a> thing under the
 hood. You don't need to put it everywhere, you just wrap a root component in it.</p>
-<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">Provider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
-<span class="kr">import</span> <span class="nx">reducers</span> <span class="nx">from</span> <span class="s1">&#39;./reducers&#39;</span>
-<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App&#39;</span>
+<pre><code class="language-javascript">import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './reducers'
+import App from './App'
 
-<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">reducers</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
+const store = createStore(reducers)
+const root = document.getElementById('root')
 
-<span class="nx">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
-  <span class="o">&lt;</span><span class="err">/Provider&gt;</span>
-<span class="p">,</span> <span class="nx">root</span>
-<span class="p">)</span>
-</pre></div>
-
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;
+, root
+)
+</code></pre>
 <p>This can trip you up when testing! You don't need to do much to work around it,
 but it can be annoying the first time you see all these random errors. Try
 something like:</p>
-<div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">test</span> <span class="nx">from</span> <span class="s1">&#39;ava&#39;</span> <span class="c1">// seriously awesome test runner</span>
-<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">mount</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;enzyme&#39;</span> <span class="c1">// seriously awesome testing thing for React</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">Provider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
-<span class="kr">import</span> <span class="nx">MyComponent</span> <span class="nx">from</span> <span class="s1">&#39;./MyComponent&#39;</span>
+<pre><code class="language-javascript">import test from 'ava' // seriously awesome test runner
+import React from 'react'
+import { mount } from 'enzyme' // seriously awesome testing thing for React
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import MyComponent from './MyComponent'
 
-<span class="nx">test</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">(</span><span class="s1">&#39;Set up &lt;MyComponent /&gt;&#39;</span><span class="p">,</span> <span class="nx">t</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">({}))</span>
-  <span class="nx">t</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">MyComponent</span>
-        <span class="nx">some</span><span class="o">=</span><span class="s1">&#39;props&#39;</span>
-      <span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="err">/Provider&gt;</span>
-  <span class="p">)</span>
-<span class="p">})</span>
+test.beforeEach('Set up &lt;MyComponent /&gt;', t =&gt; {
+  const store = createStore(() =&gt; ({}))
+  t.context = mount(
+    &lt;Provider store={store}&gt;
+      &lt;MyComponent
+        some='props'
+      /&gt;
+    &lt;/Provider&gt;
+  )
+})
 
-<span class="c1">// and then you can do</span>
-<span class="nx">test</span><span class="p">(</span><span class="s1">&#39;&lt;MyComponent /&gt; isn\&#39;t broken!&#39;</span><span class="p">,</span> <span class="nx">t</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">t</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;some&#39;</span><span class="p">),</span> <span class="s1">&#39;props&#39;</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="c1">// and it won&#39;t throw errors about not finding a store and stuff!</span>
-</pre></div>
+// and then you can do
+test('&lt;MyComponent /&gt; isn\'t broken!', t =&gt; {
+  t.is(t.context.prop('some'), 'props')
+})
+// and it won't throw errors about not finding a store and stuff!
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

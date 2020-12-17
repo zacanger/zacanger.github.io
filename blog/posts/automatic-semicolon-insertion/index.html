@@ -43,7 +43,7 @@ its rules are a lot easier to remember than stupidity like <code>++foo</code> vs
 or the rules for <code>this</code>. The actual spec's ASI section is less than two pages,
 but it can be simplified further, into probably less than a page.</p>
 <hr />
-<h2>Automatic Semicolon Insertion</h2>
+<h2 id="automatic-semicolon-insertion">Automatic Semicolon Insertion</h2>
 <p>ECMAScript statements are really really basic, and if you don't know what a
 statement is, you probably shouldn't be programming. A lot of statements in
 JavaScript (the popular implementation of the ECMAScript standard) are
@@ -74,16 +74,15 @@ inserted. Why is this okay? Because new lines (what the spec calls a
 being in a block. Not rocket science.</p>
 <p>Exception number three: If you're writing something like this, you need some
 mental help:</p>
-<div class="highlight"><pre><span></span>i
+<pre><code>i
 ++
 j
-</pre></div>
-
+</code></pre>
 <p>ASI would turn that into:</p>
-<div class="highlight"><pre><span></span>i;
+<pre><code>i;
 ++j;
-</pre></div>
 
+</code></pre>
 <p>But guess what? No rational human being would write code like that, so it's
 not a problem. Right? Right.</p>
 <p>It's the first thing that people worry about, really. Which is why we like to
@@ -97,12 +96,11 @@ make much sense not to do it).</p>
 <p>There's also that other thing where ASI could totally break your code, and
 that goes back to the "Don't write code like a jackass (it's not concrete
 poetry)" bit. Imagine you're a tool, so you write:</p>
-<div class="highlight"><pre><span></span>function foo(bar){
+<pre><code>function foo(bar){
   return
     bar
 }
-</pre></div>
-
+</code></pre>
 <p>Well, for starters, you're weird. And ASI will do this: <code>function foo(bar){
 return; bar; };</code>. It turns out there's a really super easy way around that
 problem, and it's something all people do anyway because they're not horrible
@@ -112,21 +110,19 @@ this. That was easy. Same goes for <code>break</code>, <code>continue</code>, an
 <p>The idea that putting semicolons everywhere is somehow more readable or safe
 makes very little sense. I could put semicolons all over the place, and it
 makes no difference.</p>
-<div class="highlight"><pre><span></span>function foo(){;;;;;;;;;;;
-;;var bar = &#39;semicolons&#39;;;
+<pre><code>function foo(){;;;;;;;;;;;
+;;var bar = 'semicolons';;
 ;;console.log(bar);;;;;;;;
 };;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;foo();;
-</pre></div>
-
+</code></pre>
 <p>Try running that in your browser console, or Node. Try running this one:</p>
-<div class="highlight"><pre><span></span>function foo(){
-  var bar = &#39;no semicolons&#39;
+<pre><code>function foo(){
+  var bar = 'no semicolons'
   console.log(bar)
 }
 foo()
-</pre></div>
-
+</code></pre>
 <p>See any difference?</p>
 <p>ASI's not a new thing (it's older than a lot of people writing JavaScript
 these days, actually). It's not scary, it's not unreliable, and it definitely
@@ -141,7 +137,7 @@ of</a> <a href="http://mislav.net/2010/05/semicolons/">the
 big</a> <a href="http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding">blog
 posts</a>
 from smarter people than myself on the topic.</p>
-<h2>TL;DR</h2>
+<h2 id="tldr">TL;DR</h2>
 <p>The TL;DR here is that no one actually gives a shit how you write code in the
 privacy of your cubicle, as long as it conforms to the styleguide of the
 project you're working on. But the nastiness directed towards people who don't

@@ -42,60 +42,59 @@ in Node, with no dependencies.</p>
 <li><a href="http://blog.zacanger.com/2016/note-taking-app.html">JSON Note-taking app</a></li>
 </ul>
 <p>And here's the finished product from the latter:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="s1">&#39;use strict&#39;</span>
+'use strict'
 
-<span class="kr">const</span> <span class="p">{</span>
-  <span class="nx">readFileSync</span>
-<span class="p">,</span> <span class="nx">writeFile</span>
-<span class="p">}</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">log</span>   <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span>
-<span class="p">,</span> <span class="nx">arg</span>   <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="p">,</span> <span class="nx">n</span>     <span class="o">=</span> <span class="s1">&#39;./notes.json&#39;</span>
-<span class="p">,</span> <span class="nx">file</span>  <span class="o">=</span> <span class="nx">readFileSync</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">notes</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+const {
+  readFileSync
+, writeFile
+}       = require('fs')
+, log   = console.log
+, arg   = process.argv[2]
+, n     = './notes.json'
+, file  = readFileSync(n)
+, notes = JSON.parse(file)
 
-<span class="kr">const</span> <span class="nx">writeTheFile</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">taken</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="nx">writeFile</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">taken</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
+const writeTheFile = () =&gt; {
+  const taken = JSON.stringify(notes, null, 2)
+  writeFile(n, taken, 'utf8', err =&gt; {
+    if (err) return log(err)
+  })
+}
 
-<span class="kr">const</span> <span class="nx">takeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">note</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">note</span><span class="p">)</span>
-  <span class="nx">writeTheFile</span><span class="p">()</span>
-<span class="p">}</span>
+const takeNote = (notes, note) =&gt; {
+  notes.push(note)
+  writeTheFile()
+}
 
-<span class="kr">const</span> <span class="nx">removeNote</span> <span class="o">=</span> <span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">notes</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">noteIndex</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="nx">writeTheFile</span><span class="p">()</span>
-<span class="p">}</span>
+const removeNote = (notes, noteIndex) =&gt; {
+  notes.splice(noteIndex -1, 1)
+  writeTheFile()
+}
 
-<span class="kr">const</span> <span class="nx">runApp</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">case</span> <span class="s1">&#39;-s&#39;</span><span class="o">:</span>
-        <span class="nx">log</span><span class="p">(</span><span class="nx">notes</span><span class="p">)</span>
-        <span class="k">break</span>
-      <span class="k">case</span> <span class="s1">&#39;-r&#39;</span><span class="o">:</span>
-        <span class="kr">const</span> <span class="nx">noteIndex</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-        <span class="nx">removeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">noteIndex</span><span class="p">)</span>
-        <span class="k">break</span>
-      <span class="k">default</span><span class="o">:</span>
-        <span class="nx">takeNote</span><span class="p">(</span><span class="nx">notes</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Please pass an argument&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+const runApp = () =&gt; {
+  if (arg) {
+    switch (arg) {
+      case '-s':
+        log(notes)
+        break
+      case '-r':
+        const noteIndex = process.argv[3]
+        removeNote(notes, noteIndex)
+        break
+      default:
+        takeNote(notes, arg)
+    }
+  } else {
+    return log('Please pass an argument')
+  }
+}
 
-<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">runApp</span><span class="p">()</span>
-<span class="p">}</span>
-</pre></div>
-
+if (!module.parent) {
+  runApp()
+}
+</code></pre>
 <hr />
 <p>What we're going to build this time is going to be a little more complex. We're
 going to write a program that downloads a website and turns it into Markdown for
@@ -105,18 +104,16 @@ almost-daily basis, but just for fun, we'll do something similar in Node.</p>
 <p>This will also be the first time we'll be working with external modules, which
 is really the most exciting and awesome thing about Node.</p>
 <p>Our goal here is to have a small tool we can use like this:</p>
-<div class="highlight"><pre><span></span>./index.js zacanger.com
-</pre></div>
-
+<pre><code class="language-bash">./index.js zacanger.com
+</code></pre>
 <p>And it'll give us back the contents of <code>zacanger.com</code>, in Markdown, ready to
 read in the terminal, pipe to an editor, or whatever.</p>
 <p>First things first: we'll need a project. Make a new directory and get into it,
 and <code>npm init</code>.</p>
-<div class="highlight"><pre><span></span>mkdir html2txt
-<span class="nb">cd</span> html2xt
+<pre><code class="language-bash">mkdir html2txt
+cd html2xt
 npm init -y
-</pre></div>
-
+</code></pre>
 <p>The <code>-y</code> flag just means "don't ask me questions." You can skip that flag and
 fill in the info for your <code>package.json</code> if you'd like, or just go back and edit
 it later.</p>
@@ -124,21 +121,19 @@ it later.</p>
 and require them now. We'll need <code>http</code>'s <code>get</code> method, and also a way to work
 with an argument. If you've done either of my previous tutorials, you'll already
 be familiar with Node's <code>process.argv</code>.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">get</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-
+<pre><code class="language-javascript">const { get } = require('http')
+const url = process.argv[2]
+</code></pre>
 <p>Let's see if we can't get some HTML, just as a starting point.</p>
-<div class="highlight"><pre><span></span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span>
-  <span class="p">})</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">get(url, res =&gt; {
+  res.on('data', d =&gt; {
+    console.log(d)
+  })
+  res.on('end', () =&gt; {
+    console.log('done')
+  })
+})
+</code></pre>
 <p>Try that out with something like <code>node index.js http://google.com</code>.</p>
 <p>You should see something like <code>&lt;Buffer 3c 21 64 6f 63 74 7</code> (and so on).
 <a href="https://nodejs.org/api/buffer.html">Buffers</a> are great and all, but that's
@@ -159,41 +154,37 @@ it can really save you a lot of time if you get used to using them.</p>
 <p>You should see a bunch of stuff happen in the terminal. If you check your
 <code>package.json</code>, you'll now see <code>to-markdown</code> in there. It should like something
 like this:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;something&quot;</span><span class="p">,</span>
-  <span class="err">//</span> <span class="err">probably</span> <span class="err">some</span> <span class="err">other</span> <span class="err">stuff</span>
-  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;to-markdown&quot;</span><span class="p">:</span> <span class="s2">&quot;^3.0.1&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;something&quot;,
+  // probably some other stuff
+  &quot;dependencies&quot;: {
+    &quot;to-markdown&quot;: &quot;^3.0.1&quot;
+  }
+}
+</code></pre>
 <p>(Yes, I know you can't have comments in JSON.)</p>
 <p>Next we'll need to get that into the program. If you're using Babel, you can use
 <code>import</code>, but to keep things simple we'll stick with <code>require</code>.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">toMarkdown</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;to-markdown&#39;</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const toMarkdown = require('to-markdown')
+</code></pre>
 <p>Now try running the HTML through this before logging it out.</p>
-<div class="highlight"><pre><span></span><span class="c1">// ...</span>
-<span class="kr">const</span> <span class="nx">toMarkdown</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;to-markdown&#39;</span><span class="p">)</span>
-<span class="c1">// ...</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toMarkdown</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">()))</span>
-  <span class="p">})</span>
-<span class="c1">// ...</span>
-</pre></div>
-
+<pre><code class="language-javascript">// ...
+const toMarkdown = require('to-markdown')
+// ...
+  res.on('data', d =&gt; {
+    console.log(toMarkdown(d.toString()))
+  })
+// ...
+</code></pre>
 <p>If you run the script again, you should see beautiful, super-readable Markdown!
 All done!</p>
 <hr />
 <p>Well, mostly. This is nice and all, but there are definitely some things we can
 do to make this script a bit better. Firstly, it's annoying to have to always
 type <code>http://</code> before a URL, so maybe we should automatically add that on.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">)</span> <span class="nx">url</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">))</span> <span class="o">?</span> <span class="nx">url</span> <span class="o">:</span> <span class="err">\</span><span class="sb">`http://</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">\`</span>
-</pre></div>
-
+<pre><code class="language-javascript">const url = process.argv[2]
+const src = (url.includes('http://') url.includes('https://')) ? url : \`http://${url}\`
+</code></pre>
 <p>All this extra bit is doing is checking if the passed in argument aleady has a
 scheme, and if it doesn't, just sticking on on the beginning. If you're not
 familiar with template literals, check out the previous tutorials and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs
@@ -205,15 +196,13 @@ shorthand for <code>.indexOf(foo !== -1)</code>.</p>
 <p>And, as in the previous tutorials, we'll want to just be able to execute this
 script, without needing to type in <code>node</code> each time, so add a shebang and make
 it exectuable.</p>
-<div class="highlight"><pre><span></span>chmod +x index.js
-</pre></div>
+<pre><code class="language-shell">chmod +x index.js
+</code></pre>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
-
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">get</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
-<span class="c1">// ...</span>
-</pre></div>
-
+const { get } = require('http')
+// ...
+</code></pre>
 <p>Now you should be able to just do something like <code>./index.js zacanger.com</code> and
 see some results.</p>
 <p><code>to-markdown</code> can handle take some options. One of them is to use
@@ -221,22 +210,20 @@ see some results.</p>
 Markdown</a>, which is
 pretty nice since that's probably what most of us are used to using. To enable
 this, just pass <code>{ gfm: true }</code> in the call to <code>toMarkdown</code>:</p>
-<div class="highlight"><pre><span></span><span class="c1">// ...</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toMarkdown</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="p">{</span> <span class="nx">gfm</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}))</span>
-<span class="c1">// ...</span>
-</pre></div>
-
+<pre><code class="language-javascript">// ...
+console.log(toMarkdown(d.toString(), { gfm: true }))
+// ...
+</code></pre>
 <p>You may notice some tags are making it through the conversion (<code>script</code>, <code>span</code>,
 <code>div</code>, and probably a few others); I'm not going to go over all of the options
 that <code>to-markdown</code> can take, but you should check out the docs and learn how to
 write filters, if you're interested. You could also write your own function to
 strip out unwanted elements, and run the Markdown through this:</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">cleanOutStuff</span> <span class="o">=</span> <span class="nx">string</span> <span class="p">=&gt;</span>
-  <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(div|script|span)/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<pre><code class="language-javascript">const cleanOutStuff = string =&gt;
+  string.replace(/(div|script|span)/g, '')
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cleanOutStuff</span><span class="p">(</span><span class="nx">toMarkdown</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="p">{</span> <span class="nx">gfm</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})))</span>
-</pre></div>
-
+console.log(cleanOutStuff(toMarkdown(d.toString(), { gfm: true })))
+</code></pre>
 <p>But it'd probably be easier to just learn the options rather that spinning
 something custom like this.</p>
 <p>One thing that really irks me when I'm reading in the terminal is text that
@@ -245,59 +232,52 @@ keep track of where I am when the text is too wide. 80 characters is a pretty
 reasonable limit, so why don't we get this text to wrap there? We're going to
 use another module for this:
 <a href="https://github.com/substack/node-wordwrap">wordwrap</a>.</p>
-<div class="highlight"><pre><span></span>npm i -S wordwrap
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">wordwrap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;wordwrap&#39;</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-shell">npm i -S wordwrap
+</code></pre>
+<pre><code class="language-javascript">const wordwrap = require('wordwrap')
+</code></pre>
 <p>This module needs to know how many characters it can put in a line. We could
 just pass it <code>80</code>, but I think maybe we should handle cases where the terminal
 is resized very small but maybe won't stay that way, so we're going to find out
 how big the terminal currently is and base our decision on that.
 <code>process.stdout</code> has a way for us to find this out.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">wordwrap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;wordwrap&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">rows</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span>
-<span class="kr">const</span> <span class="nx">wraplength</span> <span class="o">=</span> <span class="p">(</span><span class="nx">rows</span> <span class="o">&lt;</span> <span class="mi">80</span> <span class="o">?</span> <span class="mi">80</span> <span class="o">:</span> <span class="nx">rows</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">wordwrap</span><span class="p">(</span><span class="nx">wraplength</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const wordwrap = require('wordwrap')
+const { rows } = process.stdout
+const wraplength = (rows &lt; 80 ? 80 : rows)
+const wrapper = wordwrap(wraplength)
+</code></pre>
 <p>All we're doing here is wrapping to either the width of the terminal or 80
 characters, whichever happens to be greater.</p>
 <p>Now we can use that <code>wrapper</code> when we log out the results.</p>
-<div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">(</span><span class="nx">toMarkdown</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="p">{</span> <span class="nx">gfm</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})))</span>
-</pre></div>
-
+<pre><code class="language-javascript">console.log(wrapper(toMarkdown(d.toString(), { gfm: true })))
+</code></pre>
 <hr />
 <p>So, awesome! Your script should now do just about everything you want it to do.
 There's really only one big thing left to do: make it less ugly. That
 <code>console.log</code> is really getting gross, don't you think? I like to handle this by
 just defining a bunch of functions I can throw together, so I don't have to have
 all this junk cluttering up my space.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">gfm</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-<span class="kr">const</span> <span class="nx">convert</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">toMarkdown</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">wrap</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">wrapper</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const opts = { gfm: true }
+const convert = a =&gt; toMarkdown(a, opts)
+const wrap = a =&gt; wrapper(a)
+const log = a =&gt; console.log(a)
+</code></pre>
 <p>I'm using <code>a</code> as a parameter here. You can use something more descriptive if
 you'd like, it really doesn't matter.</p>
 <p>And I think we should also just wait until we have all the data before logging
 anything, so let's adjust our HTTP call (and stick it in a function):</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">main</span> <span class="o">=</span> <span class="nx">arg</span> <span class="p">=&gt;</span> <span class="nx">get</span><span class="p">(</span><span class="nx">arg</span><span class="p">,</span> <span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1">// `b` for `body`</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">b</span> <span class="o">+=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">toString</span><span class="p">)</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">log</span><span class="p">(</span><span class="nx">wrap</span><span class="p">(</span><span class="nx">convert</span><span class="p">(</span><span class="nx">b</span><span class="p">))))</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">const main = arg =&gt; get(arg, res =&gt; {
+  let b = '' // `b` for `body`
+  res.on('data', d =&gt; b += d.toString)
+  res.on('end', () =&gt; log(wrap(convert(b))))
+})
+</code></pre>
 <p>Your linter might yell at you saying you can't return assignment. It's probably
 right, but nothing's going to break. If you're concerned about it, just wrap
 that <code>b += d.toString()</code> in some braces.</p>
 <p>Obviously, this is a function, so we need to call it somewhere.</p>
-<div class="highlight"><pre><span></span><span class="nx">main</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">main(src)
+</code></pre>
 <p>We're just passing it our URL that may or may not have <code>http://</code> stuck on to it.</p>
 <hr />
 <p>Now you're really done! I suggest you go check out <code>to-markdown</code>, play around
@@ -314,63 +294,61 @@ manifest file (<code>package.json</code>).</p>
 <p>Note: I tend to prefer shorter (but hopefully still readable) names for things,
 and a somewhat opinionated code style, so the full script below may differ
 a bit from your results, and that's totally fine.</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;html2txt&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;html2text sorta thing for blog post&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Zac Anger&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;zac@zacanger.com&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://zacanger.com&quot;</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;WTFPL&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;node index&quot;</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;homepage&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/zacanger/blog#readme&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;repository&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/zacanger/blog.git&quot;</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;bugs&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/zacanger/blog/issues&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;keywords&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;html&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;markdown&quot;</span>
-  <span class="p">],</span>
-  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;to-markdown&quot;</span><span class="p">:</span> <span class="s2">&quot;^3.0.1&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;wordwrap&quot;</span><span class="p">:</span> <span class="s2">&quot;^1.0.0&quot;</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{}</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;html2txt&quot;,
+  &quot;description&quot;: &quot;html2text sorta thing for blog post&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;author&quot;: {
+    &quot;name&quot;: &quot;Zac Anger&quot;,
+    &quot;email&quot;: &quot;zac@zacanger.com&quot;,
+    &quot;url&quot;: &quot;http://zacanger.com&quot;
+  },
+  &quot;license&quot;: &quot;WTFPL&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index&quot;
+  },
+  &quot;homepage&quot;: &quot;https://github.com/zacanger/blog#readme&quot;,
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/zacanger/blog.git&quot;
+  },
+  &quot;bugs&quot;: &quot;https://github.com/zacanger/blog/issues&quot;,
+  &quot;keywords&quot;: [
+    &quot;html&quot;,
+    &quot;markdown&quot;
+  ],
+  &quot;dependencies&quot;: {
+    &quot;to-markdown&quot;: &quot;^3.0.1&quot;,
+    &quot;wordwrap&quot;: &quot;^1.0.0&quot;
+  },
+  &quot;devDependencies&quot;: {}
+}
+</code></pre>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+const
+  url      = process.argv[2] || 'zacanger.com'
+, { get }  = require('http')
+, { rows } = process.stdout
+, len      = (rows &lt; 80 ? 80 : rows)
+, toMd     = require('to-markdown')
+, ww       = require('wordwrap')
+, wrapper  = ww(len)
+, opts     = { gfm: true }
+, conv     = a =&gt; toMd(a, opts)
+, wrap     = a =&gt; wrapper(a)
+, log      = a =&gt; console.log(a)
+, src      = url.includes(('http://') || url.includes('https://')) ? url : \`http://${url}\`
 
-<span class="kr">const</span>
-  <span class="nx">url</span>      <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;zacanger.com&#39;</span>
-<span class="p">,</span> <span class="p">{</span> <span class="nx">get</span> <span class="p">}</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="p">{</span> <span class="nx">rows</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span>
-<span class="p">,</span> <span class="nx">len</span>      <span class="o">=</span> <span class="p">(</span><span class="nx">rows</span> <span class="o">&lt;</span> <span class="mi">80</span> <span class="o">?</span> <span class="mi">80</span> <span class="o">:</span> <span class="nx">rows</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">toMd</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;to-markdown&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">ww</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;wordwrap&#39;</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">wrapper</span>  <span class="o">=</span> <span class="nx">ww</span><span class="p">(</span><span class="nx">len</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">opts</span>     <span class="o">=</span> <span class="p">{</span> <span class="nx">gfm</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-<span class="p">,</span> <span class="nx">conv</span>     <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">toMd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">wrap</span>     <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">wrapper</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">log</span>      <span class="o">=</span> <span class="nx">a</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">src</span>      <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">includes</span><span class="p">((</span><span class="s1">&#39;http://&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">url</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">))</span> <span class="o">?</span> <span class="nx">url</span> <span class="o">:</span> <span class="err">\</span><span class="sb">`http://</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">\`</span>
+const main = a =&gt; get(a, res =&gt; {
+  let b = ''
+  res.on('data', d =&gt; {b += d.toString()})
+  res.on('end', () =&gt; log(wrap(conv(b))))
+})
 
-<span class="sb">const main = a =&gt; get(a, res =&gt; {</span>
-<span class="sb">  let b = &#39;&#39;</span>
-<span class="sb">  res.on(&#39;data&#39;, d =&gt; {b += d.toString()})</span>
-<span class="sb">  res.on(&#39;end&#39;, () =&gt; log(wrap(conv(b))))</span>
-<span class="sb">})</span>
-
-<span class="sb">if (!module.parent) main(src)</span>
-</pre></div>
-
+if (!module.parent) main(src)
+</code></pre>
 <p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
 Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
 Github</a>.</p>

@@ -53,32 +53,31 @@ lite version</a>) and
 interactive
 version!</a>).
 Electron also needs a Javascript entry point, which looks something like this:</p>
-<div class="highlight"><pre><span></span>var app           = require(&#39;app&#39;)
-  , BrowserWindow = require(&#39;browser-window&#39;)
-require(&#39;crash-reporter&#39;).start()
+<pre><code>var app           = require('app')
+  , BrowserWindow = require('browser-window')
+require('crash-reporter').start()
 
 var mainWindow = null
 
-app.on(&#39;window-all-closed&#39;, function(){
-  if(process.platform != &#39;darwin&#39;){
+app.on('window-all-closed', function(){
+  if(process.platform != 'darwin'){
       app.quit()
   }
 })
-app.on(&#39;ready&#39;, function(){
+app.on('ready', function(){
   mainWindow = new BrowserWindow({
     width                : 1200
   , height               : 800
-  , &#39;accept-first-mouse&#39; : true
-  , &#39;title-bar-style&#39;    : &#39;hidden&#39;
-  , &#39;node-integration&#39;   : false
+  , 'accept-first-mouse' : true
+  , 'title-bar-style'    : 'hidden'
+  , 'node-integration'   : false
   })
-  mainWindow.loadUrl(&#39;http://127.0.0.1:9090&#39;)
-  mainWindow.on(&#39;closed&#39;, function(){
+  mainWindow.loadUrl('http://127.0.0.1:9090')
+  mainWindow.on('closed', function(){
     mainWindow = null
   })
 })
-</pre></div>
-
+</code></pre>
 <p>That 'node-integration' line is <em>really important</em> if you want to use certain
 client-side libraries like Angular or jQuery that use the word 'module;' your
 stuff will just completely break without it.</p>

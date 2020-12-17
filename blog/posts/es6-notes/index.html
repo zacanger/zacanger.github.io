@@ -45,31 +45,28 @@ the difference is that const can't be <em>defined</em> again, whereas let <em>ca
 redefined. <em>Neither</em> of them can be <em>declared</em> again.</p>
 <hr />
 <p>Structured assignment and destructuring:</p>
-<div class="highlight"><pre><span></span>let {name, age} =
+<pre><code>let {name, age} =
 { a: 1,
-  name: &#39;zac&#39;,
+  name: 'zac',
   age: 26,
   b: false }
-</pre></div>
-
+</code></pre>
 <p>Here, the <code>let</code> is a <em>pattern</em>, looking for <code>age</code> and <code>name</code> in the object. It
 ignores the keys that don't match what it's looking for. We can build this
 pattern like so, for using 'pretty' keys to access 'ugly' keys:</p>
-<div class="highlight"><pre><span></span>let {qzrf: name, kjlpo: age} =
+<pre><code>let {qzrf: name, kjlpo: age} =
 { a: 1,
-  qzrf: &#39;zac&#39;,
+  qzrf: 'zac',
   kjlpo: 26,
   b: false
 }
-</pre></div>
-
+</code></pre>
 <p>We can dig down there a little bit, too!</p>
-<div class="highlight"><pre><span></span>let  {asdf: {ghjkl:name}} =
-{asdf: {ghjkl:&#39;zac&#39;}}
-</pre></div>
-
+<pre><code>let  {asdf: {ghjkl:name}} =
+{asdf: {ghjkl:'zac'}}
+</code></pre>
 <p>Or even: <code>let {xxx:{yyy:[z:name]}} = {xxx{yyy: [1, 3, 'zac', false]}}</code></p>
-<div class="highlight"><pre><span></span>let [x, y] = [1, 2] // PATTERN = ARRAY
+<pre><code>let [x, y] = [1, 2] // PATTERN = ARRAY
 
 let [,x, y] = [1, 2, 3] // will MAKE X=2, y=3!
 
@@ -79,53 +76,48 @@ function foo({asdf:ghjkl}){
   // doing things with ghjkl here!
   // because we can destructure **right in the arguments**
 }
-</pre></div>
-
+</code></pre>
 <p>Default parameters:</p>
-<div class="highlight"><pre><span></span>function bar(x=0){
+<pre><code>function bar(x=0){
   // if no argument passed, 0 is the default
 }
 
-function quux(y=&#39;baz&#39;){
+function quux(y='baz'){
   return y
 }
-console.log(quux()) // returns &#39;baz&#39;!
-</pre></div>
-
+console.log(quux()) // returns 'baz'!
+</code></pre>
 <p>Rest parameters:</p>
-<div class="highlight"><pre><span></span>function hi(...stuff){
+<pre><code>function hi(...stuff){
   return stuff
 }
 hi(1, false) // returns 1, false
-hi(&#39;me&#39;, &#39;you&#39;, &#39;things&#39;, 4, true) // returns &#39;me&#39;, &#39;you&#39;, &#39;things&#39;, 4, true
+hi('me', 'you', 'things', 4, true) // returns 'me', 'you', 'things', 4, true
 // the ...stuff returns a real, manipulable array, so you can map and whatnot on it
 
 function bye(q, ...r){
-  // here, we can manipulate q, and _everything else that&#39;s passed in_ will be part of &#39;...r&#39;
+  // here, we can manipulate q, and _everything else that's passed in_ will be part of '...r'
 }
 
 function what(s, ...t, u){}
-// this will _not_ work, because anything passed after &#39;s&#39; will just go straight to &#39;...t&#39;;
-// &#39;u&#39; will get _nothing_.
-</pre></div>
-
+// this will _not_ work, because anything passed after 's' will just go straight to '...t';
+// 'u' will get _nothing_.
+</code></pre>
 <p>Spread parameters:</p>
-<div class="highlight"><pre><span></span>let a = [1,2,3]
+<pre><code>let a = [1,2,3]
 function foo(a,b,c){return a+b+c}
 foo(...a)
-</pre></div>
-
+</code></pre>
 <p>So what we're doing is <em>un</em>-packaging that array, and spreading it out to fill
 all the space.</p>
-<div class="highlight"><pre><span></span>console.log([1, 2, 3, ...a])
+<pre><code>console.log([1, 2, 3, ...a])
 // returns [1, 2, 3, 1, 2, 3]
-</pre></div>
-
+</code></pre>
 <p>Template strings. Backticks instead of double-quotes. Dollar sign instead of a
 hash. That's about all.</p>
 <p>Tag functions can manipulate both variables and template strings inside of
 them. Wicked cool.</p>
-<div class="highlight"><pre><span></span>function template(strings, ...keys){
+<pre><code>function template(strings, ...keys){
   return (function(...values){
     var dict   = values[values.length - 1] || {}
     var result = [strings[0]]
@@ -133,12 +125,11 @@ them. Wicked cool.</p>
       var value = Number.isInteger(key) ? values[key] : dict[key]
       result.push(value, strings[i + 1])
     })
-    return result.join(&#39;&#39;)
+    return result.join('')
   })
 }
-template`${0} ${&#39;foo&#39;}!`(&#39;Hello&#39;, {foo: &#39;world...&#39;|)} // Hello world....
-</pre></div>
-
+template`${0} ${'foo'}!`('Hello', {foo: 'world...'|)} // Hello world....
+</code></pre>
 <p>Classes: sugar for the Java/Rb/Py kids.</p>
 <p>The <code>super()</code> means 'inherit this thingy from what we're extending.' And the
 classical inheritance syntax goes <code>class Bar extends Foo { constructor(stuff,
@@ -150,51 +141,47 @@ calling function is ovoked.</p>
 functions. Like <code>foo =&gt; bar =&gt; bar(asdf){return asdf}</code>. Lets inner function
 close over the <code>this</code> of the outer fn.</p>
 <p>Iterators:</p>
-<div class="highlight"><pre><span></span>let a  = [1, 2, 3]
+<pre><code>let a  = [1, 2, 3]
 let it = a.values()
 console.log(it.next()) // returns {&quot;value&quot;:1,&quot;done&quot;:false}
 console.log(it.next()) // 2, false
 console.log(it.next()) // 3, false
 console.log(it.next()) // finally, just returns {&quot;done&quot;:true}
-</pre></div>
-
+</code></pre>
 <p>...iterators are sexy. Imagine one that returns pi, gradually. ES6 gives you
 strings, arrays, maps, and sets, by default. The <code>.values()</code> and the <code>.next()</code>
 are ES6 specific. The <code>.values()</code> is what gives you the next value when
 called. Oh my god, this is nice.</p>
 <p>forOf:</p>
-<div class="highlight"><pre><span></span>let a = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+<pre><code>let a = ['a', 'b', 'c']
 for (let i of a){
   console.log(i)
 }
-</pre></div>
-
+</code></pre>
 <p>This only works with structures that give you iterators by default (so the
 aforementioned strings, arrays, maps, and sets).</p>
 <p>Map:</p>
-<div class="highlight"><pre><span></span>let myMap = new Map()
+<pre><code>let myMap = new Map()
 let a = {}
 let b = null
 let c = 4
-myMap.set(a, &#39;hi&#39;)
+myMap.set(a, 'hi')
 myMap.set(b, [1, 2, 3])
 console.log(myMap.get(c)) // 4
-</pre></div>
-
+</code></pre>
 <p>So, we're just pairing this thing with that thing, without actually storing
 those things there for realsies. There are methods for removing, clearing out,
 etc., as well.</p>
 <p>Sets: these are like arrays, but with no duplication allowed. Great for
 finding out if something's already in an array.</p>
-<div class="highlight"><pre><span></span>let mySet = new Set()
-mySet.add(&#39;hi&#39;)
-console.log(mySet.has(&#39;hi&#39;)) // true
-mySet.add(&#39;foo&#39;)
+<pre><code>let mySet = new Set()
+mySet.add('hi')
+console.log(mySet.has('hi')) // true
+mySet.add('foo')
 console.log(mySet.size) // 2
-mySet.add(&#39;hi&#39;)
+mySet.add('hi')
 console.log(mySet.size) // still 2!
-</pre></div>
-
+</code></pre>
 <p>There are a bunch of methods like clearing, removing, providing an iterator,
 etc., like in maps.</p>
 <p>Modules are a thing.</p>

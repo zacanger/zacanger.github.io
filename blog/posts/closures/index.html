@@ -39,17 +39,16 @@ function has been returned.</p>
 returns [as if a 'stack-frame' were malloc'ed instead of being on the stack!].
 Whatever that means.)</p>
 <p>Here, let's explain in Javascript.</p>
-<div class="highlight"><pre><span></span>function sayHi(name){
-  var text = &#39;hi &#39; + name // (local var)
+<pre><code>function sayHi(name){
+  var text = 'hi ' + name // (local var)
     , say  = function(){
     console.log(text)
     return say
   }
 }
-var sayIt = sayHi(&#39;zac&#39;)
-sayIt() // returns &#39;hi zac&#39;
-</pre></div>
-
+var sayIt = sayHi('zac')
+sayIt() // returns 'hi zac'
+</code></pre>
 <p>So here, a function is returned as a variable.</p>
 <p>What we're doing here is putting a function inside a function. And we're
 getting something accessible outside of that enclosing function, right?</p>
@@ -61,7 +60,7 @@ of (after) that parent function. Try using the above code, and then doing
 <code>sayIt.toString()</code>, and you'll see that the variable <code>say</code> is returned --
 which is a function that references <code>text</code>, which is a variable local to
 <code>sayHi()</code>.</p>
-<div class="highlight"><pre><span></span>function oneMore(){
+<pre><code>function oneMore(){
   var i     = 1
     , logIt = function(){
     console.log(i)
@@ -71,11 +70,10 @@ which is a function that references <code>text</code>, which is a variable local
 }
 var logStuff = logIt()
 oneMore() // 2
-</pre></div>
-
+</code></pre>
 <p>Make sense? Here's a slightly more complex example pulled straight from the
 interwebs.</p>
-<div class="highlight"><pre><span></span>var logNumber, increaseNumber, setNumber
+<pre><code>var logNumber, increaseNumber, setNumber
 function setupGlobals(){
   var i = 4
   logNumber = function(){
@@ -97,23 +95,22 @@ var oldLog = logNumber
 setupGlobals()
 logNumber()     // 4
 oldLog()        // 8
-</pre></div>
-
+</code></pre>
 <p>Local variables from a closure will be overwritten if you call that outer
 function again. Don't forget this, because you can get some really screwy
 stuff going on if you do!</p>
 <p>There is a closure for <em>every function call</em>, not for every <em>function
 declaration</em>. This example might help demonstrate this.</p>
-<div class="highlight"><pre><span></span>function newClosure(fooInt, barRef){
+<pre><code>function newClosure(fooInt, barRef){
   var num     = fooInt
     , quuxArr = [1, 2, 3]
     , ref     = barRef
   return function(x){
     num += x
     quuxArr.push(num)
-    console.log(&#39;num: &#39; + num +
-      &#39;; quuxArr: &#39; + quuxArr.toString() +
-      &#39;; ref.bazVar: &#39; + ref.bazVar)
+    console.log('num: ' + num +
+      '; quuxArr: ' + quuxArr.toString() +
+      '; ref.bazVar: ' + ref.bazVar)
   }
 }
 obj = {bazVar: 4}
@@ -124,8 +121,7 @@ fn2(1)     // num:9; quuxArr:1,2,3,8; ref.bazVar: 4
 obj.bazVar++ // 4
 fn1(2)     // num:7; quuxArr:1,2,3,5,7; ref.bazVar:5
 fn2(2)     // num:11; quuxArr:1,2,3,9,11; ref.bazVar:5
-</pre></div>
-
+</code></pre>
 <p>So... a quick recap?</p>
 <p>When a function is <em>used</em> inside another function, you've used a <em>closure</em>.
 This includes <code>eval()</code>. (Note that using a constructor, as in <code>new
@@ -138,22 +134,20 @@ local variables.</p>
 <p>Once upon a time, there was a princess: <code>function princess(){</code>
 Who lived in a world full of adventures. There was stuff with unicorns and
 dragons and a whole range of other wild shenanigans.</p>
-<div class="highlight"><pre><span></span>var adventures = []
+<pre><code>var adventures = []
 function princeCharming(){}
 var unicorns   = {}
   , dragons    = {}
-  , otherStuff = &#39;howdy&#39;
-</pre></div>
-
+  , otherStuff = 'howdy'
+</code></pre>
 <p>But said princess would eventually always have to <code>return {</code> to the real
 world, and she'd then talk about all her crazy-awesome princessy adventuring.</p>
-<div class="highlight"><pre><span></span>    story : function(){
+<pre><code>    story : function(){
       return adventures[adventures.length -1]
     }
   }
 }
-</pre></div>
-
+</code></pre>
 <p>Unfortunately all folks would see is some <code>var littleKid = princess()</code> telling
 a wild <code>littleKid.story()</code>.</p>
 <p>Those folks new there were real princesses, but they wouldn't believe in

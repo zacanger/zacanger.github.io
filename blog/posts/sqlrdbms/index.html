@@ -41,7 +41,7 @@
 <li>So... let's learn some basic queries!</li>
 </ul>
 <hr />
-<h3>Queries</h3>
+<h3 id="queries">Queries</h3>
 <p>These will be in SQLite, specifically.</p>
 <pre><code>SELECT * FROM foo_bar
 SELECT quux,baz FROM foo_bar
@@ -82,7 +82,7 @@ SELECT * FROM what WHERE things = 'stuff'
 <li><code>SUBSTR(column_name, index, number_of_chars)</code>. Character number is optional; if not included, it returns the whole rest of the string. (In other versions of SQL, <code>RIGHT</code> can do this.)</li>
 <li><code>COALESCE</code> takes a list of columns, returns value of the first column that is not <code>null</code>. <code>SELECT foo, COALESCE(bar, quux) as baz FROM asdfghjkl</code></li>
 </ul>
-<h4>Joins</h4>
+<h4 id="joins">Joins</h4>
 <p>This is a big deal, so it gets its own subsection.</p>
 <ul>
 <li>Joins are the big performance issue. Things take a long time to find, when they're in multiple tables. (<em>This isn't from the lecture, but I'd place 5 joins as a limit for my own usage, and even that is getting pretty gross....</em>)</li>

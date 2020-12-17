@@ -35,33 +35,31 @@
     <div>
       <p>What are <code>@</code> and <code>=&gt;</code>?</p>
 <p>What is fixity? Is this the same as precedence?</p>
-<div class="highlight"><pre><span></span><span class="nf">foo</span> <span class="ow">::</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="c1">-- in haskell would be</span>
-<span class="nf">foo</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Array</span> <span class="n">a</span> <span class="c1">-- in purescript, i think?</span>
-<span class="c1">-- there&#39;s no [] in annotations, it&#39;s always Array a</span>
-<span class="c1">-- but there is List, but you have to use Data.List instead of just []</span>
+<pre><code class="language-haskell">foo :: [a] -- in haskell would be
+foo :: forall a. Array a -- in purescript, i think?
+-- there's no [] in annotations, it's always Array a
+-- but there is List, but you have to use Data.List instead of just []
 
-<span class="kt">Number</span> <span class="c1">-- is js number</span>
-<span class="kt">Int</span> <span class="c1">-- is 32 bit -- and it&#39;s basically n | 0 (?)</span>
+Number -- is js number
+Int -- is 32 bit -- and it's basically n | 0 (?)
 
-<span class="kt">Unit</span> <span class="c1">-- ()</span>
+Unit -- ()
 
-<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span> <span class="c1">-- would be</span>
-<span class="nf">main</span> <span class="ow">::</span> <span class="kt">Eff</span> <span class="c1">-- basically, but really more something like</span>
-<span class="nf">main</span> <span class="ow">::</span> <span class="kt">Eff</span> <span class="p">(</span><span class="n">process</span> <span class="ow">::</span> <span class="kt">PROCESS</span><span class="p">,</span> <span class="n">fs</span> <span class="ow">::</span> <span class="kt">FS</span><span class="p">)</span> <span class="kt">Unit</span> <span class="c1">-- or something</span>
+main :: IO () -- would be
+main :: Eff -- basically, but really more something like
+main :: Eff (process :: PROCESS, fs :: FS) Unit -- or something
 
-<span class="nf">a</span> <span class="o">&lt;&gt;</span> <span class="n">b</span> <span class="c1">-- a ++ b -- concat a b</span>
+a &lt;&gt; b -- a ++ b -- concat a b
 
-<span class="kt">A</span> <span class="o">&lt;=</span> <span class="kt">B</span> <span class="c1">-- B implies instance of A</span>
-</pre></div>
-
+A &lt;= B -- B implies instance of A
+</code></pre>
 <p>something like this is kind of right i think (what builds on what):
 i</p>
-<div class="highlight"><pre><span></span>      monad
+<pre><code class="language-text">      monad
   applicative   ??
     apply  bind
       functor
-</pre></div>
-
+</code></pre>
 <p>No tuples, just records. But there's a lib for tuples.</p>
 <p><code>&lt;&lt;&lt;</code>  is <code>.</code> for rtl composition, and <code>&gt;&gt;&gt;</code> for ltr</p>
 <p>Lots of <code>Data.List</code> stuff is in <code>Data.Foldable</code> and <code>Data.Traversable</code> instead.</p>

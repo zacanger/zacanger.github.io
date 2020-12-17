@@ -39,19 +39,18 @@ but wanted to get this idea out there tonight.</p>
 <p><a href="http://ryanwalsh.io">Someone</a> brought up the idea of a React component
 generator the other day, and I immediately thought <em>Bash script</em>. Well, that's
 pretty easy.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<pre><code class="language-shell">#!/bin/bash
 
-<span class="nb">echo</span> <span class="s2">&quot;</span>
-<span class="s2">import React from &#39;react&#39;</span>
+echo &quot;
+import React from 'react'
 
-<span class="s2">const </span><span class="nv">$1</span><span class="s2"> = () =&gt; (</span>
-<span class="s2">  &lt;div&gt;</span><span class="nv">$1</span><span class="s2">&lt;/div&gt;</span>
-<span class="s2">)</span>
+const $1 = () =&gt; (
+  &lt;div&gt;$1&lt;/div&gt;
+)
 
-<span class="s2">export default </span><span class="nv">$1</span><span class="s2"></span>
-<span class="s2">&quot;</span> &gt; <span class="nv">$1</span>.js
-</pre></div>
-
+export default $1
+&quot; &gt; $1.js
+</code></pre>
 <p>There you go, a basic pure component generator script. This could be a little
 more complex, handle some content, handle generating a class instead of a
 function, and whatever, but that's the basic idea, in Bash.</p>
@@ -61,19 +60,18 @@ arguments and spitting out a file.</p>
 </blockquote>
 <p>The idea here is that you just call this script from somewhere and it gives you
 a component already laid out for you. It's not too fancy, but it's useful.</p>
-<div class="highlight"><pre><span></span>$ ./my-script.sh Foo
+<pre><code class="language-shell">$ ./my-script.sh Foo
 
 $ cat Foo.js
 
-import React from <span class="s1">&#39;react&#39;</span>
+import React from 'react'
 
-const <span class="nv">Foo</span> <span class="o">=</span> <span class="o">()</span> <span class="o">=</span>&gt; <span class="o">(</span>
+const Foo = () =&gt; (
   &lt;div&gt;Foo&lt;/div&gt;
-<span class="o">)</span>
+)
 
-<span class="nb">export</span> default Foo
-</pre></div>
-
+export default Foo
+</code></pre>
 <p>That could save a little bit of time. I use something similar for generating an
 <code>index.html</code> for React apps.</p>
 <p>This is a lot like using snippets in your editor, except it doesn't rely on you
@@ -85,24 +83,22 @@ file around. Pretty handy, I think.</p>
 <p>It's still pretty straightforward in Node, as it happens.</p>
 <p>We only need one file to get going. I'll call mine <del>compgen</del> rcg.js, for React
 Component Generator.</p>
-<div class="highlight"><pre><span></span>touch rcg.js     <span class="c1"># create a new file</span>
-chmod +x rcg.js  <span class="c1"># set an executable bit on the file</span>
-vi rcg.js        <span class="c1"># open it for editing</span>
-</pre></div>
-
+<pre><code class="language-shell">touch rcg.js     # create a new file
+chmod +x rcg.js  # set an executable bit on the file
+vi rcg.js        # open it for editing
+</code></pre>
 <p>(Obviously substitute your editor for <code>vi</code>.)</p>
 <p>What's the first thing any executable script needs? A shebang! We'll also go
 ahead and use <code>process</code>. If you don't know <code>process</code>, open Node in a terminal
 (<code>node</code>) and just type in <code>process</code>. It's pretty cool. The bit we want is
 <code>.argv</code>, which is an array of all arguments passed. It always has <code>node</code> and the
 file that's calling it as the first two elements, so we don't need those.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">component</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
+const args = process.argv.slice(2)
+const type = args[0]
+const component = args[1]
+</code></pre>
 <p>What we're going for here is a script we can call like <code>./rcg.js function Foo</code>,
 or with a <code>class</code> parameter instead.</p>
 <p>The next thing we'll need to do is actually sketch out these components. I'll be
@@ -112,117 +108,110 @@ really, you should just update). To update (on Mac or Linux; on Windows you
 should just go to <a href="http://nodejs.org">the website</a> and download a new version),
 just <code>npm i -g n &amp;&amp; n latest</code>.</p>
 <p>Let's write out what a pure (function) component looks like, first.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">pureComponent</span> <span class="o">=</span> <span class="sb">`</span>
-<span class="sb">import React from &#39;react&#39;</span>
+<pre><code class="language-javascript">const pureComponent = `
+import React from 'react'
 
-<span class="sb">const </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> = () =&gt; &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+const ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
 
-<span class="sb">export default </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"></span>
-<span class="sb">`</span>
-</pre></div>
-
+export default ${component}
+`
+</code></pre>
 <p>It doesn't have a whole lot going on, I know. This is just a quick file
 generator, it can't write your code for you. :P</p>
 <p>If you can't update node, that'd look something like this:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">pureComponent</span> <span class="o">=</span> <span class="s1">&#39;import React from \&#39;react\&#39;&#39;</span> <span class="o">+</span>
-<span class="s1">&#39;function &#39;</span> <span class="o">+</span> <span class="nx">component</span> <span class="o">+</span> <span class="s1">&#39;(){&#39;</span> <span class="o">+</span>
-  <span class="s1">&#39;return &lt;div&gt;&#39;</span> <span class="o">+</span> <span class="nx">component</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span> <span class="o">+</span>
-<span class="s1">&#39;}&#39;</span> <span class="o">+</span>
-<span class="s1">&#39;module.exports = &#39;</span> <span class="o">+</span> <span class="nx">component</span>
-</pre></div>
-
+<pre><code class="language-javascript">var pureComponent = 'import React from \'react\'' +
+'function ' + component + '(){' +
+  'return &lt;div&gt;' + component + '&lt;/div&gt;' +
+'}' +
+'module.exports = ' + component
+</code></pre>
 <p>(Kind of annoying, right?)</p>
 <p>So now, let's get one for a class (I won't go through doing this one with an old
 version of Node, nor with <code>React.createClass</code>&mdash;just with ES2015 classes).</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">classComponent</span> <span class="o">=</span> <span class="sb">`</span>
-<span class="sb">import React, { Component } from &#39;react&#39;</span>
+<pre><code class="language-javascript">const classComponent = `
+import React, { Component } from 'react'
 
-<span class="sb">export default class </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> extends Component {</span>
-<span class="sb">  render() {</span>
-<span class="sb">    return (</span>
-<span class="sb">      &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
-<span class="sb">    )</span>
-<span class="sb">  }</span>
-<span class="sb">}</span>
-<span class="sb">`</span>
-</pre></div>
-
+export default class ${component} extends Component {
+  render() {
+    return (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+`
+</code></pre>
 <p>Lovely! Obviously this should be more complex; if your class only has a render
 function that returns JSX, just use a function instead.</p>
 <p>Great, now you have a bunch of stuff in a file that doesn't do anything! Let's
 handle arguments and make it actually do things.</p>
 <p>There are a lot of great libraries for parsing options, and I'll list a few of
 them in the next blog post. For now, we'll just use <code>if</code> statements.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">toWrite</span> <span class="c1">// this is what we&#39;ll end up writing to a file</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">toWrite</span> <span class="o">=</span> <span class="nx">pureComponent</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">toWrite</span> <span class="o">=</span> <span class="nx">classComponent</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">!==</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;please pass type of component as first argument&#39;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">let toWrite // this is what we'll end up writing to a file
+if (type === 'function') {
+  toWrite = pureComponent
+}
+if (type === 'class') {
+  toWrite = classComponent
+}
+if (type !== 'function' &amp;&amp; type !== 'class') {
+  console.log('please pass type of component as first argument')
+}
+</code></pre>
 <p>That's a little sloppy&mdash;intentionally! I'm hoping you take some time to
 write this out a little better than just copying and pasting from this blog
 post.</p>
 <p>There's one major bit left: actually writing a file. We'll need Node's <code>fs</code> for
 this.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">writeFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">const { writeFile } = require('fs')
+</code></pre>
 <p>Now, at the bottom of our file, let's actually do the fun bit.</p>
-<div class="highlight"><pre><span></span><span class="nx">writeFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">.js`</span><span class="p">,</span> <span class="nx">toWrite</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">writeFile(`${component}.js`, toWrite, 'utf8', err =&gt; {
+  if (err) console.log(err)
+})
+</code></pre>
 <p>Now your whole file should look something like this:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
+<pre><code class="language-javascript">#!/usr/bin/env node
 
-<span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="kr">const</span> <span class="nx">component</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">writeFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+const args = process.argv.slice(2)
+const type = args[0]
+const component = args[1]
+const { writeFile } = require('fs')
 
-<span class="kr">const</span> <span class="nx">pureComponent</span> <span class="o">=</span> <span class="sb">`</span>
-<span class="sb">import React from &#39;react&#39;</span>
+const pureComponent = `
+import React from 'react'
 
-<span class="sb">const </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> = () =&gt; &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
+const ${component} = () =&gt; &lt;div&gt;${component}&lt;/div&gt;
 
-<span class="sb">export default </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"></span>
-<span class="sb">`</span>
+export default ${component}
+`
 
-<span class="kr">const</span> <span class="nx">classComponent</span> <span class="o">=</span> <span class="sb">`</span>
-<span class="sb">import React, { Component } from &#39;react&#39;</span>
+const classComponent = `
+import React, { Component } from 'react'
 
-<span class="sb">export default class </span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb"> extends Component {</span>
-<span class="sb">  render() {</span>
-<span class="sb">    return (</span>
-<span class="sb">      &lt;div&gt;</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">&lt;/div&gt;</span>
-<span class="sb">    )</span>
-<span class="sb">  }</span>
-<span class="sb">}</span>
-<span class="sb">`</span>
+export default class ${component} extends Component {
+  render() {
+    return (
+      &lt;div&gt;${component}&lt;/div&gt;
+    )
+  }
+}
+`
 
-<span class="kd">let</span> <span class="nx">toWrite</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">toWrite</span> <span class="o">=</span> <span class="nx">pureComponent</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">toWrite</span> <span class="o">=</span> <span class="nx">classComponent</span>
-<span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span> <span class="o">!==</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;please pass type of component as first argument&#39;</span><span class="p">)</span>
-<span class="p">}</span>
+let toWrite
+if (type === 'function') {
+  toWrite = pureComponent
+}
+if (type === 'class') {
+  toWrite = classComponent
+}
+if (type !== 'function' &amp;&amp; type !== 'class') {
+  console.log('please pass type of component as first argument')
+}
 
-<span class="nx">writeFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">component</span><span class="si">}</span><span class="sb">.js`</span><span class="p">,</span> <span class="nx">toWrite</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-<span class="p">})</span>
-</pre></div>
-
+writeFile(`${component}.js`, toWrite, 'utf8', err =&gt; {
+  if (err) console.log(err)
+})
+</code></pre>
 <p>Boom! You've made a command-line app! You can drop this anywhere in your
 <code>$PATH</code> and call it from anywhere to generate a component for you! (<code>$PATH</code> is
 where your system looks for files to execute. If you don't have something like

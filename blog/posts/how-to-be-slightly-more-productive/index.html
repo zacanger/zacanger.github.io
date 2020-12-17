@@ -41,7 +41,7 @@ most developers I've seen just have <em>no</em> idea how much time they waste.</
 <p>So here are just some tiny little tips. None of these are big news, none
 are esoteric, none are risky, all require a little bit of work but make things
 a lot faster in a very short period of time.</p>
-<h2>Bash things</h2>
+<h2 id="bash-things">Bash things</h2>
 <p>you can use zsh, and that's a thing, and it doesn't suck, okay, but it pays
 to be good at Bash. Bash is everywhere. It's the default shell on just about
 every system. Zsh gives you nice things, but you can get all the same nice
@@ -49,19 +49,18 @@ things in Bash with just a tiny bit of work.</p>
 <p>The number one most useful thing to do with Bash is aliases, I think.
 It's generally recommended that you use functions if you can, but there's
 really no harm in using aliases. Try these out, for example:</p>
-<div class="highlight"><pre><span></span>alias ns=&#39;npm start&#39;
-alias nt=&#39;npm test&#39;
-alias nis=&#39;npm i -S&#39;
-alias nid=&#39;npm i -D&#39;
-</pre></div>
-
+<pre><code>alias ns='npm start'
+alias nt='npm test'
+alias nis='npm i -S'
+alias nid='npm i -D'
+</code></pre>
 <p>Throw these at the bottom of your <code>~/.bashrc</code> (or <code>~/.bash_profile</code> on a Mac).</p>
-<h2>npm</h2>
+<h2 id="npm">npm</h2>
 <p>For that matter, there's the aliases up there... npm has a bunch built-in.
 For example, you never need to type out <code>npm install --save-dev</code>
 -- just do <code>npm i -S</code>.</p>
 <p>npm gives you a million things. Just read the docs sometime. or the help screens.</p>
-<h2>The Terminal</h2>
+<h2 id="the-terminal">The Terminal</h2>
 <p>Use readline stuff. ctrl-w, ctrl-a, ctrl-e, even just those, just use them. ctrl-arrow
 (or option-arrow on Mac) to get around between words. Use these things. Or check
 out vi-mode.</p>
@@ -75,11 +74,11 @@ examples).</p>
 out there (many many more, just search). or export aliases to move to places. Or you
 can use <a href="https://github.com/zacanger/z/blob/master/.bash/functions/g.sh">mine</a>
 if you'd like.</p>
-<h2>Markdown</h2>
+<h2 id="markdown">Markdown</h2>
 <p>If you don't use it, use it. If you still click around in Microsoft Word or Google Docs,
 goddamn, take two minutes to learn the easiest and most popular plain-to-rich-text
 lightweight-markup authoring format out there.</p>
-<h2>Your Editor</h2>
+<h2 id="your-editor">Your Editor</h2>
 <p>I don't care what your editor is. I really don't. I know just enough about lisp
 to not even hate Emacs users. I do dislike VS Code, but mostly because of the
 idiotic and transparent licensing scheme. But the built-in debugger isn't bad
@@ -107,14 +106,14 @@ better at using your tools.</p>
 <p>Laurie Voss, the COO of npm, said in a <a href="https://www.youtube.com/watch?v=NWo-RIHiEJ4">talk</a>
 that one of the most important things you can do is be good at your editor. He's
 right.</p>
-<h2>Use Git</h2>
+<h2 id="use-git">Use Git</h2>
 <p>This should be obvious. but, I mean, really use it. Use it enough that you
 learn how to use a gitconfig, templates, etc., and try out lots of different
 extensions and wrappers for git (like hub, legit, ghcli, etc.). Do stuff with
 Git. Get really comfortable with Git. It's important. Other version control also
 matters sometimes in some businesses but really really really spend some time
 learning Git.</p>
-<h2>Configs</h2>
+<h2 id="configs">Configs</h2>
 <p>(<a href="https://github.com/zacanger/z">like these</a>)</p>
 <p>Organize yours. Store them somewhere, like in a repo. Because when your current
 computer dies (and it will), it'll take you weeks to get things feeling decent

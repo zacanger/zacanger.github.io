@@ -56,26 +56,26 @@ where all your disk space went, if you do have a mac.</p>
 <ul>
 <li><code>du -h . | grep ^[5-9][0-9][0-9.]M</code><ul>
 <li>
-<h1>will list all directories by total size of contents, if larger than 500mb</h1>
+<h1 id="will-list-all-directories-by-total-size-of-contents-if-larger-than-500mb">will list all directories by total size of contents, if larger than 500mb</h1>
 </li>
 </ul>
 </li>
 <li><code>du -h . | grep [0-9][0-9]G</code><ul>
 <li>
-<h1>same thing, but will only find directories over 10GB</h1>
+<h1 id="same-thing-but-will-only-find-directories-over-10gb">same thing, but will only find directories over 10GB</h1>
 </li>
 </ul>
 </li>
 <li><code>du -h . | sort -nr</code><ul>
 <li>
-<h1>shows all directories from current, sorted by size (smallest to largest);</h1>
+<h1 id="shows-all-directories-from-current-sorted-by-size-smallest-to-largest">shows all directories from current, sorted by size (smallest to largest);</h1>
 </li>
 <li>better in smaller-ish directories (du's already kinda slow, and sort is even slower)</li>
 </ul>
 </li>
 <li><code>find . -maxdepth 1 -mindepth 1 -type d  -exec du -hs {} \;</code><ul>
 <li>
-<h1>shows all directories, ordered by name, with size of directory printed next to it</h1>
+<h1 id="shows-all-directories-ordered-by-name-with-size-of-directory-printed-next-to-it">shows all directories, ordered by name, with size of directory printed next to it</h1>
 </li>
 </ul>
 </li>

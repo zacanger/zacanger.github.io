@@ -36,13 +36,12 @@
       <p>firebase with $firebaseObject (or $firebaseArray) and $bindTo just makes all
 the <strong>MAGIC</strong> MORE magical; with angularfire and firebase and angular doing
 everything for you, we now have, basically, a sorta meteor-like 3-way-binding.</p>
-<div class="highlight"><pre><span></span>&lt;ng-change=&quot;$scope.save(thingy)&quot;&gt; will propogate back to firebase
-(or &lt;ng-change=&quot;thingy(save)&quot;&gt; // $scope.sav(thingy) if we&#39;re doing things
+<pre><code>&lt;ng-change=&quot;$scope.save(thingy)&quot;&gt; will propogate back to firebase
+(or &lt;ng-change=&quot;thingy(save)&quot;&gt; // $scope.sav(thingy) if we're doing things
 modularly).
 
-ng-model-options=&quot;{debounce: {&#39;default&#39;: 5000}}&quot; // debounces. to 5000 ms. wowe.
-</pre></div>
-
+ng-model-options=&quot;{debounce: {'default': 5000}}&quot; // debounces. to 5000 ms. wowe.
+</code></pre>
 <hr />
 <p>Firebase's Node API is exactly the same as the JS API for the browser. So it
 doesn't matter if you include their script, Bower install it, or are working
@@ -63,10 +62,10 @@ indices of the array. Don't <code>remove()</code></p>
 <p>FB can have up to 32 child nodes. A key can be 768 bytes, UTF, none of the
 following: <code>.$#[]/</code>.</p>
 <p>A full DB backup can be pulled by just requesting the root URL.</p>
-<div class="highlight"><pre><span></span>firebaseRef.set({
-  title   : &#39;Let There Be&#39;
-, author  : &#39;God&#39;
-, subject : &#39;ES6&#39;
+<pre><code>firebaseRef.set({
+  title   : 'Let There Be'
+, author  : 'God'
+, subject : 'ES6'
 , factors : {
   , browserSupport : false
   , developerJoy   : false
@@ -74,23 +73,22 @@ following: <code>.$#[]/</code>.</p>
   }
 })
 
-firebaseRef.child(&#39;factors/buildTool&#39;).on(&#39;value&#39;, function(snapshot){
+firebaseRef.child('factors/buildTool').on('value', function(snapshot){
   console.log(snapshot.val()) // true
 })
 
 // auth:
 firebaseRef.createUser({
-  email    : &#39;bruh@lol.wut&#39;
-, password : &#39;irelyluvprogrammerin&#39;
+  email    : 'bruh@lol.wut'
+, password : 'irelyluvprogrammerin'
 }, function(error, userData){
   if (error){
     console.log(error)
   } else {
-    console.log(&#39;done&#39;, userData.uid)
+    console.log('done', userData.uid)
   }
 })
-</pre></div>
-
+</code></pre>
 <ul>
 <li><code>set()</code> writes to/replaces data to a <em>defined path</em>, like <code>editors/lines/column</code></li>
 <li><code>update()</code> updates keys to defined path, without replacing data</li>

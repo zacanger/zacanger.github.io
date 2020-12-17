@@ -15,6 +15,8 @@ you use it.
 All the recommendations here are just that: recommendations. Most users will not
 need to follow everything in this guide.
 
+[TOC]
+
 ### General
 
 You should try to avoid anything hosted in, or owned by, a company in the US.

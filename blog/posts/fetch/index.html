@@ -36,72 +36,67 @@
       <p>fetch is a thing</p>
 <p>uses promises</p>
 <p>here's doing stuff with xhr:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">responseType</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
+<pre><code class="language-javascript">var xhr = new XMLHttpRequest()
+xhr.open('GET', url)
+xhr.responseType = 'json'
 
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="c1">// do stuff with xhr.response</span>
-<span class="p">}</span>
+xhr.onload = function(){
+  // do stuff with xhr.response
+}
 
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;crap&#39;</span><span class="p">)</span>
-<span class="p">}</span>
+xhr.onerror = function(){
+  console.error('crap')
+}
 
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
-</pre></div>
-
+xhr.send()
+</code></pre>
 <p>and the equivalent with fetch:</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="cm">/* do stuff with data */</span><span class="p">)</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
-</pre></div>
-
+<pre><code class="language-javascript">fetch(url)
+.then(res =&gt; res.json())
+.then(data =&gt; /* do stuff with data */)
+.catch(e =&gt; console.error(e))
+</code></pre>
 <p>granted i'm also using es2015 in the fetch example, which makes it even nicer-looking,
 but whatever.</p>
 <p>using esnext async functions:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nx">async</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">awat</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
-    <span class="c1">// do stuff with data</span>
-  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})()</span>
-</pre></div>
-
+<pre><code class="language-javascript">(async() =&gt; {
+  try {
+    let res = await fetch(url)
+    let data = awat res.json()
+    // do stuff with data
+  } catch(e) {
+    console.error(e)
+  }
+})()
+</code></pre>
 <p>xhr is kinda gross. i mean, everyone's used to it, and it basically works, but... yech.</p>
 <p>fetch is basically complete i think? i mean, evidently it's even in safari's dev preview version.</p>
 <p>if it's made it to safari, it's probably safe to use.</p>
 <p>fetch keeps req and res separate (they're constructors).</p>
 <p>request.context lets you tell where the req actually came from (eg link vs loaded asset vs whatever).</p>
 <p>you can throw a <code>no-cors</code> in your request so stuff doesn't fail (like it would with XHR) without CORS headers.</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;//foo.com&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">mode</span> <span class="o">:</span> <span class="s1">&#39;no-cors&#39;</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">type</span><span class="p">))</span> <span class="c1">// opaque</span>
-</pre></div>
-
+<pre><code class="language-javascript">fetch('//foo.com', {mode : 'no-cors'}).then(response =&gt; console.log(response.type)) // opaque
+</code></pre>
 <p>can't actually read the content of response here, but it could be used by something else (add an event listener
 for when it comes back, for example).</p>
 <p>other modes: <code>same-origin</code>, <code>cors</code>, and <code>cors-with-forced-preflight</code>.</p>
 <p>you could also cache that stuff, which is nice.</p>
 <p>xhr buffers the entire response into memory. with fetch you can access the stream. actually with XHR you can access
 it sort of, with <code>responseText</code> while it's still going on, but it's going to put it all in mem anyway.</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;some string, for example&#39;</span>
-  <span class="kd">let</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">getReader</span><span class="p">()</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="c1">// okay there&#39;s actually a little more to this, but the idea is,</span>
-    <span class="c1">// we can have an if in here to check if this bit of the stream</span>
-    <span class="c1">// is equal to the thing we want. and then, say</span>
-    <span class="nx">reader</span><span class="p">.</span><span class="nx">cancel</span><span class="p">(</span><span class="s1">&#39;i guess we\&#39;re done, here&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="cm">/* do stuff */</span><span class="p">)</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
-</pre></div>
-
+<pre><code class="language-javascript">fetch(url)
+.then(response =&gt; {
+  let foo = 'some string, for example'
+  let reader = response.body.getReader()
+  reader.read().then(result) =&gt; {
+    // okay there's actually a little more to this, but the idea is,
+    // we can have an if in here to check if this bit of the stream
+    // is equal to the thing we want. and then, say
+    reader.cancel('i guess we\'re done, here')
+  }
+})
+.then(result =&gt; /* do stuff */)
+.catch(e =&gt; console.error(e))
+</code></pre>
 <p><code>response.body</code> is a <code>ReadableStream</code>.</p>
 <p>How cool is this? Think about it. You have a stream of data from somewhere. You can generate
 content on the go, using that, with fetch. You can feed that to the view as you get it.</p>
@@ -117,29 +112,27 @@ other readers they stuck in there. So, <code>response</code> (or <code>request</
 <p>Once they've been called, you can't call another one on that same stream (they 'drain' the stream). What we could
 do instead is <code>.clone()</code>: <code>fetch(url).then(response =&gt; respone.clone().json().catch() =&gt; response.text())</code>.</p>
 <p>You can check <code>response.headers</code> to decide what you need to do with it.</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;application/json&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">fetch(url)
+.then(response =&gt; {
+  if (response.headers.get('Content-Type') === 'application/json') {
+    return response.json()
+  }
+  return response.text()
+})
+</code></pre>
 <p><code>headers</code> can be used for reading and writing, has <code>Headers.prototype[Symbol.iterator]</code>. You get better
 control over cache, and same-origin requests without credentials (no credentials is fetch's default).</p>
 <p>You <em>can't</em> abort a request with fetch before at least the headers come back (yet).</p>
 <p>You can't track progress (yet), but you can do stuff to do that on your own (by working with <code>Content-Length</code>).</p>
 <p>Sync is in the spec, but doesn't look like anyone will implement that in the API.</p>
 <p>Oh right, thre are other verbs here. Or just POST?</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">method</span>  <span class="o">:</span> <span class="s1">&#39;post&#39;</span>
-<span class="p">,</span> <span class="nx">headers</span> <span class="o">:</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">:</span> <span class="s1">&#39;application/x-www-form-urlencoded; charset=UTF-8&#39;</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">body</span>    <span class="o">:</span> <span class="s1">&#39;stuff=things&amp;hello=world&#39;</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="cm">/* etc. */</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">fetch(url, {
+  method  : 'post'
+, headers : {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
+, body    : 'stuff=things&amp;hello=world'
+})
+.then(/* etc. */)
+</code></pre>
 <p>And credentials (like cookies, for example): <code>fetch(url, {credentials : 'include'})</code></p>
 <p>There's a node module called <code>fetch-it</code> which is basically like (and is based on <code>axios</code>), but using fetch
 instead of XHR. Looks pretty nice.</p>

@@ -33,7 +33,7 @@
     </header>
     <hr>
     <div>
-      <h1>this is probably a mess</h1>
+      <h1 id="this-is-probably-a-mess">this is probably a mess</h1>
 <p>a whole bunch of basically totally disorganised notes from when i was working
 on my 'personal project' at devmountain.</p>
 <p>this was meant to be a sort of ghost/medium for the desktop -- a blogging platform
@@ -44,7 +44,7 @@ cool.</p>
 <p>anyway <a href="https://github.com/zacanger/ayuba">this is the remains of that poor app i built</a>
 and more importantly here's the mess of notes i took while doing stuff with that.</p>
 <hr />
-<h2>Planner</h2>
+<h2 id="planner">Planner</h2>
 <p>At DevMountain, for projects, you're encouraged (required, really) to use a planning
 paper, which is basically a big sheet of paper divided up into sections that represent
 pieces of a standard MEAN-stack app, and a sort of roadmap-to-an-end-product thing along
@@ -59,14 +59,14 @@ my server). Note: I'd initially planned on using my earlier app from my 'no-serv
 so long as it's a BaaS and not one we've spent time doing, because we don't actually know how
 to do that at that point) called <a href="https://github.com/zacanger/markvi">markvi</a>.</p>
 <p>Anyway, these are the contents from my planning thing.</p>
-<h3>Ideas and Users</h3>
+<h3 id="ideas-and-users">Ideas and Users</h3>
 <p>concept: a blogging platform <em>for writers, and readers</em>, based not around the
 ADHD social media style of content-creation and likes and shares that's taken
 over the popular idea of the blog, but instead around long-form writing; essays,
 meaningful stories, and such. the target audience here is the moderately
 technically savvy pseudo-bohemian; 25-50, used to smoke cloves, probably hangs
 out in coffee shops too much.</p>
-<h3>Features</h3>
+<h3 id="features">Features</h3>
 <ul>
 <li>mvp: oh wait, that's already done. well, except for getting it to work in the
   desktop client, which is the entire idea here.</li>
@@ -77,7 +77,7 @@ out in coffee shops too much.</p>
 </ul>
 </li>
 </ul>
-<h3>Views</h3>
+<h3 id="views">Views</h3>
 <ol>
 <li>the existing markdown editor (however, likely revamped to move away from
   plain old codemirror, and to include a basic rte-style toolbar).</li>
@@ -92,7 +92,7 @@ out in coffee shops too much.</p>
 <li>settings. VERY simple. name, email, password, export (if possible) to an
   archive file, delete account.</li>
 </ol>
-<h3>Controllers</h3>
+<h3 id="controllers">Controllers</h3>
 <ul>
 <li>browser, main, and nav (see existing codebase)</li>
 <li>not controllers, but...</li>
@@ -103,42 +103,41 @@ out in coffee shops too much.</p>
 </ul>
 </li>
 </ul>
-<h3>Endpoints</h3>
+<h3 id="endpoints">Endpoints</h3>
 <p>Those are a thing, yes.</p>
-<h3>Schemas</h3>
-<div class="highlight"><pre><span></span><span class="c1">// possible schemas ??</span>
+<h3 id="schemas">Schemas</h3>
+<pre><code class="language-javascript">// possible schemas ??
 
-<span class="kr">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">)</span>
+const mongoose = require('mongoose')
 
-<span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-  <span class="nx">username</span> <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">pass</span>     <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">6</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">post</span>     <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;post&#39;</span><span class="p">}]</span>
-<span class="p">,</span> <span class="nx">comments</span> <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;comment&#39;</span><span class="p">}]</span>
-<span class="p">})</span>
+const user = mongoose.Schema({
+  username : {type : String, required : true}
+, pass     : {type : String, required : true, minlength : 6}
+, post     : [{mongoose.Types.ObjectId, ref : 'post'}]
+, comments : [{mongoose.Types.ObjectId, ref : 'comment'}]
+})
 
-<span class="kr">const</span> <span class="nx">post</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-  <span class="nx">title</span>    <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">content</span>  <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">tags</span>     <span class="o">:</span> <span class="nb">Array</span>
-<span class="p">,</span> <span class="nx">date</span>     <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="k">default</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()}</span>
-<span class="p">,</span> <span class="nx">author</span>   <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">}]</span>
-<span class="p">,</span> <span class="nx">comments</span> <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectID</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;comment&#39;</span><span class="p">}]</span>
-<span class="p">})</span>
+const post = mongoose.Schema({
+  title    : {type : String, required : true}
+, content  : {type : String, required : true}
+, tags     : Array
+, date     : {type : Number, default : new Date()}
+, author   : [{mongoose.Types.ObjectId, ref : 'user'}]
+, comments : [{mongoose.Types.ObjectID, ref : 'comment'}]
+})
 
-<span class="kr">const</span> <span class="nx">comment</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-  <span class="nx">date</span>    <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="k">default</span>  <span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()}</span>
-<span class="p">,</span> <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span><span class="nx">type</span> <span class="o">:</span> <span class="nb">String</span><span class="p">,</span> <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
-<span class="p">,</span> <span class="nx">post</span>    <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;posts&#39;</span><span class="p">}]</span>
-<span class="p">,</span> <span class="nx">author</span>  <span class="o">:</span> <span class="p">[{</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="nx">ref</span> <span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">}]</span>
-<span class="p">})</span>
+const comment = mongoose.Schema({
+  date    : {type : Number, default  : new Date()}
+, content : {type : String, required : true}
+, post    : [{mongoose.Types.ObjectId, ref : 'posts'}]
+, author  : [{mongoose.Types.ObjectId, ref : 'user'}]
+})
 
-<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span>
-<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span>
-<span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="nx">comment</span><span class="p">)</span>
-</pre></div>
-
-<h3>Other Thoughts:</h3>
+mongoose.model('user', user)
+mongoose.model('post', post)
+mongoose.model('comment', comment)
+</code></pre>
+<h3 id="other-thoughts">Other Thoughts:</h3>
 <p>this would be relatively easy to throw up in a web browser. blogging platforms
 are a dime a dozen, especially ones built on node. the idea here isn't to make
 another tumblr, but to bring actual writing back to the web. sort of like
@@ -149,12 +148,12 @@ else in place and rock-solid first, then i'll stuff it all in electron. if not,
 then i'll just write up a manifest file and call it a chrome app. either way,
 fuck y'all, it's already got nigh on a thousand installs....</p>
 <hr />
-<h2>The Presentation Speech</h2>
+<h2 id="the-presentation-speech">The Presentation Speech</h2>
 <p>This is what I'd planned to say when presenting my app. I think instead
 I just kind of mumbled a little bit about how neat CodeMirror is and how
 annoying it was to struggle with the <code>'node-integration'</code> issue with
 Electron.</p>
-<h3>Markdown</h3>
+<h3 id="markdown">Markdown</h3>
 <p>…is a lightweight markup language which makes writing for the web a much quicker
 and easier process than if using a rich text editor (like Word), which wouldn't
 translate to HTML anyway, or writing HTML manually. Intead of <code>&lt;em&gt;</code> or
@@ -185,17 +184,16 @@ from the beginning it was really meant to be a desktop tool; browsers are
 distracting, this not so much.</p>
 <p>Aaaand here's the code.</p>
 <hr />
-<h2>misc notes</h2>
+<h2 id="misc-notes">misc notes</h2>
 <p>All this stuff was just thrown in another file.
 It's mostly to do with <a href="https://electron.atom.io">Electron</a>, I think.</p>
 <p>check <a href="https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md">https://github.com/atom/electron/blob/master/docs%2Fapi%2Fbrowser-window.md</a>
 before trying to get any other browser-shit going on--we'll want to move things
 into their own windows, i feel; chromeless might be a good idea, at least for
 the editor view</p>
-<div class="highlight"><pre><span></span>const BrowserWindow = require(&#39;electron&#39;).BrowserWindow
+<pre><code>const BrowserWindow = require('electron').BrowserWindow
 let win = new BrowserWindow({width : 1900, height : 1600, frame : false})
-</pre></div>
-
+</code></pre>
 <p>so basically it's just a new browser window, frame as false, but we want to
 probably lock the px to whatever screen we're working with, if CSS continues to
 fail miserably.</p>
@@ -212,38 +210,37 @@ clickables, one assumes).</p>
 <li>downloadItem.getURL() // origin url</li>
 <li>file.path = real (fs) path</li>
 </ul>
-<h3>printing</h3>
-<div class="highlight"><pre><span></span><span class="nx">webContents</span><span class="p">.</span><span class="nx">printToPDF</span><span class="p">(</span><span class="nx">opts</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="c1">// where:</span>
-<span class="nx">opts</span><span class="o">:</span>
-  <span class="nx">marginsType</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">0</span> <span class="k">default</span><span class="p">)</span>
-  <span class="nx">pageSize</span><span class="o">:</span> <span class="s1">&#39;A4&#39;</span><span class="p">,</span> <span class="s1">&#39;A3&#39;</span><span class="p">,</span> <span class="s1">&#39;Legal&#39;</span><span class="p">,</span> <span class="s1">&#39;Letter&#39;</span><span class="p">,</span> <span class="s1">&#39;Tabloid&#39;</span>
-  <span class="nx">printBackground</span><span class="o">:</span> <span class="kc">false</span> <span class="p">(</span><span class="nx">duh</span><span class="p">)</span>
-  <span class="nx">landscape</span><span class="o">:</span> <span class="kc">false</span> <span class="p">(</span><span class="nx">is</span> <span class="nx">portrait</span><span class="p">)</span>
-<span class="nx">cb</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span><span class="k">if</span> <span class="nx">err</span> <span class="nx">etc</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">content</span> <span class="nx">buffer</span><span class="p">}</span>
+<h3 id="printing">printing</h3>
+<pre><code class="language-javascript">webContents.printToPDF(opts, cb) // where:
+opts:
+  marginsType: 0, 1, 2 (0 default)
+  pageSize: 'A4', 'A3', 'Legal', 'Letter', 'Tabloid'
+  printBackground: false (duh)
+  landscape: false (is portrait)
+cb function(err, data){if err etc, data = content buffer}
 
-<span class="nx">empty</span> <span class="nx">opts</span> <span class="o">=</span> <span class="sb">`{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`</span>
+empty opts = `{marginsType: 0, printBackground: false, printSelectionOnly: false, landscape: false}`
 
-<span class="c1">// sample from electron docs</span>
-<span class="kr">const</span> <span class="nx">BrowserWindow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;electron&#39;</span><span class="p">).</span><span class="nx">BrowserWindow</span>
-<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="mi">800</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">600</span><span class="p">})</span>
-<span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="s1">&#39;http://github.com&#39;</span><span class="p">)</span>
-<span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;did-finish-load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Use default printing options</span>
-  <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">printToPDF</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="nx">error</span>
-    <span class="p">}</span>
-    <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="s1">&#39;/tmp/print.pdf&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="nx">error</span>
-      <span class="p">}</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;done did dat&#39;</span><span class="p">)</span>
-    <span class="p">})</span>
-  <span class="p">})</span>
-<span class="p">})</span>
-</pre></div>
-
+// sample from electron docs
+const BrowserWindow = require('electron').BrowserWindow
+const fs = require('fs')
+let win = new BrowserWindow({width: 800, height: 600})
+win.loadURL('http://github.com')
+win.webContents.on('did-finish-load', function() {
+  // Use default printing options
+  win.webContents.printToPDF({}, function(error, data) {
+    if (error) {
+    throw error
+    }
+    fs.writeFile('/tmp/print.pdf', data, function(error) {
+      if (error) {
+        throw error
+      }
+      console.log('done did dat')
+    })
+  })
+})
+</code></pre>
 <ul>
 <li>main process is a normal node script</li>
 <li>renderer process is a normal website, plus node modules (eg in script tags or whatever)</li>
@@ -252,7 +249,7 @@ clickables, one assumes).</p>
 <li>shell.openExternal(url) opens in eg xdg-browser</li>
 <li>shell.openItem('/FULL/path/to/item') = xdg-open</li>
 </ul>
-<h3>menus</h3>
+<h3 id="menus">menus</h3>
 <ul>
 <li>new MenuItem(opts):<ul>
 <li>id: string, unique within menu</li>
@@ -281,14 +278,13 @@ clickables, one assumes).</p>
 <p>electron-rebuild would automatically take care of headers &amp; native node module
 builds. so, after each <code>npm i</code>, do a <code>./node_modules/.bin/electron-rebuild</code></p>
 <p>the 'npm' way: same as usual, except env variables:</p>
-<div class="highlight"><pre><span></span>export
+<pre><code>export
   npm_config_disturl=https://atom.io/download/atom-shell
   npm_config_target=0.33.1 # ???
   npm_config_arch=x64
   npm_config_runtime=electron
 HOME=~/.electron-gyp npm install module-name # home equals? what?
-</pre></div>
-
+</code></pre>
 <p>one important thing: nw.js's url in the package file? nah, bro, electron don't
 do that shit. so manually creating the browser window and loading HTML is the
 right way with electron.</p>

@@ -16,6 +16,8 @@ These notes are specifically from the first three weeks. They're a mess.
 Don't take anything too seriously. I probably didn't know what I was talking
 about, a lot of the time.
 
+[TOC]
+
 --------
 
 ## css

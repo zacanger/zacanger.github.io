@@ -43,61 +43,57 @@ and the only actual difference was the target vm.</p>
 <p>some notes!</p>
 <p>everything, i believe, takes the format of <code>(action thingsTo actOn)</code> which is
 called a form.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">def </span><span class="nv">varname</span> <span class="nv">varval</span><span class="p">)</span>
-<span class="p">(</span><span class="k">def </span><span class="nv">me</span> <span class="s">&quot;zac&quot;</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-clojure">(def varname varval)
+(def me &quot;zac&quot;)
+</code></pre>
 <p>but there's also the <code>let</code> keyword which is different. for functions?</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">myname</span> <span class="s">&quot;zac&quot;</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">println </span><span class="nv">myname</span><span class="p">))</span>
-</pre></div>
-
+<pre><code class="language-clojure">(let [myname &quot;zac&quot;]
+  (println myname))
+</code></pre>
 <p>oh wait is it <code>def</code> or <code>defn</code>? crud now i'm seeing <code>defn</code>.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">defn </span><span class="nv">functionName</span>
-  <span class="p">[</span><span class="nv">arguments</span> <span class="nv">moreArgs</span><span class="p">]</span> <span class="c1">;; comment</span>
-  <span class="nv">returnValue</span><span class="p">)</span>         <span class="c1">;; the above could be just [] if no args</span>
+<pre><code class="language-clojure">(defn functionName
+  [arguments moreArgs] ;; comment
+  returnValue)         ;; the above could be just [] if no args
 
-<span class="c1">;; so maybe</span>
+;; so maybe
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">multiplier</span>
-  <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+(defn multiplier
+  [a b]
+  (* a b))
 
-<span class="p">(</span><span class="nf">multiplier</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span>
+(multiplier 4 4)
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">fnName</span>
-  <span class="p">([</span><span class="nv">ifThisPatternIsMatched</span><span class="p">]</span> <span class="nv">returnThis</span><span class="p">)</span>
-  <span class="p">([</span><span class="nv">elseIfThisOne</span> <span class="nv">sureWhyNot</span><span class="p">]</span> <span class="nv">returnThisInstead</span><span class="p">))</span>
+(defn fnName
+  ([ifThisPatternIsMatched] returnThis)
+  ([elseIfThisOne sureWhyNot] returnThisInstead))
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">fooBar</span>
-  <span class="p">([</span><span class="nv">a</span><span class="p">]</span> <span class="nv">a</span><span class="p">)</span>
-  <span class="p">([</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
-  <span class="p">([</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span><span class="p">))</span>
-  <span class="p">([</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">/ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)))</span>
+(defn fooBar
+  ([a] a)
+  ([a b] (* a b))
+  ([a b c] (/ (* a b) c))
+  ([a b c d] (* (/ a b) c d)))
 
-<span class="c1">;; so [] are args, () are forms, {} are keys or something?</span>
-<span class="c1">;; no, keys are with :, so {} are just... i don&#39;t know, yet.</span>
+;; so [] are args, () are forms, {} are keys or something?
+;; no, keys are with :, so {} are just... i don't know, yet.
 
-<span class="c1">;; and a private function just has a - after it, i think? like</span>
-<span class="p">(</span><span class="kd">defn- </span><span class="nv">thisIsNotPublic</span>
-  <span class="p">[]</span> <span class="c1">;; and other stuff -- are in-line comments a thing?</span>
-  <span class="p">)</span>
-</pre></div>
-
+;; and a private function just has a - after it, i think? like
+(defn- thisIsNotPublic
+  [] ;; and other stuff -- are in-line comments a thing?
+  )
+</code></pre>
 <p>Testing with lein (what is lein, exactly? I think it's a package manager?):</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">ns </span><span class="nv">project.namespace-test</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">clojure.text</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]</span>
-            <span class="p">[</span><span class="nv">project.namespace</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+<pre><code class="language-clojure">(ns project.namespace-test
+  (:require [clojure.text :refer :all]
+            [project.namespace :refer :all]))
 
-<span class="c1">;; deftest defines a test fn</span>
-<span class="c1">;; testing for description for it</span>
-<span class="c1">;; is -- assertion</span>
+;; deftest defines a test fn
+;; testing for description for it
+;; is -- assertion
 
-<span class="p">(</span><span class="nf">deftest</span> <span class="nv">nameOfTest</span>
-  <span class="p">(</span><span class="nf">testing</span> <span class="s">&quot;this is what i&#39;m testing&quot;</span>
-    <span class="p">(</span><span class="nf">is</span> <span class="p">(</span><span class="nf">true</span><span class="p">))))</span> <span class="c1">;; i don&#39;t know if this is valid</span>
-</pre></div>
-
+(deftest nameOfTest
+  (testing &quot;this is what i'm testing&quot;
+    (is (true)))) ;; i don't know if this is valid
+</code></pre>
 <p>okay so leiningen is 'automation made easy'</p>
 <p>pkg mgmt, testing, pm, etc.?</p>
 <p><code>lein new app &lt;appname&gt;</code></p>

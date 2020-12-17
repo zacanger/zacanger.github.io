@@ -54,19 +54,18 @@ is absurd -- ESPECIALLY since it doesn't include the parser.</p>
 were lost on my old laptop, but the SATA-to-USB thingy came in the mail the
 other day, so I can finally just do something with these.</p>
 <hr />
-<h3>Immutable Data Structures</h3>
+<h3 id="immutable-data-structures">Immutable Data Structures</h3>
 <p>I didn't really take notes on this, which kinda sucks, but what I really got
 out of it much more was a way to get started and some sparked interest. Here's
 the little bit I did jot down.</p>
-<div class="highlight"><pre><span></span>https://github.com/ryoia/ (functional-frontend-slides/)
+<pre><code>https://github.com/ryoia/ (functional-frontend-slides/)
 purescript, check it out for _real_ sometime.
 github.com/mgechev/angular-immutable
 stimulus(?) (immutable library?)
 
-what&#39;s the _real_ difference between Object.assign() and Object.freeze() ?
-</pre></div>
-
-<h3>RxJS</h3>
+what's the _real_ difference between Object.assign() and Object.freeze() ?
+</code></pre>
+<h3 id="rxjs">RxJS</h3>
 <p>Nothing against this guy, but... what the hell is he doing? Does he even know?
 I think he's probably really intelligent and good at stuff, but is just
 totally lost right now, being on a stage talking in front of all these...
@@ -74,7 +73,7 @@ ten-ish... people.</p>
 <p>None of this is exactly new. <a href="https://github.com/zacanger/extras/tree/master/rxjs-frp">Check over
 here</a> for a demo from
 a few months ago, using RxJS.</p>
-<div class="highlight"><pre><span></span>// observables
+<pre><code>// observables
 
 const foo = Rx.Observable.create(observer =&gt; {
   observer.onNext({value : 0}) // kinda like yield
@@ -82,7 +81,7 @@ const foo = Rx.Observable.create(observer =&gt; {
 
   return function dispose() {
     // do stuff that needs to be done on done here
-    console.log(&#39;disposed&#39;)
+    console.log('disposed')
   }
 })
 
@@ -105,7 +104,7 @@ setTimeout(() =&gt; {
 // Rx.Observable.of(val, value, valoo, vlyou)
 // .doOnNext(x =&gt; console.log(x))
 // tap into next in stream, perform action on it
-</pre></div>
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

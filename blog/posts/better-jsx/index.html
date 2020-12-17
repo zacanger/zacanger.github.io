@@ -39,7 +39,7 @@ walsh</a></p>
 learn react</p>
 <p>i don't dislike jsx, i got over that</p>
 <p>pretty sure ryan did, too</p>
-<div class="highlight"><pre><span></span>// JSX
+<pre><code class="language-jsx">// JSX
 export default class ProfileInfo extends React.Component {
   render() {
     return (
@@ -89,43 +89,43 @@ export default class ProfileInfo extends React.Component {
 export default class ProfileInfo extends React.Component {
   render() {
     return (
-      div( { class: [&#39;profile-guide-info-container&#39;] } ) {
+      div( { class: ['profile-guide-info-container'] } ) {
 
         div( { class: [&quot;profile-image-wrapper&quot;] } ) {
-          img( { class: [&#39;profile-image&#39;], src: &#39;https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460&#39; } ) {}
+          img( { class: ['profile-image'], src: 'https://avatars1.githubusercontent.com/u/12636781?v=3&amp;s=460' } ) {}
         }
 
-        div( { class: &#39;name-info-container&#39; } ) {
+        div( { class: 'name-info-container' } ) {
           h2( { class: &quot;display-name&quot; } ) { John Doe }
-          h3( { class: &#39;username&#39; } ) { jdoe }
+          h3( { class: 'username' } ) { jdoe }
         }
 
-        table( { class: [&#39;profile-guide-info&#39;] } ) {
-          tr( { class: [&#39;number-container&#39;] } ) {
-            th( { class: [&#39;guide-info-number&#39;] } ) {
-              span( { class: [&#39;profile-authored&#39;] } )
+        table( { class: ['profile-guide-info'] } ) {
+          tr( { class: ['number-container'] } ) {
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
             }
 
-            th( { class: [&#39;guide-info-number&#39;] } ) {
-              span( { class: [&#39;profile-authored&#39;] } )
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
             }
 
-            th( { class: [&#39;guide-info-number&#39;] } ) {
-              span( { class: [&#39;profile-authored&#39;] } )
+            th( { class: ['guide-info-number'] } ) {
+              span( { class: ['profile-authored'] } )
             }
           }
 
           tr() {
             td() {
-              span( { class: [&#39;profile-authored&#39;] } ) {}
+              span( { class: ['profile-authored'] } ) {}
             }
 
             td() {
-              span( { class: [&#39;profile-authored&#39;] } ) {}
+              span( { class: ['profile-authored'] } ) {}
             }
 
             td() {
-              span( { class: [&#39;profile-authored&#39;] } ) {}
+              span( { class: ['profile-authored'] } ) {}
             }
           }
         }
@@ -139,9 +139,9 @@ export default class ProfileInfo extends React.Component{
   render() {
     return ({
       div : {
-        class : [&#39;foo&#39;, &#39;bar&#39;]
+        class : ['foo', 'bar']
       , p : {
-          str : &#39;Bespoke scenester retro bitters Pitchfork 8-bit mixtape PBR&amp;B mlkshk iphone wire-rimmed glasses forage Helvetica put a bird on it intelligentsia semiotics leggings normcore. Flexitarian Echo Park mustache carles kickstarter Echo Park Blue Bottle actually tumblr beard literally tote bag Pitchfork cray shabby Portland stumptown asymmetrical.&#39;
+          str : 'Bespoke scenester retro bitters Pitchfork 8-bit mixtape PBR&amp;B mlkshk iphone wire-rimmed glasses forage Helvetica put a bird on it intelligentsia semiotics leggings normcore. Flexitarian Echo Park mustache carles kickstarter Echo Park Blue Bottle actually tumblr beard literally tote bag Pitchfork cray shabby Portland stumptown asymmetrical.'
         }
       }
     , footer : {
@@ -152,27 +152,27 @@ export default class ProfileInfo extends React.Component{
 // or this?
 const n = notJSX
 function notJSXparser(){
-  return n(&#39;body&#39;, [
-    n(&#39;h1&#39;, {&#39;this is a website&#39;},
-      n(&#39;p&#39;, {&#39;this is a lot of text! texytext, text. texting. txet.&#39;},
-        n(&#39;footer&#39;, {`Copyright ${stuff}`})
+  return n('body', [
+    n('h1', {'this is a website'},
+      n('p', {'this is a lot of text! texytext, text. texting. txet.'},
+        n('footer', {`Copyright ${stuff}`})
       )
     )
   ])
 }
 
-// how they do it in EVE&#39;s UI (note: they use typescript and an in-house custom lib they call &#39;microReact&#39;)
+// how they do it in EVE's UI (note: they use typescript and an in-house custom lib they call 'microReact')
 const page = {
-  t          : &#39;span&#39; // the tag type; defauts to &#39;div&#39;
-, c          : &#39;col-12&#39; // className
-, text       : &#39;some content&#39;
+  t          : 'span' // the tag type; defauts to 'div'
+, c          : 'col-12' // className
+, text       : 'some content'
 , children   : [{
     // array of further nodes
   }]
 , top        : 10
-, width      : 100 // more styles can go here, like react&#39;s style object basically
+, width      : 100 // more styles can go here, like react's style object basically
 , click      : someHandler
-, svg        : true // to add svg properties... why? idk. just &#39;cuz, i guess.
+, svg        : true // to add svg properties... why? idk. just 'cuz, i guess.
 , cx         : 4
 , cy         : 4
 , postRender : someDomManipulationFunction // on insertion and on update
@@ -180,12 +180,12 @@ const page = {
 
 // how jsx actually kinda works (reactelement anyway) under the hood:
 let someEl = {
-  type  : &#39;div&#39;
+  type  : 'div'
 , props : {}
 , ref   : null
 , key   : null
 }
-</pre></div>
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

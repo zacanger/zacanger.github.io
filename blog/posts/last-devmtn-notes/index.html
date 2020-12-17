@@ -42,42 +42,39 @@ sortakinda.</p>
 <p>These last bits are in chronological order of file modification date. I believe
 this was from during the second week of Angular.</p>
 <hr />
-<h2>ANGULAR</h2>
+<h2 id="angular">ANGULAR</h2>
 <p>so, <code>expressions</code>, basically that's why we're gonna be mashing those braces
 constantly. it's kind of like inline scripts, but minus the script tags?</p>
 <p><code>directives</code> are the powerful bit. jqueryish dom extension? apparently something
 we'll use a lot is <code>ngRepeat</code>, which, if it means writing less html, is a-ok
 with me.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ng-repeat</span><span class="o">=</span><span class="s">&quot;user in users&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>{{user.name}}<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{user.properties}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
-
+<pre><code class="language-html">&lt;div&gt;
+  &lt;div data-ng-repeat=&quot;user in users&quot;&gt;
+  &lt;h4&gt;{{user.name}}&lt;/h4&gt;
+  &lt;p&gt;{{user.properties}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 <p>so it's like how python folks write python everything, including html; we're
 writing javascriptish markup! it makes sense in those terms. that snippet there
 just created that same div for each user in users; say we have several user
 objects, it'll just go right ahead and repeat that markup per user.</p>
 <p><code>ngShow</code> determines if an element should be shown or not, based on a boolean.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ng-repeat</span><span class="o">=</span><span class="s">&quot;pizza in boxes&quot;</span> <span class="na">data-ng-show</span><span class="o">=</span><span class="s">&quot;pizza.topping == &#39;peppers&#39;&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>{{pizza.shop}}<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{pizza.properties}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
-
+<pre><code class="language-html">&lt;div data-ng-repeat=&quot;pizza in boxes&quot; data-ng-show=&quot;pizza.topping == 'peppers'&quot;&gt;
+  &lt;h4&gt;{{pizza.shop}}&lt;/h4&gt;
+  &lt;p&gt;{{pizza.properties}}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
 <p>guess what. your gross-ass hawaiian pie? not in those divs, no sir.</p>
 <p><code>ngSwitch</code> OHH THIS IS USEFUL. we could've used this last week.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ng-switch</span><span class="o">=</span><span class="s">&quot;pizza.photo&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>{{pizza.stuff}}<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>your pie totally looks this goods<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;pepperoni.jpg&quot;</span> <span class="na">data-ng-switch-when</span><span class="o">=</span><span class="s">&quot;pepperoni&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;hawaiian.bmp&quot;</span> <span class="na">data-ng-switch-when</span><span class="o">=</span><span class="s">&quot;gross_as_fuck&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;heaven.png&quot;</span> <span class="na">data-ng-switch-when</span><span class="o">=</span><span class="s">&quot;peppers&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
-
+<pre><code class="language-html">&lt;div data-ng-switch=&quot;pizza.photo&quot;&gt;
+  &lt;h3&gt;{{pizza.stuff}}&lt;/h3&gt;
+  &lt;p&gt;your pie totally looks this goods&lt;/p&gt;
+  &lt;img src=&quot;pepperoni.jpg&quot; data-ng-switch-when=&quot;pepperoni&quot;&gt;
+  &lt;img src=&quot;hawaiian.bmp&quot; data-ng-switch-when=&quot;gross_as_fuck&quot;&gt;
+  &lt;img src=&quot;heaven.png&quot; data-ng-switch-when=&quot;peppers&quot;&gt;
+&lt;/div&gt;
+</code></pre>
 <hr />
 <p>directives straight up from angular are all named <code>ngSomethingStuff</code>; they're
 used like "ng-something-stuff" (or "data-ng-something-stuff") in view. they can
@@ -104,14 +101,13 @@ should get all shot up in your page, because, y'know, ain't no one messing with
 your actual data.</p>
 <p><code>routes</code> are a big deal, from what i hear. here's a simple one from this guy's
 blog post:</p>
-<div class="highlight"><pre><span></span><span class="nx">angularStuff</span><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">&#39;$routeProvider&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$routeProvider</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/objects&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">templateURI</span> <span class="o">:</span> <span class="s1">&#39;view/objects.html&#39;</span>
-  <span class="p">,</span> <span class="nx">controller</span>  <span class="o">:</span> <span class="s1">&#39;ObjCtrl&#39;</span>
-  <span class="p">}).</span><span class="nx">otherwise</span><span class="p">({</span><span class="nx">templateURI</span> <span class="o">:</span> <span class="s1">&#39;view/NOPE.html&#39;</span><span class="p">})</span>
-<span class="p">}])</span>
-</pre></div>
-
+<pre><code class="language-javascript">angularStuff.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/objects', {
+    templateURI : 'view/objects.html'
+  , controller  : 'ObjCtrl'
+  }).otherwise({templateURI : 'view/NOPE.html'})
+}])
+</code></pre>
 <p>please forgive me, but i need to take a minute to say some things that should be
 obvious.</p>
 <p>yes, this way of working with partials and configs is pretty sweet, but let's be
@@ -122,17 +118,16 @@ punctuation is more of an exercise in concrete poetry than a highly advanced and
 developed javascript framework. ugh.</p>
 <p><code>.controller</code> is, like, what you use for controllers. <code>$scope</code> links your
 controllers and their bound views. (?) (or binded, if you're this fellow.)</p>
-<div class="highlight"><pre><span></span><span class="nx">angularThang</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;BTCtrl&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="nx">key</span>  <span class="o">:</span> <span class="s1">&#39;value&#39;</span>
-  <span class="p">,</span> <span class="nx">next</span> <span class="o">:</span> <span class="s1">&#39;another&#39;</span>
-  <span class="p">},{</span>
-    <span class="nx">key</span>  <span class="o">:</span> <span class="s1">&#39;let\&#39;s do it again&#39;</span>
-  <span class="p">,</span> <span class="nx">next</span> <span class="o">:</span> <span class="s1">&#39;okay, now we\&#39;re done&#39;</span>
-  <span class="p">}]</span>
-<span class="p">}])</span>
-</pre></div>
-
+<pre><code class="language-javascript">angularThang.controller('BTCtrl', ['$scope', function ($scope) {
+  $scope.objects = [{
+    key  : 'value'
+  , next : 'another'
+  },{
+    key  : 'let\'s do it again'
+  , next : 'okay, now we\'re done'
+  }]
+}])
+</code></pre>
 <p><code>$watch</code> calls a listener for a controller on an attribute of its scope (oh boy,
 pronouns, this is fun). <code>$broadcast</code> will trigger an event on a scope, which'll
 be transmitted to that scope, and <em>all</em> of its children. to trigger a global
@@ -172,11 +167,10 @@ or sometimes as was implied in the article.</p>
 <p>mismatched bits and bobs? not with angular, it'll just boink up some fresh new
 dom nodes for your loose-ends</p>
 <p>$timeout basically same syntax as setTimeout, except</p>
-<div class="highlight"><pre><span></span><span class="nx">$timeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">thing</span> <span class="o">=</span> <span class="s1">&#39;that&#39;</span>
-<span class="p">},</span> <span class="mi">10000</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">$timeout(function(){
+  $scope.thing = 'that'
+}, 10000)
+</code></pre>
 <p>EVEYTHING that goes IN the html that angular will use is INSIDE of
 ng-controller, attached to its $scope</p>
 <p>so for the  HTML to even give a crap about what's going on in your javascript,
@@ -192,32 +186,32 @@ can really be in javascript... wow, no wonder js get so much hate. it probably
 deserves it.)</p>
 <p>ng-repeat makes a miniature scope for the foo part of <code>ng-repeat="foo in bar"</code>
 -- underneath, i suppose. that's super slick.</p>
-<div class="highlight"><pre><span></span>&lt;input ng-model=&quot;someFilter&quot;&gt; // filter is a keyword to angular, it knows to look for a filter as defined by itself
+<pre><code class="language-text">&lt;input ng-model=&quot;someFilter&quot;&gt; // filter is a keyword to angular, it knows to look for a filter as defined by itself
 &lt;div ng-repeat=&quot;some in such | filter: someFilter&quot;&gt;
 {{some.stuff}} {{some.things}} // okay, and i suppose, it looks like filter is just a builtin that does just that one
-{{some.stuff}} {{some.things}} // exact thing... it only shows the thing that you&#39;re inputting/providing as a filter
+{{some.stuff}} {{some.things}} // exact thing... it only shows the thing that you're inputting/providing as a filter
 {{some.stuff}} {{some.things}} // BUT that does not necessarily have to mean actual filtered string fragments.
 {{some.stuff}} {{some.things}} // THIS MAKES LIFE EASY.
 &lt;/div&gt;
 &lt;div ng-repeat=&quot;some in such | filter: { name: someFilter location { name: locationNameFilter } }&quot;&gt;
-// so basically we&#39;re interactively filtering here, but also filtering by the type of whatchamacallits,
+// so basically we're interactively filtering here, but also filtering by the type of whatchamacallits,
 // filtering the objects with a nesting (so, narrowing) way. we could that we need to pass an object,
-// and that object ought to have a certain .property, and that key&#39;s value should PROBABLY have a capital A
-// or else, y&#39;know, hey angular, throw that shit out.
+// and that object ought to have a certain .property, and that key's value should PROBABLY have a capital A
+// or else, y'know, hey angular, throw that shit out.
 // that, right there, could be a simple (though obviously not exactly performant...) way to work on that
 // little knowledge management problem we have.
 // &lt;div ng-init=&quot;whatisUPYO = true&quot;&gt;YO&lt;/div&gt;
 // &lt;div ng-init=&quot;heywhatever = false&quot;&gt;YO&lt;/div&gt;
-// &lt;div ng-show=&quot;heywhatever&quot;&gt;YOU CAN&#39;T SEE ME&lt;/div&gt;
+// &lt;div ng-show=&quot;heywhatever&quot;&gt;YOU CAN'T SEE ME&lt;/div&gt;
 // &lt;div ng-show=&quot;whatisUPYO&quot;&gt;BUT YOU CAN SEE ME&lt;/div&gt;
 // within the ng-thingy&quot;IN HERE THIS PLACE THIS BIT RIGHT HERE&quot; you can
-// basically work with any executable javascript code you&#39;d like...
+// basically work with any executable javascript code you'd like...
 // though that would be an awfully bad idea, i suppose.
 //
 // ... we have ng-hide also, which is just ng-show-&quot; = false &quot;
-// so you&#39;re basically only hiding if (true/truthy). negates the need for
+// so you're basically only hiding if (true/truthy). negates the need for
 // double negatives, or some such.
-// they&#39;re only really working on css `display: none;`
+// they're only really working on css `display: none;`
 // ng-if will actually keep something off the dom if it fails, so
 // HOLY CRAP ANGULAR HAS A BUILT IN LINK FILTER. FILTER IS NOT JUST FILTER.
 // this means you can probably pipe to a whole fucking LOAD of things, and
@@ -226,124 +220,120 @@ deserves it.)</p>
 // THIS MEANS THIS IS BASICALLY LIKE POSIX PIPES. WHICH MEANS I CAN, WITH A BIT OF WORK
 // AND A LOT OF SYNTAX HELP AND PROBABLY ALL SORTS OF FAILURES, ESCAPING, SANITIZING,
 // AND TESTING... basically it could become fairly easy to port posix utilities to
-// angular. and since that&#39;s written in javascript... that could be extracted and
+// angular. and since that's written in javascript... that could be extracted and
 // maybe combined and turned into its own library for porting posix-compliant shell
 // scripts (or, theoretically, any, i guess...) to... the... browser.
 // oh gosh. this clarified some things, for sure.
-// though i STILL DON&#39;T KNOW WHY WE NEED TO DO TEMPLATING WITH MORE PUNCUATION
+// though i STILL DON'T KNOW WHY WE NEED TO DO TEMPLATING WITH MORE PUNCUATION
 // RATHER THAN LESS
 // JADE MAKES THINGS EASIER
 // SO DOES STYLUS
-// SO WHAT THE HELL WHY CAN&#39;T JAVASCRIPT TEMPLATING FOR JAVASCRIPT ACTUALLY BE GOOD
-</pre></div>
+// SO WHAT THE HELL WHY CAN'T JAVASCRIPT TEMPLATING FOR JAVASCRIPT ACTUALLY BE GOOD
 
+</code></pre>
 <hr />
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">factorial</span> <span class="p">(</span><span class="nx">num</span><span class="p">){</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="mi">1</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="nx">num</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">function factorial (num){
+  if (num == 0) {
+  return 1
+  } else {
+    return (num * factorial(num - 1))
+  }
+}
+</code></pre>
 <p>ngoptions: says hey, make this array into a selection dropbox kinda thing</p>
 <p>ves) ng-model (and some other diretives) need to have a parent (or both) for expcetionally good looksk to w=be happpy</p>
 <p>factories vs services vs providers; basically down to personal style, though we'll just go with ryan's style</p>
 <hr />
 <p>$q is angular's implementation of promises.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myDeferred</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+<pre><code class="language-javascript">var myDeferred = $q.defer()
 
-<span class="nx">async</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">myDeferreed</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
-<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">myDeferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
-<span class="p">})</span>
+async(function(val) {
+  myDeferreed.resolve(val)
+}, function(error) {
+  myDeferred.reject(error)
+})
 
-<span class="nx">async</span><span class="p">(</span><span class="nx">myDeferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">myDeferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">)</span>
-<span class="c1">//</span>
-<span class="kd">var</span> <span class="nx">myPromise</span> <span class="o">=</span> <span class="nx">myDeferred</span><span class="p">.</span><span class="nx">promise</span>
-<span class="nx">myPromise</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;It worked!&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
-<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;NOPE&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span>
-<span class="p">})</span>
-</pre></div>
-
+async(myDeferred.resolve, myDeferred.reject)
+//
+var myPromise = myDeferred.promise
+myPromise
+.then(function(data) {
+  console.log('It worked!', data)
+}, function(error) {
+  console.log('NOPE', error)
+})
+</code></pre>
 <p>can assign success/failure ops right after creating the deferred (before async()), and can assign as many ops as we like.</p>
 <p>we can also assign ONLY success or failure functions:</p>
-<div class="highlight"><pre><span></span><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;assigning only success here&#39;</span><span class="p">)</span>
-<span class="p">})</span>
+<pre><code class="language-javascript">promise.then(function() {
+  console.log('assigning only success here')
+})
 
-<span class="nx">promise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;assigning only failure here&#39;</span><span class="p">)</span>
-<span class="p">})</span> <span class="c1">// this is the same as typing out promise.then(null.errorCallback)</span>
+promise.catch(function () {
+  console.log('assigning only failure here')
+}) // this is the same as typing out promise.then(null.errorCallback)
 
-<span class="nx">promise</span><span class="p">.</span><span class="k">finally</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;on, and this one will happen whether we fail or succeed.&#39;</span><span class="p">)</span>
-<span class="p">})</span>
-</pre></div>
-
+promise.finally(function() {
+  console.log('on, and this one will happen whether we fail or succeed.')
+})
+</code></pre>
 <p>can chain promises (as values), for example asyncTwo(asyncOne), but like:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">asyncOne</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">asyncTwo</span><span class="p">)</span>
+<pre><code class="language-javascript">var promise = asyncOne().then(asyncTwo)
 
-<span class="nx">$q</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span> <span class="c1">// will return rejected, with provided reason</span>
-<span class="nx">$q</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="c1">// will return resolved, with provided value.</span>
-<span class="nx">$q</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="c1">// can serve as a wrapper for a 3rd party promise. example:</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">()</span> <span class="c1">//jQuery</span>
-<span class="kd">var</span> <span class="nx">jqPromise</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="c1">// stuff here })</span>
-<span class="kd">var</span> <span class="nx">angPromise</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">jqPromise</span><span class="p">)</span>
+$q.reject(reason) // will return rejected, with provided reason
+$q.when(value) // will return resolved, with provided value.
+$q.when(value) // can serve as a wrapper for a 3rd party promise. example:
+$.ajax() //jQuery
+var jqPromise = $.ajax({
+// stuff here })
+var angPromise = $q.when(jqPromise)
 
-<span class="nx">$q</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="p">[]</span> <span class="p">)</span>
-<span class="c1">// in the above, one passes an array of promises to $q.all</span>
+$q.all( [] )
+// in the above, one passes an array of promises to $q.all
 
-<span class="c1">//</span>
-<span class="c1">// angular flow in ten seconds or less:</span>
-<span class="c1">// this is according to luke, so it&#39;s probably correct.</span>
-<span class="c1">// $http.get(url)</span>
-<span class="c1">// promise.then on that</span>
-<span class="c1">// to display it, call that function on the service</span>
-<span class="c1">// return that, $scope.that thing</span>
-<span class="c1">// {{let&#39;s go ahead and display that.thing however we want that}}</span>
+//
+// angular flow in ten seconds or less:
+// this is according to luke, so it's probably correct.
+// $http.get(url)
+// promise.then on that
+// to display it, call that function on the service
+// return that, $scope.that thing
+// {{let's go ahead and display that.thing however we want that}}
 
-<span class="c1">//</span>
+//
 
-<span class="c1">// angular hits serious view bottleneck around 1800 items.</span>
+// angular hits serious view bottleneck around 1800 items.
 
-<span class="c1">// node&#39;s event loop is exactly the same as normal async javascript, just not in a browser</span>
+// node's event loop is exactly the same as normal async javascript, just not in a browser
 
-<span class="c1">//</span>
+//
 
-<span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span> <span class="c1">// making a promise</span>
-<span class="nx">$q</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span> <span class="c1">// start resolving that promise, start invoking chain of .then callback functions,</span>
-             <span class="c1">// aka &#39;i&#39;m done and it worked!&#39;</span>
+$q.defer() // making a promise
+$q.resolve() // start resolving that promise, start invoking chain of .then callback functions,
+             // aka 'i'm done and it worked!'
 
-<span class="nx">doThing</span><span class="p">(){</span>
-  <span class="kd">function</span> <span class="nx">doThing</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span>
-    <span class="c1">// stuff to do</span>
-    <span class="c1">// this needs a callback, probably</span>
-      <span class="kd">function</span> <span class="nx">callback</span><span class="p">(){</span>
-        <span class="nx">promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([</span><span class="s1">&#39;stuff&#39;</span><span class="p">,</span> <span class="s1">&#39;that you got&#39;</span><span class="p">,</span> <span class="s1">&#39;because you asked for it&#39;</span><span class="p">])</span>
-      <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">promise</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+doThing(){
+  function doThing(){
+    var promise = $q.defer
+    // stuff to do
+    // this needs a callback, probably
+      function callback(){
+        promise.resolve(['stuff', 'that you got', 'because you asked for it'])
+      }
+    return promise
+  }
+}
 
-<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;http//zacanger.com/blog&quot;</span>
-<span class="s1">var promise = $q.defer()</span>
-<span class="s1">$http({</span>
-<span class="s1">  method: &#39;</span><span class="nx">GET</span><span class="err">&#39;</span>
-<span class="p">,</span> <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">whatever</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
-  <span class="c1">// do things</span>
-<span class="p">})</span>
-</pre></div>
-
+var url = 'http//zacanger.com/blog&quot;
+var promise = $q.defer()
+$http({
+  method: 'GET'
+, url: url
+}).then(function(response){
+  var whatever = response.data
+  // do things
+})
+</code></pre>
 <p>okay, promises are so much simpler and more straightforward than people are probably thinking.
 really, basically, we're just going over use-cases and examples now. which is totally fine,
 of course.</p>
@@ -354,228 +344,225 @@ we'd basically be using promises to run some synchronous javascript, at that poi
 dumb.</p>
 <p>JSONP: this is how we get around cross-origin problems.</p>
 <hr />
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">){</span>
-  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
-  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
-<span class="p">})</span>
+<pre><code class="language-javascript">var promise = new Promise(function(resolve, reject){
+  setTimeout(function(){
+    resolve('hi')
+  }, 5000)
+})
 
-<span class="k">return</span> <span class="nx">promise</span>
+return promise
 
-<span class="kd">function</span> <span class="nx">whatUp</span><span class="p">(){</span>
-  <span class="nx">say</span><span class="p">(</span><span class="s1">&#39;BLAHR&#39;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
+function whatUp(){
+  say('BLAHR')
+}
+</code></pre>
 <hr />
 <p>this.whatever makes 'whatever' (in a service) visible to the controller.</p>
 <p>it's a good idea to go ahead and be like</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">hello</span> <span class="o">=</span> <span class="s1">&#39;oi!&#39;</span>
+<pre><code class="language-javascript">var hello = 'oi!'
 
-<span class="k">this</span><span class="p">.</span><span class="nx">returnedInfo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="k">return</span> <span class="nx">hello</span>
-<span class="p">}</span>
-</pre></div>
-
+this.returnedInfo = function(){
+  return hello
+}
+</code></pre>
 <p>that way... data is made, protected, changed, broken, etc., all in one place.
 just accessed through that nice little function there.  i am so confused about
 bananas</p>
 <hr />
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>o hello there<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span> <span class="na">ng-app</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">&quot;MyApp&quot;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">ng-cloak</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>howdy,<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>{{name}}<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="kd">function</span> <span class="nx">MyApp</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;zacanger&quot;</span><span class="p">}&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-
+<pre><code class="language-html">&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;o hello there&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body ng-app&gt;
+    &lt;div ng-controller=&quot;MyApp&quot;&gt;
+      &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;
+      &lt;p ng-cloak&gt;&lt;strong&gt;howdy,&lt;em&gt;{{name}}&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;function MyApp($scope){$scope.name = &quot;zacanger&quot;}&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <hr />
 <p>jer.html</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">&quot;dm7FirstApp&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>jeremy&#39;s example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">&quot;myCtrl&quot;</span><span class="p">&gt;</span>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html ng-app=&quot;dm7FirstApp&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jeremy's example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body ng-controller=&quot;myCtrl&quot;&gt;
     This is Plain Text
 
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color: red&quot;</span><span class="p">&gt;</span>
+    &lt;div style=&quot;background-color: red&quot;&gt;
       {{name}}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    &lt;/div&gt;
 
-    Input box : <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">&gt;</span>
+    Input box : &lt;input type=&quot;text&quot; ng-model=&quot;foo&quot;&gt;
 
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Curly Brackets : {{foo}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    &lt;div&gt;Curly Brackets : {{foo}}&lt;/div&gt;
 
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;person.name&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;person.cereal&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;person.media&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;person.random&quot;</span><span class="p">&gt;</span>
+    &lt;input ng-model=&quot;person.name&quot;&gt;
+    &lt;input ng-model=&quot;person.cereal&quot;&gt;
+    &lt;input ng-model=&quot;person.media&quot;&gt;
+    &lt;input ng-model=&quot;person.random&quot;&gt;
 
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    &lt;div&gt;
       Your person is :
-      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{person.name}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{person.cereal}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{person.media}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{person.random}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      &lt;div&gt;{{person.name}}&lt;/div&gt;
+      &lt;div&gt;{{person.cereal}}&lt;/div&gt;
+      &lt;div&gt;{{person.media}}&lt;/div&gt;
+      &lt;div&gt;{{person.random}}&lt;/div&gt;
+    &lt;/div&gt;
 
-    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Repeat<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    &lt;h2&gt;Repeat&lt;/h2&gt;
 
-    Filter: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">&quot;carfilter.name&quot;</span><span class="p">&gt;</span>
+    Filter: &lt;input ng-model=&quot;carfilter.name&quot;&gt;
 
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">&quot;car in cars | filter: carfilter &quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;car&quot;</span><span class="p">&gt;</span>
+    &lt;div ng-repeat=&quot;car in cars | filter: carfilter &quot; class=&quot;car&quot;&gt;
       {{car.name}} - Year: {{car.year}}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    &lt;/div&gt;
 
-    <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">ng-init</span><span class="o">=</span><span class="s">&quot;isAwesome = true&quot;</span><span class="p">&gt;</span>Show/Hide<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-show</span><span class="o">=</span><span class="s">&quot;isAwesome&quot;</span><span class="p">&gt;</span>Yay, you are awesome!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-hide</span><span class="o">=</span><span class="s">&quot;isAwesome&quot;</span><span class="p">&gt;</span>We&#39;re sorry you&#39;re not awesome<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-if</span><span class="o">=</span><span class="s">&quot;isAdmin&quot;</span><span class="p">&gt;</span>You must be the boss<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;isAwesome = !isAwesome&quot;</span><span class="p">&gt;</span>Click Me!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    &lt;h2 ng-init=&quot;isAwesome = true&quot;&gt;Show/Hide&lt;/h2&gt;
+    &lt;div ng-show=&quot;isAwesome&quot;&gt;Yay, you are awesome!&lt;/div&gt;
+    &lt;div ng-hide=&quot;isAwesome&quot;&gt;We're sorry you're not awesome&lt;/div&gt;
+    &lt;div ng-if=&quot;isAdmin&quot;&gt;You must be the boss&lt;/div&gt;
+    &lt;button ng-click=&quot;isAwesome = !isAwesome&quot;&gt;Click Me!&lt;/button&gt;
 
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;dm7FirstApp&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;var app = angular.module('dm7FirstApp', []);
 
-      <span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;myCtrl&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">$timeout</span><span class="p">){</span>
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;That lame teacher&quot;</span>
+      app.controller('myCtrl', function($scope, $timeout){
+        $scope.name = &quot;That lame teacher&quot;
 
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">cars</span> <span class="o">=</span> <span class="p">[</span>
-          <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Astin Martin&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">1972</span><span class="p">},</span>
-          <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Kia&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">1973</span><span class="p">},</span>
-          <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Jeep&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">1975</span><span class="p">},</span>
-          <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;51 Mercury&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">1951</span><span class="p">},</span>
-          <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Tesla&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2008</span><span class="p">}</span>
-        <span class="p">]</span>
+        $scope.cars = [
+          {name: &quot;Astin Martin&quot;, year: 1972},
+          {name: &quot;Kia&quot;, year: 1973},
+          {name: &quot;Jeep&quot;, year: 1975},
+          {name: &quot;51 Mercury&quot;, year: 1951},
+          {name: &quot;Tesla&quot;, year: 2008}
+        ]
 
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">isAwesome</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">isAdmin</span>   <span class="o">=</span> <span class="kc">true</span>
+        $scope.isAwesome = true
+        $scope.isAdmin   = true
 
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">clicked</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-          <span class="nx">$scope</span><span class="p">.</span><span class="nx">isAwesome</span> <span class="o">=</span> <span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">isAwesome</span>
-        <span class="p">}</span>
+        $scope.clicked = function(){
+          $scope.isAwesome = !$scope.isAwesome
+        }
 
-        <span class="nx">$scope</span><span class="p">.</span><span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-          <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;namless&quot;</span><span class="p">,</span>
-          <span class="nx">cereal</span><span class="o">:</span> <span class="s2">&quot;air&quot;</span><span class="p">,</span>
-          <span class="nx">media</span><span class="o">:</span> <span class="s2">&quot;silence&quot;</span><span class="p">,</span>
-          <span class="nx">random</span><span class="o">:</span> <span class="s2">&quot;nothing&quot;</span>
-        <span class="p">}</span>
+        $scope.person = {
+          name: &quot;namless&quot;,
+          cereal: &quot;air&quot;,
+          media: &quot;silence&quot;,
+          random: &quot;nothing&quot;
+        }
 
-        <span class="nx">$timeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-          <span class="nx">$scope</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span>
+        $timeout(function(){
+          $scope.foo = &quot;bar&quot;
 
-          <span class="nx">$scope</span><span class="p">.</span><span class="nx">cars</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Monster Truck&quot;</span>
-        <span class="p">},</span> <span class="mi">3000</span><span class="p">)</span>
+          $scope.cars[2].name = &quot;Monster Truck&quot;
+        }, 3000)
 
-      <span class="p">})</span>
+      })
 
-    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <hr />
 <p>j_promise_notes.js</p>
-<div class="highlight"><pre><span></span><span class="c1">// controller</span>
-<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;httpApp&#39;</span><span class="p">).</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;myCtrl&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myService</span><span class="p">){</span>
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="s2">&quot;Working&quot;</span>
+<pre><code class="language-javascript">// controller
+angular.module('httpApp').controller('myCtrl', function($scope, myService){
+  $scope.test = &quot;Working&quot;
 
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">true</span>
-  <span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">myService</span><span class="p">.</span><span class="nx">getStarship</span><span class="p">()</span>
+  $scope.isLoading = true
+  var promise = myService.getStarship()
 
-  <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">myService</span><span class="p">.</span><span class="nx">getPilots</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">starshipWithPilots</span><span class="p">){</span>
-    <span class="nx">$scope</span><span class="p">.</span><span class="nx">starship</span> <span class="o">=</span> <span class="nx">starshipWithPilots</span>
-  <span class="p">}</span>
+  promise.then(myService.getPilots)
+  .then(function(starshipWithPilots){
+    $scope.starship = starshipWithPilots
+  }
 
-  <span class="c1">//    promise.then(validateEmails)</span>
-  <span class="c1">//           .then(sendEmails)</span>
-  <span class="c1">//           .then(reportSuccess)</span>
-  <span class="c1">//           .then(askUserForResendOption)</span>
-  <span class="c1">//           .then(resendMoreEmails)</span>
+  //    promise.then(validateEmails)
+  //           .then(sendEmails)
+  //           .then(reportSuccess)
+  //           .then(askUserForResendOption)
+  //           .then(resendMoreEmails)
 
-<span class="p">})</span>
+})
 
 
-<span class="c1">// service</span>
-<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;httpApp&#39;</span><span class="p">).</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;myService&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$http</span><span class="p">,</span> <span class="nx">$q</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">baseUrl</span> <span class="o">=</span> <span class="s2">&quot;http://swapi.co/api/starships/10/?format=json&quot;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">getStarshipWithPilots</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+// service
+angular.module('httpApp').service('myService', function($http, $q){
+  var baseUrl = &quot;http://swapi.co/api/starships/10/?format=json&quot;
+  this.getStarshipWithPilots = function(){
+    var deferred = $q.defer()
 
-    <span class="nx">$http</span><span class="p">({</span>
-      <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-      <span class="nx">url</span><span class="o">:</span> <span class="nx">baseUrl</span>
-    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
-      <span class="kd">var</span> <span class="nx">starship</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
+    $http({
+      method: 'GET',
+      url: baseUrl
+    }).then(function(response){
+      var starship = response.data
 
-      <span class="kd">var</span> <span class="nx">pilotObjs</span> <span class="o">=</span> <span class="p">[]</span>
-      <span class="kd">var</span> <span class="nx">totalPilots</span> <span class="o">=</span> <span class="nx">starship</span><span class="p">.</span><span class="nx">pilots</span><span class="p">.</span><span class="nx">length</span>
+      var pilotObjs = []
+      var totalPilots = starship.pilots.length
 
-      <span class="nx">starship</span><span class="p">.</span><span class="nx">pilots</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pilotUrl</span><span class="p">){</span>
-        <span class="nx">$http</span><span class="p">({</span>
-          <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-          <span class="nx">url</span><span class="o">:</span> <span class="nx">pilotUrl</span>
-        <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pilotResponse</span><span class="p">){</span>
-          <span class="nx">pilotObjs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pilotResponse</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+      starship.pilots.forEach(function(pilotUrl){
+        $http({
+          method: 'GET',
+          url: pilotUrl
+        }).then(function(pilotResponse){
+          pilotObjs.push(pilotResponse.data)
 
-          <span class="k">if</span><span class="p">(</span><span class="nx">pilotObjs</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">totalPilots</span><span class="p">){</span>
-            <span class="nx">starship</span><span class="p">.</span><span class="nx">pilots</span> <span class="o">=</span> <span class="nx">pilotObjs</span>
-            <span class="c1">//order pilots alphabetically</span>
-            <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">starship</span><span class="p">)</span>
-          <span class="p">}</span>
-        <span class="p">})</span>
-      <span class="p">})</span>
-    <span class="p">})</span>
-    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-  <span class="p">}</span>
+          if(pilotObjs.length === totalPilots){
+            starship.pilots = pilotObjs
+            //order pilots alphabetically
+            deferred.resolve(starship)
+          }
+        })
+      })
+    })
+    return deferred.promise
+  }
 
-  <span class="k">this</span><span class="p">.</span><span class="nx">getStarship</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-    <span class="nx">$http</span><span class="p">({</span>
-      <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-      <span class="nx">url</span><span class="o">:</span> <span class="nx">baseUrl</span>
-    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
-      <span class="kd">var</span> <span class="nx">starship</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
-      <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">starship</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-  <span class="p">}</span>
+  this.getStarship = function(){
+    var deferred = $q.defer()
+    $http({
+      method: 'GET',
+      url: baseUrl
+    }).then(function(response){
+      var starship = response.data
+      deferred.resolve(starship)
+    })
+    return deferred.promise
+  }
 
-  <span class="k">this</span><span class="p">.</span><span class="nx">getPilots</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">starship</span><span class="p">){</span>
-    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-    <span class="kd">var</span> <span class="nx">arrayOfPilotUrls</span> <span class="o">=</span> <span class="nx">starship</span><span class="p">.</span><span class="nx">pilots</span>
-    <span class="kd">var</span> <span class="nx">pilotObjs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="kd">var</span> <span class="nx">totalPilots</span> <span class="o">=</span> <span class="nx">arrayOfPilotUrls</span><span class="p">.</span><span class="nx">length</span>
+  this.getPilots = function (starship){
+    var deferred = $q.defer()
+    var arrayOfPilotUrls = starship.pilots
+    var pilotObjs = []
+    var totalPilots = arrayOfPilotUrls.length
 
-    <span class="nx">arrayOfPilotUrls</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pilotUrl</span><span class="p">){</span>
-      <span class="nx">$http</span><span class="p">({</span>
-        <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-        <span class="nx">url</span><span class="o">:</span> <span class="nx">pilotUrl</span>
-      <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pilotResponse</span><span class="p">){</span>
-        <span class="nx">pilotObjs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pilotResponse</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    arrayOfPilotUrls.forEach(function(pilotUrl){
+      $http({
+        method: 'GET',
+        url: pilotUrl
+      }).then(function(pilotResponse){
+        pilotObjs.push(pilotResponse.data)
 
-        <span class="k">if</span><span class="p">(</span><span class="nx">pilotObjs</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">totalPilots</span><span class="p">){</span>
-          <span class="nx">starship</span><span class="p">.</span><span class="nx">pilots</span> <span class="o">=</span> <span class="nx">pilotObjs</span>
-          <span class="c1">//order pilots alphabetically</span>
-          <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">starship</span><span class="p">)</span>
-        <span class="p">}</span>
-      <span class="p">})</span>
-    <span class="p">})</span>
-    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-</pre></div>
+        if(pilotObjs.length === totalPilots){
+          starship.pilots = pilotObjs
+          //order pilots alphabetically
+          deferred.resolve(starship)
+        }
+      })
+    })
+    return deferred.promise
+  }
+})
+
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

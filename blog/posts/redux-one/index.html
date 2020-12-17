@@ -48,38 +48,34 @@ something you probably won't touch this one.</p>
 <p>State can by any type, though obviously it's probably best to just use an
 object here.</p>
 <p>Actions are always objects, and they always have a <code>type</code>.</p>
-<div class="highlight"><pre><span></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;do-stuff&#39;</span><span class="p">})</span>
-<span class="c1">// it&#39;s conventional to use all uppercase, but it&#39;s also hideous. so.</span>
-<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;DO_OTHER_STUFF&#39;</span><span class="p">,</span> <span class="nx">stuff</span><span class="o">:</span> <span class="s1">&#39;[things to do here, maybe]&#39;</span><span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">store.dispatch({type: 'do-stuff'})
+// it's conventional to use all uppercase, but it's also hideous. so.
+store.dispatch({type: 'DO_OTHER_STUFF', stuff: '[things to do here, maybe]'})
+</code></pre>
 <p>Action creators are functions that create actions based on any sorts of
 arguments.</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendSomeData</span> <span class="o">=</span> <span class="s1">&#39;send-some-data&#39;</span>
-<span class="kr">const</span> <span class="nx">sendSomeDataActionCreator</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">({</span>
-  <span class="nx">type</span> <span class="o">:</span> <span class="nx">sendSomeData</span>
-<span class="p">,</span> <span class="nx">data</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">const sendSomeData = 'send-some-data'
+const sendSomeDataActionCreator = data =&gt; ({
+  type : sendSomeData
+, data
+})
+</code></pre>
 <p>A 'bound' action creator would be one that creates the action and immediately
 dispatches it. This might be familiar to folks who've worked with Flux before.</p>
 <p>This is how you might have something like this in Flux:</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sendMoreData</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">doIt</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">type</span> <span class="o">:</span> <span class="nx">sendMoreData</span><span class="p">,</span>
-    <span class="nx">data</span>
-  <span class="p">}</span>
-  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">doIt</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">const sendMoreData = data =&gt; {
+  const doIt = {
+    type : sendMoreData,
+    data
+  }
+  dispatch(doIt)
+}
+</code></pre>
 <p>And this is how it'd work in Redux:</p>
-<div class="highlight"><pre><span></span><span class="c1">// assuming you already have the dispatch and action creator, you&#39;d just</span>
-<span class="kr">const</span> <span class="nx">boundSendMoreData</span> <span class="o">=</span> <span class="nx">data</span> <span class="p">=&gt;</span>
-  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">sendMoreData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
-</pre></div>
-
+<pre><code class="language-javascript">// assuming you already have the dispatch and action creator, you'd just
+const boundSendMoreData = data =&gt;
+  dispatch(sendMoreData(data))
+</code></pre>
 <p>There's also a <code>bindActionCreators()</code> to just do this for you, and React-Redux
 has <code>connect()</code>.</p>
 <p>Async actions should go through middleware to be turned into regular actions

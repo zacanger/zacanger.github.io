@@ -60,49 +60,49 @@
 </li>
 </ul>
 <hr />
-<div class="highlight"><pre><span></span><span class="c1">// npm i -S the things we&#39;re requiring right here</span>
+<pre><code class="language-javascript">// npm i -S the things we're requiring right here
 
-<span class="kd">var</span> <span class="nx">express</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">session</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;passport&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">Facebook</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;passport-facebook&#39;</span><span class="p">).</span><span class="nx">Strategy</span>
-  <span class="p">,</span> <span class="nx">app</span>      <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-  <span class="p">,</span> <span class="nx">port</span>     <span class="o">=</span> <span class="mi">3000</span>
+var express  = require('express')
+  , session  = require('express-session')
+  , passport = require('passport')
+  , Facebook = require('passport-facebook').Strategy
+  , app      = express()
+  , port     = 3000
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">())</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">session</span><span class="p">())</span>
+app.use(passport.initialize())
+app.use(passport.session())
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">Facebook</span><span class="p">({</span>
-  <span class="p">,</span> <span class="nx">callbackURL</span><span class="o">:</span> <span class="s1">&#39;http://localhost:3000/auth/facebook/callback&#39;</span>
-<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">refreshToken</span><span class="p">,</span> <span class="nx">profile</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">profile</span><span class="p">)</span>
-<span class="p">}))</span>
+passport.use(new Facebook({
+  , callbackURL: 'http://localhost:3000/auth/facebook/callback'
+}, function(token, refreshToken, profile, done){
+  return done(null, profile)
+}))
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/auth/facebook&#39;</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">&#39;facebook&#39;</span><span class="p">))</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/auth/facebook/callback&#39;</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">&#39;facebook&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">successRedirect</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span>
-  <span class="p">,</span> <span class="nx">failureRedirect</span><span class="o">:</span> <span class="s1">&#39;/login&#39;</span>
-<span class="p">}),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">)</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">image</span><span class="p">(</span><span class="s1">&#39;http://zacanger.com/gifland/ferret-fail.gif&#39;</span><span class="p">)</span>
-<span class="p">})</span>
+app.get('/auth/facebook', passport.authenticate('facebook'))
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/'
+  , failureRedirect: '/login'
+}), function(req, res){
+  console.log(req.session)
+  console.image('http://zacanger.com/gifland/ferret-fail.gif')
+})
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">serializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
-  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span>
-<span class="p">})</span>
+passport.serializeUser(function(user, done){
+  done(null, user)
+})
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">deserializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
-  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">obj</span><span class="p">)</span>
-<span class="p">})</span>
+passport.deserializeUser(function(obj, done){
+  done(null, obj)
+})
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/me&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">ers</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">currentUser</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">currentUser</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;oi oi oi at &#39;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">)</span>
-<span class="p">})</span>
-</pre></div>
+app.get('/me', function(req, ers){
+  var currentUser = req.session.user
+  res.send(currentUser)
+})
+app.listen(port, function(){
+  console.log('oi oi oi at ' + port)
+})
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

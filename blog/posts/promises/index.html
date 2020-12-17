@@ -62,56 +62,57 @@
     * (Don't do a <code>.then(fn(res), fn(err))</code>; use <code>.then().catch()</code>.)
 * Don't nest promises. Use a <code>.all</code> instead.</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">something</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">resolve</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">reject</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})</span>
+<pre><code class="language-javascript">const promise = new Promise((resolve, reject) =&gt; {
+  if (something) {
+    resolve(value)
+  } else {
+    reject(reason)
+  }
+})
 
-<span class="kr">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">)</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
-<span class="kr">const</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="nx">p2</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">res</span> <span class="o">+=</span> <span class="s1">&#39;ghjkl;&#39;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
-<span class="p">})</span>
-<span class="nx">p2</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span> <span class="c1">// this is still &#39;asdf&#39;</span>
+const p = Promise.resolve('something')
+p.then(res =&gt; console.log(res))
+const p2 = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve('asdf'), 2000)
+})
+p2.then(res =&gt; {
+  res += 'ghjkl;'
+  console.log(res)
+})
+p2.then(res =&gt; console.log(res)) // this is still 'asdf'
 
-<span class="nx">somePromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-  <span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fulfilled&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span>
-<span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;rejected&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">))</span>
+somePromise.then(
+  val =&gt; console.log('fulfilled', val)
+, err =&gt; console.error('rejected', err))
 
-<span class="nx">pr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fulfilled&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">))</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;rejected&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">))</span>
+pr.then(val =&gt; console.log('fulfilled', val))
+  .then(null, err =&gt; console.error('rejected', err))
 
-<span class="kr">const</span> <span class="nx">throwProm</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span> <span class="nx">rej</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">something</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;rejected&#39;</span><span class="p">)</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">resolve</span><span class="p">(</span><span class="nx">stuff</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-<span class="nx">throwProm</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">val</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hey&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">))</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">))</span>
+const throwProm = new Promise((res, rej) =&gt; {
+  if (something) {
+    throw new Error('rejected')
+  } else {
+  resolve(stuff)
+  }
+})
+throwProm
+.then(val =&gt; val + 8)
+.then(val =&gt; console.log('hey', val))
+.catch(err =&gt; console.error('err', err.message))
 
-<span class="kr">const</span> <span class="nx">fulProm</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span> <span class="nx">rej</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">res</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
-<span class="nx">fulProm</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">val</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;failure&#39;</span><span class="p">)})</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;yay&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">))</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">))</span>
+const fulProm = new Promise((res, rej) =&gt; res(8))
+fulProm
+.then(val =&gt; val + 8)
+.then(val =&gt; {throw new Error('failure')})
+.then(val =&gt; console.log('yay', val))
+.catch(err =&gt; console.error('error', err.message))
 
-<span class="nx">one</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">res</span><span class="p">,</span> <span class="nx">two</span><span class="p">(</span><span class="nx">res</span><span class="p">)]))</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">results</span> <span class="p">=&gt;</span> <span class="cm">/* stuff */</span><span class="p">)</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="cm">/* handle err */</span><span class="p">)</span>
-</pre></div>
+one()
+.then(res =&gt; Promise.all([res, two(res)]))
+  .then(results =&gt; /* stuff */)
+  .catch(err =&gt; /* handle err */)
+
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

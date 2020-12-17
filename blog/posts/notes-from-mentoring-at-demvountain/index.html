@@ -33,7 +33,7 @@
     </header>
     <hr>
     <div>
-      <h2>webinar notes</h2>
+      <h2 id="webinar-notes">webinar notes</h2>
 <ul>
 <li><code>%</code> is not <em>exactly</em> modulo, but rather remainder. Eg <code>9 % 3 // 0</code> , or <code>10 % 3 // 1</code></li>
 <li><code>var++ === var=var+1</code></li>
@@ -57,40 +57,37 @@
 <p>keywords:</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span>break case catch class const continue debugger
+<pre><code>break case catch class const continue debugger
 default delete do else enum export extends false
 finally for function if implements import in
 instanceof interface let new null package private
 protected public return static super switch this
 throw true try typeof var void while with yield
-</pre></div>
-
+</code></pre>
 <p><code>if (2 &amp;&amp; null){console.log('yes')}</code> returns <code>undefined</code></p>
 <p><code>if (2 &amp;&amp; 3){console.log('yes')}</code> returns 'yes'</p>
-<div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;stuff&#39;</span><span class="p">)</span> <span class="c1">// this is a single-line comment, ignored by the interpreter</span>
-<span class="cm">/* and this</span>
-<span class="cm">* is a multi-line commment</span>
-<span class="cm">* also ignored</span>
-<span class="cm">* and full of words</span>
-<span class="cm">*/</span>
-</pre></div>
-
+<pre><code class="language-javascript">console.log('stuff') // this is a single-line comment, ignored by the interpreter
+/* and this
+* is a multi-line commment
+* also ignored
+* and full of words
+*/
+</code></pre>
 <hr />
-<h2>Functional JS</h2>
+<h2 id="functional-js">Functional JS</h2>
 <p>Functions are first-class objects. This means that <code>var foo = 2</code> and <code>var bar
 = function(quux, baz){return quux + baz}</code> are equally valid. This isn't
 exactly special, but it means that (importantly) functions can be passed as
 arguments. <code>var fooBar = function(fn, quux, baz){return fn(quux, baz)}</code> is
 still good, as is the following:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nx">exec</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">var sum = function(a, b){
+  return a + b
+}
+var exec = function(fn, a, b){
+  return fn(a, b)
+}
+exec(sum, 28, 98)
+</code></pre>
 <p>Higher-order functions are functions that <em>return other functions</em>. <code>var stuff
 = function(things){return function(){return things}}</code>. Closures, for example,
 always return the same thing, as in <code>var what = stuff(function(){}) ; what()
@@ -99,7 +96,7 @@ always return the same thing, as in <code>var what = stuff(function(){}) ; what(
 parent function has been returned</em>. <code>function asdf(){var texty = 'howdy';
 function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 <hr />
-<h2>local and session storage</h2>
+<h2 id="local-and-session-storage">local and session storage</h2>
 <ul>
 <li>same api for both, but sessionStorage loses data on browser close.<ul>
 <li><code>storage.getItem(k)</code> returns value for key</li>
@@ -111,9 +108,9 @@ function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 <li>api expects strings, so <em>if needed</em>, implement a wrapper. json.stringify is chill.</li>
 </ul>
 <hr />
-<h2><a href="https://support.google.com/websearch/answer/2466433">Google's Search Operators help page</a></h2>
+<h2 id="googles-search-operators-help-page"><a href="https://support.google.com/websearch/answer/2466433">Google's Search Operators help page</a></h2>
 <hr />
-<h2>mongo</h2>
+<h2 id="mongo">mongo</h2>
 <ul>
 <li>
 <p><code>mongod --fork --syslog</code> will throw it in the background</p>
@@ -129,7 +126,7 @@ function ghjkl(){console.log(texty)}ghjkl()}</code>.</p>
 </li>
 </ul>
 <hr />
-<h2>angular</h2>
+<h2 id="angular">angular</h2>
 <p>Don't design a page, then manuipulate the DOM (as you would in jQuery). Here,
 we're no longer building websites that we make expressive and add to with
 Javascript... we're building applications in the browser, and thinking about
@@ -145,20 +142,18 @@ the DOM, except in directives, which are applied in the view.</p>
 <p>Angular's two-way data binding is actually probably it's strongest feature, at
 least for small apps. Using jQuery, we might do something like the following
 to update content based on events:</p>
-<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;/thing.json&#39;</span>
-<span class="p">,</span> <span class="nx">success</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul#log&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;data is here!&lt;/li&gt;&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">$.ajax({
+  url : '/thing.json'
+, success (data, status) {
+    $('ul#log').append('&lt;li&gt;data is here!&lt;/li&gt;')
+  }
+})
+</code></pre>
 <p>(where in the HTML we might have <code>&lt;ul id="log"&gt;&lt;/ul&gt;</code>). In Angular, we'd do:</p>
-<div class="highlight"><pre><span></span><span class="nx">$http</span><span class="p">(</span><span class="s1">&#39;/thing.json&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">$scope</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">msg</span> <span class="o">:</span> <span class="s1">&#39;data is here!&#39;</span><span class="p">})</span>
-<span class="p">})</span>
-</pre></div>
-
+<pre><code class="language-javascript">$http('/thing.json').then(response =&gt; {
+  $scope.log.push({msg : 'data is here!'})
+})
+</code></pre>
 <p>for a view that looks like <code>&lt;ul&gt;&lt;li ng-repeat"thing in
 log"&gt;{{thing.msg}}&lt;/li&gt;&lt;/ul&gt;</code>.</p>
 <p>We could also just have, in our view, something like <code>&lt;input

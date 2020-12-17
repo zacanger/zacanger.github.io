@@ -35,14 +35,14 @@
     <div>
       <p>(Just a little cheatsheet/list for my own easy reference--and anyone else's,
 too, of course. This is like maybe 83 percent just copied from MDN.)</p>
-<h1>JAVASCRIPT OPERATORS</h1>
+<h1 id="javascript-operators">JAVASCRIPT OPERATORS</h1>
 <p>There are a whole whole bunch! Here's most of 'em, kinda hopefully split up
 and sorted in some sort of order that makes sense. It's always worth just
 taking a peek at the spec or MDN or whatever, especially it looks like actual
 standards are going to be getting actual changes within actual human lifespans
 now.</p>
 <hr />
-<h3>BITWISE:</h3>
+<h3 id="bitwise">BITWISE:</h3>
 <ul>
 <li><code>&amp;</code> -- AND</li>
 <li><code>|</code> -- OR</li>
@@ -52,7 +52,7 @@ now.</p>
 <li><code>&gt;&gt;</code> -- sign-propagating right shift</li>
 <li><code>&gt;&gt;&gt;</code> -- zero-fill right shift</li>
 </ul>
-<h3>LOGICAL:</h3>
+<h3 id="logical">LOGICAL:</h3>
 <ul>
 <li><code>&amp;&amp;</code> -- AND</li>
 <li><code>||</code> -- OR</li>
@@ -62,7 +62,7 @@ now.</p>
   is run if the condition is true, and the second is run if the condition is false. example:
   <code>age &gt; 21 ? alert('here\'s your beer!') : alert('go home, kid.')</code></li>
 </ul>
-<h3>ASSIGNMENT:</h3>
+<h3 id="assignment">ASSIGNMENT:</h3>
 <ul>
 <li><code>=</code> -- assignment</li>
 <li><code>*=</code> -- multiplication assignment</li>
@@ -79,21 +79,21 @@ now.</p>
 <li>destructuring assignment: for assigning properties or elements of an object or array,
   using object- or array-like syntax. examples: <code>[a,b,c] = [1,2,3]</code>; <code>{a,b,c}={a:1,b:2,c:3}</code></li>
 </ul>
-<h3>EQUALITY:</h3>
+<h3 id="equality">EQUALITY:</h3>
 <ul>
 <li><code>==</code> -- equality</li>
 <li><code>!=</code> -- inequality</li>
 <li><code>===</code> -- identity (strict equality)</li>
 <li><code>!==</code> -- nonidentity</li>
 </ul>
-<h3>POSTFIX/PREFIX:</h3>
+<h3 id="postfixprefix">POSTFIX/PREFIX:</h3>
 <ul>
 <li><code>foo++</code> -- postfix increment</li>
 <li><code>foo--</code> -- postfix decrement</li>
 <li><code>++bar</code> -- prefix increment</li>
 <li><code>--bar</code> -- prefix decrement</li>
 </ul>
-<h3>UNARY:</h3>
+<h3 id="unary">UNARY:</h3>
 <ul>
 <li><code>delete</code> -- deletes a property from an object</li>
 <li><code>void</code> -- discards the return value from an expression</li>
@@ -102,7 +102,7 @@ now.</p>
 <li><code>-</code> -- converts operand to Number, negates it</li>
 <li>also see bitwise NOT and logical NOT</li>
 </ul>
-<h3>ARITHMETIC:</h3>
+<h3 id="arithmetic">ARITHMETIC:</h3>
 <ul>
 <li><code>+</code>, <code>-</code>, <code>/</code>, <code>*</code> -- work as expected</li>
 <li><code>%</code> -- remainder operator<ul>
@@ -117,14 +117,14 @@ now.</p>
 </ul>
 </li>
 </ul>
-<h3>COMPARISON/RELATIONAL:</h3>
+<h3 id="comparisonrelational">COMPARISON/RELATIONAL:</h3>
 <ul>
 <li><code>in</code> -- determines if object has given property</li>
 <li><code>instanceof</code> -- determines if obj is an instance of another object</li>
 <li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> -- work as expected</li>
 </ul>
 <hr />
-<h2>PRECEDENCE</h2>
+<h2 id="precedence">PRECEDENCE</h2>
 <p>Operators will be evaluated in a specific order. If there are operators that
 have the same priority, it's probably a good idea to check MDN or somesuch,
 because it's not all just left-to-right as one might expect. Here's a (very)

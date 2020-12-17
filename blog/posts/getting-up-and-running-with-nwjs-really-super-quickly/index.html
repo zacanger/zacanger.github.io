@@ -47,13 +47,12 @@ of the box, but gave me issues when trying to get Node integration to work.</p>
 put the relevant information in your <code>package.json</code>. The relevant info on that
 is all here: <a href="https://github.com/nwjs/nw.js/wiki/Manifest-format">https://github.com/nwjs/nw.js/wiki/Manifest-format</a> but mostly
 it's just something like</p>
-<div class="highlight"><pre><span></span>&quot;window&quot;: {
+<pre><code>&quot;window&quot;: {
   &quot;height&quot;: 800,
   &quot;width&quot;: 1200,
   &quot;title&quot;: &quot;my app&quot;
 }
-</pre></div>
-
+</code></pre>
 <p>et cetera. The <code>main</code> field (which usually has, like, <code>server/index.js</code> or
 whatever in it), needs to be what NW.js is pointed to. That can be an HTML
 file (<code>"main": "./client/public/index.html"</code> or whatever) or a URL (if you're

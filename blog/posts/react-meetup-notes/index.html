@@ -33,11 +33,11 @@
     </header>
     <hr>
     <div>
-      <h1>IMPORTANT:</h1>
+      <h1 id="important">IMPORTANT:</h1>
 <p>don't take anything here seriously. i think it's just interesting to reread
 my initial reaction when i was confronted with everything that is react.</p>
 <hr />
-<h2>React Meetup, 17 Nov, 2015</h2>
+<h2 id="react-meetup-17-nov-2015">React Meetup, 17 Nov, 2015</h2>
 <p>React:
 * Good at managing state.
 * which is to say, dynamism
@@ -68,15 +68,15 @@ Which is PHP, influenced by E4X (ECMAScript with random XML all up in it). So
 React is Javascript based on PHP based on Javascript based on XML. So it's
 totally okay to think that it's hideous. That's good.</p>
 <p>app.jsx:</p>
-<div class="highlight"><pre><span></span>import React from &#39;react&#39; // same as var React = require(&#39;react&#39;)
-import ReactDOM from &#39;react-dom&#39;
-import List from &#39;./List&#39;
-import Friendz from &#39;./Friendz&#39;
+<pre><code class="language-jsx">import React from 'react' // same as var React = require('react')
+import ReactDOM from 'react-dom'
+import List from './List'
+import Friendz from './Friendz'
 
 const App = React.createClass({
   getInitialState(){
     return (
-      bros: [&#39;bman&#39;, &#39;brosef&#39;]
+      bros: ['bman', 'brosef']
     )
   },
   componentDidMount(){}, // onload
@@ -96,18 +96,17 @@ const App = React.createClass({
 
 ReactDOM.render(
   &lt;App /&gt;,
-  document.getElementById(&#39;root&#39;)
+  document.getElementById('root')
 )
-</pre></div>
-
+</code></pre>
 <p>miniform.jsx:</p>
-<div class="highlight"><pre><span></span>import React from &#39;react&#39;
+<pre><code class="language-jsx">import React from 'react'
 
 const Friendz = React.createClass(
   render() {
     getInitialState(){
       return {
-        newFriend: &#39;&#39;
+        newFriend: ''
       }
     },
     updateFriend(e){ // for event.
@@ -125,10 +124,9 @@ const Friendz = React.createClass(
 )
 
 export default Friendz
-</pre></div>
-
+</code></pre>
 <p>list.jsx:</p>
-<div class="highlight"><pre><span></span>import React from &#39;react&#39;
+<pre><code class="language-jsx">import React from 'react'
 
 const List = React.createClass({
   render() {
@@ -139,7 +137,7 @@ const List = React.createClass({
 })
 
 export default List // like module.exports = {}
-</pre></div>
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

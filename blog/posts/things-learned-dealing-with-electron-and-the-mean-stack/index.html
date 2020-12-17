@@ -67,38 +67,37 @@ won't give you any room to breathe later.</p>
 <p>Number one important and really frustrating thing I learned, though, was that
 Electron needs to be told that it can use Angular, jQuery, etc., explicitly.
 Here's an example of my <code>app.js</code> to start my Electron app:</p>
-<div class="highlight"><pre><span></span>var app = require(&#39;app&#39;)
-  , BrowserWindow = require(&#39;browser-window&#39;)
+<pre><code>var app = require('app')
+  , BrowserWindow = require('browser-window')
   , mainWindow = null // keep reference of window; otherwise gc will close it!
 
-app.on(&#39;window-all-closed&#39;, function(){
-  if (process.platform != &#39;darwin&#39;) {
+app.on('window-all-closed', function(){
+  if (process.platform != 'darwin') {
     app.quit()  // because osx holds processes open even after
   }             // all windows are closed
 })
 
-// electron&#39;s window!
-app.on(&#39;ready&#39;, function(){
+// electron's window!
+app.on('ready', function(){
   mainWindow = new BrowserWindow({
     width: 1600
  ,  height: 900
- ,  &#39;accept-first-mouse&#39;: true
- ,  &#39;title-bar-style&#39;: &#39;hidden&#39;
- ,  &#39;node-integration&#39;: false // otherwise various client-side things break
+ ,  'accept-first-mouse': true
+ ,  'title-bar-style': 'hidden'
+ ,  'node-integration': false // otherwise various client-side things break
   })
 
-  mainWindow.loadUrl(&#39;http://127.0.0.1:4444/admin&#39;) // our internal server...
+  mainWindow.loadUrl('http://127.0.0.1:4444/admin') // our internal server...
 
   // mainWindow.openDevTools()
 
-  mainWindow.on(&#39;closed&#39;, function(){
+  mainWindow.on('closed', function(){
     // if we have multiple windows, store them in an array
-    // this is where we&#39;d get rid of those
+    // this is where we'd get rid of those
     mainWindow = null
   })
 })
-</pre></div>
-
+</code></pre>
 <p>The relevant line is commented, but to emphasize: <code>'node-integration'</code> needs
 to be set to <code>false</code> if you want to use frameworks/libraries that might have
 conflicts with native Node things, like the word <code>module</code>. I couldn't find

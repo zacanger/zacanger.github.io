@@ -88,20 +88,19 @@ tags in in parallel, which is why you should bundle). Build tools, build tools,
 build tools.</p>
 <p>For third-party code, <em>load asynchronously</em>. Or use iframes like your
 grandfather, I don't care. Or you could do something like this:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">script</span><span class="p">,</span>
-      <span class="nx">scripts</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="kd">function</span> <span class="nx">load</span><span class="p">(</span><span class="nx">url</span><span class="p">){</span>
-    <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
-    <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span>
-    <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">url</span>
-    <span class="nx">scripts</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">script</span><span class="p">,</span> <span class="nx">scripts</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="nx">load</span><span class="p">(</span><span class="s1">&#39;//example.url/quux.js&#39;</span><span class="p">)</span>
-  <span class="nx">load</span><span class="p">(</span><span class="s1">&#39;//another.one/baz.js&#39;</span><span class="p">)</span>
-<span class="p">}())</span>
-</pre></div>
-
+<pre><code class="language-javascript">(function(){
+  var script,
+      scripts = document.getElementsByTagName('script')[0]
+  function load(url){
+    script = document.createElement('script')
+    script.async = true
+    script.src = url
+    scripts.parentNode.insertBefore(script, scripts)
+  }
+  load('//example.url/quux.js')
+  load('//another.one/baz.js')
+}())
+</code></pre>
 <p>if you want. Or you could just not be all about them external scripts. Totally up to you.</p>
 <p>Oh, and on that note, if you're using jQuery (which you are, admit it, you
 goon), do <em>try</em> to get the latest one.  They do actually keep that updated and
@@ -114,13 +113,12 @@ breaking as little as they possibly could, that's for sure).</p>
 concern, optimize your loops (modern browsers do this automatically). One big
 help would be to store the size of arrays, so the JS engine doesn't have to
 recalculate this every time it runs through the loop. Here's how that'd be done:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span>
-    <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-  <span class="c1">// do stuff</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">var i, len,
+    arr = new Array(42)
+for (i = 0, len = arr.length; i &amp;lt; len; i++){
+  // do stuff
+}
+</code></pre>
 <p>This would also help in a situation where, inside your loop, you're working with
 a <code>NodeList</code>. It just helps to have a limit set before your for loop, so you
 don't wind up doing an infinite loop, for example appending something that

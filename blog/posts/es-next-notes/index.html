@@ -36,72 +36,72 @@
       <p>That is, es-next-next notes. Like, es7-or-whatever-we're-calling-it-today, and
 es-the-number-after-that notes.</p>
 <p>What <del>will</del> might we get?</p>
-<div class="highlight"><pre><span></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">includes</span> <span class="c1">// so, for example, instead of:</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">someArr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// we can do:</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">someArr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">val</span><span class="p">))</span>
+<pre><code class="language-javascript">Array.prototype.includes // so, for example, instead of:
+if(someArr.indexOf(val) &gt; -1) // we can do:
+if(someArr.includes(val))
 
-<span class="c1">// you know how we have destructuring with arrays in es6? what about objects?</span>
-<span class="kd">let</span> <span class="p">{</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,...</span><span class="nx">z</span><span class="p">}</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="mi">4</span><span class="p">}</span>
-<span class="nx">x</span> <span class="c1">// 1</span>
-<span class="nx">y</span> <span class="c1">// 2</span>
-<span class="nx">z</span> <span class="c1">// {a:3, b:4}</span>
-<span class="c1">// and...</span>
-<span class="kd">let</span> <span class="nx">q</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,...</span><span class="nx">z</span><span class="p">}</span>
-<span class="nx">q</span> <span class="c1">// {x:1,y:2,a:3,b:4}</span>
+// you know how we have destructuring with arrays in es6? what about objects?
+let {x,y,...z} = {x:1,y:2,a:3,b:4}
+x // 1
+y // 2
+z // {a:3, b:4}
+// and...
+let q = {x,y,...z}
+q // {x:1,y:2,a:3,b:4}
 
-<span class="c1">// decorators (for modifying/annotating classes on creation)</span>
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">){</span>
-  <span class="nx">descriptor</span><span class="p">.</span><span class="nx">something</span> <span class="o">=</span> <span class="nx">whatever</span>
-  <span class="k">return</span> <span class="nx">descriptor</span>
-<span class="p">}</span>
-<span class="kr">class</span> <span class="nx">Bar</span> <span class="p">{</span>
-  <span class="err">@</span><span class="nx">foo</span>
-  <span class="nx">quux</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="sb">`this thing is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">baz</span><span class="si">}</span><span class="sb"> asdf lkadjfklal`</span><span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// so, quux is gonna conform to whatever we said in foo()</span>
+// decorators (for modifying/annotating classes on creation)
+function foo(target, name, descriptor){
+  descriptor.something = whatever
+  return descriptor
+}
+class Bar {
+  @foo
+  quux() {return `this thing is ${this.baz} asdf lkadjfklal`}
+}
+// so, quux is gonna conform to whatever we said in foo()
 
-<span class="c1">// we get exponents!</span>
-<span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span> <span class="c1">// no more! now just</span>
-<span class="nx">x</span> <span class="o">**</span> <span class="nx">y</span>
+// we get exponents!
+Math.pow(x,y) // no more! now just
+x ** y
 
-<span class="c1">// simd! (limited to 128 bits though--256 and maybe 512 in the future?)</span>
-<span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">SIMD</span><span class="p">.</span><span class="nx">float64x2</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">oneArr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">SIMD</span><span class="p">.</span><span class="nx">float64x2</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">twoArr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">SIMD</span><span class="p">.</span><span class="nx">float64x3</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span>
-<span class="nx">SIMD</span><span class="p">.</span><span class="nx">float64x2</span><span class="p">.</span><span class="nx">store</span><span class="p">(</span><span class="nx">treArr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
-<span class="c1">// this will make calc with typed arrs &amp; typed objs sooo much faster</span>
+// simd! (limited to 128 bits though--256 and maybe 512 in the future?)
+let foo = SIMD.float64x2.load(oneArr, 0)
+let bar = SIMD.float64x2.load(twoArr, 0)
+let res = SIMD.float64x3.add(x,y)
+SIMD.float64x2.store(treArr, 0, res)
+// this will make calc with typed arrs &amp; typed objs sooo much faster
 
-<span class="c1">// es-next-next (es8?) may have type annotations!</span>
-<span class="c1">// oh, and macros?! howlly craaeep.</span>
+// es-next-next (es8?) may have type annotations!
+// oh, and macros?! howlly craaeep.
 
-<span class="c1">// async functions and generators, with possible syntax like:</span>
-<span class="nx">async</span> <span class="kd">function</span><span class="o">*</span> <span class="nx">whatever</span><span class="p">(){</span>
-  <span class="k">yield</span> <span class="mi">1</span>
-  <span class="k">yield</span> <span class="mi">2</span>
-  <span class="k">yield</span> <span class="mi">3</span>
-<span class="p">}</span>
-<span class="nx">async</span> <span class="kd">function</span> <span class="nx">things</span><span class="p">(){</span>
-  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">asdf</span> <span class="nx">on</span> <span class="nx">whatever</span><span class="p">()){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asdf</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// Object.values, Object.entries, Object.getOwnPropertyDescriptors</span>
-<span class="c1">// Typed Objects, so like</span>
-<span class="kd">var</span> <span class="nx">Asdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StructType</span><span class="p">({</span>
-    <span class="nx">x</span> <span class="o">:</span> <span class="nx">int32</span>
-<span class="p">,</span> <span class="nx">y</span> <span class="o">:</span> <span class="nx">int32</span>
-<span class="p">})</span>
-<span class="kd">var</span> <span class="nx">Ghjkl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Asdf</span><span class="p">({</span>
-  <span class="nx">x</span> <span class="o">:</span> <span class="mi">99</span>
-<span class="p">,</span> <span class="nx">y</span> <span class="o">:</span> <span class="mi">120</span>
-<span class="p">})</span>
-<span class="c1">// trailing commas... which is kinda dumb, actually, in a few ways.</span>
-<span class="c1">// .toJSON (Set.prototype)</span>
-<span class="c1">// String.prototype.at</span>
-<span class="c1">// String.prototype.padLeft, .padRight, .trimLeft, .trimRight</span>
-<span class="c1">// Regexp.escape ?!</span>
-<span class="o">::</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">x</span> <span class="p">=&gt;</span> <span class="k">return</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <span class="c1">// BINDING/METHOD EXTRACTION!</span>
-</pre></div>
+// async functions and generators, with possible syntax like:
+async function* whatever(){
+  yield 1
+  yield 2
+  yield 3
+}
+async function things(){
+  for(var asdf on whatever()){
+    console.log(asdf)
+  }
+}
+// Object.values, Object.entries, Object.getOwnPropertyDescriptors
+// Typed Objects, so like
+var Asdf = new StructType({
+    x : int32
+, y : int32
+})
+var Ghjkl = new Asdf({
+  x : 99
+, y : 120
+})
+// trailing commas... which is kinda dumb, actually, in a few ways.
+// .toJSON (Set.prototype)
+// String.prototype.at
+// String.prototype.padLeft, .padRight, .trimLeft, .trimRight
+// Regexp.escape ?!
+::forEach(x =&gt; return(x)) // BINDING/METHOD EXTRACTION!
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

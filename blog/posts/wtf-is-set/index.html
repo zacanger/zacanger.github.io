@@ -34,34 +34,32 @@
     <hr>
     <div>
       <p>So, someone asked in a Slack channel how they might clean up the following code:</p>
-<div class="highlight"><pre><span></span><span class="nx">getNames</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">contacts_set</span> <span class="o">=</span> <span class="p">[]</span>
+<pre><code class="language-JavaScript">getNames (contacts) {
+  let contacts_set = []
 
-  <span class="nx">contacts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">contact</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="nx">get</span><span class="p">(</span><span class="nx">contact</span><span class="p">,</span> <span class="s1">&#39;contactInfo.firstName&#39;</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">lastName</span>  <span class="o">=</span> <span class="nx">get</span><span class="p">(</span><span class="nx">contact</span><span class="p">,</span> <span class="s1">&#39;contactInfo.lastName&#39;</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
+  contacts.forEach((contact) =&gt; {
+    let firstName = get(contact, 'contactInfo.firstName')
+    let lastName  = get(contact, 'contactInfo.lastName')
+    let fullName = `${firstName} ${lastName}`
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">contacts_set</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">fullName</span><span class="p">))</span> <span class="p">{</span>
-      <span class="k">return</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">contacts_set</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">fullName</span><span class="p">)</span>
-    <span class="p">}</span>
+    if (contacts_set.includes(fullName)) {
+      return
+    } else {
+      contacts_set.push(fullName)
+    }
 
-    <span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;contactsSet&#39;</span><span class="p">,</span> <span class="nx">contactsSet</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</pre></div>
-
+    set(this, 'contactsSet', contactsSet)
+  })
+}
+</code></pre>
 <p>Note that the <code>get</code> and <code>set</code> going on here seemed to be Ember-specific. I don't
 know Ember so don't ask me.</p>
 <p>And I said, how about this?</p>
-<div class="highlight"><pre><span></span><span class="nx">getNames</span><span class="o">:</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">=&gt;</span>
-  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span>
-    <span class="nx">contacts</span><span class="p">.</span><span class="nx">map</span><span class="p">(({</span> <span class="nx">contactInfo</span><span class="o">:</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span> <span class="p">}})</span> <span class="p">=&gt;</span>
-      <span class="sb">`</span><span class="si">${</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">))]</span>
-</pre></div>
-
+<pre><code class="language-JavaScript">getNames: (contacts) =&gt;
+  [...new Set(
+    contacts.map(({ contactInfo: { firstName, lastName }}) =&gt;
+      `${firstName} ${lastName}`))]
+</code></pre>
 <p>I like this version because it's very concise and still readable (to me).
 It also doesn't do mutation-y stuff, which is a good thing.</p>
 <p>And then someone else asked:</p>
@@ -85,24 +83,23 @@ then you're creating another thing, which is totally true.</p>
 <a href="https://en.wikipedia.org/wiki/Set_(mathematics)">here</a> on what JS's <code>Set</code> is
 suppose to be kind of like.</p>
 <p>And underneath it sorta looks vaguely like this:</p>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Set</span> <span class="p">{</span>
-  <span class="nx">constructor</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="p">}</span>
-  <span class="nx">add</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="nx">has</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="nx">remove</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">a</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-JavaScript">class Set {
+  constructor () {
+    this.storage = []
+  }
+  add (a) {
+    if (!this.storage.includes(a)) {
+      this.storage.push(a)
+    }
+  }
+  has (a) {
+    return this.storage.includes(a)
+  }
+  remove (a) {
+    this.storage.splice(this.storage.indexOf(a), 1)
+  }
+}
+</code></pre>
 <p>That's a lot of stuff, but mostly you can think of <code>Set</code> as a thing that's like
 <code>Array</code> but it only holds unique things.</p>
 <p>There's also a <code>WeakSet</code> which can only hold objects. I haven't really found a

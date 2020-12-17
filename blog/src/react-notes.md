@@ -16,6 +16,8 @@ so not all of it will be completely valid, probably. Okay. So.
 
 Enjoy.
 
+[TOC]
+
 #### REACT NOTES (yeah, again):
 
 There's no `if...else` in JSX. Doesn't work. Don't try it (in your JSX).

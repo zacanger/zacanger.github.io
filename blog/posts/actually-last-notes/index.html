@@ -33,34 +33,32 @@
     </header>
     <hr>
     <div>
-      <h2>WAIT I FOUND MORE NOTES</h2>
+      <h2 id="wait-i-found-more-notes">WAIT I FOUND MORE NOTES</h2>
 <p>These should be the very last of the notes taken while at DevMountain. I stuck
 in like two comments somewhere just because there was something actually
 incorrect, but as usual, please don't take anything in here seriously, there's a
 pretty good chance I didn't know what I was talking about when I wrote a lot of
 this.</p>
 <hr />
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">format</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span>
-  <span class="kd">var</span> <span class="nx">initial</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
-  <span class="kd">function</span> <span class="nx">replacer</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">replacement</span><span class="p">){</span>
-    <span class="k">return</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;%s&#39;</span><span class="p">,</span> <span class="nx">replacement</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">args</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">replacer</span><span class="p">,</span> <span class="nx">initial</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code class="language-javascript">function format(){
+  var args = [].slice.call(arguments)
+  var initial = args.shift()
+  function replacer(text, replacement){
+    return text.replace('%s', replacement)
+  }
+  return args.reduce(replacer, initial)
+}
+</code></pre>
 <p>this is my implementation, called format.js, stolen mostly from bevacqua. it's
 like util.format(), but for not-node.</p>
 <p>so, you can pass arguments to console.log and console.error that will be passed
 to util.format()</p>
 <p>so %s for strings, %d for numbers, and %j for objects are valid</p>
-<div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span> <span class="nx">and</span> <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">expression</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span>
-</pre></div>
-
+<pre><code class="language-javascript">console.trace(label)
+console.time(label) and console.timeEnd(label)
+console.assert(expression, arguments)
+console.dir(object)
+</code></pre>
 <hr />
 <p>Don't use Mongoose. Mongoose actually does have all the problems I thought it
 had. Try Mongolayer at least once. <a href="https://github.com/simpleviewinc/mongolayer">https://github.com/simpleviewinc/mongolayer</a>
@@ -78,14 +76,14 @@ builtin thing that you'd imagine needs to be an infinite loop, but isn't in the
 way because you only poke it when you need it. (Like Math.random(), kinda?)
 That's my interpretation, anyway.</p>
 <hr />
-<h2>Notes on Mongo schema design</h2>
-<h4>(in a one-to-n sort of situation...)</h4>
+<h2 id="notes-on-mongo-schema-design">Notes on Mongo schema design</h2>
+<h4 id="in-a-one-to-n-sort-of-situation">(in a one-to-n sort of situation...)</h4>
 <ul>
 <li>Embed N if low cardinality &amp; don't need to access embedded N standalone (outside parent object's context) (array of documents)</li>
 <li>Array of refs to N objects if cardinality is one-to-many, or if N objects should need to stand alone (array of refs)</li>
 <li>Ref to One from the N objects if cardinality is very high (parent ref in the N-side document)</li>
 </ul>
-<h4>the six rules of thumb, according to mongodb:</h4>
+<h4 id="the-six-rules-of-thumb-according-to-mongodb">the six rules of thumb, according to mongodb:</h4>
 <ol>
 <li>favour embedding unless there is a compelling reason not to</li>
 <li>needing to access an object on its own is a compelling reason</li>
@@ -102,36 +100,33 @@ bytecode doesn't count, I'm not even sure where it falls on the range of
 'scripting' to 'compiled')  a program can take a peek inside and see what the
 <em>type</em> of an <em>object</em> is.</p>
 <p>So:</p>
-<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="no">Class</span><span class="o">.</span><span class="n">new</span>
-<span class="n">B</span><span class="o">=</span><span class="no">Class</span><span class="o">.</span><span class="n">new</span> <span class="n">A</span>
-<span class="n">a</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">new</span>
-<span class="n">b</span><span class="o">=</span><span class="n">B</span><span class="o">.</span><span class="n">new</span>
-<span class="n">a</span><span class="o">.</span><span class="n">instance_of?</span> <span class="n">A</span>
-<span class="o">=&gt;</span> <span class="kp">true</span>
-<span class="n">b</span><span class="o">.</span><span class="n">instance_of?</span> <span class="n">A</span>
-<span class="o">=&gt;</span> <span class="kp">false</span>
-<span class="n">b</span><span class="o">.</span><span class="n">kind_of?</span> <span class="n">A</span>
-<span class="o">=&gt;</span> <span class="kp">true</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="x">if ($obj instanceof Cat) {</span>
-<span class="x">  // hey look, it&#39;s a cat!</span>
-<span class="x">}</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="n">thingy</span> <span class="o">=</span> <span class="n">whatever</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">blingy</span> <span class="o">=</span> <span class="n">blahhh</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">thingy</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;whatever&#39;</span><span class="o">&gt;</span>
-<span class="nb">isinstance</span><span class="p">(</span><span class="n">thingy</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">whatever</span><span class="p">))</span>
-<span class="bp">True</span>
-<span class="nb">isinstance</span><span class="p">(</span><span class="n">thingy</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">blingy</span><span class="p">))</span>
-<span class="bp">False</span>
-</pre></div>
-
+<pre><code class="language-ruby">A=Class.new
+B=Class.new A
+a=A.new
+b=B.new
+a.instance_of? A
+=&gt; true
+b.instance_of? A
+=&gt; false
+b.kind_of? A
+=&gt; true
+</code></pre>
+<pre><code class="language-php">if ($obj instanceof Cat) {
+  // hey look, it's a cat!
+}
+</code></pre>
+<pre><code class="language-python">thingy = whatever(100)
+blingy = blahhh(17)
+type(thingy)
+&lt;type 'whatever'&gt;
+isinstance(thingy, type(whatever))
+True
+isinstance(thingy, type(blingy))
+False
+</code></pre>
 <p>Python also has <code>hasattr</code>, which is nifty.</p>
 <hr />
-<h2>Cron in Node</h2>
+<h2 id="cron-in-node">Cron in Node</h2>
 <p><code>node-schedule</code> seems quite popular. It's a 'cron-like' and 'not-cron-like'
 scheduler. I believe that means it's a scheduler, but it's time based instead of
 interval based (because <code>setInterval</code> exists). Node-schedule is for in-process
@@ -141,11 +136,11 @@ node-schedule to do whatever it is that you need done at whatever time and/or
 date).</p>
 <hr />
 <p>Gulp:</p>
-<div class="highlight"><pre><span></span><span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;nameOfTask&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;arraywithTasksToExecute&#39;</span><span class="p">,</span> <span class="s1">&#39;beforeThisTaskHappens&#39;</span><span class="p">,</span> <span class="s1">&#39;whichAreOptionalReally&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(){})</span>
-</pre></div>
+<pre><code class="language-javascript">gulp.task('nameOfTask', ['arraywithTasksToExecute', 'beforeThisTaskHappens', 'whichAreOptionalReally'], function(){})
 
+</code></pre>
 <hr />
-<h2>Electron vs Node Webkit</h2>
+<h2 id="electron-vs-node-webkit">Electron vs Node Webkit</h2>
 <ul>
 <li>Electron: <code>main</code> in <code>package.json</code> is the <code>app.js</code> or whatever to run.</li>
 <li>nw.js: <code>main</code> is the <code>index.html</code> to display.</li>
@@ -217,7 +212,7 @@ directory contents, not a directory containing them.</p>
 <p><code>__dirname</code> can only be called by node modules (with <code>require()</code>). webkit doesn't have that (not in devtools either). a hacky fix:</p>
 <p><code>exports.dirname = __dirname</code> in a file, then require that (eg <code>var dirname = require('./dirnamefile').dirname; console.log(dirname)</code> would return dirname).</p>
 <hr />
-<h1>MISC NODE THINGS</h1>
+<h1 id="misc-node-things">MISC NODE THINGS</h1>
 <p>What the hell is an event emitter, anyway? Oh, okay. So. Here's an example.
 <code>net.Server</code> emits an event when a peer connects. <code>fs.readStream</code> emits an event
 when a file is opened. <code>events.EventEmitter</code> objects! This can be accessed
@@ -233,13 +228,12 @@ to make sure you're handling errors the way you <strong>want</strong> to handle 
 than just letting shit crash and die.</p>
 <hr />
 <p>Gulp core's api is THIS SIMPLE. Check this out.</p>
-<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">globs</span> <span class="p">[,</span> <span class="nx">options</span><span class="p">])</span>   <span class="c1">// takes glob, returns stream in</span>
-<span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>               <span class="c1">// takes path, returns stream out</span>
-<span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="nx">name</span> <span class="p">[,</span> <span class="nx">deps</span><span class="p">],</span> <span class="nx">fn</span><span class="p">)</span>  <span class="c1">// defines task</span>
-<span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">tasks</span><span class="p">...</span> <span class="p">[,</span> <span class="nx">cb</span><span class="p">])</span>     <span class="c1">// runs task</span>
-<span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">glob</span> <span class="p">[,</span> <span class="nx">opts</span><span class="p">],</span> <span class="nx">cb</span><span class="p">)</span> <span class="c1">// watches fs</span>
-</pre></div>
-
+<pre><code class="language-javascript">.src(globs [, options])   // takes glob, returns stream in
+.dest(path)               // takes path, returns stream out
+.task(name [, deps], fn)  // defines task
+.run(tasks... [, cb])     // runs task
+.watch(glob [, opts], cb) // watches fs
+</code></pre>
 <p>That's IT. The entire codebase is actually readable in a relatively short amount
 of time. Fuckin' beautiful.</p>
 <p>Clearly that doesn't include <code>.pipe()</code>, but pipe isn't exactly an api thing I
@@ -295,7 +289,8 @@ patterns, like Alt.</p>
  |(listens)      |
  \               / (calls)
   --&gt; Actions &lt;--</p>
-<div class="highlight"><pre><span></span>--------
+<pre><code>
+--------
 
 Some React Vocab:
 
@@ -304,20 +299,20 @@ to differentiate from standard xml/html. See [this
 gist](https://gist.github.com/sebmarkbage/f1f4ba40816e7d7848ad) for more info on
 that.
 
-There are five main types in React (and that&#39;s a horrible word to use, can we
+There are five main types in React (and that's a horrible word to use, can we
 think of something better? Kinds of elements? Things? Idk...).
 
 React Elements are the primary... thing. A `ReactElement` has four properties:
 type, props, key, ref. No methods, nothing on prototype. Created like `var foo =
-React.createElement(&#39;div&#39;).` You pass these to `React.render`, with a DOM element
+React.createElement('div').` You pass these to `React.render`, with a DOM element
 (HTML or SVG), like `React.render(foo, document.body)`. To add properties to it,
 pass a properties object as the second argument. Children to the third. (Note
-that if using JSX, that&#39;s a bit less verbose.
+that if using JSX, that's a bit less verbose.
 
 `ReactElement`-_factory_ is a function that generates `ReactElement` with
 specific `type` property. `function createFactory(type){return
-React.createElement.bind(null, type)}`; `var div = React.createFactory(&#39;div&#39;);
-var foo = div({className: &#39;my-div&#39;}); React.render(foo, document.body)`. Common
+React.createElement.bind(null, type)}`; `var div = React.createFactory('div');
+var foo = div({className: 'my-div'}); React.render(foo, document.body)`. Common
 HTML tags have built-in factories in React (like `var quux = React.DOM.ul` or
 `var bar = React.DOM.li`). But, again, JSX negates the need for factories.
 
@@ -331,8 +326,9 @@ little embedded _state_. And remember, in React, everything is state. And
 everything is a really ugly bit of PHP that wants to be Javascript. So, `var
 thingy = React.createElement(SomeComponent)` or `var thingy = &lt;Some Component
 /&gt;`
-</pre></div>
 
+
+</code></pre>
 <p>React.render = (ReactElement, HTMLElement | SVGElement) =&gt; ReactComponent</p>
 <p>type ReactNode = ReactElement | ReactFragment | ReactText</p>
 <p>type ReactElement = ReactComponentElement | ReactDOMElement</p>
@@ -361,25 +357,28 @@ thingy = React.createElement(SomeComponent)` or `var thingy = &lt;Some Component
   props: TProps,
   render: () =&gt; ReactElement
 }</p>
-<div class="highlight"><pre><span></span>--------
+<pre><code>
+--------
 
 #### Waterfall Model:
-</pre></div>
 
+</code></pre>
 <p>Requirements ==&gt;
   Design       ==&gt;
     Implementation ==&gt;
         Verification ==&gt;
             Maintenance</p>
-<div class="highlight"><pre><span></span>Also known as:
-</pre></div>
+<pre><code>
+Also known as:
 
+</code></pre>
 <p>Denial ==&gt;
   Bargaining ==&gt;
     Anger      ==&gt;
       Depression ==&gt;
           Acceptance</p>
-<div class="highlight"><pre><span></span>--------
+<pre><code>
+--------
 
 TO DISPLAY BRACES (`{{}}`) IN ANGULAR, YOU NEED TO WRAP THEM IN A WHATEVER
 (`&lt;span&gt;`, `&lt;p&gt;`, whatever) AND GIVE THAT TAG THE ATTRIBUTE `ng-non-bindable`,
@@ -390,19 +389,17 @@ LIKE IN `&lt;code ng-non-bindable&gt;{{show.things}}&lt;/code&gt;`.
 Dates/times in JS:
 
 ```javascript
-var myDate  = new Date(&#39;December 31, 2015 11:58:30&#39;)
+var myDate  = new Date('December 31, 2015 11:58:30')
   , myEpoch = myDate.getTime()/1000.0
 console.log(myEpoch)
 
 var yourDate  = new Date(1451631690 * 1000)
-console.log(yourDate.toGMTString() + &#39; &#39; + yourDate.toLocaleString())
-</pre></div>
-
+console.log(yourDate.toGMTString() + ' ' + yourDate.toLocaleString())
+</code></pre>
 <hr />
-<div class="highlight"><pre><span></span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">str</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[object String]&#39;</span><span class="p">)</span>
-<span class="c1">// underscore&#39;s okay, typeof is okay, but this one here is the shiznit, fo sho</span>
-</pre></div>
-
+<pre><code class="language-javascript">_.isString(str) = (typeof str === 'string') = (toString.call(str) === '[object String]')
+// underscore's okay, typeof is okay, but this one here is the shiznit, fo sho
+</code></pre>
 <hr />
 <p>A transpiler is a compiler. It takes code that can't be run on whatever engine
 it's targetting, and compiles it so it works. The only actual difference is that
@@ -412,12 +409,11 @@ difference in terms of performance, and it's not like Javascript is a low-level
 language that we're compiling to, using Babel--we're just basically
 cross-piling. Hence the 'trans' prefix.</p>
 <hr />
-<div class="highlight"><pre><span></span><span class="c">/* hides the element so it&#39;s just _gone_ */</span>
-<span class="p">.</span><span class="nc">thing</span> <span class="p">{</span><span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;}</span>
-<span class="c">/* hides its attributes and stuff, but the tag is still there, so it might take up space */</span>
-<span class="p">.</span><span class="nc">stuff</span> <span class="p">{</span><span class="k">visibility</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;}</span>
-</pre></div>
-
+<pre><code class="language-css">/* hides the element so it's just _gone_ */
+.thing {display: none;}
+/* hides its attributes and stuff, but the tag is still there, so it might take up space */
+.stuff {visibility: hidden;}
+</code></pre>
 <p>NPM -- local (to project) <code>.npmrc</code> <em>must</em> be <code>0600</code>! Otherwise NPM ignores them.
 Idea being that they should only be readable and writable by the single user
 account. The local <code>.npmrc</code> can be overridden by arguments (such as <code>npm config

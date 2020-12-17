@@ -33,9 +33,9 @@
     </header>
     <hr>
     <div>
-      <h3>Notes:</h3>
+      <h3 id="notes">Notes:</h3>
 <p>Bene Brown; author on subject of empathy.</p>
-<h3>The Technical Bit</h3>
+<h3 id="the-technical-bit">The Technical Bit</h3>
 <p>Jordan Last, speaker on Angular, client-side storage.</p>
 <p>Problem: people want wikis, but don't like the word 'wiki.' (Yes, it's more
 complicated, but not so much so that a wiki wouldn't handle it).</p>
@@ -56,24 +56,22 @@ Why We're Calling This A Model.</p>
 <p>Looks like he's using <a href="https://github.com/coresmart/persistencejs">Persistence
 JS</a>. In persistence, you would
 save an object like, for example:</p>
-<div class="highlight"><pre><span></span>persistence.add(this)
+<pre><code>persistence.add(this)
 persistence.flush()
 callback &amp;&amp; callback()
-</pre></div>
-
+</code></pre>
 <p>And now you have your whatsit all set. That's your save method. Then, say,
 <code>thingy.save(function);</code> and, y'know, there you go. Oh, wait. He forgot a bit
 about persistence. Needs <code>schema.sync</code> and a <code>.config</code> bit to get up and
 working.</p>
 <p>Now, to query WebSQL in this kind of screwy setup (persistence-specific):</p>
-<div class="highlight"><pre><span></span>whatever.getStuff = function(thingPassed, maybeAnother) {
-  whatever.all().filter(&#39;thingPassed&#39;, &#39;=&#39; whateveritis); // i suppose i missed quite a bit here
+<pre><code>whatever.getStuff = function(thingPassed, maybeAnother) {
+  whatever.all().filter('thingPassed', '=' whateveritis); // i suppose i missed quite a bit here
 }
-</pre></div>
-
+</code></pre>
 <p>And, finally, deleting... which evidently should be pretty easy. Too easy to
 go over.</p>
-<h4>Closing points:</h4>
+<h4 id="closing-points">Closing points:</h4>
 <ul>
 <li>Never access the DB directly--do it through lots of Javascript and boilerplate and awkward ways.</li>
 <li>Keep model-specific DB stuff with the model</li>

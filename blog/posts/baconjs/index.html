@@ -37,23 +37,21 @@
 <a href="here"><a href="https://github.com/zacanger/extras/tree/master/bacon">https://github.com/zacanger/extras/tree/master/bacon</a></a>, now.</em></p>
 <p>Bacon is a JS lib for FRP, like Rx, but not MS.</p>
 <p>Here's some jQuery, because I don't know why.</p>
-<div class="highlight"><pre><span></span>var go = $(&#39;#clickMe&#39;).asEventStream(&#39;click&#39;)
+<pre><code>var go = $('#clickMe').asEventStream('click')
 go.onValue (
-  () =&gt; $(&#39;#output&#39;).append(&#39;clicked!&#39;))
-</pre></div>
-
+  () =&gt; $('#output').append('clicked!'))
+</code></pre>
 <p>Is it just me or is this tutorial using <em>typescript</em>? Eww, it totally is!
 Gross.</p>
 <p><code>scan</code> combinator is kinda like <code>reduce</code>, except async and produces multiple
 values. So, there's an initial value, and a function to combine them. Returned
 stream contains the aggregate.</p>
-<div class="highlight"><pre><span></span>var clicks = $(&#39;#example button&#39;).asEventStream(&#39;click&#39;)
+<pre><code>var clicks = $('#example button').asEventStream('click')
   , counter = clicks
       .map(1)
       .scan(0, (x,y) =&gt; x + y)
-counter.onValue(x =&gt; $(&#39;#example .output&#39;).html(x))
-</pre></div>
-
+counter.onValue(x =&gt; $('#example .output').html(x))
+</code></pre>
 <p>Ohh, okay, so the 'take' and 'skip' combinators are new. They do what they
 sound like. Basically like slicing arrays, but with streams.</p>
 <hr />

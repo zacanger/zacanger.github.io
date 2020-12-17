@@ -40,22 +40,21 @@ and moving in JS is pretty simple: include <code>pusher.js</code> (<code>&lt;scr
 src="//js.pusher.com/3.0/pusher.min.js"&gt;&lt;/script&gt;</code>), open a connection with <code>var
 pusher = new Pusher('API-KEY)</code>, subscribe with <code>var channel =
 pusher.subscribe('channel-name')</code>. Listening for events:</p>
-<div class="highlight"><pre><span></span>channel.bind(&#39;event-to-listen-for&#39;, function(data){
-  console.log(&#39;event was triggered... message: &#39; + data.message)
+<pre><code>channel.bind('event-to-listen-for', function(data){
+  console.log('event was triggered... message: ' + data.message)
 })
-</pre></div>
-
+</code></pre>
 <p>Using their server lib (for Node):</p>
-<div class="highlight"><pre><span></span>var Pusher = require(&#39;pusher&#39;)
+<pre><code>var Pusher = require('pusher')
 
 var pusher = new Pusher({
-  appId: &#39;APP-ID&#39;
-, key: &#39;APP-KEY&#39;
-, secret: &#39;APP-SECRET&#39;
+  appId: 'APP-ID'
+, key: 'APP-KEY'
+, secret: 'APP-SECRET'
 })
 
-pusher.trigger(&#39;channel-name&#39;, &#39;event-to-listen-for&#39;, {&#39;message&#39;: &#39;boing!&#39;})
-</pre></div>
+pusher.trigger('channel-name', 'event-to-listen-for', {'message': 'boing!'})
+</code></pre>
     </div>
     <footer>
   <a href="/">Zac Anger</a>

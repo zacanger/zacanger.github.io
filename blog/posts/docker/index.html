@@ -34,7 +34,7 @@
     <hr>
     <div>
       <p>So this is a <code>Dockerfile</code>:</p>
-<div class="highlight"><pre><span></span>FROM ubuntu:latest
+<pre><code>FROM ubuntu:latest
 RUN # any commands, for example
 RUN apt-get update
 RUN apt-get dist-upgrade -y -allow-unauthenticated --fix-missing
@@ -42,66 +42,60 @@ RUN apt-get install build-essential curl
 RUN curl https://gist.githubusercontent.com/isaacs/579814/raw/24f5f02b5cd1812ebb1c41a33a13a0417cccbd69/take-ownership.sh | bash
 EXPOSE 4010 # port to expose
 ENTRYPOINT [&quot;node&quot;] # thing to run when we start the image, i think
-</pre></div>
-
+</code></pre>
 <p>and then we do something like <code>docker build -t whatwewanttocallit .</code></p>
 <p>and then <code>docker run -d 4010:4010 whatwecalledit</code></p>
 <p>It looks like the <code>argon:node</code> image is one that is a thing. Nodejs.org
 recommends it.</p>
 <p>Some other Dockerfile commands (?):</p>
-<div class="highlight"><pre><span></span>WORKDIR /set/working/directory/to/here/i/guess
+<pre><code>WORKDIR /set/working/directory/to/here/i/guess
 COPY thisthing /to/here
 CMD [&quot;array&quot;, &quot;of&quot;, &quot;commands&quot;, &quot;like&quot;, &quot;npm&quot;, &quot;start&quot;]
 ADD . . # add files/dirs from cwd to image
-</pre></div>
-
+</code></pre>
 <p>The <code>-d</code> in <code>docker run -d</code> means <code>detach</code>. And <code>-p</code> as in <code>docker run -p
 80:4010</code> looks obvious.</p>
 <p>Some commands:</p>
-<div class="highlight"><pre><span></span>docker ps # get container id
+<pre><code>docker ps # get container id
 docker logs containerid
 docer exec -it containerid /bin/bash # enter the container
-</pre></div>
-
+</code></pre>
 <p>It's totally fine to test against ports from a container (with eg <code>cURL</code>).</p>
 <p>There's also a <code>node:versionnumber</code> image I think?</p>
 <p>To get non-root users: <code>RUN groupadd -r app &amp;&amp; useradd -r -g app app</code>,
 then when the image is run, do it with <code>-u "app"</code>.</p>
 <p>To limit usage: <code>-m "256M" --memory-swap "2G"</code></p>
 <p>An example:</p>
-<div class="highlight"><pre><span></span>docker run <span class="se">\</span>
--e <span class="s2">&quot;NODE_ENV=production&quot;</span> <span class="se">\</span>
--u <span class="s2">&quot;app&quot;</span> <span class="se">\</span>
--m <span class="s2">&quot;256M&quot;</span> --memory-swap <span class="s2">&quot;2G&quot;</span> <span class="se">\</span>
--w <span class="s2">&quot;/web/jane-com/app&quot;</span> <span class="se">\</span>
---name <span class="s2">&quot;jane-com&quot;</span> <span class="se">\</span>
+<pre><code class="language-shell">docker run \
+-e &quot;NODE_ENV=production&quot; \
+-u &quot;app&quot; \
+-m &quot;256M&quot; --memory-swap &quot;2G&quot; \
+-w &quot;/web/jane-com/app&quot; \
+--name &quot;jane-com&quot; \
 node index.js
-</pre></div>
-
+</code></pre>
 <p>Installing (on nix): <code>curl https://get.docker.com/ | sh</code></p>
 <p>Installing test version: <code>curl https://test.docker.com | sh</code></p>
 <p>Installing dev version: <code>curl https://experimental.docker.com | sh</code></p>
 <p>Compose is like fig, but from Docker.</p>
-<div class="highlight"><pre><span></span>pip install -U docker-compose
+<pre><code>pip install -U docker-compose
 docker-compose up -d
 docker-compose stop, kill, rm
-</pre></div>
-
+</code></pre>
 <p>All of these just go off a YAML file, I guess.</p>
 <p>Okay, based on Node's official docs we can do:</p>
-<div class="highlight"><pre><span></span>FROM node:6.2.0
+<pre><code>FROM node:6.2.0
 EXPOSE 4010
 
 # and then
 
 docker build -t jane-com .
 docker run -it --rm -name jane-com-docker-running jane-com
-</pre></div>
-
+</code></pre>
 <p>To keep Docker running, throw this in your bash rc: <code>eval $(docker-machine env
 default)</code></p>
 <p>And if you need systemd in the mix, try something like:</p>
-<div class="highlight"><pre><span></span>;; once docker is installed, there should already be
+<pre><code>;; once docker is installed, there should already be
 ;; a systemd service for it. so you can just systemctl start docker
 ;; and systemctl enable docker and that SHOULD be it
 
@@ -119,20 +113,18 @@ ExecStop=/usr/bin/docker stop ournodecontainer
 
 [Install]
 WantedBy=multi-user.target
-</pre></div>
-
+</code></pre>
 <p><strong>TO GET YOUR IMAGE INTO A TARBALL, LOCALLY</strong> (because they don't really tell
 you where to look for that):</p>
-<div class="highlight"><pre><span></span>docker <span class="nb">export</span> &lt;container-hash&gt; &gt; dockerimg.tar
+<pre><code class="language-shell">docker export &lt;container-hash&gt; &gt; dockerimg.tar
 
-<span class="c1"># And then you could just:</span>
+# And then you could just:
 
 mkdir ~/foo
 tar -C ~/foo -xvf dockerimg.tar
 
-<span class="c1"># (or just use atool&#39;s aunpack, much easier to remember!)</span>
-</pre></div>
-
+# (or just use atool's aunpack, much easier to remember!)
+</code></pre>
 <p>Docker can take a <code>.dockerignore</code>, formatted I guess basically the same as gitignore.</p>
 <p>Doing an <code>export</code> piped to an <code>import</code> essentially works like a squash,
 flattening all the layers, so extraneous info (for example, creating files that

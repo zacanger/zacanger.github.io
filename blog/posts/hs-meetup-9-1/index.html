@@ -49,10 +49,9 @@ $= -- ?</p>
 <p>there's also pipes, another group of streaming abstractions</p>
 <p>also iostreams -- uses io</p>
 <p>in:</p>
-<div class="highlight"><pre><span></span>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
+<pre><code>parseMame :: MonadThrow m =&gt; ConduitM Event Machine m ()
 parseMame = void $ tagIgnoreAttrs &quot;mame&quot; $ manyYield parseMachine
-</pre></div>
-
+</code></pre>
 <p>void is explicitly discarding the value</p>
 <p>you can use the -&gt; typeclass to build things, and use them as arrows,
 including in type signatures.</p>

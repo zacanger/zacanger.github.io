@@ -29,6 +29,8 @@ i keep a bunch of solutions in js [here](https://github.com/zacanger/pineapple-c
 
 here are some of them (including some other languages).
 
+[TOC]
+
 ## in c
 
 ```c

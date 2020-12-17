@@ -39,15 +39,14 @@ They're not complicated. Also some tips. These are all in no particular order.
 And kind of stream-of-consciousness.</p>
 <p>Have a changelog. This doesn't have to be something complicated. It can actually
 be <em>really</em> simple. Here's a script that'll do this for you.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
-<span class="nv">range</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">origin</span><span class="p">..</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nb">shift</span> <span class="m">1</span>
-git log <span class="se">\</span>
-  --no-merges <span class="se">\</span>
-   --format<span class="o">=</span><span class="s1">&#39;%C(auto,green)* %s%C(auto,reset)%n%w(0,2,2)%+b&#39;</span> <span class="se">\</span>
-   --reverse <span class="s2">&quot;</span><span class="nv">$range</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-</pre></div>
-
+<pre><code class="language-shell">#!/usr/bin/env bash
+range=&quot;${1:-origin..}&quot;
+shift 1
+git log \
+  --no-merges \
+   --format='%C(auto,green)* %s%C(auto,reset)%n%w(0,2,2)%+b' \
+   --reverse &quot;$range&quot; &quot;$@&quot;
+</code></pre>
 <p>Write tests. Even if they're not complex, thorough tests, write them. It's a
 start.</p>
 <p>If you change things and tests break, fix the tests. Try not to break the tests.

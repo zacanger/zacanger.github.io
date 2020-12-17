@@ -34,22 +34,21 @@
     <hr>
     <div>
       <p><code>nodemailer</code> and <code>nodemailer-smtp-transport</code></p>
-<div class="highlight"><pre><span></span>var transporter = nodemailer.createTransport(
-  smtpTransport(&#39;smtps://foo@thing.com:asdf@bar.com&#39;))
+<pre><code>var transporter = nodemailer.createTransport(
+  smtpTransport('smtps://foo@thing.com:asdf@bar.com'))
 var transport = nodemailer.createTransport(smtpTransport({
-  host: &#39;host&#39;
+  host: 'host'
 , port: foo
 , auth: {
-    user: &#39;username&#39;
-  , pass: &#39;password&#39;
+    user: 'username'
+  , pass: 'password'
   }
 }))
 transporter.sendMail(mailOptions, function(err, info){
   if(error){res.send(error)}
   else{res.send(info)}
 })
-</pre></div>
-
+</code></pre>
 <p>using a service, we're just sending the bare instructions there from the
 front-end, so sendgrid or whatever would take care of the actual compiling,
 rendering, and all that nonsense. (remember the blogs on tinyletter or

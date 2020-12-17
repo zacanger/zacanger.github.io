@@ -58,8 +58,8 @@ isn't half-bad for that.</p>
 the bundle at the end of your markup for this case. But we want to split
 things out in the webpack.config.js, so that we've got CSS on its own and can
 load that first the way we used to. Here's a sample webpack.config.js:</p>
-<div class="highlight"><pre><span></span>var webpack = require(&#39;webpack&#39;)
-var ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;)
+<pre><code>var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: &quot;./src/app.js&quot;,
@@ -67,15 +67,15 @@ module.exports = {
     new webpackDefinePlugin({
       &quot;process.env&quot;: {
         BROWSER: JSON.stringify(true),
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || &#39;development&#39;)
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
       }
     }),
     new ExtractTextPlugin(&quot;[name].css&quot;)
   ],
   output : {
-    path: __dirname + &#39;/public/build/&#39;,
-    filename: &#39;bundle.js&#39;,
-    publicPath: &#39;build/&#39;
+    path: __dirname + '/public/build/',
+    filename: 'bundle.js',
+    publicPath: 'build/'
   },
   module: {
     loaders: [
@@ -103,16 +103,15 @@ module.exports = {
     ]
   },
   eslint: {
-    configFile: &#39;.eslintr`^c&#39;
+    configFile: '.eslintr`^c'
   }
 }
-</pre></div>
-
+</code></pre>
 <p>React Router works well for isomorphic stuff. Here's an example of using it
 with server-side rendering:</p>
-<div class="highlight"><pre><span></span>import {renderToString} from &#39;react-dom/server&#39;
-import {match, RouterContext} from &#39;react-router&#39;
-import routes from &#39;./routes&#39;
+<pre><code>import {renderToString} from 'react-dom/server'
+import {match, RouterContext} from 'react-router'
+import routes from './routes'
 
 serve((req, res) =&gt;
   // req.url would be full url path from original request, including query string
@@ -120,26 +119,24 @@ serve((req, res) =&gt;
       if (error){res.status(500).send(error.message)}
       else if (redirectLocation){res.redirect(302, redirectLocation.pathname + redirectLocation.search)}
       else if (renderProps){res.status(200).send(renderToString(&lt;RouterContext {...renderProps} /&gt;))}
-      else {res.status(404).send(&#39;404 not found&#39;)}
+      else {res.status(404).send('404 not found')}
   })
 )
-</pre></div>
-
+</code></pre>
 <p>Redux in an isomporhic app: better than a singelton flux store. With Redux we
 can use react-redux's react context. Using redux store's API makes dumping and
 restoring store state easy. Check the code of
 <a href="https://github.com/WebbyLab/itsquiz-wall">https://github.com/WebbyLab/itsquiz-wall</a> for a really good, in-depth,
 production app using all of the above tech in an isomorphic app.</p>
 <p>Here's a simple api example that works both server- and client-side:</p>
-<div class="highlight"><pre><span></span>&#39;use strict&#39;
-import apiFactory from &#39;./api&#39;
+<pre><code>'use strict'
+import apiFactory from './api'
 
 const api=apiFactory({
-  apiPrefix: &#39;http://pharoah.js.org/api/v1&#39;
+  apiPrefix: 'http://pharoah.js.org/api/v1'
 })
 const promise = api.users.list()
-</pre></div>
-
+</code></pre>
 <p>Here's a promise-pased client: <a href="https://www.npmjs.com/package/axios">https://www.npmjs.com/package/axios</a></p>
 <p>Here are two that use Fetch (which are fine in Mozilla and Chromium, now):
 <a href="https://www.npmjs.com/package/isomorphic-fetch">https://www.npmjs.com/package/isomorphic-fetch</a> and
