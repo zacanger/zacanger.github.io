@@ -11,8 +11,6 @@ tags:
   - open-source
 ---
 
-## DO IT NOW. NOOOWWW.
-
 So, Mac friends, what's up? How's it going? All good with you? Good, good I'm
 glad. Look. Maybe we should talk.
 
