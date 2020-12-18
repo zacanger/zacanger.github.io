@@ -1,6 +1,7 @@
 ---
 title: Meditation Log
 created: 2020-12-18
+starred: true
 tags:
   - buddhism
   - meditation
