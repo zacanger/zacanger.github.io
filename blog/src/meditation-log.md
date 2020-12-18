@@ -9,7 +9,8 @@ tags:
 # Meditation Log
 
 This will be a continually-updated document, rather than a series of separate
-posts, presented in reverse-chronological order.
+posts, presented in reverse-chronological order. Since I usually meditate at
+night, entries will generally be written the next day.
 
 [TOC]
 
@@ -96,7 +97,7 @@ but making some progress.
 
 ---
 
-## 2020-12-14
+## 2020-12-13
 
 Some background since I started the log late: I started meditating more over
 last winter, but didn't really make it anywhere until spring or maybe early
