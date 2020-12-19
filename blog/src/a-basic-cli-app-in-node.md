@@ -37,8 +37,8 @@ function, and whatever, but that's the basic idea, in Bash.
 > Keep in mind, none of this is React-specific. All we're doing is handling
 > arguments and spitting out a file.
 
-The idea here is that you just call this script from somewhere and it gives you
-a component already laid out for you. It's not too fancy, but it's useful.
+The idea here is that you just call this script from somewhere and it gives
+you a component already laid out for you. It's not too fancy, but it's useful.
 
 ```shell
 $ ./my-script.sh Foo
@@ -54,14 +54,14 @@ const Foo = () => (
 export default Foo
 ```
 
-That could save a little bit of time. I use something similar for generating an
-`index.html` for React apps.
+That could save a little bit of time. I use something similar for generating
+an `index.html` for React apps.
 
-This is a lot like using snippets in your editor, except it doesn't rely on you
-having that editor and those snippets handy. You could pass this around to anyone
-who uses any editor, on any computer, and get the same result. You could upload
-it to somewhere and just `curl my-script.sh | bash` and not even need to have the
-file around. Pretty handy, I think.
+This is a lot like using snippets in your editor, except it doesn't rely on
+you having that editor and those snippets handy. You could pass this around to
+anyone who uses any editor, on any computer, and get the same result. You
+could upload it to somewhere and just `curl my-script.sh | bash` and not even
+need to have the file around. Pretty handy, I think.
 
 But... what about in JS? I mean, we're JavaScript devs, right?
 

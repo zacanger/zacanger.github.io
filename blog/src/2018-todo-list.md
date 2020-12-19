@@ -26,7 +26,7 @@ year](http://zacanger.com/blog/posts/new-years-resolutions/).
 * [x] Get down to 0 nic (vaping)
 * [ ] Continue improving my Korean to the point where I can hold conversations
 * [ ] Be better at owning my own data
-    * [ ] Maybe maintain my own bookmarks (move off of Pinboard)
+    * [x] Maybe maintain my own bookmarks (move off of Pinboard)
     * [ ] Switch to a more free mobile OS
     * [x] Use the work Mac only for work
     * [x] Remove accounts on shitty services, maybe

@@ -12,8 +12,8 @@ tags:
 So, I enjoyed [this
 post](https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0)
 from Steven Ovadia, the fellow who maintains [My Linux
-Rig](http://www.mylinuxrig.com/) (which, by the way, is a really great blog, and
-you should definitely follow it--it's kind of like [The
+Rig](http://www.mylinuxrig.com/) (which, by the way, is a really great blog,
+and you should definitely follow it--it's kind of like [The
 Setup](https://usesthis.com/), but without all the... ah..
 [fruit](https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg).
 
@@ -21,9 +21,8 @@ I have a couple of things I'd like to add (Steven touched on these, but some
 specifics here might help win you over, if you're currently a user of a
 non-free OS).
 
->You’re technically-inclined, but might not have a technical job. You like to tweak your interfaces, though.
-
----------
+>You’re technically-inclined, but might not have a technical job. You like to
+> tweak your interfaces, though.
 
 THIS. Is this not a great way to sum up most Windows power users? The sort of
 folk who maybe don't *hate* Windows 8 (I know 10's the big thing these days,

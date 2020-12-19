@@ -26,15 +26,12 @@ And here's the finished product from the latter:
 
 'use strict'
 
-const {
-  readFileSync
-, writeFile
-}       = require('fs')
-, log   = console.log
-, arg   = process.argv[2]
-, n     = './notes.json'
-, file  = readFileSync(n)
-, notes = JSON.parse(file)
+const { readFileSync , writeFile }  = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = readFileSync(n)
+const notes = JSON.parse(file)
 
 const writeTheFile = () => {
   const taken = JSON.stringify(notes, null, 2)
@@ -78,11 +75,12 @@ if (!module.parent) {
 
 --------
 
-What we're going to build this time is going to be a little more complex. We're
-going to write a program that downloads a website and turns it into Markdown for
-easy offline reading. This isn't a new concept, and I actually use a Python script
-called [html2text](https://github.com/aaronsw/html2text) for this on an
-almost-daily basis, but just for fun, we'll do something similar in Node.
+What we're going to build this time is going to be a little more complex.
+We're going to write a program that downloads a website and turns it into
+Markdown for easy offline reading. This isn't a new concept, and I actually
+use a Python script called [html2text](https://github.com/aaronsw/html2text)
+for this on an almost-daily basis, but just for fun, we'll do something
+similar in Node.
 
 This will also be the first time we'll be working with external modules, which
 is really the most exciting and awesome thing about Node.
@@ -96,8 +94,8 @@ Our goal here is to have a small tool we can use like this:
 And it'll give us back the contents of `zacanger.com`, in Markdown, ready to
 read in the terminal, pipe to an editor, or whatever.
 
-First things first: we'll need a project. Make a new directory and get into it,
-and `npm init`.
+First things first: we'll need a project. Make a new directory and get into
+it, and `npm init`.
 
 ```bash
 mkdir html2txt
@@ -106,13 +104,13 @@ npm init -y
 ```
 
 The `-y` flag just means "don't ask me questions." You can skip that flag and
-fill in the info for your `package.json` if you'd like, or just go back and edit
-it later.
+fill in the info for your `package.json` if you'd like, or just go back and
+edit it later.
 
-We're going to be using a couple of things built-in to Node, so we can go ahead
-and require them now. We'll need `http`'s `get` method, and also a way to work
-with an argument. If you've done either of my previous tutorials, you'll already
-be familiar with Node's `process.argv`.
+We're going to be using a couple of things built-in to Node, so we can go
+ahead and require them now. We'll need `http`'s `get` method, and also a way
+to work with an argument. If you've done either of my previous tutorials,
+you'll already be familiar with Node's `process.argv`.
 
 ```javascript
 const { get } = require('http')
@@ -141,23 +139,23 @@ should see some actual HTML (`console.log(d.toString())`).
 
 (Note: you may see a 301 page here.)
 
-Awesome! We now have all the functionality of prepending `view-source:` to a URL
-in the browser. Let's do something with that HTML, since it's probably not how
-you prefer to read stuff.
+Awesome! We now have all the functionality of prepending `view-source:` to a
+URL in the browser. Let's do something with that HTML, since it's probably not
+how you prefer to read stuff.
 
 There are a lot of great modules out there for working with Markdown. For this
-post, I've decided to go with a super simple one without a whole lot of options,
-[to-markdown](https://www.npmjs.com/package/to-markdown). If you're not super
-familiar with npm, you're about to learn just about all you need to know to get
-started.
+post, I've decided to go with a super simple one without a whole lot of
+options, [to-markdown](https://www.npmjs.com/package/to-markdown). If you're
+not super familiar with npm, you're about to learn just about all you need to
+know to get started.
 
 In your terminal, `npm i -S to-markdown`. This is a shorthand for the command
 `npm install --save to-markdown`; most npm commands have shorter versions, and
 it can really save you a lot of time if you get used to using them.
 
 You should see a bunch of stuff happen in the terminal. If you check your
-`package.json`, you'll now see `to-markdown` in there. It should like something
-like this:
+`package.json`, you'll now see `to-markdown` in there. It should like
+something like this:
 
 ```json
 {
@@ -169,10 +167,8 @@ like this:
 }
 ```
 
-(Yes, I know you can't have comments in JSON.)
-
-Next we'll need to get that into the program. If you're using Babel, you can use
-`import`, but to keep things simple we'll stick with `require`.
+Next we'll need to get that into the program. If you're using Babel, you can
+use `import`, but to keep things simple we'll stick with `require`.
 
 ```javascript
 const toMarkdown = require('to-markdown')
@@ -190,24 +186,25 @@ const toMarkdown = require('to-markdown')
 // ...
 ```
 
-If you run the script again, you should see beautiful, super-readable Markdown!
-All done!
+If you run the script again, you should see beautiful, super-readable
+Markdown! All done!
 
 --------
 
-Well, mostly. This is nice and all, but there are definitely some things we can
-do to make this script a bit better. Firstly, it's annoying to have to always
-type `http://` before a URL, so maybe we should automatically add that on.
+Well, mostly. This is nice and all, but there are definitely some things we
+can do to make this script a bit better. Firstly, it's annoying to have to
+always type `http://` before a URL, so maybe we should automatically add that
+on.
 
 ```javascript
 const url = process.argv[2]
-const src = (url.includes('http://') url.includes('https://')) ? url : \`http://${url}\`
+const src = (url.includes('http://') url.includes('https://')) ? url : `http://${url}`
 ```
 
 All this extra bit is doing is checking if the passed in argument aleady has a
 scheme, and if it doesn't, just sticking on on the beginning. If you're not
-familiar with template literals, check out the previous tutorials and the [docs
-on
+familiar with template literals, check out the previous tutorials and the
+[docs on
 MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 If you're not familiar with `Array.prototype.includes()`, it's basically a
@@ -245,11 +242,12 @@ console.log(toMarkdown(d.toString(), { gfm: true }))
 // ...
 ```
 
-You may notice some tags are making it through the conversion (`script`, `span`,
-`div`, and probably a few others); I'm not going to go over all of the options
-that `to-markdown` can take, but you should check out the docs and learn how to
-write filters, if you're interested. You could also write your own function to
-strip out unwanted elements, and run the Markdown through this:
+You may notice some tags are making it through the conversion (`script`,
+`span`, `div`, and probably a few others); I'm not going to go over all of the
+options that `to-markdown` can take, but you should check out the docs and
+learn how to write filters, if you're interested. You could also write your
+own function to strip out unwanted elements, and run the Markdown through
+this:
 
 ```javascript
 const cleanOutStuff = string =>
@@ -262,10 +260,10 @@ But it'd probably be easier to just learn the options rather that spinning
 something custom like this.
 
 One thing that really irks me when I'm reading in the terminal is text that
-doesn't wrap. Sometimes I'm on a very large screen, and it can get difficult to
-keep track of where I am when the text is too wide. 80 characters is a pretty
-reasonable limit, so why don't we get this text to wrap there? We're going to
-use another module for this:
+doesn't wrap. Sometimes I'm on a very large screen, and it can get difficult
+to keep track of where I am when the text is too wide. 80 characters is a
+pretty reasonable limit, so why don't we get this text to wrap there? We're
+going to use another module for this:
 [wordwrap](https://github.com/substack/node-wordwrap).
 
 ```shell
@@ -278,8 +276,8 @@ const wordwrap = require('wordwrap')
 
 This module needs to know how many characters it can put in a line. We could
 just pass it `80`, but I think maybe we should handle cases where the terminal
-is resized very small but maybe won't stay that way, so we're going to find out
-how big the terminal currently is and base our decision on that.
+is resized very small but maybe won't stay that way, so we're going to find
+out how big the terminal currently is and base our decision on that.
 `process.stdout` has a way for us to find this out.
 
 ```javascript
@@ -300,11 +298,11 @@ console.log(wrapper(toMarkdown(d.toString(), { gfm: true })))
 
 --------
 
-So, awesome! Your script should now do just about everything you want it to do.
-There's really only one big thing left to do: make it less ugly. That
-`console.log` is really getting gross, don't you think? I like to handle this by
-just defining a bunch of functions I can throw together, so I don't have to have
-all this junk cluttering up my space.
+So, awesome! Your script should now do just about everything you want it to
+do. There's really only one big thing left to do: make it less ugly. That
+`console.log` is really getting gross, don't you think? I like to handle this
+by just defining a bunch of functions I can throw together, so I don't have to
+have all this junk cluttering up my space.
 
 ```javascript
 const opts = { gfm: true }
@@ -327,9 +325,9 @@ const main = arg => get(arg, res => {
 })
 ```
 
-Your linter might yell at you saying you can't return assignment. It's probably
-right, but nothing's going to break. If you're concerned about it, just wrap
-that `b += d.toString()` in some braces.
+Your linter might yell at you saying you can't return assignment. It's
+probably right, but nothing's going to break. If you're concerned about it,
+just wrap that `b += d.toString()` in some braces.
 
 Obviously, this is a function, so we need to call it somewhere.
 
@@ -337,7 +335,8 @@ Obviously, this is a function, so we need to call it somewhere.
 main(src)
 ```
 
-We're just passing it our URL that may or may not have `http://` stuck on to it.
+We're just passing it our URL that may or may not have `http://` stuck on to
+it.
 
 --------
 
@@ -345,19 +344,20 @@ Now you're really done! I suggest you go check out `to-markdown`, play around
 with `process`, and see what else you can do with this thing. If you make
 something pretty neat, you should consider releasing it! Check out `npm help
 adduser` and `npm help publish` to see how you could go about this. (There are
-probably similar modules out there, though, so make sure you're not stepping on
-anyone's toes first!)
+probably similar modules out there, though, so make sure you're not stepping
+on anyone's toes first!)
 
-I'd also suggest you do some basic error handling, but that's totally up to you.
+I'd also suggest you do some basic error handling, but that's totally up to
+you.
 
 For the previous two tutorials I waited until the following post to show a
 finished version of the script; since this is the last tutorial on writing CLI
 apps in Node that I intend to write, the full script is below, as well as my
 manifest file (`package.json`).
 
-Note: I tend to prefer shorter (but hopefully still readable) names for things,
-and a somewhat opinionated code style, so the full script below may differ
-a bit from your results, and that's totally fine.
+Note: I tend to prefer shorter (but hopefully still readable) names for
+things, and a somewhat opinionated code style, so the full script below may
+differ a bit from your results, and that's totally fine.
 
 ```json
 {
@@ -395,19 +395,18 @@ a bit from your results, and that's totally fine.
 ```javascript
 #!/usr/bin/env node
 
-const
-  url      = process.argv[2] || 'zacanger.com'
-, { get }  = require('http')
-, { rows } = process.stdout
-, len      = (rows < 80 ? 80 : rows)
-, toMd     = require('to-markdown')
-, ww       = require('wordwrap')
-, wrapper  = ww(len)
-, opts     = { gfm: true }
-, conv     = a => toMd(a, opts)
-, wrap     = a => wrapper(a)
-, log      = a => console.log(a)
-, src      = url.includes(('http://') || url.includes('https://')) ? url : \`http://${url}\`
+const url = process.argv[2] || 'zacanger.com'
+const { get } = require('http')
+const { rows } = process.stdout
+const len = (rows < 80 ? 80 : rows)
+const toMd = require('to-markdown')
+const ww = require('wordwrap')
+const wrapper = ww(len)
+const opts = { gfm: true }
+const conv = a => toMd(a, opts)
+const wrap = a => wrapper(a)
+const log = a => console.log(a)
+const src = url.includes(('http://') || url.includes('https://')) ? url : `http://${url}`
 
 const main = a => get(a, res => {
   let b = ''
@@ -418,8 +417,7 @@ const main = a => get(a, res => {
 if (!module.parent) main(src)
 ```
 
-Thanks for reading! If you note any problems, please hit me up [on
-Twitter](https://twitter.com/zacanger) or put in an issue [on
+Thanks for reading! If you note any problems, please put in an issue [on
 Github](https://github.com/zacanger/blog/issues).
 
 The full version of this module has been published at

@@ -9,7 +9,8 @@ tags:
 Kik's API is kinda basically shit.
 Their API docs are also basically shit.
 Probably becaues their API is basically shit.
-Kik's a lot more focused on people building Kik-friendly websites than they are on people integrating with their service.
+Kik's a lot more focused on people building Kik-friendly websites than they
+are on people integrating with their service.
 
 Kik's js: http://cdn.kik.com/kik/2.0.5/kik.js
 

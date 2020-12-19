@@ -9,10 +9,13 @@ about pages
 
 Why do these pages even exist?
 
-* They provide visitors with the essential facts needed to interact with you/the company
-* Give them the context for the information they'll find on the rest of the site
+* They provide visitors with the essential facts needed to interact with
+  you/the company
+* Give them the context for the information they'll find on the rest of the
+  site
 * Set yourself/the company apart from others like you/it
-* Give visitors a reason (or as many reasons as possible) to do whatever we're trying to do (call a number, sign up for something, buy something, whatever)
+* Give visitors a reason (or as many reasons as possible) to do whatever we're
+  trying to do (call a number, sign up for something, buy something, whatever)
 
 Don't be super generic, bland, grey, and corporate-speaky. People want real,
 meaningful information, not company statistics.

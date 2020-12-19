@@ -2,9 +2,7 @@
 title: 'Code Bootcamps (Comparison)'
 created: 2015-10-12
 tags:
-  - old
   - education
-  - school
   - code-bootcamp
   - javascript
   - coding
@@ -12,8 +10,8 @@ tags:
 ---
 
 This is old, but I just found it lingering in my important docs directory in
-Dropbox. So... before I move it away, I figured I'd post it here in case someone
-is looking into these things at some point.
+Dropbox. So... before I move it away, I figured I'd post it here in case
+someone is looking into these things at some point.
 
 FWIW, I'm now officially at DevMountain (day one, yo), and I think I made the
 absolute best possible choice here.

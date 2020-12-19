@@ -3,7 +3,6 @@ title: editor design notes
 created: 2016-06-13
 tags:
   - editor
-  - design
 ---
 
 ages ago, like multiple months ago, i really wanted to make an editor that was

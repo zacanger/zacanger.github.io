@@ -58,8 +58,8 @@ function, and whatever, but that's the basic idea, in Bash.</p>
 <p>Keep in mind, none of this is React-specific. All we're doing is handling
 arguments and spitting out a file.</p>
 </blockquote>
-<p>The idea here is that you just call this script from somewhere and it gives you
-a component already laid out for you. It's not too fancy, but it's useful.</p>
+<p>The idea here is that you just call this script from somewhere and it gives
+you a component already laid out for you. It's not too fancy, but it's useful.</p>
 <pre><code class="language-shell">$ ./my-script.sh Foo
 
 $ cat Foo.js
@@ -72,13 +72,13 @@ const Foo = () =&gt; (
 
 export default Foo
 </code></pre>
-<p>That could save a little bit of time. I use something similar for generating an
-<code>index.html</code> for React apps.</p>
-<p>This is a lot like using snippets in your editor, except it doesn't rely on you
-having that editor and those snippets handy. You could pass this around to anyone
-who uses any editor, on any computer, and get the same result. You could upload
-it to somewhere and just <code>curl my-script.sh | bash</code> and not even need to have the
-file around. Pretty handy, I think.</p>
+<p>That could save a little bit of time. I use something similar for generating
+an <code>index.html</code> for React apps.</p>
+<p>This is a lot like using snippets in your editor, except it doesn't rely on
+you having that editor and those snippets handy. You could pass this around to
+anyone who uses any editor, on any computer, and get the same result. You
+could upload it to somewhere and just <code>curl my-script.sh | bash</code> and not even
+need to have the file around. Pretty handy, I think.</p>
 <p>But... what about in JS? I mean, we're JavaScript devs, right?</p>
 <p>It's still pretty straightforward in Node, as it happens.</p>
 <p>We only need one file to get going. I'll call mine <del>compgen</del> rcg.js, for React

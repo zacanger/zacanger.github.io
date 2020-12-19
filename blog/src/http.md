@@ -45,7 +45,7 @@ remembering, from [my docs](http://mdkb.zacanger.com/urls):
 * Fragments are for specific parts of a resource, like `somepage.html#somesection`.
 * `; / ? : @ & = + $ ,` are reserved characters (meaning they have special uses in URLs).
 * `- _ . ! ~ * ' ( )` are unreserved (you can use them almost wherever you'd like).
-* `{ } | \\ ^ [ ] \` ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).
+* `{ } | \ ^ [ ] \` ` are unwise to use in URLs (note that this includes the backslash and backtick/grave, which may not render in Markdown code blocks, depending on parser).
 * `< > # % "` don't use these, at all (except the `%` and `#` _if_ you have a valid reason for it, because they do special things in URLs).
 
 --------

@@ -7,7 +7,8 @@ tags:
   - bash
 ---
 
-#### some sort of notes sort of taken as an aside during a lecture i gave on the basics of shell usage
+some sort of notes sort of taken as an aside during a lecture i gave on the
+basics of shell usage
 
 * debugging a bash script: use the `-x` flag
 * semicolons divide commands that are on the same line

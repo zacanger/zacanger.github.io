@@ -13,8 +13,8 @@ and edit some items. Some leftover items will probably end up on 2018's list.
 
 * [ ] Get familiar enough with Clojure/ClojureScript to write something real-world
 * [ ] Same, with Haskell/Purescript
-* [ ] At least record the acoustic album that's been written and sitting there for ages
-* [ ] Maybe get Windows working enough to finish up the electro album thing
+* [x] At least record the acoustic album that's been written and sitting there for ages
+* [x] Maybe get Windows working enough to finish up the electro album thing
 * [x] Work less at work
     * [x] Mainly, stop working on weekends and in the middle of the night and stuff
 * [x] Learn more about `sh` and POSIX compat in general

@@ -12,11 +12,17 @@ tags:
   - framework
 ---
 
-Quick little comparison of the three. Express is clearly the most commonly used,
-but I'm inclined to jump to Koa whenever I can. The simple fact that the guy who
-initially started Express passed that off to a company to maintain and instead
-works on Koa, now (which he also started), says to me that maybe Koa's the right
-way to go.
+**Note**: this post is outdated. Koa 2 saw a nearly complete API change, and
+Express and Hapi may have also changed, since I wrote this. I'm leaving it up
+anyway, as is, because it's seen a lot of traffic over the years.
+
+---
+
+Quick little comparison of the three. Express is clearly the most commonly
+used, but I'm inclined to jump to Koa whenever I can. The simple fact that the
+guy who initially started Express passed that off to a company to maintain and
+instead works on Koa, now (which he also started), says to me that maybe Koa's
+the right way to go.
 
 Okay, so all three are Sinatra-alikes for Node.
 
@@ -24,14 +30,15 @@ Express was started in 2009, and is now maintained by StrongLoop, the Node API
 company.
 
 Koa was started in 2013, and rather than a 'server-side web development
-framework build on node.js' (that's Express), Koa is 'expressive middleware for
-node.js using generators ... to make writing web applications and REST APIs more
-enjoyable.' It's super small, too--around 400 SLOC.
+framework build on node.js' (that's Express), Koa is 'expressive middleware
+for node.js using generators ... to make writing web applications and REST
+APIs more enjoyable.' It's super small, too--around 400 SLOC.
 
 Hapi was started in 2011, and was originally built on Express. The original
 author still maintains it, backed by the original company (...Wal...Mart...).
 It's no longer Express-based, because 'configuration is better than code ...
-business logic must be isolated from the transport layer...', so, there's that.
+business logic must be isolated from the transport layer...', so, there's
+that.
 
 Making things happen:
 
@@ -222,5 +229,3 @@ keep in mind, there are more than just these three options. You've got
 Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and
 a load of things built on some combination of Socket.io and one middleware
 framework or another. Go play with options, they're all fun.
-
-:)

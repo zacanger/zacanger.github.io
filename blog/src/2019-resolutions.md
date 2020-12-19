@@ -7,4 +7,4 @@ tags:
 
 New Year's Resolutions for 2019!
 
-* [ ] Survive
+* [x] Survive

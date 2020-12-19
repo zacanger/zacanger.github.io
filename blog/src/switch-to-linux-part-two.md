@@ -14,14 +14,13 @@ tags:
 So, Mac friends, what's up? How's it going? All good with you? Good, good I'm
 glad. Look. Maybe we should talk.
 
-I know you like your iPro Airpod. And it's very nice, it is. It's shiny and fast
-and does things, which are really the top requirements for any computing device,
-I think. But is it really what you want to be using? Look, if it is, that's
-cool. But have you considered some other options? There's a world outside of
-Cupertino. A whole, wide, incredible world of technology that presents broadly
-varied experiences that don't all follow Apple's guidelines on everyrhing.
-
----------
+I know you like your iPro Airpod. And it's very nice, it is. It's shiny and
+fast and does things, which are really the top requirements for any computing
+device, I think. But is it really what you want to be using? Look, if it is,
+that's cool. But have you considered some other options? There's a world
+outside of Cupertino. A whole, wide, incredible world of technology that
+presents broadly varied experiences that don't all follow Apple's guidelines
+on everything.
 
 For example, your computer, your OS, what it's based on... that's Unix,
 actually. BSD-derived--and POSIX/Single Unix Specification certified. [Your
@@ -62,11 +61,7 @@ just as uniform and integrated-feeling as OS X (and probably a bit more fun).
 
 I'm not going to go all out with this one; I could talk for months about the
 reasons folks should consider Linux (or a BSD), and especially about the
-reasons NOT to use Apple products, but that's not a topic for here and now. If
-you're interested, please do follow me on
-[Twitter](http://twitter.com/zacanger); I post notes on various webapps and
-always link to them on Twitter, and occassionally go on little rants--just
-enough to fill up a page of your feed 8D.
+reasons NOT to use Apple products, but that's not a topic for here and now.
 
 Thanks so much for reading! If you missed it, [here's the first part of this
 note](https://notes.pinboard.in/u:zacanger/1519026e3458629771c8), where I talk
@@ -75,5 +70,3 @@ post](https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0)
 by [this guy](http://mylinuxrig.com), who is writing [this
 book](https://manning.com/books/learn-linux/in-a-month-of-lunches); if you're
 thinking about trying Linux, it's definitely worth checking that out.
-
--Z

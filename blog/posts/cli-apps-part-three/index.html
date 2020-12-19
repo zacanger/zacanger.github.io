@@ -46,15 +46,12 @@ in Node, with no dependencies.</p>
 
 'use strict'
 
-const {
-  readFileSync
-, writeFile
-}       = require('fs')
-, log   = console.log
-, arg   = process.argv[2]
-, n     = './notes.json'
-, file  = readFileSync(n)
-, notes = JSON.parse(file)
+const { readFileSync , writeFile }  = require('fs')
+const log = console.log
+const arg = process.argv[2]
+const n = './notes.json'
+const file = readFileSync(n)
+const notes = JSON.parse(file)
 
 const writeTheFile = () =&gt; {
   const taken = JSON.stringify(notes, null, 2)
@@ -96,11 +93,12 @@ if (!module.parent) {
 }
 </code></pre>
 <hr />
-<p>What we're going to build this time is going to be a little more complex. We're
-going to write a program that downloads a website and turns it into Markdown for
-easy offline reading. This isn't a new concept, and I actually use a Python script
-called <a href="https://github.com/aaronsw/html2text">html2text</a> for this on an
-almost-daily basis, but just for fun, we'll do something similar in Node.</p>
+<p>What we're going to build this time is going to be a little more complex.
+We're going to write a program that downloads a website and turns it into
+Markdown for easy offline reading. This isn't a new concept, and I actually
+use a Python script called <a href="https://github.com/aaronsw/html2text">html2text</a>
+for this on an almost-daily basis, but just for fun, we'll do something
+similar in Node.</p>
 <p>This will also be the first time we'll be working with external modules, which
 is really the most exciting and awesome thing about Node.</p>
 <p>Our goal here is to have a small tool we can use like this:</p>
@@ -108,19 +106,19 @@ is really the most exciting and awesome thing about Node.</p>
 </code></pre>
 <p>And it'll give us back the contents of <code>zacanger.com</code>, in Markdown, ready to
 read in the terminal, pipe to an editor, or whatever.</p>
-<p>First things first: we'll need a project. Make a new directory and get into it,
-and <code>npm init</code>.</p>
+<p>First things first: we'll need a project. Make a new directory and get into
+it, and <code>npm init</code>.</p>
 <pre><code class="language-bash">mkdir html2txt
 cd html2xt
 npm init -y
 </code></pre>
 <p>The <code>-y</code> flag just means "don't ask me questions." You can skip that flag and
-fill in the info for your <code>package.json</code> if you'd like, or just go back and edit
-it later.</p>
-<p>We're going to be using a couple of things built-in to Node, so we can go ahead
-and require them now. We'll need <code>http</code>'s <code>get</code> method, and also a way to work
-with an argument. If you've done either of my previous tutorials, you'll already
-be familiar with Node's <code>process.argv</code>.</p>
+fill in the info for your <code>package.json</code> if you'd like, or just go back and
+edit it later.</p>
+<p>We're going to be using a couple of things built-in to Node, so we can go
+ahead and require them now. We'll need <code>http</code>'s <code>get</code> method, and also a way
+to work with an argument. If you've done either of my previous tutorials,
+you'll already be familiar with Node's <code>process.argv</code>.</p>
 <pre><code class="language-javascript">const { get } = require('http')
 const url = process.argv[2]
 </code></pre>
@@ -140,20 +138,20 @@ const url = process.argv[2]
 pretty useless for actual reading. Try calling <code>toString</code> on that data and you
 should see some actual HTML (<code>console.log(d.toString())</code>).</p>
 <p>(Note: you may see a 301 page here.)</p>
-<p>Awesome! We now have all the functionality of prepending <code>view-source:</code> to a URL
-in the browser. Let's do something with that HTML, since it's probably not how
-you prefer to read stuff.</p>
+<p>Awesome! We now have all the functionality of prepending <code>view-source:</code> to a
+URL in the browser. Let's do something with that HTML, since it's probably not
+how you prefer to read stuff.</p>
 <p>There are a lot of great modules out there for working with Markdown. For this
-post, I've decided to go with a super simple one without a whole lot of options,
-<a href="https://www.npmjs.com/package/to-markdown">to-markdown</a>. If you're not super
-familiar with npm, you're about to learn just about all you need to know to get
-started.</p>
+post, I've decided to go with a super simple one without a whole lot of
+options, <a href="https://www.npmjs.com/package/to-markdown">to-markdown</a>. If you're
+not super familiar with npm, you're about to learn just about all you need to
+know to get started.</p>
 <p>In your terminal, <code>npm i -S to-markdown</code>. This is a shorthand for the command
 <code>npm install --save to-markdown</code>; most npm commands have shorter versions, and
 it can really save you a lot of time if you get used to using them.</p>
 <p>You should see a bunch of stuff happen in the terminal. If you check your
-<code>package.json</code>, you'll now see <code>to-markdown</code> in there. It should like something
-like this:</p>
+<code>package.json</code>, you'll now see <code>to-markdown</code> in there. It should like
+something like this:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;something&quot;,
   // probably some other stuff
@@ -162,9 +160,8 @@ like this:</p>
   }
 }
 </code></pre>
-<p>(Yes, I know you can't have comments in JSON.)</p>
-<p>Next we'll need to get that into the program. If you're using Babel, you can use
-<code>import</code>, but to keep things simple we'll stick with <code>require</code>.</p>
+<p>Next we'll need to get that into the program. If you're using Babel, you can
+use <code>import</code>, but to keep things simple we'll stick with <code>require</code>.</p>
 <pre><code class="language-javascript">const toMarkdown = require('to-markdown')
 </code></pre>
 <p>Now try running the HTML through this before logging it out.</p>
@@ -176,19 +173,20 @@ const toMarkdown = require('to-markdown')
   })
 // ...
 </code></pre>
-<p>If you run the script again, you should see beautiful, super-readable Markdown!
-All done!</p>
+<p>If you run the script again, you should see beautiful, super-readable
+Markdown! All done!</p>
 <hr />
-<p>Well, mostly. This is nice and all, but there are definitely some things we can
-do to make this script a bit better. Firstly, it's annoying to have to always
-type <code>http://</code> before a URL, so maybe we should automatically add that on.</p>
+<p>Well, mostly. This is nice and all, but there are definitely some things we
+can do to make this script a bit better. Firstly, it's annoying to have to
+always type <code>http://</code> before a URL, so maybe we should automatically add that
+on.</p>
 <pre><code class="language-javascript">const url = process.argv[2]
-const src = (url.includes('http://') url.includes('https://')) ? url : \`http://${url}\`
+const src = (url.includes('http://') url.includes('https://')) ? url : `http://${url}`
 </code></pre>
 <p>All this extra bit is doing is checking if the passed in argument aleady has a
 scheme, and if it doesn't, just sticking on on the beginning. If you're not
-familiar with template literals, check out the previous tutorials and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs
-on
+familiar with template literals, check out the previous tutorials and the
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">docs on
 MDN</a>.</p>
 <p>If you're not familiar with <code>Array.prototype.includes()</code>, it's basically a
 shorthand for <code>.indexOf(foo !== -1)</code>.</p>
@@ -214,11 +212,12 @@ this, just pass <code>{ gfm: true }</code> in the call to <code>toMarkdown</code
 console.log(toMarkdown(d.toString(), { gfm: true }))
 // ...
 </code></pre>
-<p>You may notice some tags are making it through the conversion (<code>script</code>, <code>span</code>,
-<code>div</code>, and probably a few others); I'm not going to go over all of the options
-that <code>to-markdown</code> can take, but you should check out the docs and learn how to
-write filters, if you're interested. You could also write your own function to
-strip out unwanted elements, and run the Markdown through this:</p>
+<p>You may notice some tags are making it through the conversion (<code>script</code>,
+<code>span</code>, <code>div</code>, and probably a few others); I'm not going to go over all of the
+options that <code>to-markdown</code> can take, but you should check out the docs and
+learn how to write filters, if you're interested. You could also write your
+own function to strip out unwanted elements, and run the Markdown through
+this:</p>
 <pre><code class="language-javascript">const cleanOutStuff = string =&gt;
   string.replace(/(div|script|span)/g, '')
 
@@ -227,10 +226,10 @@ console.log(cleanOutStuff(toMarkdown(d.toString(), { gfm: true })))
 <p>But it'd probably be easier to just learn the options rather that spinning
 something custom like this.</p>
 <p>One thing that really irks me when I'm reading in the terminal is text that
-doesn't wrap. Sometimes I'm on a very large screen, and it can get difficult to
-keep track of where I am when the text is too wide. 80 characters is a pretty
-reasonable limit, so why don't we get this text to wrap there? We're going to
-use another module for this:
+doesn't wrap. Sometimes I'm on a very large screen, and it can get difficult
+to keep track of where I am when the text is too wide. 80 characters is a
+pretty reasonable limit, so why don't we get this text to wrap there? We're
+going to use another module for this:
 <a href="https://github.com/substack/node-wordwrap">wordwrap</a>.</p>
 <pre><code class="language-shell">npm i -S wordwrap
 </code></pre>
@@ -238,8 +237,8 @@ use another module for this:
 </code></pre>
 <p>This module needs to know how many characters it can put in a line. We could
 just pass it <code>80</code>, but I think maybe we should handle cases where the terminal
-is resized very small but maybe won't stay that way, so we're going to find out
-how big the terminal currently is and base our decision on that.
+is resized very small but maybe won't stay that way, so we're going to find
+out how big the terminal currently is and base our decision on that.
 <code>process.stdout</code> has a way for us to find this out.</p>
 <pre><code class="language-javascript">const wordwrap = require('wordwrap')
 const { rows } = process.stdout
@@ -252,11 +251,11 @@ characters, whichever happens to be greater.</p>
 <pre><code class="language-javascript">console.log(wrapper(toMarkdown(d.toString(), { gfm: true })))
 </code></pre>
 <hr />
-<p>So, awesome! Your script should now do just about everything you want it to do.
-There's really only one big thing left to do: make it less ugly. That
-<code>console.log</code> is really getting gross, don't you think? I like to handle this by
-just defining a bunch of functions I can throw together, so I don't have to have
-all this junk cluttering up my space.</p>
+<p>So, awesome! Your script should now do just about everything you want it to
+do. There's really only one big thing left to do: make it less ugly. That
+<code>console.log</code> is really getting gross, don't you think? I like to handle this
+by just defining a bunch of functions I can throw together, so I don't have to
+have all this junk cluttering up my space.</p>
 <pre><code class="language-javascript">const opts = { gfm: true }
 const convert = a =&gt; toMarkdown(a, opts)
 const wrap = a =&gt; wrapper(a)
@@ -272,28 +271,30 @@ anything, so let's adjust our HTTP call (and stick it in a function):</p>
   res.on('end', () =&gt; log(wrap(convert(b))))
 })
 </code></pre>
-<p>Your linter might yell at you saying you can't return assignment. It's probably
-right, but nothing's going to break. If you're concerned about it, just wrap
-that <code>b += d.toString()</code> in some braces.</p>
+<p>Your linter might yell at you saying you can't return assignment. It's
+probably right, but nothing's going to break. If you're concerned about it,
+just wrap that <code>b += d.toString()</code> in some braces.</p>
 <p>Obviously, this is a function, so we need to call it somewhere.</p>
 <pre><code class="language-javascript">main(src)
 </code></pre>
-<p>We're just passing it our URL that may or may not have <code>http://</code> stuck on to it.</p>
+<p>We're just passing it our URL that may or may not have <code>http://</code> stuck on to
+it.</p>
 <hr />
 <p>Now you're really done! I suggest you go check out <code>to-markdown</code>, play around
 with <code>process</code>, and see what else you can do with this thing. If you make
 something pretty neat, you should consider releasing it! Check out <code>npm help
 adduser</code> and <code>npm help publish</code> to see how you could go about this. (There are
-probably similar modules out there, though, so make sure you're not stepping on
-anyone's toes first!)</p>
-<p>I'd also suggest you do some basic error handling, but that's totally up to you.</p>
+probably similar modules out there, though, so make sure you're not stepping
+on anyone's toes first!)</p>
+<p>I'd also suggest you do some basic error handling, but that's totally up to
+you.</p>
 <p>For the previous two tutorials I waited until the following post to show a
 finished version of the script; since this is the last tutorial on writing CLI
 apps in Node that I intend to write, the full script is below, as well as my
 manifest file (<code>package.json</code>).</p>
-<p>Note: I tend to prefer shorter (but hopefully still readable) names for things,
-and a somewhat opinionated code style, so the full script below may differ
-a bit from your results, and that's totally fine.</p>
+<p>Note: I tend to prefer shorter (but hopefully still readable) names for
+things, and a somewhat opinionated code style, so the full script below may
+differ a bit from your results, and that's totally fine.</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;html2txt&quot;,
   &quot;description&quot;: &quot;html2text sorta thing for blog post&quot;,
@@ -327,19 +328,18 @@ a bit from your results, and that's totally fine.</p>
 </code></pre>
 <pre><code class="language-javascript">#!/usr/bin/env node
 
-const
-  url      = process.argv[2] || 'zacanger.com'
-, { get }  = require('http')
-, { rows } = process.stdout
-, len      = (rows &lt; 80 ? 80 : rows)
-, toMd     = require('to-markdown')
-, ww       = require('wordwrap')
-, wrapper  = ww(len)
-, opts     = { gfm: true }
-, conv     = a =&gt; toMd(a, opts)
-, wrap     = a =&gt; wrapper(a)
-, log      = a =&gt; console.log(a)
-, src      = url.includes(('http://') || url.includes('https://')) ? url : \`http://${url}\`
+const url = process.argv[2] || 'zacanger.com'
+const { get } = require('http')
+const { rows } = process.stdout
+const len = (rows &lt; 80 ? 80 : rows)
+const toMd = require('to-markdown')
+const ww = require('wordwrap')
+const wrapper = ww(len)
+const opts = { gfm: true }
+const conv = a =&gt; toMd(a, opts)
+const wrap = a =&gt; wrapper(a)
+const log = a =&gt; console.log(a)
+const src = url.includes(('http://') || url.includes('https://')) ? url : `http://${url}`
 
 const main = a =&gt; get(a, res =&gt; {
   let b = ''
@@ -349,8 +349,7 @@ const main = a =&gt; get(a, res =&gt; {
 
 if (!module.parent) main(src)
 </code></pre>
-<p>Thanks for reading! If you note any problems, please hit me up <a href="https://twitter.com/zacanger">on
-Twitter</a> or put in an issue <a href="https://github.com/zacanger/blog/issues">on
+<p>Thanks for reading! If you note any problems, please put in an issue <a href="https://github.com/zacanger/blog/issues">on
 Github</a>.</p>
 <p>The full version of this module has been published at
 <a href="http://npm.im/html2txt">html2txt</a>.</p>
