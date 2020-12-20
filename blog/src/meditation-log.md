@@ -24,6 +24,15 @@ through sometime this coming year. Of course, the most important thing is
 actually doing the work, not just reading about it. Maybe some
 industrial-grade earplugs would help.
 
+Something else that's been happening on and off in the past week or two is
+seeing other random visualizations. These aren't something I'm intending to
+see, but I think mantra practice combined with trying to examine the nimitta
+does something a little weird. I'll usually see things that remind me of the
+style of Chinese or maybe Korean paintings of dragons, tigers, etc., from
+maybe the 15th-18th century or so; not that I'm seeing dragons or tigers
+specifically, but beings that look like they could've popped out of one of
+those paintings, and usually only for a few moments.
+
 ## 2020-12-18
 
 Last night I got started late due to work, so was worried I wouldn't have
