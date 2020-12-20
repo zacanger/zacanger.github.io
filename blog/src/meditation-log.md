@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-18
+created: 2020-12-19
 starred: true
 tags:
   - buddhism
@@ -14,6 +14,15 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-19
+
+My weekend practice is usually lacking, due I think mostly to my neighbors'
+loud music. I've started reading the Vimuttimagga while I wait for it to quiet
+down, and as a theoretical warm-up to the Visuddhimagga, which I'd like to get
+through sometime this coming year. Of course, the most important thing is
+actually doing the work, not just reading about it. Maybe some
+industrial-grade earplugs would help.
 
 ## 2020-12-18
 
