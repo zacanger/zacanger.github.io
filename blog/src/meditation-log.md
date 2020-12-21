@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-19
+created: 2020-12-21
 starred: true
 tags:
   - buddhism
@@ -14,6 +14,26 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-21
+
+Decided to really try fire kasina practice last night not give up on it. I
+went at it for 25 minutes, took a break for a couple minutes, then another 20
+minutes. After the first two or three cycles (stare at the flame in one spot
+for around 30-60 seconds, close eyes, focus on what happens) it got
+interesting. The little dot would be reddish, surrounded by a soft pale blue
+circle, and then the dot would vanish taking the aura with it, then come back
+much more stable and red, then sometimes a little bit of yellowish white would
+appear in the middle and the whole thing would spin. MCTB describes that as
+having a gold star in the center, but to me it looked more like a laser
+pointer dot that got slightly deeper red and larger, shaped like a stylised
+flower outline filled with yellowish white. The dot didn't like to stay in one
+spot, and would usually drift off to the upper right, but I could move it
+around by moving my head from side to side, the dot would follow a second or
+two later. I could also put my right hand up like some kind of mudra, in front
+of my face, and it seemed to work as a barrier than the dot didn't want to
+pass through when it was moving around. That's about as far as I got, but it
+seems promising.
 
 ## 2020-12-19
 
