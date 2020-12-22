@@ -4,7 +4,7 @@
   <head>
     <title>{{ post.title }} | Zac Anger's Blog</title>
     <meta name="description" content="{{ post.title }}" />
-    <meta name="keywords" content="{{ post.tags }}" />
+    <meta name="keywords" content="{{ ','.join(post.tags) }}" />
     <meta name="twitter:description" content="{{ post.title }}" />
     <meta name="twitter:title" content="{{ post.title }}" />
     <meta property="og:description" content="{{ post.title }}" />

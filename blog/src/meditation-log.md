@@ -5,6 +5,10 @@ starred: true
 tags:
   - buddhism
   - meditation
+  - jhana
+  - kasina
+  - dhyana
+  - vipassana
 ---
 
 # Meditation Log
