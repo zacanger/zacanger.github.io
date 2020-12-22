@@ -40,6 +40,23 @@ steady, so it was just my perception of everything. I don't know where that
 came from but it was intense and disconcerting. I went back to bed holding
 onto a simpler mantra (om mani padme hum).
 
+Something else that's probably worth mentioning is that when I use a mantra as
+the only object or primary object (but not when I'm using it to augment
+something else, so far), it sort of expands on itself, especially if I set
+into it somewhat melodically instead of just reciting it. For example with "Om
+Mani Padme Hum", if I keep it at one note, eventually a slight harmony will be
+added a fourth above, and then that one tries to creep up to a flat fifth and
+then a fifth. If I start the Heart Sutra mantra, eventually it takes on a
+melody of its own that I didn't consciously indent for it, and then that seems
+to double and triple like multiple voices singing in unison. Possibly related,
+the soft nimitta (whether it's the "murk" from kasina practice or the nimitta
+that appears when doing non-visualization-based practice), has started to
+pulse in recent weeks, starting synchronized with the breath but then shifting
+a bit so the pulses are coming before or after the breath, and sometimes much
+faster than the breath (like it's trying to sync with my heartbeat instead,
+maybe). All of this seems to be expected according to what I've read so I'm
+not concerned about it, it's just interesting.
+
 ## 2020-12-21
 
 Decided to really try fire kasina practice last night not give up on it. I
