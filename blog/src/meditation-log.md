@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-21
+created: 2020-12-22
 starred: true
 tags:
   - buddhism
@@ -18,6 +18,27 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-22
+
+Last night I had a false start trying to get into fire kasina meditation, got
+up for a bit, then settled down into it. I was able hold onto the nimitta for
+longer each cycle, but got into the murk and had trouble expanding attention.
+I kept at it anyway for a bit, then went to bed holding onto the mantra I'd
+been using in the background (I've been attracted to the Heart Sutra mantra
+recently, so it was that one), and kept my attention also on the vague
+purple/green/white swirls of the murk.
+
+I'm not sure how this is related, but about 30 or 40 minutes after I went to
+sleep, I had a huge shock of energy through my core and bolted upright.
+I was shaking, but it felt like everything else (reality) was shaking. At
+first I thought there was an earthquake, and I shot off a quick prayer to
+Avaloketisvara that it wasn't "The Big One," but then I looked at my water
+bottle, and it wasn't shaking, then got up and looked at other objects, and
+they weren't shaking. I wasn't shaking either, my hands and limbs seemed
+steady, so it was just my perception of everything. I don't know where that
+came from but it was intense and disconcerting. I went back to bed holding
+onto a simpler mantra (om mani padme hum).
 
 ## 2020-12-21
 
