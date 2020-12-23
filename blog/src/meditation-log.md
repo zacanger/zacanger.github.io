@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-22
+created: 2020-12-23
 starred: true
 tags:
   - buddhism
@@ -18,6 +18,15 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-23
+
+Nothing much happened last night except for cycles, over and over again: flame,
+dot, red dot, murk, sometimes a black dot. At one point I tried willing the
+black dot to change color, saying "be green, be green" in my head, which didn't
+exactly work, but it got a sort of green hazy aura around it, so that's
+something. I also was able to sustain the nimitta with my eyes open and get it
+back quickly from other sources like a street lamp and car headlights.
 
 ## 2020-12-22
 
