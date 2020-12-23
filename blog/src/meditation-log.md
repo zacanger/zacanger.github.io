@@ -29,6 +29,20 @@ been using in the background (I've been attracted to the Heart Sutra mantra
 recently, so it was that one), and kept my attention also on the vague
 purple/green/white swirls of the murk.
 
+While watching the murk a bunch of strange visuals came up. I don't know how
+suggestible this stuff is, but it definitely sounded like bhaya-nana (fear)
+from some of the descriptions I've read. I distinctly remember some sort of
+warrior-like figures out of a fantasy movie, specifically helmets/masks and
+armor that reminded me of the witch-king of Angmar's costume in the LOTR
+films. Also an odd effect that was like a thin sliver of a flashlight (like if
+you hold your hand over the light and part your fingers a bit) passing over
+some faces, one that was a full-face mask, one that was rotting, one that had
+blood running across it. Also some visuals of bugs, some crabs or crab-like
+things, and other generally kind of creepy stuff. The weird thing was, I can't
+really stand bugs, but none of that freaked me out, maybe because I was still
+holding on to the mantra and just watching this stuff pop up and then
+disappear into the murk. Eventually I did fall asleep.
+
 I'm not sure how this is related, but about 30 or 40 minutes after I went to
 sleep, I had a huge shock of energy through my core and bolted upright.
 I was shaking, but it felt like everything else (reality) was shaking. At
