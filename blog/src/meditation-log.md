@@ -43,6 +43,10 @@ getting a clear nimitta to work with. If you try this and use a candle, it's
 important for it to be bright, steady, and clearly visible (not diffused and
 distorted through the thick lip of a mason jar, for example).
 
+A side note: I bought myself a zafu for Christmas, rather than sitting on the
+floor or my bed mat, and having my hips raised like this is definitely helping
+with pain and keeping a good posture. Highly recommended.
+
 ## 2020-12-23
 
 Nothing much happened last night except for cycles, over and over again:
