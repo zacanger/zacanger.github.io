@@ -7,7 +7,6 @@ tags:
   - meditation
   - jhana
   - kasina
-  - dhyana
   - vipassana
 ---
 
@@ -18,6 +17,49 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-24-2
+
+I just practiced for about an hour: fifteen minutes on a candle, maybe five
+minutes walking and with a streetlight, and I reclined and used my phone's
+flashlight for two cycles. The candle cycles weren't particularly interesting,
+except that I feel like (from the descriptions) I briefly touched on third
+jhana.
+
+The first phone flashlight cycle was pretty standard: retina burn after-image,
+red dot, black disk, counter-clockwise spinning thing (like a circle with
+spikes, or maybe a 9-pointed star, murk). The second cycle was not standard.
+
+The second time I hit my eyeballs with that light, it started off pretty normal,
+like above. Then I hung out in the murk and just tried to see all of it. The
+greenish white cloudy stuff, purplish black stuff, little sparkles. One of the
+sparkles seemed fairly stationary, and it's the holidays, so I willed for there
+to be more of them and for them to fall like snow, which didn't exactly work,
+but more of them did come into focus and move downwards (as long as I was
+keeping my focus on them). Around this time I felt pretty good, physically. I
+had an itch on my leg but it felt _good_, for example.
+
+Then the flickering started. It was like giant white glowing books with their
+pages being flipped, or a deck of cards being shuffled, maybe. Huge and white,
+coming from both sides, on top of light black. Then the sort of white pulsing
+circles that I usually see showed up, but they also started flickering, and had
+some spikes or something around the outside. Somewhere in here I also clearly
+saw a woman dancing and spinning in a circle, but when she turned to face me her
+face turned into a creepy demonic type thing, stuck out its tongue, and then
+she/it vanished.
+
+Anyway, back to the circle: like I said, lots of flickering recently, but this
+white flickering circle with spikes was new. It expanded until it sort of zoomed
+up and fit around my head, and suddenly it hit me that it's not just the circle
+or things in my visual field that are flickering, I'm the one flickering, or I'm
+included in the flickering. When I say "it hit me" I mean I felt it like cold
+water hit my chest and mind at the same time, it had a physical impact.
+
+I'm not sure how that fits into the maps since, as far as I know, I shouldn't be
+expecting any big insights or even strong visualizations at this point, but it
+was a jarring (but somehow in a pleasant way?) enough experience that I wanted
+to write it up tonight so I didn't forget anything, rather than wait until
+tomorrow morning.
 
 ## 2020-12-24
 
