@@ -44,8 +44,15 @@ important for it to be bright, steady, and clearly visible (not diffused and
 distorted through the thick lip of a mason jar, for example).
 
 A side note: I bought myself a zafu for Christmas, rather than sitting on the
-floor or my bed mat, and having my hips raised like this is definitely helping
-with pain and keeping a good posture. Highly recommended.
+floor or my bed mat, and having my hips raised like this is definitely
+helping with pain and keeping a good posture. Highly recommended.
+
+Another side note: my visual perception of reality doesn't seem to be all
+that stable since I started this. I forget what night it was, but I was
+typing something up and saw my left hand and left side of my computer
+keyboard shift maybe six inches to the left and then back again, as quick as
+you could blink. And there's a low-frame-rate sort of thing going on when my
+eyes are closed, including while practicing.
 
 ## 2020-12-23
 
