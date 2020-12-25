@@ -52,16 +52,19 @@ that stable since I started this. I forget what night it was, but I was
 typing something up and saw my left hand and left side of my computer
 keyboard shift maybe six inches to the left and then back again, as quick as
 you could blink. And there's a low-frame-rate sort of thing going on when my
-eyes are closed, including while practicing.
+eyes are closed, including while practicing. This seems related to
+understanding impermanence eventually, so I'm not concerned about it, it's
+just curious.
 
 ## 2020-12-23
 
 Nothing much happened last night except for cycles, over and over again:
-flame, dot, red dot, murk, sometimes a black dot. At one point I tried willing
-the black dot to change color, saying "be green, be green" in my head, which
-didn't exactly work, but it got a sort of green hazy aura around it, so that's
-something. I also was able to sustain the nimitta with my eyes open and get it
-back quickly from other sources like a street lamp and car headlights.
+flame, dot, red dot, murk, sometimes a black dot. At one point I tried
+willing the black dot to change color, saying "be green, be green" in my
+head, which didn't exactly work, but it got a sort of green hazy aura around
+it, so that's something. I also was able to sustain the nimitta with my eyes
+open and get it back quickly from other sources like a street lamp and car
+headlights.
 
 ## 2020-12-22
 
@@ -98,22 +101,23 @@ steady, so it was just my perception of everything. I don't know where that
 came from but it was intense and disconcerting. I went back to bed holding
 onto a simpler mantra (om mani padme hum).
 
-Something else that's probably worth mentioning is that when I use a mantra as
-the only object or primary object (but not when I'm using it to augment
+Something else that's probably worth mentioning is that when I use a mantra
+as the only object or primary object (but not when I'm using it to augment
 something else, so far), it sort of expands on itself, especially if I set
-into it somewhat melodically instead of just reciting it. For example with "Om
-Mani Padme Hum", if I keep it at one note, eventually a slight harmony will be
-added a fourth above, and then that one tries to creep up to a flat fifth and
-then a fifth. If I start the Heart Sutra mantra, eventually it takes on a
-melody of its own that I didn't consciously indent for it, and then that seems
-to double and triple like multiple voices singing in unison. Possibly related,
-the soft nimitta (whether it's the "murk" from kasina practice or the nimitta
-that appears when doing non-visualization-based practice), has started to
-pulse in recent weeks, starting synchronized with the breath but then shifting
-a bit so the pulses are coming before or after the breath, and sometimes much
-faster than the breath (like it's trying to sync with my heartbeat instead,
-maybe). All of this seems to be expected according to what I've read so I'm
-not concerned about it, it's just interesting.
+into it somewhat melodically instead of just reciting it. For example with
+"Om Mani Padme Hum", if I keep it at one note, eventually a slight harmony
+will be added a fourth above, and then that one tries to creep up to a flat
+fifth and then a fifth. If I start the Heart Sutra mantra, eventually it
+takes on a melody of its own that I didn't consciously indent for it, and
+then that seems to double and triple like multiple voices singing in unison.
+Possibly related, the soft nimitta (whether it's the "murk" from kasina
+practice or the nimitta that appears when doing non-visualization-based
+practice), has started to pulse in recent weeks, starting synchronized with
+the breath but then shifting a bit so the pulses are coming before or after
+the breath, and sometimes much faster than the breath (like it's trying to
+sync with my heartbeat instead, maybe). All of this seems to be expected
+according to what I've read so I'm not concerned about it, it's just
+interesting.
 
 ## 2020-12-21
 
@@ -138,10 +142,10 @@ seems promising.
 ## 2020-12-19
 
 My weekend practice is usually lacking, due I think mostly to my neighbors'
-loud music. I've started reading the Vimuttimagga while I wait for it to quiet
-down, and as a theoretical warm-up to the Visuddhimagga, which I'd like to get
-through sometime this coming year. Of course, the most important thing is
-actually doing the work, not just reading about it. Maybe some
+loud music. I've started reading the Vimuttimagga while I wait for it to
+quiet down, and as a theoretical warm-up to the Visuddhimagga, which I'd like
+to get through sometime this coming year. Of course, the most important thing
+is actually doing the work, not just reading about it. Maybe some
 industrial-grade earplugs would help.
 
 Something else that's been happening on and off in the past week or two is
