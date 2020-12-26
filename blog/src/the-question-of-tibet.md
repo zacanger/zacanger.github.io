@@ -1,6 +1,7 @@
 ---
 title: The Question Of Tibet
 created: 2020-12-26
+starred: true
 tags:
   - politics
   - china
