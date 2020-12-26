@@ -2,3 +2,4 @@
 set -e
 
 ./sitemap.sh
+git add sitemap.xml
