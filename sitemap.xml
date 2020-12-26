@@ -1123,30 +1123,6 @@
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/blog/templates/meta.html</loc>
-  <lastmod>2020-11-22</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/templates/post.html</loc>
-  <lastmod>2020-12-21</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/templates/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/templates/footer.html</loc>
-  <lastmod>2020-12-17</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
   <loc>https://zacanger.com/presentations/2019-07-08-incidents/</loc>
   <lastmod>2020-06-13</lastmod>
   <changefreq>weekly</changefreq>
@@ -1155,12 +1131,6 @@
 <url>
   <loc>https://zacanger.com/presentations/</loc>
   <lastmod>2020-10-02</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/presentations/__template.html</loc>
-  <lastmod>2020-06-13</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
