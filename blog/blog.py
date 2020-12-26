@@ -86,7 +86,7 @@ def main():
                     "post": {
                         "title": metadata["title"],
                         "created": metadata["created"],
-                        "tags": metadata["tags"] + ["blog", "zac anger"],
+                        "tags": metadata["tags"],
                         "starred": metadata.get("starred", False),
                         "contents": blog,
                     }

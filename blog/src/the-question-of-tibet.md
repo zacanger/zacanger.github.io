@@ -9,6 +9,10 @@ tags:
   - buddhism
 ---
 
+[TOC]
+
+## Introduction
+
 I don't usually blog about politics, but as both a Buddhist with a deep
 appreciation for the Vajrayana and its syncretic Tibetan forms (Buddhism, like
 most religions, tends to absorb bits of other religions when it goes somewhere
