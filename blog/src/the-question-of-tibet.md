@@ -4,6 +4,8 @@ created: 2020-12-26
 tags:
   - politics
   - china
+  - tibet
+  - buddhism
 ---
 
 I don't usually blog about politics, but as both a Buddhist with a deep
