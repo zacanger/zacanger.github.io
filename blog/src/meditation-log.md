@@ -18,6 +18,53 @@ night, entries will generally be written the next day.
 
 [TOC]
 
+## 2020-12-25
+
+### Notes About Siddhi/Powers
+
+Condensed and edited version of the instructions in
+[MCTB2](https://www.mctb.org/mctb2/table-of-contents/part-vi-my-spiritual-quest/65-how-to-cultivate-the-powers/)
+(see the [fair use notice](https://www.mctb.org/about/)). I have not attained
+the powers (I have not attained fourth jhana yet), I just wanted to have this in
+a place where I could easily reference it. I may edit this more as I progress.
+
+First, be able to attain at least fourth jhana with a variety of objects.
+Kasina meditation is a good way to go here, particularly using fire (a candle).
+You can tell which jhana you're in by the qualities. First jhana: rapture,
+pleasure, still with discriminating thought, takes effort; second: rapture,
+pleasure, tranquility, effortless; third: sense of non-attachment, bodily
+pleasure; fourth: no particular pleasure and no particular pain, clarity, pure
+mindfulness and equanimity.
+
+Quietly and mindfully make yourself and your meditation area clean: take a calm
+shower, put on clean clothes, tidy up. Make any other preparations that make
+sense in context, like prayers, etc.
+
+Think the whole thing through. Your intentions, your reactions, and as many
+possible outcomes as you can think of. Think about what you're planing to
+request or intend, how to phrase it specifically, why you want this (and reason
+out if there's a root issue that really needs your attention instead of what
+you were thinking of), everyone and/or everything involved, and every possible
+outcome or ramification for everyone and/or everything involved (negative or
+positive, as much as possible; try visualizing your magic echoing out along
+space and time as far as you can).
+
+If the previous step, especially the last part, doesn't feel completely okay
+with you, you should stop now and rethink it. This is a time when deeply
+thinking about karma is useful.
+
+Rise through the jhanas to at least fourth, but up through past eighth if you
+can. Do it slowly, carefully, and deeply so you're in a strong and steady
+state. It helps to have been working on concentration practice specifically in
+the days or weeks leading up to this. (From the descriptions I'm not sure if
+it's even possible without retreat time).
+
+When you are as high in the jhanas as you can get, leave that state, and
+formally intend to make happen whatever you want to happen (as you decided on
+earlier), releasing all of the energy of your intent out into the world without
+any restraint or hesitation. You have to be absolutely committed. Let it out,
+then let it go.
+
 ## 2020-12-24-2
 
 I just practiced for about an hour: fifteen minutes on a candle, maybe five
