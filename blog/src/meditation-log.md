@@ -20,7 +20,7 @@ night, entries will generally be written the next day.
 
 ## 2020-12-25
 
-### Notes About Siddhi/Powers
+### Notes About Siddhis/Powers
 
 Condensed and edited version of the instructions in
 [MCTB2](https://www.mctb.org/mctb2/table-of-contents/part-vi-my-spiritual-quest/65-how-to-cultivate-the-powers/)
