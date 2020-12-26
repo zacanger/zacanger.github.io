@@ -61,11 +61,26 @@ def main():
             # frontmatter yaml, and then the post body which may have more
             # occurrences of ---.
             parts = contents.split("---", 2)
-            metadata = yaml.safe_load(parts[1])
+            try:
+                metadata = yaml.safe_load(parts[1])
+            except IndexError:
+                print("File missing frontmatter:", post)
+                return
             metadata["href"] = "/blog/" + destination_dir
             index_data.append(metadata)
-            blog = render_md(parts[2])
+            try:
+                blog = render_md(parts[2])
+            except IndexError:
+                print("File missing body after frontmatter:", post)
+                return
             template = jinja_env.get_template("post.html")
+
+            required_keys = ["title", "created", "tags"]
+            for k in required_keys:
+                if k not in metadata:
+                    print("Key", k, "not in file", post)
+                    return
+
             rendered = template.render(
                 {
                     "post": {
