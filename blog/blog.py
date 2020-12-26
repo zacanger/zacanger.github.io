@@ -40,7 +40,7 @@ def generate_index():
     template = jinja_env.get_template(index)
     data = sorted(
         index_data,
-        key=lambda x: (x.get("starred", False), x["created"], x["title"]),
+        key=lambda x: (x["created"], x["title"]),
         reverse=True,
     )
     rendered = template.render({"posts": data})

@@ -3,7 +3,7 @@ title: Three Quick Tips for Fresh Bootcamp Grads
 created: 2016-06-24
 starred: true
 tags:
-  - devmtn
+  - advice
 ---
 
 This was originally posted

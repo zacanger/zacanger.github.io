@@ -3,7 +3,6 @@ title: Portable Environments With Bash
 created: 2020-12-25
 tags:
   - bash
-  - tagtwo
 ---
 
 I recently switched from `st` to `xterm` on my Linux machines, and I also have a

@@ -3,9 +3,7 @@ title: Advice For New Devs
 created: 2016-11-12
 starred: true
 tags:
-  - devmtn
-  - tips
-  - dev
+  - advice
 ---
 
 So, I went to one of those code bootcamps. I started there just over a year ago,

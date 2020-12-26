@@ -3,7 +3,7 @@ title: A Tip
 created: 2016-06-10
 starred: true
 tags:
-  - confidence
+  - advice
 ---
 
 I have, like, an actual kind of tip, for new-ish developers.

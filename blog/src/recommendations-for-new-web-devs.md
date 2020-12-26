@@ -2,8 +2,7 @@
 title: Recommendations For New Web Devs
 created: 2017-03-26
 tags:
-  - devmtn
-  - thoughts
+  - advice
 ---
 
 Some of these thoughts probably apply to all developers. Some don't.

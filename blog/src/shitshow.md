@@ -3,11 +3,14 @@ title: shitshow
 created: 2016-11-09
 tags:
   - politics
-  - personal
 ---
 
-This is an elaboration on a
-[tweet](https://twitter.com/zacanger/status/796205243474157569) from last night.
+**Note**: my politics have evolved over the last four years, and I wrote this
+while very scared and angry. I'm leaving it here anyway.
+
+---
+
+This is an elaboration on a tweet from last night.
 
 I was born male, and I identify as male. That's pretty convenient for me.
 I'm white, which is probably very convenient for me.

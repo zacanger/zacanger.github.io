@@ -3,8 +3,6 @@ title: Solving programming problems
 created: 2016-02-10
 starred: true
 tags:
-  - toy-problems
-  - programming
   - problem-solving
 ---
 
@@ -16,5 +14,3 @@ Basic steps of solving programming problems:
 1. Translate this into your chosen programming language.
 1. Run the code (in your head, or on a machine).
 1. If the output isn't what you expected, start over with step three.
-
-... that's basically it.
