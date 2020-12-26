@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-24
+created: 2020-12-25
 starred: true
 tags:
   - buddhism
