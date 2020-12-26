@@ -63,17 +63,17 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
 
 # A couple of extras that show up because they're on GitHub Pages
 echo "<url>
-  <loc>https://zacanger.com/hey-you</loc>
+  <loc>https://zacanger.com/hey-you/</loc>
   <lastmod>2020-01-19</lastmod>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/zeess</loc>
+  <loc>https://zacanger.com/zeess/</loc>
   <lastmod>2020-01-19</lastmod>
   <priority>0.0</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/teamethod</loc>
+  <loc>https://zacanger.com/teamethod/</loc>
   <lastmod>2020-01-19</lastmod>
   <priority>0.1</priority>
 </url>
