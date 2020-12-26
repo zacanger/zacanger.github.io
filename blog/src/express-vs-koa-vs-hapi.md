@@ -8,13 +8,31 @@ tags:
   - js
   - hapi
   - node
-  - server
-  - framework
 ---
 
 **Note**: this post is outdated. Koa 2 saw a nearly complete API change, and
 Express and Hapi may have also changed, since I wrote this. I'm leaving it up
-anyway, as is, because it's seen a lot of traffic over the years.
+anyway, as is, because it's seen a lot of traffic over the years. I haven't
+checked in on Express or Hapi in a long while, but here's an updated version of
+the Koa example from the original post:
+
+```javascript
+import Koa from 'koa'
+import Router from '@koa/router'
+
+const app = new Koa()
+const router = new Router()
+const port = 3000
+
+router.get('/api/items', (ctx) => { ctx.body = 'Get' })
+router.get('/api/items/:id', (ctx) => { ctx.body = `Get id ${ctx.params.id}` })
+router.put('/api/items/:id', (ctx) => { ctx.body = `Put ${id}` })
+router.delete('/api/items/:id', (ctx) => ctx.body = 'Deleted')
+router.get('(.*)', (ctx) => { ctx.status = 404; ctx.body = 'Are you lost?' })
+
+app.use(router.routes())
+app.listen(port, () => { console.log(`Listening on ${port}`) })
+```
 
 ---
 
