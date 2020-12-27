@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-25
+created: 2020-12-26
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,47 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-26
+
+I read the [fire kasina book](https://firekasina.org/) over the last couple
+days, and some things make more sense now. I'm back to reading the Vimuttimagga
+which might clarify more. I was interested to read that Shannon Stein's fear
+stage also included little crab-like things. I don't know if that's common but
+it seems awfully specific. Maybe we just both dislike shellfish.
+
+My practice has been interesting. I found out that, if I have trouble getting a
+dot to start with when I think I should have one, blinking twice helps me find
+it, like when someone takes a photo with a flash and you blink a few times and
+see spots (the exact same thing, probably).
+
+I'm also able to rise to what I believe is third jhana within about 20 minutes
+(three or four cycles), but haven't figured out how to turn over into fourth
+yet. I'm fairly confident about saying it's third jhana now, since that lines up
+with what's in MCTB and the fire kasina book, as well as what I've read
+elsewhere. There's a distinct dropping-off of the sort of feeling of awe and
+joy, attention spreads to the whole visual/inner-visual field, a dopamine rush
+that comes and then falls away, and if I briefly (less than one out-breath)
+attend to pain anywhere (like my lower back, which is killing me as I'm typing
+this) it vanishes (it doesn't feel like the pain is gone, more like my lower
+back is gone...). And I can just sit without wanting to return to second. I
+think the trick will be to sit for long enough that I get tired of it, but not
+so tired of it that I get up.
+
+Another fun thing is that I can play with the stuff in the visual field.
+Eventually, more single-pointed things come back in, not necessarily red or
+white dots but just concentrated areas of cloud stuff. I can move those around,
+or, using my hands, I can kind of shape and form the whole thing. I tried
+pressing the lighter parts together into a fairly thin vertical line, then
+squishing that down into a ball I could hold, then flicking it out to take up
+the whole field again. I can't draw in colors, but it's neat to be able to play
+with the stuff that's already there.
+
+One more interesting note is that the initial nimitta tends to flicker more now,
+and I've gone from perceiving it as spinning to flickering. Maybe it was
+flickering all along, and it was just too fast for me to see. The flickering
+aspect of basically everything is still growing, making me wonder what that will
+do when I switch back to insight practices.
 
 ## 2020-12-25
 
