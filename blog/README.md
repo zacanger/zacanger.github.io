@@ -1,3 +1,2 @@
-Extremely simple static blog generator. Posts go in ./src and are
-Github-flavored markdown with YAML frontmatter. They're rendered by ./blog.py
-using py-gfm and Jinja.
+Extremely simple static blog generator. Posts go in ./src and can be GFM. The
+little Python script renders the static HTML and the RSS feed. See ./TODO.md.

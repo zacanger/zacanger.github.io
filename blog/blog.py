@@ -9,9 +9,11 @@ Simple blog renderer. Only requirements are Jinja and py-gfm.
 import os
 import yaml
 import re
+# from datetime import datetime
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markdown
 from mdx_gfm import PartialGithubFlavoredMarkdownExtension
+from feedgen.feed import FeedGenerator
 
 # import pycmarkgfm
 
@@ -22,6 +24,7 @@ out_dir = "posts"
 templates_dir = "./templates"
 index = "index.html"
 index_data = []
+feed_data = []
 jinja_env = Environment(loader=PackageLoader("blog", "templates"))
 
 
@@ -49,6 +52,29 @@ def generate_index():
         i.close()
 
 
+def generate_feed():
+    fg = FeedGenerator()
+    fg.id("https://zacanger.com/blog/")
+    fg.title("Zac Anger's Blog")
+    fg.author({"name": "Zac Anger"})
+    fg.link(href="https://zacanger.com/blog/")
+    fg.description("Programming, socialism, and Buddhism.")
+    fg.language("en")
+    for entry in index_data:
+        url = "https://zacanger.com" + entry["href"]
+        # published = datetime.strptime(entry["created"], "%Y-%m-%d")
+        fe = fg.add_entry()
+        fe.id(url)
+        fe.title(entry["title"])
+        fe.link(href=url)
+        fe.author({"name": "Zac Anger"})
+        fe.description(entry["body"])
+        # fe.published(published)
+        # try: fe.published(entry["created"]) except: print(entry["created"])
+
+    fg.rss_file("rss.xml")
+
+
 def main():
     for post in all_posts:
         destination_dir = out_dir + "/" + post.replace(".md", "")
@@ -67,12 +93,12 @@ def main():
                 print("File missing frontmatter:", post)
                 return
             metadata["href"] = "/blog/" + destination_dir
-            index_data.append(metadata)
             try:
                 blog = render_md(parts[2])
             except IndexError:
                 print("File missing body after frontmatter:", post)
                 return
+            index_data.append({**metadata, "body": blog})
             template = jinja_env.get_template("post.html")
 
             required_keys = ["title", "created", "tags"]
@@ -96,8 +122,9 @@ def main():
                 d.write(rendered)
                 d.close()
 
-            # Depends on having appended all metadata above
+            # These depend on having appended all metadata above
             generate_index()
+            generate_feed()
 
 
 if __name__ == "__main__":
