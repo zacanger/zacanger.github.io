@@ -3,3 +3,4 @@
 text eol=lf
 blog/posts/**/* -diff
 blog/rss.xml -diff
+sitemap.xml -diff

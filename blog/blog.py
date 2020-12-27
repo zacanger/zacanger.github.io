@@ -7,6 +7,7 @@ Simple blog renderer. Only requirements are Jinja and py-gfm.
 
 
 import os
+import shutil
 import yaml
 import re
 # from datetime import datetime
@@ -76,10 +77,12 @@ def generate_feed():
 
 
 def main():
+    # First remove old posts, since sometimes posts get renamed, removed, etc.
+    shutil.rmtree('./posts')
     for post in all_posts:
         destination_dir = out_dir + "/" + post.replace(".md", "")
         destination_file = destination_dir + "/" + index
-        os.makedirs(destination_dir, exist_ok=True)
+        os.makedirs(destination_dir)
 
         with open(src_dir + "/" + post) as p:
             contents = p.read()

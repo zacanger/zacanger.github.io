@@ -15,510 +15,126 @@
 <url>
   <loc>https://zacanger.com/blog/</loc>
   <lastmod>2020-12-27</lastmod>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
   <priority>0.6</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/blog/posts/browserify/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/less-than-a-week-til-school/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
   <loc>https://zacanger.com/blog/posts/pm-tools-kill-productivity/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/styleguide-checklist/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/automatic-semicolon-insertion/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/no-server-projects/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/paying-for-web-things-what/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/crawling-from-the-front-end/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/secure-coding-notes/</loc>
-  <lastmod>2020-12-27</lastmod>
+  <lastmod>2020-12-04</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/short-rant-on-languages/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/world-suicide-prevention-day-personal/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/ui/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/devmountain-week-2/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/void-elements-in-html/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-05-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/shitshow/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/angular-in-one-line/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/react-which/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/meteor-and-react/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/july-12-meetup/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/words/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-11-09</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/on-blogging/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/github-organizations/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/i-guess-im-like-in-school-and-stuff-what/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/last-devmtn-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/shell-things/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/docker/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/my-problem-with-react/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/react-in-one-line/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/everything-is-a-stream-or-notes-on-frp/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-01-08</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/express-vs-koa-vs-hapi/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/devmountain-week-six/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/teamcity-ubuntu-build-agent-setup/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/bootcamp-analogies/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2015-12-30</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/portable-environments-with-bash/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/go/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/visual-studio-oddities/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/isomorphic-apps-in-react/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/fp-in-js/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/meteor-notes/</loc>
   <lastmod>2020-12-25</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/category-theory-for-js-devs/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/earliest-devmtn-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-11-26</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/so-you-want-to-learn-vim/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/im-off/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/test/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/forty-reasons-to-wonder-why-the-fuck-you-love-apple/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/unicode/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-07-27</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/solving-programming-problems/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/treatise-on-minimalism/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/bash-basix/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/parallels-weirdness/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/clojure/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/node-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-02-10</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/react-performance/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/learn-to-code-link-post/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/react-meetup-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/pusher/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes-from-mentoring-at-demvountain/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/i-cannot-wait/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/basic-auth/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-05-14</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/advice-for-new-devs/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/stuff-everybody-knows/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/2019-resolutions/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/more-on-dreams/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-11-12</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/principles-and-tips/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/baconjs/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/redux-three/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-08-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/void-elements/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes-from-the-angularjs-utah-meetup/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/things-learned-dealing-with-electron-and-the-mean-stack/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/nginx-reverse-proxy/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-08-09</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/mit-to-lgpl-3/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/streams/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2019-08-30</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/on-learning-fp/</loc>
-  <lastmod>2020-12-27</lastmod>
+  <lastmod>2016-10-16</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/purescript-things/</loc>
-  <lastmod>2020-12-27</lastmod>
+  <lastmod>2016-08-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/we-should-build-stuff/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/firebase-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/functional-programming-vocabulary/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/angular-meetup-13th-oct-2015/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/living-up-to-my-name/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2018-10-29</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/wtf-is-set/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/postcss/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-04-25</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/proptypes-for-classnames/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/angulaaaaarrrrr/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/bash-builtins/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-02-11</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
@@ -529,596 +145,128 @@
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/blog/posts/daniel-jumping-gifs/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
   <loc>https://zacanger.com/blog/posts/recommendations-for-new-web-devs/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/css-preprocessors/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/react-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/i-am-sick/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/quick-little-thing/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-03-26</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/from-smoking-to-vaping/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/im-at-the-end-of-my-patience/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/systemjs-and-jspm/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/es6-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes-from-devmountain-01/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-11-22</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/use-boring-stuff/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/cs-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/problem-solving/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/you-cant-parse-xhtml-with-regex/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2019-02-10</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/how-to-be-slightly-more-productive/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/monthly-webmaster-checks/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/tone-and-voice/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/promises/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/new-years-resolutions/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/redux-in-two-lines/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/2018-todo-list/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/currying-and-partial-application/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/vs-code-license/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/scott/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/editor-design-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/react-meetup-17-nov-2015/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-05-31</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/note-taking-app/</loc>
-  <lastmod>2020-12-27</lastmod>
+  <lastmod>2016-08-26</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/digital-security-guide/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/docker-deployment/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/node-fs-basics/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2019-12-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/cli-apps-part-three/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/front-end-performance-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/xmas-2015/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/fetch/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/new-years-resolutions-2016/</loc>
-  <lastmod>2020-12-26</lastmod>
+  <lastmod>2016-09-27</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/vows/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/kiks-api/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/sqlrdbms/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/email-from-node/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2020-12-05</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/a-basic-cli-app-in-node/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/thanksgiving-week-projects-fun-times-and-the-future/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/not-long-now/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/bookmarklets/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/elm-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/this-heres-a-test/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/finally-almost-done-with-angular/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/dreams-part-one-million-and-three/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/http/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/erin/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/that-was-fast/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/mac-disk-usage-shiz/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/actually-last-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-08-24</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/things-that-suck-about-js/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes-and-things-and-stuff/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/fff/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/personal-project/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-08-22</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/hs-meetup-9-1/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/chromium-flags/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/interview-prep-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/post-number-negative-two/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/electron-and-nwjs/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-09-01</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/switch-to-linux-part-one/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/es-next-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/javascriptssss/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/licensing/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/closures/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/redux-one/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2015-09-27</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/three-quick-tips/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/dreams/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/stack/</loc>
-  <lastmod>2020-12-26</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/research-questions/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/javascript/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/getting-up-and-running-with-nwjs-really-super-quickly/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-06-24</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/a-tip/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/api-design-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/alum-meetup/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/teamcity-and-aws-fuck-you/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/code-bootcamps-comparison/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/auth-with-passport-and-express/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/fff2/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/more-react-notes/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-06-10</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/effective-websites/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/notes-from-devmountain-02/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-01-24</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/design-for-devs/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/redux-two/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-08-02</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/about-pages/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/projects-projects-projects/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/better-jsx/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-01-28</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/switch-to-linux-part-two/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/now-things-get-real/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2015-09-27</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/two-things-that-might-be-fun/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/algorithms-amp-big-o/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2016-11-03</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/gfm-test/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/javascript-operators/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2017-11-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/blog/posts/the-question-of-tibet/</loc>
-  <lastmod>2020-12-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/fizzbuzz/</loc>
-  <lastmod>2020-12-25</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/blog/posts/front-end-engineers-manifesto/</loc>
-  <lastmod>2020-12-25</lastmod>
+  <lastmod>2020-12-26</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>

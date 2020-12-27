@@ -30,6 +30,16 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
     file_html=${line:12}
     file=${file_html%index.html}
 
+    # If it's a blog post, assume the date is the created date
+    blog_post_date=$(grep '<h3>' "$file_html" | \
+      grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}' | \
+      $_sed 's/<[^>]*>//g' | \
+      xargs)
+
+    if [[ -n $blog_post_date ]]; then
+      date="$blog_post_date"
+    fi
+
     # options: always hourly daily weekly monthly yearly never
     freq="weekly"
     priority=0.5
@@ -45,7 +55,7 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
       freq="yearly"
     elif [[ $file == "blog/" ]]; then
       priority=0.6
-      freq="daily"
+      freq="weekly"
     elif [[ $file == "404.html" ]]; then
       priority=0.0
       freq="never"
