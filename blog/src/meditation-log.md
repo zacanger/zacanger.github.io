@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-26
+created: 2020-12-27
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,22 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-27
+
+I've noticed that the initial nimitta tends to take on recognizable shapes
+sometimes, especially when I start with something brighter than a candle. I
+fashioned a little "nimitta-getting" device out of a flashlight, some cardboard,
+and tape, to get a pinhole light with a yellowish surrounding, and that's
+working much better than candles have been. I'm not sure what's up with the
+candles — it could be the altitude, or some air currents I'm not feeling, or
+maybe I should've just spent the money on beeswax. This thing is working fine,
+though. The shapes seem to come up right around when the very first white/purple
+spot starts to fade to red, before it rounds out into a dot. I've seen
+completely random things like the shapes of Texas and Australia, and a padlock
+side-by-side with a five-pointed star. I assume this is just the brain trying to
+find meaning in a confusing, relatively new, experience, so I just notice it,
+pay attention, and wait for it to solidify and round down to a small circle.
 
 ## 2020-12-26
 
