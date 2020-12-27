@@ -10,6 +10,7 @@ import os
 import shutil
 import yaml
 import re
+
 # from datetime import datetime
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markdown
@@ -78,7 +79,7 @@ def generate_feed():
 
 def main():
     # First remove old posts, since sometimes posts get renamed, removed, etc.
-    shutil.rmtree('./posts')
+    shutil.rmtree("./posts")
     for post in all_posts:
         destination_dir = out_dir + "/" + post.replace(".md", "")
         destination_file = destination_dir + "/" + index
