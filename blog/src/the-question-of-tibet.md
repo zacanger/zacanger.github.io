@@ -18,7 +18,7 @@ appreciation for the Vajrayana and its syncretic Tibetan forms (Buddhism, like
 most religions, tends to absorb bits of other religions when it goes somewhere
 new; the Taoist and folk religion influence on Chan and Theravada influence on
 Thien are good examples of this), and as a Marxist who critically supports the
-Chinese Communist Party (some would call me a Dengist and think that's an
+Communist Party of China (some would call me a Dengist and think that's an
 insult), I've thought a lot about the political and religious situation in
 Tibet.
 
