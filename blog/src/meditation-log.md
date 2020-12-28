@@ -34,6 +34,12 @@ side-by-side with a five-pointed star. I assume this is just the brain trying to
 find meaning in a confusing, relatively new, experience, so I just notice it,
 pay attention, and wait for it to solidify and round down to a small circle.
 
+I've also noticed (for months now, I just wasn't writing about it back then)
+that when my attention wanders, I can see/feel it. It's like walking a dog that
+keeps trying to dart off, and I can feel the tug on the leash and see the
+direction it's going in, except the leash is made of elastic, and the elastic
+got stronger/tighter over time.
+
 ## 2020-12-26
 
 I read the [fire kasina book](https://firekasina.org/) over the last couple
@@ -55,10 +61,9 @@ elsewhere. There's a distinct dropping-off of the sort of feeling of awe and
 joy, attention spreads to the whole visual/inner-visual field, a dopamine rush
 that comes and then falls away, and if I briefly (less than one out-breath)
 attend to pain anywhere (like my lower back, which is killing me as I'm typing
-this) it vanishes (it doesn't feel like the pain is gone, more like my lower
-back is gone...). And I can just sit without wanting to return to second. I
-think the trick will be to sit for long enough that I get tired of it, but not
-so tired of it that I get up.
+this) it vanishes (the pain, not my back). And I can just sit without wanting to
+return to second. I think the trick will be to sit for long enough that I get
+tired of it, but not so tired of it that I get up.
 
 Another fun thing is that I can play with the stuff in the visual field.
 Eventually, more single-pointed things come back in, not necessarily red or
