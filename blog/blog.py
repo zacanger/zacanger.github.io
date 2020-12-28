@@ -16,6 +16,10 @@ from feedgen.feed import FeedGenerator
 # import pycmarkgfm
 
 
+my_name = "Zac Anger"
+blog_title = my_name + "'s Blog"
+site_root = "https://zacanger.com"
+blog_root = site_root + "/blog/"
 src_dir = "./src"
 all_posts = os.listdir(src_dir)
 out_dir = "posts"
@@ -43,15 +47,15 @@ def generate_index(data):
 
 def generate_feed(data):
     fg = FeedGenerator()
-    fg.id("https://zacanger.com/blog/")
-    fg.title("Zac Anger's Blog")
-    fg.author({"name": "Zac Anger"})
-    fg.link(href="https://zacanger.com/blog/")
+    fg.id(blog_root)
+    fg.title(blog_title)
+    fg.author({"name": my_name})
+    fg.link(href=blog_root)
     fg.description("Programming, socialism, and Buddhism.")
     fg.language("en")
 
     for entry in data:
-        url = "https://zacanger.com" + entry["href"]
+        url = site_root + entry["href"]
         # This causes every post to have a pubDate of midnight MST,
         # but since I don't keep track of the actual time, it's
         # close enough.
@@ -62,7 +66,7 @@ def generate_feed(data):
         fe.id(url)
         fe.title(entry["title"])
         fe.link(href=url)
-        fe.author({"name": "Zac Anger"})
+        fe.author({"name": my_name})
         fe.description(entry["body"])
         fe.pubDate(published)
 
