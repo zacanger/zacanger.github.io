@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-27
+created: 2020-12-28
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,20 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-28
+
+A good artificial light source is better than a low quality (dim, flickering,
+diffused) flame, but a good quality candle flame seems to be nicer than an
+artificial light. That could be some internal bias I have against using an LED
+light or whatever else since it feels "unnatural", though.
+
+The visual aspects of second jhana through a kasina can be fun, but I want to
+move ahead. It doesn't help that I keep getting drawn into having fun with them.
+I've touched on third jhana, but haven't been able to stay there consistently or
+to push on to fourth. Seeing through one's eyelids and being able to physically
+squish the swirling visual field with one's hands doesn't actually have any
+practical value, I think.
 
 ## 2020-12-27
 
@@ -245,7 +259,7 @@ I'm not sure how this is related, but about 30 or 40 minutes after I went to
 sleep, I had a huge shock of energy through my core and bolted upright.
 I was shaking, but it felt like everything else (reality) was shaking. At
 first I thought there was an earthquake, and I shot off a quick prayer to
-Avaloketisvara that it wasn't "The Big One," but then I looked at my water
+Avaloketisvara that it wasn't "The Big One", but then I looked at my water
 bottle, and it wasn't shaking, then got up and looked at other objects, and
 they weren't shaking. I wasn't shaking either, my hands and limbs seemed
 steady, so it was just my perception of everything. I don't know where that
