@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-28
+created: 2020-12-31
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,16 @@ posts, presented in reverse-chronological order. Since I usually meditate at
 night, entries will generally be written the next day.
 
 [TOC]
+
+## 2020-12-31
+
+Still doing fire and light kasina practice. I haven't made any significant
+progress the past few days, just more of the same cycles, though they're getting
+faster and I'm able to "see" things more clearly. I'm sitting more and more
+(yesterday was around two and a half hours, across a few sits), hoping the extra
+time will help me get tired of bliss and visuals and move on to the fourth
+jhana. We'll see. I'm planning on giving this another week and then switching
+back to insight practices.
 
 ## 2020-12-28
 
