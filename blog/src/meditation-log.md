@@ -191,9 +191,12 @@ water hit my chest and mind at the same time, it had a physical impact.
 
 I'm not sure how that fits into the maps since, as far as I know, I shouldn't be
 expecting any big insights or even strong visualizations at this point, but it
-was a jarring (but somehow in a pleasant way?) enough experience that I wanted
-to write it up tonight so I didn't forget anything, rather than wait until
-tomorrow morning.
+was a jarring enough experience that I wanted to write it up tonight so I didn't
+forget anything, rather than wait until tomorrow morning. It felt weirdly
+bad-good, like if someone suddenly grabs your shoulder and you're a little
+shocked and freaked out, but then you turn around and see that it's someone you
+love and trust, so there's a mixture of relief and happiness — except all of
+those emotions happened in maybe one or two seconds.
 
 ## 2020-12-24
 
