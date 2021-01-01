@@ -169,8 +169,9 @@ greenish white cloudy stuff, purplish black stuff, little sparkles. One of the
 sparkles seemed fairly stationary, and it's the holidays, so I willed for there
 to be more of them and for them to fall like snow, which didn't exactly work,
 but more of them did come into focus and move downwards (as long as I was
-keeping my focus on them). Around this time I felt pretty good, physically. I
-had an itch on my leg but it felt _good_, for example.
+keeping my focus on them). Around this time I was feeling pretty good,
+physically. Aches, pains, itches, all either vanished or turned into nice
+sensations.
 
 Then the flickering started. It was like giant white glowing books with their
 pages being flipped, or a deck of cards being shuffled, maybe. Huge and white,
