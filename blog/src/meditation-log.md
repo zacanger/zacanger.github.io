@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2021-01-01
+created: 2021-01-02
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,20 @@ posts, presented in reverse-chronological order. Entries are sometimes written
 the following day.
 
 [TOC]
+
+## 2021-01-02
+
+Things continue to be interesting. Drawing an orange line in the air, seeing a
+deity in bubbles of light, supporting a glowing blue being with my cupped hands,
+my hands themselves flickering in and out of existence, and overwhelming
+feelings of bliss — the longer I sit, as long as I'm patient and don't restart
+the cycle, the stranger and more intense things get. I have trouble sometimes
+not slipping into noting everything, which I didn't realize was a habit I'd
+built until I started these couple weeks of kasina-based practice with the
+intention of reaching at least the fourth samatha jhana (as defined in the
+Vimuttimagga and clarified in MCTB). When I do switch back to insight practice
+(starting a week from today — my plan is to stop kasina practice this coming
+Friday), I hope some of this translates into something valuable.
 
 ## 2021-01-01
 
