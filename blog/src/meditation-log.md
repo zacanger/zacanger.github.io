@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2020-12-31
+created: 2021-01-01
 starred: true
 tags:
   - buddhism
@@ -13,10 +13,43 @@ tags:
 # Meditation Log
 
 This will be a continually-updated document, rather than a series of separate
-posts, presented in reverse-chronological order. Since I usually meditate at
-night, entries will generally be written the next day.
+posts, presented in reverse-chronological order. Entries are sometimes written
+the following day.
 
 [TOC]
+
+## 2021-01-01
+
+I had trouble getting warm this morning, so I tried tummo practice for a while.
+Psychologically, at least, it worked, but that could be because I was so focused
+on the visualization and breath control that I forgot about being cold. My body
+temperature went up about 1.5 degrees (F), but that's not a significant amount.
+
+I read _The Slacker's Guide To Stream-Entry_ today, a short log from someone I
+assume is a Catholic that goes into some parallels between Christian mysticism
+and Buddhism. I was hoping for an actual guide to stream-entry, but it was
+interesting anyway. One big thing I got out of it was the idea of breaking one
+meditation up into a few periods of 15-30 minutes with 5-10 minute breaks to
+stretch and do walking meditation. That may help a bit with discomfort,
+especially since my legs tend to fall asleep during longer sits (I haven't found
+a posture that completely helps — Burmese style seems to be good for my legs,
+but not for my back; half-lotus and cross-legged with a zafu seem to be good for
+my back, but my legs fall asleep).
+
+Fire/light kasina practice (after reading the Vimuttimagga I've started thinking
+of kasina practice using my pinhole flashlight contraption as light kasina, not
+fire) hasn't really progressed much, just the same cycles. I can't seem to stay
+in the murk for more than 10 minutes or so without getting bored or distracted
+and starting a fresh cycle, though I can stretch it out longer when it's
+completely dark and I can see shapes and colors in the murk more clearly, so
+nighttime practice has been going better than during the day. I can still play
+with it, move colors around, change colors (very slowly), etc., but that gets
+old pretty fast. I haven't experienced anything that sounds like fourth jhana
+yet, and am starting to wonder if I should switch things up by trying a
+different kasina, dropping the mantra I try to keep running all the time, or
+some other change. Or maybe I just need need to put in more time; my practice
+probably totals less than four hours a day right now, so I could try going for
+six or eight over the next few days and seeing how things go.
 
 ## 2020-12-31
 
