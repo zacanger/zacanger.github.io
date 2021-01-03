@@ -22,15 +22,19 @@ the following day.
 
 Things continue to be interesting. Drawing an orange line in the air, seeing a
 deity in bubbles of light, supporting a glowing blue being with my cupped hands,
-my hands themselves flickering in and out of existence, and overwhelming
+my hands themselves flickering in and out of existence, drawing a dharmachakra
+on a door in blue sparkly fire, bright purple malleable clouds, overwhelming
 feelings of bliss — the longer I sit, as long as I'm patient and don't restart
-the cycle, the stranger and more intense things get. I have trouble sometimes
-not slipping into noting everything, which I didn't realize was a habit I'd
-built until I started these couple weeks of kasina-based practice with the
-intention of reaching at least the fourth samatha jhana (as defined in the
-Vimuttimagga and clarified in MCTB). When I do switch back to insight practice
-(starting a week from today — my plan is to stop kasina practice this coming
-Friday), I hope some of this translates into something valuable.
+the cycle, the stranger and more intense things get. I'm moving more towards
+only light as an object, since good candles aren't cheap, and it also gets a
+usable after-image much faster.
+
+I have trouble sometimes not slipping into noting everything, which I didn't
+realize was a habit I'd built until I started these couple weeks of kasina-based
+practice with the intention of reaching at least the fourth samatha jhana (as
+defined in the Vimuttimagga and clarified in MCTB). When I do switch back to
+insight practice (in about a week), I hope some of this translates into
+something valuable.
 
 ## 2021-01-01
 
