@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2021-01-02
+created: 2021-01-04
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,32 @@ posts, presented in reverse-chronological order. Entries are sometimes written
 the following day.
 
 [TOC]
+
+## 2021-01-04
+
+In the interest of cutting down on the noise, I think I'll eventually edit this
+log down into shorter sections (like, the whole fire/light kasina period might
+get edited into one post, for example). The history will still exist in Git for
+anyone who's really really curious, but there's a lot of extraneous information
+here that probably isn't useful to anyone.
+
+My practice hours dropped the last couple days, but results didn't, curiously.
+Based on the descriptions I've read, I believe I entered fourth jhana yesterday.
+Visuals took on a life entirely of their own, with wild 3d animated objects
+showing up and doing their own thing, all vedana either disappearing or becoming
+so subtle that I couldn't sense anything except a mild state of "okayness", and
+a generally chilled-out feeling when I intentionally exited.
+
+I also kept in mind the idea of "intending to move on", which had a definite
+impact — when I was in the visually hazy/emotionally less than pleasant state
+that I think maps to some mild effects of the knowledges of fear and disgust,
+for example, I would mentally verbalize, "I see this, it's okay, I've seen it
+before, it's time to move on", and then that would happen, I would move on to
+something new. It's very strange to have that much control after such a long
+time just sitting around and trying to focus and see what happens. I would say
+this kasina experiment has been a success. I'll keep with it for another couple
+days before switching back full-time (or mostly full-time) to insight and see
+what else develops.
 
 ## 2021-01-02
 
