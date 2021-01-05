@@ -31,7 +31,7 @@ Apple. If the idea of installing software that doesn't come from the App Store
 or some other official source is alien to you, that's okay. I'm here to tell
 you, it's an option. And you don't even need to make a switch all at once.
 Since OS X has been POSIX-compliant since Leopard, you can actually get a lot
-of sofware that's made for other *nix systems running just fine on your
+of software that's made for other *nix systems running just fine on your
 Macbook. There are some third-party package mangers out there that come highly
 recommended (I haven't tried them myself; I haven't owned a Mac since around
 OS 8). Among them are [pkgsrc](http://www.pkgsrc.org/),
@@ -63,9 +63,8 @@ I'm not going to go all out with this one; I could talk for months about the
 reasons folks should consider Linux (or a BSD), and especially about the
 reasons NOT to use Apple products, but that's not a topic for here and now.
 
-Thanks so much for reading! If you missed it, [here's the first part of this
-note](https://notes.pinboard.in/u:zacanger/1519026e3458629771c8), where I talk
-about Windows a bit. This was as an addition to [this
+Thanks so much for reading! If you missed it, check out the first part on my
+blog, where I talk about Windows a bit. This was as an addition to [this
 post](https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0)
 by [this guy](http://mylinuxrig.com), who is writing [this
 book](https://manning.com/books/learn-linux/in-a-month-of-lunches); if you're
