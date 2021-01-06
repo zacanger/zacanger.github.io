@@ -15,6 +15,8 @@ from feedgen.feed import FeedGenerator
 # project so I want to make sure it's stable before switching.
 # import pycmarkgfm
 
+# TODO: Split out meditation log into separate posts,
+# and also edit those down to cut out some of the noise.
 
 my_name = "Zac Anger"
 blog_title = my_name + "'s Blog"
