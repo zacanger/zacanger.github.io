@@ -41,7 +41,7 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
     fi
 
     # options: always hourly daily weekly monthly yearly never
-    freq="weekly"
+    freq="yearly"
     priority=0.5
 
     if [[ $file == "" ]]; then
@@ -52,10 +52,14 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
       freq="monthly"
     elif [[ $file == "presentations/" ]]; then
       priority=0.4
-      freq="yearly"
     elif [[ $file == "blog/" ]]; then
       priority=0.6
       freq="weekly"
+    elif [[ $file == "blog/posts/meditation-log/" ]]; then
+      # Special case, see TODO in blog code
+      freq="weekly"
+    elif [[ $file =~ blog/.* ]]; then
+      freq="never"
     elif [[ $file == "404.html" ]]; then
       priority=0.0
       freq="never"
