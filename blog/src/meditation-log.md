@@ -1,6 +1,6 @@
 ---
 title: Meditation Log
-created: 2021-01-04
+created: 2021-01-07
 starred: true
 tags:
   - buddhism
@@ -17,6 +17,37 @@ posts, presented in reverse-chronological order. Entries are sometimes written
 the following day.
 
 [TOC]
+
+## 2021-01-07
+
+Nothing particularly notable has happened on the cushion in the last few days. I
+seem to be regularly able to attain first jhana within around 7 minutes, and up
+to third or sometimes fourth within around 45 minutes, but haven't figured out
+the twist to get to the formless realms. I'm also not pushing as hard as I was,
+now that I've proven to myself that this kasina stuff really works.
+
+I read the Sutta Nipatta the other day (very interesting reading, especially if
+you're interested in the history of Buddhism), and also read Pa-Auk Sayadaw's
+_Knowing and Seeing_ over the last few days. The jhana info in the latter
+definitely makes me want to go and read the Visuddhimagga (which I was planning
+to do sometime soon anyway, but now I want to even more); the vipassana half of
+the book is very highly technical and went a little over my head, but I'm also
+not sure that I actually need to absorb all that information to be able to
+practice.
+
+One curious thing that's happened lately is that I've had some insights I
+wasn't expecting, both when formally meditating and when living daily life. This
+started with the initial glimpse of no-self (with the flickering circle
+visualization) around two weeks ago and has continued with sudden understandings
+of various dhammas. I'm now thinking that event may have been the knowledge of
+arising and perishing (arising and passing away/A&P/udaya-bbaya-nana),
+especially given the other uncontrolled visualizations and specific emotions and
+reactions that arose over the following couple of weeks. What that means for me
+right now, I'm not sure, besides that I need to keep practicing.
+
+Like I said in the previous post, I'm going to edit this all down soon; once I'm
+back to regular practice, I'll summarize the whole kasina test period and the
+surrounding days down into one or two posts for reference.
 
 ## 2021-01-04
 
