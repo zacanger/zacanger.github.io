@@ -14,7 +14,7 @@
 </url>
 <url>
   <loc>https://zacanger.com/blog/</loc>
-  <lastmod>2021-01-07</lastmod>
+  <lastmod>2021-01-10</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.6</priority>
 </url>
@@ -139,9 +139,9 @@
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://zacanger.com/blog/posts/meditation-log/</loc>
-  <lastmod>2021-01-07</lastmod>
-  <changefreq>weekly</changefreq>
+  <loc>https://zacanger.com/blog/posts/meditation-log-intro/</loc>
+  <lastmod>2020-12-19</lastmod>
+  <changefreq>never</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
@@ -177,6 +177,12 @@
 <url>
   <loc>https://zacanger.com/blog/posts/digital-security-guide/</loc>
   <lastmod>2019-12-19</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/blog/posts/meditation-log-kasina/</loc>
+  <lastmod>2021-01-10</lastmod>
   <changefreq>never</changefreq>
   <priority>0.5</priority>
 </url>
