@@ -416,16 +416,12 @@ especially given the other uncontrolled visualizations and specific emotions and
 reactions that arose over the following couple of weeks. What that means for me
 right now, I'm not sure, besides that I need to keep practicing.
 
-Like I said in the previous post, I'm going to edit this all down soon; once I'm
-back to regular practice, I'll summarize the whole kasina test period and the
-surrounding days down into one or two posts for reference.
-
 ## 2021-01-10
 
-The kasina period is over, but ended somewhat spectacularly. The visualizations
-(they could even be called visions, maybe), were especially intense near the
-end, when I switched from using the kasina nimitta as object to the breath.
-After these couple of weeks, a lot of Buddhist artwork makes a lot more sense.
-I'm now going to ease back into anapanasati and then noting practice. I'm also
-reading Thanissaro Bhikkhu's _With Each & Evey Breath_, which has some
-interesting points.
+The hardcore kasina period is over, but ended somewhat spectacularly. The
+visualizations (they could even be called visions, maybe), were especially
+intense near the end, when I switched from using the kasina nimitta as object to
+the breath. After these couple of weeks, a lot of Buddhist artwork makes a lot
+more sense. I'm now going to ease back into anapanasati and then noting
+practice. I'm also reading Thanissaro Bhikkhu's _With Each & Evey Breath_, which
+has some interesting points.
