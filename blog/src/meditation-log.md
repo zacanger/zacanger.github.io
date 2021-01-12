@@ -1,18 +1,162 @@
 ---
-title: Meditation Log (Kasina)
+title: Meditation Log
 created: 2021-01-10
 tags:
   - buddhism
   - meditation
   - jhana
   - kasina
+  - vipassana
 ---
 
-# Meditation Log (Kasina)
 
 [TOC]
 
-## 2020-12-21
+## Intro
+
+### 2020-12-12
+
+Not sure of the exact date, could be the 10th or 11th too. This comes a few
+days after taking the bodhisattva vows (on the 5th). These days were
+high-tension. I had been having trouble solidifying the breath as an object.
+This night, I tried mantra instead — initially the prajnaparamita mantra from
+the heart sutra, I think, but then I switched to just "bu-dho" with the in
+and out breath. After maybe 3 or 4 minutes of this, things had become really
+thick and syrupy, like my perception was muffled but in a pleasant way, but
+it also took some effort to clearly mentally "hear" the mantra. But then as
+soon as I noticed that muffled/thick quality, it was like that warm
+yellow-brown thickness got cleaned out in an instant, and everything was
+clear. I could hear "bu-dho" clearly but didn't feel like I needed to focus
+on it as much, and mentally there was a feeling of crispness, like the brown
+and yellow had been replaced with a cool blueish white and deep black. That
+change startled me enough that I wasn't able to stay in it, though. I don't
+know if this was just making it into the first jhana, or mind and body (I
+wasn't really doing anything like noting practice so I assume not), but it
+felt like progress, so I hope I can do it again.
+
+### 2020-12-13
+
+Some background since I started the log late: I started meditating more over
+last winter, but didn't really make it anywhere until spring or maybe early
+summer 2020. I'd used some basic sort of mindfulness practice years ago in
+therapy, but got back into the idea after reading "Why Buddhism Is True". I
+also read some of the major Mahayana and Theravada sutras, then MCTB1, TMI,
+and then MCTB2, all of which made a big impact. I've attended (online) sangha
+on and off (a Plum Village one mostly), and have tried out techniques from
+various traditions. After trying noting practice for a while, and also trying
+to find the beginnings and ends of breaths as emphasized in parts of TMI, I
+realized there was something to this stuff. Basically, when they say "if you
+follow these instructions you will get these results", they mean it. So I'm a
+believer now. All of the map theory in MCTB is very interesting to me, and I
+think, using the main maps Dr. Ingram presents there, it would be reasonable
+to say that I had an A&P event when I was 14 (in a Christian context), and
+spent the following 15 years or so dealing with the Dark Night. That lines up
+too well with my experience to completely discount it, anyway. So now my
+focus is on moving past that, but also in learning and experimenting with
+these different techniques. Kasina meditation sounds very handy, so I think
+I'll want to read the Visuddhimagga and Vimuttimagga sometime soon, too. I
+don't know enough, doctrinally, to say I absolutely belong with one specific
+tradition or lineage, but Theravada techniques seem to work for me, but I
+also like some of the aspects of Chan/Thien/Zen, and am starting to
+appreciate the Vajrayana. Maybe I'm en Ekayana Buddhist, if there is such a
+thing.
+
+### 2020-12-14
+
+Since I usually meditate before going to sleep, most of the entries here will
+probably be written the next day about the previous night. I attempted to
+reproduce the experience from the 12th (or 10th or 11th, not sure of the
+exact date). I didn't set a firm resolution when I got started, so I bounced
+between different mantras and the breath for a few minutes, but eventually
+stabilized on "bu-dho" again, while reclining. After maybe five minutes, I
+was able to interact with the nimitta in interesting ways. I could move it
+around with my will, though it didn't always respond exactly the way I
+thought it would, and not always immediately. I also tried using my hands to
+move it and shape it, with similar results. I could vaguely make out the
+shape of my hands (my eyes were closed and this was in a dark room, so it was
+a mental image), and they were definitely larger than usual, and seemed to be
+made out of some sort of darkness (not in a creepy way, just in a way that
+contrasted with the nimitta). I could squeeze, shape, poke, and swirl around
+the light in this way. I don't know if this had any value, but it was an
+interesting experience. I tried to use this to jump into insight practice by
+trying to notice aspects of the three characteristics, but then my
+concentration fell apart and it ended. I think I'm pretty weak on both the
+concentration and insight sides of practice, but making some progress.
+
+### 2020-12-15
+
+The past couple of days have been extraordinarily stressful, and that will
+probably continue for at least the next few weeks. I'm finding that eyes-open
+meditation in daily life can help somewhat. Mantra meditation, even for 3-5
+minutes if done sincerely, seems to slow everything down and chill everything
+out.
+
+### 2020-12-16
+
+I don't think there's much value in adding entries to this log unless
+something notable happened, so I'll be skipping days here.
+
+### 2020-12-17
+
+Last night I had very little luck, but the night before a strange
+visualization happened. Out of the fuzzy/swirly black and white field, in the
+bottom right corner, I clearly saw some sort of black-clothed figure. The
+clothing was like something out of a fantasy movie, a wispy robe with long
+trailers or tatters that were blowing in all directions and pushing into or
+overlapping part of the mostly white field behind my eyelids. This was after
+a good amount of time doing mantra practice. No idea what it means except
+maybe that my ability to concentrate is improving.
+
+### 2020-12-18
+
+Last night I got started late due to work, so was worried I wouldn't have
+time before needing to get to sleep. I tried to maintain mindfulness during
+everyday activities (washing, washing; brushing, brushing; left foot, right
+foot, left foot, turning, turning). Before bed, I sat doing concentration
+practice with the prajnaparamita mantra (gate gate paragate parasamgate bodhi
+svaha), initially in sync with the breath but then diverging. After around 40
+minutes, the discomfort in my knees and hips was becoming hard to ignore, and
+since I had resolved to stick to samatha practices, rather than try to
+examine the pain I decided to recline, and I also switched to a simpler
+mantra (buddho). About ten minutes into this, the mantra sort of faded into
+the background, replaced by some common early visuals (white swirling light
+type stuff). I focused on that a bit more, and suddenly had a shallow mental
+image of spinning lights, like a carousel without horses or riders and with
+long tassels of Christmas lights along and slung out from its ceiling, in
+bright colors. That shallow mental thought almost immediately solidified into
+a concrete visualization which seemed extremely real (I was fully aware that
+it wasn't truly there, but it had depth and seemed to really be there). My
+eyes were still closed, but I could clearly see it spinning along where my
+wall and ceiling met. A deep sense of happiness and something like awe struck
+me, I felt it heavily in my chest. The whole experience lasted for probably
+less than a second, but it was extremely intense. Afterwards, I at first
+tried to cling to it for a breath or two, but then realized that was the
+point; it was over and I needed to understand that it was never going to be
+permanent. I went back to focusing on the mantra (buddho) for another ten or
+fifteen minutes before going to sleep.
+
+### 2020-12-19
+
+My weekend practice is usually lacking, due I think mostly to my neighbors'
+loud music. I've started reading the Vimuttimagga while I wait for it to
+quiet down, and as a theoretical warm-up to the Visuddhimagga, which I'd like
+to get through sometime this coming year. Of course, the most important thing
+is actually doing the work, not just reading about it. Maybe some
+industrial-grade earplugs would help.
+
+Something else that's been happening on and off in the past week or two is
+seeing other random visualizations. These aren't something I'm intending to
+see, but I think mantra practice combined with trying to examine the nimitta
+does something a little weird. I'll usually see things that remind me of the
+style of Chinese or maybe Korean paintings of dragons, tigers, etc., from
+maybe the 15th-18th century or so; not that I'm seeing dragons or tigers
+specifically, but beings that look like they could've popped out of one of
+those paintings, and usually only for a few moments.
+
+
+## Kasina Practice
+
+### 2020-12-21
 
 Decided to really try fire kasina practice last night not give up on it. I
 went at it for 25 minutes, took a break for a couple minutes, then another 20
@@ -32,7 +176,7 @@ of my face, and it seemed to work as a barrier than the dot didn't want to
 pass through when it was moving around. That's about as far as I got, but it
 seems promising.
 
-## 2020-12-22
+### 2020-12-22
 
 Last night I had a false start trying to get into fire kasina meditation, got
 up for a bit, then settled down into it. I was able hold onto the nimitta for
@@ -85,7 +229,7 @@ sync with my heartbeat instead, maybe). All of this seems to be expected
 according to what I've read so I'm not concerned about it, it's just
 interesting.
 
-## 2020-12-23
+### 2020-12-23
 
 Nothing much happened last night except for cycles, over and over again:
 flame, dot, red dot, murk, sometimes a black dot. At one point I tried
@@ -95,7 +239,7 @@ it, so that's something. I also was able to sustain the nimitta with my eyes
 open and get it back quickly from other sources like a street lamp and car
 headlights.
 
-## 2020-12-24-2
+### 2020-12-24-2
 
 I just practiced for about an hour: fifteen minutes on a candle, maybe five
 minutes walking and with a streetlight, and I reclined and used my phone's
@@ -142,7 +286,7 @@ shocked and freaked out, but then you turn around and see that it's someone you
 love and trust, so there's a mixture of relief and happiness — except all of
 those emotions happened in maybe one or two seconds.
 
-## 2020-12-24
+### 2020-12-24
 
 Still working on fire kasina practice. Not much luck last night. I was able to
 get black discs regularly, but they faded quickly, and I wasn't getting a red
@@ -179,9 +323,9 @@ eyes are closed, including while practicing. This seems related to
 understanding impermanence eventually, so I'm not concerned about it, it's
 just curious.
 
-## 2020-12-25
+### 2020-12-25
 
-### Notes About Siddhis/Powers
+#### Notes About Siddhis/Powers
 
 Condensed and edited version of the instructions in
 [MCTB2](https://www.mctb.org/mctb2/table-of-contents/part-vi-my-spiritual-quest/65-how-to-cultivate-the-powers/)
@@ -226,7 +370,7 @@ earlier), releasing all of the energy of your intent out into the world without
 any restraint or hesitation. You have to be absolutely committed. Let it out,
 then let it go.
 
-## 2020-12-26
+### 2020-12-26
 
 I read the [fire kasina book](https://firekasina.org/) over the last couple
 days, and some things make more sense now. I'm back to reading the Vimuttimagga
@@ -266,7 +410,7 @@ flickering all along, and it was just too fast for me to see. The flickering
 aspect of basically everything is still growing, making me wonder what that will
 do when I switch back to insight practices.
 
-## 2020-12-27
+### 2020-12-27
 
 I've noticed that the initial nimitta tends to take on recognizable shapes
 sometimes, especially when I start with something brighter than a candle. I
@@ -288,7 +432,7 @@ keeps trying to dart off, and I can feel the tug on the leash and see the
 direction it's going in, except the leash is made of elastic, and the elastic
 got stronger/tighter over time.
 
-## 2020-12-28
+### 2020-12-28
 
 A good artificial light source is better than a low quality (dim, flickering,
 diffused) flame, but a good quality candle flame seems to be nicer than an
@@ -302,7 +446,7 @@ to push on to fourth. Seeing through one's eyelids and being able to physically
 squish the swirling visual field with one's hands doesn't actually have any
 practical value, I think.
 
-## 2020-12-31
+### 2020-12-31
 
 Still doing fire and light kasina practice. I haven't made any significant
 progress the past few days, just more of the same cycles, though they're getting
@@ -312,7 +456,7 @@ time will help me get tired of bliss and visuals and move on to the fourth
 jhana. We'll see. I'm planning on giving this another week and then switching
 back to insight practices.
 
-## 2021-01-01
+### 2021-01-01
 
 I had trouble getting warm this morning, so I tried tummo practice for a while.
 Psychologically, at least, it worked, but that could be because I was so focused
@@ -345,7 +489,7 @@ some other change. Or maybe I just need need to put in more time; my practice
 probably totals less than four hours a day right now, so I could try going for
 six or eight over the next few days and seeing how things go.
 
-## 2021-01-02
+### 2021-01-02
 
 Things continue to be interesting. Drawing an orange line in the air, seeing a
 deity in bubbles of light, supporting a glowing blue being with my cupped hands,
@@ -363,7 +507,7 @@ defined in the Vimuttimagga and clarified in MCTB). When I do switch back to
 insight practice (in about a week), I hope some of this translates into
 something valuable.
 
-## 2021-01-04
+### 2021-01-04
 
 In the interest of cutting down on the noise, I think I'll eventually edit this
 log down into shorter sections (like, the whole fire/light kasina period might
@@ -389,7 +533,7 @@ this kasina experiment has been a success. I'll keep with it for another couple
 days before switching back full-time (or mostly full-time) to insight and see
 what else develops.
 
-## 2021-01-07
+### 2021-01-07
 
 Nothing particularly notable has happened on the cushion in the last few days. I
 seem to be regularly able to attain first jhana within around 7 minutes, and up
@@ -416,7 +560,7 @@ especially given the other uncontrolled visualizations and specific emotions and
 reactions that arose over the following couple of weeks. What that means for me
 right now, I'm not sure, besides that I need to keep practicing.
 
-## 2021-01-10
+### 2021-01-10
 
 The hardcore kasina period is over, but ended somewhat spectacularly. The
 visualizations (they could even be called visions, maybe), were especially

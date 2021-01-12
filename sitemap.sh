@@ -56,7 +56,7 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
       priority=0.6
       freq="weekly"
     elif [[ $file == "blog/posts/meditation-log/" ]]; then
-      # Special case, see TODO in blog code
+      # Special case
       freq="weekly"
     elif [[ $file =~ blog/.* ]]; then
       freq="never"
