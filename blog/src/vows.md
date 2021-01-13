@@ -1,13 +1,12 @@
 ---
-title: vows
+title: Vows
 created: 2020-12-05
-starred: true
 tags:
   - personal
+  - buddhism
 ---
 
-* suffering beings are numberless; i vow to save them all.
-* attachment is inexhaustible; i vow to end it all.
-* the dharma gates are numberless; I vow to learn them all.
-* the way of awakening is unsurpassable; for the benefit of all beings, i vow
-  to accomplish it.
+Suffering beings are numberless; I vow to save them all.  
+Attachment is inexhaustible; I vow to end it all.  
+The Dharma gates are numberless; I vow to learn them all.  
+The way of awakening is unsurpassable; for the benefit of all beings, I vow to accomplish it.

@@ -1,7 +1,97 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 12 Jan 2021 20:37:02 +0000</lastBuildDate><item><title>Meditation Log</title><link>https://zacanger.com/blog/posts/meditation-log</link><description>&lt;p&gt;This started as a daily log and was then edited down into what you see now. This
-log will continue to grow as notable things happen during my adventures as a
-Buddhist meditator.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Thu, 29 Jul 2021 07:22:56 +0000</lastBuildDate><item><title>drop off</title><link>https://zacanger.com/blog/posts/drop-off</link><description>&lt;p&gt;drop off&lt;/p&gt;
+&lt;p&gt;no body; no mind&lt;br /&gt;
+no master; no student&lt;br /&gt;
+no teachings; no knowledge&lt;br /&gt;
+no me; no you  &lt;/p&gt;
+&lt;p&gt;only rain over the stream&lt;br /&gt;
+only hot wind across the sand&lt;br /&gt;
+only chill through the trees&lt;br /&gt;
+only snow on the mountain  &lt;/p&gt;
+&lt;p&gt;if you already know&lt;br /&gt;
+you don't need to be told&lt;br /&gt;
+if you don't know&lt;br /&gt;
+telling you won't do any good  &lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3 id="a-note-on-context-added-months-later"&gt;A note on context, added months later&lt;/h3&gt;
+&lt;p&gt;Written after around four months of especially heavy study and practice. I had
+just spent a couple weeks week experimenting with Vajrayana practices with no
+luck, and had decided to return to what I knew. The next day (the date on this
+post) I decided to read the Shōbōgenzō, to find out more about Chan. I was just
+in the first discourse when things blinked. The experience didn't last for even
+a second, or maybe it did, but it was timeless. It wasn't flashy or explosive
+like the things I experienced when doing kasina practice, but instead felt like
+everything shifted. After, I got up and scribbled most of the poem above. Later
+that day I rearranged it a bit, and that night I added the last stanza. I
+haven't had this experience confirmed by a teacher, but right now it doesn't
+feel like I need to; things aren't the same as they were before.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/drop-off</guid><pubDate>Thu, 28 Jan 2021 00:00:00 -0700</pubDate></item><item><title>License change</title><link>https://zacanger.com/blog/posts/license-change</link><description>&lt;p&gt;Most of my code is licensed LGPL-3.0. That's fine, it's a pretty good license,
+but I decided to add something recently. Whether or not it would hold up in
+court, I don't know, but all of my active (non-archived) projects now have this
+addition at the top of their license file:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You may not use the code in this repository for the governments, military, or
+law enforcement of any NATO member; or in applications or platforms designed
+or intended for use by neo-Nazis, white supremacists, far-right conspiracy
+theorists (such as Q-Anon), or other similar right-wing groups.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The point of this addition is to prevent usage of my libraries by companies and
+governments (and sub-government organizations) that are harmful. While there are
+thousands of specific organizations I could list, hopefully this broad list will
+do the trick and effectively give me room to sue if my code is used to incite
+hatred, bomb foreign countries (or drop bombs domestically as in the MOVE case
+in Philadelphia), or something similar that wouldn't align with my own values as
+a Buddhist and a Communist.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/license-change</guid><pubDate>Wed, 27 Jan 2021 00:00:00 -0700</pubDate></item><item><title>Buddhist Hell</title><link>https://zacanger.com/blog/posts/buddhist-hell</link><description>&lt;p&gt;I'm in the middle of translating the Niddesa and came across this fun passage.
+For anyone who doesn't think Buddhism is a religion with all the things that
+normally come with a religion, and just treat it as a secular philosophy, you
+might enjoy this (Nd 1.15 and Nd 2.20):&lt;/p&gt;
+&lt;p&gt;...he was reborn in the world of suffering, evil, lower world, and hell after
+death. The jailers imposed five types of punishment on him: they made the red
+hot iron rod pass through the (first) palm, and they made the red hot iron rod
+pass through the (second) palm. After the second palm, they passed the red hot
+iron rod through the (first) sole of the foot, they passed the red hot iron rod
+through the second sole of the foot, and they passed the red hot iron rod
+through the chest in the middle. He felt bitter, fierce, violent, pungent
+feelings there, and he would not die until the evil kamma was eliminated. Where
+did this terror, suffering, and sorrow arise? ....&lt;/p&gt;
+&lt;p&gt;After the jailers lay him down, they cut him with an axe... (omitted) after the
+jailers grabbed him under their feet, they cut him with a small axe... the
+jailers harnessed him on the cart and set him on fire, so he was ignited in a
+burning, glorious fire, ... the jailers made him climb up and down the burning,
+shining charcoal volcano... after the jailers caught him up and down, they threw
+them into the hot, blazing, burning, red-glowing copper pot; he was boiled with
+foam there, and he rose up once, sunk once, and moved across once. He felt
+bitter.... Where did this horror, suffering, .... The jailers threw him into the
+great hell, and in the great hell:&lt;/p&gt;
+&lt;p&gt;"There are four doors in the four corners, divided into equal parts,&lt;br /&gt;
+Surrounded by iron walls, and the top is covered by iron.&lt;br /&gt;
+The earth is made of iron, and it shines with the burning of fire,&lt;br /&gt;
+All around for a hundred yojanas, always pervading and abiding.&lt;br /&gt;
+The miserable burning is terrible, the brilliant flames are hard to approach,&lt;br /&gt;
+Hair visibly standing on end due to the horror of suffering.&lt;br /&gt;
+From the east wall, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the west.&lt;br /&gt;
+From the west wall, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the east.&lt;br /&gt;
+From the north wall, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the south.&lt;br /&gt;
+From the south wall, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the north.&lt;br /&gt;
+From below, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the roof.&lt;br /&gt;
+From above, a mass of fire originates,&lt;br /&gt;
+Burning those with evil kamma, striking against the ground.&lt;br /&gt;
+Blazing iron, sorrow like being burned,&lt;br /&gt;
+Just so this great hell is seen from above and below.&lt;br /&gt;
+There beings are very cruel, those who have done great crimes,&lt;br /&gt;
+Perpetual evildoers, tortured without dying.&lt;br /&gt;
+The body is like fire, that of the dweller in this hell,&lt;br /&gt;
+The one with steady kamma, the fire has neither ashes nor soot.&lt;br /&gt;
+They run to the east, and from there to the west;&lt;br /&gt;
+The run to the north, and from there to the south;&lt;br /&gt;
+Everywhere they run, the doors are shut,&lt;br /&gt;
+The want to go forth, they seek for release.&lt;br /&gt;
+They can't go forth from there, they obtain this by means of kamma,&lt;br /&gt;
+For those evildoers, their abundant kamma is not yet fully ripe."&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/buddhist-hell</guid><pubDate>Tue, 26 Jan 2021 00:00:00 -0700</pubDate></item><item><title>Kasina Meditation</title><link>https://zacanger.com/blog/posts/kasina-meditation</link><description>&lt;p&gt;This started as a daily log and was then edited down into what you see now.&lt;/p&gt;
 &lt;div class="toc"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#intro"&gt;Intro&lt;/a&gt;&lt;/li&gt;
@@ -12,11 +102,12 @@ Buddhist meditator.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#wrapping-up"&gt;Wrapping Up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href="#powers"&gt;Powers&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Some background: I started meditating more over last winter, but didn't make it
-anywhere until late sprint or early summer 2020. I'd used basic mindfulness
+anywhere until late spring or early summer 2020. I'd used basic mindfulness
 practices in therapy in the past but got back into the idea after reading
 more about Buddhism, including the book &lt;em&gt;Why Buddhism Is True&lt;/em&gt;. I also read some
 of the major Mahayana and Theravada suttas, and also MCTB1, TMI, then MCTB2.
@@ -40,11 +131,12 @@ Visuddhimagga than anything else, though.&lt;/p&gt;
 Around the 10th or 11th, I tried exclusively using a mantra as object rather
 than combining it with the breath (or the breath only) and had my first truly
 interesting experience that might be considered jhanic. My perception became
-pleasantly muffled, like I was in a warm yellow-brown syrupy pillow. This lasted
-for a few minutes before I really tuned into the change, and as soon as I did,
-it instantly vanished and everything became crisp and clear with more of a
-high-contrast feel. That change broke my concentration, but it was enough
-inspiration to keep me practicing.&lt;/p&gt;
+pleasantly muffled, like I was in a warm yellow-brown syrupy pillow (not that I
+was seeing colors, but things felt like how those colors feel).
+This lasted for a few minutes before I really tuned into the change, and as soon
+as I did, it instantly vanished and everything became crisp and clear with more
+of a high-contrast blueish-white and black feel. That change broke my
+concentration, but it was enough inspiration to keep me practicing.&lt;/p&gt;
 &lt;p&gt;A few days layer, I started to be able to play with the nimitta (the grey/white
 smoky stuff in the visual field that arises under heavy concentration, and
 eventually can solidify into distinct objects and take on colors). I could will
@@ -169,20 +261,48 @@ odd to have that much control after so many days of floundering around. It was
 at this point that I considered the kasina experiment to be a success.&lt;/p&gt;
 &lt;h3 id="wrapping-up"&gt;Wrapping Up&lt;/h3&gt;
 &lt;p&gt;I did more reading in the following week: &lt;em&gt;Knowing and Seeing&lt;/em&gt;, the Sutta
-Nipatta, and &lt;em&gt;With Each &amp;amp; Evey Breath&lt;/em&gt;. I started pushing a little less hard now
+Nipata, and &lt;em&gt;With Each &amp;amp; Every Breath&lt;/em&gt;. I started pushing a little less hard now
 that I had confirmed things for myself, and did notice that with less hours on
 the cushion, concentration drops within a few days — though intense
 visualizations can linger on for a while.&lt;/p&gt;
 &lt;p&gt;A more notable side-effect is that insights started to show up when I wasn't
 expecting them. I believe they largely stem from the flickering experiences,
-which may have been an attainment of the knowledges of arising and perishing (or
-maybe not, who am I to say?). Bits and pieces of deeper dhamma understanding
-began to trickle in, sometimes at very unexpected moments.&lt;/p&gt;
+which may have been an attainment of the knowledge of arising and perishing.
+Bits and pieces of deeper dhamma understanding began to trickle in, sometimes at
+very unexpected moments.&lt;/p&gt;
 &lt;p&gt;I slowly began to shift from kasina practice to breathing and noting, while
 still trying to maintain access to at least the third jhana by using the nimitta
 from anapanasati as a kasina, since it seems to be a good level of concentration
 to keep up. I have yet to read the Visuddhimagga, so when I do, I may try
-another couple weeks of kasina practice to see what happens.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/meditation-log</guid><pubDate>Tue, 12 Jan 2021 00:00:00 -0700</pubDate></item><item><title>The Question Of Tibet</title><link>https://zacanger.com/blog/posts/the-question-of-tibet</link><description>&lt;div class="toc"&gt;
+another couple weeks of kasina practice to see what happens.&lt;/p&gt;
+&lt;h2 id="powers"&gt;Powers&lt;/h2&gt;
+&lt;p&gt;Summarized notes from &lt;a href="https://www.mctb.org/"&gt;MCTB&lt;/a&gt; (see &lt;a href="https://www.mctb.org/about/"&gt;the
+license&lt;/a&gt;) on attaining the powers/iddhis/siddhis.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prepare:&lt;ul&gt;
+&lt;li&gt;Make self and workspace clean&lt;/li&gt;
+&lt;li&gt;Candles, incense, etc. if that feels right&lt;/li&gt;
+&lt;li&gt;Think it through, including visualizing effects on every being out as far
+  as possible&lt;/li&gt;
+&lt;li&gt;Practice what to say&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Do it:&lt;ul&gt;
+&lt;li&gt;Rise through jhanas to fourth (or eighth if possible)&lt;/li&gt;
+&lt;li&gt;Leave jhana and formally intend the thing from above, with full force of
+  will, no restraint, no hesitation&lt;/li&gt;
+&lt;li&gt;Let it go and don't hold onto it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How to distinguish the first four jhanas:&lt;ul&gt;
+&lt;li&gt;First: rapture, pleasure, still with discriminating thought, takes effort&lt;/li&gt;
+&lt;li&gt;Second: rapture, pleasure, tranquility, effortless&lt;/li&gt;
+&lt;li&gt;Third: sense of non-attachment, bodily pleasure&lt;/li&gt;
+&lt;li&gt;Fourth: no particular pleasure and no particular pain, clarity, pure
+  mindfulness and equanimity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/kasina-meditation</guid><pubDate>Mon, 25 Jan 2021 00:00:00 -0700</pubDate></item><item><title>The Question Of Tibet</title><link>https://zacanger.com/blog/posts/the-question-of-tibet</link><description>&lt;div class="toc"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#addressing-the-anti-communist-viewpoint"&gt;Addressing the Anti-Communist Viewpoint&lt;/a&gt;&lt;/li&gt;
@@ -354,13 +474,10 @@ echo foo | co
 philosophy for working with your computers: you could spend lots of time reading
 the manpages for each new app you run into, or you could handle enough of the
 edge-cases to get by in your own config and never have to worry about it.&lt;/p&gt;
-&lt;p&gt;Happy holidays!&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/portable-environments-with-bash</guid><pubDate>Fri, 25 Dec 2020 00:00:00 -0700</pubDate></item><item><title>vows</title><link>https://zacanger.com/blog/posts/vows</link><description>&lt;ul&gt;
-&lt;li&gt;suffering beings are numberless; i vow to save them all.&lt;/li&gt;
-&lt;li&gt;attachment is inexhaustible; i vow to end it all.&lt;/li&gt;
-&lt;li&gt;the dharma gates are numberless; I vow to learn them all.&lt;/li&gt;
-&lt;li&gt;the way of awakening is unsurpassable; for the benefit of all beings, i vow
-  to accomplish it.&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/vows</guid><pubDate>Sat, 05 Dec 2020 00:00:00 -0700</pubDate></item><item><title>pluralsight 'secure coding, preventing sensitive data exposure' notes</title><link>https://zacanger.com/blog/posts/secure-coding-notes</link><description>&lt;p&gt;had to run through this for compliance so i took a few notes&lt;/p&gt;
+&lt;p&gt;Happy holidays!&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/portable-environments-with-bash</guid><pubDate>Fri, 25 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Vows</title><link>https://zacanger.com/blog/posts/vows</link><description>&lt;p&gt;Suffering beings are numberless; I vow to save them all.&lt;br /&gt;
+Attachment is inexhaustible; I vow to end it all.&lt;br /&gt;
+The Dharma gates are numberless; I vow to learn them all.&lt;br /&gt;
+The way of awakening is unsurpassable; for the benefit of all beings, I vow to accomplish it.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/vows</guid><pubDate>Sat, 05 Dec 2020 00:00:00 -0700</pubDate></item><item><title>pluralsight 'secure coding, preventing sensitive data exposure' notes</title><link>https://zacanger.com/blog/posts/secure-coding-notes</link><description>&lt;p&gt;had to run through this for compliance so i took a few notes&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;not all user data is "sensitive", depends on regulations:&lt;ul&gt;
 &lt;li&gt;logs are not sensitive data (assuming they're clean)&lt;/li&gt;
@@ -466,12 +583,16 @@ edge-cases to get by in your own config and never have to worry about it.&lt;/p&
 &lt;li&gt;design password storage keeping in mind potential compromise&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/secure-coding-notes</guid><pubDate>Fri, 04 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Digital Security Guide</title><link>https://zacanger.com/blog/posts/digital-security-guide</link><description>&lt;p&gt;Crossposted from &lt;a href="https://prolesoft.github.io"&gt;ProleSoft&lt;/a&gt;&lt;/p&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/secure-coding-notes</guid><pubDate>Fri, 04 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Digital Security Guide</title><link>https://zacanger.com/blog/posts/digital-security-guide</link><description>&lt;p&gt;Originally posted at the &lt;a href="https://prolesoft.github.io"&gt;ProleSoft&lt;/a&gt; blog, moved
+here rather than duplicated for maintainability.&lt;/p&gt;
 &lt;p&gt;Most major tech companies sell your data to advertisers and governments. You
 need to stay safe online, so you should be careful about what you use and how
 you use it.&lt;/p&gt;
 &lt;p&gt;All the recommendations here are just that: recommendations. Most users will not
-need to follow everything in this guide.&lt;/p&gt;
+need to follow everything in this guide. Technology changes quickly, so some
+recommendations here may be out of date. Use your best judgement and trust what
+security experts say (and use your best judgement on which security experts to
+trust!).&lt;/p&gt;
 &lt;div class="toc"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#general"&gt;General&lt;/a&gt;&lt;/li&gt;
@@ -484,7 +605,7 @@ need to follow everything in this guide.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#messaging"&gt;Messaging&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#mfa"&gt;MFA&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#search"&gt;Search&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#videos"&gt;Videos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#media"&gt;Media&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#dns"&gt;DNS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#vpn"&gt;VPN&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#documents"&gt;Documents&lt;/a&gt;&lt;/li&gt;
@@ -494,7 +615,12 @@ need to follow everything in this guide.&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3 id="general"&gt;General&lt;/h3&gt;
 &lt;p&gt;You should try to avoid anything hosted in, or owned by, a company in the US.
-You should also use end to end encryption wherever possible.&lt;/p&gt;
+You should also use end to end encryption wherever possible. When possible, you
+should use open-source software. This is not just an ideological statement; it's
+much harder for major security flaws, back doors, and bad practices to make
+their way into or survive in software when the source code is frequently read by
+hundreds or thousands of people, than in an equivalent piece of software built
+and maintained behind closed doors.&lt;/p&gt;
 &lt;p&gt;Don't use your real name, real address, or information that could be linked to
 your identity in sensitive situations. This includes social media, photos, email
 addresses, location, and anything else that could be linked to your identity. If
@@ -509,19 +635,27 @@ they can access, because you may also want to avoid organizing on your own
 devices during work hours. Follow the other recommendations in this guide for
 what apps and services to use, especially when it comes to messaging and email.&lt;/p&gt;
 &lt;h3 id="passwords"&gt;Passwords&lt;/h3&gt;
-&lt;p&gt;Use &lt;a href="https://www.xkcd.com/936/"&gt;passphrases&lt;/a&gt; over passwords if you need to be
-able to remember it. Prefer random passwords generated by a password manager
-like &lt;a href="https://keepassxc.org/"&gt;KeePassXC&lt;/a&gt; or &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;
-when you can. Never reuse passwords anywhere, and rotate your passwords
-regularly. Check for password/phrase security
-&lt;a href="https://howsecureismypassword.net/"&gt;here&lt;/a&gt;, and check regularly to see if your
-data has been involved in a leak &lt;a href="https://haveibeenpwned.com/"&gt;here&lt;/a&gt;
-(&lt;a href="#browsers"&gt;Firefox&lt;/a&gt; has this feature built in now).&lt;/p&gt;
+&lt;p&gt;Prefer random passwords generated by a password manager like
+&lt;a href="https://keepassxc.org/"&gt;KeePassXC&lt;/a&gt;, &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;, or
+some other cryptographically secure password generator. Never reuse passwords
+anywhere, and rotate your passwords regularly.&lt;/p&gt;
+&lt;p&gt;If you absolutely must use a password you can remember (such as for your
+computer account or disk encryption, prefer long
+&lt;a href="https://www.xkcd.com/936/"&gt;passphrases&lt;/a&gt; over passwords. Check for
+password/phrase security &lt;a href="https://howsecureismypassword.net/"&gt;here&lt;/a&gt;, and check
+regularly to see if your data has been involved in a leak
+&lt;a href="https://haveibeenpwned.com/"&gt;here&lt;/a&gt; (&lt;a href="#browsers"&gt;Firefox&lt;/a&gt; has this feature built
+in now). You can also check both your password security and its leak status on
+&lt;a href="https://www.experte.com/password-check"&gt;this tool&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="encryption"&gt;Encryption&lt;/h3&gt;
 &lt;p&gt;Using &lt;a href="https://gnupg.org/"&gt;GnuPG&lt;/a&gt; (an implementation of PGP) takes some
-practice, but is worth it for encrypting files manually and sending encypted
+practice, but is worth it for encrypting files manually and sending encrypted
 emails. Check out &lt;a href="https://github.com/bfrg/gpg-guide"&gt;this guide&lt;/a&gt; to getting up
 and running with GPG.&lt;/p&gt;
+&lt;p&gt;For encrypting directories, use
+&lt;a href="https://github.com/rfjakob/gocryptfs"&gt;gocryptfs&lt;/a&gt;,
+&lt;a href="https://cryptomator.org/"&gt;Cryptomator&lt;/a&gt;, or a similar piece of open source
+software. &lt;em&gt;Never&lt;/em&gt; use closed-source encryption software&lt;/p&gt;
 &lt;h3 id="os"&gt;OS&lt;/h3&gt;
 &lt;p&gt;Prefer almost any OS over Windows. Windows is buggy, full of telemetry (read:
 Microsoft Spyware), and insecure. If you're tech savvy, learning Linux is a good
@@ -551,15 +685,18 @@ fork), and other hobbyist OSs and phones.&lt;/p&gt;
 to collect your data. Also avoid Internet Explorer (it's unmaintained and
 insecure), Microsoft Edge (because of the telemetry), and anything closed-source
 or proprietary (which rules out Opera and Vivaldi).&lt;/p&gt;
+&lt;p&gt;Do not visit sites over HTTP unless you absolutely have to. Even if the site
+doesn't collect your data. Just don't do it. Some browsers have settings to
+enforce this, but for the rest, there are extensions such as HTTPS Everywhere.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.mozilla.org/en-US/firefox/"&gt;Firefox&lt;/a&gt; is all-around the easiest
   option, and has tons of addons.&lt;ul&gt;
+&lt;li&gt;Enable HTTPS Only in Preferences.&lt;/li&gt;
 &lt;li&gt;See &lt;a href="https://github.com/pyllyukko/user.js"&gt;here&lt;/a&gt; for privacy settings tweaks.&lt;/li&gt;
 &lt;li&gt;Recommended addons:&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/"&gt;uBlock Origin&lt;/a&gt;,&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/"&gt;Privacy Badger&lt;/a&gt;,&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/duckduckgo-for-firefox/"&gt;DuckDuckGo&lt;/a&gt;,&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/smart-https-revived/"&gt;Smart HTTPS&lt;/a&gt; or &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/"&gt;HTTPS Everywhere&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -593,13 +730,15 @@ possible. &lt;a href="https://authy.com/"&gt;Authy&lt;/a&gt; is a convenient MFA
 a specific device or external (Google, Apple) account. For a hardware device,
 check out &lt;a href="https://www.yubico.com/"&gt;YubiKey&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="search"&gt;Search&lt;/h3&gt;
-&lt;p&gt;Use &lt;a href="https://duckduckgo.com/"&gt;DuckDuckGo&lt;/a&gt;,
-&lt;a href="https://www.startpage.com/"&gt;Startpage&lt;/a&gt;, or &lt;a href="https://searx.me/"&gt;Searx&lt;/a&gt; for
-search.&lt;/p&gt;
-&lt;h3 id="videos"&gt;Videos&lt;/h3&gt;
-&lt;p&gt;Use &lt;a href="https://youtube-dl.org/"&gt;youtube-dl&lt;/a&gt; to watch videos from almost any
-website, and &lt;a href="https://www.invidio.us/"&gt;Invidious&lt;/a&gt; to watch YouTube videos. Play
-videos locally with &lt;a href="https://mpv.io/"&gt;MPV&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Use &lt;a href="https://swisscows.com/"&gt;Swisscows&lt;/a&gt; or &lt;a href="https://metager.org/"&gt;Metager&lt;/a&gt; if
+possible. &lt;a href="https://duckduckgo.com/"&gt;DuckDuckGo&lt;/a&gt; and
+&lt;a href="https://www.startpage.com/"&gt;Startpage&lt;/a&gt; are also decent options, but are run by
+companies in the US, so are not completely trustworthy. You could also run your
+own &lt;a href="https://searx.me/"&gt;Searx&lt;/a&gt; or &lt;a href="https://yacy.net/"&gt;YaCy&lt;/a&gt; search engine.&lt;/p&gt;
+&lt;h3 id="media"&gt;Media&lt;/h3&gt;
+&lt;p&gt;Use &lt;a href="https://youtube-dl.org/"&gt;youtube-dl&lt;/a&gt; to get videos and music from almost
+any website, and &lt;a href="https://www.invidio.us/"&gt;Invidious&lt;/a&gt; to watch YouTube videosin
+the browser. You can play media locally with &lt;a href="https://mpv.io/"&gt;MPV&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="dns"&gt;DNS&lt;/h3&gt;
 &lt;p&gt;Change your default DNS provider, which is probably your ISP or Google, to
 something like &lt;a href="https://blahdns.com/"&gt;BlahDNS&lt;/a&gt; or
@@ -637,6 +776,7 @@ self-hosted alternative like &lt;a href="https://github.com/haiwen/seafile"&gt;S
 sensitive files.&lt;/p&gt;
 &lt;h3 id="links"&gt;Links&lt;/h3&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://anonymousplanet.org/guide.html"&gt;The Hitchhiker's Guide to Online Anonymity&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dnsleaktest.com/"&gt;DNS Leak Test&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dnsprivacy.org/wiki/"&gt;DNS Privacy Project&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/dessalines/essays/blob/master/favorite_apps_and_services.md"&gt;Dessaline's Favorite Apps and Services&lt;/a&gt;&lt;/li&gt;

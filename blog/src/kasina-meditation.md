@@ -1,24 +1,21 @@
 ---
-title: Meditation Log
-created: 2021-01-12
+title: Kasina Meditation
+created: 2021-01-25
 tags:
   - buddhism
   - meditation
   - jhana
   - kasina
-  - vipassana
 ---
 
-This started as a daily log and was then edited down into what you see now. This
-log will continue to grow as notable things happen during my adventures as a
-Buddhist meditator.
+This started as a daily log and was then edited down into what you see now.
 
 [TOC]
 
 ## Intro
 
 Some background: I started meditating more over last winter, but didn't make it
-anywhere until late sprint or early summer 2020. I'd used basic mindfulness
+anywhere until late spring or early summer 2020. I'd used basic mindfulness
 practices in therapy in the past but got back into the idea after reading
 more about Buddhism, including the book _Why Buddhism Is True_. I also read some
 of the major Mahayana and Theravada suttas, and also MCTB1, TMI, then MCTB2.
@@ -45,11 +42,12 @@ On the 5th of December I took Bodhisattva vows and committed to daily practice.
 Around the 10th or 11th, I tried exclusively using a mantra as object rather
 than combining it with the breath (or the breath only) and had my first truly
 interesting experience that might be considered jhanic. My perception became
-pleasantly muffled, like I was in a warm yellow-brown syrupy pillow. This lasted
-for a few minutes before I really tuned into the change, and as soon as I did,
-it instantly vanished and everything became crisp and clear with more of a
-high-contrast feel. That change broke my concentration, but it was enough
-inspiration to keep me practicing.
+pleasantly muffled, like I was in a warm yellow-brown syrupy pillow (not that I
+was seeing colors, but things felt like how those colors feel).
+This lasted for a few minutes before I really tuned into the change, and as soon
+as I did, it instantly vanished and everything became crisp and clear with more
+of a high-contrast blueish-white and black feel. That change broke my
+concentration, but it was enough inspiration to keep me practicing.
 
 A few days layer, I started to be able to play with the nimitta (the grey/white
 smoky stuff in the visual field that arises under heavy concentration, and
@@ -191,23 +189,45 @@ here before, it's okay, let's move on" depending on the state I was in. It felt
 odd to have that much control after so many days of floundering around. It was
 at this point that I considered the kasina experiment to be a success.
 
-
 ### Wrapping Up
 
 I did more reading in the following week: _Knowing and Seeing_, the Sutta
-Nipatta, and _With Each & Evey Breath_. I started pushing a little less hard now
+Nipata, and _With Each & Every Breath_. I started pushing a little less hard now
 that I had confirmed things for myself, and did notice that with less hours on
 the cushion, concentration drops within a few days — though intense
 visualizations can linger on for a while.
 
 A more notable side-effect is that insights started to show up when I wasn't
 expecting them. I believe they largely stem from the flickering experiences,
-which may have been an attainment of the knowledges of arising and perishing (or
-maybe not, who am I to say?). Bits and pieces of deeper dhamma understanding
-began to trickle in, sometimes at very unexpected moments.
+which may have been an attainment of the knowledge of arising and perishing.
+Bits and pieces of deeper dhamma understanding began to trickle in, sometimes at
+very unexpected moments.
 
 I slowly began to shift from kasina practice to breathing and noting, while
 still trying to maintain access to at least the third jhana by using the nimitta
 from anapanasati as a kasina, since it seems to be a good level of concentration
 to keep up. I have yet to read the Visuddhimagga, so when I do, I may try
 another couple weeks of kasina practice to see what happens.
+
+## Powers
+
+Summarized notes from [MCTB](https://www.mctb.org/) (see [the
+license](https://www.mctb.org/about/)) on attaining the powers/iddhis/siddhis.
+
+* Prepare:
+    * Make self and workspace clean
+    * Candles, incense, etc. if that feels right
+    * Think it through, including visualizing effects on every being out as far
+      as possible
+    * Practice what to say
+* Do it:
+    * Rise through jhanas to fourth (or eighth if possible)
+    * Leave jhana and formally intend the thing from above, with full force of
+      will, no restraint, no hesitation
+    * Let it go and don't hold onto it
+  * How to distinguish the first four jhanas:
+    * First: rapture, pleasure, still with discriminating thought, takes effort
+    * Second: rapture, pleasure, tranquility, effortless
+    * Third: sense of non-attachment, bodily pleasure
+    * Fourth: no particular pleasure and no particular pain, clarity, pure
+      mindfulness and equanimity
