@@ -1,23 +1,22 @@
-/* Based on https://github.com/markdowncss/modest,
- * which is MIT licensed
+/* With pieces of
+ * https://github.com/markdowncss/modest and
+ * https://github.com/mrmrs/fluidity, both of
+ * which are MIT licensed.
  */
+
 @media print {
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     background: transparent !important;
     color: #000 !important;
     box-shadow: none !important;
     text-shadow: none !important;
   }
 
-  a,
-  a:visited {
+  a, a:visited {
     text-decoration: underline;
   }
 
-  pre,
-  blockquote {
+  pre, blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -26,8 +25,7 @@
     display: table-header-group;
   }
 
-  tr,
-  img {
+  tr, img {
     page-break-inside: avoid;
   }
 
@@ -35,22 +33,14 @@
     max-width: 100% !important;
   }
 
-  p,
-  h2,
-  h3 {
+  p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
 
-  h2,
-  h3 {
+  h2, h3 {
     page-break-after: avoid;
   }
-}
-
-pre,
-code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
 }
 
 pre {
@@ -65,9 +55,7 @@ a:visited {
   color: #276A6C;
 }
 
-a:hover,
-a:focus,
-a:active {
+a:hover, a:focus, a:active {
   color: #2A4685;
 }
 
@@ -96,10 +84,7 @@ p {
   margin-bottom: 1.3rem;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   margin: 1rem 0;
   font-weight: inherit;
 }
@@ -133,15 +118,7 @@ small {
   font-size: .9em;
 }
 
-/* https://github.com/mrmrs/fluidity */
-
-img,
-canvas,
-iframe,
-video,
-svg,
-select,
-textarea {
+img, canvas, iframe, video, svg, select, textarea {
   max-width: 100%;
 }
 
@@ -160,21 +137,16 @@ body {
   padding: .25rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Arimo, Helvetica, sans-serif;
-}
-
 blockquote {
   border-left: 8px solid #fafafa;
   padding: 1rem;
 }
 
-pre,
-code {
+pre, code {
   background-color: #fafafa;
+  font-family: monospace;
+}
+
+footer {
+  margin-top: 32px;
 }

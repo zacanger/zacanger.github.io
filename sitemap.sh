@@ -54,10 +54,7 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
       priority=0.4
     elif [[ $file == "blog/" ]]; then
       priority=0.6
-      freq="weekly"
-    elif [[ $file == "blog/posts/meditation-log/" ]]; then
-      # Special case
-      freq="weekly"
+      freq="monthly"
     elif [[ $file =~ blog/.* ]]; then
       freq="never"
     elif [[ $file == "404.html" ]]; then
@@ -80,6 +77,16 @@ echo "<url>
   <loc>https://zacanger.com/hey-you/</loc>
   <lastmod>2020-01-19</lastmod>
   <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/niddesa/</loc>
+  <lastmod>2021-03-02</lastmod>
+  <priority>0.4</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/niddesa/assets/niddesa.html</loc>
+  <lastmod>2021-03-02</lastmod>
+  <priority>0.2</priority>
 </url>
 <url>
   <loc>https://zacanger.com/zeess/</loc>
