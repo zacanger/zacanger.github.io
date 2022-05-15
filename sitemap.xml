@@ -14,7 +14,7 @@
 </url>
 <url>
   <loc>https://zacanger.com/blog/</loc>
-  <lastmod>2021-07-29</lastmod>
+  <lastmod>2022-05-14</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>
@@ -169,6 +169,12 @@
   <priority>0.5</priority>
 </url>
 <url>
+  <loc>https://zacanger.com/blog/posts/say-we-met/</loc>
+  <lastmod>2021-11-22</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
   <loc>https://zacanger.com/blog/posts/note-taking-app/</loc>
   <lastmod>2016-08-26</lastmod>
   <changefreq>never</changefreq>
@@ -219,6 +225,12 @@
 <url>
   <loc>https://zacanger.com/blog/posts/three-quick-tips/</loc>
   <lastmod>2016-06-24</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/blog/posts/what-was-left/</loc>
+  <lastmod>2022-03-19</lastmod>
   <changefreq>never</changefreq>
   <priority>0.5</priority>
 </url>
