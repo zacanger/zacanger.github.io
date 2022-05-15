@@ -25,7 +25,7 @@ telling you won't do any good
 
 ----
 
-### A note on context, added months later
+### A note on context, added later
 
 Written after around four months of especially heavy study and practice. I had
 just spent a couple weeks week experimenting with Vajrayana practices with no
