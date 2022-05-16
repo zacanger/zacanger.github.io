@@ -1,5 +1,5 @@
 ---
-title: What Was Left?
+title: what was left?
 created: 2022-03-19
 tags:
   - buddhism
