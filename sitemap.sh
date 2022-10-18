@@ -80,12 +80,12 @@ echo "<url>
 </url>
 <url>
   <loc>https://zacanger.com/niddesa/</loc>
-  <lastmod>2022-09-03</lastmod>
+  <lastmod>2022-10-17</lastmod>
   <priority>0.4</priority>
 </url>
 <url>
   <loc>https://zacanger.com/niddesa/assets/niddesa.html</loc>
-  <lastmod>2022-09-03</lastmod>
+  <lastmod>2022-10-17</lastmod>
   <priority>0.2</priority>
 </url>
 <url>
