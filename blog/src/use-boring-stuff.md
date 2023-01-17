@@ -1,7 +1,6 @@
 ---
 title: Use Boring Stuff (It's Okay!)
 created: 2019-02-10
-starred: true
 tags:
   - linux
 ---

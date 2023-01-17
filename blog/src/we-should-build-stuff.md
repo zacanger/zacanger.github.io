@@ -1,7 +1,6 @@
 ---
 title: We Should Build Stuff
 created: 2018-10-29
-starred: true
 tags:
   - tools
 ---

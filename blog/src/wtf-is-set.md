@@ -1,7 +1,6 @@
 ---
 title: WTF is Set?
 created: 2017-04-25
-starred: true
 tags:
   - js
   - es2015

@@ -1,7 +1,6 @@
 ---
 title: Node CLI 1, React Component Generator
 created: 2016-08-24
-starred: true
 tags:
   - node
   - cli

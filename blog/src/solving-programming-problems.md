@@ -1,7 +1,6 @@
 ---
 title: Solving programming problems
 created: 2016-02-10
-starred: true
 tags:
   - problem-solving
 ---

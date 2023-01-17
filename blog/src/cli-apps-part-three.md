@@ -1,7 +1,6 @@
 ---
 title: Node CLI 3, Html2text
 created: 2016-09-27
-starred: true
 tags:
   - node
   - cli

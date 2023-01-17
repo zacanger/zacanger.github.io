@@ -1,7 +1,6 @@
 ---
 title: Void Elements
 created: 2016-08-09
-starred: true
 tags:
   - html
 ---

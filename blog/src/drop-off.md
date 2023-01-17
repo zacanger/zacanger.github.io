@@ -1,6 +1,7 @@
 ---
 title: drop off
 created: 2021-01-28
+starred: true
 tags:
   - buddhism
   - poem

@@ -1,7 +1,6 @@
 ---
 title: Advice For New Devs
 created: 2016-11-12
-starred: true
 tags:
   - advice
 ---
