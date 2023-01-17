@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 04 Dec 2022 04:38:20 +0000</lastBuildDate><item><title>what was left?</title><link>https://zacanger.com/blog/posts/what-was-left</link><description>&lt;p&gt;drop off body, drop off heart-and-mind; what did the dropping off? what was
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 17 Jan 2023 01:21:24 +0000</lastBuildDate><item><title>what was left?</title><link>https://zacanger.com/blog/posts/what-was-left</link><description>&lt;p&gt;drop off body, drop off heart-and-mind; what did the dropping off? what was
 left?&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/what-was-left</guid><pubDate>Sat, 19 Mar 2022 00:00:00 -0700</pubDate></item><item><title>drop off</title><link>https://zacanger.com/blog/posts/drop-off</link><description>&lt;p&gt;drop off&lt;/p&gt;
 &lt;p&gt;no body; no mind&lt;br /&gt;
 no master; no student&lt;br /&gt;
@@ -25,23 +25,7 @@ like the things I experienced when doing kasina practice, but instead felt like
 everything shifted. After, I got up and scribbled most of the poem above. Later
 that day I rearranged it a bit, and that night I added the last stanza. I
 haven't had this experience confirmed by a teacher, but right now it doesn't
-feel like I need to; things aren't the same as they were before.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/drop-off</guid><pubDate>Thu, 28 Jan 2021 00:00:00 -0700</pubDate></item><item><title>License change</title><link>https://zacanger.com/blog/posts/license-change</link><description>&lt;p&gt;Most of my code is licensed LGPL-3.0. That's fine, it's a pretty good license,
-but I decided to add something recently. Whether or not it would hold up in
-court, I don't know, but all of my active (non-archived) projects now have this
-addition at the top of their license file:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You may not use the code in this repository for the governments, military, or
-law enforcement of any NATO member; or in applications or platforms designed
-or intended for use by neo-Nazis, white supremacists, far-right conspiracy
-theorists (such as Q-Anon), or other similar right-wing groups.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The point of this addition is to prevent usage of my libraries by companies and
-governments (and sub-government organizations) that are harmful. While there are
-thousands of specific organizations I could list, hopefully this broad list will
-do the trick and effectively give me room to sue if my code is used to incite
-hatred, bomb foreign countries (or drop bombs domestically as in the MOVE case
-in Philadelphia), or something similar that wouldn't align with my own values as
-a Buddhist and a Communist.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/license-change</guid><pubDate>Wed, 27 Jan 2021 00:00:00 -0700</pubDate></item><item><title>Buddhist Hell</title><link>https://zacanger.com/blog/posts/buddhist-hell</link><description>&lt;p&gt;I'm in the middle of translating the Niddesa and came across this fun passage.
+feel like I need to; things aren't the same as they were before.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/drop-off</guid><pubDate>Thu, 28 Jan 2021 00:00:00 -0700</pubDate></item><item><title>Buddhist Hell</title><link>https://zacanger.com/blog/posts/buddhist-hell</link><description>&lt;p&gt;I'm in the middle of translating the Niddesa and came across this fun passage.
 For anyone who doesn't think Buddhism is a religion with all the things that
 normally come with a religion, and just treat it as a secular philosophy, you
 might enjoy this (Nd 1.15 and Nd 2.20):&lt;/p&gt;
@@ -478,113 +462,7 @@ edge-cases to get by in your own config and never have to worry about it.&lt;/p&
 &lt;p&gt;Happy holidays!&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/portable-environments-with-bash</guid><pubDate>Fri, 25 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Vows</title><link>https://zacanger.com/blog/posts/vows</link><description>&lt;p&gt;Suffering beings are numberless; I vow to save them all.&lt;br /&gt;
 Attachment is inexhaustible; I vow to end it all.&lt;br /&gt;
 The Dharma gates are numberless; I vow to learn them all.&lt;br /&gt;
-The way of awakening is unsurpassable; for the benefit of all beings, I vow to accomplish it.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/vows</guid><pubDate>Sat, 05 Dec 2020 00:00:00 -0700</pubDate></item><item><title>pluralsight 'secure coding, preventing sensitive data exposure' notes</title><link>https://zacanger.com/blog/posts/secure-coding-notes</link><description>&lt;p&gt;had to run through this for compliance so i took a few notes&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;not all user data is "sensitive", depends on regulations:&lt;ul&gt;
-&lt;li&gt;logs are not sensitive data (assuming they're clean)&lt;/li&gt;
-&lt;li&gt;acls are not sensitive data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;attack vectors:&lt;ul&gt;
-&lt;li&gt;connection between browser and application (in transit)&lt;/li&gt;
-&lt;li&gt;connection between app and db (in transit)&lt;/li&gt;
-&lt;li&gt;db itself (at rest)&lt;/li&gt;
-&lt;li&gt;browser itself (at rest)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;sensitive data can be either plain text or ciphertext (encrypted or hashed)&lt;/li&gt;
-&lt;li&gt;attack stuff:&lt;/li&gt;
-&lt;li&gt;in transit:&lt;ul&gt;
-&lt;li&gt;mitm&lt;ul&gt;
-&lt;li&gt;sniffing, or sitting in the path/shaping traffic&lt;/li&gt;
-&lt;li&gt;dns-based&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;tls&lt;ul&gt;
-&lt;li&gt;tls is at tcp layer&lt;/li&gt;
-&lt;li&gt;https is http over tls&lt;/li&gt;
-&lt;li&gt;how it works:&lt;ul&gt;
-&lt;li&gt;browser generates shared secret, encrypts using the cert's public key&lt;/li&gt;
-&lt;li&gt;app decrypts shared secret&lt;/li&gt;
-&lt;li&gt;then the application generates a shared symmetric key for the actual traffic&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;there can be another attack by stealing the private key&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;private key storage:&lt;ul&gt;
-&lt;li&gt;software: no physical access restrictions (cryptographic module)&lt;/li&gt;
-&lt;li&gt;hardware: physical access restrictions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;perfect forward secrecy&lt;ul&gt;
-&lt;li&gt;attacker only sniffing/recording, not tampering&lt;/li&gt;
-&lt;li&gt;negotiation of DH params is in plaintext&lt;/li&gt;
-&lt;li&gt;backend signs params, client verifies signature&lt;/li&gt;
-&lt;li&gt;prevents decryption of previous traffic (but not current traffic)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;more on certificates&lt;ul&gt;
-&lt;li&gt;the 'which directory?' problem comes up when the chain can't be followed (for example, if the root cert isn't available)&lt;/li&gt;
-&lt;li&gt;public key pinning is associating a cert with a known host&lt;ul&gt;
-&lt;li&gt;pins cert, public key, or hash of either. hashing is preferred.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;protocol downgrade attack&lt;ul&gt;
-&lt;li&gt;get cookies, headers, etc&lt;/li&gt;
-&lt;li&gt;no mixed content, hsts&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;at rest:&lt;ul&gt;
-&lt;li&gt;passwords&lt;ul&gt;
-&lt;li&gt;inexpensive to work with&lt;/li&gt;
-&lt;li&gt;convenient&lt;/li&gt;
-&lt;li&gt;password (in)security&lt;/li&gt;
-&lt;li&gt;some overhead on policies, proper storage&lt;/li&gt;
-&lt;li&gt;ACLs on the db&lt;/li&gt;
-&lt;li&gt;hashing, salting (hashing is one-way, fixed output length)&lt;/li&gt;
-&lt;li&gt;vulnerable to brute force attacks depending on password lengths and probability of known strings (dictionary attacks)&lt;/li&gt;
-&lt;li&gt;rainbow tables (known hashed passwords, try to match to plaintext)&lt;/li&gt;
-&lt;li&gt;salt has to be stored with computed hash&lt;ul&gt;
-&lt;li&gt;with a salt, basically no lookup tables will actually work, since there would need to be a different table per salt&lt;/li&gt;
-&lt;li&gt;salts hide identical passwords&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;hashing function can be ~1s, run as slow as possible without hurting regular user perf&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;crypto alone is not enough. ACLs, other access restrictions, prevent db tampering&lt;ul&gt;
-&lt;li&gt;admin roles&lt;/li&gt;
-&lt;li&gt;signed columns&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;owasp recommendations:&lt;ul&gt;
-&lt;li&gt;never put sensitive data in the url (caching, referrer - &lt;code&gt;a&lt;/code&gt; tag &lt;code&gt;rel&lt;/code&gt;s help here too)&lt;/li&gt;
-&lt;li&gt;tls everywhere, no mixed content or requests&lt;/li&gt;
-&lt;li&gt;always use recent versions of tls and strong ciphers&lt;/li&gt;
-&lt;li&gt;at least 2048 bits in key&lt;/li&gt;
-&lt;li&gt;multiple domain certificates (SANs)&lt;/li&gt;
-&lt;li&gt;never use unqualified domains&lt;/li&gt;
-&lt;li&gt;wildcard certs might be shady&lt;/li&gt;
-&lt;li&gt;no self-signed certs&lt;/li&gt;
-&lt;li&gt;return all necessary certs to clients&lt;/li&gt;
-&lt;li&gt;don't use sha-1&lt;/li&gt;
-&lt;li&gt;salt should be generated with cryptographically strong random data generator&lt;/li&gt;
-&lt;li&gt;salt should be unique per credential (not per user)&lt;/li&gt;
-&lt;li&gt;pw security should not depend on hiding or obscuring salt&lt;/li&gt;
-&lt;li&gt;good hashing functions (in this order): argon2, pbkdf2, scrypt, bcrypt, hmacs&lt;/li&gt;
-&lt;li&gt;max length for pws with no limited character set (160 chars)&lt;/li&gt;
-&lt;li&gt;hash as part of several steps&lt;/li&gt;
-&lt;li&gt;design password storage keeping in mind potential compromise&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/secure-coding-notes</guid><pubDate>Fri, 04 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Digital Security Guide</title><link>https://zacanger.com/blog/posts/digital-security-guide</link><description>&lt;p&gt;Originally posted at the &lt;a href="https://prolesoft.github.io"&gt;ProleSoft&lt;/a&gt; blog, moved
+The way of awakening is unsurpassable; for the benefit of all beings, I vow to accomplish it.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/vows</guid><pubDate>Sat, 05 Dec 2020 00:00:00 -0700</pubDate></item><item><title>Digital Security Guide</title><link>https://zacanger.com/blog/posts/digital-security-guide</link><description>&lt;p&gt;Originally posted at the &lt;a href="https://prolesoft.github.io"&gt;ProleSoft&lt;/a&gt; blog, moved
 here rather than duplicated for maintainability.&lt;/p&gt;
 &lt;p&gt;Most major tech companies sell your data to advertisers and governments. You
 need to stay safe online, so you should be careful about what you use and how
@@ -787,16 +665,7 @@ sensitive files.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.thinkprivacy.io/"&gt;ThinkPrivacy&lt;/a&gt; (Software recommendations blog)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://riseup.net/en/security"&gt;RiseUp Digital Security Guide&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ethical.net/resources/"&gt;Ethical Alternatives&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/digital-security-guide</guid><pubDate>Thu, 19 Dec 2019 00:00:00 -0700</pubDate></item><item><title>Switching from MIT to LGPL-3.0</title><link>https://zacanger.com/blog/posts/mit-to-lgpl-3</link><description>&lt;p&gt;If you use my libraries, you should know:&lt;/p&gt;
-&lt;p&gt;I'm in the process of changing most of my active projects from the MIT license
-to LGPL-3.0. If that doesn't work for you, you're more then welcome to keep
-using old versions.&lt;/p&gt;
-&lt;p&gt;Every project that is stable (at least 1.0.0, that's most libraries) will get a
-major version bump, so it'll be easy to figure out when and if you can upgrade.&lt;/p&gt;
-&lt;p&gt;I'm not doing this because I want to scare people off from using my software,
-I'm doing this because I want people to give back to the community and because I
-think it's time that the GitHub generation of developers (myself included) faces
-up to the fact that open source != free software.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/mit-to-lgpl-3</guid><pubDate>Fri, 30 Aug 2019 00:00:00 -0700</pubDate></item><item><title>Use Boring Stuff (It's Okay!)</title><link>https://zacanger.com/blog/posts/use-boring-stuff</link><description>&lt;p&gt;(copy-pasted from a mastodon thread.)&lt;/p&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/digital-security-guide</guid><pubDate>Thu, 19 Dec 2019 00:00:00 -0700</pubDate></item><item><title>Use Boring Stuff (It's Okay!)</title><link>https://zacanger.com/blog/posts/use-boring-stuff</link><description>&lt;p&gt;(copy-pasted from a mastodon thread.)&lt;/p&gt;
 &lt;p&gt;i've seen this meme going around a bit that compares unix-y systems/linux
 distros and categorizes them in terms of something like "actual sysadmin" to
 "windows user" and i just wanna say, don't take it seriously.&lt;/p&gt;
@@ -900,55 +769,7 @@ or more.&lt;/p&gt;
 &lt;p&gt;IDK. We need better tools for people who aren't programmers, and they need a
 better business model than MS Word and any fucking Adobe subscription. FOSS
 with a paid service (think npm) seems to work pretty ok. If you have any big
-ideas, get in touch.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/we-should-build-stuff</guid><pubDate>Mon, 29 Oct 2018 00:00:00 -0700</pubDate></item><item><title>From Smoking to Vaping</title><link>https://zacanger.com/blog/posts/from-smoking-to-vaping</link><description>&lt;p&gt;So, I finally quit smoking. I think it might stick, this time, too.&lt;/p&gt;
-&lt;p&gt;I've been a smoker for about 12 years, and in the last few years I've probably
-averaged about a pack and a half a day. I've tried quitting cold turkey, tried
-Chantix (which was awful), and tried e-cigs years ago when they were a new idea.&lt;/p&gt;
-&lt;p&gt;This time, I quit by vaping, and I want to talk a little bit about that for
-people who might be considering doing the same.&lt;/p&gt;
-&lt;p&gt;Last time I tried e-cigarettes, they were crap. You'd buy disposables at the gas
-station and hope they lasted more than a day or two. It wasn't significantly
-cheaper than smoking, and wasn't even slightly satisfying. I think that marred
-my opinion of smoking replacements for a while.&lt;/p&gt;
-&lt;p&gt;I bought a vape about a year ago from a friend, but didn't use it much. What I'd
-seen of vaping so far looked complex and inconvenient. You had to know things
-like Ohm's Law, and I watched friends build their own coils and talk about
-organic cotton and all kinds of stuff. I wanted something to help me quit
-smoking, not a new hobby, so I kind of used that vape until it tasted like crap
-and then stopped.&lt;/p&gt;
-&lt;p&gt;This time, I went to a smoke shop and asked for the simplest thing possible. I
-ended up walking out with a Smok Priv V8 starter kit, extra atomizers, and two
-bottles of juice. This thing is pretty nice. There's only one button (don't need
-to care about wattage and voltage), it fills from the top (don't need to take it
-apart to refill), charges with a standard micro-USB cable, and changing the
-atomizers is super straightforward. My only complaint with it is that the
-battery door doesn't stay shut easily. I ended up putting a strip of duct tape
-across the bottom, and it's fine.&lt;/p&gt;
-&lt;p&gt;As a sidenote, I actually bought more coils for the vape I'd bought earlier (an
-iStick 40w with a Kanger subtank mini) and it turns out it's actually very
-straightforward to operate and maintain, too. I just had a mental block about
-it.&lt;/p&gt;
-&lt;p&gt;I've been vaping steadily for about a month now, and haven't had an analog (real
-cigarette) in about two weeks, and it's mostly been fine. I had quitter's flu a
-bit, but because I'm still getting &lt;em&gt;some&lt;/em&gt; nicotine it wasn't nearly as bad as
-when you quit cold turkey.&lt;/p&gt;
-&lt;p&gt;I've also learned a bit about vaping, as I've needed to know it, but it hasn't
-been an overwhelming amount of stuff to figure out right up front. I found out
-that juice with high sugar content seems to burn up the cotton in the atomizer
-more quickly, and juice with a high VG to PG ratio does the same.&lt;/p&gt;
-&lt;p&gt;I feel a bit better. I still get out of breath when walking quickly for a long
-time, but not when going up stairs anymore. I think I probably smell better,
-too. My sense of smell is a little better, and the smell of cigarettes actually
-grosses me out a bit now.&lt;/p&gt;
-&lt;p&gt;I'm not trying to put together a "what you need to know" sort of post, but if
-you're thinking about quitting smoking, I can say that vaping is actually a
-decent option these days. I didn't take time off work, didn't get the shakes,
-haven't been seriously sick, and haven't flipped out on anyone. I started on
-juice at 6mg and am slowly starting to work down to 3 (and then hopefully
-eventually 0), and it hasn't been a problem. The most difficult thing has been
-buying stuff online, since I live in Utah and Utah is weird.&lt;/p&gt;
-&lt;p&gt;I don't really have a good ending to this post. Give vaping a shot. You can get
-started for less than $50 these days, so why not?&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/from-smoking-to-vaping</guid><pubDate>Wed, 22 Nov 2017 00:00:00 -0700</pubDate></item><item><title>GFM Test</title><link>https://zacanger.com/blog/posts/gfm-test</link><description>&lt;h1 id="this-is-a-test-of-github-flavoured-markdown"&gt;This is a Test of GitHub-Flavoured Markdown&lt;/h1&gt;
+ideas, get in touch.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/we-should-build-stuff</guid><pubDate>Mon, 29 Oct 2018 00:00:00 -0700</pubDate></item><item><title>GFM Test</title><link>https://zacanger.com/blog/posts/gfm-test</link><description>&lt;h1 id="this-is-a-test-of-github-flavoured-markdown"&gt;This is a Test of GitHub-Flavoured Markdown&lt;/h1&gt;
 &lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;. &lt;a href="https://github.com"&gt;Links&lt;/a&gt; should be blue with no underlines (unless hovered over).&lt;/p&gt;
 &lt;p&gt;There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.&lt;/p&gt;
 &lt;p&gt;There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.&lt;/p&gt;
@@ -1427,68 +1248,7 @@ utility library. Definitely play around with it!&lt;/p&gt;</description><guid is
    flags Chromium shipped, or competing on Codewars, or whatever other technical
    thing happens to really interest you but might also benefit your company,
    start looking for another job.&lt;/li&gt;
-&lt;/ol&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/recommendations-for-new-web-devs</guid><pubDate>Sun, 26 Mar 2017 00:00:00 -0700</pubDate></item><item><title>PropTypes for Classnames</title><link>https://zacanger.com/blog/posts/proptypes-for-classnames</link><description>&lt;p&gt;The &lt;a href="https://npmjs.com/package/classnames"&gt;classnames&lt;/a&gt; library is nice.
-It lets you do stuff like&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;import cn from 'classnames'
-import styles from './styles.css'
-
-const Thing = ({ foo }) =&amp;gt;
-  &amp;lt;Stuff className={cn(styles.thing, { [styles.foo]: foo !== 2 })} /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And a whole bunch of other stuff, and it just works. If you write your CSS
-in CSS, you should check it out.&lt;/p&gt;
-&lt;p&gt;There is one sort of pain point with it, though. If you have components that
-can take anything that's &lt;code&gt;classnames&lt;/code&gt;-compatible, PropTypes get a little annoying.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;Stuff.propTypes = { className: string.isRequired }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This doesn't work, because you're passing all sorts of stuff in, possibly.&lt;/p&gt;
-&lt;p&gt;A solution is to make your own custom PropTypes. You don't even need to
-get into fancy stuff involving validation, just combine a bunch of other
-PropTypes into your own.&lt;/p&gt;
-&lt;p&gt;Let's say you have a &lt;code&gt;propTypes.js&lt;/code&gt; file somewhere where you define custom
-PropTypes.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;import { PropTypes } from 'react'
-
-export const classname = PropTypes.oneOfType([
-  PropTypes.object,
-  PropTypes.string,
-  PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.bool,
-      PropTypes.object,
-      PropTypes.string
-    ])
-  )
-])
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That's all you need! Then you can do:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;import { classname } from './propTypes'
-import cn from 'classnames'
-
-const Stuff = ({ className }) =&amp;gt;
-  &amp;lt;span className={cn(className)}&amp;gt;
-
-Stuff.propTypes = {
-  className: classname // this is your custom thing
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That should solve all PropTypes warnings and let you throw anything the
-&lt;code&gt;classnames&lt;/code&gt; library can handle at your components.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Edit 10th January, 2018:&lt;/p&gt;
-&lt;p&gt;Bonus: a Flow type for this library (TypeScript should be similar):&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;// @flow
-
-type classes =
-  | { [className: string]: * }
-  | string
-  | false
-  | void
-  | null
-
-type classnames = (...args: Array&amp;lt;classes | classes[]&amp;gt;) =&amp;gt; string
-&lt;/code&gt;&lt;/pre&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/proptypes-for-classnames</guid><pubDate>Sat, 11 Feb 2017 00:00:00 -0700</pubDate></item><item><title>Category Theory Notes</title><link>https://zacanger.com/blog/posts/category-theory-for-js-devs</link><description>&lt;h1 id="category-theory-for-js-devs"&gt;Category Theory for JS Devs&lt;/h1&gt;
+&lt;/ol&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/recommendations-for-new-web-devs</guid><pubDate>Sun, 26 Mar 2017 00:00:00 -0700</pubDate></item><item><title>Category Theory Notes</title><link>https://zacanger.com/blog/posts/category-theory-for-js-devs</link><description>&lt;h1 id="category-theory-for-js-devs"&gt;Category Theory for JS Devs&lt;/h1&gt;
 &lt;p&gt;Notes taken while watching &lt;a href="https://www.youtube.com/playlist?list=PLwuUlC2HlHGe7vmItFmrdBLn6p0AS8ALX"&gt;this
 series&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="contracts"&gt;Contracts&lt;/h2&gt;
@@ -1661,127 +1421,7 @@ start).&lt;/p&gt;
 &lt;p&gt;This is the number one thing that can help you get, and stay, ahead as a student
 and junior dev, in my opinion. And it's stuff you'll absolutely &lt;em&gt;have&lt;/em&gt; to know
 at some point, and probably mostly won't be taught, so it's a good idea to just
-pick up this stuff as early as possible.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/advice-for-new-devs</guid><pubDate>Sat, 12 Nov 2016 00:00:00 -0700</pubDate></item><item><title>shitshow</title><link>https://zacanger.com/blog/posts/shitshow</link><description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: my politics have evolved over the last four years, and I wrote this
-while very scared and angry. I'm leaving it here anyway.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;This is an elaboration on a tweet from last night.&lt;/p&gt;
-&lt;p&gt;I was born male, and I identify as male. That's pretty convenient for me.
-I'm white, which is probably very convenient for me.
-I make a conscious effort to be aware of my privilege, but I probably fuck up
-sometimes. I hope that whenever that happens, someone will call me out on it.&lt;/p&gt;
-&lt;p&gt;I was born in Baltimore, and went to a public school that I think was less than
-half white. That turned out to be a nice thing, because I never really
-understood what the big deal was about skin colour. My parents tell me I
-literally didn't understand that some people might think there was a difference
-between people with different coloured skin. And why would I? I was a kid,
-that's not a thing I should have to know.&lt;/p&gt;
-&lt;p&gt;My family moved to southern Pennsylvania when I was 11. South-Central PA is
-overwhemingly white, and has a large boomer population. One could easily go
-months at a time without seeing a black person, especially if one was
-homeschooled (which I was, because the local schools were some of the worst in
-the state).&lt;/p&gt;
-&lt;p&gt;When I was 19, I was working in the coffee shop in a local grocery store. I had
-just voted for the first time. Obama became President. The next morning, I went
-to work around 6:30, sold a newspaper to an older guy around 7. He sat down on a
-nearby bench and said to me "Can you believe they put a n----- in the White
-House?" This wasn't my first time encountering racism, but it was the first time
-I realised just how open people in that area were about it.&lt;/p&gt;
-&lt;p&gt;I worked at a guitar shop for a while. The guy who owned it was a stereotypical
-redneck, something straight out of a Far Side comic. To him, anyone non-white
-was nothing but an epithet, women existed to be objectified, and if he got a
-hint that someone wasn't straight, they wouldn't be allowed in his shop. Most of
-his days were spent smoking pot and looking at pictures of girls on the computer
-in his office.&lt;/p&gt;
-&lt;p&gt;I moved to Utah about a year ago. I didn't intend to stay here, because Utah is
-all of the bad things people say about it. It's also all of the good things
-people say about it&amp;mdash;there are mountains and things, and if you're into
-that that's pretty nice&amp;mdash;but it's extremely white, extremely Mormon,
-extremely dry, and extremely boring. It's a lot of the things I hated about
-Pennsylvania, except drier and with Mormons instead of Evangelicals.&lt;/p&gt;
-&lt;p&gt;I kind of thought, though, that being out here would be a bit of an escape from
-the 'culture' in Pennsylvania. James Carville
-&lt;a href="https://en.wikipedia.org/wiki/Pennsyltucky"&gt;described PA&lt;/a&gt; as being Philadelphia
-and Pittsburgh with Alabama in between, and that's pretty accurate. Utah's more
-like Salt Lake City and then a bunch of nothing mixed with Mormons, which isn't
-actually any better. Mormons are a little more laid-back about their racism and
-mysogyny, but it's still there. They're just encouraged not to show it off,
-because the LDS church doesn't want that public image. It's pretty clear based
-on their politics, though.&lt;/p&gt;
-&lt;p&gt;This election was not about anything except for hatred. A common statement is
-that Trump just 'tells it like it is,' but that's known to be bullshit. He's
-been the most dishonest Presidential candidate in the history of fact-checking,
-and Clinton has been one of the most factually accurate, ever, period. Straight
-talk has nothing to do with anything. There have also been numbers that say that
-Trump supports think the economy will do better under Trump, but generally folks
-actually worried about the economy will vote Democrat, probably because the
-economy tends to do better under Democrats.&lt;/p&gt;
-&lt;p&gt;Trump winning the electoral vote last night has nothing to do with policy. It
-was a message from the worst kind of people in this country that they want to be
-heard and want to be taken seriously. That they're afraid of people who don't
-look like them or have the same beliefs as them. People like that old man at the
-coffee shop, or various bosses I had in Pennsylvania. People who think they
-should have the right to openly discriminate against other people, people who
-are so unconcerned with facts that they sound exactly like characters in
-Idiocracy (link), calling people 'faggot' for being educated on a topic.&lt;/p&gt;
-&lt;p&gt;I'm a cis white male, and I'm sorry that a bunch of cis white males did this to
-this country. It's going to be really rough, especially at first when we have a
-red house and senate. We, collectively, all the people that have fought for
-LGBTQA rights and less discrimination and tried to defend against ignorance and
-won Clinton the popular vote, we need to hold on and survive this and support
-each other. We need to call each other out on our biases and abuse of
-privilege We need to not give up. We need to show each other, the country, and
-the world that America is not a country of hate.&lt;/p&gt;
-&lt;p&gt;There are folks on Twitter saying that this will be easy, that love and
-happiness and just get through it, and that's bullshit. This won't be easy. This
-is serious and dangerous and terrifying. This is bad news all around. But let's
-try, because we can't all just leave.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/shitshow</guid><pubDate>Wed, 09 Nov 2016 00:00:00 -0700</pubDate></item><item><title>Two Things That Might Be Fun</title><link>https://zacanger.com/blog/posts/two-things-that-might-be-fun</link><description>&lt;p&gt;Two things that I think might be fun to play around with, at some point.&lt;/p&gt;
-&lt;p&gt;First: a less intrusive type annotation thing for JS. It'd be similar to ML or
-Haskell style annotations, but maybe use Flow as a sort of backend to actually
-do the type checking? It could look something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;//:: Int -&amp;gt; Int -&amp;gt; [Int]
-const putIntsInList = (a, b) =&amp;gt; [ a,  b ]
-
-//::Str -&amp;gt; Str -&amp;gt; Str // or
-//::[Char] -&amp;gt; [Char] -&amp;gt; [Char]
-const doThingsWithStrings = (a, b) =&amp;gt; `${a} ${b}`
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It could use some sort of regexy thing to basically just detect anywhere there's
-&lt;code&gt;//::&lt;/code&gt;, see what the next thing is, and see if they go together. I don't know
-much about ASTs or type systems, though. I just think that'd be a lot less
-in-the-way than how TypeScript and Flow currently work. Also, my syntax
-highlighting doesn't know what template strings are, so. That's gross.&lt;/p&gt;
-&lt;p&gt;Another thing:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-js"&gt;import React, { PropTypes } from 'react'
-import AnotherComponent from './AnotherComponent'
-
-const Something = ({ a, b, c }) =&amp;gt; {
-  if (!a) return null
-
-  return (
-    (div
-      (another-component (whatever 'a))
-        (not (null? b)
-          (span (b))
-        (not (null? c)
-          (map (p (c)))))))
-  // which would be like
-  return (
-    &amp;lt;div&amp;gt;
-      &amp;lt;AnotherComponent whatever={a} /&amp;gt;
-      {b &amp;amp;&amp;amp; &amp;lt;span&amp;gt;{b}&amp;lt;/span&amp;gt;}
-      {c &amp;amp;&amp;amp; c.length &amp;amp;&amp;amp;
-        c.map((a, i) =&amp;gt; &amp;lt;p key={i}&amp;gt;{a}&amp;lt;/p&amp;gt;)
-      }
-    &amp;lt;/div&amp;gt;
-  )
-}
-
-export default Something
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This a totally made-up syntax for a thing that doesn't exactly exist, and I
-don't know how useful this would actually be, since there are already great
-React libraries for ClojureScript out there. Just think it'd be neat to be able
-to to JSX in Scheme.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/two-things-that-might-be-fun</guid><pubDate>Thu, 03 Nov 2016 00:00:00 -0700</pubDate></item><item><title>pm tools kill productivity</title><link>https://zacanger.com/blog/posts/pm-tools-kill-productivity</link><description>&lt;p&gt;Project management tools kill productivity. This isn't news. They &lt;em&gt;can&lt;/em&gt; help
+pick up this stuff as early as possible.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/advice-for-new-devs</guid><pubDate>Sat, 12 Nov 2016 00:00:00 -0700</pubDate></item><item><title>pm tools kill productivity</title><link>https://zacanger.com/blog/posts/pm-tools-kill-productivity</link><description>&lt;p&gt;Project management tools kill productivity. This isn't news. They &lt;em&gt;can&lt;/em&gt; help
 other people be more aware of what you're doing, which is generally a good thing
 (collaborating on projects, managers keeping track of progress, whatever), but
 overdoing it with the tools can be seriously detrimental to actually getting
@@ -2194,33 +1834,7 @@ if (!module.parent) main(src)
 &lt;p&gt;Thanks for reading! If you note any problems, please put in an issue &lt;a href="https://github.com/zacanger/blog/issues"&gt;on
 Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The full version of this module has been published at
-&lt;a href="http://npm.im/html2txt"&gt;html2txt&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/cli-apps-part-three</guid><pubDate>Tue, 27 Sep 2016 00:00:00 -0700</pubDate></item><item><title>haskell meetup, 1 sept 2016</title><link>https://zacanger.com/blog/posts/hs-meetup-9-1</link><description>&lt;p&gt;just a few random notes. most of this was way over my head.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/pinealservo/mamedb"&gt;https://github.com/pinealservo/mamedb&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;xml-conduit -- xml parsing&lt;/p&gt;
-&lt;p&gt;hasql - postgres lib&lt;/p&gt;
-&lt;p&gt;maybe keep all types etc in own file&lt;/p&gt;
-&lt;p&gt;cabal files: main-is Main.hs, list other of &lt;em&gt;our&lt;/em&gt; modules.&lt;/p&gt;
-&lt;p&gt;build-depends are dependencies. install with stack.&lt;/p&gt;
-&lt;p&gt;stack build is like npm i&lt;/p&gt;
-&lt;p&gt;$$ -- ?
-$= -- ?&lt;/p&gt;
-&lt;p&gt;combinators from conduit&lt;/p&gt;
-&lt;p&gt;conduit is a streaming library thing&lt;/p&gt;
-&lt;p&gt;better than lazy io&lt;/p&gt;
-&lt;p&gt;there's also pipes, another group of streaming abstractions&lt;/p&gt;
-&lt;p&gt;also iostreams -- uses io&lt;/p&gt;
-&lt;p&gt;in:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;parseMame :: MonadThrow m =&amp;gt; ConduitM Event Machine m ()
-parseMame = void $ tagIgnoreAttrs &amp;quot;mame&amp;quot; $ manyYield parseMachine
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;void is explicitly discarding the value&lt;/p&gt;
-&lt;p&gt;you can use the -&amp;gt; typeclass to build things, and use them as arrows,
-including in type signatures.&lt;/p&gt;
-&lt;p&gt;in &lt;code&gt;rId &amp;lt;- insertRom -&amp;lt; rom&lt;/code&gt;,
-rom is input to insertrom ; insertrom's output is romid&lt;/p&gt;
-&lt;p&gt;stack ghci: ghci but for project&lt;/p&gt;
-&lt;p&gt;:r -- reload loaded module&lt;/p&gt;
-&lt;p&gt;11 -- oom&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/hs-meetup-9-1</guid><pubDate>Thu, 01 Sep 2016 00:00:00 -0700</pubDate></item><item><title>Node CLI 2, Note Taking App</title><link>https://zacanger.com/blog/posts/note-taking-app</link><description>&lt;h2 id="build-a-note-taking-app-for-the-terminal-in-node"&gt;Build a Note-Taking App for the Terminal, in Node&lt;/h2&gt;
+&lt;a href="http://npm.im/html2txt"&gt;html2txt&lt;/a&gt;.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/cli-apps-part-three</guid><pubDate>Tue, 27 Sep 2016 00:00:00 -0700</pubDate></item><item><title>Node CLI 2, Note Taking App</title><link>https://zacanger.com/blog/posts/note-taking-app</link><description>&lt;h2 id="build-a-note-taking-app-for-the-terminal-in-node"&gt;Build a Note-Taking App for the Terminal, in Node&lt;/h2&gt;
 &lt;p&gt;This is a follow-up to my &lt;a href="blog.zacanger.com/2016/a-basic-cli-app-in-node.html"&gt;first
 post&lt;/a&gt; on writing
 command-line apps in Node. I suggest you read that first, but this post
@@ -2714,54 +2328,7 @@ not keeping your templates in the same file as all the rest of the things. I'm
 going to leave that up to you. Have fun with it!&lt;/p&gt;
 &lt;p&gt;If you're interested in doing this kind of stuff in Node, be sure to check
 back! I've got two more tutorials on writing command-line apps in Node, which
-will go progressively more in depth, on the way&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/a-basic-cli-app-in-node</guid><pubDate>Wed, 24 Aug 2016 00:00:00 -0700</pubDate></item><item><title>things that suck about js</title><link>https://zacanger.com/blog/posts/things-that-suck-about-js</link><description>&lt;p&gt;asked some people what they dislike about js, just out of curiosity.
-results are predictable.&lt;/p&gt;
-&lt;p&gt;in no particular order:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;events (dom events, event cycle, event loop)&lt;/li&gt;
-&lt;li&gt;js fatigue&lt;/li&gt;
-&lt;li&gt;this (context)&lt;/li&gt;
-&lt;li&gt;es6 classes/oo idea prevalence&lt;/li&gt;
-&lt;li&gt;mobile safari even existing&lt;/li&gt;
-&lt;li&gt;internet explorer/edge&lt;/li&gt;
-&lt;li&gt;no type system&lt;/li&gt;
-&lt;li&gt;everything DOM related&lt;/li&gt;
-&lt;li&gt;no real immutable data structures&lt;/li&gt;
-&lt;li&gt;lack of neat syntax tools found in new languages (simple shit like range operators)&lt;/li&gt;
-&lt;li&gt;the way everyone else writes it&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/things-that-suck-about-js</guid><pubDate>Mon, 22 Aug 2016 00:00:00 -0700</pubDate></item><item><title>purescript things</title><link>https://zacanger.com/blog/posts/purescript-things</link><description>&lt;p&gt;What are &lt;code&gt;@&lt;/code&gt; and &lt;code&gt;=&amp;gt;&lt;/code&gt;?&lt;/p&gt;
-&lt;p&gt;What is fixity? Is this the same as precedence?&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-haskell"&gt;foo :: [a] -- in haskell would be
-foo :: forall a. Array a -- in purescript, i think?
--- there's no [] in annotations, it's always Array a
--- but there is List, but you have to use Data.List instead of just []
-
-Number -- is js number
-Int -- is 32 bit -- and it's basically n | 0 (?)
-
-Unit -- ()
-
-main :: IO () -- would be
-main :: Eff -- basically, but really more something like
-main :: Eff (process :: PROCESS, fs :: FS) Unit -- or something
-
-a &amp;lt;&amp;gt; b -- a ++ b -- concat a b
-
-A &amp;lt;= B -- B implies instance of A
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;something like this is kind of right i think (what builds on what):
-i&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;      monad
-  applicative   ??
-    apply  bind
-      functor
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;No tuples, just records. But there's a lib for tuples.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/code&gt;  is &lt;code&gt;.&lt;/code&gt; for rtl composition, and &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; for ltr&lt;/p&gt;
-&lt;p&gt;Lots of &lt;code&gt;Data.List&lt;/code&gt; stuff is in &lt;code&gt;Data.Foldable&lt;/code&gt; and &lt;code&gt;Data.Traversable&lt;/code&gt; instead.&lt;/p&gt;
-&lt;p&gt;To export stuff: &lt;code&gt;module Foo (a, b, c) where&lt;/code&gt;.
-That's like &lt;code&gt;export { a, b, c }&lt;/code&gt; in JS, I think.
-&lt;code&gt;module Foo (..)&lt;/code&gt; exports everything, I think.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/purescript-things</guid><pubDate>Fri, 19 Aug 2016 00:00:00 -0700</pubDate></item><item><title>Principles and Tips</title><link>https://zacanger.com/blog/posts/principles-and-tips</link><description>&lt;p&gt;I'm not very experienced, and sometimes I'm pretty sure I'm not very good at
+will go progressively more in depth, on the way&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/a-basic-cli-app-in-node</guid><pubDate>Wed, 24 Aug 2016 00:00:00 -0700</pubDate></item><item><title>Principles and Tips</title><link>https://zacanger.com/blog/posts/principles-and-tips</link><description>&lt;p&gt;I'm not very experienced, and sometimes I'm pretty sure I'm not very good at
 programming, but I have some principles I try to stick to that help, I think.
 They're not complicated. Also some tips. These are all in no particular order.
 And kind of stream-of-consciousness.&lt;/p&gt;
@@ -2879,25 +2446,7 @@ these but also anything else that doesn't have children), please self-close it.&
 &lt;p&gt;See what they all have in common?&lt;/p&gt;
 &lt;p&gt;You can't possibly have anything in any of them, like, between tags. What can
 you put between an opening and closing line break tag? &lt;strong&gt;Nothing&lt;/strong&gt;. So why
-would you need a closing tag? &lt;strong&gt;You wouldn't&lt;/strong&gt;. So don't close it.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/void-elements</guid><pubDate>Tue, 09 Aug 2016 00:00:00 -0700</pubDate></item><item><title>idea: series on design for devs</title><link>https://zacanger.com/blog/posts/design-for-devs</link><description>&lt;p&gt;I've wanted to do something like this for a while (since December-ish), but
-haven't had the time. I have some minor design experience (not a lot), and
-tend to read more about interaction design, HCI, and other random
-non-programming-but-still-computer-and-person-working-together-related topics
-than I do about programming.&lt;/p&gt;
-&lt;p&gt;Would anyone be interested in seeing something like that? This is a short list
-of things I might cover:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A11Y&lt;/li&gt;
-&lt;li&gt;Typography&lt;/li&gt;
-&lt;li&gt;Colour theory&lt;/li&gt;
-&lt;li&gt;Whitespace&lt;/li&gt;
-&lt;li&gt;Scalable design (math; see Basscss)&lt;/li&gt;
-&lt;li&gt;Styleguides (writing, maintaining, conforming)&lt;/li&gt;
-&lt;li&gt;Image manipulation (mostly what &lt;em&gt;not&lt;/em&gt; to do)&lt;/li&gt;
-&lt;li&gt;Importance and longevity of simplicity&lt;/li&gt;
-&lt;li&gt;KISS&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://jxnblk.com/principles/"&gt;Principles&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/design-for-devs</guid><pubDate>Tue, 02 Aug 2016 00:00:00 -0700</pubDate></item><item><title>Three Quick Tips for Fresh Bootcamp Grads</title><link>https://zacanger.com/blog/posts/three-quick-tips</link><description>&lt;p&gt;This was originally posted
+would you need a closing tag? &lt;strong&gt;You wouldn't&lt;/strong&gt;. So don't close it.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/void-elements</guid><pubDate>Tue, 09 Aug 2016 00:00:00 -0700</pubDate></item><item><title>Three Quick Tips for Fresh Bootcamp Grads</title><link>https://zacanger.com/blog/posts/three-quick-tips</link><description>&lt;p&gt;This was originally posted
 &lt;a href="https://github.com/lukeschunk/Notebook/blob/master/DailyNotes/Three_Quick_Tips.md"&gt;here&lt;/a&gt;
 by &lt;a href="https://twitter.com/LukeSchunk"&gt;Luke Schunk&lt;/a&gt;, but I wanted to repost
 because there's some good stuff in here, and because he doesn't actually,
@@ -2953,52 +2502,7 @@ handout. I addressed this by networking very early in the bootcamp, so the
 pressure of finding a job was lifted.&lt;/p&gt;
 &lt;p&gt;This isn't a ground breaking list of tips, but I was surprised to see people
 who failed to do one or multiple of these things. Give it a go, and I wish you
-the best of luck in your new journey as a developer!&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/three-quick-tips</guid><pubDate>Fri, 24 Jun 2016 00:00:00 -0700</pubDate></item><item><title>A Tip</title><link>https://zacanger.com/blog/posts/a-tip</link><description>&lt;p&gt;I have, like, an actual kind of tip, for new-ish developers.&lt;/p&gt;
-&lt;p&gt;It's pretty simple. Shouldn't be too hard to grasp, maybe a little harder to
-implement.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Have confidence in your code.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you don't have confidence in your code, then try this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Write code in which you have confience.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;It really sucks to have to walk someone through your code when you're not
-sure it's even doing the things it's supposed to do, or when you &lt;em&gt;are&lt;/em&gt; sure
-it's doing the right things but doing them in a really gross kind of way.&lt;/p&gt;
-&lt;p&gt;I think this is something everyone struggles with. It's really easy to copy
-and paste stuff from StackOverflow, and everyone does it for a while. I still
-do it sometimes, though usually with a lot of testing and reading before
-actually running that code.&lt;/p&gt;
-&lt;p&gt;It's really easy, as a new dev, to say "Well, I don't know how to do that thing,
-can you just show me?" And that's okay, but it's a lot more okay to say "Hey,
-I spent an hour with the docs, here's my implementation, here's the stack trace
-and I couldn't find anything helpful on the source's issues or SO, do you have
-any ideas?"&lt;/p&gt;
-&lt;p&gt;It takes a while to write code that you don't hate, but usually even someone
-who's been programming for a few months knows what good code looks like. It's
-concise, readable, logical, and consistent. It doesn't make you cringe.&lt;/p&gt;
-&lt;p&gt;I'm not really very good at writing code and feeling great about it. When it
-comes to, say, raw Node or a Bash script, I'm usually better with these things
-than anyone I know on a personal level, and have no problem taking charge and
-just doing things. But when it comes to the things I actually do every day
-(which right now means React, Koa, AWS stuff, Docker, trying to read C#, and
-Sass, mostly) I know I'm not that great. Knowing that I'm not that great means
-I take probably twice as long as I would to get anything done as I would if I
-was the best at that thing in the room, because I know people who know more
-than I do will be looking at my code and will need to fix it.&lt;/p&gt;
-&lt;p&gt;That's not a &lt;strong&gt;bad&lt;/strong&gt; thing, but it's not a good thing either. It means I'm
-programming without confidence, when I'm writing React or Sass. And I'm not
-even &lt;em&gt;bad&lt;/em&gt; at either, I just have no confidence when writing these things
-on a project with people who are better at them than I am. That's something
-that I should get over.&lt;/p&gt;
-&lt;p&gt;Anyway, I meant to write this post on the train and post it when I got home,
-but I ended up standing on the train so it's split, from while waiting for the
-train 'til 10:30 PM while sitting at DevMountain, so it's probably a little
-disjointed.&lt;/p&gt;
-&lt;p&gt;The point here is, if you have confidence in what you're doing, you'll get
-stuff done quicker and better, and if you don't have confidence in what you're
-doing, make it so that you can.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/a-tip</guid><pubDate>Fri, 10 Jun 2016 00:00:00 -0700</pubDate></item><item><title>How To Be Slightly More Productive</title><link>https://zacanger.com/blog/posts/how-to-be-slightly-more-productive</link><description>&lt;p&gt;One of my pet peeves is seeing people who make software for a living doing
+the best of luck in your new journey as a developer!&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/three-quick-tips</guid><pubDate>Fri, 24 Jun 2016 00:00:00 -0700</pubDate></item><item><title>How To Be Slightly More Productive</title><link>https://zacanger.com/blog/posts/how-to-be-slightly-more-productive</link><description>&lt;p&gt;One of my pet peeves is seeing people who make software for a living doing
 things in incredibly slow/unproductive ways. I know everyone has their own
 ways of being awesome, and most of those ways are much more awesome ways than
 the ways in which I am okay at things, but still, there are better ways, and
@@ -3079,53 +2583,10 @@ Git. Get really comfortable with Git. It's important. Other version control also
 matters sometimes in some businesses but really really really spend some time
 learning Git.&lt;/p&gt;
 &lt;h2 id="configs"&gt;Configs&lt;/h2&gt;
-&lt;p&gt;(&lt;a href="https://github.com/zacanger/z"&gt;like these&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(&lt;a href="https://github.com/zacanger/dotfiles"&gt;like these&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;Organize yours. Store them somewhere, like in a repo. Because when your current
 computer dies (and it will), it'll take you weeks to get things feeling decent
-if you have to recreate everything manually.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/how-to-be-slightly-more-productive</guid><pubDate>Tue, 31 May 2016 00:00:00 -0700</pubDate></item><item><title>React Performance</title><link>https://zacanger.com/blog/posts/react-performance</link><description>&lt;ul&gt;
-&lt;li&gt;Take a baseline measurement.&lt;ul&gt;
-&lt;li&gt;There's no way to measure improvements without something to measure against.&lt;/li&gt;
-&lt;li&gt;Chrome's Timeline thing works well for this.&lt;/li&gt;
-&lt;li&gt;Try measuring total elapsed time between the initial paint and the final rendering.&lt;/li&gt;
-&lt;li&gt;Make sure the 'Paint' and 'Screenshot' options are checked.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Obviously the first big one is to just make your production code production code.&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;NODE_ENV=production&lt;/code&gt;, &lt;code&gt;webpack -p&lt;/code&gt;, etc.&lt;/li&gt;
-&lt;li&gt;You can do something like this in your Webpack config:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class="language-javascript"&gt;// stuff
-plugins : [
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV' : JSON.stringify('production')
-  })
-, new webpack.optimize.UglifyJsPlugin({
-    compress : {
-      warnings : false
-    }
-  })
-]
-// stuff
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;Reduce calls to &lt;code&gt;React.createClass&lt;/code&gt; (if we're still doing that).&lt;ul&gt;
-&lt;li&gt;Try using React Inline Elements for this.&lt;/li&gt;
-&lt;li&gt;We could configure Babel for this like so (this example would go directly in your package.json):&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;babel&amp;quot;: { &amp;quot;env&amp;quot;: { &amp;quot;production&amp;quot;: { &amp;quot;plugins&amp;quot;: [
-  &amp;quot;transform-react-constant-elements&amp;quot;,
-  &amp;quot;transform-react-inline-elements&amp;quot;
-] } } }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;Keep checking against the initial benchmark.&lt;/li&gt;
-&lt;li&gt;'babel-plugin-transform-react-remove-prop-types' might also be useful. It removes unwanted/unused React.PropTypes.&lt;/li&gt;
-&lt;li&gt;There's also 'babel-preset-react-optimize'&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/react-performance</guid><pubDate>Sat, 14 May 2016 00:00:00 -0700</pubDate></item><item><title>Solving programming problems</title><link>https://zacanger.com/blog/posts/solving-programming-problems</link><description>&lt;p&gt;Basic steps of solving programming problems:&lt;/p&gt;
+if you have to recreate everything manually.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/how-to-be-slightly-more-productive</guid><pubDate>Tue, 31 May 2016 00:00:00 -0700</pubDate></item><item><title>Solving programming problems</title><link>https://zacanger.com/blog/posts/solving-programming-problems</link><description>&lt;p&gt;Basic steps of solving programming problems:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Find the input.&lt;/li&gt;
 &lt;li&gt;Find the output.&lt;/li&gt;
@@ -3133,95 +2594,7 @@ plugins : [
 &lt;li&gt;Translate this into your chosen programming language.&lt;/li&gt;
 &lt;li&gt;Run the code (in your head, or on a machine).&lt;/li&gt;
 &lt;li&gt;If the output isn't what you expected, start over with step three.&lt;/li&gt;
-&lt;/ol&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/solving-programming-problems</guid><pubDate>Wed, 10 Feb 2016 00:00:00 -0700</pubDate></item><item><title>about pages</title><link>https://zacanger.com/blog/posts/about-pages</link><description>&lt;p&gt;about pages&lt;/p&gt;
-&lt;p&gt;Why do these pages even exist?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;They provide visitors with the essential facts needed to interact with
-  you/the company&lt;/li&gt;
-&lt;li&gt;Give them the context for the information they'll find on the rest of the
-  site&lt;/li&gt;
-&lt;li&gt;Set yourself/the company apart from others like you/it&lt;/li&gt;
-&lt;li&gt;Give visitors a reason (or as many reasons as possible) to do whatever we're
-  trying to do (call a number, sign up for something, buy something, whatever)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Don't be super generic, bland, grey, and corporate-speaky. People want real,
-meaningful information, not company statistics.&lt;/p&gt;
-&lt;p&gt;Don't have a sales-y about page. No one wants to hear that you're a
-'world-class' whatever, or that you're committed to such and such a thing
-where you provide so and so such a best whatever. Just get to the point.&lt;/p&gt;
-&lt;p&gt;Skip the legal. That's for a 'legal' page.&lt;/p&gt;
-&lt;p&gt;Design the content of this part of your website the same way you should be
-designging &lt;em&gt;every&lt;/em&gt; part of your site: figure out what your users need, and
-provide it. Use quotes. Use good photos. Use a 'natural, friendly, confident
-writing voice' (Erin Kissane, alistapart.com, 2006). Have a personality. But
-don't make it overwhelming.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/about-pages</guid><pubDate>Thu, 28 Jan 2016 00:00:00 -0700</pubDate></item><item><title>Effective Websites</title><link>https://zacanger.com/blog/posts/effective-websites</link><description>&lt;p&gt;Some traits of effective websites:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Designed around the objectives of the &lt;em&gt;users&lt;/em&gt;, not the designers or developers&lt;ul&gt;
-&lt;li&gt;(Also not necessarily the person/company the website represents!)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Refined&lt;/em&gt; feel&lt;ul&gt;
-&lt;li&gt;This is really vague, but the site should &lt;em&gt;feel&lt;/em&gt; clean and elegant&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;USER FRIENDLINESS ABOVE ALL ELSE.&lt;ul&gt;
-&lt;li&gt;Easy to navigate&lt;/li&gt;
-&lt;li&gt;Stress-free&lt;/li&gt;
-&lt;li&gt;Understandable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Easy to keep current&lt;ul&gt;
-&lt;li&gt;This means making it extraordinarily simple for clients to add/change content&lt;/li&gt;
-&lt;li&gt;This also means keeping everything both &lt;em&gt;modular&lt;/em&gt; and &lt;em&gt;separated&lt;/em&gt;, so things like assets, styles, or entire sections can be swapped out easily.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;A11Y. Just do it.&lt;/li&gt;
-&lt;li&gt;i18n, and (if needed) i10n.&lt;/li&gt;
-&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/effective-websites</guid><pubDate>Sun, 24 Jan 2016 00:00:00 -0700</pubDate></item><item><title>on blogging</title><link>https://zacanger.com/blog/posts/on-blogging</link><description>&lt;p&gt;this is, i think, the first post of this year. happy 2016! i'm not blogging a
-whole lot, but really just trying to kill a few minute while my brain rests.
-lately i'm working a lot in new technologies that i've never touched
-before--react, which i still find irksome (though as before, i do &lt;em&gt;get&lt;/em&gt; it),
-coffeescript (to play with the atom editor), firebase (still more magicc than
-really cool, but it does what it does, and we need what it does, so i'm using
-it), and some other new things.  but i wanted to take a minute off to talk about
-writing.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;i'm not a writer. i'm okay with words, and i know a lot of them, and i use them,
-frequently. usually pretty well, i think. i don't usually know what i'm going to
-be saying before i start writing, though. half the time i'm taking notes on
-something, and realise later on that my notes might be useful to someone, at
-some point, maybe a little bit. you don't need to know what you're trying to
-achieve when you start writing, &lt;em&gt;especially&lt;/em&gt; if we're talking about a blog post.
-you don't need an outline, a muse, a spark of inpsiration, an addiction, a
-message, a mission, or even an attention span. it's okay to ramble. it's okay to
-not know what you're doing. a lot of the time, writing things down is a really
-good way to figure that bit out. i had no idea how i felt about certain
-technologies until i started trying to explain, in words understandable to other
-people, how i felt about them, and why. things make a lot more sense when you
-can read your own thoughts, see them in front of you, and see which ones make
-zero sense.&lt;/p&gt;
-&lt;p&gt;blogs are a really great way to learn things. they don't necessarily have to
-take the form of tutorials for that. think about the last time you took notes
-on something while trying to learn it. could those notes be helpful to someone
-else? why? is it because you're an expert on the subject? probably not. it's
-probably because someone could have a chance to see &lt;em&gt;how&lt;/em&gt; you learned
-something, how you came to understand it. that's pretty cool. words are all
-about describing things. kind of why the exist, and stuff. finding the right
-words to accurately, thoroughly, and &lt;em&gt;concisely&lt;/em&gt; describe something is a
-powerful skill. if you can do that, you should, even if you don't think you
-have anything worth talking about. let people learn from your notes.&lt;/p&gt;
-&lt;p&gt;i'm gonna go ahead and just put a nice quote in, here.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;language accelerates learning and creation by permitting communcation and
-coordination. a new idea can be spread quickly if someone can explain it and
-communicate it to others before they have to discover it themselves. but the
-chief advantage of language is not communication but autogeneration.
-language is a trick that allows the mind to question itself; a magic mirror
-that reveals to the mind what the mind thinks; a handle that turns a mind
-into a tool. with a grip on the slippery, aimless activity of self-awareness
-and self-referene, language can harness a mind into a fountain of new ideas.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;well, that's pretty cool.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/on-blogging</guid><pubDate>Fri, 08 Jan 2016 00:00:00 -0700</pubDate></item><item><title>Express vs Koa vs Hapi</title><link>https://zacanger.com/blog/posts/express-vs-koa-vs-hapi</link><description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: this post is outdated. Koa 2 saw a nearly complete API change, and
+&lt;/ol&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/solving-programming-problems</guid><pubDate>Wed, 10 Feb 2016 00:00:00 -0700</pubDate></item><item><title>Express vs Koa vs Hapi</title><link>https://zacanger.com/blog/posts/express-vs-koa-vs-hapi</link><description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: this post is outdated. Koa 2 saw a nearly complete API change, and
 Express and Hapi may have also changed, since I wrote this. I'm leaving it up
 anyway, as is, because it's seen a lot of traffic over the years. I haven't
 checked in on Express or Hapi in a long while, but here's an updated version of
@@ -3425,148 +2798,4 @@ to emphasise just how fantastic it is to even have things like Express. And
 keep in mind, there are more than just these three options. You've got
 Restify, LoopBack, Meteor, a lot of things built on Express (like Sails), and
 a load of things built on some combination of Socket.io and one middleware
-framework or another. Go play with options, they're all fun.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/express-vs-koa-vs-hapi</guid><pubDate>Wed, 30 Dec 2015 00:00:00 -0700</pubDate></item><item><title>Switch To Linux! (Part Two)</title><link>https://zacanger.com/blog/posts/switch-to-linux-part-two</link><description>&lt;p&gt;So, Mac friends, what's up? How's it going? All good with you? Good, good I'm
-glad. Look. Maybe we should talk.&lt;/p&gt;
-&lt;p&gt;I know you like your iPro Airpod. And it's very nice, it is. It's shiny and
-fast and does things, which are really the top requirements for any computing
-device, I think. But is it really what you want to be using? Look, if it is,
-that's cool. But have you considered some other options? There's a world
-outside of Cupertino. A whole, wide, incredible world of technology that
-presents broadly varied experiences that don't all follow Apple's guidelines
-on everything.&lt;/p&gt;
-&lt;p&gt;For example, your computer, your OS, what it's based on... that's Unix,
-actually. BSD-derived--and POSIX/Single Unix Specification certified. &lt;a href="https://opensource.apple.com/source/xnu/"&gt;Your
-kernel&lt;/a&gt; is XNU, which stands for 'X
-is Not Unix.' But it totally is, actually. You're closer than you know to
-having an open system, but right now you're limited by the Appley-ness of your
-Apple. If the idea of installing software that doesn't come from the App Store
-or some other official source is alien to you, that's okay. I'm here to tell
-you, it's an option. And you don't even need to make a switch all at once.
-Since OS X has been POSIX-compliant since Leopard, you can actually get a lot
-of software that's made for other *nix systems running just fine on your
-Macbook. There are some third-party package mangers out there that come highly
-recommended (I haven't tried them myself; I haven't owned a Mac since around
-OS 8). Among them are &lt;a href="http://www.pkgsrc.org/"&gt;pkgsrc&lt;/a&gt;,
-&lt;a href="http://www.macports.org/"&gt;MacPorts&lt;/a&gt;, &lt;a href="http://www.macports.org/"&gt;Homebrew&lt;/a&gt;,
-and &lt;a href="http://www.finkproject.org/"&gt;Fink&lt;/a&gt; (which, as a
-&lt;a href="http://debian.org"&gt;Debian&lt;/a&gt; user, I'd recommend--Fink uses our dpkg/APT
-system!).&lt;/p&gt;
-&lt;p&gt;These things are a start. If you're happy with everything about your system
-and options now, there's really no need to change, and you could probably have
-stopped reading this after the first sentence. But if you've ever been a
-little irked at the limited selection of software available to you, or how
-everything on every Mac looks exactly the same, or how little actual control
-you have over your interface, Linux might be a good option for you. This goes
-for developers as well. I know Macs are big in some development communities,
-especially with web folks. From what I understand, Ruby conferences are
-indistinguishable from Apple conventions. Javascript hackers are also
-especially keen on Macs, though that can cause some issues with Apple Webkit
-vs The Rest Of The World, etc. Linux might not have the brand power of Apple,
-but we've got compatibility coming out our ears, and we're nearly swimming in
-customization options. Instead of, say, &lt;a href="https://www.npmjs.com/package/linux"&gt;using Javascript to install Linux on
-your Mac&lt;/a&gt;, why not give Linux a try...
-for real? &lt;a href="http://ubuntu.org"&gt;Ubuntu&lt;/a&gt; might be a good starting point for
-you--they're big on unified interfaces and styling, over there, and while it's
-not Aqua, and they're not too keen on Helvetica (or San Francisco...), it's
-just as uniform and integrated-feeling as OS X (and probably a bit more fun).&lt;/p&gt;
-&lt;p&gt;I'm not going to go all out with this one; I could talk for months about the
-reasons folks should consider Linux (or a BSD), and especially about the
-reasons NOT to use Apple products, but that's not a topic for here and now.&lt;/p&gt;
-&lt;p&gt;Thanks so much for reading! If you missed it, check out the first part on my
-blog, where I talk about Windows a bit. This was as an addition to &lt;a href="https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0"&gt;this
-post&lt;/a&gt;
-by &lt;a href="http://mylinuxrig.com"&gt;this guy&lt;/a&gt;, who is writing &lt;a href="https://manning.com/books/learn-linux/in-a-month-of-lunches"&gt;this
-book&lt;/a&gt;; if you're
-thinking about trying Linux, it's definitely worth checking that out.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/switch-to-linux-part-two</guid><pubDate>Sun, 27 Sep 2015 00:00:00 -0700</pubDate></item><item><title>Switch To Linux (Part One)</title><link>https://zacanger.com/blog/posts/switch-to-linux-part-one</link><description>&lt;p&gt;So, I enjoyed &lt;a href="https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0"&gt;this
-post&lt;/a&gt;
-from Steven Ovadia, the fellow who maintains &lt;a href="http://www.mylinuxrig.com/"&gt;My Linux
-Rig&lt;/a&gt; (which, by the way, is a really great blog,
-and you should definitely follow it--it's kind of like &lt;a href="https://usesthis.com/"&gt;The
-Setup&lt;/a&gt;, but without all the... ah..
-&lt;a href="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"&gt;fruit&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I have a couple of things I'd like to add (Steven touched on these, but some
-specifics here might help win you over, if you're currently a user of a
-non-free OS).&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You’re technically-inclined, but might not have a technical job. You like to
-tweak your interfaces, though.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;THIS. Is this not a great way to sum up most Windows power users? The sort of
-folk who maybe don't &lt;em&gt;hate&lt;/em&gt; Windows 8 (I know 10's the big thing these days,
-but I haven't even looked at a screenshot yet...) but definitely preferred 7
-and have fond memories of XP. People who have, at some point, thought about
-using &lt;a href="http://www.litestep.net/"&gt;LiteStep&lt;/a&gt;, or monitored with
-&lt;a href="http://www.samurize.com/modules/news/"&gt;Samurize&lt;/a&gt; or
-&lt;a href="http://rainmeter.net/"&gt;Rainmeter&lt;/a&gt;, or ever spent some time on
-Microsoft-related tags on &lt;a href="http://customize.org"&gt;Customize.org&lt;/a&gt;, or follow
-&lt;a href="http://www.askvg.com/"&gt;blogs full of tech tips&lt;/a&gt; mostly related to your
-operating system. This is about you, and Linux is where you belong. You know
-how much trouble it was to get Visual Styles figured out when they changed
-that, and then to disable some Aero bits but retain some theme options, and to
-get a regular old start menu back in 8? Isn't it frustrating that you have to
-actually &lt;a href="http://www.sevenforums.com/tutorials/1911-take-ownership-shortcut.html"&gt;install other
-software&lt;/a&gt;
-just to be able to delete, modify or even &lt;strong&gt;see&lt;/strong&gt; some files on your computer?
-Chances are you've spent a good bit of time doing things to improve how
-Windows works for you, and that's great. You're definitely not alone;
-&lt;a href="http://www.deviantart.com/browse/all/?q=windows+7+themes"&gt;DeviantArt is FULL&lt;/a&gt;
-of like-minded people who do some really fantastic stuff with Windows--and
-that's just graphical stuff! Getting into heavy system modification is a
-really scary thing for a lot of Windows users.&lt;/p&gt;
-&lt;p&gt;The thing is, there's no 'I REALLY shouldn't do this because Microsoft won't
-like it' kind of feeling with Linux. No one's going to automatically install
-broken hotfixes if you don't want them. No one's going snooping through your
-computer to see if the most basic level of software came with a license
-code--and no one's going to lock it down or power it off from a remote
-location if you didn't pay them $40 for the OS (note: last time I bought
-Windows, it was $40 for Windows 8 64-bit Pro; I have no idea what they charge
-these days). If you want to change how things look, it's not just okay, it's
-&lt;em&gt;easy&lt;/em&gt;. I mean, seriously. &lt;code&gt;sudo su&lt;/code&gt; and browse to &lt;code&gt;/usr/share/icons&lt;/code&gt;; put
-some icons in. Boom. Icons. If you're using a DE (desktop environment), it's
-picked them up and you'll see it in your settings. If you're using a WM
-(window manager), it may depend on your WM or file browser (but this is
-getting a bit complicated--we'll assume you're using a DE for the moment). But
-either way, once icons are there, you don't have to manually select them per
-item every time you want to change something--or every time you make a visual
-change to something &lt;strong&gt;else&lt;/strong&gt;. That sounds like an absurdly simplified example,
-but it serves as a good illustration of just how difficult basic things can be
-on some systems.&lt;/p&gt;
-&lt;p&gt;One other quick thing, which Windows users may find a bit shocking: we
-configure things with plain text. Yeah. &lt;strong&gt;Plain. Text.&lt;/strong&gt; No funky weird files
-you can't open in any editor known to man and have to install software from
-shady people you met in an alley somewhere (shady internet people in a shady
-internet alley, anyway) just to be able to read. What's even better is that
-plain text can be simpler, faster, and better than Notepad. If you're a
-&lt;a href="https://notepad-plus-plus.org/"&gt;Notepad++&lt;/a&gt; user, props. That's just about the
-most useful bit of software I ever installed on Windows 8 (or 7). Take a
-gander at all the &lt;a href="https://github.com/amix/vimrc"&gt;crazy stuff you can do&lt;/a&gt; with
-arguably the most popular editor for Linux, &lt;a href="http://github.com/vim/vim"&gt;Vim&lt;/a&gt;.
-Heck, you could just &lt;a href="http://cream.sourceforge.net/download.html"&gt;install Vim&lt;/a&gt;
-right now. We won't even get into
-&lt;a href="http://www.emacswiki.org/emacs/SiteMap"&gt;Emacs&lt;/a&gt;... that's like having an
-entire extra operating system in your text editor. But back to configuration:
-text files. I have, for example, some &lt;a href="https://github.com/zacanger/z"&gt;nifty configs of my
-own&lt;/a&gt; that I keep synced between all my
-devices--nothing too fancy, not nearly on the level of &lt;a href="https://github.com/paulirish/dotfiles"&gt;some very impressive
-collections&lt;/a&gt;. Our text files can be
-edited with just about anything, including fancy IDEs with plugins and
-databases and such, and also including simple commands issued in a terminal
-(or console); we store them in uniform, sane places like
-&lt;code&gt;/home/yourUserName/.configurationFileForProgram&lt;/code&gt; and, for system files (all
-users) &lt;code&gt;/etc/program.conf&lt;/code&gt; (sometimes that'll be split into multiple files per
-program--we just put all those inside a folder and tack a '.d' onto the end of
-the name, like &lt;code&gt;/etc/apt/sources.list.d/&lt;/code&gt;). There's no rule saying you &lt;em&gt;must&lt;/em&gt;
-configure things with text, and &lt;a href="http://www.xfce.org/"&gt;my preferred DE&lt;/a&gt; has
-&lt;a href="http://docs.xfce.org/xfce/xfce4-settings/start"&gt;quite a snazzy tool&lt;/a&gt; to make
-things more user-friendly. If you give the plain-text option a try, though,
-you may find yourself loving it!&lt;/p&gt;
-&lt;p&gt;Okay, Mac friends. Don't think I've forgotten you. We'll call this post part
-one of two; I've been wanting to get myself set up with a decent (and
-self-hosted) static site/blog tool, and I think maybe writing actual
-decent-length posts is a good enough reason to just sit down and find one I
-like. To be continued.&lt;/p&gt;
-&lt;p&gt;OH, before I forget, you should maybe &lt;a href="https://manning.com/books/learn-linux/in-a-month-of-lunches"&gt;check out the book that Steve's
-writing&lt;/a&gt;; it's
-also linked in &lt;a href="https://medium.com/@steven_ovadia/opening-linux-even-further-13d2d6289ae0"&gt;the original
-post&lt;/a&gt;
-that sparked this bit of blogging.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/switch-to-linux-part-one</guid><pubDate>Sun, 27 Sep 2015 00:00:00 -0700</pubDate></item></channel></rss>
+framework or another. Go play with options, they're all fun.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/express-vs-koa-vs-hapi</guid><pubDate>Wed, 30 Dec 2015 00:00:00 -0700</pubDate></item></channel></rss>

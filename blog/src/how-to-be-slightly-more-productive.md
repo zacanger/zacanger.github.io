@@ -114,7 +114,7 @@ learning Git.
 
 ## Configs
 
-([like these](https://github.com/zacanger/z))
+([like these](https://github.com/zacanger/dotfiles))
 
 Organize yours. Store them somewhere, like in a repo. Because when your current
 computer dies (and it will), it'll take you weeks to get things feeling decent
