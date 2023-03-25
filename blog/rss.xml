@@ -1,5 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 17 Jan 2023 01:30:20 +0000</lastBuildDate><item><title>what was left?</title><link>https://zacanger.com/blog/posts/what-was-left</link><description>&lt;p&gt;drop off body, drop off heart-and-mind; what did the dropping off? what was
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 25 Mar 2023 17:22:22 +0000</lastBuildDate><item><title>Using StackOverflow Effectively</title><link>https://zacanger.com/blog/posts/using-stackoverflow-effectively</link><description>&lt;p&gt;This is from my profile on the Stack Exchange network. It is necessarily brief
+due to the hard character limit over there, but most of the tips here apply to
+any other technical Q&amp;amp;A platform, including freelance sites. There are two
+sections: the first is geared towards askers/requesters, and the second towards
+answerers/workers.&lt;/p&gt;
+&lt;h1 id="ask-questions-that-get-answers"&gt;Ask Questions That Get Answers&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;If your problem is vague, large, immediate, or long-term, you need to find paid help. Codementor, Fiverr, Upwork, etc.&lt;/li&gt;
+&lt;li&gt;Read &lt;a href="https://stackoverflow.com/help/how-to-ask"&gt;How do I ask a good question?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The search function is free. Use it.&lt;/li&gt;
+&lt;li&gt;The &lt;a href="https://stackoverflow.blog/2022/10/27/introducing-the-ask-wizard-your-guide-to-crafting-high-quality-questions/"&gt;Ask Wizard&lt;/a&gt; exists for a reason, so follow it!&lt;/li&gt;
+&lt;li&gt;If there's a similar question, &lt;em&gt;read the answers and comments&lt;/em&gt; and expect that you'll have to adapt them a bit to your use case.&lt;/li&gt;
+&lt;li&gt;Documentation is also (usually) free. Read it!&lt;/li&gt;
+&lt;li&gt;The problem you're having with [x library] is that you're using [x library] when [language/platform standard] works just fine.&lt;/li&gt;
+&lt;li&gt;If your code was fine, and then you updated your dependencies/packages, and now it's not fine, check the bug reports/issues. If you don't know where to find them, searching will work. Example: &lt;code&gt;axios issue reports&lt;/code&gt;, &lt;code&gt;firefox bug reports&lt;/code&gt;, &lt;code&gt;pytorch bugs&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;There are almost 200 communities on the StackExchange network, including sites for Linux, DBAs, Wordpress, Gamedev, Code Review, and many others. Check &lt;a href="https://stackexchange.com/sites#technology-traffic"&gt;here&lt;/a&gt; if your question isn't about a specific programming problem; there might be a better place to ask.&lt;/li&gt;
+&lt;li&gt;To format code in your post, put three backticks on the line above the code, and three on the line below it. No more, no less. Exactly three. Not one and then three on the next line. Not three on separate lines.&lt;/li&gt;
+&lt;li&gt;50% of your problems will be solved by using a linter and integration with your editor. Go to duckduckgo.com and type in the language you're using, the editor you're using, and the word "linter." Example: &lt;code&gt;python vim linter&lt;/code&gt;. Read the first 5 links or so, set up whatever seems easiest.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="help-improve-stackexchanges-bad-reputation"&gt;Help Improve StackExchange's Bad Reputation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Are you in a bad mood right now? Close the tab.&lt;/li&gt;
+&lt;li&gt;Are you sure the question you're marking as a duplicate, low quality, etc., actually meets that criteria? Is there a Meta post about it? Have you read and understood the Meta post?&lt;/li&gt;
+&lt;li&gt;Is the asker new to the site? Maybe they didn't read the docs on asking questions. Point them in the right direction and see if they update their question, before voting to close.&lt;/li&gt;
+&lt;li&gt;Be professional! This isn't your friend group, this is a professional network of people looking for help. If you type out a comment that you wouldn't say in a meeting at work, don't say it here!&lt;/li&gt;
+&lt;li&gt;Remember that you, once, were also a beginner. No one was born knowing the differences between regex engines or whatever, or knowing how to manipulate search engines into providing useful results instead of just ads.&lt;/li&gt;
+&lt;li&gt;Step back if you're out of your depth. StackExchange reputation is just fake internet points, you don't need to answer if your answer is low-quality, and you don't need to spend more time than you're comfortable with on an exchange.&lt;/li&gt;
+&lt;/ul&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/using-stackoverflow-effectively</guid><pubDate>Sat, 25 Mar 2023 00:00:00 -0700</pubDate></item><item><title>what was left?</title><link>https://zacanger.com/blog/posts/what-was-left</link><description>&lt;p&gt;drop off body, drop off heart-and-mind; what did the dropping off? what was
 left?&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/what-was-left</guid><pubDate>Sat, 19 Mar 2022 00:00:00 -0700</pubDate></item><item><title>drop off</title><link>https://zacanger.com/blog/posts/drop-off</link><description>&lt;p&gt;drop off&lt;/p&gt;
 &lt;p&gt;no body; no mind&lt;br /&gt;
 no master; no student&lt;br /&gt;
