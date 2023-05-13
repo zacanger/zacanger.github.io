@@ -119,6 +119,7 @@ def process_post(post):
                     "tags": metadata["tags"],
                     "starred": metadata.get("starred", False),
                     "body": body,
+                    "slug": destination_dir,
                 }
             }
         )
