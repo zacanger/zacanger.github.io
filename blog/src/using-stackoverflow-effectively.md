@@ -11,7 +11,7 @@ any other technical Q&A platform, including freelance sites. There are two
 sections: the first is geared towards askers/requesters, and the second towards
 answerers/workers.
 
-# Ask Questions That Get Answers
+### Ask Questions That Get Answers
 
 * If your problem is vague, large, immediate, or long-term, you need to find paid help. Codementor, Fiverr, Upwork, etc.
 * Read [How do I ask a good question?](https://stackoverflow.com/help/how-to-ask)
@@ -25,7 +25,7 @@ answerers/workers.
 * To format code in your post, put three backticks on the line above the code, and three on the line below it. No more, no less. Exactly three. Not one and then three on the next line. Not three on separate lines.
 * 50% of your problems will be solved by using a linter and integration with your editor. Go to duckduckgo.com and type in the language you're using, the editor you're using, and the word "linter." Example: `python vim linter`. Read the first 5 links or so, set up whatever seems easiest.
 
-# Help Improve StackExchange's Bad Reputation
+### Help Improve StackExchange's Bad Reputation
 
 * Are you in a bad mood right now? Close the tab.
 * Are you sure the question you're marking as a duplicate, low quality, etc., actually meets that criteria? Is there a Meta post about it? Have you read and understood the Meta post?
