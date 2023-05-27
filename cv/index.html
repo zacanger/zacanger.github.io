@@ -6,31 +6,56 @@
   <title>Zac Anger</title>
   <link href="/styles.css" rel="stylesheet" type="text/css">
   <style type="text/css">
+    @media print {
+      html, body {
+        font-size: 14px !important;
+      }
+    }
+
     .skill {
       --webkit-column-count: 3;
       --moz-column-count: 3;
       column-count: 3;
     }
+    h3 {
+      font-size: 1.3em;
+      font-weight: 700;
+    }
+    h3 span {
+      float: right;
+      font-weight: 600;
+      font-size: .8em;
+    }
+    h1 {
+      display: inline;
+    }
+    small {
+      float: right;
+      margin-top: 1rem;
+    }
+    hr {
+      color: lightgrey;
+    }
+
   </style>
 </head>
 <body>
   <h1>Zac Anger</h1>
 
-  <p>
-    <small>
-      <a href="/cv/zac-anger.pdf">PDF</a> &middot;
-      <a href="https://zacanger.com">zacanger.com</a> &middot;
-      <a href="mailto:zac@zacanger.com">zac@zacanger.com</a> &middot;
-      <a href="https://github.com/zacanger">github.com/zacanger</a>
-    </small>
-  </p>
+  <small>
+    <a href="/cv/zac-anger.pdf">PDF</a> &middot;
+    <a href="https://zacanger.com">zacanger.com</a> &middot;
+    <a href="mailto:zac@zacanger.com">zac@zacanger.com</a> &middot;
+    <a href="https://github.com/zacanger">github.com/zacanger</a>
+  </small>
 
   <p>
-    I'm a programmer with a history in Node, React, and DevOps. Passionate about
-    FOSS, I maintain widely used tools and libraries, and have contributed to
-    many large projects including Firefox, Webpack, Rancher, and Mastodon.
-    Outside of work, I'm a practicing Buddhist and music producer.
+    Programmer with a history in Node, React, and DevOps. Passionate about FOSS,
+    maintainer of widely-used tools and libraries, contributor to large projects
+    including Firefox, Webpack, Rancher, and Mastodon.
   </p>
+
+  <hr>
 
   <h2>Skillset</h2>
   <ul class="skill">
@@ -51,103 +76,84 @@
     <li>Vim</li>
   </ul>
 
+  <hr>
+
   <h2>Experience</h2>
-  <ul>
 
-    <li>
-      <strong>Freelance</strong>
-      <ul>
-        <li>
-          2020-Present
-        </li>
-        <ul>
-          <li>
-            Freelance Node, Python, React, Docker, and Kubernetes projects.
-          </li>
-        </ul>
-      </ul>
-    </li>
+  <p>
+    <h3>
+      Freelance
+      <span>Developer and mentor &middot; 2020-Present</span>
+    </h3>
+    <p>
+      Freelance Node, Python, React, Docker, and Kubernetes projects.
+    </p>
 
-    <li>
-      <strong>LiLiHi</strong>
-      <ul>
-        <li>
-          2019-2020 &middot; Co-Founder
-        </li>
-        <ul>
-          <li>
-            Implemented Kubernetes infrastructure on GCP with Terraform,
-            prototype web application with Next.js, and microservices with
-            Node and Python.
-          </li>
-        </ul>
-      </ul>
-    </li>
+    <hr>
 
-    <li>
-      <strong>Jane.com</strong>
+    <h3>
+      LiLiHi
+      <span>Cofounder &middot; 2019-2020</span>
+    </h3>
+    <p>
+      Implemented Kubernetes infrastructure on GCP with Terraform, prototype web
+      application with Next.js, and microservices with Node and Python.
+    </p>
 
-      <ul>
-        <li>
-          2020 &middot; Senior DevOps Engineer
-        </li>
-        <ul>
-          <li>
-            Worked on teams in a DevOps role on testing, Kubernetes
-            administration, cloud native migrations, FOSS tooling and libraries,
-            and hiring. Led migration to Hashicorp Vault. Designed, implemented,
-            and deployed Node microservices. Led trainings on change management
-            and incident response. Built standardized templates for libraries,
-            services, and web applications. Led Datadog migration. Maintained
-            and standardized GitHub organization. Introduced and automated
-            canary deployments.
-          </li>
-        </ul>
+    <hr>
 
-        <li>
-          2018-2019 &middot; Infrastructure Engineer
-        </li>
-        <ul>
-          <li>
-            Worked on cloud-native infrastructure team on CI/CD, telemetry,
-            testing, tooling, and Kubernetes migration. Open-sourced internal
-            projects. Led APM and Infra monitoring projects. Led integration of
-            a new feature flag platform. introduction of feature flag usage.
-            Introduced policies and procedures around change management, quality
-            control, and incident response.
-          </li>
-        </ul>
+    <h3>
+      Jane.com
+    </h3>
+    <h3><span>Senior DevOps Engineer &middot; 2020</span></h3><br>
+    <p>
+      Led migration to Hashicorp Vault. Improved Kubernetes admin process,
+      worked on cloud native migrations of legacy services, improved company
+      FOSS libraries, joined cross-discipline interviewing teams, designed Node
+      microservice architecture. Lead trainings on change management,
+      observability, Git workflows, and incident response. Built templates for
+      new libraries and applications. Led migration to Datadog. Standardized and
+      maintained GitHub organization. Introduced automated canary deployments.
+    <p>
 
-        <li>
-          2016-2018 &middot; Software Engineer
-        </li>
-        <ul>
-          <li>
-            Worked on React rewrites of Jane.com and internal apps, and Node
-            microservices and libraries.
-          </li>
-        </ul>
-      </ul>
-    </li>
+    <h3><span>Infrastructure Engineer &middot; 2018-2019</span></h3><br>
+    <p>
+      Worked on CI/CD, telemetry, testing, tooling, and migration to Kubernetes.
+      Open-sourced internal projects. Lead APM monitoring work and migration to
+      NewRelic. Researched and lead feature flag implementation. Introduced
+      policies around quality control and change management.
+    </p>
 
-    <li>
-      <strong>DevMountain</strong>
-      <ul>
-        <li>
-          2016 &middot; Mentor and Junior Developer on Internal Projects
-        </li>
-      </ul>
-      <ul>
-        <li>
-          2015-2016 &middot; Student, MEAN Stack Bootcamp.
-        </li>
-      </ul>
-    </li>
+    <h3><span>Software Engineer &middot; 2016-2018</span></h3><br>
+    <p>
+      Worked on React rewrites of Jane.com and internal apps, and Node
+      microservices and libraries.
+    </p>
 
-    <li>
-      <strong>Freelance Web Developer</strong> &mdash;
-      2015 &middot; Developed Bootstrap-based sites
-    </li>
+    <hr>
+
+    <h3>
+      DevMountain
+    </h3>
+    <h3><span>Mentor and Junior Developer &middot; 2016</span></h3><br>
+    <p>
+      Mentored students, improved internal applications, developed curriculum.
+    </p>
+
+    <h3><span>Student &middot; 2015-2016</span></h3><br>
+    <p>
+      Student at MEAN Stack bootcamp.
+    </p>
+
+    <hr>
+
+    <h3>
+      Freelance
+      <span>Web Developer &middot; 2015</span>
+    </h3>
+    <p>
+      Designed and developed Bootstrap-based sites.
+    </p>
 
     <!--
     <li>
