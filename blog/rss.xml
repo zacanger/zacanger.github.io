@@ -1,5 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 13 May 2023 06:25:53 +0000</lastBuildDate><item><title>Using StackOverflow Effectively</title><link>https://zacanger.com/blog/posts/using-stackoverflow-effectively</link><description>&lt;p&gt;This is from my profile on the Stack Exchange network. It is necessarily brief
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 25 Jun 2023 16:37:49 +0000</lastBuildDate><item><title>Common JS Array Methods Cheatsheet</title><link>https://zacanger.com/blog/posts/common-array-methods</link><description>&lt;p&gt;Cheatcheet for common JS array methods, because this is a super common category of
+questions on StackOverflow and I'm sick of typing it up in a comment, so now I
+can just copy-paste it.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;filter: I have an array and want to have a smaller or equal array including
+    the same elements, based on a predicate&lt;/li&gt;
+&lt;li&gt;map: I have an array and want to have a same-length array of the same or
+    different elements, based on a transformation&lt;/li&gt;
+&lt;li&gt;find: I have an array and want to find the first matching element based on a
+    predicate&lt;/li&gt;
+&lt;li&gt;findIndex: like find, but I want the index, not the element itself&lt;/li&gt;
+&lt;li&gt;forEach: I want to potentially do something for every element, but I'm not
+    expecting any returned array&lt;/li&gt;
+&lt;li&gt;reduce: I have an array and want to have something, in the end, based on that
+    data. Could be an array, or a string, or an object, or whatever, doesn't
+    matter. Can be used to implement just about any other array method, if you
+    really wanted to.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many others, but these are the most common IME. Hopefully this shows
+up in the first few SERP so these type of questions gradually die out.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/common-array-methods</guid><pubDate>Sun, 25 Jun 2023 00:00:00 -0700</pubDate></item><item><title>Using StackOverflow Effectively</title><link>https://zacanger.com/blog/posts/using-stackoverflow-effectively</link><description>&lt;p&gt;This is from my profile on the Stack Exchange network. It is necessarily brief
 due to the hard character limit over there, but most of the tips here apply to
 any other technical Q&amp;amp;A platform, including freelance sites. There are two
 sections: the first is geared towards askers/requesters, and the second towards
