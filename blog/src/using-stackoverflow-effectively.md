@@ -1,8 +1,10 @@
 ---
 title: Using StackOverflow Effectively
 created: 2023-03-25
+starred: true
 tags:
   - advice
+  - stackoverflow
 ---
 
 This is from my profile on the Stack Exchange network. It is necessarily brief
