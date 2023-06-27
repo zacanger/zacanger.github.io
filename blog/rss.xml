@@ -1,5 +1,159 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 25 Jun 2023 16:37:49 +0000</lastBuildDate><item><title>Common JS Array Methods Cheatsheet</title><link>https://zacanger.com/blog/posts/common-array-methods</link><description>&lt;p&gt;Cheatcheet for common JS array methods, because this is a super common category of
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 27 Jun 2023 04:50:15 +0000</lastBuildDate><item><title>Monads, Monoids, Monoids, and JavaScript</title><link>https://zacanger.com/blog/posts/monads-monoids-endofunctors-javascript</link><description>&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#definitions"&gt;Definitions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#examples"&gt;Examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#justification-and-other-stuff"&gt;Justification and other stuff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#free-monads"&gt;Free Monads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#am-i-wrong"&gt;Am I Wrong?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://books.google.com/books?id=MXboNPdTv7QC&amp;amp;pg=PA138&amp;amp;printsec=frontcover&amp;amp;dq=%22monoid+in+the+category+of+endofunctors%22+mac+lane&amp;amp;newbks=0&amp;amp;hl=en&amp;amp;ovdme=1&amp;amp;ov2=1&amp;amp;ovso=1#v=onepage&amp;amp;q=%22monoid%20in%20the%20category%20of%20endofunctors%22%20mac%20lane&amp;amp;f=false"&gt;A monad is just a monoid in the category of endofunctors&lt;/a&gt;. What's the problem?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;huh?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Well for starters, that's a misquote. It's close enough for memes, but missing
+something important: a monad in some category is a monoid in the category of
+endofunctors in that category.&lt;/p&gt;
+&lt;h3 id="definitions"&gt;Definitions&lt;/h3&gt;
+&lt;p&gt;What's a category? Well it's a class (in the regular-English sense), or a
+collection of objects (again, not in the OO sense necessarily), or some other
+word you could find in a thesaurus, which has elements that are similar in
+certain ways, particularly in their morphisms.&lt;/p&gt;
+&lt;p&gt;And what's a morphism? Because that's a good word to know. It's an arrow. What's
+an arrow? Oh, well it's a map, or something similar (like the JS array method).
+Why is this a good word to know? Because functional programming people like to
+read PhD math papers and talk about this stuff at meetups, because it's more
+interesting and makes you sound smarter than complaining about CSS or how your
+SREs don't want you to use that new database platform you saw on Hacker News
+that only has 3 stars on GitHub but it looks really cool why is the ops team
+like this....&lt;/p&gt;
+&lt;p&gt;Anyway, what does this have to do with monoids? Monoids are a concept from
+category theory, which is math, and in math they use terms like this.&lt;/p&gt;
+&lt;p&gt;Morphisms are composable, like roads. If you take the train north and then
+transfer to a bus that goes east, you could've probably driven to the same point
+along a different route. You composed two routes to make one.&lt;/p&gt;
+&lt;p&gt;Morphisms can also bring you back home: you can ride the bus north from my
+house, wait for it to turn around, then get off and go back home (or do the same
+thing by car in a quarter of the time, but that'll be a waste of fuel). If you
+do that, it's called an &lt;em&gt;endomorphism&lt;/em&gt; (if you took Latin in 7th grade, like me,
+well now you finally have a chance to use it!). The identity function
+(&lt;code&gt;id = a =&amp;gt; a&lt;/code&gt;) is exactly that.&lt;/p&gt;
+&lt;p&gt;You can use functors to get from one shape of thing to another shape of thing
+(categories!). And like morphisms, you can map from a category back to itself.
+This is called (can you guess?): an endofunctor. (Are there exofunctors? Yes,
+but you probably won't see them a whole lot unless you're dealing with
+type-level programming, so don't worry about it right now.)&lt;/p&gt;
+&lt;p&gt;Okay so you know what endofunctors are. What's a monoid? It's got that
+endomorphism we talked about (identity), plus an associative property (basically
+meaning if you move parenthesis around in a math version of the thing, it
+doesn't change stuff). There are some exceptions because math, but it's not that
+big of a deal, don't worry about it. In the JS world, some monoids are string
+concatenation (it's &lt;code&gt;id&lt;/code&gt; with an empty string!), basic math (use 0 or 1 to get
+the equivalent of &lt;code&gt;id&lt;/code&gt;), or composition (use the &lt;code&gt;id&lt;/code&gt; as one or more of the
+composed functions to get an &lt;code&gt;id&lt;/code&gt; for the result of one of the other
+functions!).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wait, what? Now you're adding in stuff, you didn't talk about things like 0
+and placeholder functions....&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Oh yeah sorry, that's the zero value. It's 0, or 1, or an empty string, or id,
+or whatever, depending on your type and your operation. In some languages you'll
+have to figure it out for yourself. Usually there's a library for it. Go
+(surprisingly) actually has pretty good defaults, mostly.&lt;/p&gt;
+&lt;p&gt;Okay moving on, what exactly is a monad anyway? Well, a monad is a box, but with
+some rules. It's a monoid (a thingy with identity and associative properties) in
+the category of endofunctors (functors that can arrow from a bit of stuff back
+to itself; again, that's basically all the functors you'll ever see IRL). It's a
+useful little thing with a lot of confusing talk about it that lets you do a
+couple of important tasks: map from one thing to another (JS &lt;code&gt;.map&lt;/code&gt;) and compose
+stuff (with something similar to &lt;code&gt;.bind&lt;/code&gt; and compose in FP libraries, and the
+&lt;code&gt;id&lt;/code&gt; we defined earlier, also called &lt;code&gt;unit&lt;/code&gt; in some languages, but not to be
+confused with &lt;code&gt;()&lt;/code&gt; which is also called unit, and is more like a &lt;code&gt;void&lt;/code&gt; or "this
+is gonna perform some side effects and I expect undefined back." Do we need a
+UML diagram? I'm bad at UML.).&lt;/p&gt;
+&lt;h3 id="examples"&gt;Examples&lt;/h3&gt;
+&lt;p&gt;Okay this is confusing. Here's a monoid:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;const concatButWithExtraSteps = {
+  // depends on data type and operation!
+  emptyValue: &amp;quot;&amp;quot;,
+  // or a + b, or a.concat(b), or [...a, ...b], or { ...a, ...b }, and so on
+  concat: (a, b) =&amp;gt; `${a}${b}`,
+}
+concatButWithExtraSteps(
+  concatButWithExtraSteps.emptyValue,
+  &amp;quot;this is complicated&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And an endofunctor:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;;[1].map(x =&amp;gt; x)
+// okay a better example
+const endoFunctorsForDicts = (o) =&amp;gt; (f) =&amp;gt;
+  Object.entries(o).reduce((prev, curr) =&amp;gt; {
+    const [k, v] = curr
+    prev[k] = f(v)
+    return prev
+  }, {})
+endoFunctorsForDicts({ foo: &amp;quot;bar&amp;quot; }, (s) =&amp;gt; s + &amp;quot; baz&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And here's &lt;a href="https://kjaer.io/a-monad-is-not-a-burrito/"&gt;a monad&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;const finallyAMonadExample = (a) =&amp;gt; ({
+  // also called flatMap sometimes, not to be confused with mapping and
+  // flattening
+  // also called chain, or some other names
+  bind: (f) =&amp;gt; f(a),
+  // call a function on your value and then throw it back into this kind of
+  // monad. also called fMap, not to be consfused with flatMap. okay now i see
+  // how this can get confusing
+  map: (f) =&amp;gt; finallyAMonadExample(f(a)),
+  // ooh here's something you can actually use right away!
+  concat: (b) =&amp;gt; finallyAMonadExample(`${a}${b}`),
+  // this is for unwrapping, getting your value back out of the monad
+  // good for debugging. not essential for making a monad
+  getTheThing: () =&amp;gt; a,
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sometimes you'll see a &lt;code&gt;.of&lt;/code&gt; "constructor" to indicate that you're using a
+monad. Doesn't matter, not important, just a convention, no one cares because
+we're all too busy trying to replicate Figma designs using Bootstrap 3 and
+complaining about the DBA not giving us dev creds.&lt;/p&gt;
+&lt;h3 id="justification-and-other-stuff"&gt;Justification and other stuff&lt;/h3&gt;
+&lt;p&gt;Is any of this useful? Does it matter? Nah, probably not. Monads like &lt;code&gt;Just&lt;/code&gt; and
+&lt;code&gt;Maybe&lt;/code&gt; sure can be handy, but only if your whole team actually knows all this
+stuff. But it does broaden your mind and help you think about how you write
+software in different ways. They're a design pattern ("no they're not, they're a
+mathematical concept! Nothing at all like abstract factories or visitors"
+they're a design pattern because you're not writing a dissertation, you're
+building a React PWA for people to find nearby parks that allow people to walk
+their pet iguanas.&lt;/p&gt;
+&lt;p&gt;And you're already using monads, sometimes, even if you don't think about them
+that way. If you've got some class or object or module that satisfies those
+constraints, you've got a monad. Promises could've been monads, but
+&lt;a href="https://github.com/promises-aplus/promises-spec/issues/94"&gt;some people didn't understand them&lt;/a&gt;,
+and honestly who can blame them? It's not like the Haskell people use real words
+that make any sense when they're talking about this stuff.&lt;/p&gt;
+&lt;p&gt;Also I'm not really using all the technical terms. Left identity and right
+identity are like our &lt;code&gt;id&lt;/code&gt; function, but a little more complicated. Doesn't
+matter. Associativity doesn't really mean how you group parens, it's how you
+apply or nest bind/chain/flatMap, but again, doesn't really matter, because no
+one (probably) is going to be testing you on Haskell/Idris/Scala concepts in
+your PR to fix a button submit pending state.&lt;/p&gt;
+&lt;h3 id="free-monads"&gt;Free Monads&lt;/h3&gt;
+&lt;p&gt;And what about free monads? Honestly I don't really get it, because I don't
+write Haskell except when I'm looking for a reason to take a lot of ibuprofen,
+but DrBoolean has some good videos on the topic. Imagine a generic monad that
+lets you make a &lt;code&gt;Monad(something)&lt;/code&gt; without choosing exactly which functors
+you're going to toss into it (like adding methods to a class later on). Is this
+useful in real-world code? No idea, but smarter people than me really like to
+blog about it sometimes, so maybe.&lt;/p&gt;
+&lt;h3 id="am-i-wrong"&gt;Am I Wrong?&lt;/h3&gt;
+&lt;p&gt;I wrote this late at night with a blinding dehydration headache after seeing yet
+another bad explanation of monads on the internet. And I didn't even test any of
+the examples, just wrote them here in Markdown in code blocks. So maybe I messed
+something up. Put in a PR or send me a mean email. I'll correct this post and
+maybe even give you credit if you're not too mean. &lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/monads-monoids-endofunctors-javascript</guid><pubDate>Mon, 26 Jun 2023 00:00:00 -0700</pubDate></item><item><title>Common JS Array Methods Cheatsheet</title><link>https://zacanger.com/blog/posts/common-array-methods</link><description>&lt;p&gt;Cheatcheet for common JS array methods, because this is a super common category of
 questions on StackOverflow and I'm sick of typing it up in a comment, so now I
 can just copy-paste it.&lt;/p&gt;
 &lt;ul&gt;

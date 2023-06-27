@@ -14,7 +14,7 @@
 </url>
 <url>
   <loc>https://zacanger.com/blog/</loc>
-  <lastmod>2023-06-25</lastmod>
+  <lastmod>2023-06-26</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>
@@ -99,6 +99,12 @@
 <url>
   <loc>https://zacanger.com/blog/posts/wtf-is-set/</loc>
   <lastmod>2017-04-25</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/blog/posts/monads-monoids-endofunctors-javascript/</loc>
+  <lastmod>2023-06-26</lastmod>
   <changefreq>never</changefreq>
   <priority>0.5</priority>
 </url>
