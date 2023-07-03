@@ -1,5 +1,72 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Tue, 27 Jun 2023 14:35:32 +0000</lastBuildDate><item><title>Common JS Array Methods Cheatsheet</title><link>https://zacanger.com/blog/posts/common-array-methods</link><description>&lt;p&gt;Cheatcheet for common JS array methods, because this is a super common category of
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 03 Jul 2023 00:36:06 +0000</lastBuildDate><item><title>package.json is just fine</title><link>https://zacanger.com/blog/posts/draft</link><description>&lt;p&gt;Quick response to &lt;a href="https://frantic.im/javascript-gom-jabbar/"&gt;this nonsense&lt;/a&gt;,
+section by section, because it's highly upvoted on Hacker News and is a load of
+bullshit.&lt;/p&gt;
+&lt;p&gt;Semver is good, actually, and if you never hit v1, that's a you problem. Not
+even really a problem, just a thing that is.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;browser&lt;/code&gt; field in package.json was never really heavily used. I've never in
+8 years of working in the Node ecosystem actually seen it in the wild. And if
+you did try to require a Node builtin in your browser bundle, chances are your
+bundler fixed that for you.&lt;/p&gt;
+&lt;p&gt;Sure you've got &lt;code&gt;type: module&lt;/code&gt;. This is because the language spec didn't have
+modules originally. No we all just use &lt;code&gt;type: module&lt;/code&gt;, mostly, unless you have
+old packages you haven't bothered to update (like me). You don't have to care
+about it. Set it in your init options and don't worry about it. And it's not a
+big deal to use ESM in CJS (&lt;code&gt;require('foo').default&lt;/code&gt;) or vice versa (it
+literally just works).&lt;/p&gt;
+&lt;p&gt;Your npm scripts are a mess? Again, that's a you problem. Stop jumping between
+package managers and just use npm. If you have more than, maybe, 10 scripts, you
+probably need to rethink how you're testing and building.&lt;/p&gt;
+&lt;p&gt;You're still using watchman. Again, guess what, that's a you problem. If you
+don't ever bother dealing with tech debt, you don't deserve to whine about you
+have tech debt. Gulp is actually still around, but I haven't seen anyone using
+it in a few years.&lt;/p&gt;
+&lt;p&gt;You're using a bunch of deps, some of which are obsolete (&lt;code&gt;str.padStart&lt;/code&gt;
+exists). Guess what? &lt;em&gt;That's a you problem.&lt;/em&gt; Who's the person who ran &lt;code&gt;npm i
+every damn package they saw in a tutorial&lt;/code&gt; and never bothered to clean things up
+later on? Use &lt;code&gt;npm-check-updates&lt;/code&gt; to keep your deps current, use &lt;code&gt;grep -r
+package-name .&lt;/code&gt; to see if you're actually using a module, and once in a while
+actually deal with your tech debt.&lt;/p&gt;
+&lt;p&gt;If you don't want to see donation messages, change your log level. If you don't
+want to see deprecation notices, update your packages and deal with your tech
+debt. Simple as.&lt;/p&gt;
+&lt;p&gt;If you choose libraries based on opinions you saw on Twitter, you're in for a
+bad time. Moment is fine, though not really actively maintained. There are
+others that are also fine. Lots of libs are bloated and full of bad code. Just
+pick something that works, is popular, and is active.&lt;/p&gt;
+&lt;p&gt;Again, use &lt;code&gt;ncu&lt;/code&gt;. Update to the top of the current semver major range, then walk
+through updating each one until you're current. It might take a couple of hours,
+but after that you can just do it routinely, once every sprint or whatever. It's
+really not that big of a deal. Call me when you have to deal with an emergency
+kernel update across hundreds of servers that potentially degrades IO perf.
+Wimp.&lt;/p&gt;
+&lt;p&gt;What the hell is &lt;code&gt;resolutions&lt;/code&gt;? That's not a thing. You're making that up. (Oh,
+I see it's a yarn thing. Don't use yarn, just use the standard, that's your
+problem.)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;devDependencies&lt;/code&gt; are so you don't have to ship shit to your package's users. Do
+you need Webpack or Babel or your personal crappy ESLint config to head over to
+someone installing your package? You do not. If you don't know what devDeps are
+for, go read the docs.&lt;/p&gt;
+&lt;p&gt;If your lint config is so strict that you can't work effectively, change it. If
+you have so many errors that it's a distraction, maybe try fixing some of them?
+Invest time in taking care of this shit so you have a nice codebase. Why are you
+whining about it when they're your rules to begin with?&lt;/p&gt;
+&lt;p&gt;If you have PostCSS explicitly installed but it's a peerDep, let it be a
+peerDep, that's how it works these days. Also there's no native extension in
+PostCSS or its deps. You might be thinking of an old SASS package from years
+ago.&lt;/p&gt;
+&lt;p&gt;It takes about 4 lines of config and one extra package to get Jest working with
+TS. Easy stuff. But if you don't like that, good news, you can pick from one of
+hundreds of other test runners. Personally I'm a big fan of &lt;code&gt;node-tap&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you have multiple tools that serve the same purpose, again, that's your
+problem. Delete them. You don't need esbuild and swc and TypeScript and Babel.
+If you're writing TS, just use TS. Don't use Rollup and Webpack on the same
+codebase, just pick one. Terser is a minifier, usually a plugin for an actual
+build tool, so now you're just being silly.&lt;/p&gt;
+&lt;p&gt;Of course &lt;code&gt;engines&lt;/code&gt; lists Node. The purpose of &lt;code&gt;engines&lt;/code&gt; is really to tell
+consumers of your package their requirements. Node 10? Node 16? That actually
+does matter, and it's a programmatic way of explaining requirements.&lt;/p&gt;
+&lt;p&gt;Final note: your package.json is in a weird order. &lt;code&gt;npx sortpack&lt;/code&gt; to fix that.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/draft</guid><pubDate>Sun, 02 Jul 2023 00:00:00 -0700</pubDate></item><item><title>Common JS Array Methods Cheatsheet</title><link>https://zacanger.com/blog/posts/common-array-methods</link><description>&lt;p&gt;Cheatcheet for common JS array methods, because this is a super common category of
 questions on StackOverflow and I'm sick of typing it up in a comment, so now I
 can just copy-paste it.&lt;/p&gt;
 &lt;ul&gt;

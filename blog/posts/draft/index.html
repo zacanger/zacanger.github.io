@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>package.json is just fine | Zac Anger's Blog</title>
+    <meta name="description" content="package.json is just fine" />
+    <meta name="keywords" content="javascript,npm" />
+    <meta property="og:description" content="package.json is just fine" />
+    <meta property="og:title" content="package.json is just fine" />
+    <meta property="og:url" content="https://zacanger.com/blog/posts/draft" />
+
+    <meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="author" content="Zac Anger" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Zac Anger's Blog" />
+<meta property="og:image" content="https://zacanger.com/logo.png" />
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/blog">Zac Anger's Blog</a></h1>
+      <h2>package.json is just fine</h2>
+      <h3>2023-07-02</h3>
+      <h4><small>Tags: javascript, npm</small></h4>
+    </header>
+    <hr>
+    <div>
+      <p>Quick response to <a href="https://frantic.im/javascript-gom-jabbar/">this nonsense</a>,
+section by section, because it's highly upvoted on Hacker News and is a load of
+bullshit.</p>
+<p>Semver is good, actually, and if you never hit v1, that's a you problem. Not
+even really a problem, just a thing that is.</p>
+<p>The <code>browser</code> field in package.json was never really heavily used. I've never in
+8 years of working in the Node ecosystem actually seen it in the wild. And if
+you did try to require a Node builtin in your browser bundle, chances are your
+bundler fixed that for you.</p>
+<p>Sure you've got <code>type: module</code>. This is because the language spec didn't have
+modules originally. No we all just use <code>type: module</code>, mostly, unless you have
+old packages you haven't bothered to update (like me). You don't have to care
+about it. Set it in your init options and don't worry about it. And it's not a
+big deal to use ESM in CJS (<code>require('foo').default</code>) or vice versa (it
+literally just works).</p>
+<p>Your npm scripts are a mess? Again, that's a you problem. Stop jumping between
+package managers and just use npm. If you have more than, maybe, 10 scripts, you
+probably need to rethink how you're testing and building.</p>
+<p>You're still using watchman. Again, guess what, that's a you problem. If you
+don't ever bother dealing with tech debt, you don't deserve to whine about you
+have tech debt. Gulp is actually still around, but I haven't seen anyone using
+it in a few years.</p>
+<p>You're using a bunch of deps, some of which are obsolete (<code>str.padStart</code>
+exists). Guess what? <em>That's a you problem.</em> Who's the person who ran <code>npm i
+every damn package they saw in a tutorial</code> and never bothered to clean things up
+later on? Use <code>npm-check-updates</code> to keep your deps current, use <code>grep -r
+package-name .</code> to see if you're actually using a module, and once in a while
+actually deal with your tech debt.</p>
+<p>If you don't want to see donation messages, change your log level. If you don't
+want to see deprecation notices, update your packages and deal with your tech
+debt. Simple as.</p>
+<p>If you choose libraries based on opinions you saw on Twitter, you're in for a
+bad time. Moment is fine, though not really actively maintained. There are
+others that are also fine. Lots of libs are bloated and full of bad code. Just
+pick something that works, is popular, and is active.</p>
+<p>Again, use <code>ncu</code>. Update to the top of the current semver major range, then walk
+through updating each one until you're current. It might take a couple of hours,
+but after that you can just do it routinely, once every sprint or whatever. It's
+really not that big of a deal. Call me when you have to deal with an emergency
+kernel update across hundreds of servers that potentially degrades IO perf.
+Wimp.</p>
+<p>What the hell is <code>resolutions</code>? That's not a thing. You're making that up. (Oh,
+I see it's a yarn thing. Don't use yarn, just use the standard, that's your
+problem.)</p>
+<p><code>devDependencies</code> are so you don't have to ship shit to your package's users. Do
+you need Webpack or Babel or your personal crappy ESLint config to head over to
+someone installing your package? You do not. If you don't know what devDeps are
+for, go read the docs.</p>
+<p>If your lint config is so strict that you can't work effectively, change it. If
+you have so many errors that it's a distraction, maybe try fixing some of them?
+Invest time in taking care of this shit so you have a nice codebase. Why are you
+whining about it when they're your rules to begin with?</p>
+<p>If you have PostCSS explicitly installed but it's a peerDep, let it be a
+peerDep, that's how it works these days. Also there's no native extension in
+PostCSS or its deps. You might be thinking of an old SASS package from years
+ago.</p>
+<p>It takes about 4 lines of config and one extra package to get Jest working with
+TS. Easy stuff. But if you don't like that, good news, you can pick from one of
+hundreds of other test runners. Personally I'm a big fan of <code>node-tap</code>.</p>
+<p>If you have multiple tools that serve the same purpose, again, that's your
+problem. Delete them. You don't need esbuild and swc and TypeScript and Babel.
+If you're writing TS, just use TS. Don't use Rollup and Webpack on the same
+codebase, just pick one. Terser is a minifier, usually a plugin for an actual
+build tool, so now you're just being silly.</p>
+<p>Of course <code>engines</code> lists Node. The purpose of <code>engines</code> is really to tell
+consumers of your package their requirements. Node 10? Node 16? That actually
+does matter, and it's a programmatic way of explaining requirements.</p>
+<p>Final note: your package.json is in a weird order. <code>npx sortpack</code> to fix that.</p>
+    </div>
+    <footer>
+  <a href="/">Zac Anger</a>
+  &middot; <a href="https://github.com/zacanger/zacanger.github.io">Source</a>
+  &middot; <a href="/blog/rss.xml">RSS</a>
+  &middot; <a target="_blank" rel="nofollow noopener noreferrer" href="https://paypal.me/zacanger">Paypal</a>
+  &middot; <a target="_blank" rel="nofollow noopener noreferrer" href="https://ko-fi.com/zacanger">Ko-Fi</a>
+</footer>
+  </body>
+</html>
