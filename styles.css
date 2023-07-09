@@ -187,3 +187,9 @@ pre, code {
 footer {
   margin-top: 32px;
 }
+
+@media screen and (prefers-color-scheme: dark) {
+  html {
+    filter: invert(100%) !important;
+  }
+}
