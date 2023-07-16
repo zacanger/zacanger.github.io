@@ -14,7 +14,7 @@
 </url>
 <url>
   <loc>https://zacanger.com/blog/</loc>
-  <lastmod>2023-07-09</lastmod>
+  <lastmod>2023-07-15</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>
@@ -165,6 +165,12 @@
 <url>
   <loc>https://zacanger.com/blog/posts/using-stackoverflow-effectively/</loc>
   <lastmod>2023-03-25</lastmod>
+  <changefreq>never</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/blog/posts/my-website-is-boring/</loc>
+  <lastmod>2023-07-15</lastmod>
   <changefreq>never</changefreq>
   <priority>0.5</priority>
 </url>

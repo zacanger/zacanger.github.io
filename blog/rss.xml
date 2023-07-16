@@ -1,5 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Mon, 10 Jul 2023 02:15:34 +0000</lastBuildDate><item><title>So You Want To Stan LOONA?</title><link>https://zacanger.com/blog/posts/stan-loona</link><description>&lt;p&gt;Adapted from a YouTube comment, which was adapted from a text file in my notes.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 16 Jul 2023 01:59:51 +0000</lastBuildDate><item><title>My Website Is Boring</title><link>https://zacanger.com/blog/posts/my-website-is-boring</link><description>&lt;p&gt;My website is boring, and that's how I like it. Recently I've been going through
+the long and painful process of finding a new role. In the old days, this wasn't
+long or painful; I could email People Ops just about anywhere besides a FAANG
+and have an interview the next week. Now, it takes hundreds of cold applications
+to get a single response.&lt;/p&gt;
+&lt;p&gt;So I've been looking at what other folks are doing. One piece of advice I see
+often is to have a flashy "portfolio" site. I don't know what that means outside
+of frontend and design contexts. My portfolio is my CV and my GitHub. A quick
+internet search turns up a slew of websites that weigh &lt;em&gt;megabytes&lt;/em&gt;, convey
+little information, and are painful on the eyes. I don't expect every page I
+visit to be all that great for A11Y, but if you've got a flashing background on
+a site where the main purpose is to inform recruiters that you actually have
+done work in the past... why?&lt;/p&gt;
+&lt;p&gt;My site is simple. Some of it is written directly in HTML. Some is HTML
+generated from Markdown, by a little &lt;a href="https://github.com/zacanger/zacanger.github.io/blob/master/blog/blog.py"&gt;Python
+script&lt;/a&gt;,
+because I don't need a framework to do these simple tasks. Yes, it has a few
+dependencies, but just the ones I really need. There is no theme, there's just
+&lt;a href="https://github.com/zacanger/zacanger.github.io/blob/master/styles.css"&gt;some
+CSS&lt;/a&gt;. The
+only JavaScript is an &lt;a href="https://github.com/zacanger/zacanger.github.io/blob/master/presentations/2019-06-26-git-workflows/index.html#L125"&gt;external
+library&lt;/a&gt;
+for presentations, and if it doesn't load, no problem, the presentations are
+still plenty readable in their original Markdown format.&lt;/p&gt;
+&lt;p&gt;It is &lt;em&gt;okay&lt;/em&gt; to have a boring website. The purpose of a website like this is to
+convey information: this is me, this is what I'm about, this is where I've
+worked, these are links to other places where I exist on the internet. I'm
+pretty good at writing software, but part of being good at writing software is
+knowing when you don't need something. We should all be okay with sites that are
+lightweight, simple, and minimal (actually minimal, not "it's all shades of grey
+and thin Arial-ish typefaces!" minimal).&lt;/p&gt;
+&lt;p&gt;If you disagree, you're welcome to open a PR at the link below and tell me why
+I'm wrong, or just go build your own website. If it requires WebGL just to tell
+me how to reach you, I won't sit around and wait for it to render.&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/my-website-is-boring</guid><pubDate>Sat, 15 Jul 2023 00:00:00 -0700</pubDate></item><item><title>So You Want To Stan LOONA?</title><link>https://zacanger.com/blog/posts/stan-loona</link><description>&lt;p&gt;Adapted from a YouTube comment, which was adapted from a text file in my notes.&lt;/p&gt;
 &lt;div class="toc"&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="#introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
