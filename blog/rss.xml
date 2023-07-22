@@ -1,5 +1,41 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sun, 16 Jul 2023 01:59:51 +0000</lastBuildDate><item><title>My Website Is Boring</title><link>https://zacanger.com/blog/posts/my-website-is-boring</link><description>&lt;p&gt;My website is boring, and that's how I like it. Recently I've been going through
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zac Anger's Blog</title><link>https://zacanger.com/blog/</link><description>Programming, socialism, and Buddhism.</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><language>en</language><lastBuildDate>Sat, 22 Jul 2023 18:41:23 +0000</lastBuildDate><item><title>Healthy Programming Habits</title><link>https://zacanger.com/blog/posts/healthy-programming-habits</link><description>&lt;p&gt;Quick response to &lt;a href="https://puppycoding.com/2023/07/22/healthy-coding-habits/"&gt;this blog
+post&lt;/a&gt;, which is
+important but misses some information.&lt;/p&gt;
+&lt;p&gt;Don't go to a chiropractor. They are pseudoscience. Talk to a real doctor. If
+you're in the US, like I am, I know, it's expensive. Getting your back and neck
+permanently messed up by a fake doctor will be much more expensive.&lt;/p&gt;
+&lt;p&gt;Code late at night if that's what works for you. It's fine. The point isn't your
+working hours, it's how long you've been in one place. If you find that you're
+more productive in the evening, don't spend too much time at the computer in the
+morning. And also don't spend hours looking at a dim screen in the dark, leave a
+light on so you're not straining your eyes.&lt;/p&gt;
+&lt;p&gt;Standing desks are fine, but a good chair and appropriate setup are also
+important. I've done the standing desk thing, and I found that the best setup is
+to have one of those desks that goes up and down (preferably with preset heights
+so you don't have to fiddle with it), plus those floor pads I used to use when I
+worked in a coffee shop, plus a good chair. That's all really expensive, so just
+focus on what you can afford. If you go full-time standing, you'll quickly find
+that your legs and feet also hurt, not just your back.&lt;/p&gt;
+&lt;p&gt;20/20/20 rule: every 20 minutes, look at something 20 feet away for 20 seconds,
+to reduce eye strain. Yes, taking a smoke break every 1-2 hours (whether you
+smoke or not, just get away from your desk and do something else for a few
+minutes) is important for both your physical health and mental state, but don't
+forget about your eyes!&lt;/p&gt;
+&lt;p&gt;Laptops honestly are fine. Laptop keyboards are not. You don't need to spend
+$250 on a Topre Realforce 45g weighted blah blah blah, you could drop in at your
+local thrift shop and buy an early 2010s desktop keyboard that tilts and has
+nice-feeling switches and a numpad (make sure you clean it thoroughly).&lt;/p&gt;
+&lt;p&gt;Get a laptop stand. Not a laptop cooler, an actual stand, one of the ones that
+lifts the laptop up to eye height and puts it on a tilt.&lt;/p&gt;
+&lt;p&gt;Make exercise a habit (or just stretching, if you're not ready to exercise). If
+you try to get motivated, it won't get done. Treat it like a chore, that's fine,
+like watering the houseplants or taking out the trash.&lt;/p&gt;
+&lt;p&gt;Reduce the amount of caffeine you use. Programmers pound Monster drinks like
+water. Try actually drinking water. I've mostly switched to tea (Pu'er in the
+morning, green in the afternoon, white at night) to cut down on caffeine.&lt;/p&gt;
+&lt;p&gt;And most importantly, call it programming, not coding. No one likes the word
+"coding."&lt;/p&gt;</description><guid isPermaLink="false">https://zacanger.com/blog/posts/healthy-programming-habits</guid><pubDate>Sat, 22 Jul 2023 00:00:00 -0700</pubDate></item><item><title>My Website Is Boring</title><link>https://zacanger.com/blog/posts/my-website-is-boring</link><description>&lt;p&gt;My website is boring, and that's how I like it. Recently I've been going through
 the long and painful process of finding a new role. In the old days, this wasn't
 long or painful; I could email People Ops just about anywhere besides a FAANG
 and have an interview the next week. Now, it takes hundreds of cold applications
