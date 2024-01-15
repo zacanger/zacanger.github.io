@@ -102,11 +102,6 @@ echo "<url>
   <loc>https://zacanger.com/teamethod/</loc>
   <lastmod>2020-01-19</lastmod>
   <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://zacanger.com/zeelib/</loc>
-  <lastmod>2024-01-07</lastmod>
-  <priority>0.2</priority>
 </url>"
 
 # Close it out
