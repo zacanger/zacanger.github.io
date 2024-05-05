@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
   <loc>https://zacanger.com/</loc>
-  <lastmod>2023-10-19</lastmod>
+  <lastmod>2024-05-04</lastmod>
   <changefreq>monthly</changefreq>
   <priority>1.0</priority>
+</url>
+<url>
+  <loc>https://zacanger.com/resume/</loc>
+  <lastmod>2024-05-04</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/404.html</loc>
