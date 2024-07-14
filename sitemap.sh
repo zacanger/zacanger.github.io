@@ -47,7 +47,7 @@ $_find . -type f -name '*.html' -printf "%TY-%Tm-%Td%p\n" | \
     if [[ $file == "" ]]; then
       priority=1.0
       freq="monthly"
-    elif [[ $file == "cv/" ]]; then
+    elif [[ $file == "resume/" ]]; then
       priority=0.9
       freq="monthly"
     elif [[ $file == "presentations/" ]]; then

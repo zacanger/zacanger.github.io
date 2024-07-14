@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
   <loc>https://zacanger.com/</loc>
-  <lastmod>2024-06-25</lastmod>
+  <lastmod>2024-05-04</lastmod>
   <changefreq>monthly</changefreq>
   <priority>1.0</priority>
 </url>
 <url>
   <loc>https://zacanger.com/resume/</loc>
   <lastmod>2024-06-25</lastmod>
-  <changefreq>yearly</changefreq>
-  <priority>0.5</priority>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
 </url>
 <url>
   <loc>https://zacanger.com/404.html</loc>
-  <lastmod>2024-06-25</lastmod>
+  <lastmod>2020-10-02</lastmod>
   <changefreq>never</changefreq>
   <priority>0.0</priority>
 </url>
@@ -242,7 +242,7 @@
 </url>
 <url>
   <loc>https://zacanger.com/presentations/</loc>
-  <lastmod>2024-06-25</lastmod>
+  <lastmod>2020-10-02</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.4</priority>
 </url>
@@ -261,8 +261,8 @@
 <url>
   <loc>https://zacanger.com/cv/</loc>
   <lastmod>2024-06-25</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
 </url>
 <url>
   <loc>https://zacanger.com/hey-you/</loc>
