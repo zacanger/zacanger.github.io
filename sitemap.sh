@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+exit 0
+
 # Mac/BSD compatibility
 if hash gfind 2>/dev/null; then
   _find='gfind'
