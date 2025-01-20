@@ -1,3 +1,0 @@
-py-gfm
-Jinja2
-feedgen
